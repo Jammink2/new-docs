@@ -5,8 +5,6 @@ require 'sass'
 require 'indextank'
 require 'coderay'
 require 'rack/codehighlighter'
-require 'heroku/nav'
-use Heroku::Nav::Header
 
 $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 require 'topic.rb'
