@@ -1,3 +1,3 @@
 require 'bundler/setup'
-require './docs'
+require './app.rb'
 run Sinatra::Application

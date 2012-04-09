@@ -3,47 +3,34 @@ require 'sinatra'
 require 'haml'
 require 'sass'
 require 'indextank'
-require './topic'
-
+require 'coderay'
+require 'rack/codehighlighter'
 require 'heroku/nav'
 use Heroku::Nav::Header
 
+$LOAD_PATH << File.dirname(__FILE__) + '/lib'
+require 'topic.rb'
+require 'term.rb'
+
 # require 'rack/coderay'
 # use Rack::Coderay, "//pre[@lang]>code"
-
-require 'coderay'
-require './lib/term.rb'
-require 'rack/codehighlighter'
 use Rack::Codehighlighter, :coderay, :markdown => true, :element => "pre>code", :pattern => /\A:::(\w+)\s*(\n|&#x000A;)/i, :logging => false
 configure :production do
   ENV['APP_ROOT'] ||= File.dirname(__FILE__)
 end
 
-$LOAD_PATH << File.dirname(__FILE__) + '/lib'
 set :app_file, __FILE__
 
+#
 # NOT FOUND
-
+#
 not_found do
   erb :not_found
 end
 
-# REDIRECTS
-
-get '/getting-started' do
-  redirect '/heroku'
-end
-
-get '/memcached' do
-  redirect '/memcache'
-end
-
-get '/technologies' do
-  redirect '/aspen'
-end
-
 # 
-
+# PATHS
+#
 get '/' do
   cache_long
   haml :index
@@ -152,6 +139,6 @@ module TOC
     sections.last.last << [name, title, []]
   end
 
-  file = File.dirname(__FILE__) + '/toc.rb'
+  file = File.dirname(__FILE__) + '/lib/toc.rb'
   eval File.read(file), binding, file
 end
