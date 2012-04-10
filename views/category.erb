@@ -1,0 +1,7 @@
+<h1><%= @title %></h1>
+
+<% @articles.each do |name, title, _| %>
+  <ul>
+    <a href="/articles/<%= slugify(name) %>"><%= title %></a></li>
+  </ul>
+<% end %>
