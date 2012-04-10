@@ -2,8 +2,7 @@ Encoding.default_external = Encoding.default_internal = 'utf-8'
 
 require 'rdiscount'
 
-class Topic
-  
+class Article
   def text_only
     @body = @body.gsub(/\<[^\<]+\>/,'')
     self
@@ -79,5 +78,4 @@ class Topic
     end
     return toc, content_with_anchors
   end
-  
 end

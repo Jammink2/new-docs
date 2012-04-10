@@ -3,7 +3,7 @@ require 'bundler'
 Bundler.setup
 
 require 'indextank'
-require 'topic'
+require 'article'
 
 desc 'Start a development server'
 task :server do
@@ -27,9 +27,9 @@ task :index do
     name = name_for(doc)
     puts "...indexing #{name}"
     source = File.read(doc)
-    topic = Topic.load(name, source)
-    topic.text_only
-    result = indextank_document = index.document(name).add(:title => topic.title, :text => topic.body)
+    article = Article.load(name, source)
+    article.text_only
+    result = indextank_document = index.document(name).add(:title => article.title, :text => article.body)
     puts "=> #{result}"
   end
   puts "finished indexing"

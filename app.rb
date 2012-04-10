@@ -7,7 +7,7 @@ require 'coderay'
 require 'rack/codehighlighter'
 
 $LOAD_PATH << File.dirname(__FILE__) + '/lib'
-require 'topic.rb'
+require 'article.rb'
 require 'term.rb'
 
 # require 'rack/coderay'
@@ -40,9 +40,9 @@ get '/search' do
   erb :search, :locals => {:search => search, :query => params[:q], :prev_page => prev_page, :next_page => next_page}
 end
 
-get '/:topic' do
+get '/:article' do
   cache_long
-  render_topic params[:topic]
+  render_article params[:article]
 end
 
 get '/css/docs.css' do
@@ -52,17 +52,17 @@ get '/css/docs.css' do
 end
 
 helpers do
-  def render_topic(topic)
-    source = File.read(topic_file(topic))
-    @topic = Topic.load(topic, source)
+  def render_article(article)
+    source = File.read(article_file(article))
+    @article = Article.load(article, source)
     
-    @title   = @topic.title
-    @content = @topic.content
-    @intro   = @topic.intro
-    @toc     = @topic.toc
-    @body    = @topic.body
+    @title   = @article.title
+    @content = @article.content
+    @intro   = @article.intro
+    @toc     = @article.toc
+    @body    = @article.body
     
-    erb :topic
+    erb :article
   rescue Errno::ENOENT
     status 404
   end
@@ -83,11 +83,11 @@ helpers do
     [search, prev_page, next_page]
   end
   
-  def topic_file(topic)
-    if topic.include?('/')
-      topic
+  def article_file(article)
+    if article.include?('/')
+      article
     else
-      "#{options.root}/docs/#{topic}.txt"
+      "#{options.root}/docs/#{article}.txt"
     end
   end
 
@@ -105,11 +105,11 @@ helpers do
 
   def next_section(current_slug, root=sections)
     return sections.first if current_slug.nil?
-    root.each_with_index do |(slug, title, topics), i|
+    root.each_with_index do |(slug, title, articles), i|
       if current_slug == slug and i < root.length-1
         return root[i+1]
-      elsif topics.any?
-        res = next_section(current_slug, topics)
+      elsif articles.any?
+        res = next_section(current_slug, articles)
         return res if res
       end
     end
@@ -132,8 +132,8 @@ module TOC
     yield if block_given?
   end
 
-  # define a topic
-  def topic(name, title)
+  # define a article
+  def article(name, title)
     sections.last.last << [name, title, []]
   end
 

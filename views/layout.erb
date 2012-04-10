@@ -30,12 +30,12 @@
 		</form>
 
 		<ul>
-			<% sections.each do |slug, title, topics| %>
+			<% sections.each do |slug, title, articles| %>
 				<li>
 				<h3><%= title %></h3>
 				<ul>
-					<% topics.each do |slug, title, _| %>
-						<% if params[:topic] == slug %>
+					<% articles.each do |slug, title, _| %>
+						<% if params[:article] == slug %>
 							<li class="current"><a><%=h title %></a></li>
 						<% else %>
 							<li><a href="/<%= slug %>"><%=h title %></a></li>
