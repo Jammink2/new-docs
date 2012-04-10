@@ -1,0 +1,46 @@
+Treasure Data Quickstart Guide
+==============================
+
+Getting Started with Treasure Data. Treasure Data is a new approach to process big data. We can forget about servers, storage, and infrastructure. No specific knowledge is required: Just import data into the cloud, and process it through a SQL-style (Structured Query Language) Language.
+
+Let's get started.
+
+Step 1: Sign-Up
+---------------
+
+Sign-up for a Treasure Data account, if you don't already have one.
+
+Step 2: Install the Treasure Data Toolbelt
+------------------------------------------
+
+Install the [Treasure Data Toolbelt](http://treasure-data.com/toolbelt.html) for your development operating system.
+
+The toolbelt contains the 'td' command, a CLI tool for importing, managing, and throwing the query on your data.
+
+Step 3: Authorize Your Account
+------------------------------
+
+After installing the toolbelt, you'll have access to the td command from your command line shell. Please authorize your account in using the emaill address and password you used when creating your Treasure Data account:
+
+    :::term
+    $ td account -f
+    User name: k@example.com
+    Password (typing will be hidden): 
+    Authenticated successfully.
+
+Step 4: Using Sample Data Set
+-----------------------------
+
+Step 5: Data Import from Your Application
+-----------------------------------------
+
+Choose from the following getting starated tutorials to learn how to import your application logs, using a supported languages or frameworks:
+
+  * [Java](/categories/java), [Spring](somewhere), or [Play](somewhere)
+  * [Ruby](/categories/ruby) or [Rails](somewhere)
+  * [Python](/categories/python), or [Django](somewhere)
+  * [Perl](/categories/perl)
+  * [PHP](/categories/php)
+  * [Scala](/categories/scala)
+  * [Node.js](/categories/nodejs)
+
