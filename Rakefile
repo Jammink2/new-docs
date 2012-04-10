@@ -2,58 +2,24 @@ require 'rubygems'
 require 'bundler'
 Bundler.setup
 
-require 'indextank'
+$LOAD_PATH << File.dirname(__FILE__) + '/lib'
 require 'article'
 
 desc 'Start a development server'
 task :server do
-	if which('shotgun')
-		exec 'shotgun -O docs.rb'
-	else
-		warn 'warn: shotgun not installed; reloading is disabled.'
-		exec 'ruby -rubygems docs.rb -p 9393'
-	end
-end
-
-desc 'Index documentation'
-task :index do
-  puts "indexing now:"
-  client = IndexTank::Client.new(ENV['HEROKUTANK_API_URL'])
-  index = client.indexes('heroku-docs')
-  index.add unless index.exists?
-
-  docs = FileList['docs/*.txt']
-  docs.each do |doc|
-    name = name_for(doc)
-    puts "...indexing #{name}"
-    source = File.read(doc)
-    article = Article.load(name, source)
-    article.text_only
-    result = indextank_document = index.document(name).add(:title => article.title, :text => article.body)
-    puts "=> #{result}"
+  if which('shotgun')
+    exec 'shotgun -O app.rb'
+  else
+    warn 'warn: shotgun not installed; reloading is disabled.'
+      exec 'ruby -rubygems app.rb -p 9393'
   end
-  puts "finished indexing"
-end
-
-desc 'Sample search'
-task :search, :query do |t, args|
-  client = IndexTank::Client.new(ENV['HEROKUTANK_API_URL'])
-  index = client.indexes('heroku-docs')
-  results = index.search(args[:query], :fetch => 'title', :snippet => 'text')
-  puts "#{results['matches']} results."
-  puts results.inspect
 end
 
 task :start => :server
 
 def which(command)
-	ENV['PATH'].
-		split(':').
-		map  { |p| "#{p}/#{command}" }.
-		find { |p| File.executable?(p) }
+  ENV['PATH'].
+    split(':').
+    map  { |p| "#{p}/#{command}" }.
+    find { |p| File.executable?(p) }
 end
-
-def name_for(doc)
-  File.basename(doc, '.txt')
-end
-

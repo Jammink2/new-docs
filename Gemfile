@@ -12,5 +12,6 @@ gem 'faraday',   :git => 'git://github.com/technoweenie/faraday',  :ref => '3aa8
 gem 'indextank', :git => 'git://github.com/hone/indextank-rb.git', :ref => '61c217938b9c96f69ba0'
 
 group :development do
-  gem "rake"
+  gem 'rake'
+  gem 'shotgun', '~> 0.9'
 end
