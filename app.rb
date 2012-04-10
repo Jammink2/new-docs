@@ -33,6 +33,11 @@ get '/' do
   haml :index
 end
 
+get '/categories/:category' do
+  cache_long
+  render_category params[:category]
+end
+
 get '/articles/:article' do
   cache_long
   render_article params[:article]
@@ -45,6 +50,26 @@ get '/css/docs.css' do
 end
 
 helpers do
+  def render_category(category)
+    @articles = []
+    sections.each { |_, _, categories|
+      categories.each { |name, title, articles|
+        if name == category
+          @title = title
+          @articles = articles
+          break
+        end
+      }      
+    }
+    unless @articles.empty?
+      erb :category
+    else
+      status 404
+    end
+  rescue Errno::ENOENT
+    status 404
+  end
+
   def render_article(article)
     source = File.read(article_file(article))
     @article = Article.load(article, source)
@@ -109,9 +134,15 @@ module TOC
     yield if block_given?
   end
 
+  # define a category
+  def category(name, title)
+    sections.last.last << [name, title, []]
+    yield if block_given?
+  end
+
   # define a article
   def article(name, title)
-    sections.last.last << [name, title, []]
+    sections.last.last.last.last << [name, title, []]
   end
 
   file = File.dirname(__FILE__) + '/lib/toc.rb'

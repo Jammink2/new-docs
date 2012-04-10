@@ -1,88 +1,67 @@
-section 'getting-started', "Getting Started" do
-  article 'heroku',          'What is Heroku?'
-  article 'quickstart',      'Quickstart guide'
-  article 'keys',            'Managing keys'
-  article 'collab',          'Collaborator quickstart'
-  article 'billing',         'Confirmation & verification'
-  article 'windows',         'Ruby on Windows'
-  article 'rails',           'Running Rails apps'
+section 'overview', 'Overview' do
+  category 'getting-started', 'Getting Started' do
+    article 'quickstart', 'Getting Started with Treasure Data'
+  end
+  category 'platform-basics', 'Platform Basics' do
+    article 'architecture-overview', 'Architecture Overview'
+  end
 end
 
-section 'howto', "How To" do
-  article 'background-jobs',    'Background jobs'
-  article 'full-text-search',   'Full text search'
-  article 'smtp',               'Outbound email'
-  article 's3',                 'Storing uploads in S3'
-  article 'custom-domains',     'DNS & custom domains'
+section 'languages', 'Langueges' do
+  category 'java', 'Java'
+  category 'ruby', 'Ruby'
+  category 'python', 'Python'
+  category 'perl', 'Perl'
+  category 'php', 'PHP'
+  category 'scala', 'Scala'
+  category 'nodejs', 'Node.js'
+end
+section 'tutorials', 'Tutorials' do
+  category 'usecases', 'Use Cases' do
+    article 'apache-logs', 'Calculating UU from Apache Logs'
+    article 'game', 'Calculating ARPU from Gaming Logs'
+    article 'ecommerce', 'Calculating Top-Ranked Items from EC Search Logs'
+  end
+  category 'performance', 'Performance' do
+    article 'avoid-nested-json', 'Avoiding Nested JSON Records'
+  end
 end
 
-section 'faq', "FAQ" do
-  article 'faq-accounts-billing',   'Accounts & billing'
-  article 'faq-product-features',   'Product features'
-  article 'faq-support'         ,   'Support'
+section 'reference', 'Reference' do
+  category 'command-line', 'Command Line' do
+    article 'using-the-cli', 'CLI Usage'
+    article 'installing-the-cli', 'Installing the Treasure Data CLI'
+  end
+  category 'database-management', 'Database Management' do
+    article 'database-and-table', 'Database and Table Management'
+    article 'schema', 'Schema Management'
+  end
+  category 'continuous-data-import', 'Continuous Data Import' do
+    article 'data-import-with-td-agent', 'Continuous Data Import with td-agent'
+    article 'high-availability-with-td-agent', 'High Availability Configurations with td-agent'
+    article 'copy-plugin', 'Storing Logs into Treasure Data, and Storage X'
+  end
+  category 'bulk-operation', 'Bulk Import and Export' do
+    article 'bulk-import', 'Bulk Import'
+    article 'bulk-export', 'Bulk Export'
+  end
+  category 'query', 'Query' do
+    article 'job', 'Job Management'
+    article 'hive', 'Hive Query Language'
+    article 'pig', 'Pig Latin Language'
+  end
+  category 'api', 'REST API' do
+    article 'rest-api', 'REST API Specification'
+  end
 end
 
-section 'management', "Application Management" do
-  article 'heroku-command',     'Heroku command-line'
-  article 'creating-apps',      'Creating apps'
-  article 'renaming-apps',      'Renaming apps'
-  article 'git',                'Deploying with Git'
-  article 'sharing',            'Collaborating with others'
-  article 'gems',               'Managing gems'
-  article 'taps',               'Database import / export'
-  article 'console',            'Using the console'
-  article 'rake',               'Running rake tasks'
-  article 'config-vars',        'Config vars'
-  article 'pgbackups',          'Backups'
-  article 'bundles',            'Bundles'
-  article 'maintenance-mode',   'Maintenance mode'
-  article 'rails3',             'Rails 3'
-  article 'ps',                 'Processes'
-  article 'postgresql-migrate', 'Database migration'
-  article 'rails-caching-strategies', 'Rails Caching Strategies'
-end
-
-section 'features', "Platform Features" do
-  article 'dynos',              'Dynos'
-  article 'delayed-job',        'Delayed Job workers'
-  article 'http-caching',       'HTTP cache'
-  article 'rack',               'Rack apps'
-  article 'slug-compiler',      'Slug compiler'
-  article 'database',           'SQL database'
-  article 'stack',              'Deployment stack'
-  article 'releases',           'Release management'
-  article 'logging',            'Logging'
-  article 'custom-error-pages', 'Custom error pages'
-end
-
-section 'add-ons', "Add-ons" do
-  article 'addons',             'Addons Overview'
-  article 'amazon_rds',         'Amazon RDS'
-  article 'apigee',             'Apigee for Twitter'
-  article 'cloudant',           'Cloudant'
-  article 'cloudmailin',        'Cloudmailin'
-  article 'cron',               'Cron'
-  article 'deploy-hooks',       'Deploy Hooks'
-  article 'heroku-postgresql',  'Heroku PostgreSQL'
-  article 'pgbackups',          'Heroku PG Backups'
-  article 'hoptoad',            'Hoptoad'
-  article 'indextank',          'IndexTank'
-  article 'memcache',           'Memcached'
-  article 'moonshadosms',       'Moonshado SMS'
-  article 'newrelic',           'New Relic RPM'
-  article 'pandastream',        'Panda Stream'
-  article 'redistogo',          'Redis To Go'
-  article 'sendgrid',           'Sendgrid SMTP'
-  article 'ssl',                'SSL'
-  article 'websolr',            'Websolr search'
-  article 'zerigo',             'Zerigo DNS'
-end
-
-section 'troubleshooting', "Troubleshooting" do
-  article 'constraints',        'Application constraints'
-  article 'errors',             'Error pages'
-  article 'support',            'Getting support'
-  article 'logs-exceptions',    'Logs and exceptions'
-  article 'performance',        'Performance'
-  article 'error-codes',        'Error codes'
+section 'ab', 'Accounts & Billing' do
+  category 'accounts', 'Accounts' do
+    article 'change-email-address', 'Changing your email address'
+    article 'delete-account', 'Deleting the account'
+  end
+  category 'support', 'Support' do
+    article 'paid-support', 'Paid Support'
+    article 'support-channels', 'Support Channels'
+  end
 end
