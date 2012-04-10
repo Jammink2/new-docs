@@ -38,7 +38,7 @@
 						<% if params[:article] == slug %>
 							<li class="current"><a><%=h title %></a></li>
 						<% else %>
-							<li><a href="/<%= slug %>"><%=h title %></a></li>
+							<li><a href="/articles/<%= slug %>"><%=h title %></a></li>
 						<% end %>
 					<% end %>
 				</ul>

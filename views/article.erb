@@ -13,7 +13,7 @@
 <% if @toc.size > 0 %>
 	<ul id="toc">
 		<% @toc.each do |section| %>
-			<li><a href="#<%= slugify(section) %>"><%= section %></a></li>
+			<li><a href="/articles/#<%= slugify(section) %>"><%= section %></a></li>
 		<% end %>
 	</ul>
 <% end %>

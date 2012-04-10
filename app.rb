@@ -40,7 +40,7 @@ get '/search' do
   erb :search, :locals => {:search => search, :query => params[:q], :prev_page => prev_page, :next_page => next_page}
 end
 
-get '/:article' do
+get '/articles/:article' do
   cache_long
   render_article params[:article]
 end
