@@ -104,7 +104,7 @@ Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its b
     | testdb     | test_table | log  | 1         |
     +------------+------------+------+-----------+
 
-## Production Deployment Notes
+## Production Deployment Preferences
 
 ### Use Apache / mod_php
 
