@@ -8,15 +8,19 @@ section 'overview', 'Overview' do
 end
 
 section 'languages', 'Langueges' do
-  category 'java', 'Java'
-  category 'ruby', 'Ruby'
-  category 'python', 'Python'
-  category 'perl', 'Perl'
+  category 'java', 'Java' do
+    article 'java', 'Logging from Java Applications'
+  end
+  category 'ruby', 'Ruby' do
+    article 'ruby', 'Logging from Ruby Applications'
+    article 'rails', 'Logging from Ruby on Rails Applications'
+  end
+  category 'python', 'Python' do
+    article 'python', 'Logging from Python Applications'
+  end
   category 'php', 'PHP' do
     article 'php', 'Logging from PHP Applications'
   end
-  category 'scala', 'Scala'
-  category 'nodejs', 'Node.js'
 end
 section 'tutorials', 'Tutorials' do
   category 'usecases', 'Use Cases' do
