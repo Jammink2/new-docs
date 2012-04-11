@@ -1,7 +1,7 @@
 Treasure Data Quickstart Guide
 ==============================
 
-Getting Started with Treasure Data. Treasure Data is a new approach to process big data. We can forget about servers, storage, and infrastructure. No specific knowledge is required: Just import data into the cloud, and process it through a SQL-style (Structured Query Language) Language.
+Getting Started with Treasure Data. Treasure Data is a new approach to process big data. We can forget about servers, storages, and infrastructure. No specific knowledge is required: Just import JSON data into the cloud, and process it through a SQL-style (Structured Query Language) Language.
 
 Let's get started.
 
@@ -15,32 +15,78 @@ Step 2: Install the Treasure Data Toolbelt
 
 Install the [Treasure Data Toolbelt](http://treasure-data.com/toolbelt.html) for your development operating system.
 
-The toolbelt contains the 'td' command, a CLI tool for importing, managing, and throwing the query on your data.
+The toolbelt contains the 'td' command, a [CLI tool](/categories/command-line) for importing, managing, and throwing the query on your data.
 
-Step 3: Authorize Your Account
-------------------------------
+Step 3: Authorize
+-----------------
 
 After installing the toolbelt, you'll have access to the td command from your command line shell. Please authorize your account in using the emaill address and password you used when creating your Treasure Data account:
 
     :::term
     $ td account -f
-    User name: k@example.com
+    User name: kaz@example.com
     Password (typing will be hidden): 
     Authenticated successfully.
 
-Step 4: Using Sample Data Set
+Step 4: Import Sample Dataset
 -----------------------------
 
-Step 5: Data Import from Your Application
+Now you're ready! Let's start importing the Apache log sample dataset. At first, you need to create the database and table on the cloud, by CLI.
+
+    :::term
+    $ td db:create testdb
+    $ td table:create testdb www_access
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | testdb     | www_access | log  | 0         |
+    +------------+------------+------+-----------+
+
+Then, let's generate the sample Apache logs data and import it to the cloud. 'td sample:apache' commands generates 5,000 lines of a JSON file, which contains exactly same information with Apache logs. 'td table:import' takes JSON file, and uploads.
+
+    :::term
+    $ td sample:apache apache.json
+    $ td table:import testdb www_access --json apache.json
+    $ tail -n 1 apache.json
+    {"host":"200.129.205.208","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":62,"agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11","time":1334035906}
+
+Step 5: Throw the Query
+-----------------------
+
+Finally, let's throw the SQL query. The query is running in parallel on the cloud, and returns only the result to you. Here we're calculating the distribution of HTTP status codes.
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
+    queued...
+    started at 2012-04-10T23:44:41Z
+    2012-04-10 23:43:12,692 Stage-1 map = 0%,  reduce = 0%
+    2012-04-10 23:43:18,766 Stage-1 map = 100%,  reduce = 0%
+    2012-04-10 23:43:29,925 Stage-1 map = 100%,  reduce = 33%
+    2012-04-10 23:43:32,973 Stage-1 map = 100%,  reduce = 100%
+    Status     : success
+    Result     :
+    +------+------+
+    | code | cnt  |
+    +------+------+
+    | 200  | 4981 |
+    | 404  | 17   |
+    | 500  | 2    |
+    +------+------+
+
+Step 6: Data Import from Your Application
 -----------------------------------------
 
-Choose from the following getting starated tutorials to learn how to import your application logs, using a supported languages or frameworks:
+Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your logs, using a supported languages, middlewares, or frameworks:
 
-  * [Java](/categories/java), [Spring](somewhere), or [Play](somewhere)
-  * [Ruby](/categories/ruby) or [Rails](somewhere)
-  * [Python](/categories/python), or [Django](somewhere)
-  * [Perl](/categories/perl)
-  * [PHP](/categories/php)
-  * [Scala](/categories/scala)
-  * [Node.js](/categories/nodejs)
-
+  * Languages and Frameworks
+    * [Java](/categories/java), [Spring](somewhere), or [Play](somewhere)
+    * [Ruby](/categories/ruby) or [Rails](somewhere)
+    * [Python](/categories/python), or [Django](somewhere)
+    * [Perl](/categories/perl)
+    * [PHP](/categories/php)
+    * [Scala](/categories/scala)
+    * [Node.js](/categories/nodejs)
+  * Middlewares
+    * [Apache, Nginx](/categories/middlewares)

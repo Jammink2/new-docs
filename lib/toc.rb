@@ -12,7 +12,9 @@ section 'languages', 'Langueges' do
   category 'ruby', 'Ruby'
   category 'python', 'Python'
   category 'perl', 'Perl'
-  category 'php', 'PHP'
+  category 'php', 'PHP' do
+    article 'php', 'Logging from PHP Applications'
+  end
   category 'scala', 'Scala'
   category 'nodejs', 'Node.js'
 end
@@ -36,19 +38,19 @@ section 'reference', 'Reference' do
     article 'database-and-table', 'Database and Table Management'
     article 'schema', 'Schema Management'
   end
-  category 'continuous-data-import', 'Continuous Data Import' do
+  category 'data-import', 'Data Import' do
     article 'data-import-with-td-agent', 'Continuous Data Import with td-agent'
     article 'high-availability-with-td-agent', 'High Availability Configurations with td-agent'
     article 'copy-plugin', 'Storing Logs into Treasure Data, and Storage X'
-  end
-  category 'bulk-operation', 'Bulk Import and Export' do
-    article 'bulk-import', 'Bulk Import'
-    article 'bulk-export', 'Bulk Export'
   end
   category 'query', 'Query' do
     article 'job', 'Job Management'
     article 'hive', 'Hive Query Language'
     article 'pig', 'Pig Latin Language'
+  end
+  category 'bulk-operations', 'Bulk Operations' do
+    article 'bulk-import', 'Bulk Import'
+    article 'bulk-export', 'Bulk Export'
   end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'

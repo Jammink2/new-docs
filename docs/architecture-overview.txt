@@ -1,0 +1,17 @@
+Architecture Overview
+=====================
+
+Treasure Data is the cloud data warehousing service. Import your data instantly, and process them throw a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
+
+### Multi-Tenant
+
+Treasure Data is a multi-tenant platform and hosting environment. You don’t need your own servers, storages, or clusters, and you’ll benefit from continuous platform improvements.
+
+### Fully Managed
+
+Because we control all the infrastructure and software layers, we can present a clean interface for managing your data.
+
+### Curation
+
+We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly.
+

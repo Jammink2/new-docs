@@ -1,0 +1,14 @@
+CLI Usage
+=========
+
+Running *td help:all* displays a usage summary:
+
+    :::term
+    $ td help:all
+  
+      db:list             # Show list of tables in a database
+      db:show <db>        # Describe a information of a database
+      db:create <db>      # Create a database
+      db:delete <db>      # Delete a database
+      
+      ....
