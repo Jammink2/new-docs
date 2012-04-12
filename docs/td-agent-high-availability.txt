@@ -54,9 +54,19 @@ At the log forwarder, please add those lines to your /etc/td-agent/td-agent.conf
 
     # Log Forwarding
     <match td.*.*>
-      type tcp
-      host 192.168.0.1
-      port 24224
+      type forward
+
+      <server>
+        host 192.168.0.1
+        port 24224
+      </server>
+    
+      # use secondary host
+      <server>
+        host 192.168.0.2
+        port 24224
+        standby
+      </server>
     
       # use file buffer to buffer events on disks.
       buffer_type file
@@ -65,12 +75,6 @@ At the log forwarder, please add those lines to your /etc/td-agent/td-agent.conf
       # use longer flush_interval to reduce CPU usage.
       # this is trade-off of latency.
       flush_interval 60s
-    
-      # use secondary host
-      <secondary>
-        host 192.168.0.2
-        port 24224
-      </secondary>
     </match>
 
 When the active aggregator (192.168.0.1) dies, the logs are started sending to the backup/secondary aggregator (192.168.0.2). If both servers die, the logs are buffered on the disks at the forwarder node.
