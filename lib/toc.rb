@@ -9,17 +9,17 @@ end
 
 section 'languages-and-middlewares', 'Langueges / Middlewares' do
   category 'java', 'Java' do
-    article 'java', 'Logging from Java Applications'
+    article 'java', 'Data Import from Java Applications'
   end
   category 'ruby', 'Ruby' do
-    article 'ruby', 'Logging from Ruby Applications'
-    article 'rails', 'Logging from Ruby on Rails Applications'
+    article 'ruby', 'Data Import from Ruby Applications'
+    article 'rails', 'Data Import from Ruby on Rails Applications'
   end
   category 'python', 'Python' do
-    article 'python', 'Logging from Python Applications'
+    article 'python', 'Data Import from Python Applications'
   end
   category 'php', 'PHP' do
-    article 'php', 'Logging from PHP Applications'
+    article 'php', 'Data Import from PHP Applications'
   end
 end
 
@@ -45,7 +45,7 @@ section 'reference', 'Reference' do
   end
   category 'data-import', 'Data Import' do
     article 'td-agent', 'Using td-agent'
-    article 'td-agent-high-availability', 'High-Availability Configurations with td-agent'
+    article 'td-agent-high-availability', "High-Availability 'td-agent' Configurations"
     article 'copy-plugin', 'Storing Logs into Treasure Data, and Storage X'
   end
   category 'data-processing', 'Data Processing' do

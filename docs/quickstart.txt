@@ -53,6 +53,16 @@ Then, let's generate the sample Apache logs data and import it to the cloud. 'td
     $ tail -n 1 apache.json
     {"host":"200.129.205.208","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":62,"agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11","time":1334035906}
 
+After several seconds, the records will be imported into our database.
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | testdb     | www_access | log  | 5000      |
+    +------------+------------+------+-----------+
+
 Step 5: Throw the Query
 -----------------------
 
@@ -80,7 +90,7 @@ Finally, let's throw the SQL query. The query is running in parallel on the clou
 Step 6: Logging from Your Application
 -------------------------------------
 
-Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your logs, using a supported languages, middlewares, or frameworks:
+Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your data, using a supported languages, middlewares, or frameworks:
 
   * Languages and Frameworks
     * [Java](java)
