@@ -104,20 +104,23 @@ helpers do
     title.downcase.gsub(/[^a-z0-9 -]/, '').gsub(/ /, '-')
   end
 
+  def find_category(article)
+    return nil if article.nil?
+    sections.each { |_, _, categories|
+      categories.each { |category_name, _, articles|
+        articles.each { |article_name, _, _|
+          return category_name if article_name == article
+        }
+      }
+    }
+    nil
+  end
+
   def sections
     TOC.sections
   end
 
   def next_section(current_slug, root=sections)
-    return sections.first if current_slug.nil?
-    root.each_with_index do |(slug, title, articles), i|
-      if current_slug == slug and i < root.length-1
-        return root[i+1]
-      elsif articles.any?
-        res = next_section(current_slug, articles)
-        return res if res
-      end
-    end
     nil
   end
 
