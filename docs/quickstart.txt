@@ -81,12 +81,9 @@ Step 6: Data Import from Your Application
 Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your logs, using a supported languages, middlewares, or frameworks:
 
   * Languages and Frameworks
-    * [Java](/categories/java), [Spring](somewhere), or [Play](somewhere)
+    * [Java](/categories/java)
     * [Ruby](/categories/ruby) or [Rails](somewhere)
-    * [Python](/categories/python), or [Django](somewhere)
-    * [Perl](/categories/perl)
+    * [Python](/categories/python)
     * [PHP](/categories/php)
-    * [Scala](/categories/scala)
-    * [Node.js](/categories/nodejs)
   * Middlewares
     * [Apache, Nginx](/categories/middlewares)

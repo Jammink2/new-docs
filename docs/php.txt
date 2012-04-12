@@ -81,6 +81,7 @@ Then, please initialize and post the events as follows.
     require_once __DIR__.'/src/Fluent/Autoloader.php';
     use Fluent\Logger\FluentLogger;
     Fluent\Autoloader::register();
+
     $logger = new FluentLogger("localhost", 24224);
     $logger->post("td.test_db.test_table", array("hello"=>"world"));
 
@@ -113,6 +114,19 @@ Other deployment options are not well tested.
 
 ### Set MaxRequestsPerChild
 
-[fluent-logger-php](http://github.com/fluent/fluent-logger-php) sends application logs to td-agent, via persistent socket connection. If you use mod_php, the connection is reused across multiple requests.
+It's recommended to periodically restart your PHP processes, by setting *MaxRequestsPerChild* in your apache conf (*NOT* zero).
 
-Anyway, it's still recommended to periodically exit your PHP processes, by setting *MaxRequestsPerChild* in your apache conf (*NOT* zero).
+    :::term
+    # prefork MPM
+    # StartServers: number of server processes to start
+    # MinSpareServers: minimum number of server processes which are kept spare
+    # MaxSpareServers: maximum number of server processes which are kept spare
+    # MaxClients: maximum number of server processes allowed to start
+    # MaxRequestsPerChild: maximum number of requests a server process serves
+    <IfModule mpm_prefork_module>
+        StartServers          32
+        MinSpareServers       32
+        MaxSpareServers       32
+        MaxClients            32
+        MaxRequestsPerChild 4096
+    </IfModule>

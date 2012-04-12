@@ -1,0 +1,84 @@
+# Job Management
+
+If you throw the query, it is regarded as *Job* on the cloud. You can see the status and the results of that job by CUI command.
+
+This guide covers how to show jobs, and see detailed information for each job.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+
+## Issue Jobs
+
+You can issue the query with 'td query' subcommand. The submitted query is regarded as *Job*, and will be executed in parallel on the cloud. The # of parallelism is automatically decided based on your plan, remaining capacity, and the size of our cluster at that time.
+
+    :::term
+    $ td query -w -d testdb "SELECT COUNT(*) FROM www_access"
+    Job 702 is started.
+
+If you throw the query *WITHOUT* -w option, the command command exits immediately after submittion is completed. Not waits for job completion.
+
+    ::term
+    $ td query -d testdb "SELECT COUNT(*) FROM www_access"
+    Job 704 is started.
+    Use 'td job 704' to show the status.
+
+### Show Jobs
+
+'td jobs' subcommand lists your submitted jobs. In default, it shows 20 recent jobs. It shows the JobID, its status, starting time, elapsed time, and the submitted query.
+
+    :::term
+    $ td jobs
+    +-------+---------+-------------------------+----------------+------------------------------------+
+    | JobID | Status  | Start                   | Elapsed        | Query                              |
+    +-------+---------+-------------------------+----------------+------------------------------------+
+    | 784   | error   | 2011-08-01 18:48:31 UTC |       3sec     | SELECT COUNT(*) FROM www_access    |
+    | 783   | success | 2011-08-01 06:37:15 UTC |      23sec     | SELECT COUNT(*) FROM www_access    |
+    | 782   | success | 2011-08-01 02:28:15 UTC |      23sec     | SELECT COUNT(*) FROM www_access    |
+    | 781   | success | 2011-07-31 20:18:30 UTC | 1h  28m  30sec | SELECT COUNT(time) FROM wikistats3 |
+    | 780   | success | 2011-07-31 19:56:26 UTC | 1h  24m  9sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 779   | success | 2011-07-31 19:12:20 UTC | 1h  6m  4sec   | SELECT COUNT(time) FROM wikistats3 |
+    | 778   | success | 2011-07-31 18:48:58 UTC | 1h  7m  21sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 777   | success | 2011-07-31 18:06:19 UTC | 1h  5m  55sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 776   | success | 2011-07-31 17:43:42 UTC | 1h  5m  7sec   | SELECT COUNT(time) FROM wikistats3 |
+    | 775   | success | 2011-07-31 16:59:39 UTC | 1h  6m  35sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 774   | success | 2011-07-31 16:37:07 UTC | 1h  6m  28sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 773   | success | 2011-07-31 15:53:44 UTC | 1h  5m  48sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 772   | success | 2011-07-31 15:32:45 UTC | 1h  4m  12sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 771   | success | 2011-07-31 14:46:50 UTC | 1h  6m  46sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 770   | success | 2011-07-31 14:27:44 UTC | 1h  4m  54sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 769   | success | 2011-07-31 13:40:47 UTC | 1h  5m  54sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 768   | success | 2011-07-31 13:18:33 UTC | 1h  9m  7sec   | SELECT COUNT(time) FROM wikistats3 |
+    | 767   | success | 2011-07-31 12:35:07 UTC | 1h  5m  34sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 766   | success | 2011-07-31 12:13:32 UTC | 1h  4m  54sec  | SELECT COUNT(time) FROM wikistats3 |
+    | 765   | success | 2011-07-31 11:28:02 UTC | 1h  7m  1sec   | SELECT COUNT(time) FROM wikistats3 |
+    +-------+---------+-------------------------+----------------+------------------------------------+
+    20 rows in set
+
+If you want to see more older jobs, please specify the number of pages as an argument.
+
+    :::term
+    $ td jobs -p 0 # recent 20 jobs
+    $ td jobs -p 1 # next 20 jobs
+    $ td jobs -p 2 # next 20 jobs
+
+### Show Job Information and Result
+
+'td job' sub-command takes job_id as an argument, and shows the detailed information. It shows the status, query, and the result.
+
+    :::term
+    $ td job 783
+    JobID      : 783
+    URL        : http://console.treasure-data.com/will-be-ready
+    Status     : success
+    Query      : SELECT COUNT(*) FROM www_access
+    Result     :
+    +-----+
+    | 0   |
+    +-----+
+    | 300 |
+    +-----+
+    1 row in set
+    Use '-v' option to show detailed messages.
+
+If you want to see more detailed information such as execution logs, please add '-v' option to the command.

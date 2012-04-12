@@ -1,0 +1,55 @@
+# Schema Management
+
+Treasure Data uses the same analogy with RDBMSs for managing data sets: *Database* and *Table*. Also *Schema* can be associated to the tables.
+
+This guide covers how to set the schema to the tables, and why it's important for the performance perspective.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+
+Also need the table, which has some data. Please refer [Getting Started](quickstart) to create db/table and import the data in it.
+
+## The Difference with RDBMS's schema
+
+In RDBMS, schema must be given for creating the table.
+
+However, TD's schema is given even after importing the data. This means you can add/remove the fields at anymoment. It's like a *View* in RDBMS world.
+
+## Default Schema (time and v)
+
+Just after you've created the table, it has two fields:
+
+* *time*: int64 UNIX time, which represents generated time
+* *v*: map<string, string>, which represents each log entry
+
+When you refer the value, you need to specify like *v['field1']*. Also the type of *v* is fixed as map<string, string>, so all the values are treated as *String*. To treat the value as other types, the casting is required.
+
+## Setting Schema
+
+To solve the above issue, you can set the schema to the table via 'td schema:set' command.
+
+    :::term
+    $ td schema:set <database> <table> <column_name>:<type>...
+
+Consider if we have a table which contains the 'user' (int type) and 'action' (string type) column, adding the schema is like follows.
+
+    :::term
+    $ td schema:set testdb www_access action:string user:int
+
+Then you can query into that table, without using *v*.
+
+    :::term
+    $ td query -w -d hoge "SELECT user, COUNT(*) AS cnt
+      FROM www_access
+      WHERE action='login'
+      GROUP BY user ORDER BY cnt DESC"
+
+Using *v* still works properly.
+
+    :::term
+    $ td query -w -d testdb "SELECT v['user'], COUNT(*) AS cnt
+     FROM www_access
+     WHERE v['action']='login' 
+     GROUP BY v['user'] ORDER BY cnt DESC"
+

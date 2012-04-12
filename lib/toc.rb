@@ -7,7 +7,7 @@ section 'overview', 'Overview' do
   end
 end
 
-section 'languages', 'Langueges' do
+section 'languages-and-middlewares', 'Langueges / Middlewares' do
   category 'java', 'Java' do
     article 'java', 'Logging from Java Applications'
   end
@@ -22,34 +22,35 @@ section 'languages', 'Langueges' do
     article 'php', 'Logging from PHP Applications'
   end
 end
-section 'tutorials', 'Tutorials' do
-  category 'usecases', 'Use Cases' do
-    article 'apache-logs', 'Calculating UU from Apache Logs'
-    article 'game', 'Calculating ARPU from Gaming Logs'
-    article 'ecommerce', 'Calculating Top-Ranked Items from EC Search Logs'
-  end
-  category 'performance', 'Performance' do
-    article 'avoid-nested-json', 'Avoiding Nested JSON Records'
-  end
-end
+
+# section 'tutorials', 'Tutorials' do
+#   category 'usecases', 'Use Cases' do
+#     article 'apache-logs', 'Calculating UU from Apache Logs'
+#     article 'game', 'Calculating ARPU from Gaming Logs'
+#     article 'ecommerce', 'Calculating Top-Ranked Items from EC Search Logs'
+#   end
+#   category 'performance', 'Performance' do
+#     article 'avoid-nested-json', 'Avoiding Nested JSON Records'
+#   end
+# end
 
 section 'reference', 'Reference' do
   category 'command-line', 'Command Line' do
     article 'using-the-cli', 'CLI Usage'
     article 'installing-the-cli', 'Installing the Treasure Data CLI'
   end
-  category 'database-management', 'Database Management' do
+  category 'data-management', 'Data Management' do
     article 'database-and-table', 'Database and Table Management'
     article 'schema', 'Schema Management'
   end
   category 'data-import', 'Data Import' do
-    article 'data-import-with-td-agent', 'Continuous Data Import with td-agent'
-    article 'high-availability-with-td-agent', 'High Availability Configurations with td-agent'
+    article 'td-agent', 'Using td-agent'
+    article 'high-availability-with-td-agent', 'High-Availability Configurations with td-agent'
     article 'copy-plugin', 'Storing Logs into Treasure Data, and Storage X'
   end
-  category 'query', 'Query' do
+  category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
-    article 'hive', 'Hive Query Language'
+    article 'hive', 'Hive (SQL-like) Query Language'
     article 'pig', 'Pig Latin Language'
   end
   category 'bulk-operations', 'Bulk Operations' do
@@ -62,10 +63,10 @@ section 'reference', 'Reference' do
 end
 
 section 'ab', 'Accounts & Billing' do
-  category 'accounts', 'Accounts' do
-    article 'change-email-address', 'Changing your email address'
-    article 'delete-account', 'Deleting the account'
-  end
+  # category 'accounts', 'Accounts' do
+  #   article 'change-email-address', 'Changing your email address'
+  #   article 'delete-account', 'Deleting the account'
+  # end
   category 'support', 'Support' do
     article 'paid-support', 'Paid Support'
     article 'support-channels', 'Support Channels'

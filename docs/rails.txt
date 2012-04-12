@@ -129,4 +129,4 @@ To confirm the data upload, please use *td tables*.
 
 ### Use Rack-based Server Deployments
 
-Use unicorn, thin, mongrel, etc. Other deployment options are not well tested.
+Use *unicorn*, *thin*, *mongrel*, etc. Other deployment options are not well tested.

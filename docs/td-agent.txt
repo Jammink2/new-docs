@@ -1,0 +1,106 @@
+# Continuous Data Import with td-agent
+
+This guide covers how to continuously import the data with 'td-agent' daemon.
+
+## Logs Are Streams, Not Files
+
+The logs are usually roteted by time or size per hourly/daily basis, and the rotation generates the big files. To analyze these logs, these files are imported in batch-style. However, we believe that the logs are the continuously generated *STREAM*, not files in nature.
+
+NOTE: Server daemons and applications sometimes offer a configuration parameter for a path to the program’s logfile. This can lead us to think of logs as files. But a better conceptual model is to treat logs as time-ordered streams. - <a href="http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/">Logs Are Streams, Not Files</a> by Adam Wiggins, Heroku
+
+To continuously import the data into Treasure Data, we're providing the data aggregation daemon called 'td-agent' for this purpose. Although bulk imported is also supported, continuous importing via td-agent is highly recommended.
+
+## About td-agent
+
+td-agent is a data collection daemon. It collects or receives logs from various data sources, and upload to Treasure Data.
+
+!{width:600px;}images/td-agent.png()!
+
+NOTE: td-agent is fully open-sourced as <a href="https://github.com/fluent/fluentd">fluentd project</a> on the github. td-agent is just the package which contains fluentd, with some extension plugins for Treasure Data.
+
+## Install td-agent
+
+Please consult the following articles to setup it.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please look at...</th>
+  </tr>
+  <tr>
+    <td>Debian / Ubuntu System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>Redhat / CentOS System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+  </tr>
+</table>
+
+## Setup td-agent
+
+After installing td-agent, you may modify your config file. It's installed at /etc/td-agent/td-agent.conf.
+
+The file includes some sample settings. Please open the file and find the following lines:
+
+    :::term
+    # HTTP input
+    <source>
+      type http
+      port 8888
+    </source>
+    
+    # Treasure Data output
+    <match td.*.*>
+      type tdlog
+      apikey ...
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+    </match>
+
+You need to set the `apikey` option, which is a secret key to authenticate your account. Please copy the apikey from ~/.td/td.conf file:
+
+    :::term
+    $ grep apikey ~/.td/td.conf
+    apikey = 1be3de7d01be3de7d01be3de7d01be3de7d01be3
+
+Now please restart the td-agent service.
+
+    :::term
+    $ /etc/init.d/td-agent restart
+
+### Confirm Data Upload
+
+You can add logs using send JSON data using HTTP.
+
+    :::term
+    $ curl -X POST -d 'json={"action":"login","user":2}' \
+      http://localhost:8888/td.testdb.www_access
+
+td-agent continuously uploads logs every 1 minute. By sending SIGUSR1 signal, td-agent flushes the buffered logs into the cloud.
+
+    :::term
+    $ sudo killall -SIGUSR1 td-agent
+
+You can confirm that the data import by using `td tables`:
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | testdb     | www_access | log  | 1         |
+    +------------+------------+------+-----------+
+
+If you have any trouble, please look at /var/log/td-agent.log for further investigation.
+
+### Logger Libraries
+
+Next, you need to modify the existing applications, to throw the data. The following repository contains the sample codes for various languages / frameworks. Please have a look at it.
+
+  * Languages and Frameworks
+    * [Java](/categories/java)
+    * [Ruby](/categories/ruby) or [Rails](somewhere)
+    * [Python](/categories/python)
+    * [PHP](/categories/php)

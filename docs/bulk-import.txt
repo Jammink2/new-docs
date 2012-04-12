@@ -1,0 +1,57 @@
+# Bulk Import
+
+This guide covers how to bulk-import the data into Treasure Data.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+
+## Usecase
+
+Bulk import is intended for two-usecases.
+
+#### First Data Upload
+
+The first one is the obvious example. In the case that you already have the data, and want to import it into Treasure Data.
+
+#### Periodic Data Upload
+
+The second case is periodically import the data into the cloud. Think that the logs are rotated with every hour. Then we can import the data with the previous hour by periodically launch the bulk-import tool.
+
+But for this usecase, we recommend you to use the continuous data uploading with 'td-agent'. See [Continuous Data Import with td-agent]().
+
+## *td import* command
+
+For bulk importing, import sub-command is prepared in 'td'. It takes the file path and it format as arguments, and upload into the cloud. Currently, it supports several formats.
+
+### JSON
+
+For JSON format, you need to prepare the files, which contains one JSON-map per oneline. Also ensure that you have 'time' field, which this event was generated.
+
+    :::term
+    {"action":"login","user":2,"time":"2011-08-02 03:06:32 +0900"}
+    {"action":"login","user":4,"time":"2011-08-02 03:06:32 +0900"}
+    {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
+    ...
+
+Then, import this data into 'test_table' table within 'test_db' database.
+
+    :::term
+    $ td import test_db test_table \
+      --format json \
+      --time-key time \
+      file1.json file2.json
+
+### Apache Log
+
+*td import* is able to parse the 'combined' format of Apache logs. It automatically splits the log records into the meaningful fields (example: time, user-agent, etc), then imports into the cloud.
+
+    :::term
+    $ td import test_db test_table --format apache access_log.txt
+
+### Syslog
+
+*td import* is able to parse the 'syslog' format.
+
+    :::term
+    $ td import test_db test_table --format syslog syslog.txt

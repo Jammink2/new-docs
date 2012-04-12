@@ -1,0 +1,73 @@
+# Hive (SQL-style )Query Language
+
+This guide covers the basics of SQL-like query language.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+
+## About Apache Hive
+
+Treasure Data enables the users to use HiveQL, the query language powered by [Apache Hive](http://hive.apache.org/) as the first and primary way to process the dataset.
+
+NOTE: The users can issue only "SELECT" statement. Other statements like Data Definition Statements, Data Manipulation Statements are not allowed.
+
+## Tutorial
+
+The following Hive tutorial covers basic functionality of HiveQL.
+
+* [Hive Tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial)
+
+## Reference
+
+This is the whole HiveQL language manual.
+
+* [HiveQL Language Manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+
+## Example Queries
+
+Here you have weblog, which consists of ip, url, and time field.
+
+#### Count # of Records
+
+    :::term
+    SELECT COUNT(1) FROM www_access;
+
+#### Count # of Unique IPs
+
+    :::term
+    SELECT COUNT(distinct v['ip']) FROM www_access;
+
+#### Unique IPs which Accessed Top Page
+
+    :::term
+    SELECT COUNT(distinct v['ip']) FROM www_access \
+      WHERE v['url']='/';
+
+#### Group Uniques IPs and Count # of Accesses
+
+    :::term
+    SELECT v['ip'], COUNT(*) FROM www_access \
+      GROUP BY v['ip'] LIMIT 30;
+
+#### Sort Unique IPs by # of Accesses
+
+    :::term
+    SELECT v['ip'], COUNT(*) AS cnt FROM www_access \
+      GROUP BY v['ip']
+      ORDER BY cnt DESC LIMIT 30;
+
+#### Limit logs to process by timestamp
+
+'time' column is a special column that describes UNIX timestamp of the log.
+
+    :::term
+    SELECT COUNT(*) FROM www_access \
+      WHERE time >= unix_timestamp('2011-08-19 00:00:00');
+
+#### Aggregate hourly logs
+
+    :::term
+    SELECT from_unixtime(CAST(time/(60*60*24) AS INT)*60*60*24) AS day, \
+      COUNT(*) FROM www_access \
+      GROUP BY CAST(time/(60*60*24) AS INT);

@@ -106,22 +106,22 @@ Finally, please insert the logging code into your applications like followings. 
     :::java
     import com.treasure_data.logger.TreasureDataLogger;
     public class Main {
-        private static TreasureDataLogger LOG;
-        static {
-            try {
-                Properties props = System.getProperties();
-                props.load(Main.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
-                LOG = TreasureDataLogger.getLogger("test_db");
-            } catch (IOException e) {
-                // do something
-            }
+      private static TreasureDataLogger LOG;
+      static {
+        try {
+          Properties props = System.getProperties();
+          props.load(Main.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
+          LOG = TreasureDataLogger.getLogger("test_db");
+        } catch (IOException e) {
+          // do something
         }
-        public void doApp() {
-            Map<String, Object> data = new HashMap<String, Object>();
-            data.put("from", "userA");
-            data.put("to", "userB");
-            LOG.log("follow", data);
-        }
+      }
+      public void doApp() {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("from", "userA");
+        data.put("to", "userB");
+        LOG.log("follow", data);
+      }
     }
 
 ## Confirm the Import

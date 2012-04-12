@@ -1,0 +1,170 @@
+# REST API
+
+This guide covers the public REST API, by which user can control Treasure Data.
+
+## Endpoint
+
+All API requests should be thrown against *api.treasure-data.com*.
+
+## Authorization
+
+Every request to Treasure Data must contain *authentication information* to authorize your requests. This is done by putting the special 'AUTHORIZATION' HTTP headers. The header format is like the following:
+
+    :::term
+    "AUTHORIZATION: TD1 " + YourApiKeyHere
+
+API key is a secret key to authenticate your account. Please get the apikey from ~/.td/td.conf file:
+
+    :::term
+    $ grep apikey ~/.td/td.conf
+    apikey = 1be3de7d01be3de7d01be3de7d01be3de7d01be3
+
+By curl command, the request is like this. -H option adds the AUTHORIZATION HTTP header to the request:
+
+    :::term
+    $ curl -H "AUTHORIZATION: TD1 YourApiKeyHere" \
+      "http://api.treasure-data.com/v3/job/result/2162"
+
+## GET /v3/database/list
+This api is used for listing the databases.
+
+#### Parameters
+No parameters are required.
+
+#### Output
+* **databases**: indicete an array of databases
+
+#### Example Result
+    :::term
+    {
+      "databases": [
+        { "name": "db0" },
+        { "name": "db1" }
+      ]
+    }
+
+## GET /v3/table/list/:database
+This api is used for listing the tables.
+
+#### Parameters
+* **database**: indicates the name of the database
+
+#### Output
+* **database**: indicates the name of the database
+* **tables**: indicates the table names
+
+#### Example Result
+    :::term
+    {
+      "database": "db0",
+      "tables": [
+        {
+          "name": "access_log",
+          "count": 13123233
+        },
+        {
+          "name": "payment_log",
+          "count": 331232
+        }
+      ]
+    }
+
+## POST /v3/job/issue/hive/:database
+This api is used for issuing the query.
+
+#### Parameters
+* **database**: indicates the name of the database
+* **query**: indicates query string to issue
+
+#### Output
+* **database**: indicates the name of the database
+* **job_id**: indicates the table name to create
+
+#### Example Result
+    :::term
+    {
+      "job_id": "12345"
+      "type": "hive",
+      "database": "www_access",
+      "url": "http://console.treasure-data.com/will-be-readly"
+    }
+
+## GET /v3/job/show/:job_id
+This api is used to show the status of the specific job.
+
+#### Parameters
+* **job_id**: indicates job_id
+
+#### Output
+* **job_id**: indicates the specified job_id
+* **type**: indicates the job type, currently 'hive' only
+* **query**: indicates the query
+* **database**: indicates the name of the database
+* **status**: indicates the job status. status is either 'queued', 'booting', 'running', 'success', 'error'
+* **created_at**: indicates the job creation time
+* **updated_at**: indicates the last job updated time
+
+#### Examples
+    :::term
+    {
+      "type": "hive",
+      "query": "SELECT * FROM ACCESS",
+      "job_id": "12345",
+      "status": "success",
+      "url": "http://console.treasure-data.com/jobs/12345",
+      "created_at":"Sun Jun 26 17:39:18 -0400 2011",
+      "updated_at":"Sun Jun 26 17:39:54 -0400 2011"
+    }
+
+## GET /v3/job/result/:job_id?format=tsv
+This api is used to get the result of the specific job. Please confirm the successful job completion by /v3/job/show/:job_id, before calling this API.
+
+#### Parameters
+* **job_id**: indicates job_id
+* **format**: indicates the result format. either 'tsv', 'csv', 'json'.
+
+#### Output
+* the result in a specified format.
+
+#### Example Result
+
+    :::term
+    # URL: http://api.treasure-data.com/v3/job/result/2162?format=tsv
+    aaaa    bbbb    cccc
+    aaaa    bbbb    cccc
+    aaaa    bbbb    cccc
+    aaaa    bbbb    cccc
+    aaaa    bbbb    cccc
+
+&nbsp;
+
+    :::term
+    # URL: http://api.treasure-data.com/v3/job/result/2162?format=csv
+    aaaa,bbbb,cccc
+    aaaa,bbbb,cccc
+    aaaa,bbbb,cccc
+    aaaa,bbbb,cccc
+    aaaa,bbbb,cccc
+
+&nbsp;
+
+    :::term
+    # URL: http://api.treasure-data.com/v3/job/result/2162?format=json
+    [
+      [aaaa,bbbb,cccc],
+      [aaaa,bbbb,cccc],
+      [aaaa,bbbb,cccc],
+      [aaaa,bbbb,cccc],
+      [aaaa,bbbb,cccc]
+    ]
+
+## Libraries
+
+We've developed the libraries to wrap above APIs. Those are developed by Treasure Data, Inc.
+
+* [Ruby Library for Treasure Data REST API](https://github.com/treasure-data/td-client-ruby)
+* [Java Library for Treasure Data REST API](https://github.com/treasure-data/td-client-java)
+
+3rd party developers are also actively developing the language bindings. Please find the useful one from below.
+
+* [PHP Library for Treasure Data REST API](https://github.com/crocos/php-treasure-data)

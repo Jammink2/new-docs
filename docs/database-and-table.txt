@@ -1,0 +1,96 @@
+# Database and Table Management
+
+Treasure Data Cloud uses the same analogy with RDBMSs for managing data sets: *Database* and *Table*. Tables must be belongs to only one database.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+
+## Database Management
+
+*Database* represents the collection of tables.
+
+### Create Database
+
+'db:create' sub-command creates the database. The following example creates 'test_db' database on the cloud. Nothing happens for the local environment. This setups the database only on the cloud.
+
+    :::term
+    $ td db:create test_db
+
+h4. List Databases
+
+'dbs' sub-command lists all the database, which your account has.
+
+    :::term
+    $ td dbs
+    +---------------+
+    | Name          |
+    +---------------+
+    | twitter       |
+    | follow_events |
+    | test_db       |
+    +---------------+
+    3 rows in set
+
+### Drop Database
+
+'db:delete' sub-command removes the database. All the tables belongs to this database will be removed. Stored data is also removed.
+
+    :::term
+    $ td db:delete test_db
+    Database 'test_db' is deleted.
+
+WARNING: You CAN'T rollback this operation. All the stored data in this database will be removed.
+
+## Table Management
+
+*Table* associates with actual data. One table must be belongs to only one database.
+
+### Create Table
+
+'table:create' sub-command creates the table. The following example creates 'test_table' table in 'test_db' database. Nothing happens for the local environment. This setups the table only on the cloud.
+
+    :::term
+    $ td table:create test_db test_table
+    Table 'test_db.test_table' is created.
+
+### List Tables
+
+'tables' sub-command lists all the tables, inside the specified database. It also shows the number of records stored in this table (currently zero).
+
+    :::term
+    $ td tables test_db
+    +----------+------------+------+-------+
+    | Database | Table      | Type | Count |
+    +----------+------------+------+-------+
+    | test_db  | test_table | log  | 0     |
+    +----------+------------+------+-------+
+    1 row in set
+
+'tables' with no arguments lists all the databases and tables you've created.
+
+    :::term
+    $ td tables        
+    +----------+-------------+------+-------------+
+    | Database | Table       | Type | Count       |
+    +----------+-------------+------+-------------+
+    | kzk      | www_access  | log  | 14          |
+    | sf       | ab          | log  | 212900645   |
+    | sf       | msgpack_www | log  | 390734      |
+    | sf       | wikistats3  | log  | 12745020396 |
+    | sf       | x           | log  | 3           |
+    | test_db  | test_table  | log  | 0           |
+    +----------+-------------+------+-------------+
+    8 rows in set
+
+### Drop Table
+
+'table:delete' sub-command removes the table from the database. Stored data is also removed.
+
+    :::term
+    $ td table:delete test_db test_table
+    Table 'test_db.test_table' is deleted.
+
+NOTE: You CAN'T rollback this operation. All the stored data in this table will be removed automatically.
+
+ 
