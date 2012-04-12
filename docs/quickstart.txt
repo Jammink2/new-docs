@@ -1,7 +1,9 @@
 Treasure Data Quickstart Guide
 ==============================
 
-Getting Started with Treasure Data. Treasure Data is a new approach to process big data. We can forget about servers, storages, and infrastructure. No specific knowledge is required: Just import JSON data into the cloud, and process it through a SQL-style (Structured Query Language) Language.
+Getting Started with Treasure Data. Treasure Data is a cloud-based data warehousing service. We can forget about servers, storages, and infrastructure while storing billions of records.
+
+No specific knowledge is required: Just import JSON-based records into the cloud, and process it through a SQL Language.
 
 Let's get started.
 
@@ -31,7 +33,7 @@ After installing the toolbelt, you'll have access to the td command from your co
 Step 4: Import Sample Dataset
 -----------------------------
 
-Now you're ready! Let's start importing the Apache log sample dataset. At first, you need to create the database and table on the cloud, by CLI.
+Now you're ready! Typically, our service is used to store huge amount of logs. So let's start importing the Apache log sample dataset. At first, you need to create the database and table on the cloud, by CLI.
 
     :::term
     $ td db:create testdb
@@ -75,8 +77,8 @@ Finally, let's throw the SQL query. The query is running in parallel on the clou
     | 500  | 2    |
     +------+------+
 
-Step 6: Data Import from Your Application
------------------------------------------
+Step 6: Logging from Your Application
+-------------------------------------
 
 Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your logs, using a supported languages, middlewares, or frameworks:
 

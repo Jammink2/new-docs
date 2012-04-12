@@ -1,8 +1,6 @@
-# Logging from Rails Applications
+# Data Import from Rails Applications
 
-In order to import Rails application logs to Treasure Data, we provide a specialized logger library '[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)'.
-
-This guide will explain how to import application logs from Ruby logger library.
+In order to import data from Ruby applications to Treasure Data, we provide a library called '[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)'. This article describes how to use that library.
 
 ## Prerequisites
 
@@ -66,7 +64,7 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
 
 ## Use td-logger-ruby
 
@@ -108,9 +106,9 @@ Finally, please insert the logging codes into your applications.
 
 ## Confirm the Import
 
-The posted logs are first transferred to the local td-agent. td-agent buffers the logs for a while, and uploads them every 5 minutes.
+The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffer and it starts uploading immediately.
+Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
     $ ruby test.rb

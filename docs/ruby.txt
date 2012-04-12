@@ -1,8 +1,6 @@
 # Logging from Ruby Applications
 
-In order to import Ruby application logs to Treasure Data, we provide a specialized logger library '[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)'.
-
-This guide will explain how to import application logs from Ruby logger library.
+In order to import data from Ruby applications to Treasure Data, we provide a library called '[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)'. This article describes how to use that library.
 
 ## Prerequisites
 
@@ -12,9 +10,9 @@ This guide will explain how to import application logs from Ruby logger library.
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
 
-Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Ruby applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
+Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Ruby applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes.
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
@@ -64,16 +62,16 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
 
 ## Use td-logger-ruby
 
-[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) is a Ruby library to record logs to td-agent from a Ruby application. First, add the ‘td’ (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
+[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) is a Ruby library to post the records to td-agent, from a Ruby application. First, add the ‘td’ (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
 
     :::term
     gem 'td', "~> 0.10.6"
 
-Then, please initialize and post the logs as follows. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
+Then, please initialize and post the records as follows. Further details regarding the API can be found [here](https://github.com/treasure-data/td-logger-ruby).
 
     :::ruby
     # Initialize
@@ -94,9 +92,9 @@ Then, please initialize and post the logs as follows. Further details regarding 
 
 ## Confirm the Import
 
-The posted logs are first transferred to the local td-agent. td-agent buffers the logs for a while, and uploads them every 5 minutes.
+The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffer and it starts uploading immediately.
+Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
     $ ruby test.rb

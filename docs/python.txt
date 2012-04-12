@@ -1,8 +1,6 @@
-# Logging from Python Applications
+# Data Import from Python Applications
 
-In order to import Python application logs to Treasure Data, we provide a specialized logger library '[fluent-logger-python](http://github.com/fluent/fluent-logger-python)'.
-
-This guide will explain how to import application logs from Python logger library.
+In order to import data from Python applications to Treasure Data, we provide a library called '[fluent-logger-python](http://github.com/fluent/fluent-logger-python)'. This article describes how to use that library.
 
 ## Prerequisites
 
@@ -12,9 +10,9 @@ This guide will explain how to import application logs from Python logger librar
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
 
-Through [fluent-logger-python](http://github.com/fluent/fluent-logger-python) library, Python applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
+Through [fluent-logger-python](http://github.com/fluent/fluent-logger-python) library, Python applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes.
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
@@ -64,7 +62,7 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
 
 ## Use fluent-logger-python
 
@@ -87,9 +85,9 @@ Then, please insert these lines into your application, to initialize and post th
 
 ## Confirm the Import
 
-The posted logs are first transferred to the local td-agent. td-agent buffers the logs for a while, and uploads them every 5 minutes.
+The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffer and it starts uploading immediately.
+Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
     $ python test.py

@@ -1,8 +1,6 @@
-# Logging from Java Applications
+# Data Import from Java Applications
 
-In order to import Java application logs to Treasure Data, we provide a specialized logger library '[td-logger-java](http://github.com/treasure-data/td-logger-java)'.
-
-This guide will explain how to import application logs from Java logger library.
+In order to import data from Java applications to Treasure Data, we provide a library called '[td-logger-java](http://github.com/treasure-data/td-logger-java)'. This article describes how to use that library.
 
 ## Prerequisites
 
@@ -12,9 +10,9 @@ This guide will explain how to import application logs from Java logger library.
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
 
-Through [td-logger-java](http://github.com/treasure-data/td-logger-java) library, Java applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
+Through [td-logger-java](http://github.com/treasure-data/td-logger-java) library, Java applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes.
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
@@ -64,11 +62,11 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
 
 ## Use td-logger-java
 
-[td-logger-java](http://github.com/treasure-data/td-logger-java) is a Java library to record events to td-agent from a Java application. First, please add those lines to pom.xml. Please find the latest version from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
+[td-logger-java](http://github.com/treasure-data/td-logger-java) is a Java library to post the records against td-agent from a Java application. First, please add those lines to pom.xml. Please find the latest version from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
 
     :::term
     <dependencies>
@@ -101,7 +99,7 @@ Then, please prepare your *treasure-data.properties* file.
     td.logger.agent.host=localhost
     td.logger.agent.port=24224
 
-Finally, please insert the logging code into your applications like followings. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-java).
+Finally, please insert the following lines into your application. Further details regarding the API can be found [here](https://github.com/treasure-data/td-logger-java).
 
     :::java
     import com.treasure_data.logger.TreasureDataLogger;
@@ -126,9 +124,9 @@ Finally, please insert the logging code into your applications like followings. 
 
 ## Confirm the Import
 
-The posted logs are first transferred to the local td-agent. td-agent buffers the logs for a while, and uploads them every 5 minutes.
+The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffer and it starts uploading immediately.
+Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
     $ java -jar test.jar

@@ -1,8 +1,6 @@
-# Logging from PHP Applications
+# Data Import from PHP Applications
 
-In order to import PHP application logs to Treasure Data, we provide a specialized logger library '[fluent-logger-php](http://github.com/fluent/fluent-logger-php)'.
-
-This guide will explain how to import application logs from PHP logger library.
+In order to import data from PHP applications to Treasure Data, we provide a logger library called '[fluent-logger-php](http://github.com/fluent/fluent-logger-php)'. This article describes how to use that library.
 
 ## Prerequisites
 
@@ -87,11 +85,11 @@ Then, please initialize and post the events as follows.
 
 ## Confirm the Import
 
-The posted logs are first transferred to the local td-agent. td-agent buffers the logs for a while, and uploads them every 5 minutes.
+The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
 NOTE: The first argument of post() determines the database name and table name. If you specify 'td.test_db.test_table', the data will be imported into *test_table* table within *test_db* database. Those are automatically created at the upload time.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffer and it starts uploading immediately.
+Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
     $ php test.php
