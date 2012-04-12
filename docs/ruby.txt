@@ -1,4 +1,4 @@
-# Logging from Ruby Applications
+# Data Import from Ruby Applications
 
 In order to import data from Ruby applications to Treasure Data, we provide a library called '[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)'. This article describes how to use that library.
 
@@ -117,3 +117,9 @@ To confirm the data upload, please use *td tables*.
 ### Use Rack-based Server Deployments
 
 Use *unicorn*, *thin*, *mongrel*, etc. Other deployment options are not well tested.
+
+### High-Availablability Configurations of td-agent
+
+For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent.
+
+* [High-Availability Configurations of td-agent](td-agent-high-availability)

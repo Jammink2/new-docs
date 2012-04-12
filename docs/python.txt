@@ -110,3 +110,9 @@ To confirm the data upload, please use *td tables*.
 ### Use gunicorn or modwsgi
 
 Other deployment options are not well tested.
+
+### High-Availablability Configurations of td-agent
+
+For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent.
+
+* [High-Availability Configurations of td-agent](td-agent-high-availability)

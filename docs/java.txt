@@ -68,6 +68,8 @@ By this configuration, td-agent accepts the data import via 24224. When it recei
 
 [td-logger-java](http://github.com/treasure-data/td-logger-java) is a Java library to post the records against td-agent from a Java application. First, please add those lines to pom.xml. Please find the latest version from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
 
+NOTE: If you need a all-in-one jar file, please download from <a href="http://treasure-data.com/maven2/">http://treasure-data.com/maven2/</a>.
+
     :::term
     <dependencies>
       ...
@@ -141,3 +143,11 @@ To confirm the data upload, please use *td tables*.
     +------------+------------+------+-----------+
     | test_db    | follow     | log  | 1         |
     +------------+------------+------+-----------+
+
+## Production Deployments
+
+### High-Availablability Configurations of td-agent
+
+For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent.
+
+* [High-Availability Configurations of td-agent](td-agent-high-availability)
