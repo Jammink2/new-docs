@@ -14,7 +14,7 @@ To continuously import the data into Treasure Data, we're providing the data agg
 
 td-agent is a data collection daemon. It collects or receives logs from various data sources, and upload to Treasure Data.
 
-!{width:600px;}images/td-agent.png()!
+<img src="/images/td-agent.png" width="600px">
 
 NOTE: td-agent is fully open-sourced as <a href="https://github.com/fluent/fluentd">fluentd project</a> on the github. td-agent is just the package which contains fluentd, with some extension plugins for Treasure Data.
 
@@ -95,12 +95,15 @@ You can confirm that the data import by using `td tables`:
 
 If you have any trouble, please look at /var/log/td-agent.log for further investigation.
 
-### Logger Libraries
+### What's Next?
 
 Next, you need to modify the existing applications, to throw the data. The following repository contains the sample codes for various languages / frameworks. Please have a look at it.
 
-  * Languages and Frameworks
-    * [Java](/categories/java)
-    * [Ruby](/categories/ruby) or [Rails](somewhere)
-    * [Python](/categories/python)
-    * [PHP](/categories/php)
+  * [Java](java)
+  * [Ruby](ruby) or [Rails](rails)
+  * [Python](python)
+  * [PHP](php)
+
+For highly loaded sites, we recommend using high availability configuration for td-agent.
+
+  * [High-Availability Configurations with td-agent](td-agent-high-availability)

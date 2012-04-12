@@ -45,7 +45,7 @@ section 'reference', 'Reference' do
   end
   category 'data-import', 'Data Import' do
     article 'td-agent', 'Using td-agent'
-    article 'high-availability-with-td-agent', 'High-Availability Configurations with td-agent'
+    article 'td-agent-high-availability', 'High-Availability Configurations with td-agent'
     article 'copy-plugin', 'Storing Logs into Treasure Data, and Storage X'
   end
   category 'data-processing', 'Data Processing' do

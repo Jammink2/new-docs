@@ -5,7 +5,7 @@ Treasure Data is the cloud data warehousing service. Import your data instantly,
 
 ### Multi-Tenant
 
-Treasure Data is a multi-tenant platform and hosting environment. You don’t need your own servers, storages, or clusters, and you’ll benefit from continuous platform improvements.
+Treasure Data is a multi-tenant data warehousing platform. You don’t need your own servers, storages, or clusters, and you’ll benefit from continuous platform improvements.
 
 ### Fully Managed
 

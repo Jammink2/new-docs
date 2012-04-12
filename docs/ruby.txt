@@ -68,12 +68,12 @@ We have now enabled td-agent to read, and upload our log data into the cloud via
 
 ## Use td-logger-ruby
 
-[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) is a Ruby library to record events to td-agent from a Ruby application. First, add the ‘td’ (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
+[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) is a Ruby library to record logs to td-agent from a Ruby application. First, add the ‘td’ (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
 
     :::term
     gem 'td', "~> 0.10.6"
 
-Then, please initialize and post the events as follows.
+Then, please initialize and post the logs as follows. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
 
     :::ruby
     # Initialize

@@ -16,6 +16,8 @@ At first, you need to setup 'td-agent' on your application servers. â€˜td-agentâ
 
 Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Rails applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
 
+<img src="/images/rails_to_td_via_td-agent.png" width="600px">
+
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
 <table>
@@ -88,8 +90,9 @@ Then, please prepare *config/treasure_data.yml* as follows.
       debug_mode: false
     
     test:
+      
 
-Finally, please embed your logging code into your applications.
+Finally, please insert the logging codes into your applications.
 
     :::ruby
     # Example1: login event

@@ -1,0 +1,9 @@
+# Support Channels
+
+## Documentation
+
+The articles here cover most of the basics as well as a number of important advanced features and areas where there has been confusion.
+
+## Support Desk
+
+[help.treasure-data.com](http://help.treasure-data.com/) enables you to submit a ticket. This lets you communicate directly with our support team and receive email updates as soon as there’s activity on your request. You can generally expect a response in a few business days.
