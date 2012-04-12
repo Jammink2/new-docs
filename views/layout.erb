@@ -31,11 +31,11 @@
 	  <h3><%= title %></h3>
 	  <ul>
 	    <% categories.each do |slug, title, _| %>
-	    <% if params[:category] == slug %>
-	    <li class="current"><a><%=h title %></a></li>
-	    <% else %>
-	    <li><a href="/categories/<%= slug %>"><%=h title %></a></li>
-	    <% end %>
+              <% if params[:category] == slug %>
+	        <li class="current"><a><%=h title %></a></li>
+	      <% else %>
+	        <li><a href="/categories/<%= slug %>"><%=h title %></a></li>
+	      <% end %>
 	    <% end %>
 	  </ul>
 	</li>

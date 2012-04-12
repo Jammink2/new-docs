@@ -110,9 +110,15 @@ To confirm the data upload, please use *td tables*.
 
 Other deployment options are not well tested.
 
-### Set MaxRequestsPerChild
+### Use Apache prefork MPM, and Set MaxRequestsPerChild
 
-It's recommended to periodically restart your PHP processes, by setting *MaxRequestsPerChild* in your apache conf (*NOT* zero).
+Please ensure you're using Apache prefork MPM, instead of other MPM like worker MPM. You can confirm the current settings by *apachectl -V* command.
+
+    :::term
+    $ apachectl -V | grep MPM:
+    Server MPM:     Prefork
+
+Also, it's recommended to periodically restart your PHP processes, by setting *MaxRequestsPerChild* in your apache conf (*NOT* zero).
 
     :::term
     # prefork MPM

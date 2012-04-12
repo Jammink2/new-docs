@@ -104,3 +104,9 @@ To confirm the data upload, please use *td tables*.
     | test_db    | follow     | log  | 1         |
     | test_db    | pay        | log  | 1         |
     +------------+------------+------+-----------+
+
+## Production Deployments
+
+### Use gunicorn or modwsgi
+
+Other deployment options are not well tested.
