@@ -61,7 +61,10 @@ helpers do
         end
       }      
     }
-    unless @articles.empty?
+    if @articles.length == 1
+      article_name = @articles.first.first
+      redirect "/articles/#{article_name}"
+    elsif !@articles.empty?
       erb :category
     else
       status 404
