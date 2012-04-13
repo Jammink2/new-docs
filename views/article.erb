@@ -1,21 +1,25 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("#stack-compare tr").click(function(){
-      window.location=$(this).find("a").attr("href"); 
+      window.location=$(this).find("a").attr("href");
       return false;
     });
   });
 </script>
-<h1><%= @title %></h1>
 
-<%= @intro %>
-
-<% if @toc.size > 0 %>
-  <ul id="toc">
-    <% @toc.each do |section| %>
-      <li><a href="#<%= slugify(section) %>"><%= section %></a></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= @body %>
+<article>
+  <hgroup>
+    <h1><%= @title %></h1>
+  </hgroup>
+  <%= @intro %>
+  <% if @toc.size > 0 %>
+    <section id="table-of-contents"><h3>Table of Contents</h3>
+      <ul id="toc">
+        <% @toc.each do |section| %>
+          <li><a href="#<%= slugify(section) %>"><%= section %></a></li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+  <%= @body %>
+</article>

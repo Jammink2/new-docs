@@ -1,7 +1,14 @@
-<h1><%= @title %></h1>
+<hgroup>
+  <h1><%= @title %></h1>
+</hgroup>
 
-<% @articles.each do |name, title, _| %>
-  <ul>
-    <a href="/articles/<%= slugify(name) %>"><%= title %></a></li>
-  </ul>
-<% end %>
+<div class="padder">
+  <h2>Articles</h2>
+  <% @articles.each do |name, title, _| %>
+    <ul class="articles results">
+      <li>
+	    <a href="/articles/<%= slugify(name) %>"><%= title %></a>
+	  </li>
+    </ul>
+  <% end %>
+</div>
