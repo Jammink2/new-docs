@@ -4,7 +4,7 @@
 */
 
 body {
-  background: url('/images/dev-center/body_bg.png') repeat #f0f0f0;
+  background: url('/images/body_bg.png') repeat #f0f0f0;
   color: #333;
   font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
   font-size: 13px;
@@ -107,7 +107,7 @@ code {
 }
 
 pre {
-  background: url('/images/dev-center/wikistyle/pre_code_background.png') repeat #434e56;
+  background: url('/images/pre_code_background.png') repeat #434e56;
   border: 1px solid #3f464c;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -344,7 +344,7 @@ object {
 
       #search form p input[type='text'] {
         background-color: #fafafa;
-        background-image: url('/images/dev-center/search_glyph.png');
+        background-image: url('/images/search_glyph.png');
         background-position: left 6px;
         background-repeat: no-repeat;
         border: 1px solid #aeb3b8;
@@ -371,7 +371,7 @@ object {
       }
 
       #search form p input[type='text']:focus:valid {
-        background-image: url('/images/dev-center/search_glyph.png'), url('/images/dev-center/search_return.png');
+        background-image: url('/images/search_glyph.png'), url('/images/search_return.png');
         background-position: left -35px, right 10px;
         padding: 8px 29px 8px 34px;
         width: 139px;
@@ -398,9 +398,9 @@ object {
       }
 
       #nav .category-group .category, #nav .category-group .fake-category {
-        background: url('/images/dev-center/aside_accordion_indicator_default.png') right center no-repeat, -moz-linear-gradient(top, #f7f7f7, #ededed);
-        background: url('/images/dev-center/aside_accordion_indicator_default.png') right center no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#ededed));
-        background: url('/images/dev-center/aside_accordion_indicator_default.png') right center no-repeat, linear-gradient(top, #f7f7f7, #ededed);
+        background: url('/images/aside_accordion_indicator_default.png') right center no-repeat, -moz-linear-gradient(top, #f7f7f7, #ededed);
+        background: url('/images/aside_accordion_indicator_default.png') right center no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#ededed));
+        background: url('/images/aside_accordion_indicator_default.png') right center no-repeat, linear-gradient(top, #f7f7f7, #ededed);
         border: 1px solid #acb3b7;
         -moz-border-radius: 3px;
         -webkit-border-radius: 3px;
@@ -420,9 +420,9 @@ object {
       }
 
       #nav .category-group .category.ui-state-active {
-        background: url('/images/dev-center/aside_accordion_indicator_open.png') right center no-repeat, -moz-linear-gradient(top, #f7f7f7, #ededed);
-        background: url('/images/dev-center/aside_accordion_indicator_open.png') right center no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#ededed));
-        background: url('/images/dev-center/aside_accordion_indicator_open.png') right center no-repeat, linear-gradient(top, #f7f7f7, #ededed);
+        background: url('/images/aside_accordion_indicator_open.png') right center no-repeat, -moz-linear-gradient(top, #f7f7f7, #ededed);
+        background: url('/images/aside_accordion_indicator_open.png') right center no-repeat, -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#ededed));
+        background: url('/images/aside_accordion_indicator_open.png') right center no-repeat, linear-gradient(top, #f7f7f7, #ededed);
       }
 
       #nav .category-group .tags {
