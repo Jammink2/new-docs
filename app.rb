@@ -29,8 +29,9 @@ end
 # PATHS
 #
 get '/' do
-  cache_long
-  haml :index
+  # cache_long
+  # haml :index
+  redirect '/articles/quickstart'
 end
 
 get '/categories/:category' do
