@@ -5,3 +5,4 @@
 .bundle
 bin
 vendor/cache
+vendor/bundle

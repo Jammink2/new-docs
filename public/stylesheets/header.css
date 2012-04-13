@@ -1,0 +1,72 @@
+/*
+  title: header css
+  author: maximilian schoening (@mschoening)
+*/
+
+/* =heroku header
+---------------------------------------------- */
+#heroku-header {
+  background: #3b4458;
+  border-bottom: 4px solid #5d6c90;
+}
+
+#heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {
+  background: url('/images/dev-center/heroku-header-logo.png') no-repeat;
+}
+
+#heroku-header #heroku-header-nav ul.group {
+  background: rgba(46, 54, 70, .5);
+}
+
+#heroku-header #heroku-header-nav ul li {
+  border-right: 2px solid rgba(46, 54, 70, .9);
+}
+
+#heroku-header #heroku-header-nav ul li.last {
+  border: none;
+}
+
+#heroku-header #heroku-header-nav ul li a:link, #heroku-header #heroku-header-nav ul li a:visited {
+  color: #9daac5;
+}
+
+#heroku-header #heroku-header-nav ul li a:hover, #heroku-header #heroku-header-nav ul li a:active {
+  color: #fff;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-aid li a:link, #heroku-header #heroku-header-nav #heroku-header-aid li a:visited {
+  color: #92badb;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-aid li a:hover, #heroku-header #heroku-header-nav #heroku-header-aid li a:active {
+  color: #74d0f4;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-my-heroku li a:link, #heroku-header #heroku-header-nav #heroku-header-my-heroku li a:visited {
+  color: #92badb;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-my-heroku li a:hover, #heroku-header #heroku-header-nav #heroku-header-my-heroku li a:active {
+  color: #74d0f4;
+}
+
+#heroku-header #heroku-header-nav ul li.active a:link, #heroku-header #heroku-header-nav ul li.active a:visited {
+  color: #bff740 !important;
+}
+
+@media only screen and (max-width: 1020px) {
+  #heroku-header #heroku-header-nav ul li {
+    border: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #heroku-header {
+    border-bottom: 3px solid #5d6c90;
+  }
+
+  #heroku-header #heroku-header-quicknav {
+    background: url('/images/dev-center/heroku-header-logo-mobile.png') no-repeat left center;
+  }
+}
+/* ------------------------------------------- */
