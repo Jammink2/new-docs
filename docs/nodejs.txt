@@ -1,18 +1,18 @@
-# Data Import from Python Applications
+# Data Import from Node.js Applications
 
-In order to import data from Python applications to Treasure Data, we provide a library called '[fluent-logger-python](http://github.com/fluent/fluent-logger-python)'. This article describes how to use that library.
+In order to import data from Node.js applications to Treasure Data, there exists a 3rd party library called '[fluent-logger-node](https://github.com/yssk22/fluent-logger-node)'. This article describes how to use that library.
 
 ## Prerequisites
 
-  * Basic knowledge of Python
+  * Basic knowledge of Node.js, and NPM.
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
-  * An installed version of Python 2.6 or higher to test locally
+  * An installed version of Node.js 0.6 or higher to test locally
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
-Through [fluent-logger-python](http://github.com/fluent/fluent-logger-python) library, Python applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes.
+Through [fluent-logger-node](http://github.com/yssk22/fluent-logger-php) library, Node.js applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
@@ -62,54 +62,83 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
+We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
 
-## Use fluent-logger-python
+## Use fluent-logger-node
 
-[fluent-logger-python](http://github.com/treasure-data/fluent-logger-python) is a Python library to record events to td-agent from a Python application. First, please install that package via pip.
+[fluent-logger-node](http://github.com/yssk22/fluent-logger-node) is a Node.js library to record events to td-agent from a Node.js application. At first, please copy the library itself into your project directory.
+
+Let's create a sample [Express](http://expressjs.com/) app, which users fluent-logger-node. Here’s an example package.json.
+
+#### package.json
+
+    :::js
+    {
+      "name": "node-example",
+      "version": "0.0.1",
+      "dependencies": {
+        "express": "2.5.9",
+        "fluent-logger": "0.0.2"
+      }
+    }
+
+Now use *npm* to install your dependencies locally:
 
     :::term
-    $ pip install fluent-logger-python
+    $ npm install
+    fluent-logger@0.0.2 ./node_modules/fluent-logger
+    express@2.5.9 ./node_modules/express
+    |-- qs@0.4.2
+    |-- mime@1.2.4
+    |-- mkdirp@0.3.0
+    |-- connect@1.8.6 (formidable@1.0.9)
 
-Then, please insert these lines into your application, to initialize and post the events as follows.
+#### web.js
 
-    :::ruby
-    # Initialize
-    from fluent import sender
-    sender.setup('test_db', host='host', port=24224)
-    
-    event.Event('follow', {
-      'from': 'userA',
-      'to':   'userB'
-    })
+This is the simplest web app.
+
+    :::js
+    var express = require('express');
+    var app = express.createServer(express.logger());
+
+    var logger = require('fluent-logger');
+    logger.configure('td.database_name', {host: 'localhost', port: 24224});
+
+    app.get('/', function(request, response) {
+      logger.emit('follow', {from: 'userA', to: 'userB'});
+      response.send('Hello World!');
+    });
+    var port = process.env.PORT || 3000;
+    app.listen(port, function() {
+      console.log("Listening on " + port);
+    });
+
+Then, let's execute the app and please hit the 'http://localhost:3000/' from your browser.
+
+    :::term
+    $ node web.js
 
 ## Confirm the Import
 
 The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
+NOTE: The first argument of post() determines the database name and table name. If you specify 'td.test_db.test_table', the data will be imported into *test_table* table within *test_db* database. Those are automatically created at the upload time.
+
 Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
-    $ python test.py
     $ sudo killall -SIGUSR1 td-agent
 
 To confirm the data upload, please use *td tables*.
 
-    :::term
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
     +------------+------------+------+-----------+
-    | test_db    | login      | log  | 1         |
-    | test_db    | follow     | log  | 1         |
-    | test_db    | pay        | log  | 1         |
+    | test_db    | test_table | log  | 1         |
     +------------+------------+------+-----------+
 
 ## Production Deployments
-
-### Use [gunicorn](http://gunicorn.org/) or [modwsgi](http://code.google.com/p/modwsgi/)
-
-Other deployment options are not well tested.
 
 ### High-Availablability Configurations of td-agent
 
