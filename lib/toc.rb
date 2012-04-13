@@ -32,16 +32,16 @@ section 'languages-and-middlewares', 'Languages' do
   end
 end
 
-# section 'tutorials', 'Tutorials' do
-#   category 'usecases', 'Use Cases' do
-#     article 'apache-logs', 'Calculating UU from Apache Logs'
+section 'tutorials', 'Tutorials' do
+  category 'usecases', 'Use Cases' do
+    article 'apache-logs', 'Analyzing Apache Logs'
 #     article 'game', 'Calculating ARPU from Gaming Logs'
 #     article 'ecommerce', 'Calculating Top-Ranked Items from EC Search Logs'
-#   end
+  end
 #   category 'performance', 'Performance' do
 #     article 'avoid-nested-json', 'Avoiding Nested JSON Records'
 #   end
-# end
+end
 
 section 'reference', 'Reference' do
   category 'command-line', 'Command Line' do
@@ -59,7 +59,7 @@ section 'reference', 'Reference' do
   end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
-    article 'hive', 'Hive (SQL-like) Query Language'
+    article 'hive', 'Hive (SQL-style) Query Language'
     article 'pig', 'Pig Latin Language'
   end
   category 'bulk-operations', 'Bulk Operations' do

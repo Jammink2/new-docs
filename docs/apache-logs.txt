@@ -1,0 +1,97 @@
+# Analyzing Apache Logs
+
+This guide explains how to import Apache logs with ‘td-agent’. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically batch uploads the logs into the cloud. We use td-agent’s ‘tail’ source type.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of td-agent
+  * An installed version of Ruby 1.8 or higher to test locally
+
+## Architecture
+
+<center><img src="/images/apache_log_with_td-agent.png" width="90%" /></center>
+
+‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+
+When a user accesses Apache, Apache appends a corresponding log entry to the log file (typically located at */var/log/apache2/access_log*). td-agent continuously ‘tails’ the access log, identifying the newly created log entries.
+
+td-agent automatically parses the new logs to create meaningful data fields (ex: ip, path, etc). The resulting data is buffered, periodically compressed, then uploaded to the cloud.
+
+## Install the td-agent
+
+At first, you need to setup 'td-agent' on your application servers. Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please look at...</th>
+  </tr>
+  <tr>
+    <td>Debian / Ubuntu System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>Redhat / CentOS System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+  </tr>
+</table>
+
+NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+
+## Modify /etc/td-agent/td-agent.conf
+
+In order to import Apache logs with td-agent, we’ll add the following lines to our td-agent.conf file. Please specify the database name and table name using the ‘tag’ parameter, as below.
+
+For example, if we set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the ‘apache_logs’ table within the ‘testdb’ database.
+
+    :::term
+    # tail apache access_log
+    <source>
+      type tail
+      path /var/log/apache2/access_log
+      format apache
+      tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
+    </source>
+    
+We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by *td apikey:show*, as long as we have successfully authenticated our account using the ‘td account’ command.:
+
+    :::term
+    $ td apikey:show
+    3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
+
+Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+
+    :::term
+    # Treasure Data Input and Output
+    <match td.*.*>
+      type tdlog
+      apikey YOUR_API_KEY
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+    </match>
+
+Once these lines are in place, we’ll restart our agent.
+
+    :::term
+    $ sudo /etc/init.d/td-agent restart
+
+By this configuration, td-agent tails the Apache logs. When it gets the new records from the logs, those are parsed and  uploaded into the cloud every 5 minutes.
+
+## Confirm the Import
+
+Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+
+    :::term
+    $ sudo killall -SIGUSR1 td-agent
+
+To confirm the data upload, please use *td tables*.
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | test_db    | test_table | log  | 21321     |
+    +------------+------------+------+-----------+

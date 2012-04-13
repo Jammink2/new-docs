@@ -90,7 +90,7 @@ Finally, let's issue the SQL query. The query is running in parallel on the clou
 Step 6: Logging from Your Application
 -------------------------------------
 
-Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your data, using a supported languages, middlewares, or frameworks:
+Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your data, using a supported languages, frameworks, or middleware:
 
   * Languages and Frameworks
     * [Java](java)
@@ -100,4 +100,6 @@ Now it's turn to import your actual data to the cloud. Choose from the following
     * [Perl](perl)
     * [Node.js](nodejs)
     * [Scala](scala)
+  * Middleware
+    * [Apache Logs](apache)
 

@@ -9,6 +9,11 @@ $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 require 'article.rb'
 require 'term.rb'
 
+# Basic auth: @see .env file
+use Rack::Auth::Basic do |username, password|
+  username == 'member' && password == 'password'
+end
+
 # require 'rack/coderay'
 # use Rack::Coderay, "//pre[@lang]>code"
 use Rack::Codehighlighter, :coderay, :markdown => true, :element => "pre>code", :pattern => /\A:::(\w+)\s*(\n|&#x000A;)/i, :logging => false
