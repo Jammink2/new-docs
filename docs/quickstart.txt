@@ -17,7 +17,7 @@ Step 2: Install the Treasure Data Toolbelt
 
 Install the [Treasure Data Toolbelt](http://treasure-data.com/toolbelt.html) for your development operating system.
 
-The toolbelt contains the 'td' command, a [CLI tool](/categories/command-line) for importing, managing, and throwing the query on your data.
+The toolbelt contains the 'td' command, a [CLI tool](/categories/command-line) for importing, managing, and issueing the query on your data.
 
 Step 3: Authorize
 -----------------
@@ -63,10 +63,10 @@ After several seconds, the records will be imported into our database.
     | testdb     | www_access | log  | 5000      |
     +------------+------------+------+-----------+
 
-Step 5: Throw the Query
+Step 5: Issue the Query
 -----------------------
 
-Finally, let's throw the SQL query. The query is running in parallel on the cloud, and returns only the result to you. Here we're calculating the distribution of HTTP status codes.
+Finally, let's issue the SQL query. The query is running in parallel on the cloud, and returns only the result to you. Here we're calculating the distribution of HTTP status codes.
 
     :::term
     $ td query -w -d testdb \
@@ -97,5 +97,4 @@ Now it's turn to import your actual data to the cloud. Choose from the following
     * [Ruby](ruby) or [Rails](rails)
     * [Python](python)
     * [PHP](php)
-  * Middlewares
-    * [Apache, Nginx](/categories/middlewares)
+

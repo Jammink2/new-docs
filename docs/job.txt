@@ -1,6 +1,6 @@
 # Job Management
 
-If you throw the query, it is regarded as *Job* on the cloud. You can see the status and the results of that job by CUI command.
+If you issue the query, it is regarded as *Job* on the cloud. You can see the status and the results of that job by CUI command.
 
 This guide covers how to show jobs, and see detailed information for each job.
 
@@ -16,7 +16,7 @@ You can issue the query with 'td query' subcommand. The submitted query is regar
     $ td query -w -d testdb "SELECT COUNT(*) FROM www_access"
     Job 702 is started.
 
-If you throw the query *WITHOUT* -w option, the command command exits immediately after submittion is completed. Not waits for job completion.
+If you issue the query *WITHOUT* -w option, the command command exits immediately after submittion is completed. Not waits for job completion.
 
     ::term
     $ td query -d testdb "SELECT COUNT(*) FROM www_access"

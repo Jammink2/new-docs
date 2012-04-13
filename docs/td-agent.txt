@@ -97,7 +97,7 @@ If you have any trouble, please look at /var/log/td-agent.log for further invest
 
 ### What's Next?
 
-Next, you need to modify the existing applications, to throw the data. The following repository contains the sample codes for various languages / frameworks. Please have a look at it.
+Next, you need to modify the existing applications, to post the records. The following repository contains the sample codes for various languages / frameworks. Please have a look at it.
 
   * [Java](java)
   * [Ruby](ruby) or [Rails](rails)

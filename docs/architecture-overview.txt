@@ -1,7 +1,7 @@
 Architecture Overview
 =====================
 
-Treasure Data is the cloud data warehousing service. Import your data instantly, and process them throw a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
+Treasure Data is the cloud data warehousing service. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
 
 ### Multi-Tenant
 
