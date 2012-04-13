@@ -66,7 +66,7 @@ By this configuration, td-agent accepts the data import via 24224. When it recei
 
 ## Use td-logger-java
 
-[td-logger-java](http://github.com/treasure-data/td-logger-java) is a Java library to post the records against td-agent from a Java application. First, please add those lines to pom.xml. Please find the latest version from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
+[td-logger-java](http://github.com/treasure-data/td-logger-java) is a Java library to post the records against td-agent from a Java application. First, please add those lines to pom.xml. Please find the latest version number from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
 
 NOTE: If you need a all-in-one jar file, please download from <a href="http://treasure-data.com/maven2/">http://treasure-data.com/maven2/</a>.
 

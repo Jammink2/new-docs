@@ -1,18 +1,18 @@
-# Data Import from Node.js Applications
+# Data Import from Scala Applications
 
-In order to import data from Node.js applications to Treasure Data, there exists a 3rd party library called '[fluent-logger-node](https://github.com/yssk22/fluent-logger-node)'. This article describes how to use that library.
+In order to import data from Scala applications to Treasure Data, we provide a logger library called '[td-logger-java](http://github.com/treasure-data/td-logger-java/)'. This article describes how to use that library.
 
 ## Prerequisites
 
-  * Basic knowledge of Node.js, and NPM.
+  * Basic knowledge of Scala
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
-  * An installed version of Node.js 0.6 or higher to test locally
+  * An installed version of JVM, Scala, [sbt](https://github.com/harrah/xsbt) v0.11 or later.
 
 ## Install the td-agent
 
 At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
-Through [fluent-logger-node](http://github.com/yssk22/fluent-logger-php) library, Node.js applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
+Through [td-logger-java](http://github.com/treasure-data/td-logger-java/) library, Scala applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
@@ -64,59 +64,48 @@ Once these lines are in place, we’ll restart our agent.
 
 We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
 
-## Use fluent-logger-node
+## Use fluent-logger-java
 
-[fluent-logger-node](http://github.com/yssk22/fluent-logger-node) is a Node.js library to post the records to td-agent from a Node.js application. At first, please copy the library itself into your project directory.
+[td-logger-java](http://github.com/treasure-data/td-logger-java/) is a Java library to record events to td-agent from a Scala application. At first, please add those lines to your build.sbt. Please find the latest version number from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
 
-Let's create a sample [Express](http://expressjs.com/) app, which users fluent-logger-node. Here’s an example package.json.
+NOTE: If you need a all-in-one jar file, please download from <a href="http://treasure-data.com/maven2/">http://treasure-data.com/maven2/</a>.
 
-#### package.json
+    :::scala
+    /* in build.sbt */
+    // Repositories
+    resolvers ++= Seq(
+      "td-logger     Maven2 Repository" at "http://treasure-data.com/maven2/",
+      "fluent-logger Maven2 Repository" at "http://fluentd.org/maven2/"
+    )
+    // Dependencies
+    libraryDependencies ++= Seq(
+      "com.treasure_data" % "td-logger" % "${logger.version}"
+    )
 
-    :::js
-    {
-      "name": "node-example",
-      "version": "0.0.1",
-      "dependencies": {
-        "express": "2.5.9",
-        "fluent-logger": "0.0.2"
+Then, please prepare your *treasure-data.properties* file.
+
+    :::term
+    td.logger.agentmode=true
+    td.logger.agent.host=localhost
+    td.logger.agent.port=24224
+
+Finally, please initialize and post the records as follows.
+
+    :::scala
+    import java.util.Properties
+    import com.treasure_data.logger.TreasureDataLogger
+    import scala.collection.JavaConverters._
+
+    object Main {
+      def main(args: Array[String]) {
+        var props = System.getProperties();
+        props.load(getClass.getResourceAsStream("treasure-data.properties"));
+        var LOG = TreasureDataLogger.getLogger("my_database");
+    
+        var map = Map("from" -> "userA", "to" -> "userB");
+        LOG.log("follow", map.asJava.asInstanceOf[java.util.Map[String, java.lang.Object]]);
       }
     }
-
-Now use *npm* to install your dependencies locally:
-
-    :::term
-    $ npm install
-    fluent-logger@0.0.2 ./node_modules/fluent-logger
-    express@2.5.9 ./node_modules/express
-    |-- qs@0.4.2
-    |-- mime@1.2.4
-    |-- mkdirp@0.3.0
-    |-- connect@1.8.6 (formidable@1.0.9)
-
-#### web.js
-
-This is the simplest web app.
-
-    :::js
-    var express = require('express');
-    var app = express.createServer(express.logger());
-
-    var logger = require('fluent-logger');
-    logger.configure('td.database_name', {host: 'localhost', port: 24224});
-
-    app.get('/', function(request, response) {
-      logger.emit('follow', {from: 'userA', to: 'userB'});
-      response.send('Hello World!');
-    });
-    var port = process.env.PORT || 3000;
-    app.listen(port, function() {
-      console.log("Listening on " + port);
-    });
-
-Then, let's execute the app and please hit the 'http://localhost:3000/' from your browser.
-
-    :::term
-    $ node web.js
 
 ## Confirm the Import
 
@@ -127,6 +116,7 @@ NOTE: The first argument of post() determines the database name and table name. 
 Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
+    $ sbt compile run
     $ sudo killall -SIGUSR1 td-agent
 
 To confirm the data upload, please use *td tables*.

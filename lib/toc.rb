@@ -24,6 +24,9 @@ section 'languages-and-middlewares', 'Languages' do
   category 'nodejs', 'Node.js' do
     article 'nodejs', 'Data Import from Node.js Applications'
   end
+  category 'scala', 'Scala' do
+    article 'scala', 'Data Import from Scala Applications'
+  end
 end
 
 # section 'tutorials', 'Tutorials' do
