@@ -131,6 +131,6 @@ Also, it's recommended to periodically restart your PHP processes, by setting *M
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent.
+For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)

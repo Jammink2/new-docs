@@ -30,29 +30,29 @@ Here you have weblog, which consists of ip, url, and time field.
 
 #### Count # of Records
 
-    :::term
+    :::sql
     SELECT COUNT(1) FROM www_access;
 
 #### Count # of Unique IPs
 
-    :::term
+    :::sql
     SELECT COUNT(distinct v['ip']) FROM www_access;
 
 #### Unique IPs which Accessed Top Page
 
-    :::term
+    :::sql
     SELECT COUNT(distinct v['ip']) FROM www_access \
       WHERE v['url']='/';
 
 #### Group Uniques IPs and Count # of Accesses
 
-    :::term
+    :::sql
     SELECT v['ip'], COUNT(*) FROM www_access \
       GROUP BY v['ip'] LIMIT 30;
 
 #### Sort Unique IPs by # of Accesses
 
-    :::term
+    :::sql
     SELECT v['ip'], COUNT(*) AS cnt FROM www_access \
       GROUP BY v['ip']
       ORDER BY cnt DESC LIMIT 30;
@@ -61,13 +61,13 @@ Here you have weblog, which consists of ip, url, and time field.
 
 'time' column is a special column that describes UNIX timestamp of the log.
 
-    :::term
+    :::sql
     SELECT COUNT(*) FROM www_access \
       WHERE time >= unix_timestamp('2011-08-19 00:00:00');
 
 #### Aggregate hourly logs
 
-    :::term
+    :::sql
     SELECT from_unixtime(CAST(time/(60*60*24) AS INT)*60*60*24) AS day, \
       COUNT(*) FROM www_access \
       GROUP BY CAST(time/(60*60*24) AS INT);

@@ -113,6 +113,6 @@ Use [gunicorn](http://gunicorn.org/) or [modwsgi](http://code.google.com/p/modws
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent.
+For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)

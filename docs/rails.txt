@@ -14,7 +14,7 @@ At first, you need to setup 'td-agent' on your application servers. â€˜td-agentâ
 
 Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Rails applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
 
-<img src="/images/rails_to_td_via_td-agent.png" width="600px">
+<center><img src="/images/rails_to_td_via_td-agent.png" width="80%"></center>
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
@@ -134,6 +134,6 @@ Use *unicorn*, *thin*, *mongrel*, etc. Other deployment options are not well tes
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent.
+For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
