@@ -103,6 +103,9 @@ Next, you need to modify the existing applications, to post the records. The fol
   * [Ruby](ruby) or [Rails](rails)
   * [Python](python)
   * [PHP](php)
+  * [Perl](perl)
+  * [Node.js](nodejs)
+  * [Scala](scala)
 
 For highly loaded sites, we recommend using high availability configuration for td-agent.
 

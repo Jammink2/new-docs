@@ -97,4 +97,7 @@ Now it's turn to import your actual data to the cloud. Choose from the following
     * [Ruby](ruby) or [Rails](rails)
     * [Python](python)
     * [PHP](php)
+    * [Perl](perl)
+    * [Node.js](nodejs)
+    * [Scala](scala)
 
