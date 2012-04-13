@@ -22,7 +22,7 @@ The toolbelt contains the 'td' command, a [CLI tool](/categories/command-line) f
 Step 3: Authorize
 -----------------
 
-After installing the toolbelt, you'll have access to the td command from your command line shell. Please authorize your account in using the emaill address and password you used when creating your Treasure Data account:
+After installing the toolbelt, you'll have access to the td command from your command line shell. Please authorize your account by *td account* in using the emaill address and password you used when creating your Treasure Data account:
 
     :::term
     $ td account -f

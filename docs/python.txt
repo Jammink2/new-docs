@@ -107,9 +107,9 @@ To confirm the data upload, please use *td tables*.
 
 ## Production Deployments
 
-### Use [gunicorn](http://gunicorn.org/) or [modwsgi](http://code.google.com/p/modwsgi/)
+### User gunicorn or modwsgi
 
-Other deployment options are not well tested.
+Use [gunicorn](http://gunicorn.org/) or [modwsgi](http://code.google.com/p/modwsgi/). Other deployment options are not well tested.
 
 ### High-Availablability Configurations of td-agent
 

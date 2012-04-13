@@ -121,18 +121,12 @@ Please ensure you're using Apache prefork MPM, instead of other MPM like worker 
 Also, it's recommended to periodically restart your PHP processes, by setting *MaxRequestsPerChild* in your apache conf (*NOT* zero).
 
     :::term
-    # prefork MPM
-    # StartServers: number of server processes to start
-    # MinSpareServers: minimum number of server processes which are kept spare
-    # MaxSpareServers: maximum number of server processes which are kept spare
-    # MaxClients: maximum number of server processes allowed to start
-    # MaxRequestsPerChild: maximum number of requests a server process serves
     <IfModule mpm_prefork_module>
-        StartServers          32
-        MinSpareServers       32
-        MaxSpareServers       32
-        MaxClients            32
-        MaxRequestsPerChild 4096
+      StartServers          32
+      MinSpareServers       32
+      MaxSpareServers       32
+      MaxClients            32
+      MaxRequestsPerChild 4096
     </IfModule>
 
 ### High-Availablability Configurations of td-agent
