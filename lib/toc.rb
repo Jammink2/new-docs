@@ -21,6 +21,9 @@ section 'languages-and-middlewares', 'Languages' do
   category 'php', 'PHP' do
     article 'php', 'Data Import from PHP Applications'
   end
+  category 'perl', 'Perl' do
+    article 'perl', 'Data Import from Perl Applications'
+  end
   category 'nodejs', 'Node.js' do
     article 'nodejs', 'Data Import from Node.js Applications'
   end

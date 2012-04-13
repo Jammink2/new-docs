@@ -102,7 +102,7 @@ This is the simplest web app.
     var app = express.createServer(express.logger());
 
     var logger = require('fluent-logger');
-    logger.configure('td.database_name', {host: 'localhost', port: 24224});
+    logger.configure('td.test_db', {host: 'localhost', port: 24224});
 
     app.get('/', function(request, response) {
       logger.emit('follow', {from: 'userA', to: 'userB'});
@@ -135,7 +135,7 @@ To confirm the data upload, please use *td tables*.
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
     +------------+------------+------+-----------+
-    | test_db    | test_table | log  | 1         |
+    | test_db    | follow     | log  | 1         |
     +------------+------------+------+-----------+
 
 ## Production Deployments
