@@ -25,34 +25,42 @@
   </head>
 <body>
   <div id="bodywrap">
-    <div id="docsnav">
-      <form action="/search">
-	<div id="search">
-	  <input type="text" name="q" size="31" value="<%= params[:q] || '' %>" />
-	</div>
-      </form>
-      <ul>
-	<% sections.each do |slug, title, categories| %>
-	<li>
-	  <h3><%= title %></h3>
-	  <ul>
-	    <% categories.each do |slug, title, _| %>
+	<div class="pie-clearfix" id="category">
+	  <aside id="sidebar">
+		<section class="pie-clearfix pie-clearfix-ie" id="search">
+		  <form action="/search">
+			<div id="search">
+			  <input type="text" name="q" size="31" value="<%= params[:q] || '' %>" />
+			</div>
+		  </form>
+		</section>
+		<select id="quicknav">
+		</select>
+		<ul id="nav">
+		  <% sections.each do |slug, title, categories| %>
+		  <li>
+			<h3><%= title %></h3>
+			<ul>
+			  <% categories.each do |slug, title, _| %>
               <% if (params[:category] == slug) || (find_category(params[:article]) == slug) %>
-	        <li class="current"><a><%=h title %></a></li>
-	      <% else %>
-	        <li><a href="/categories/<%= slug %>"><%=h title %></a></li>
-	      <% end %>
-	    <% end %>
-	  </ul>
-	</li>
-	<% end %>
-      </ul>
-    </div>
-    <div id="content">
-      <div class="topic_content">
-	<%= yield %>
-      </div>
-    </div>
-  </div>
+	          <li class="current"><a><%=h title %></a></li>
+			  <% else %>
+	          <li><a href="/categories/<%= slug %>"><%=h title %></a></li>
+			  <% end %>
+			  <% end %>
+			</ul>
+		  </li>
+		  <% end %>
+		</ul>
+      </aside><!-- /#sidebar -->
+	  <section id="main">
+		<div id="page">
+		  <div class="topic_content">
+			<%= yield %>
+		  </div>
+		</div><!-- /#page -->
+	  </section><!-- /#main -->
+	</div><!-- /#category -->
+  </div><!-- /#bodywrap -->
 </body>
 </html>
