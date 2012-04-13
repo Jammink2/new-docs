@@ -7,7 +7,7 @@ section 'overview', 'Overview' do
   end
 end
 
-section 'languages-and-middlewares', 'Langueges' do
+section 'languages-and-middlewares', 'Languages' do
   category 'java', 'Java' do
     article 'java', 'Data Import from Java Applications'
   end
