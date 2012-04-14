@@ -1,3 +1,245 @@
+/* ------------------------------------------- */
+
+/*
+  title: header css
+  author: maximilian schoening (@mschoening)
+*/
+
+/* =heroku header
+---------------------------------------------- */
+#hearoku-header * { /* mini CSS reset */
+  border: 0;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+
+#heroku-header {
+  background: #29264d;
+  border-bottom: 4px solid #494573;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  padding: 18px 24px;
+}
+
+#heroku-header:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  zoom: 1;
+}
+
+#heroku-header #heroku-header-hgroup {
+  float: left;
+}
+
+#heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {
+  background: url('/images/TD_logo_horizontal.png') no-repeat;
+  height: 55px;
+  display: block;
+  text-indent: -99999px;
+  width: 341px;
+}
+
+#heroku-header #heroku-header-nav {
+  float: right;
+  margin: 11px 0 0 0;
+}
+
+#heroku-header #heroku-header-nav:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  zoom: 1;
+}
+
+#heroku-header #heroku-header-nav ul {
+  float: left;
+  list-style: none;
+  margin: 0 26px 0 0;
+  padding: 8px 0 9px 0;
+  overflow: hidden;
+}
+
+#heroku-header #heroku-header-nav ul.group {
+  background: #231d40;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, .05), 0 0 1px rgba(0, 0, 0, .5) inset;
+  -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, .05), 0 0 1px rgba(0, 0, 0, .5) inset;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, .05), 0 0 1px rgba(0, 0, 0, .5) inset;
+  padding: 8px 10px 9px 10px;
+}
+
+#heroku-header #heroku-header-nav ul.last {
+  margin: 0;
+}
+
+#heroku-header #heroku-header-nav ul:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  zoom: 1;
+}
+
+#heroku-header #heroku-header-nav ul li {
+  border-right: 2px solid #534890;
+  float: left;
+  padding: 0 12px 0 0;
+  margin: 0 12px 0 0;
+}
+
+#heroku-header #heroku-header-nav ul li.last {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#heroku-header #heroku-header-nav ul li a:link, #heroku-header #heroku-header-nav ul li a:visited {
+  color: #c9c3e6;
+  font-weight: 500;
+  text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+#heroku-header #heroku-header-nav ul li a:hover, #heroku-header #heroku-header-nav ul li a:active {
+  color: #fff;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-aid li a:link, #heroku-header #heroku-header-nav #heroku-header-aid li a:visited {
+  color: #45a4ff;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-aid li a:hover, #heroku-header #heroku-header-nav #heroku-header-aid li a:active {
+  color: #74d0f4;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-my-heroku li a:link, #heroku-header #heroku-header-nav #heroku-header-my-heroku li a:visited {
+  color: #978cd4;
+}
+
+#heroku-header #heroku-header-nav #heroku-header-my-heroku li a:hover, #heroku-header #heroku-header-nav #heroku-header-my-heroku li a:active {
+  color: #b9aef6;
+}
+
+#heroku-header #heroku-header-nav ul li.active a:link, #heroku-header #heroku-header-nav ul li.active a:visited {
+  color: #bff740 !important;
+}
+
+#heroku-header #heroku-header-quicknav {
+  display: none;
+}
+
+@media only screen and (max-width: 990px) {
+  #heroku-header {
+    font-size: 14px;
+  }
+
+  #heroku-header #heroku-header-hgroup {
+    margin: 10px 0 0 0;
+  }
+
+  #heroku-header #heroku-header-nav {
+    margin: 0;
+  }
+
+  #heroku-header #heroku-header-nav ul li {
+    border: none;
+    float: none;
+    margin: 0 0 6px 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #heroku-header {
+    border-bottom: 3px solid #494573;
+    padding: 12px 4px;
+  }
+
+  #heroku-header #heroku-header-hgroup {
+    display: none;
+  }
+
+  #heroku-header #heroku-header-nav {
+    display: none;
+  }
+
+  #heroku-header #heroku-header-quicknav {
+    background: url('/images/v2/heroku-header-logo-mobile.png') no-repeat left center;
+    display: block;
+    height: 37px;
+    margin: 0 auto;
+    position: relative;
+    width: 312px;
+  }
+
+  #heroku-header #heroku-header-quicknav select {
+    background: transparent; /* increases clickable area */
+    color: #fff;
+    display: block;
+    height: 32px;
+    left: 37px;
+    opacity: 0;
+    position: absolute;
+    top: 2px;
+    width: 275px;
+    z-index: 2;
+  }
+
+  #heroku-header #heroku-header-quicknav select:hover {
+    cursor: pointer;
+  }
+
+  #heroku-header #heroku-header-quicknav a:link, #heroku-header #heroku-header-quicknav a:visited {
+    background: url('/images/v2/heroku-header-quicknav-a-bg.png') no-repeat right center, -moz-linear-gradient(top, #e2e2e2, #b0b0b0);
+    background: url('/images/v2/heroku-header-quicknav-a-bg.png') no-repeat right center, -webkit-gradient(linear, left top, left bottom, from(#e2e2e2), to(#b0b0b0));
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #323232;
+    display: block;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    left: 37px;
+    line-height: 32px;
+    padding: 0 12px;
+    position: absolute;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .33);
+    top: 2px;
+    width: 251px;
+    z-index: 1;
+  }
+
+  #heroku-header #heroku-header-quicknav select:hover + a:link, #heroku-header #heroku-header-quicknav select:hover + a:visited {
+    background: url('/images/v2/heroku-header-quicknav-a-bg.png') no-repeat right center, -moz-linear-gradient(top, #f1f1f1, #c4c4c4);
+    background: url('/images/v2/heroku-header-quicknav-a-bg.png') no-repeat right center, -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c4c4c4));
+  }
+
+  #heroku-header #heroku-header-quicknav select:active + a:link, #heorku-header #heorku-header-quicknav select:hover + a:visited {
+    background: url('/images/v2/heroku-header-quicknav-a-bg.png') no-repeat right center, -moz-linear-gradient(top, #c4c4c4, #f1f1f1);
+    background: url('/images/v2/heroku-header-quicknav-a-bg.png') no-repeat right center, -webkit-gradient(linear, left top, left bottom, from(#c4c4c4), to(#f1f1f1));
+  }
+}
+
+  /* =IE7 & IE8 hax
+  ---------------------------------------------- */
+  #heroku-header {
+    min-width/*\**/: 991px\9;
+  }
+  /* ------------------------------------------- */
+/* ------------------------------------------- */
+
+/* from https://devcenter.heroku.com/stylesheets/dev-center/header.css */
 /*
   title: header css
   author: maximilian schoening (@mschoening)
@@ -11,7 +253,7 @@
 }
 
 #heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {
-  background: url('/images/dev-center/heroku-header-logo.png') no-repeat;
+  background: url('/images/TD_logo_horizontal.png') no-repeat;
 }
 
 #heroku-header #heroku-header-nav ul.group {
@@ -69,4 +311,3 @@
     background: url('/images/dev-center/heroku-header-logo-mobile.png') no-repeat left center;
   }
 }
-/* ------------------------------------------- */
