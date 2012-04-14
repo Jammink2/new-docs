@@ -1,4 +1,4 @@
 Pig Latin Language
 ==================
 
-To be supported :-)
+[Pig Latin](http://pig.apache.org/) will be supported within 2012 Q2 :-)
