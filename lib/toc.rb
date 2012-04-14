@@ -54,8 +54,8 @@ section 'reference', 'Reference' do
   end
   category 'data-import', 'Data Import' do
     article 'td-agent', 'Using td-agent'
-    article 'td-agent-high-availability', "High-Availability 'td-agent' Configurations"
-    article 'copy-plugin', 'Storing Logs into Treasure Data, and Storage X'
+    article 'td-agent-changelog', "ChangeLog of td-agent"
+    article 'td-agent-high-availability', "High-Availability td-agent Configurations"
   end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
@@ -81,3 +81,9 @@ section 'ab', 'Accounts & Billing' do
     article 'support-channels', 'Support Channels'
   end
 end
+
+# section 'tools', 'Tools' do
+#   category 'metricinsights', 'MetricInsights' do
+#     article 'metricinsights', 'MetricInsights Setup'
+#   end
+# end

@@ -1,4 +1,4 @@
-# High Availability 'td-agent' Configuration
+# High Availability td-agent Configuration
 
 This guide covers the advanced configurations of 'td-agent', especially for the environment which requires high availability.
 

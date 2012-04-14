@@ -82,6 +82,7 @@ Then, please initialize and post the records as follows.
 
     $logger = new FluentLogger("localhost", 24224);
     $logger->post("td.test_db.test_table", array("hello"=>"world"));
+    $logger->post("td.test_db.follow", array("from"=>"userA", "to"=>"userB"));
 
 ## Confirm the Import
 
@@ -102,6 +103,7 @@ To confirm the data upload, please use *td tables*.
     | Database   | Table      | Type | Count     |
     +------------+------------+------+-----------+
     | test_db    | test_table | log  | 1         |
+    | test_db    | follow     | log  | 1         |
     +------------+------------+------+-----------+
 
 ## Production Deployments

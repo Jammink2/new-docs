@@ -3,6 +3,28 @@ Architecture Overview
 
 Treasure Data is the cloud data warehousing service. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
 
+## Overview
+
+The users automatically gain the advantages of the cloud, since the platform itself is built on top of a cloud infrastructure.
+
+* The storage capacity of the cloud is nearly **INFINITE**.
+* The storage cost of the cloud is nearly **FREE**. It is arguably the most economical form of storing data.
+* The computing resources can be allocated **ON-DEMAND**, pay as we go.
+
+Treasure Data also allows us to access and analyze our data through a SQL-style language used in standard RDBMSs (example: Oracle, MySQL, PostgreSQL).
+
+We can harness the power of Hadoop and cloud computing, using a standard SQL-like interface. We will be now be able to handle large datasets without having to learn anything new!
+
+## Key Architectural Points
+
+### Instant
+
+You can get an instant access to your data warehouse just after the signup.
+
+### Elastic
+
+You can scale up and down your data warehousing capability (CPU power and storage capacity), at any moment.
+
 ### Multi-Tenant
 
 Treasure Data is a multi-tenant data warehousing platform. You don’t need your own servers, storages, or clusters, and you’ll benefit from continuous platform improvements.
@@ -14,4 +36,3 @@ Because we control all the infrastructure and software layers, we can present a 
 ### Curation
 
 We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly.
-
