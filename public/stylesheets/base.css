@@ -182,11 +182,6 @@ table tr td {
 /*  text-align: center; */
 }
 
-table.note tr td{
-  border-bottom: 0px;
-  border-left: 0px;
-}
-
 table tr td:first-child {
   text-align: left;
 }
