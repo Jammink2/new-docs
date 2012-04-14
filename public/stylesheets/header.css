@@ -15,12 +15,23 @@
 }
 
 #heroku-header {
-  background: #29264d;
-  border-bottom: 4px solid #494573;
+/*  background: #29264d; */
+/*  border-bottom: 4px solid #494573; */
   font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  padding: 18px 24px;
+  padding: 18px 0;
+  width:960px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 -1px 1px rgba(113, 123, 149, .2);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 -1px 1px rgba(113, 123, 149, .2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 -1px 1px rgba(113, 123, 149, .2);
+  color: #333;
 }
 
 #heroku-header:after {
@@ -34,6 +45,7 @@
 
 #heroku-header #heroku-header-hgroup {
   float: left;
+  margin-left:10px;
 }
 
 #heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {
@@ -248,8 +260,8 @@
 /* =heroku header
 ---------------------------------------------- */
 #heroku-header {
-  background: #3b4458;
-  border-bottom: 4px solid #5d6c90;
+/*  background: #3b4458;
+  border-bottom: 4px solid #5d6c90; */
 }
 
 #heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {

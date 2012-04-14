@@ -177,8 +177,14 @@ table tr th:last-child {
 table tr td {
   border-bottom: 1px solid #e5e5e5;
   border-left: 1px solid #e5e5e5;
-  padding: 8px;
-  text-align: center;
+  padding: 3px;
+  line-height:17px;
+/*  text-align: center; */
+}
+
+table.note tr td{
+  border-bottom: 0px;
+  border-left: 0px;
 }
 
 table tr td:first-child {
