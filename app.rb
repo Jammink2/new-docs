@@ -14,6 +14,11 @@ use Rack::Auth::Basic do |username, password|
   username == 'member' && password == 'password'
 end
 
+# NewRelic
+configure :production do
+  require 'newrelic_rpm'
+end
+
 # require 'rack/coderay'
 # use Rack::Coderay, "//pre[@lang]>code"
 use Rack::Codehighlighter, :coderay, :markdown => true, :element => "pre>code", :pattern => /\A:::(\w+)\s*(\n|&#x000A;)/i, :logging => false

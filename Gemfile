@@ -12,6 +12,9 @@ gem 'faraday',   :git => 'git://github.com/technoweenie/faraday',  :ref => '3aa8
 # Webserver
 gem 'unicorn', '~> 4.2.1'
 
+# Addons
+gem 'newrelic_rpm'
+
 # Dev
 group :development do
   gem 'rake'
