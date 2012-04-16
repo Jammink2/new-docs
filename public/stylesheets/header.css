@@ -269,11 +269,13 @@
 }
 
 #heroku-header #heroku-header-nav ul.group {
-  background: rgba(46, 54, 70, .5);
+/*  background: rgba(46, 54, 70, .5); */
+  background: whitesmoke;
 }
 
 #heroku-header #heroku-header-nav ul li {
-  border-right: 2px solid rgba(46, 54, 70, .9);
+/*  border-right: 2px solid rgba(46, 54, 70, .9); */
+  border-right: 2px dotted #9DAAC5;
 }
 
 #heroku-header #heroku-header-nav ul li.last {
