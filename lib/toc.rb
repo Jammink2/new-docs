@@ -82,8 +82,8 @@ section 'ab', 'Accounts & Billing' do
   end
 end
 
-# section 'tools', 'Tools' do
-#   category 'metricinsights', 'MetricInsights' do
-#     article 'metricinsights', 'MetricInsights Setup'
-#   end
-# end
+section 'tools', 'Tools' do
+  category '3rd-party-tools-overview', 'Overview' do
+    article 'tools', 'Tools'
+  end
+end

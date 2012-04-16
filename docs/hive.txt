@@ -1,4 +1,4 @@
-# Hive (SQL-style )Query Language
+# Hive (SQL-style) Query Language
 
 This guide covers the basics of SQL-like query language.
 
