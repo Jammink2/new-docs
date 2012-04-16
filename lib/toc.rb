@@ -5,6 +5,9 @@ section 'overview', 'Overview' do
   category 'platform-basics', 'Platform Basics' do
     article 'architecture-overview', 'Architecture Overview'
   end
+  category 'platform-constraints', 'Platform Constraints' do
+    article 'constraints', 'Platform Constraints'
+  end
 end
 
 section 'languages-and-middlewares', 'Languages' do
