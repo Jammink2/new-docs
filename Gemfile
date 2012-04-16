@@ -10,7 +10,7 @@ gem 'rack-codehighlighter'
 gem 'faraday',   :git => 'git://github.com/technoweenie/faraday',  :ref => '3aa840d012875ee80410'
 
 # Webserver
-gem 'unicorn', '~> 4.1.1'
+gem 'unicorn', '~> 4.2.1'
 
 # Dev
 group :development do

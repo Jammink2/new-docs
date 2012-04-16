@@ -7,7 +7,11 @@ preload_app true
 # How many worker processes
 worker_processes 4
 
-# What to do before we fork a worker
+# before/after forks
 before_fork do |server, worker|
   sleep 1
 end
+after_fork do |server, worker|
+  GC.disable
+end
+
