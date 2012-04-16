@@ -4,25 +4,28 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="verify-v1" content="J75JQ+WGFRjBEnhNT4hhYxgVTQmRHjd0v3JF+izUFvA=" />
-    <title><%=h @title %> | Treasure Data</title>
-    <link type="text/css" rel="stylesheet" href="/css/docs.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/reset.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/library.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/fonts.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/mobile.css" media="screen" />
-    <link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
-    <script type="text/javascript" src="/javascripts/jquery-1.5.1.min.js"></script>
-    <script type="text/javascript" src="/javascripts/jquery-ui-1.8.11.custom.min.js"></script>
-    <script type="text/javascript" src="/javascripts/application.js"></script>
-    <script type="text/javascript">
-      $("#stack-compare tr").click(function(){
-        window.location=$(this).find("a").attr("href");
-        return false;
-      });
-      var activeNav = false;
-    </script>
+  <title><%=h @title %> | Treasure Data</title>
+  <link type="text/css" rel="stylesheet" href="/css/docs.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/reset.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/library.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/fonts.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/mobile.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+  <script type="text/javascript" src="/javascripts/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery-ui-1.8.11.custom.min.js"></script>
+  <script type="text/javascript" src="/javascripts/application.js"></script>
+  <script type="text/javascript">
+    $("#stack-compare tr").click(function(){
+      window.location=$(this).find("a").attr("href");
+      return false;
+    });
+    var activeNav = false;
+  </script>
+
+  <!-- Mixpanel -->
+  <script type="text/javascript">var mpq=[];mpq.push(["init","a71e7fcd0b07e91e9c89cbcc1e528c79"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})(); mpq.track("ViewDoc");</script>
 </head>
 <body>
   <div id="heroku-header">
@@ -103,5 +106,17 @@
 	  </div><!-- /#category -->
 	</div><!-- /.wrapper -->
   </div><!-- /#sheet -->
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24890265-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </body>
 </html>
