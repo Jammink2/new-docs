@@ -54,8 +54,9 @@ section 'reference', 'Reference' do
   end
   category 'data-import', 'Data Import' do
     article 'td-agent', 'Using td-agent'
-    article 'td-agent-changelog', "ChangeLog of td-agent"
-    article 'td-agent-high-availability', "High-Availability td-agent Configurations"
+    article 'td-agent-high-availability', 'High-Availability td-agent Configurations'
+    article 'td-agent-copy', 'Storing Logs Locally and Remotely'
+    article 'td-agent-changelog', 'ChangeLog of td-agent'
   end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'

@@ -1,0 +1,51 @@
+# Storing Logs Locally and Remotely
+
+You might want to store your logs into your local nodes. td-agent can deal with that case, by using 'copy' function.
+
+## Local Disk and Treasure Data
+
+The configuration below will store your logs into local disk (*/mnt/archive/logs*), and Treasure Data. The files are created in hourly basis.
+
+    :::term
+    <match td.*.*>
+      type copy
+      <store>
+        type file
+        path /mnt/archive/logs
+        time_slice_format %Y%m%d%h
+      </store>
+      <store>
+        type tdlog
+        apikey YOUR_API_KEY_HERE
+        auto_create_table
+        buffer_type file
+        buffer_path /var/log/td-agent/buffer/td
+      </store>
+    </match>
+
+Please refer [here](http://fluentd.org/doc/plugin.html#file), for more options for file output.
+
+## Local MongoDB and Treasure Data
+
+The configuration below will store your logs into local MongoDB ReplicaSet, and Treasure Data. The logs are flushed into MongoDB every 60 seconds.
+
+    :::term
+    <match td.*.*>
+      type copy
+      <store>
+        type mongo_replset
+        database td
+        collection logs
+        nodes localhost:27017,localhost:27018,localhost:27019
+      </store>
+      <store>
+        type tdlog
+        apikey YOUR_API_KEY_HERE
+        auto_create_table
+        buffer_type file
+        buffer_path /var/log/td-agent/buffer/td
+      </store>
+    </match>
+
+Please refer [here](https://github.com/fluent/fluent-plugin-mongo), for more options for MongoDB output. The plugin has more feature like authentication, capped collection, etc.
+
