@@ -34,7 +34,7 @@ end
 
 section 'tutorials', 'Tutorials' do
   category 'usecases', 'Use Cases' do
-    article 'apache-logs', 'Analyzing Apache Logs'
+    article 'apache', 'Analyzing Apache Logs'
 #     article 'game', 'Calculating ARPU from Gaming Logs'
 #     article 'ecommerce', 'Calculating Top-Ranked Items from EC Search Logs'
   end
