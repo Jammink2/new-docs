@@ -1,0 +1,5 @@
+# No Single-Point-Of-Failure (SPOF)
+
+Hadoop has a famous single-point-of-failure problem, and the community is now trying to solve it. At now, We're taking a different approach: Just preparing multiple Hadoop clusters, across multiple data centers.
+
+If one Hadoop cluster dies, your job will be automatically assigned to another live cluster. Our computing resource is always shared across our users, so it's also an economical way.

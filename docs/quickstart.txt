@@ -1,7 +1,7 @@
 Quickstart Guide
 ================
 
-Let's Get Started with Treasure Data. Treasure Data is a **cloud-based data warehousing** service, based on Hadoop. We can forget about servers, storages, and infrastructure while storing billions of records.
+Let's Get Started with Treasure Data. Treasure Data is a **cloud-based data warehousing** service. We can forget about servers, storages, and infrastructure while storing billions of records.
 
 No specific knowledge is required: Just import JSON-based records into the cloud, and process it through a SQL Language.
 
@@ -66,7 +66,9 @@ After several seconds, the records will be imported into our database.
 Step 5: Issue the Query
 -----------------------
 
-Finally, let's issue the SQL query. The query is running in parallel on the cloud, and returns only the result to you. Here we're calculating the distribution of HTTP status codes.
+Finally, let's issue the SQL query. The query is executed with Hadoop-based engine on the cloud. Only the result is returned back to you. Here's the query to calculate the distribution of HTTP status codes.
+
+NOTE: You may be surprise that this takes around <b>15 seconds</b>. This is the overhead of setting up the jobs within a cloud. Our typical query takes around several minutes.
 
     :::term
     $ td query -w -d testdb \

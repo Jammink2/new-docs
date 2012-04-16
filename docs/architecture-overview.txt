@@ -3,7 +3,7 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is the **Cloud Data Warehousing Service**. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
+Treasure Data is the **Cloud Data Warehousing Service**, based on *Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
 
 The users automatically gain the advantages of the cloud, since the platform itself is built on top of a cloud infrastructure.
 
@@ -12,17 +12,29 @@ The users automatically gain the advantages of the cloud, since the platform its
 * The cloud storage capacity is nearly **INFINITE**.
 * The cloud storage is arguably the most **ECONOMICAL** form of storing data.
 
-Treasure Data also allows us to access and analyze our data through a SQL-style language used in standard RDBMSs (example: Oracle, MySQL, PostgreSQL). We can harness the power of Hadoop and cloud computing. We will now be able to handle large datasets without having to learn anything new!
+## Architecture Diagram
 
-## Key Architectural Points
+This is the overall architecture diagram of Treasure Data. There're just 2 basic steps to get your analytic question.
 
-### Instant
+<p><center><img src="/images/architecture.png" width="500px" /></center></p>
+<br />
+<br />
 
-You can get an instant access to your data warehouse just after the signup.
+### 1) Installing td-agent
 
-### Elastic
+Treasure Data provides td-agent, a data collection daemon. It collects or receives logs from various data sources, and upload to Treasure Data.
 
-You can scale up and down your data warehousing capability (CPU power and storage capacity), at any moment.
+### 2) Issueing SQL-style Query
+
+Treasure Data also allows us to access and analyze our data through a SQL-style language used in standard RDBMSs (example: Oracle, MySQL, PostgreSQL), and even having 
+
+We can harness the power of Hadoop and cloud computing. We will now be able to handle large datasets without having to learn anything new.
+
+## Key Architectural Benefits
+
+### Instant & Elastic
+
+You can get an instant access to your data warehouse just after the signup. You can scale up and down your data warehousing capability (CPU power and storage capacity), at any moment.
 
 ### Multi-Tenant
 

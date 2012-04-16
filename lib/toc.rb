@@ -4,6 +4,8 @@ section 'overview', 'Overview' do
   end
   category 'platform-basics', 'Platform Basics' do
     article 'architecture-overview', 'Architecture Overview'
+    article 'scaling', 'Scaling the Resource'
+    article 'no-spof', 'No Single-Point-Of-Failure (SPOF)'
   end
   category 'platform-constraints', 'Platform Constraints' do
     article 'constraints', 'Platform Constraints'

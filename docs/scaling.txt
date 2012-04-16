@@ -1,0 +1,7 @@
+# Scaling the Resource
+
+In Q2 2012, you can scale up or down your computing & storage resourceinstantly from the command line or API.
+
+    :::term
+    $ td scale node=100
+    $ td scale node=30
