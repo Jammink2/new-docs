@@ -1,0 +1,7 @@
+# Treasure Data ChangeLog
+
+## April 4, 2012
+
+### 'td' gem v0.10.22 released with bugfixes
+
+A new version of the Heroku CLI is available with bugfixes. See the [CLI changelog](https://github.com/treasure-data/td/blob/master/ChangeLog) for details.

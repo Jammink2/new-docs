@@ -70,6 +70,9 @@ section 'reference', 'Reference' do
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'
   end
+  category 'changelog', 'ChangeLog' do
+    article 'changelog', 'Treasure Data ChangeLog'
+  end
 end
 
 section 'ab', 'Accounts & Billing' do
