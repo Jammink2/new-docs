@@ -7,13 +7,13 @@ gem 'haml', '2.2.17'
 gem 'json'
 gem 'coderay'
 gem 'rack-codehighlighter'
-gem 'faraday',   :git => 'git://github.com/technoweenie/faraday',  :ref => '3aa840d012875ee80410'
 
 # Webserver
 gem 'unicorn', '~> 4.2.1'
 
 # Addons
 gem 'newrelic_rpm'
+gem 'indextank', '~> 1.0.12'
 
 # Dev
 group :development do

@@ -1,21 +1,22 @@
-GIT
-  remote: git://github.com/technoweenie/faraday
-  revision: 3aa840d012875ee80410e2e627f23fba3d508fa9
-  ref: 3aa840d012875ee80410
-  specs:
-    faraday (0.4.6)
-      addressable (>= 2.1.1)
-      rack (>= 1.0.1)
-
 GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.7)
     coderay (1.0.6)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
+    faraday-stack (0.1.5)
+      faraday (>= 0.6, < 0.8)
     haml (2.2.17)
+    indextank (1.0.12)
+      faraday-stack
+      yajl-ruby (>= 0.7.7)
     json (1.6.6)
     kgio (2.7.4)
     mime-types (1.18)
+    multipart-post (1.1.5)
     newrelic_rpm (3.3.3)
     nokogiri (1.5.2)
     rack (1.4.1)
@@ -40,14 +41,15 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   coderay
-  faraday!
   haml (= 2.2.17)
+  indextank (~> 1.0.12)
   json
   newrelic_rpm
   rack-codehighlighter

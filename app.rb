@@ -3,6 +3,7 @@ require 'sinatra'
 require 'haml'
 require 'sass'
 require 'coderay'
+require 'indextank'
 require 'rack/codehighlighter'
 
 $LOAD_PATH << File.dirname(__FILE__) + '/lib'
@@ -35,13 +36,19 @@ not_found do
   erb :not_found
 end
 
-# 
+#
 # PATHS
 #
 get '/' do
   # cache_long
   # haml :index
   redirect '/articles/quickstart'
+end
+
+get '/search' do
+  page = params[:page].to_i
+  search, prev_page, next_page = search_for(params[:q], page)
+  erb :search, :locals => {:search => search, :query => params[:q], :prev_page => prev_page, :next_page => next_page}
 end
 
 get '/categories/:category' do
@@ -83,7 +90,7 @@ helpers do
           @articles = articles
           break
         end
-      }      
+      }
     }
     if @articles.length == 1
       article_name = @articles.first.first
@@ -100,13 +107,13 @@ helpers do
   def render_article(article)
     source = File.read(article_file(article))
     @article = Article.load(article, source)
-    
+
     @title   = @article.title
     @content = @article.content
     @intro   = @article.intro
     @toc     = @article.toc
     @body    = @article.body
-    
+
     erb :article
   rescue Errno::ENOENT
     status 404
@@ -146,6 +153,21 @@ helpers do
 
   def next_section(current_slug, root=sections)
     nil
+  end
+
+  def search_for(query, page = 0)
+    client = IndexTank::Client.new(ENV['SEARCHIFY_API_URL'])
+    index = client.indexes('td-docs')
+    search = index.search(query, :start => page * 10, :len => 10, :fetch => 'title', :snippet => 'text')
+    next_page =
+        if search['matches'] > (page + 1) * 10
+          page + 1
+        end
+    prev_page =
+        if page > 0
+          page - 1
+        end
+    [search, prev_page, next_page]
   end
 
   alias_method :h, :escape_html
