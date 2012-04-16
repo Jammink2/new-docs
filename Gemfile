@@ -1,6 +1,5 @@
 source :gemcutter
 
-gem 'thin', '~> 1.3.1'
 gem 'sinatra', '1.3.2'
 gem 'rdiscount', '1.6.8'
 gem 'rest-client', '1.2.0'
@@ -10,6 +9,10 @@ gem 'coderay'
 gem 'rack-codehighlighter'
 gem 'faraday',   :git => 'git://github.com/technoweenie/faraday',  :ref => '3aa840d012875ee80410'
 
+# Webserver
+gem 'unicorn', '~> 4.1.1'
+
+# Dev
 group :development do
   gem 'rake'
   gem 'shotgun', '~> 0.9'
