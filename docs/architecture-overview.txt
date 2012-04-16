@@ -1,19 +1,18 @@
 Architecture Overview
 =====================
 
-Treasure Data is the cloud data warehousing service. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
-
 ## Overview
+
+Treasure Data is the **Cloud Data Warehousing Service**. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
 
 The users automatically gain the advantages of the cloud, since the platform itself is built on top of a cloud infrastructure.
 
-* The storage capacity of the cloud is nearly **INFINITE**.
-* The storage cost of the cloud is nearly **FREE**. It is arguably the most economical form of storing data.
-* The computing resources can be allocated **ON-DEMAND**, pay as we go.
+* The computing resources can be allocated **INSTANTLY**, with pay as we go model.
+* The computing resources can be **ELASTIC**, scale up and down at anytime.
+* The cloud storage capacity is nearly **INFINITE**.
+* The cloud storage is arguably the most **ECONOMICAL** form of storing data.
 
-Treasure Data also allows us to access and analyze our data through a SQL-style language used in standard RDBMSs (example: Oracle, MySQL, PostgreSQL).
-
-We can harness the power of Hadoop and cloud computing, using a standard SQL-like interface. We will be now be able to handle large datasets without having to learn anything new!
+Treasure Data also allows us to access and analyze our data through a SQL-style language used in standard RDBMSs (example: Oracle, MySQL, PostgreSQL). We can harness the power of Hadoop and cloud computing. We will now be able to handle large datasets without having to learn anything new!
 
 ## Key Architectural Points
 

@@ -4,6 +4,6 @@ Treasure Data, Inc. already closed many partnerships with other companies, to me
 
 <center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-We're providing JDBC/ODBC drivers to easily connect with those 3rd party tools.  If you have a specific needs for visualizing data, please let us know. We know the proper tool.
+We're providing JDBC drivers to easily connect with those 3rd party tools.  If you have a specific needs for visualizing data, please let us know. We know the proper tool.
 
 The list of partners are soon to be announced.
