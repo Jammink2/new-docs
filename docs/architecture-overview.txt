@@ -3,7 +3,7 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is the **Cloud Data Warehousing Service**, based on *Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Never think about servers, storages, and infrastructure.
+Treasure Data is a **Cloud Data Warehousing Service**, based on our own extensions of *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
 
 The users automatically gain the advantages of the cloud, since the platform itself is built on top of a cloud infrastructure.
 
@@ -22,7 +22,7 @@ This is the overall architecture diagram of Treasure Data. There're just 2 basic
 
 ### 1) Installing td-agent
 
-Treasure Data provides td-agent, a data collection daemon. It collects or receives logs from various data sources, and upload to Treasure Data.
+Treasure Data provides td-agent, a data collection daemon. It collects or receives logs from various data sources, and uploads to Treasure Data.
 
 ### 2) Issueing SQL-style Query
 
