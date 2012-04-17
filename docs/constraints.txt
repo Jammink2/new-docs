@@ -4,8 +4,8 @@ Treasure Data is a cloud hosting environment, and as such is subject to some con
 
 ## Hive UDF (User Defined Function)
 
-You can't add your custom Hive UDF. If you have a request for the specific function, please notice us.
+You cannot add your custom Hive UDF. If you have a request for this specific function, please let us know.
 
 ## Hive Custom Map/Reduce Scripts
 
-You can't use [custom map/reduce scripts](https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-Custommap%2Freducescripts), due to the security consideration.
+You cannot use [custom map/reduce scripts](https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-Custommap%2Freducescripts), due to a security consideration.
