@@ -48,9 +48,8 @@
 
   <div id="sheet">
 	<div class="wrapper">
-	  <div class="pie-clearfix" id=<% if params.include?("article")%>"<%='article'%>"<% else %>"<%='category'%>"<% end %>>
+	  <div class="pie-clearfix" id=<% if params.include?("category")%>"<%='category'%>"<% else %>"<%='article'%>"<% end %>>
 		<aside id="sidebar">
-		  <!--
 		  <section class="pie-clearfix pie-clearfix-ie" id="search">
 			<div id="search">
 			  <form action="/search">
@@ -60,7 +59,6 @@
 			  </form>
 			</div>
 		  </section>
-		  -->
 		  <select id="quicknav">
 			<option value="/">Home</option>
 			<% sections.each do |slug, title, categories| %>
