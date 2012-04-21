@@ -3,47 +3,96 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is a **Cloud Data Warehousing Service**, based on our own extensions of *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
+Treasure Data is a **Cloud Data Warehousing Service**, based on our own extensions of *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud.
 
-The users automatically gain the advantages of the cloud, since the platform itself is built on top of a cloud infrastructure.
+Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
 
-* The computing resources can be allocated **INSTANTLY**, with pay as we go model.
-* The computing resources can be **ELASTIC**, scale up and down at anytime.
-* The cloud storage capacity is nearly **INFINITE**.
-* The cloud storage is arguably the most **ECONOMICAL** form of storing data.
+## Why We Started Our Business?
+
+To democratize storing and processing the data, at the cloud age.
+
+## Problems
+
+The data deluge is now the common problem across all industries becaulse of the rise of smart phones, social medias, sensor devices, etc. Many companies are now trying to convert the data into valuable insights, but handling the huge amount of data is a challenge for every companies.
+
+This problem is known about *Big Data Problem*, and it mostly comes from:
+
+* **Human** problem: strong data engineers are the scarce resource.
+* **Economic** problem: the existing data warehouse is extremely expensive.
+* **Architectural** problem: the existing infrastructure is hard to change.
+
+Our service aims to solve all of those problems.
+
+## What We Provide
+
+We're providing **Cloud-based Data Warehousing** service. You can store, manage, and process your huge amount of data by taking advantages of the cloud. The major advantages are:
+
+* **Instant** setup, with a pay-as-you-go model.
+* **Elastic** resource allocation, means scaling up and down at anytime.
+* **Infinite** cloud storage capacity, with high availability.
+* **Cost** of cloud storage is extremely cheap, compared to the existing solution.
 
 ## Architecture Diagram
 
-This is the overall architecture diagram of Treasure Data. There're just 2 basic steps to get your analytic question.
+This is the overall architecture diagram of Treasure Data.
 
 <p><center><img src="/images/architecture.png" width="500px" /></center></p>
 <br />
 <br />
 
-### 1) Installing td-agent
+And the key features are...
 
-Treasure Data provides td-agent, a data collection daemon. It collects or receives logs from various data sources, and uploads to Treasure Data.
+### Built-in Data Collector
 
-### 2) Issueing SQL-style Query
+Treasure Data provides *[td-agent](/articles/td-agent)*, a data collection daemon. It should be installed within your existing infrastructure, and collects records from various data sources, and continuously uploads them to Treasure Data.
 
-Treasure Data also allows us to access and analyze our data through a SQL-style language used in standard RDBMSs (example: Oracle, MySQL, PostgreSQL), and even having 
+### Cloud Storage
 
-We can harness the power of Hadoop and cloud computing. We will now be able to handle large datasets without having to learn anything new.
+All the data is stored on a cloud storage, with columnar data representation. This achieves a lot more performance and compression rate, compared to the existing RDBMSs. And of course, *your data is yours*. You can bulk-export your data at any time.
 
-## Key Architectural Benefits
+### SQL-Style Query with Parallel Execution
 
-### Instant & Elastic
+A SQL-style language let you analyze the stored data. The query is automatically executed in parallel at the cloud-hosted Hadoop cluster, so the users are able to handle large datasets without having to learn anything new. Also, our engine is schema-free. You can modify your data schema at any time.
 
-You can get an instant access to your data warehouse just after the signup. You can scale up and down your data warehousing capability (CPU power and storage capacity), at any moment.
+### Curation and Support
 
-### Multi-Tenant
+We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly. The dedicated support team is organized to help the users.
 
-Treasure Data is a multi-tenant data warehousing platform. You don’t need your own servers, storages, or clusters, and you’ll benefit from continuous platform improvements.
+## Use Cases
 
-### Fully Managed
+Our users come from many industries like social media, social game, financial, e-commerce, etc. The actual examples are:
 
-Because we control all the infrastructure and software layers, we can present a clean interface for managing your data.
+<table>
+  <tr>
+    <td><b>Name</b></td>
+    <td><b>Description</b></td>
+  </tr>
+  <tr>
+    <td>Basket Analysis</td>
+    <td>Analyzing POS or purchase records</td>
+  </tr>
+  <tr>
+    <td><a href="/articles/apache">Apache Log Analysis</a></td>
+    <td>Calculating daily UU and PV numbers</td>
+  </tr>
+  <tr>
+    <td>A/B Testing</td>
+    <td>Testing your feature with different sets of users</td>
+  </tr>
+  <tr>
+    <td>Customer Segmentation</td>
+    <td>Slice and dice your user base, and see what happens</td>
+  </tr>
+  <tr>
+    <td>Sensor Data Analysis</td>
+    <td>Analyzing sensor data like smart meters</td>
+  </tr>
+  <tr>
+    <td>...</td>
+    <td></td>
+  </tr>
+</table>
 
-### Curation
+## What's Next?
 
-We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly.
+If you don't have an account yet, please proceed to the [quickstart](/articles/quickstart) guide.
