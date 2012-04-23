@@ -9,13 +9,13 @@ Focus 100% on your data analytics, and never worry about server scaling, storage
 
 ## Why We Started Our Business?
 
-To democratize storing and processing the data, at the cloud age.
+The importance of data analytics and warehousing has been increasing, but most existing solutions are still a luxury only to large business. To take advantage of emerging data management and analytics technologies based on open source software, we are to democratize them.
 
 ## Problems
 
-The data deluge is now the common problem across all industries becaulse of the rise of smart phones, social medias, sensor devices, etc. Many companies are now trying to convert the data into valuable insights, but handling the huge amount of data is a challenge for every companies.
+The data deluge is now the common problem across all industries becaulse of the rise of smart phones, social medias, sensor devices, etc. Many companies are now trying to convert their data into valuable insights, but handling huge amount of data is a challenge for any businesses.
 
-This problem is known about *Big Data Problem*, and it mostly comes from:
+This problem is known as*Big Data Problem*, and it mostly comes from:
 
 * **Human** problem: strong data engineers are the scarce resource.
 * **Economic** problem: the existing data warehouse is extremely expensive.
@@ -25,7 +25,7 @@ Our service aims to solve all of those problems.
 
 ## What We Provide
 
-We're providing **Cloud-based Data Warehousing** service. You can store, manage, and process your huge amount of data by taking advantages of the cloud. The major advantages are:
+We're providing **Cloud-based Data Warehousing** service. You can store, manage, and process large amount of data by taking advantages of cloud technologies. The major advantages are:
 
 * **Instant** setup, with a pay-as-you-go model.
 * **Elastic** resource allocation, means scaling up and down at anytime.
