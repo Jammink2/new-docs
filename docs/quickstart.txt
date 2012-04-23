@@ -1,28 +1,28 @@
 Quickstart Guide
 ================
 
-Let's Get Started with Treasure Data. Treasure Data is a **cloud-based data warehousing** service. We can forget about servers, storages, and infrastructure while storing billions of records.
+Let's Get Started with Treasure Data. Treasure Data is a **cloud-based data warehousing** service. Forget about servers, storages, and infrastructure while storing billions of records and focus on your data analytics.
 
-No specific knowledge is required: Just import JSON-based records into the cloud, and process it through a SQL Language.
+No special know-how is required: Just import JSON-based records into our cloud data warehouse, and process them by SQL queries.
 
 Let's get started.
 
 Step 1: Sign-Up
 ---------------
 
-Sign-up for a Treasure Data account, if you don't already have one.
+Sign-up for Treasure Data, unless you already have one.
 
-Step 2: Install the Treasure Data Toolbelt
+Step 2: Install Treasure Data Toolbelt
 ------------------------------------------
 
-Install the [Treasure Data Toolbelt](http://treasure-data.com/toolbelt.html) for your development operating system.
+Install the [Treasure Data Toolbelt](http://treasure-data.com/toolbelt.html) for your development environment.
 
-The toolbelt contains the 'td' command, a [CLI tool](/categories/command-line) for importing, managing, and issueing the query on your data.
+The toolbelt contains 'td' command, a [CLI tool](/categories/command-line) for importing, managing, and issueing a query on your data.
 
 Step 3: Authorize
 -----------------
 
-After installing the toolbelt, you'll have access to the td command from your command line shell. Please authorize your account by *td account* in using the emaill address and password you used when creating your Treasure Data account:
+After installing the toolbelt, you'll have access to td command from your command line shell. Please authorize your account by *td account* by using an emaill address and password you used when creating your account:
 
     :::term
     $ td account -f
@@ -33,7 +33,7 @@ After installing the toolbelt, you'll have access to the td command from your co
 Step 4: Import Sample Dataset
 -----------------------------
 
-Now you're ready! Typically, our service is used to store huge amount of logs. So let's start importing the Apache log sample dataset. At first, you need to create the database and table on the cloud, by CLI.
+Now you're ready! Typically, our service is used to store massive event data and logs. So let's start importing Apache log sample dataset. At first, you need to create the database and table on the cloud, by CLI.
 
     :::term
     $ td db:create testdb
@@ -45,7 +45,7 @@ Now you're ready! Typically, our service is used to store huge amount of logs. S
     | testdb     | www_access | log  | 0         |
     +------------+------------+------+-----------+
 
-Then, let's generate the sample Apache logs data and import it to the cloud. 'td sample:apache' commands generates 5,000 lines of a JSON file, which contains exactly same information with Apache logs. 'td table:import' takes JSON file, and uploads.
+Then, let's generate sample Apache logs data and import it to the cloud. 'td sample:apache' commands generates 5,000 lines of a JSON file, which contains exactly same information with Apache logs. 'td table:import' takes JSON file, and uploads.
 
     :::term
     $ td sample:apache apache.json
@@ -63,12 +63,12 @@ After several seconds, the records will be imported into our database.
     | testdb     | www_access | log  | 5000      |
     +------------+------------+------+-----------+
 
-Step 5: Issue the Query
+Step 5: Issue Queries
 -----------------------
 
-Finally, let's issue the SQL query. The query is executed with Hadoop-based engine on the cloud. Only the result is returned back to you. Here's the query to calculate the distribution of HTTP status codes.
+Finally, let's issue a SQL query. The query is executed with Hadoop-based engine on the cloud. Only its result is returned back to you. Here's a query to calculate the distribution of HTTP status codes.
 
-NOTE: You may be surprise that this takes around <b>15 seconds</b>. This is the overhead of setting up the jobs within a cloud. Our typical query takes around several minutes.
+NOTE: You may be surprise that this takes around <b>15 seconds</b>. This is the overhead of setting up the jobs within the cloud based on Hadoop framework. Typically a query takes several minutes.
 
     :::term
     $ td query -w -d testdb \
@@ -92,7 +92,7 @@ NOTE: You may be surprise that this takes around <b>15 seconds</b>. This is the 
 Step 6: Logging from Your Application
 -------------------------------------
 
-Now it's turn to import your actual data to the cloud. Choose from the following getting starated tutorials to learn how to import your data, using a supported languages, frameworks, or middleware:
+Now it's turn to import your actual data to the cloud. See the following tutorials to learn how to import your data, using a supported languages, frameworks, or middleware:
 
   * Languages and Frameworks
     * [Java](java)
