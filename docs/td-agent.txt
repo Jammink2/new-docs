@@ -81,7 +81,7 @@ You can add logs using send JSON data using HTTP.
 td-agent continuously uploads logs every 1 minute. By sending SIGUSR1 signal, td-agent flushes the buffered logs into the cloud.
 
     :::term
-    $ sudo killall -SIGUSR1 td-agent
+    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 You can confirm that the data import by using `td tables`:
 

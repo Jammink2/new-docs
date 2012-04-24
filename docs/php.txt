@@ -95,7 +95,7 @@ Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its b
 
     :::term
     $ php test.php
-    $ sudo killall -SIGUSR1 td-agent
+    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 To confirm the data upload, please use *td tables*.
 

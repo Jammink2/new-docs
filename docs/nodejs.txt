@@ -127,7 +127,7 @@ NOTE: The first argument of post() determines the database name and table name. 
 Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
 
     :::term
-    $ sudo killall -SIGUSR1 td-agent
+    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 To confirm the data upload, please use *td tables*.
 
