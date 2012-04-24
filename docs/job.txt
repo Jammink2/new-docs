@@ -18,7 +18,7 @@ You can issue the query with 'td query' subcommand. The submitted query is regar
 
 If you issue the query *WITHOUT* -w option, the command command exits immediately after submittion is completed. Not waits for job completion.
 
-    ::term
+    :::term
     $ td query -d testdb "SELECT COUNT(*) FROM www_access"
     Job 704 is started.
     Use 'td job 704' to show the status.
