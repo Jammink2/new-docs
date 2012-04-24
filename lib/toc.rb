@@ -61,6 +61,7 @@ section 'reference', 'Reference' do
     article 'td-agent', 'Using td-agent'
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations'
     article 'td-agent-copy', 'Storing Logs Locally and Remotely'
+    article 'td-agent-http', 'Storing Logs via HTTP protocol'
     article 'td-agent-changelog', 'ChangeLog of td-agent'
   end
   category 'data-processing', 'Data Processing' do

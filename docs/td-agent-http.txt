@@ -1,0 +1,48 @@
+# Storing Logs via HTTP protocol
+
+You might want to store your logs from many places, using HTTP protocol.
+
+## Configuration
+
+Please open the configuration file (*/etc/td-agent/td-agent.conf*) and add the following lines.
+
+    :::term
+    # HTTP input
+    <source>
+      type http
+      port 8888
+    </source>
+    
+    # Treasure Data output
+    <match td.*.*>
+      type tdlog
+      apikey ...
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+    </match>
+
+## Data Upload via HTTP protocol
+
+You can add logs using send JSON data using HTTP. Please use POST method here, and specify the database and table name by URL.
+
+    :::term
+    $ curl -X POST -d 'json={"action":"login","user":2}' \
+      http://localhost:8888/td.testdb.www_access
+
+td-agent continuously uploads logs every 1 minute. By sending SIGUSR1 signal, td-agent flushes the buffered logs into the cloud.
+
+    :::term
+    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+
+You can confirm that the data import by using `td tables`:
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | testdb     | www_access | log  | 1         |
+    +------------+------------+------+-----------+
+
+If you have any trouble, please look at /var/log/td-agent.log for further investigation.
