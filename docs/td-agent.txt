@@ -16,7 +16,7 @@ td-agent is a data collection daemon. It collects or receives logs from various 
 
 <center><img src="/images/td-agent.png" width="90%"></center>
 
-NOTE: td-agent is fully open-sourced as <a href="https://github.com/fluent/fluentd">fluentd project</a> on the github. td-agent is just the package which contains fluentd, with some extension plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced as <a href="https://github.com/fluent/fluentd">fluentd project</a> on the github. td-agent is just the package which contains fluentd, with some extension plugins for Treasure Data. The difference between td-agent and the OSS fluentd version could be found <a href="http://community.fluentd.org/a/what-is-the-difference-with-td-agent-and-fluentd/">here</a>.
 
 ## Install td-agent
 
@@ -113,3 +113,4 @@ Next, you need to modify the existing applications, to post the records. The fol
 For highly loaded sites, we recommend using high availability configuration for td-agent.
 
   * [High-Availability Configurations with td-agent](td-agent-high-availability)
+
