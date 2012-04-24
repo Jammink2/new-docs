@@ -12,7 +12,9 @@ In order to import data from Ruby applications to Treasure Data, we provide a li
 
 At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
 
-Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Ruby applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes.
+<center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
+
+Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Ruby applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
 Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
 
