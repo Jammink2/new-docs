@@ -13,24 +13,26 @@ The importance of data analytics and warehousing has been increasing, but most e
 
 ## Problems
 
-The data deluge is now the common problem across all industries becaulse of the rise of smart phones, social medias, sensor devices, etc. Many companies are now trying to convert their data into valuable insights, but handling huge amount of data is a challenge for any businesses.
+The data deluge is now a common problem across all industries beccause of the rise of smart phones, social medias and sensor devices. Many businesses try to find out valuable insights from such data, but handling large-scale data is always challenging.
 
-This problem is known as*Big Data Problem*, and it mostly comes from:
+This problem is known as *Big Data Problem*, mostly coming from:
 
-* **Human** problem: strong data engineers are the scarce resource.
-* **Economic** problem: the existing data warehouse is extremely expensive.
+* **Recource** problem: strong data engineers are the scarce resource.
+* **Economic** problem: the existing data warehouse is expensive, and operational overhead to manage large-scale clusters is a major concern for managements.
 * **Architectural** problem: the existing infrastructure is hard to change.
 
-Our service aims to solve all of those problems.
+We designed our service solve those problems.
 
 ## What We Provide
 
 We're providing **Cloud-based Data Warehousing** service. You can store, manage, and process large amount of data by taking advantages of cloud technologies. The major advantages are:
 
-* **Instant** setup, with a pay-as-you-go model.
-* **Elastic** resource allocation, means scaling up and down at anytime.
+* **Instant** setup, with a monthly subscription model.
 * **Infinite** cloud storage capacity, with high availability.
-* **Cost** of cloud storage is extremely cheap, compared to the existing solution.
+* **Easy** to use, without deep knowledge of "Big Data" technologies. Just focus on your data, not a cluster management.
+* **Elastic** resource allocation, means scaling up and down at anytime.
+* **Connectivity** You can adopt it to your data sources and analytics applications without architectual changes.
+* **Cost** of cloud storage is extremely inexpensive, compared to existing data warehousing solutions.
 
 ## Architecture Diagram
 
@@ -44,23 +46,23 @@ And the key features are...
 
 ### Built-in Data Collector
 
-Treasure Data provides *[td-agent](/articles/td-agent)*, a data collection daemon. It should be installed within your existing infrastructure, and collects records from various data sources, and continuously uploads them to Treasure Data.
+Treasure Data provides *[td-agent](/articles/td-agent)*, a data collection daemon. It will be installed in your existing infrastructure, collects records from various data sources, and continuously uploads them to Treasure Data.
 
 ### Cloud Storage
 
-All the data is stored on a cloud storage, with columnar data representation. This achieves a lot more performance and compression rate, compared to the existing RDBMSs. And of course, *your data is yours*. You can bulk-export your data at any time.
+All data is stored in the cloud storage, as a columnar data representation. This achieves far better performance and compression rate, compared to the existing RDBMSs. And of course, *your data is yours*. You can bulk-export your data at any time.
 
 ### SQL-Style Query with Parallel Execution
 
-A SQL-style language let you analyze the stored data. The query is automatically executed in parallel at the cloud-hosted Hadoop cluster, so the users are able to handle large datasets without having to learn anything new. Also, our engine is schema-free. You can modify your data schema at any time.
+A SQL-style language lets you analyze your data. The query is automatically executed in parallel at the cloud-hosted Hadoop cluster, so the users are able to handle large datasets without having to learn anything new. Also, our engine is schema-free. You can modify your data schema at any time.
 
 ### Curation and Support
 
-We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly. The dedicated support team is organized to help the users.
+We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly. The dedicated support team is organized to help our users.
 
 ## Use Cases
 
-Our users come from many industries like social media, social game, financial, e-commerce, etc. The actual examples are:
+Our users come from many industries like ad-tech, social media, social game, financial, e-commerce, etc. The actual examples are:
 
 <table>
   <tr>
