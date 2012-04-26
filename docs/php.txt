@@ -1,22 +1,22 @@
 # Data Import from PHP Applications
 
-In order to import data from PHP applications to Treasure Data, we provide a logger library called '[fluent-logger-php](http://github.com/fluent/fluent-logger-php)'. This article describes how to use that library.
+In order to import data from PHP applications to Treasure Data, we provide a logger library called [**fluent-logger-php**](http://github.com/fluent/fluent-logger-php). This article describes how to use the library.
 
 ## Prerequisites
 
   * Basic knowledge of PHP
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
-  * An installed version of PHP 5.3 or higher to test locally
+  * PHP 5.3 or higher to test locally.
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+You need to set up 'td-agent' on your application servers. `td-agent` is a daemon to continuously upload logs as a stream. `td-agent` is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-Through [fluent-logger-php](http://github.com/fluent/fluent-logger-php) library, PHP applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [fluent-logger-php](http://github.com/fluent/fluent-logger-php) library allows PHP applications to post logs to a local td-agent, which in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, latency is negligible.
 
-Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+Please refer to the following articles to set up `td-agent`. For Linux systems, we provide deb/rpm packages for quick installation.
 
 <table>
   <tr>
@@ -33,17 +33,17 @@ Please refer to the following articles in setting up td-agent. For Linux systems
   </tr>
 </table>
 
-NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+NOTE: Please note that td-agent is fully open-sourced as part of the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
 
 ## Modify /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by *td apikey:show*, as long as we have successfully authenticated our account using the ‘td account’ command.:
+We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Once you successfully created your account (with the `td account` command), you can look up your API key by typing *td apikey:show* in the command line:
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Let’s set the `apikey` option in our td-agent.conf file. Replace *YOUR_API_KEY* with your actual API key.
 
     :::term
     # Unix Domain Socket Input
@@ -66,17 +66,17 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+We have now enabled td-agent to read and upload log data into the cloud via port 24224.
 
-## Use fluent-logger-php
+## Using fluent-logger-php
 
-[fluent-logger-php](http://github.com/fluent/fluent-logger-php) is a PHP library to post the records to td-agent from a PHP application. At first, please copy the library itself into your project directory.
+[**fluent-logger-php**](http://github.com/fluent/fluent-logger-php) is a PHP library to post the records to td-agent from a PHP application. To use, copy the library itself into your project directory.
 
     :::term
     $ git clone https://github.com/fluent/fluent-logger-php.git
     $ cp -r src/Fluent <path/to/your_project>
 
-Then, please initialize and post the records as follows.
+Then, initialize and post the records as follows.
 
     :::php
     <?php
@@ -89,11 +89,11 @@ Then, please initialize and post the records as follows.
 
 ## Confirm the Import
 
-The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
+The posted records are first transferred to the local td-agent. td-agent buffers the records locally for awhile and uploads them every 5 minutes.
 
-NOTE: The first argument of post() determines the database name and table name. If you specify 'td.test_db.test_table', the data will be imported into *test_table* table within *test_db* database. Those are automatically created at the upload time.
+NOTE: The first argument of `post()`, "tag", determines the database name and table name. If you specify `td.test_db.test_table`, the data will be imported into the *test_table* table within the *test_db* database. Those are automatically created at the upload time.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+Sending SIGUSR1 signal to the agent flushes its buffer and starts uploading immediately (as opposed to waiting for upto five minutes).
 
     :::term
     $ php test.php
@@ -109,21 +109,21 @@ To confirm the data upload, please use *td tables*.
     | test_db    | follow     | log  | 1         |
     +------------+------------+------+-----------+
 
-## Production Deployments
+## Tips on Deploying in Production
 
 ### Use Apache and mod_php
 
-Other deployment options are not well tested.
+Other deployment options have not been fully explored.
 
-### Use Apache prefork MPM, and Set MaxRequestsPerChild
+### Use Apache prefork MPM and Set MaxRequestsPerChild
 
-Please ensure you're using Apache prefork MPM, instead of other MPM like worker MPM. You can confirm the current settings by *apachectl -V* command.
+Please ensure you're using Apache prefork MPM instead of other MPM like worker MPM. You can confirm the current settings with the *apachectl -V* command.
 
     :::term
     $ apachectl -V | grep MPM:
     Server MPM:     Prefork
 
-Also, it's recommended to periodically restart your PHP processes, by setting *MaxRequestsPerChild* in your apache conf (*NOT* zero).
+Also, it's recommended to periodically restart your PHP processes, by setting *MaxRequestsPerChild* in your Apache conf (*NOT* zero).
 
     :::term
     <IfModule mpm_prefork_module>
@@ -136,6 +136,6 @@ Also, it's recommended to periodically restart your PHP processes, by setting *M
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
+For high-traffic websites (more than 5 application nodes), we recommend using the high availability configuration for td-agent. This improves data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
