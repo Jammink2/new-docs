@@ -2,4 +2,6 @@
 
 ### Your Data is Yours.
 
-We're hardly working on the bulk-export feature, which lets you dump your data into Amazon S3.
+At Treasure Data, we believe that your data belongs to you, even after importing to our platform. 
+
+We're developing a bulk-export feature which will let you dump your data into Amazon S3.
