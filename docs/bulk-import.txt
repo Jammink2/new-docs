@@ -1,32 +1,35 @@
 # Bulk Import
 
-This guide covers how to bulk-import the data into Treasure Data.
+This guide explains how to bulk-import data with the 'td' command.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
 
-## Usecase
+## Use Cases
 
-Bulk import is intended for two-usecases.
+Bulk import is primarily used in two ways.
 
 #### First Data Upload
 
-The first one is the obvious example. In the case that you already have the data, and want to import it into Treasure Data.
+The first use case is when we first upload our data to Treasure Data Cloud. Bulk-import is useful if we already have data on hand and want to import it to Treasure Data Cloud.
 
 #### Periodic Data Upload
 
-The second case is periodically import the data into the cloud. Think that the logs are rotated with every hour. Then we can import the data with the previous hour by periodically launch the bulk-import tool.
+The second use case is when we want to periodically import our data into the cloud. Let's suppose that our logs are rotated every hour. In this case, it makes sense to periodically launch the bulk-import tool to import the previous hour's data.
 
-But for this usecase, we recommend you to use the continuous data uploading with 'td-agent'. See [Continuous Data Import with td-agent]().
+But for this use case, it is better to continuously upload data using 'td-agent'. For further information, please refer to [Continuous Data Import with td-agent](td-agent).
 
-## *td import* command
+## The *td import* Command
 
-For bulk importing, import sub-command is prepared in 'td'. It takes the file path and it format as arguments, and upload into the cloud. Currently, it supports several formats.
+The import sub-command in 'td' is used for bulk importing. The command takes the file path and format as arguments, and uploads the data into the cloud. It currently supports the following formats.
 
 ### JSON
 
-For JSON format, you need to prepare the files, which contains one JSON-map per oneline. Also ensure that you have 'time' field, which this event was generated.
+In order to use JSON, the files should be formatted as follows:
+
+1. One JSON-map per line. 
+2. A 'time' field is required. This field indicates the time in which the event was generated.
 
     :::term
     {"action":"login","user":2,"time":"2011-08-02 03:06:32 +0900"}
@@ -34,7 +37,7 @@ For JSON format, you need to prepare the files, which contains one JSON-map per 
     {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
     ...
 
-Then, import this data into 'test_table' table within 'test_db' database.
+We can import our data into the 'test_table' table within our 'test_db' database as follows.
 
     :::term
     $ td import test_db test_table \
@@ -44,14 +47,14 @@ Then, import this data into 'test_table' table within 'test_db' database.
 
 ### Apache Log
 
-*td import* is able to parse the 'combined' format of Apache logs. It automatically splits the log records into the meaningful fields (example: time, user-agent, etc), then imports into the cloud.
+The *td import* command can also parse Apache Logs stored in the 'combined' format. The command automatically splits the log records into meaningful fields (ex: time, user-agent, etc.) and imports the data into the cloud.
 
     :::term
     $ td import test_db test_table --format apache access_log.txt
 
 ### Syslog
 
-*td import* is able to parse the 'syslog' format.
+The *td import* command can also parse logs stored in the 'syslog' format.
 
     :::term
     $ td import test_db test_table --format syslog syslog.txt
