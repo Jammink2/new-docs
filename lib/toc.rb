@@ -10,6 +10,9 @@ section 'overview', 'Overview' do
   category 'platform-constraints', 'Platform Constraints' do
     article 'constraints', 'Platform Constraints'
   end
+  category 'changelog', 'ChangeLog' do
+    article 'changelog', 'Treasure Data ChangeLog'
+  end
 end
 
 section 'languages-and-middlewares', 'Languages' do
@@ -40,12 +43,11 @@ end
 section 'tutorials', 'Tutorials' do
   category 'usecases', 'Use Cases' do
     article 'apache', 'Analyzing Apache Logs'
-#     article 'game', 'Calculating ARPU from Gaming Logs'
-#     article 'ecommerce', 'Calculating Top-Ranked Items from EC Search Logs'
+#     article 'game', 'Analyzing Social Gaming Logs'
+#     article 'ec', 'Analyzing E-Commerce Logs'
+#     article 'adtech', 'Analyzing Ad-Server Logs'
+#     article 'ranking', 'Calculating Daily Rankings'
   end
-#   category 'performance', 'Performance' do
-#     article 'avoid-nested-json', 'Avoiding Nested JSON Records'
-#   end
 end
 
 section 'reference', 'Reference' do
@@ -66,18 +68,21 @@ section 'reference', 'Reference' do
   end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
+    article 'schedule', 'Scheduled Job'
     article 'hive', 'Hive (SQL-style) Query Language'
     article 'pig', 'Pig Latin Language'
+  end
+  category 'result', 'Result Output' do
+    article 'result-into-mysql', 'Writing the Job Result into your MySQL'
+    article 'result-into-postgresql', 'Writing the Job Result into your PostgreSQL'
+    article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'
+    article 'result-into-redis', 'Writing the Job Result into your Redis'
+    article 'result-into-riak', 'Writing the Job Result into your Riak'
+    article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
   end
   category 'bulk-operations', 'Bulk Operations' do
     article 'bulk-import', 'Bulk Import'
     article 'bulk-export', 'Bulk Export'
-  end
-  category 'api', 'REST API' do
-    article 'rest-api', 'REST API Specification'
-  end
-  category 'changelog', 'ChangeLog' do
-    article 'changelog', 'Treasure Data ChangeLog'
   end
 end
 
@@ -92,8 +97,11 @@ section 'ab', 'Accounts & Billing' do
   end
 end
 
-section 'tools', 'Tools' do
+section 'tools', 'Tools & Specs' do
   category '3rd-party-tools-overview', 'Overview' do
     article 'tools', 'Tools'
+  end
+  category 'api', 'REST API' do
+    article 'rest-api', 'REST API Specification'
   end
 end

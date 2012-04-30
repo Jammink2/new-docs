@@ -1,0 +1,72 @@
+# Writing the Result into your MySQL
+
+This guide explaines how to write job results, into your existing MySQL instance.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * **MySQL instance**, which is accesible from our side (EC2 US-East region)
+
+## Architecture
+
+This function expects the architecture shown below. The frontend applications post the record to Treasure Data, and Treasure Data executes the big data processing jobs, and those results are written out into the RDBMSs.
+
+<center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
+
+This pattern often happens, to connect between backend batch oriented system, with front-end processing system.
+
+#### Example1: Ranking Calculation
+
+Every social/mobile applications need to do topN calculation (e,g. top 5 movies watched today). Basically, you can offload the log storing and processing, and connect the backend-system with front-end application using RDBM.
+
+#### Example2: Dashboard Application
+
+If you're the data guy in your company, you need to track some fixed metrics every hour/day/month etc. Then, it must be visualized with nice charts. This function is especially useful for such purpose, because you only need to build the nice dashboard rather than backend processing systems.
+
+## Basic Usage
+
+### Ad-hoc Job
+
+From td command, please specify '-r' option like below. After the job finished, the results are automatically written into your database.
+
+    :::sql
+    $ td query -r 'mysql://user:password@host/database/table' \
+      -w -d testdb \
+      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"      
+
+### Scheduled Job
+
+This feature can be used with a scheduled jobs. The jobs are executed periodically, and those job results are written into RDBMS automatically.
+
+    :::term
+    $ td result:create mydb mysql://user:password@host/database
+    $ td sched:create -r mydb:table
+
+
+## Write Modes
+
+This function comes with 3 modes (append, replace, truncate), which specify how the data is written into your MySQL. You can specify the mode with urls like below.
+
+    :::term
+    mysql://user:password@host/database/table               # append
+    mysql://user:password@host/database/table?mode=append   # append
+    mysql://user:password@host/database/table?mode=replace  # replace
+    mysql://user:password@host/database/table?mode=truncate # truncate
+
+### APPEND
+
+The default mode. Query results are appended to the existing table. If table doesn't exit, the table will be created. The data addition happens **ATOMICALLY**.
+
+### REPLACE
+
+Query results are fully replaced with an existing table. If table doesn't exit, the table will be created. The data replacement happens **ATOMICALLY**, so there's no point of seeing empty table from the MySQL clients.
+
+At first, temporal table is created, and ALTER TABLE RENAME are used to replace with an existing table. Those are done in a transactional way.
+
+### TRUNCATE
+
+The system first truncates an existing table, and Query results are inserted into that table. If table doesn't exit, the table will be created.
+
+The data replacement happens **ATOMICALLY**, so there's no point of seeing empty table from the MySQL clients. This option is useful when you want to keep your **INDEX** of that table.
+
+At first, temporal table is created, DELETE FROM the existing table, and finally INSERT INTO the new table. Those are done in a transactional way.

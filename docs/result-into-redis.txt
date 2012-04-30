@@ -1,0 +1,3 @@
+# Writing the Result into your Redis
+
+Will be supported soon :-)

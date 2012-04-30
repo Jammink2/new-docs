@@ -1,0 +1,3 @@
+# Writing the Result into your DynamoDB
+
+Will be supported soon :-)
