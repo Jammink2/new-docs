@@ -40,7 +40,7 @@ This feature can be used with a scheduled jobs. The jobs are executed periodical
 
     :::term
     $ td result:create mydb postgresql://user:password@host/database
-    $ td sched:create -r mydb:table
+    $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" -r mydb
 
 
 ## Write Modes
