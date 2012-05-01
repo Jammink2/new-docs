@@ -66,10 +66,10 @@ We achieve **atomicity** (so that a consumer of the table always has consistent 
 
 1. Create a temporary table.
 2. Write to that table.
-3. Replace with the existing table by ALTER TABLE RENAME.
+3. Replace the existing table with the temporary table by ALTER TABLE RENAME.
 
 ### TRUNCATE
 
-The system first truncates the existing table, and the query results are inserted into that table. If table doesn't exist, the table will be created.
+The system first truncates the existing table, and the query results are inserted into that table. If the table doesn't exist, a new table will be created.
 
 **Unlike REPLACE, TRUNCATE retains the indexes of your table.**
