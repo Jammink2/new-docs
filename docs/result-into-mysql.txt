@@ -62,7 +62,7 @@ This is the default mode. Query results are appended to the table. If the table 
 
 If the table already exists, the rows of the existing table are replaced with the query results. If the table doesn't exist yet, it is created on the fly.
 
-We achieve atomicity (so that the consumer of the table always have consistent data) by performing the following three steps in a **single transaction**.
+We achieve **atomicity** (so that the consumer of the table always have consistent data) by performing the following three steps in a **single transaction**.
 
 1. Create a temporary table.
 2. Write to that table.
