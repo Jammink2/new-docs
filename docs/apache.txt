@@ -18,9 +18,9 @@ When a user accesses Apache, Apache appends a corresponding log entry to the log
 
 td-agent automatically parses the new logs to create meaningful data fields (ex: ip, path, etc). The resulting data is buffered, periodically compressed, then uploaded to the cloud.
 
-## Install the td-agent
+## Installing td-agent
 
-At first, you need to setup 'td-agent' on your application servers. Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+We must first set up 'td-agent' on our application servers. Please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -28,22 +28,20 @@ At first, you need to setup 'td-agent' on your application servers. Please refer
     <th>Please look at...</th>
   </tr>
   <tr>
-    <td>Debian / Ubuntu System</td>
+    <td>Debian / Ubuntu Systems</td>
     <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
   </tr>
   <tr>
-    <td>Redhat / CentOS System</td>
+    <td>Redhat / CentOS Systems</td>
     <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
 </table>
 
-NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
-## Modify /etc/td-agent/td-agent.conf
+## Modifying /etc/td-agent/td-agent.conf
 
-In order to import Apache logs with td-agent, we’ll add the following lines to our td-agent.conf file. Please specify the database name and table name using the ‘tag’ parameter, as below.
-
-For example, if we set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the ‘apache_logs’ table within the ‘testdb’ database.
+In order to import Apache logs with td-agent, we’ll add the following lines to our td-agent.conf file. Please specify the database name and table name using the ‘tag’ parameter, as shown below.
 
     :::term
     # tail apache access_log
@@ -53,14 +51,20 @@ For example, if we set ‘td.testdb.apache_logs’ as the tag, the logs are sent
       format apache
       tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
     </source>
+
+For example, if we set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the ‘apache_logs’ table within the ‘testdb’ database.
     
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by *td apikey:show*, as long as we have successfully authenticated our account using the ‘td account’ command.:
+Next, we will specify our authentication key by setting the `apikey` option. We can view our api key with the *td apikey:show* command.
+
+Note: We must first authenticate our account using the ‘td account’ command.
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Let’s set the `apikey` option in our td-agent.conf file. 
+
+Note: *YOUR_API_KEY* should be our actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -77,16 +81,16 @@ Once these lines are in place, we’ll restart our agent.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-By this configuration, td-agent tails the Apache logs. When it gets the new records from the logs, those are parsed and  uploaded into the cloud every 5 minutes.
+In this this configuration, td-agent tails the Apache logs, parses the new log records, and uploads the data into the cloud every 5 minutes.
 
-## Confirm the Import
+## Confirming Import
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+We often don't want to wait for these 5 minute cycles. Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use *td tables*.
+To confirm that our data has been uploaded successfully, issue the *td tables* command as shown below.
 
     :::term
     $ td tables
