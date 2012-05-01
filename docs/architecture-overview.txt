@@ -17,7 +17,7 @@ The data deluge is now a common problem across all industries beccause of the ri
 
 This problem is known as *Big Data Problem*, mostly coming from:
 
-* **Recource** problem: strong data engineers are the scarce resource.
+* **Resource** problem: strong data engineers are the scarce resource.
 * **Economic** problem: the existing data warehouse is expensive, and operational overhead to manage large-scale clusters is a major concern for managements.
 * **Architectural** problem: the existing infrastructure is hard to change.
 
