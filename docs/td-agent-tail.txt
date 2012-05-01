@@ -9,9 +9,7 @@ td-agent is able to 'tail' the existing log files, like UNIX's *tail* command, a
 
 ## Tailing the JSON-based Logs
 
-By using the configuration below, you can use a [tail](http://fluentd.org/doc/plugin.html#tail) input. The file must be structured as one-line-one-JSON-map.
-
-NOTE: td-agent handles the log-rotations properly. Also, it continuously checkpoints the last log file position. Thanks to this, the agent reads the each record at most once, even in the failure case scenario.
+By using the configuration below, you can use a [tail input](http://fluentd.org/doc/plugin.html#tail). The file must be structured as one-line-one-JSON-map.
 
 NOTE: This feature is supported from td-agent v1.1.5.
 
@@ -23,6 +21,14 @@ NOTE: This feature is supported from td-agent v1.1.5.
       format json
       pos_file /var/log/td-agent/test_db_test_table.pos
     </source>
+    
+    <match td.*.*>
+      type tdlog
+      apikey ...
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+    </match>
 
 The example log file is like below.
 
@@ -46,18 +52,20 @@ When new entries are appended to the file, td-agent parses those entries and buf
     # confirm the upload
     $ td tables test_db
 
+NOTE: td-agent handles the log-rotations properly. Also, it continuously checkpoints the last log file position. This prevents the agent, to read the same lines twice in the failure-case scenarios.
+
 ## Tailing the Custom-Formatted Logs
 
 In some cases, you might want to have a [custom parser](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin) for your own-formatted logs by Ruby. Please put the file into your */etc/td-agent/plugins/* directory. The examples are here.
 
-* [The Custom Parser for URL-Param Style Key-Value Pairs](/not/yet/available)
-* [The Custom Parser for Char-Delimited Logs](/not/yet/available)
+* [The Custom Parser for URL-Param Style Key-Value Pairs](https://gist.github.com/2565478)
+* [The Custom Parser for Char-Delimited Logs](https://gist.github.com/2565493)
 
-NOTE: Tailing existing logs are the easy step to start with Treasure Data. BTW, we recommend our users to log everything as JSON. [Here's Why](http://blog.treasure-data.com/post/21881575472/log-everything-as-json-make-your-life-easier).
+NOTE: Tailing existing logs are the easy step to start with Treasure Data. BTW, we recommend logging everything as JSON. <a href="http://blog.treasure-data.com/post/21881575472/log-everything-as-json-make-your-life-easier">Here's Why</a>.
 
 ## Filtering Out the Records
 
-Sometimes you want to filter your logs, based on the data within a record. In this case, please use [exec-filter](http://fluentd.org/doc/plugin.html#exec-filter) plugin. This plugin launches another script, which takes STDIN as input and STDOUT as output, and does some filtering logigs.
+Sometimes you want to filter your logs, based on the data within a record. In this case, please use [exec-filter](http://fluentd.org/doc/plugin.html#exec-filter) plugin. This plugin launches another script, which takes STDIN as input and STDOUT as output, and filters the records.
 
 Here's an example configuration.
 
@@ -73,19 +81,33 @@ Here's an example configuration.
     <match filter>
       type exec_filter
       command ruby /etc/td-agent/filter.rb
-      in_format json
-      tag_key tag   # which field has tag info?
-      time_key time # which field has timestamp info?
+      in_format json # takes JSON string from STDIN
+      tag_key tag    # which field has tag info?
+      time_key time  # which field has timestamp info?
+    </match>
+    
+    <match td.*.*>
+      type tdlog
+      apikey ...
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
     </match>
 
 And please put this file into */etc/td-agent/filter.rb*. This file reads from STDIN, filters out the log, and outputs into STDOUT.
 
     :::ruby
-    while line=STDIN.gets
-      h = JSON.parse line
-      if h["field0"] == "certain_value"
-        next
+    require 'json'
+    while line = STDIN.gets
+      # parse
+      begin
+        h = JSON.parse line
+      rescue => e
+        next # broken line
       end
+      # filter
+      next if h["field0"] == "certain_value"
+      # emit
       h['tag'] = 'td.test_db.test_table'
       puts h.to_json
       STDOUT.flush
