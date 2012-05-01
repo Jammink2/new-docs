@@ -68,7 +68,7 @@ We have now enabled td-agent to read, and upload our log data into the cloud via
 
 ## Use fluent-logger-node
 
-[fluent-logger-node](http://github.com/yssk22/fluent-logger-node) is a Node.js library to post the records to td-agent from a Node.js application. At first, please copy the library itself into your project directory.
+[fluent-logger-node](http://github.com/yssk22/fluent-logger-node) is a Node.js library to post the records to td-agent from a Node.js application. Please find the most recent version from [here](http://search.npmjs.org/#/fluent-logger).
 
 Let's create a sample [Express](http://expressjs.com/) app, which users fluent-logger-node. Here’s an example package.json.
 
@@ -80,7 +80,7 @@ Let's create a sample [Express](http://expressjs.com/) app, which users fluent-l
       "version": "0.0.1",
       "dependencies": {
         "express": "2.5.9",
-        "fluent-logger": "0.0.2"
+        "fluent-logger": "0.1.0"
       }
     }
 
@@ -88,7 +88,7 @@ Now use *npm* to install your dependencies locally:
 
     :::term
     $ npm install
-    fluent-logger@0.0.2 ./node_modules/fluent-logger
+    fluent-logger@0.1.0 ./node_modules/fluent-logger
     express@2.5.9 ./node_modules/express
     |-- qs@0.4.2
     |-- mime@1.2.4
