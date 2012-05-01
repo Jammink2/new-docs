@@ -65,7 +65,7 @@ If the table already exists, the rows of the existing table are replaced with th
 We achieve **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**.
 
 1. Create a temporary table.
-2. Write to that table.
+2. Write to the temporary table.
 3. Replace the existing table with the temporary table by ALTER TABLE RENAME.
 
 ### TRUNCATE
