@@ -54,12 +54,15 @@ Now, let's test we have configured everything correctly.
     # confirm the upload
     $ td tables test_db
 
-NOTE: **td-agent takes care of log-rotation**. By continuously checkpointing the last position of the log, td-agent ensures that each line is read exactly once even if the td-agent process goes down. There is one exception to this "exactly once" guarantee: because the last position of the log is tracked in a file, the exactly once guarantee breaks if this file gets corrupted.
+NOTE: <b>td-agent takes care of log-rotation</b>. By continuously checkpointing the last position of the log, td-agent ensures that each line is read exactly once even if the td-agent process goes down. There is one exception to this "exactly once" guarantee: because the last position of the log is tracked in a file, the exactly once guarantee breaks if this file gets corrupted.
 
 ## Tailing Custom-Formatted Logs
 
-If you already have logs with a custom format, you might need to write a custom parser [(Here is how.)](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin). Once you are done writing the parser, put the file into your */etc/td-agent/plugins/* directory. We have written up two example parsers, "URL-param style key-value pairs" and "ascii character delimited format". Both of them seem to be fairly common.
+If you already have logs with a custom format, you might need to write a custom parser [(Here is how.)](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin). Once you are done writing the parser, put the file into your */etc/td-agent/plugins/* directory.
 
+We have written up two example parsers, "URL-param style key-value pairs" and "ascii character delimited format". Both of them seem to be fairly common.
+
+    :::term
     # URL-param style key-value pairs
     last_name=smith&first_name=brian&age=22&state=CA
     
