@@ -9,7 +9,7 @@ This guide shows you how to write job results into your existing MySQL instance.
 
 ## Architecture
 
-The frontend application posts data to Treasure Data. Treasure Data runs MapReduce jobs and writes the output into your MySQL tables.
+A frontend application posts data to Treasure Data. Treasure Data runs MapReduce jobs and writes the result output into your MySQL tables.
 
 <center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
 
@@ -21,13 +21,13 @@ Every social/mobile application calculates "top N of X" (ex: top 5 movies watche
 
 #### Example 2: Dashboard Application
 
-If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible by visualizing them nicely. Using this "write-to-MySQL" feature, you can streamline the process and focus on what to query and how to visualized the query results.
+If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible by visualizing them properly. Using this "write-to-MySQL" feature, you can streamline the process and focus on what to query and how to visualized the query results.
 
 ## Basic Usage
 
 ### For Ad-hoc Jobs
 
-Just add the '-r' option to `td query`. After the job is finished, the results are written into your table.
+Just add '-r' option to `td query`. After the job is finished, the results are written into your table.
 
     :::sql
     $ td query -r 'mysql://user:password@host/database/table' \
@@ -36,13 +36,13 @@ Just add the '-r' option to `td query`. After the job is finished, the results a
 
 ### For Scheduled Jobs
 
-Just add the '-r' option when you are scheduling a job. Every time the job runs, the results are written into `mytbl`.
+Just add '-r' option when you are scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
     :::term
     $ td result:create mydb mysql://user:password@host/database
     $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" -r mydb:mytbl
 
-## 3 ways to modify the data (append/replace/truncate)
+## 3 ways to modify data (append/replace/truncate)
 
 You can add/delete data in three different ways.
 
@@ -56,17 +56,17 @@ All three modes are **atomic**.
 
 ### APPEND
 
-This is the default mode. Query results are appended to the table. If the table doesn't exist yet, it would be created on the fly.
+This is the default mode. Query results are appended to a table. If the table doesn't exist yet, it would be created on the fly.
 
 ### REPLACE
 
 If the table already exists, the rows of the existing table are replaced with the query results. If the table doesn't exist yet, it is created on the fly.
 
-We achieve **atomicity** (so that the consumer of the table always have consistent data) by performing the following three steps in a **single transaction**.
+We achieve **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**.
 
 1. Create a temporary table.
-2. Write to that table.
-3. Replace with the existing table with ALTER TABLE RENAME.
+2. Write to the table.
+3. Replace with the existing table by ALTER TABLE RENAME.
 
 ### TRUNCATE
 
