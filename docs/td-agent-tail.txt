@@ -66,7 +66,7 @@ We have written up two example parsers, "URL-param style key-value pairs" and "a
     # URL-param style key-value pairs
     last_name=smith&first_name=brian&age=22&state=CA
     
-    # asciicharacer delimited format. In this case, the delimiter is '|'.
+    # ASCII character delimited format. In this case, the delimiter is '|'.
     # Usually, there is a separate file that annotates column names
     smith|brian|22|CA 
 
@@ -94,8 +94,8 @@ Here's an example configuration.
       type exec_filter
       command ruby /etc/td-agent/filter.rb
       in_format json # takes JSON string from STDIN
-      tag_key tag    # which field has tag info?
-      time_key time  # which field has timestamp info?
+      tag_key tag    # The key for tags is "tag".
+      time_key time  # The key for timestamps is "time".
     </match>
     
     <match td.*.*>
