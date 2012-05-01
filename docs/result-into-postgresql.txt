@@ -1,15 +1,15 @@
 # Writing the Query Results into your MySQL Tables.
 
-This guide shows you how to write job results into your existing MySQL instance.
+This guide shows you how to write job results into your existing PostgreSQL instance.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
-  * **MySQL instance**. Treasure Data must have SELECT, INSERT, DELETE, CREATE, DROP and ALTER privileges.
+  * **PostgreSQL instance**. Treasure Data must have SELECT, INSERT, DELETE, CREATE, DROP and ALTER privileges.
 
 ## Architecture
 
-The frontend application posts data to Treasure Data. Treasure Data runs MapReduce jobs and writes the output into your MySQL tables.
+The frontend application posts data to Treasure Data. Treasure Data runs MapReduce jobs and writes the output into your PostgreSQL tables.
 
 <center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
 
@@ -17,11 +17,11 @@ This is a pretty common architecture. Here is a couple of examples.
 
 #### Example 1: Ranking: "What's Top N of X?"
 
-Every social/mobile application calculates "top N of X" (ex: top 5 movies watched today). Treasure Data already takes care of warehousing the raw data, and with this "write-to-MySQL" feature, it takes care of persisting the "top N" data as well.
+Every social/mobile application calculates "top N of X" (ex: top 5 movies watched today). Treasure Data already takes care of warehousing the raw data, and with this "write-to-PostgreSQL" feature, it takes care of persisting the "top N" data as well.
 
 #### Example 2: Dashboard Application
 
-If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible by visualizing them nicely. Using this "write-to-MySQL" feature, you can streamline the process and focus on what to query and how to visualized the query results.
+If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible by visualizing them nicely. Using this "write-to-PostgreSQL" feature, you can streamline the process and focus on what to query and how to visualized the query results.
 
 ## Basic Usage
 
