@@ -17,7 +17,7 @@ By using the configuration below, you can use a Scribe input plugin.
       port 1463
     </source>
 
-The 'category' of Scribe protocol is used as a 'tag' of td-agent. If you want to store your data into www_access table within test_db database, please emit the LogEntry like below (Ruby example).
+The 'category' field of Scribe protocol is used as a 'tag' of td-agent. If you want to store your data into www_access table within test_db database, please emit the LogEntry like below (Ruby example).
 
     :::ruby
     entry = LogEntry.new

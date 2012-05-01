@@ -11,7 +11,7 @@ td-agent is able to 'tail' the existing log files, like UNIX's *tail* command, a
 
 By using the configuration below, you can use a [tail](http://fluentd.org/doc/plugin.html#tail) input. The file must be structured as one-line-one-JSON-map.
 
-NOTE: td-agent handles the log-rotations properly. Also it continuously checkpoints the last log file position, therefore the agent only reads the records at most once in the failure case scenario. You don't worry about them at all.
+NOTE: td-agent handles the log-rotations properly. Also, it continuously checkpoints the last log file position. Thanks to this, the agent reads the each record at most once, even in the failure case scenario.
 
 NOTE: This feature is supported from td-agent v1.1.5.
 
@@ -24,16 +24,16 @@ NOTE: This feature is supported from td-agent v1.1.5.
       pos_file /var/log/td-agent/test_db_test_table.pos
     </source>
 
-The example source file is like below.
+The example log file is like below.
 
     :::term
+    {"a"=>"b", "c"=>"d"}
     {"a"=>"b", "c"=>"d", "e"=>1}
-    {"a"=>"b", "c"=>"d", "e"=>1}
-    {"a"=>"b", "c"=>"d", "e"=>1}
-    {"a"=>"b", "c"=>"d", "e"=>1}
+    {"a"=>"b", "c"=>"d", "e"=>1, "f"=>2.0}
+    {"a"=>"b", "c"=>"d"}
     {"a"=>"b", "c"=>"d", "e"=>1}
 
-The entries are parsed, when new entries are appended to the file. Then, please flush the buffer by sending SIGUSR1 singla to td-agent. The complete commands are like below:
+When new entries are appended to the file, td-agent parses those entries and buffers them. After that, sending SIGUSR1 signal forces td-agent to flush the buffer.
 
     :::term
     # append new entries
