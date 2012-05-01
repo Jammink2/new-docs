@@ -1,0 +1,92 @@
+# Tailing the Existing Log Files
+
+td-agent is able to 'tail' the existing log files, like UNIX's *tail* command, and import those logs into the cloud.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of [td-agent](/articles/td-agent).
+
+## Tailing the JSON-based Logs
+
+By using the configuration below, you can use a [tail](http://fluentd.org/doc/plugin.html#tail) input. The file must be structured as one-line-one-JSON-map.
+
+NOTE: td-agent handles the log-rotations properly. Also it continuously checkpoints the last log file position, therefore the agent only reads the records at most once in the failure case scenario. You don't worry about them at all.
+
+NOTE: This feature is supported from td-agent v1.1.5.
+
+    :::term
+    <source>
+      type tail
+      path /path/to/the/file
+      tag td.test_db.test_table
+      format json
+      pos_file /var/log/td-agent/test_db_test_table.pos
+    </source>
+
+The example source file is like below.
+
+    :::term
+    {"a"=>"b", "c"=>"d", "e"=>1}
+    {"a"=>"b", "c"=>"d", "e"=>1}
+    {"a"=>"b", "c"=>"d", "e"=>1}
+    {"a"=>"b", "c"=>"d", "e"=>1}
+    {"a"=>"b", "c"=>"d", "e"=>1}
+
+The entries are parsed, when new entries are appended to the file. Then, please flush the buffer by sending SIGUSR1 singla to td-agent. The complete commands are like below:
+
+    :::term
+    # append new entries
+    $ tail -n 3 /path/to/the/file >sample.txt
+    $ cat sample.txt >>/path/to/the/file
+    
+    # flush the buffer
+    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+    
+    # confirm the upload
+    $ td tables test_db
+
+## Tailing the Custom-Formatted Logs
+
+In some cases, you might want to have a [custom parser](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin) for your own-formatted logs by Ruby. Please put the file into your */etc/td-agent/plugins/* directory. The examples are here.
+
+* [The Custom Parser for URL-Param Style Key-Value Pairs](/not/yet/available)
+* [The Custom Parser for Char-Delimited Logs](/not/yet/available)
+
+NOTE: Tailing existing logs are the easy step to start with Treasure Data. BTW, we recommend our users to log everything as JSON. [Here's Why](http://blog.treasure-data.com/post/21881575472/log-everything-as-json-make-your-life-easier).
+
+## Filtering Out the Records
+
+Sometimes you want to filter your logs, based on the data within a record. In this case, please use [exec-filter](http://fluentd.org/doc/plugin.html#exec-filter) plugin. This plugin launches another script, which takes STDIN as input and STDOUT as output, and does some filtering logigs.
+
+Here's an example configuration.
+
+    :::term
+    <source>
+      type tail
+      path /path/to/the/file1
+      tag filter
+      format json
+      pos_file /var/log/td-agent/file1.pos
+    </source>
+    
+    <match filter>
+      type exec_filter
+      command ruby /etc/td-agent/filter.rb
+      in_format json
+      tag_key tag   # which field has tag info?
+      time_key time # which field has timestamp info?
+    </match>
+
+And please put this file into */etc/td-agent/filter.rb*. This file reads from STDIN, filters out the log, and outputs into STDOUT.
+
+    :::ruby
+    while line=STDIN.gets
+      h = JSON.parse line
+      if h["field0"] == "certain_value"
+        next
+      end
+      h['tag'] = 'td.test_db.test_table'
+      puts h.to_json
+      STDOUT.flush
+    end

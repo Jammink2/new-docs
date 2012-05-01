@@ -1,0 +1,73 @@
+# Storing Logs via Scribe protocol
+
+td-agent is able to talk Scribe protocol (Thrift-based), to co-exist or replace the existing Scribe infrastructure.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of [td-agent](/articles/td-agent).
+
+## Using Scribe input
+
+By using the configuration below, you can use a Scribe input plugin.
+
+    :::term
+    <source>
+      type scribe
+      port 1463
+    </source>
+
+The 'category' of Scribe protocol is used as a 'tag' of td-agent. If you want to store your data into www_access table within test_db database, please emit the LogEntry like below (Ruby example).
+
+    :::ruby
+    entry = LogEntry.new
+    entry.category = 'td.test_db.www_access'
+    entry.message = 'abcde'
+    client.Log([entry])
+
+This message is organized as follows.
+
+    :::term
+    {
+      message => 'abcde'
+    }
+
+## Message as JSON string
+
+In many cases, the message field contains JSON string for semi-structured data. We have an option *msg_format*, to have an in-place parsing within td-agent.
+
+    :::term
+    <source>
+      type scribe
+      port 1463
+      msg_format json
+    </source>
+
+Then, let's emit the record like below. Be careful that entry.message is a JSON string.
+
+    :::ruby
+    entry = LogEntry.new
+    entry.category = 'td.test_db.www_access'
+    entry.message = {'a' => 'b', 'c' => d}.to_json
+    client.Log([entry])
+
+This message is	organized as follows.
+
+    :::term
+    {
+      'a' => 'b',
+      'c' => 'd',
+    }
+
+## Other Formats
+
+*msg_format* option supports either 'text', 'json', or 'url_param'. 'url_param' format is like below.
+
+    :::term
+    key1=val1&key2=val2&key3=val3
+
+## Further Readings
+
+Please refer below, for more options of Scribe input plugin. The plugin also supports Scribe *output*.
+
+* [fluent-plugin-scribe](https://github.com/fluent/fluent-plugin-scribe)
