@@ -11,7 +11,7 @@ td-agent can "tail" log files like UNIX's *tail* command and import them into th
 
 We are using the [tail input plugin](http://fluentd.org/doc/plugin.html#tail) with the following configuration file. **We assume that each line of the log corresponds to a well-formed JSON (should not span multiple lines).**
 
-NOTE: This feature is supported for td-agent v1.1.5 and higher.
+NOTE: This feature is supported for td-agent v1.1.5.1 and higher.
 
     :::term
     <source>
@@ -93,9 +93,10 @@ Here's an example configuration.
     <match filter>
       type exec_filter
       command ruby /etc/td-agent/filter.rb
-      in_format json # takes JSON string from STDIN
-      tag_key tag    # The key for tags is "tag".
-      time_key time  # The key for timestamps is "time".
+      in_format json  # takes JSON string from STDIN
+      out_format json # generate JSON string to STDOUT
+      tag_key tag     # The key for tags is "tag".
+      time_key time   # The key for timestamps is "time".
     </match>
     
     <match td.*.*>
