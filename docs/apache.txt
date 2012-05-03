@@ -5,8 +5,8 @@ This guide explains how to import Apache logs with ‘td-agent’. The basic ide
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
-  * Basic knowledge of td-agent
-  * An installed version of Ruby 1.8 or higher to test locally
+  * Basic knowledge of td-agent.
+  * An installed version of Ruby 1.8 or higher to test locally.
 
 ## Architecture
 
@@ -81,7 +81,7 @@ Please restart your agent once these lines are in place.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-In this this configuration, td-agent tails the Apache logs, parses the new log records, and uploads the data into the cloud every 5 minutes.
+In this configuration, td-agent tails the Apache logs, parses the new log records, and uploads the data into the cloud every 5 minutes.
 
 ## Confirming Import
 
