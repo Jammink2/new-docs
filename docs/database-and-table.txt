@@ -17,11 +17,11 @@ The 'db:create' sub-command creates a database. For example, the following comma
     :::term
     $ td db:create test_db
 
-Our local environment remains unchanged; the database resides solely on the cloud.
+Your local environment remains unchanged; the database resides solely on the cloud.
 
-### A List of Our Databases
+### A List of Your Databases
 
-The 'dbs' sub-command lists all the databases in our account.
+The 'dbs' sub-command lists all the databases in your account.
 
     :::term
     $ td dbs
@@ -46,7 +46,7 @@ NOTE: This operation cannot be rolled back. The data will be unrecoverable.
 
 ## Table Management
 
-*Tables* contain our actual data. A given table can only belong to a single database.
+*Tables* contain your actual data. A given table can only belong to a single database.
 
 ### Creating a Table
 
@@ -56,9 +56,9 @@ The 'table:create' sub-command creates a table. For example, the following comma
     $ td table:create test_db test_table
     Table 'test_db.test_table' is created.
 
-Much like our database, this table only exists on the cloud. Our local environment remains unchanged. 
+Much like your database, this table only exists on the cloud. Your local environment remains unchanged. 
 
-### A List of Our Tables
+### A List of Your Tables
 
 The 'tables' sub-command lists all the tables within the specified database. The number of records in each table will be shown as well (currently zero).
 
@@ -71,7 +71,7 @@ The 'tables' sub-command lists all the tables within the specified database. The
     +----------+------------+------+-------+
     1 row in set
 
-Issuing the 'tables' command without an argument will list all the databases and tables that we have created.
+Issuing the 'tables' command without an argument will list all the databases and tables that you have created.
 
     :::term
     $ td tables        
