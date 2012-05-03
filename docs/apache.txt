@@ -1,6 +1,6 @@
 # Analyzing Apache Logs
 
-This guide explains how to import Apache logs with ‘td-agent’. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically batch uploads the logs into the cloud. We use td-agent’s ‘tail’ source type.
+This guide explains how to import Apache logs with ‘td-agent’. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically batch uploads the logs into the cloud. td-agent’s ‘tail’ source type is used.
 
 ## Prerequisites
 
@@ -20,7 +20,7 @@ td-agent automatically parses the new logs to create meaningful data fields (ex:
 
 ## Installing td-agent
 
-We must first set up 'td-agent' on our application servers. Please refer to the following articles; we provide deb/rpm packages for Linux systems.
+You must first set up 'td-agent' on your application servers. Please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -41,7 +41,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-In order to import Apache logs with td-agent, we’ll add the following lines to our td-agent.conf file. Please specify the database name and table name using the ‘tag’ parameter, as shown below.
+In order to import Apache logs with td-agent, you'll need to add the following lines to your td-agent.conf file. Please specify the database name and table name using the ‘tag’ parameter, as shown below.
 
     :::term
     # tail apache access_log
@@ -52,19 +52,19 @@ In order to import Apache logs with td-agent, we’ll add the following lines to
       tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
     </source>
 
-For example, if we set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the ‘apache_logs’ table within the ‘testdb’ database.
+For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the ‘apache_logs’ table within the ‘testdb’ database.
     
-Next, we will specify our authentication key by setting the `apikey` option. We can view our api key with the *td apikey:show* command.
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
 
-Note: We must first authenticate our account using the ‘td account’ command.
+Note: You must first authenticate your account using the ‘td account’ command.
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. 
+Next, please set the `apikey` option in your td-agent.conf file. 
 
-Note: *YOUR_API_KEY* should be our actual apikey string.
+Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -76,7 +76,7 @@ Note: *YOUR_API_KEY* should be our actual apikey string.
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Once these lines are in place, we’ll restart our agent.
+Please restart your agent once these lines are in place.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
@@ -85,12 +85,12 @@ In this this configuration, td-agent tails the Apache logs, parses the new log r
 
 ## Confirming Import
 
-We often don't want to wait for these 5 minute cycles. Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+You often don't want to wait for these 5 minute cycles. Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm that our data has been uploaded successfully, issue the *td tables* command as shown below.
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
     :::term
     $ td tables
