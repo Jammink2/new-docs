@@ -1,6 +1,6 @@
 # Database and Table Management
 
-Treasure Data Cloud uses the same analogy with RDBMSs for managing data sets: *Database* and *Table*. Tables must be belongs to only one database.
+Treasure Data Cloud uses the same convention as Relational Database Management Systems (RDBMSs) for managing data sets: *Databases* and *Tables*. Each database can contain several tables. However, each table can only belong to one database.
 
 ## Prerequisites
 
@@ -8,18 +8,20 @@ Treasure Data Cloud uses the same analogy with RDBMSs for managing data sets: *D
 
 ## Database Management
 
-*Database* represents the collection of tables.
+A *Database* is a collection of tables.
 
-### Create Database
+### Creating a Database
 
-'db:create' sub-command creates the database. The following example creates 'test_db' database on the cloud. Nothing happens for the local environment. This setups the database only on the cloud.
+The 'db:create' sub-command creates a database. For example, the following command will create a table named 'test_db' on the cloud. 
 
     :::term
     $ td db:create test_db
 
-h4. List Databases
+Our local environment remains unchanged; the database resides solely on the cloud.
 
-'dbs' sub-command lists all the database, which your account has.
+### A List of Our Databases
+
+The 'dbs' sub-command lists all the databases in our account.
 
     :::term
     $ td dbs
@@ -32,31 +34,33 @@ h4. List Databases
     +---------------+
     3 rows in set
 
-### Drop Database
+### Removing a Database
 
-'db:delete' sub-command removes the database. All the tables belongs to this database will be removed. Stored data is also removed.
+The 'db:delete' sub-command removes a database. This will remove all tables and all data stored within the database as well. 
 
     :::term
     $ td db:delete test_db
     Database 'test_db' is deleted.
 
-WARNING: You CAN'T rollback this operation. All the stored data in this database will be removed.
+NOTE: This operation cannot be rolled back. The data will be unrecoverable.
 
 ## Table Management
 
-*Table* associates with actual data. One table must be belongs to only one database.
+*Tables* contain our actual data. A given table can only belong to a single database.
 
-### Create Table
+### Creating a Table
 
-'table:create' sub-command creates the table. The following example creates 'test_table' table in 'test_db' database. Nothing happens for the local environment. This setups the table only on the cloud.
+The 'table:create' sub-command creates a table. For example, the following command will create a table named 'test_table' within the database 'test_db'.
 
     :::term
     $ td table:create test_db test_table
     Table 'test_db.test_table' is created.
 
-### List Tables
+Much like our database, this table only exists on the cloud. Our local environment remains unchanged. 
 
-'tables' sub-command lists all the tables, inside the specified database. It also shows the number of records stored in this table (currently zero).
+### A List of Our Tables
+
+The 'tables' sub-command lists all the tables within the specified database. The number of records in each table will be shown as well (currently zero).
 
     :::term
     $ td tables test_db
@@ -67,7 +71,7 @@ WARNING: You CAN'T rollback this operation. All the stored data in this database
     +----------+------------+------+-------+
     1 row in set
 
-'tables' with no arguments lists all the databases and tables you've created.
+Issuing the 'tables' command without an argument will list all the databases and tables that we have created.
 
     :::term
     $ td tables        
@@ -85,12 +89,10 @@ WARNING: You CAN'T rollback this operation. All the stored data in this database
 
 ### Drop Table
 
-'table:delete' sub-command removes the table from the database. Stored data is also removed.
+The 'table:delete' sub-command removes a table from a database. This will remove all data stored within the table as well. 
 
     :::term
     $ td table:delete test_db test_table
     Table 'test_db.test_table' is deleted.
 
-NOTE: You CAN'T rollback this operation. All the stored data in this table will be removed automatically.
-
- 
+NOTE: This operation cannot be rolled back. The data will be unrecoverable.
