@@ -1,0 +1,61 @@
+# Data Import from REST API on Heroku
+
+Treasure Data Hadoop addon provides 3 minutes Hadoop setup with your Heroku app. This article describes how to run td-agent on Heroku. td-agent is a dedicated daemon program, to help users to import logs through various interfaces. For heroku, using REST API is recommended.
+
+## Confirm Your ApiKey
+
+At first, let's grab your apikey. Please enable the addon.
+
+    :::term
+    # Enable Addon
+    $ heroku addons:add treasure-data
+
+Then, please install heroku-td CLI plugin, and check your API key.
+
+    :::term
+    # Install heroku-td Plugin
+    $ gem install td
+    $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
+    
+    # Confirm ApiKey
+    $ heroku td apikey:show
+    2d14b1872cb789ed3733d4aa26ae8e6aba30bbbd
+
+## Create Your App
+
+Next, let's setup td-agent as an another Heroku application. This will behave as your central log aggregation server. We provide boilerplate repository for running td-agent on Heroku.
+
+* [https://github.com/treasure-data/heroku-td-agent](https://github.com/treasure-data/heroku-td-agent)
+
+The following steps create new Heroku application, which accepts HTTP request to import logs.
+
+    :::term
+    # Clone
+    $ git clone git://github.com/treasure-data/heroku-td-agent.git
+    $ cd heroku-td-agent
+    
+    # Set your API key
+    $ vi td-agent.conf
+    $ git commit -a -m 'update apikey'
+    
+    # Create App & Deploy
+    $ heroku create --stack cedar
+    $ git push heroku master
+
+## Test
+
+To import your logs, please post JSON-formatted messages with database name & table name.
+
+    :::term
+    $ curl "http://td-agent-on-heroku.herokuapp.com/td.sample_db.sample_table?json=%7B%22json%22%3A%22message%22%7D"
+
+The logs are uploaded in every 5 minutes. To confirm your data upload, please use 'heroku td tables' command.
+
+    :::term
+    $ heroku td tables
+    +------------------+---------------+------+-------+--------+
+    | Database         | Table         | Type | Count | Schema |
+    +------------------+---------------+------+-------+--------+
+    | sample_db        | sample_table  | log  | 1     |        |
+    +------------------+---------------+------+-------+--------+
+    1 rows in set

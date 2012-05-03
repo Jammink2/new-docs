@@ -86,6 +86,12 @@ section 'reference', 'Reference' do
     article 'bulk-import', 'Bulk Import'
     article 'bulk-export', 'Bulk Export'
   end
+  category 'heroku', 'Heroku Addon' do
+    article 'heroku-ruby', 'Ruby Apps on Heroku'
+    article 'heroku-rails', 'Rails Apps on Heroku'
+    article 'heroku-java', 'Java Apps on Heroku'
+    article 'heroku-rest', 'Data Import from REST API on Heroku'
+  end
 end
 
 section 'ab', 'Accounts & Billing' do
@@ -107,3 +113,4 @@ section 'tools', 'Tools & Specs' do
     article 'rest-api', 'REST API Specification'
   end
 end
+
