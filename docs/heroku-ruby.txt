@@ -40,7 +40,11 @@ Each event-logging code should be inserted near its corresponding event-generati
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
-For the frameworks except Ruby on Rails (for example, Sinatra), you need to call a initialization code at the start.
+After inserting your event-logging code, push the modifications to Heroku!
+
+    :::term
+    $ git commit -a -m "Added Treasure Data Plugin"
+    $ git push heroku master
 
 ### Step2: Access Your Application
 
