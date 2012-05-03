@@ -12,11 +12,11 @@ Bulk import is primarily used in two ways.
 
 #### First Data Upload
 
-The first use case is when we first upload our data to Treasure Data Cloud. Bulk-import is useful if we already have data on hand and want to import it to Treasure Data Cloud.
+The first use case is when you first upload your data to Treasure Data Cloud. Bulk-import is useful if you already have data on hand and want to import it to Treasure Data Cloud.
 
 #### Periodic Data Upload
 
-The second use case is when we want to periodically import our data into the cloud. Let's suppose that our logs are rotated every hour. In this case, it makes sense to periodically launch the bulk-import tool to import the previous hour's data.
+The second use case is when you want to periodically import your data into the cloud. Let's suppose that your logs are rotated every hour. In this case, it makes sense to periodically launch the bulk-import tool to import the previous hour's data.
 
 But for this use case, it is better to continuously upload data using 'td-agent'. For further information, please refer to [Continuous Data Import with td-agent](td-agent).
 
@@ -39,7 +39,7 @@ The example entries are like this:
     {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
     ...
 
-We can import our data into the 'test_table' table within our 'test_db' database as follows.
+You can import your data into the 'test_table' table within your 'test_db' database as follows.
 
     :::term
     $ td import test_db test_table \
