@@ -1,5 +1,11 @@
 # Rails Apps on Heroku
 
+## Prerequisites
+
+  * Basic knowledge of Ruby, Gems, and Bundler
+  * Basic knowledge of Heroku, including the latest installed version of the Heroku toolbelt.
+  * An installed version of Ruby 1.8 or higher to test locally
+
 ## Data Import
 
 It's a **4 STEP** approach. 1) **Embed** codes, 2) **Run** it, 3) **Check**, and 4) **Query** it.
@@ -123,9 +129,7 @@ The ‘heroku td query –format csv’ command will return the results in csv f
 Please set `TREASURE_DATA_API_KEY` env variable For development environment.
 
     :::term
-    $ heroku config | grep TREASURE_DATA
-    TREASURE_DATA_API_KEY => 2d14b1872cb789ed3733d4aa26ae8e6aba30bbbd
-    $ export TREASURE_DATA_API_KEY=2d14b1872cb789ed3733d4aa26ae8e6aba30bbbd
+    $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
 
 Then, please start an application normally.
 
