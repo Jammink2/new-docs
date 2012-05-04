@@ -1,6 +1,6 @@
 # Bulk Import
 
-This guide explains how to bulk-import data with the 'td' command.
+This guide explains how to bulk-import data with the `td` command.
 
 ## Prerequisites
 
@@ -18,18 +18,18 @@ The first use case is when you first upload your data to Treasure Data Cloud. Bu
 
 The second use case is when you want to periodically import your data into the cloud. Let's suppose that your logs are rotated every hour. In this case, it makes sense to periodically launch the bulk-import tool to import the previous hour's data.
 
-But for this use case, it is better to continuously upload data using 'td-agent'. For further information, please refer to [Continuous Data Import with td-agent](td-agent).
+But for this use case, it is better to continuously upload data using `td-agent`. For further information, please refer to [Continuous Data Import with td-agent](td-agent).
 
 ## The *td import* Command
 
-The import sub-command in 'td' is used for bulk importing. The command takes the file path and format as arguments, and uploads the data into the cloud. It currently supports the following formats.
+The import sub-command in `td` is used for bulk importing. The command takes the file path and format as arguments, and uploads the data into the cloud. It currently supports the following formats.
 
 ### JSON
 
 In order to use JSON, the files should be formatted as follows:
 
 * One JSON-map per line. 
-* A 'time' field is required. This field indicates the time in which the event was generated.
+* A `time` field is required. This field indicates the time in which the event was generated.
 
 The example entries are like this:
 
@@ -39,7 +39,7 @@ The example entries are like this:
     {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
     ...
 
-You can import your data into the 'test_table' table within your 'test_db' database as follows.
+You can import your data into the `test_table` table within your `test_db` database as follows.
 
     :::term
     $ td import test_db test_table \
@@ -49,14 +49,14 @@ You can import your data into the 'test_table' table within your 'test_db' datab
 
 ### Apache Log
 
-The *td import* command can also parse Apache Logs stored in the 'combined' format. The command automatically splits the log records into meaningful fields (ex: time, user-agent, etc.) and imports the data into the cloud.
+The `td import` command can also parse Apache Logs stored in the 'combined' format. The command automatically splits the log records into meaningful fields (ex: time, user-agent, etc.) and imports the data into the cloud.
 
     :::term
     $ td import test_db test_table --format apache access_log.txt
 
 ### Syslog
 
-The *td import* command can also parse logs stored in the 'syslog' format.
+The `td import` command can also parse logs stored in the 'syslog' format.
 
     :::term
     $ td import test_db test_table --format syslog syslog.txt

@@ -1,7 +1,7 @@
 CLI Usage
 =========
 
-Running *td help:all* displays a usage summary:
+Running `td help:all` displays a usage summary:
 
     :::term
     $ td help:all

@@ -1,6 +1,6 @@
 # Continuous Data Import with td-agent
 
-This guide covers how to continuously import the data with 'td-agent' daemon.
+This guide covers how to continuously import the data with `td-agent` daemon.
 
 ## Logs Are Streams, Not Files
 
@@ -8,7 +8,7 @@ The logs are usually roteted by time or size per hourly/daily basis, and the rot
 
 NOTE: Server daemons and applications sometimes offer a configuration parameter for a path to the program’s logfile. This can lead us to think of logs as files. But a better conceptual model is to treat logs as time-ordered streams. - <a href="http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/">Logs Are Streams, Not Files</a> by Adam Wiggins, Heroku
 
-To continuously import the data into Treasure Data, we're providing the data aggregation daemon called 'td-agent' for this purpose. Although bulk imported is also supported, continuous importing via td-agent is highly recommended.
+To continuously import the data into Treasure Data, we're providing the data aggregation daemon called `td-agent` for this purpose. Although bulk imported is also supported, continuous importing via td-agent is highly recommended.
 
 ## About td-agent
 

@@ -10,7 +10,7 @@ This guide covers how to show jobs, and see detailed information for each job.
 
 ## Issue Jobs
 
-You can issue the query with 'td query' subcommand. The submitted query is regarded as *Job*, and will be executed in parallel on the cloud. The # of parallelism is automatically decided based on your plan, remaining capacity, and the size of our cluster at that time.
+You can issue the query with `td query` subcommand. The submitted query is regarded as *Job*, and will be executed in parallel on the cloud. The # of parallelism is automatically decided based on your plan, remaining capacity, and the size of our cluster at that time.
 
     :::term
     $ td query -w -d testdb "SELECT COUNT(*) FROM www_access"
@@ -25,7 +25,7 @@ If you issue the query *WITHOUT* -w option, the command command exits immediatel
 
 ### Show Jobs
 
-'td jobs' subcommand lists your submitted jobs. In default, it shows 20 recent jobs. It shows the JobID, its status, starting time, elapsed time, and the submitted query.
+`td jobs` subcommand lists your submitted jobs. In default, it shows 20 recent jobs. It shows the JobID, its status, starting time, elapsed time, and the submitted query.
 
     :::term
     $ td jobs
@@ -64,7 +64,7 @@ If you want to see more older jobs, please specify the number of pages as an arg
 
 ### Show Job Information and Result
 
-'td job' sub-command takes job_id as an argument, and shows the detailed information. It shows the status, query, and the result.
+`td job` sub-command takes job_id as an argument, and shows the detailed information. It shows the status, query, and the result.
 
     :::term
     $ td job 783
@@ -81,4 +81,4 @@ If you want to see more older jobs, please specify the number of pages as an arg
     1 row in set
     Use '-v' option to show detailed messages.
 
-If you want to see more detailed information such as execution logs, please add '-v' option to the command.
+If you want to see more detailed information such as execution logs, please add `-v` option to the command.

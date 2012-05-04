@@ -27,7 +27,7 @@ If you're a data scientist, you need to keep track of a range of metrics every h
 
 ### For Ad-hoc Jobs
 
-Just add '-r' option to `td query`. After the job is finished, the results are written into your table.
+Just add `-r` option to `td query`. After the job is finished, the results are written into your table.
 
     :::sql
     $ td query -r 'mysql://user:password@host/database/table' \
@@ -36,7 +36,7 @@ Just add '-r' option to `td query`. After the job is finished, the results are w
 
 ### For Scheduled Jobs
 
-Just add '-r' option when you are scheduling a job. Every time the job runs, the results are written into `mytbl`.
+Just add `-r` option when you are scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
     :::term
     $ td result:create mydb mysql://user:password@host/database

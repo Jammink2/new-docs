@@ -152,7 +152,7 @@ However, here're some message lost scenarios:
 
 Now you've seen the HA configuration for td-agent. For further information, please refer those documents.
 
-* [Fluentd Documentation](http://fluent.github.com/doc/) (td-agent is open-sourced as 'Fluentd')
+* [Fluentd Documentation](http://fluent.github.com/doc/) (td-agent is open-sourced as `Fluentd`)
 * [Fluentd Knowledge Base](http://community.fluentd.org/browse/help-center/)
 * [Treasure Data Suppport](http://treasure-data.tenderapp.com/discussions)
 

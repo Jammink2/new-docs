@@ -20,7 +20,7 @@ td-agent automatically parses the new logs to create meaningful data fields (ex:
 
 ## Installing td-agent
 
-You must first set up 'td-agent' on your application servers. Please refer to the following articles; we provide deb/rpm packages for Linux systems.
+You must first set up `td-agent` on your application servers. Please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -52,11 +52,11 @@ In order to import Apache logs with td-agent, you'll need to add the following l
       tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
     </source>
 
-For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the ‘apache_logs’ table within the ‘testdb’ database.
+For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
-Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
 
-Note: You must first authenticate your account using the ‘td account’ command.
+Note: You must first authenticate your account using the `td account` command.
 
     :::term
     $ td apikey:show
@@ -90,7 +90,7 @@ You often don't want to wait for these 5 minute cycles. Sending a SIGUSR1 signal
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
+To confirm that your data has been uploaded successfully, issue the `td tables` command as shown below.
 
     :::term
     $ td tables

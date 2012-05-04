@@ -37,7 +37,7 @@ NOTE: Please note that td-agent is fully open-sourced as the <a href="http://git
 
 ## Modify /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by *td apikey:show*, as long as we have successfully authenticated our account using the ‘td account’ command.:
+We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by `td apikey:show`, as long as we have successfully authenticated our account using the ‘td account’ command.:
 
     :::term
     $ td apikey:show
@@ -102,7 +102,7 @@ Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its b
     $ ruby test.rb
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use *td tables*.
+To confirm the data upload, please use `td tables`.
 
     :::term
     $ td tables

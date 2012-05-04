@@ -10,7 +10,7 @@ In order to import data from Scala applications to Treasure Data, we provide a l
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup `td-agent` on your application servers. `td-agent` is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
@@ -37,13 +37,13 @@ NOTE: Please note that td-agent is fully open-sourced as the <a href="http://git
 
 ## Modify /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by *td apikey:show*, as long as we have successfully authenticated our account using the ‘td account’ command.:
+We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by `td apikey:show`, as long as we have successfully authenticated our account using the `td account` command.:
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Let’s set the `apikey` option in our td-agent.conf file. Please replace `YOUR_API_KEY` to your actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -84,7 +84,7 @@ NOTE: If you need a all-in-one jar file, please download from <a href="http://tr
       "com.treasure_data" % "td-logger" % "${logger.version}"
     )
 
-Then, please prepare your *treasure-data.properties* file.
+Then, please prepare your `treasure-data.properties` file.
 
     :::term
     td.logger.agentmode=true
@@ -121,7 +121,7 @@ Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its b
     $ sbt compile run
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use *td tables*.
+To confirm the data upload, please use `td tables`.
 
     $ td tables
     +------------+------------+------+-----------+

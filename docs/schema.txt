@@ -27,12 +27,12 @@ When you refer the value, you need to specify like *v['field1']*. Also the type 
 
 ## Setting Schema
 
-To solve the above issue, you can set the schema to the table via 'td schema:set' command.
+To solve the above issue, you can set the schema to the table via `td schema:set` command.
 
     :::term
     $ td schema:set <database> <table> <column_name>:<type>...
 
-Consider if we have a table which contains the 'user' (int type) and 'action' (string type) column, adding the schema is like follows.
+Consider if we have a table which contains the `user` (int type) and `action` (string type) column, adding the schema is like follows.
 
     :::term
     $ td schema:set testdb www_access action:string user:int

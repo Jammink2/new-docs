@@ -37,7 +37,7 @@ NOTE: Please note that td-agent is fully open-sourced as part of the <a href="ht
 
 ## Modify /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Once you successfully created your account (with the `td account` command), you can look up your API key by typing *td apikey:show* in the command line:
+We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Once you successfully created your account (with the `td account` command), you can look up your API key by typing `td apikey:show` in the command line:
 
     :::term
     $ td apikey:show
@@ -99,7 +99,7 @@ Sending SIGUSR1 signal to the agent flushes its buffer and starts uploading imme
     $ php test.php
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use *td tables*.
+To confirm the data upload, please use `td tables`.
 
     $ td tables
     +------------+------------+------+-----------+

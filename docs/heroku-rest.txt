@@ -49,7 +49,7 @@ To import your logs, please post JSON-formatted messages with database name & ta
     :::term
     $ curl "http://td-agent-on-heroku.herokuapp.com/td.sample_db.sample_table?json=%7B%22json%22%3A%22message%22%7D"
 
-The logs are uploaded in every 5 minutes. To confirm your data upload, please use 'heroku td tables' command.
+The logs are uploaded in every 5 minutes. To confirm your data upload, please use `heroku td tables` command.
 
     :::term
     $ heroku td tables
