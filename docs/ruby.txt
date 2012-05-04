@@ -8,6 +8,8 @@ In order to import data from Ruby applications to Treasure Data, we provide a li
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
   * An installed version of Ruby 1.8 or higher to test locally
 
+NOTE: Heroku users, please look at <a href="/articles/heroku-ruby">Ruby Apps on Heroku</a>.
+
 ## Install the td-agent
 
 At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.

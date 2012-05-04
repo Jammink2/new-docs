@@ -8,6 +8,8 @@ In order to import data from PHP applications to Treasure Data, we provide a log
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
   * PHP 5.3 or higher to test locally.
 
+NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.
+
 ## Install the td-agent
 
 You need to set up 'td-agent' on your application servers. `td-agent` is a daemon to continuously upload logs as a stream. `td-agent` is developed and maintained by Treasure Data, Inc.

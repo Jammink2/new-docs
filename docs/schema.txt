@@ -14,7 +14,7 @@ Also need the table, which has some data. Please refer [Getting Started](quickst
 
 In RDBMS, schema must be given for creating the table.
 
-However, TD's schema is given even after importing the data. This means you can add/remove the fields at anymoment. It's like a *View* in RDBMS world.
+However, TD's schema is given even after importing the data. This means you can add/remove the fields at any moment. It's like a *View* in RDBMS world.
 
 ## Default Schema (time and v)
 

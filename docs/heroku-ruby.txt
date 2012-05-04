@@ -15,7 +15,7 @@ It's a **4 STEP** approach. 1) **Embed** codes, 2) **Run** it, 3) **Check**, and
 First, add the `td` (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
 
     :::ruby
-    gem 'td', "~> 0.10.6"
+    gem 'td', "~> 0.10.22"
 
 Next, install the gem locally via bundler.
 
@@ -135,9 +135,20 @@ Then, please start an application normally.
 
 ## Issue The Query
 
-This is an example code of issueing the query from the Ruby program.
+This is an example code of issueing the query from the Ruby program. The query API is asynchronous, and you can wait the completion by pollings (e.g. job.finished? call).
 
-* [https://gist.github.com/2582315](https://gist.github.com/2582315)
+    :::ruby
+    require 'td'
+    require 'td-client'
+    cln = TreasureData::Client.new(ENV['TREASURE_DATA_API_KEY'])
+    job = cln.query('testdb', 'SELECT COUNT(1) FROM www_access')
+    until job.finished?
+      sleep 2
+      job.update_status!
+    end
+    if job.success?
+      job.result_each { |row| p row }
+    end
 
 ## Does Upload Impact the App Performance?
 
@@ -147,9 +158,11 @@ There's also a size limit of the local buffer. If the local data size exceeds th
 
 ## Next Step
 
-Please look at this document to know about the Heroku addon limitation. It's important to know it, before going to other articles.
+Please look at this document to know about the Heroku addon limitation. It's important to know it, before going to other articles. Also you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section for example analysis queries.
 
 * [Heroku Addon Notes](/articles/heroku-notes)
+* [Schema Management](/articles/schema)
+* [Hive Query Language](http://localhost:9393/articles/hive)
 
 For more specific assistance, please visit our support resources:
 

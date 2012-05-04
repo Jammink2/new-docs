@@ -159,9 +159,11 @@ There's also a size limit of the local buffer. If the local data size exceeds th
 
 ## Next Step
 
-Please look at this document to know about the Heroku addon limitation. It's important to know it, before going to other articles.
+Please look at this document to know about the Heroku addon limitation. It's important to know it, before going to other articles. Also you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section for example analysis queries.
 
 * [Heroku Addon Notes](/articles/heroku-notes)
+* [Schema Management](/articles/schema)
+* [Hive Query Language](http://localhost:9393/articles/hive)
 
 For more specific assistance, please visit our support resources:
 
