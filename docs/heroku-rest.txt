@@ -1,6 +1,6 @@
 # Data Import from REST API on Heroku
 
-Treasure Data Hadoop addon provides 3 minutes Hadoop setup with your Heroku app. This article describes how to run td-agent on Heroku. td-agent is a dedicated daemon program, to help users to import logs through various interfaces. For heroku, using REST API is recommended.
+This article describes how to run td-agent on Heroku. td-agent is a dedicated daemon program, to help users to import logs through various interfaces. For heroku, using with only HTTP is allowd because of the platform limitations.
 
 ## Confirm Your ApiKey
 

@@ -4,7 +4,7 @@ section 'overview', 'Overview' do
   end
   category 'platform-basics', 'Platform Basics' do
     article 'architecture-overview', 'Architecture Overview'
-    article 'scaling', 'Scaling the Resource'
+#    article 'scaling', 'Scaling the Resource'
     article 'no-spof', 'No Single-Point-Of-Failure (SPOF)'
   end
   category 'platform-constraints', 'Platform Constraints' do
@@ -91,6 +91,7 @@ section 'reference', 'Reference' do
     article 'heroku-rails', 'Rails Apps on Heroku'
     article 'heroku-java', 'Java Apps on Heroku'
     article 'heroku-rest', 'Data Import from REST API on Heroku'
+    article 'heroku-notes', 'Heroku Addon Notes'
   end
 end
 
