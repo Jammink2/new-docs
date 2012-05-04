@@ -10,11 +10,6 @@ $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 require 'article.rb'
 require 'term.rb'
 
-# Basic auth: @see .env file
-use Rack::Auth::Basic do |username, password|
-  username == 'member' && password == 'password'
-end
-
 # NewRelic
 configure :production do
   require 'newrelic_rpm'
