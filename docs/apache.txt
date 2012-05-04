@@ -6,7 +6,7 @@ This guide explains how to import Apache logs with ‘td-agent’. The basic ide
 
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
   * Basic knowledge of td-agent.
-  * An installed version of Ruby 1.8 or higher to test locally.
+  * An installed version of Ruby 1.8 or higher (for local testing).
 
 ## Architecture
 
