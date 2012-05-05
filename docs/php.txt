@@ -141,3 +141,14 @@ Also, it's recommended to periodically restart your PHP processes, by setting *M
 For high-traffic websites (more than 5 application nodes), we recommend using the high availability configuration for td-agent. This improves data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
+
+## Next Step
+
+Next, you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section to know more about queries.
+
+* [Schema Management](/articles/schema)
+* [Hive Query Language](http://localhost:9393/articles/hive)
+
+For more specific assistance, please visit our support resources:
+
+* [Treasure Data Discussion Forum](http://help.treasure-data.com/)

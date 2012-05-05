@@ -117,3 +117,14 @@ To confirm the data upload, please use `td tables`.
 For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
+
+## Next Step
+
+Next, you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section to know more about queries.
+
+* [Schema Management](/articles/schema)
+* [Hive Query Language](http://localhost:9393/articles/hive)
+
+For more specific assistance, please visit our support resources:
+
+* [Treasure Data Discussion Forum](http://help.treasure-data.com/)

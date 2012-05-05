@@ -1,8 +1,6 @@
 # Schema Management
 
-Treasure Data uses the same analogy with RDBMSs for managing data sets: *Database* and *Table*. Also *Schema* can be associated to the tables.
-
-This guide covers how to set the schema to the tables, and why it's important for the performance perspective.
+Treasure Data uses the same analogy with RDBMSs for managing data sets: *Database* and *Table*. Also *Schema* can be associated to the tables. Unlike traditional warehousing platforms, Treasure Data takes the store-first, schema-later approach. The schema changes are done at anytime, with no cost.
 
 ## Prerequisites
 
@@ -10,11 +8,19 @@ This guide covers how to set the schema to the tables, and why it's important fo
 
 Also need the table, which has some data. Please refer [Getting Started](quickstart) to create db/table and import the data in it.
 
-## The Difference with RDBMS's schema
+## Schema Changes Are The Pain
 
-In RDBMS, schema must be given for creating the table.
+Most conventional warehousing platforms are schema dependent, supporting an **assumptive** analytics model. In this model, data elements forecasted to yield insights are defined in advance, as well as structure of the data store schema.
 
-However, TD's schema is given even after importing the data. This means you can add/remove the fields at any moment. It's like a *View* in RDBMS world.
+Performance considerations are also important in initial design and the analyst must have knowledge of the underlying structure to insure query performance. When new columns are added to the table, the schema must need to be changed.
+
+Big Data analysis however, is largely **non-assumptive**. The analyst seeks hidden patterns, relationships or events in the data that were not intuitively obvious from the outset. The user must be able to query where the data takes him without the burden of performance considerations—and exploration can create requirements for new records to support the analysis trail.
+
+In this model schema dependence adds a significant tax that can become prohibitive.
+
+## Store-First, Schema-Later Approach
+
+Unlike traditional warehousing platforms, TD's schema is given even after importing the data. This means you can add/remove the fields at any moment. It's done in a moment, not in days.
 
 ## Default Schema (time and v)
 
@@ -25,9 +31,9 @@ Just after you've created the table, it has two fields:
 
 When you refer the value, you need to specify like *v['field1']*. Also the type of *v* is fixed as map<string, string>, so all the values are treated as *String*. To treat the value as other types, the casting is required.
 
-## Setting Schema
+## Setting Custom Schema
 
-To solve the above issue, you can set the schema to the table via `td schema:set` command.
+In general, you're ok with a default schema, and no need to set a custom schema here. But having the custom schema, you can get more shorter query, and performance benefits (up to 30%). You can set the schema to the table via `td schema:set` command.
 
     :::term
     $ td schema:set <database> <table> <column_name>:<type>...
