@@ -1,24 +1,23 @@
-# Data Import from Java Applications
+# Importing Data from Java Applications
 
-In order to import data from Java applications to Treasure Data, we provide a library called '[td-logger-java](http://github.com/treasure-data/td-logger-java)'. This article describes how to use that library.
+The '[td-logger-java](http://github.com/treasure-data/td-logger-java)' library is used to import data from Java Applications to Treasure Data.
 
 ## Prerequisites
 
-  * Basic knowledge of Java, and Maven2
+  * Basic knowledge of Java.
+  * Basic knowledge of Maven2.
   * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
-  * An installed version of Java 6 or higher to test locally
+  * An installed version of Java 6 or higher (for local testing).
 
-NOTE: Heroku users, please look at <a href="/articles/heroku-java">Java Apps on Heroku</a>.
+## Installing td-agent
 
-## Install the td-agent
-
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
+td-logger-java requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-Through [td-logger-java](http://github.com/treasure-data/td-logger-java) library, Java applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [td-logger-java](http://github.com/treasure-data/td-logger-java) library enables Java applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -35,17 +34,21 @@ Please refer to the following articles in setting up td-agent. For Linux systems
   </tr>
 </table>
 
-NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
-## Modify /etc/td-agent/td-agent.conf
+## Modifying /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by `td apikey:show`, as long as we have successfully authenticated our account using the `td account` command.:
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
+
+Note: You must first authenticate your account using the ‘td account’ command.
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Next, please set the `apikey` option in your td-agent.conf file. 
+
+Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -61,18 +64,18 @@ Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Once these lines are in place, we’ll restart our agent.
+Please restart your agent once these lines are in place.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
+In this configuration, td-agent accepts data via port 24224, buffers it into the local disk (*/var/log/td-agent/buffer/td*), and automatically uploads it into the cloud every 5 minutes.
 
-## Use td-logger-java
+##  Using td-logger-java
 
-[td-logger-java](http://github.com/treasure-data/td-logger-java) is a Java library to post the records against td-agent from a Java application. First, please add those lines to pom.xml. Please find the latest version number from [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
+First, please add the following lines to pom.xml. The latest revision number can be found in [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
 
-NOTE: If you need a all-in-one jar file, please download from <a href="http://treasure-data.com/maven2/">http://treasure-data.com/maven2/</a>.
+NOTE: If you need a all-in-one jar file, we provide one at <a href="http://treasure-data.com/maven2/">http://treasure-data.com/maven2/</a>.
 
     :::term
     <dependencies>
@@ -98,14 +101,14 @@ NOTE: If you need a all-in-one jar file, please download from <a href="http://tr
       </repository>
     </repositories>
 
-Then, please prepare your *treasure-data.properties* file.
+Next, please configure your *treasure-data.properties* file using the commands shown below:
 
     :::term
     td.logger.agentmode=true
     td.logger.agent.host=localhost
     td.logger.agent.port=24224
 
-Finally, please insert the following lines into your application. Further details regarding the API can be found [here](https://github.com/treasure-data/td-logger-java).
+Finally, please insert the following lines into your application. Further information regarding the API can be found [here](https://github.com/treasure-data/td-logger-java).
 
     :::java
     import com.treasure_data.logger.TreasureDataLogger;
@@ -128,17 +131,15 @@ Finally, please insert the following lines into your application. Further detail
       }
     }
 
-## Confirm the Import
+## Confirming Data Import
 
-The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
-
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
     $ java -jar test.jar
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use `td tables`.
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
     :::term
     $ td tables
@@ -152,13 +153,13 @@ To confirm the data upload, please use `td tables`.
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
+For sites with high loads (more than 5 application nodes), we recommend using a high availability configuration for td-agent. This will improve data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
-## Next Step
+## Next Steps
 
-Next, you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section to know more about queries.
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
 
 * [Schema Management](/articles/schema)
 * [Hive Query Language](http://localhost:9393/articles/hive)
