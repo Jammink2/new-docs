@@ -56,7 +56,7 @@ For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sen
     
 Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
 
-Note: You must first authenticate your account using the `td account` command.
+NOTE: You must first authenticate your account using the `td account` command.
 
     :::term
     $ td apikey:show
