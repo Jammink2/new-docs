@@ -1,11 +1,9 @@
 # Heroku Addon Notes
 
-Please keep in mind on those points, when you're using Treasure Data, through Heroku addon.
-
 ## 'heroku td', not 'td'
 
-Please use `heroku td`, instead of `td`. The list of functions are totally same.
+You need to use `heroku td` instead of `td` on Heroku. The functionalities are identical.
 
 ## td-agent works with HTTP only
 
-Our data import daemon, `td-agent`, works only with HTTP input. Please refere [here](/articles/heroku-td-agent). Other articles, which describes about the td-agent doesn't work on Heroku environment. If you have a dedicated data center nodes for td-agent, it works anyway of course.
+Our data import daemon, `td-agent`, works only with HTTP input on Heroku. This limitation exists **only on Heroku**. If you administer `td-agent` elsewhere (e.g., your own dedicated server), you have access to the full functionalities of `td-agent`.
