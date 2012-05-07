@@ -4,7 +4,7 @@ This guide explains how to bulk-import data with the `td` command.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
 
 ## Use Cases
 

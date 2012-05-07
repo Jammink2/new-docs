@@ -5,7 +5,7 @@ In order to import data from Node.js applications to Treasure Data, there exists
 ## Prerequisites
 
   * Basic knowledge of Node.js, and NPM.
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
   * An installed version of Node.js 0.6 or higher to test locally
 
 NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.

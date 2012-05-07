@@ -6,7 +6,7 @@ The '[td-logger-java](http://github.com/treasure-data/td-logger-java)' library i
 
   * Basic knowledge of Java.
   * Basic knowledge of Maven2.
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
   * An installed version of Java 6 or higher (for local testing).
 
 ## Installing td-agent

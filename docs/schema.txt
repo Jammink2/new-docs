@@ -4,7 +4,7 @@ Treasure Data uses the same analogy with RDBMSs for managing data sets: *Databas
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
 
 Also need the table, which has some data. Please refer [Getting Started](quickstart) to create db/table and import the data in it.
 

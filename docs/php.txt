@@ -5,7 +5,7 @@ In order to import data from PHP applications to Treasure Data, we provide a log
 ## Prerequisites
 
   * Basic knowledge of PHP
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
   * PHP 5.3 or higher to test locally.
 
 NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.

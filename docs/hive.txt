@@ -4,7 +4,7 @@ This guide covers the basics of the Hive query language: a SQL-like query langua
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
 
 ## About Apache Hive
 
