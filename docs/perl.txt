@@ -72,7 +72,7 @@ Please restart your agent once these lines are in place.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-td-agent will now accept, buffer (*var/log/td-agent/buffer/td*), and automatically upload your data into the cloud via port 24224.
+td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
 ## Using fluent-logger-perl
 
