@@ -1,26 +1,26 @@
-# Analyzing Apache Logs
+# Importing and Analyzing Apache Logs
 
-This guide explains how to import Apache logs with ‘td-agent’. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically batch uploads the logs into the cloud. td-agent’s ‘tail’ source type is used.
+This guide explains how to import Apache logs with `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including the latest installed version of the toolbelt.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
   * Basic knowledge of td-agent.
-  * An installed version of Ruby 1.8 or higher (for local testing).
+  * Ruby 1.8 or higher to test locally.
 
 ## Architecture
 
 <center><img src="/images/apache_log_with_td-agent.png" width="90%" /></center>
 
-‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
 
-When a user accesses Apache, Apache appends a corresponding log entry to the log file (typically located at */var/log/apache2/access_log*). td-agent continuously ‘tails’ the access log, identifying the newly created log entries.
+When a user accesses an Apache web server, the web server appends a corresponding entry to the access log (typically located at */var/log/apache2/access_log*). `td-agent` continuously "tails" the access log, identifying the newly created entries.
 
-td-agent automatically parses the new logs to create meaningful data fields (ex: ip, path, etc). The resulting data is buffered, periodically compressed, then uploaded to the cloud.
+`td-agent` automatically parses the new log entries to create meaningful data fields (ex: IP address, URL path, etc.). The data is compressed and uploaded to the cloud periodically.
 
 ## Installing td-agent
 
-You must first set up `td-agent` on your application servers. Please refer to the following articles; we provide deb/rpm packages for Linux systems.
+You must first set up `td-agent` on your application servers. Please refer to the following articles. For Linux systems, we provide deb/rpm packages.
 
 <table>
   <tr>
@@ -41,7 +41,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-In order to import Apache logs with td-agent, you'll need to add the following lines to your td-agent.conf file. Please specify the database name and table name using the ‘tag’ parameter, as shown below.
+In order to import Apache logs with `td-agent`, you need to add the following lines to your `td-agent.conf` file. Note that you need to specify the database and table names using the `tag` parameter.
 
     :::term
     # tail apache access_log
@@ -54,7 +54,7 @@ In order to import Apache logs with td-agent, you'll need to add the following l
 
 For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
-Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
+Next, you specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
 
 NOTE: You must first authenticate your account using the `td account` command.
 
@@ -62,9 +62,9 @@ NOTE: You must first authenticate your account using the `td account` command.
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Next, please set the `apikey` option in your td-agent.conf file. 
+Next, set the `apikey` option in your `td-agent.conf` file. 
 
-Note: *YOUR_API_KEY* should be your actual apikey string.
+Note: *YOUR_API_KEY* should be your actual API key string.
 
     :::term
     # Treasure Data Input and Output
@@ -76,21 +76,21 @@ Note: *YOUR_API_KEY* should be your actual apikey string.
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Please restart your agent once these lines are in place.
+Now, restart `td-agent` to reflect the above changes.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-In this configuration, td-agent tails the Apache logs, parses the new log records, and uploads the data into the cloud every 5 minutes.
+`td-agent` now tails Apache logs, parses the new log entries, and uploads the parsed data into the cloud every 5 minutes.
 
 ## Confirming Import
 
-Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+Sending a SIGUSR1 signal flushes td-agent's buffer and the data gets uploaded to the cloud immediately (as opposed to the usual 5 minute intervals).
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm that your data has been uploaded successfully, issue the `td tables` command as shown below.
+You can confirm that data is getting uploaded successfully with the `td tables` command, which shows you how many rows have been saved on the cloud (the "Cloud" column).
 
     :::term
     $ td tables
