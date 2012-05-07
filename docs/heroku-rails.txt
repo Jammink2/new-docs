@@ -4,7 +4,7 @@
 
   * Basic knowledge of Ruby, Gems, and Bundler
   * Basic knowledge of Heroku, including the latest installed version of the Heroku toolbelt.
-  * An installed version of Ruby 1.8 or higher (for local testing)
+  * Ruby 1.8 or higher (for local testing)
 
 ## Data Import
 

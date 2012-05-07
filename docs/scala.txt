@@ -6,7 +6,7 @@ In order to import data from Scala applications to Treasure Data, we provide a l
 
   * Basic knowledge of Scala
   * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
-  * An installed version of JVM, Scala, [sbt](https://github.com/harrah/xsbt) v0.11 or later.
+  * JVM, Scala, [sbt](https://github.com/harrah/xsbt) v0.11 or later.
 
 NOTE: Scala users, please look at <a href="/articles/heroku-java">Java Apps on Heroku</a>.
 

@@ -6,7 +6,7 @@ In order to import data from Python applications to Treasure Data, we provide a 
 
   * Basic knowledge of Python
   * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
-  * An installed version of Python 2.6 or higher (for local testing)
+  * Python 2.6 or higher (for local testing)
 
 NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.
 
