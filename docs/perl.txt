@@ -1,24 +1,26 @@
 # Data Import from Perl Applications
 
-In order to import data from Perl applications to Treasure Data, we provide a logger library called '[fluent-logger-perl](http://github.com/fluent/fluent-logger-perl)'. This article describes how to use that library.
+'[fluent-logger-perl](http://github.com/fluent/fluent-logger-perl)' is used to import data from Perl applications to Treasure Data. 
+
+This article explains how to use the fluent-logger-perl library.
 
 ## Prerequisites
 
-  * Basic knowledge of Perl and CPAN
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * Perl 5.10 or higher (for local testing)
+  * Basic knowledge of Perl and CPAN.
+  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
+  * An installed version of Perl 5.10 or higher (for local testing).
 
-NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.
+NOTE: The fluent-logger-perl library does not work in Heroku. Please see the <a href="/articles/heroku-notes">Heroku Notes</a> page for further information.
 
-## Install the td-agent
+## Installing td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+fluent-logger-perl requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-Through [fluent-logger-perl](http://github.com/fluent/fluent-logger-perl) library, Perl applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [fluent-logger-perl](http://github.com/fluent/fluent-logger-perl) library enables Perl applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -35,11 +37,13 @@ Please refer to the following articles in setting up td-agent. For Linux systems
   </tr>
 </table>
 
-NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
 ## Modify /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by `td apikey:show`, as long as we have successfully authenticated our account using the ‘td account’ command.:
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
+
+Note: You must first authenticate your account using the ‘td account’ command.
 
     :::term
     $ td apikey:show
