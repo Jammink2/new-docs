@@ -14,7 +14,7 @@ NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-not
 
 ## Install the td-agent
 
-You need to set up 'td-agent' on your application servers. `td-agent` is a daemon to continuously upload logs as a stream. `td-agent` is developed and maintained by Treasure Data, Inc.
+You need to set up `td-agent` on your application servers. `td-agent` is a daemon to continuously upload logs as a stream. `td-agent` is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 

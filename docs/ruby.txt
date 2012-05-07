@@ -14,7 +14,7 @@ NOTE: Heroku users, please look at <a href="/articles/heroku-ruby">Ruby Apps on 
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup `td-agent` on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 

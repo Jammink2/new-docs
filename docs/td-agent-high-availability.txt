@@ -1,6 +1,6 @@
 # High Availability td-agent Configuration
 
-This guide covers the advanced configurations of 'td-agent', especially for the environment which requires high availability.
+This guide covers the advanced configurations of `td-agent`, especially for the environment which requires high availability.
 
 ## Prerequisites
 

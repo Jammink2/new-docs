@@ -14,7 +14,7 @@ NOTE: Heroku users, please look at <a href="/articles/heroku-raisl">Rails Apps o
 
 ## Install the td-agent
 
-At first, you need to setup 'td-agent' on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+At first, you need to setup `td-agent` on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 Through [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library, Rails applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes.
 
