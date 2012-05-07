@@ -6,7 +6,7 @@ In order to import data from Perl applications to Treasure Data, we provide a lo
 
   * Basic knowledge of Perl and CPAN
   * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
-  * An installed version of Perl 5.10 or higher to test locally
+  * An installed version of Perl 5.10 or higher (for local testing)
 
 NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.
 
