@@ -14,7 +14,7 @@ NOTE: The fluent-logger-perl library does not work in Heroku. Please see the <a 
 
 ## Installing td-agent
 
-fluent-logger-perl requires `td-agent` to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+fluent-logger-perl requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
@@ -39,7 +39,7 @@ To set up td-agent, please refer to the following articles; we provide deb/rpm p
 
 NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
-## Modify /etc/td-agent/td-agent.conf
+## Modifying /etc/td-agent/td-agent.conf
 
 Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
 
@@ -49,7 +49,9 @@ Note: You must first authenticate your account using the ‘td account’ comman
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Next, please set the `apikey` option in your td-agent.conf file. 
+
+Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -65,26 +67,26 @@ Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Once these lines are in place, we’ll restart our agent.
+Please restart your agent once these lines are in place.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+td-agent will now accept, buffer (*var/log/td-agent/buffer/td*), and automatically upload your data into the cloud via port 24224.
 
-## Use fluent-logger-perl
+## Using fluent-logger-perl
 
-[fluent-logger-perl](http://github.com/fluent/fluent-logger-perl) is a Perl library to post the records to td-agent from a Perl application. At first, please install *Fluent::Logger* library via CPAN.
+First, install the *Fluent::Logger* library via CPAN.
 
     :::term
     $ cpan
     cpan[1]> install Fluent::Logger
 
-Then, please initialize and post the records as follows.
+Next, initialize and post the records as follows.
 
 #### test.pl
 
-    :::php
+    :::perl
     use Fluent::Logger;
     my $logger = Fluent::Logger->new(
         host => '127.0.0.1',
@@ -93,19 +95,15 @@ Then, please initialize and post the records as follows.
     );
     $logger->post("test_table", { "entry1" => "value1", "entry2" => 2 });
 
-## Confirm the Import
+## Confirming Data Import
 
-The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
-
-NOTE: The first argument of post() determines the database name and table name. If you specify 'td.test_db.test_table', the data will be imported into *test_table* table within *test_db* database. Those are automatically created at the upload time.
-
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
     $ perl test.pl
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use `td tables`.
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
     $ td tables
     +------------+------------+------+-----------+
@@ -113,6 +111,8 @@ To confirm the data upload, please use `td tables`.
     +------------+------------+------+-----------+
     | test_db    | test_table | log  | 1         |
     +------------+------------+------+-----------+
+
+NOTE: The first argument of post() determines the database name and table name. If you specify `td.test_db.test_table`, the data will be imported into the table *test_table* within the database *test_db*. They are automatically created at upload time.
 
 ## Production Deployments
 
