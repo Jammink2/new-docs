@@ -1,11 +1,11 @@
 Installing the Treasure Data CLI
 ================================
 
-Install the [Treasure Data Toolbelt](http://treasure-data.com/toolbelt.html) to set up your local workstation with the Treasure Data command-line client.
+Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
-The Ruby command below will install the toolbelt:
+If you are familiar with Ruby, you can install `td` from the command line using `gem`.
 
     :::term
     $ gem install td
 
-If you are not familiar with Ruby, alternative installation options can be found on the [Treasure Data Toolbelt page](http://treasure-data.com/toolbelt.html).
+Alternative installation options, including a Mac OSX installer and a Windows installer, can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasure-data.com/).
