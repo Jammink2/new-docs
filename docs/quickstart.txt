@@ -1,9 +1,9 @@
 Quickstart Guide
 ================
 
-Let's Get Started with Treasure Data. Treasure Data is a Hadoop-based **Cloud Data Warehousing** service. Forget about servers, storages, and infrastructure while storing billions of records and focusing on data analytics.
+Let's get started with Treasure Data! Treasure Data is a Hadoop-based **Cloud Data Warehousing** service. Forget about servers, storage, and infrastructure while storing billions of records and focusing on data analytics.
 
-No prior knowledge is required: Just import JSON-based records into our cloud data warehouse and process them by SQL-style queries.
+No prior knowledge is required. Just import JSON-based records into our cloud data warehouse and process them by SQL-style queries.
 
 Let's get started!
 
@@ -17,12 +17,12 @@ Step 2: Install Treasure Data Toolbelt
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment.
 
-The toolbelt contains `td` command, a [CLI tool](/categories/command-line) for importing, managing, and issuing a query on your data.
+The toolbelt contains `td`, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
 
 Step 3: Authorize
 -----------------
 
-After installing the toolbelt, you'll have access to `td` command from your command line. Authorize your account by `td account` by using an email address and password you used to creat your account:
+After installing the toolbelt, you'll have access to `td` command from your command line. Authorize your account with `td account`. You would be prompted to enter your user name and password. Use the ones from the sign-up process.
 
     :::term
     $ td account -f
@@ -45,7 +45,7 @@ Now you’re ready! Let’s get your feet wet by importing a sample Apache log. 
     | testdb     | www_access | log  | 0         |
     +------------+------------+------+-----------+
 
-Now, let’s generate a sample Apache log and import it to the cloud. td sample:apache generates 5,000 lines of Apache log data as JSON. td table:import takes a JSON file and uploads it to the cloud.
+Let’s generate a sample Apache log and import it to the cloud. `td sample:apache` generates 5,000 lines of Apache log data as JSON. td table:import takes a JSON file and uploads it to the cloud.
 
     :::term
     $ td sample:apache apache.json
@@ -66,7 +66,7 @@ After several seconds, the records will be imported into our database.
 Step 5: Write Queries
 -----------------------
 
-Finally, let’s write a SQL query. The query is executed by a Hadoop-based engine on the cloud and the result is returned to you. Here’s a query to calculate the distribution of HTTP status codes.
+Finally, let’s write a SQL query. A Hadoop-based engine on the cloud executes your query and returns the result to you. The following query calculates the distribution of HTTP status codes.
 
 The above command takes roughly 15 seconds. It’s the overhead of setting up the jobs within the cloud based on Hadoop.
 
@@ -92,7 +92,7 @@ The above command takes roughly 15 seconds. It’s the overhead of setting up th
 Step 6: Logging from Your Application
 -------------------------------------
 
-Now it's turn to import your actual data to the cloud. See the following tutorials to learn how to import your data, using a supported languages, frameworks, or middleware:
+You are ready to import *your real data* to the cloud. See the following tutorials to learn how to import your data from various sources.
 
   * Languages and Frameworks
     * [Java](java)
