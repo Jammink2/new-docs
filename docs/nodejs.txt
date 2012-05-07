@@ -150,16 +150,6 @@ To confirm that your data has been uploaded successfully, issue the *td tables* 
 
 NOTE: The first argument of post() determines the database name and table name. If you specify `td.test_db.test_table`, the data will be imported into the table *test_table* within the database *test_db*. They are automatically created at upload time.
 
-To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
-
-    :::term
-    $ td tables
-    +------------+------------+------+-----------+
-    | Database   | Table      | Type | Count     |
-    +------------+------------+------+-----------+
-    | test_db    | follow     | log  | 1         |
-    +------------+------------+------+-----------+
-
 ## Production Deployments
 
 ### High-Availablability Configurations of td-agent
