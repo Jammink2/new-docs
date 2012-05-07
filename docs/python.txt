@@ -115,7 +115,7 @@ Use [gunicorn](http://gunicorn.org/), [tornado](http://www.tornadoweb.org/) or [
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
+For high-traffic websites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
