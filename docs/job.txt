@@ -1,8 +1,8 @@
 # Job Management
 
-If you issue the query, it is regarded as *Job* on the cloud. You can see the status and the results of that job by CUI command.
+Queries are known as *Jobs* on the cloud. The status and result of each job can be viewed with CUI commands.
 
-This guide covers how to show jobs, and see detailed information for each job.
+This guide will explain how to issue, list, and see the details of each job.
 
 ## Prerequisites
 
@@ -10,13 +10,13 @@ This guide covers how to show jobs, and see detailed information for each job.
 
 ## Issue Jobs
 
-You can issue the query with `td query` subcommand. The submitted query is regarded as *Job*, and will be executed in parallel on the cloud. The # of parallelism is automatically decided based on your plan, remaining capacity, and the size of our cluster at that time.
+The 'td query' subcommand issues *jobs*. Jobs are executed in parallel on the cloud: the degree of parallelism is chosen automatically based on your plan, your remaining capacity, and the size of our cluster at that time.
 
     :::term
     $ td query -w -d testdb "SELECT COUNT(*) FROM www_access"
     Job 702 is started.
 
-If you issue the query *WITHOUT* -w option, the command command exits immediately after submittion is completed. Not waits for job completion.
+If you issue a query *WITHOUT* the -w option, the command will exit immediately after submitting the job; it will not wait for the job to complete.
 
     :::term
     $ td query -d testdb "SELECT COUNT(*) FROM www_access"
@@ -25,7 +25,7 @@ If you issue the query *WITHOUT* -w option, the command command exits immediatel
 
 ### Show Jobs
 
-`td jobs` subcommand lists your submitted jobs. In default, it shows 20 recent jobs. It shows the JobID, its status, starting time, elapsed time, and the submitted query.
+The 'td jobs' subcommand lists your submitted jobs. The most recent 20 jobs are shown by default. The command shows the JobID, status, starting time, elapsed time, and the submitted query for each job.
 
     :::term
     $ td jobs
@@ -55,16 +55,16 @@ If you issue the query *WITHOUT* -w option, the command command exits immediatel
     +-------+---------+-------------------------+----------------+------------------------------------+
     20 rows in set
 
-If you want to see more older jobs, please specify the number of pages as an argument.
+To see older jobs, please specify the page number as an argument.
 
     :::term
-    $ td jobs -p 0 # recent 20 jobs
-    $ td jobs -p 1 # next 20 jobs
-    $ td jobs -p 2 # next 20 jobs
+    $ td jobs -p 0 # The most recent 20 jobs
+    $ td jobs -p 1 # Jobs 21-40
+    $ td jobs -p 2 # Jobs 41-60
 
-### Show Job Information and Result
+### Show Job Details and Job Results
 
-`td job` sub-command takes job_id as an argument, and shows the detailed information. It shows the status, query, and the result.
+The `td job` sub-command shows a job's detailed information; the job is specified by the job_id argument. The command shows the job's status, query content, and result.
 
     :::term
     $ td job 783
@@ -81,4 +81,4 @@ If you want to see more older jobs, please specify the number of pages as an arg
     1 row in set
     Use '-v' option to show detailed messages.
 
-If you want to see more detailed information such as execution logs, please add `-v` option to the command.
+The '-v' option will show additional information, including execution logs.
