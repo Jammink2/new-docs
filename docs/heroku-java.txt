@@ -3,7 +3,7 @@
 ## Prerequisites
 
   * Basic knowledge of Java
-  * Basic knowledge of Heroku, including the latest installed version of the Heroku toolbelt.
+  * Basic knowledge of Heroku, including the Heroku toolbelt.
   * Java 1.6 or higher.
 
 ## Data Import

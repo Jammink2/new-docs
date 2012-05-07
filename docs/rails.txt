@@ -5,7 +5,7 @@ In order to import data from Ruby applications to Treasure Data, we provide a li
 ## Prerequisites
 
   * Basic knowledge of Ruby, Rails, Gems, and Bundler
-  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Ruby 1.8 or higher (for local testing)
 
 NOTE: Heroku users, please look at <a href="/articles/heroku-raisl">Rails Apps on Heroku</a>.

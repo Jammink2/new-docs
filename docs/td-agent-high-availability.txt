@@ -4,7 +4,7 @@ This guide covers the advanced configurations of 'td-agent', especially for the 
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Basic td-agent setup knowledge
 
 ## Message Delivery Semantics

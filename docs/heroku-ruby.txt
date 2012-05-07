@@ -3,7 +3,7 @@
 ## Prerequisites
 
   * Basic knowledge of Ruby, Gems, and Bundler
-  * Basic knowledge of Heroku, including the latest installed version of the Heroku toolbelt.
+  * Basic knowledge of Heroku, including the Heroku toolbelt.
   * Ruby 1.8 or higher (for local testing)
 
 ## Data Import
