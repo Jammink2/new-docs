@@ -1,24 +1,26 @@
 # Data Import from Node.js Applications
 
-In order to import data from Node.js applications to Treasure Data, there exists a 3rd party library called '[fluent-logger-node](https://github.com/yssk22/fluent-logger-node)'. This article describes how to use that library.
+'[fluent-logger-node](https://github.com/yssk22/fluent-logger-node)', a 3rd party library, is used to import data from Node.js applications to Treasure Data. 
+
+This article explains how to use the fluent-logger-node library.
 
 ## Prerequisites
 
-  * Basic knowledge of Node.js, and NPM.
+  * Basic knowledge of Node.js and NPM.
   * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
-  * An installed version of Node.js 0.6 or higher to test locally
+  * An installed version of Node.js 0.6 or higher (for local testing)
 
-NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.
+NOTE: The fluent-logger-node library does not work in Heroku. Please see the <a href="/articles/heroku-notes">Heroku Notes</a> page for further information.
 
-## Install the td-agent
+## Installing td-agent
 
-At first, you need to setup `td-agent` on your application servers. `td-agent` is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+fluent-logger-node requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-Through [fluent-logger-node](http://github.com/yssk22/fluent-logger-php) library, Node.js applications can post their application logs to local td-agent, and it uploads to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [fluent-logger-node](http://github.com/yssk22/fluent-logger-php) library enables Node.js applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -35,17 +37,21 @@ Please refer to the following articles in setting up td-agent. For Linux systems
   </tr>
 </table>
 
-NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
-## Modify /etc/td-agent/td-agent.conf
+## Modifying /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by `td apikey:show`, as long as we have successfully authenticated our account using the ‘td account’ command.:
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
+
+Note: You must first authenticate your account using the ‘td account’ command.
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Next, please set the `apikey` option in your td-agent.conf file. 
+
+Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -61,18 +67,22 @@ Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Once these lines are in place, we’ll restart our agent.
+Please restart your agent once these lines are in place.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-We have now enabled td-agent to read, and upload our log data into the cloud via port 24224.
+In this configuration, td-agent accepts data via port 24224, buffers it into the local disk (*/var/log/td-agent/buffer/td*), and automatically uploads it into the cloud every 5 minutes.
 
-## Use fluent-logger-node
+## Using fluent-logger-node
 
-[fluent-logger-node](http://github.com/yssk22/fluent-logger-node) is a Node.js library to post the records to td-agent from a Node.js application. Please find the most recent version from [here](http://search.npmjs.org/#/fluent-logger).
+### Obtaining the Most Recent Version
 
-Let's create a sample [Express](http://expressjs.com/) app, which users fluent-logger-node. Here’s an example package.json.
+The most recent version of fluent-logger-node can be found from [here](http://search.npmjs.org/#/fluent-logger).
+
+### A Sample Application
+
+A sample [Express](http://expressjs.com/) app using fluent-logger-node is shown below.
 
 #### package.json
 
@@ -88,7 +98,7 @@ Let's create a sample [Express](http://expressjs.com/) app, which users fluent-l
 
 Now use *npm* to install your dependencies locally:
 
-    :::term
+    :::Term
     $ npm install
     fluent-logger@0.1.0 ./node_modules/fluent-logger
     express@2.5.9 ./node_modules/express
@@ -117,24 +127,32 @@ This is the simplest web app.
       console.log("Listening on " + port);
     });
 
-Then, let's execute the app and please hit the `http://localhost:3000/` from your browser.
+Execute the app and go to `http://localhost:3000/` in your browser.
 
     :::term
     $ node web.js
 
-## Confirm the Import
+## Confirming Data Import
 
-The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
-
-NOTE: The first argument of post() determines the database name and table name. If you specify `td.test_db.test_table`, the data will be imported into *test_table* table within *test_db* database. Those are automatically created at the upload time.
-
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use `td tables`.
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | test_db    | follow     | log  | 1         |
+    +------------+------------+------+-----------+
+
+NOTE: The first argument of post() determines the database name and table name. If you specify `td.test_db.test_table`, the data will be imported into the table *test_table* within the database *test_db*. They are automatically created at upload time.
+
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
+
+    :::term
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
@@ -146,13 +164,13 @@ To confirm the data upload, please use `td tables`.
 
 ### High-Availablability Configurations of td-agent
 
-For highly loaded sites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
+For sites with high loads (more than 5 application nodes), we recommend using a high availability configuration for td-agent. This will improve data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
-## Next Step
+## Next Steps
 
-Next, you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section to know more about queries.
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
 
 * [Schema Management](/articles/schema)
 * [Hive Query Language](http://localhost:9393/articles/hive)
