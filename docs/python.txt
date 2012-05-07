@@ -77,7 +77,7 @@ By this configuration, td-agent accepts the data import via 24224. When it recei
 
 Then, please insert these lines into your application, to initialize and post the events as follows.
 
-    :::ruby
+    :::python
     # Initialize
     from fluent import sender
     sender.setup('test_db', host='host', port=24224)
