@@ -8,21 +8,19 @@
 
 ## Data Import
 
-It's a **4 STEP** approach. 1) **Embed** codes, 2) **Run** it, 3) **Check**, and 4) **Query** it.
+### Step 1: Import Data Using `td` gem
 
-### Step1: Import Data Using 'td' gem
-
-First, add the ‘td’ (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
+First, add the `td` (stands for **T**reasure **D**ata) gem to your Gemfile.
 
     :::ruby
     gem 'td', "~> 0.10.22"
 
-Next, install the gem locally via bundler.
+Next, install the gem locally via `bundler`.
 
     :::term
     $ bundle install
 
-The ‘td’ gem comes with a built-in library for recording in-app events. Insert code in the format below in order to record events from your app:
+The `td` gem comes with a built-in library for recording in-app events. Insert code in the format below in order to record events from your app:
 
     :::ruby
     # Example1: login event
@@ -38,7 +36,7 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
 
 Each event-logging code should be inserted near its corresponding event-generating code. Further details regarding the event logger API can be found here.
 
-NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
+NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception would be thrown).
 
 After inserting your event-logging code, push the modifications to Heroku!
 
@@ -46,18 +44,18 @@ After inserting your event-logging code, push the modifications to Heroku!
     $ git commit -a -m "Added Treasure Data Plugin"
     $ git push heroku master
 
-### Step2: Access Your Application
+### Step 2: Access Your Application
 
-First, open your application on Heroku. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded in 5 minute intervals.
+First, open your application on Heroku. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded every 5 minutes.
 
     :::term
     $ heroku open
 
-### Step3: Check Your Uploaded Data
+### Step 3: Check Your Uploaded Data
 
 #### Database Structure
 
-Treasure Data Hadoop structures its data much like RDBMS: tables inside databases. In order to see the list of available databases, use the command: ‘heroku td dbs’.
+Treasure Data Hadoop structures its data much like RDBMS: tables inside databases. You can see the list of available databases with `heroku td dbs`.
 
     :::term
     $ heroku td dbs
@@ -68,11 +66,11 @@ Treasure Data Hadoop structures its data much like RDBMS: tables inside database
     +------------------+
     1 row in set
 
-‘rails_production’ is the default database name, but can be modified with the config file.
+"rails_production" is the default database name but can be modified with the config file.
 
 #### Check Your Data
 
-In order to see the tables inside the available databases, use the command: ‘heroku td tables’.
+You can see the list of available tables with `heroku td tables`.
 
     :::term
     $ heroku td tables
@@ -84,15 +82,15 @@ In order to see the tables inside the available databases, use the command: ‘h
     +------------------+--------+------+-------+--------+
     2 rows in set
 
-To confirm that your application data has been uploaded properly, please check the ‘Count’ column. If any of the ‘Count’ entries are non-zero, your event logs been transferred successfully.
+To confirm that your application data has been uploaded properly, check the "Count" column. If any of the "Count" entries are non-zero, your event logs been transferred successfully.
 
-If your data has been uploaded properly, then use the ‘heroku td table:tail’ command to see the recent entries of a specific table.
+If your data has been uploaded properly, then use the `heroku td table:tail` command to see the recent entries of a specific table.
 
     :::term
     $ heroku td table:tail rails_production follow
     {"action":"follow","uid":12345,"from":"TreasureData","to":"heroku","time":1320857514}
 
-### Step4: Analyze Your Data
+### Step 4: Analyze Your Data
 
 Our service lets you to analyze your data using a SQL-style language. When your data is sent to us, your logs are imported into a Hadoop/Hive cluster. Hive lets its users query big data through a SQL-like interface.
 
@@ -114,7 +112,8 @@ The next example query counts the total number of logged actions for each day.
 
     :::term
     $ heroku td query -w -d rails_production \
-      "SELECT to_date(from_unixtime(time)) AS day, count(1) FROM follow GROUP BY to_date(from_unixtime(time)) ORDER BY day"
+      "SELECT to_date(from_unixtime(time)) AS day, count(1) \
+      FROM follow GROUP BY to_date(from_unixtime(time)) ORDER BY day"
     +------------+----+
     | 0          | 1  |
     +------------+----+
@@ -122,20 +121,20 @@ The next example query counts the total number of logged actions for each day.
     +------------+----+
     1 row in set
 
-The ‘heroku td query –format csv’ command will return the results in csv format.
+The `heroku td query –format csv` command outputs the results in csv.
 
 ## Development Environment Setup
 
-Please set `TREASURE_DATA_API_KEY` env variable For development environment.
+In order to use Treasure Data Hadoop, you must set `TREASURE_DATA_API_KEY` env variable.
 
     :::term
     $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
 
-Then, please start an application normally.
+Then, start your application as usual.
 
-## Issue The Query
+## Writing SQL-like Queries
 
-This is an example code of issueing the query from the Ruby program. The query API is asynchronous, and you can wait the completion by pollings (e.g. job.finished? call).
+Below is an example of how to query the data from Ruby. Observe that the query API is asynchronous, and we poll for the completion of the job with `job.finished?` and `job.update_status!`.
 
     :::ruby
     require 'td'
@@ -150,20 +149,16 @@ This is an example code of issueing the query from the Ruby program. The query A
       job.result_each { |row| p row }
     end
 
-## Does Upload Impact the App Performance?
+## Does Upload Impact App Performance?
 
-Througth `td` gem, the posted records are buffered locally at first, and uploads are done every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect the response time.
+The performance impact should be negligible. The td-logger library buffers data locally, and a separate, dedicated thread uploads the data to the cloud asynchronously.
 
-There's also a size limit of the local buffer. If the local data size exceeds that limit, the records start uploaded immediately.
+Note that if the buffer fills up, the data upload starts right away. The buffer size is configurable.
 
 ## Next Step
 
-Please look at this document to know about the Heroku addon limitation. It's important to know it, before going to other articles. Also you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section for example analysis queries.
+We have outlined [some caveats](/articles/heroku-notes) on using Treasure Data Hadoop addo-on. Also, you might want to consult [this article](/articles/schema) to learn more about our schema management. We also have a [little write-up](/articles/hive) on our SQL-like, Hive-compataible language.
 
-* [Heroku Addon Notes](/articles/heroku-notes)
-* [Schema Management](/articles/schema)
-* [Hive Query Language](http://localhost:9393/articles/hive)
-
-For more specific assistance, please visit our support resources:
+For further assistance, please consult our support forum.
 
 * [Treasure Data Discussion Forum](http://help.treasure-data.com/discussions)
