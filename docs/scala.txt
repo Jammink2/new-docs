@@ -1,6 +1,8 @@
 # Data Import from Scala Applications
 
-In order to import data from Scala applications to Treasure Data, we provide a logger library called '[td-logger-java](http://github.com/treasure-data/td-logger-java/)'. This article describes how to use that library.
+'[fluent-logger-scala](http://github.com/fluent/fluent-logger-scala)' is used to import data from Scala applications to Treasure Data. 
+
+This article explains how to use the fluent-logger-scala library.
 
 ## Prerequisites
 

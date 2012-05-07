@@ -1,6 +1,8 @@
 # Data Import from Rails Applications
 
-In order to import data from Ruby applications to Treasure Data, we provide a library called '[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)'. This article describes how to use that library.
+'[fluent-logger-ruby](http://github.com/fluent/fluent-logger-ruby)' is used to import data from Ruby applications to Treasure Data. 
+
+This article explains how to use the fluent-logger-ruby library.
 
 ## Prerequisites
 
