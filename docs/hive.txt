@@ -10,11 +10,11 @@ This guide covers the basics of the Hive query language: a SQL-like query langua
 
 The Hive query language (HiveQL) is the primary data processing method for Treasure Data. HiveQL is powered by [Apache Hive](http://hive.apache.org/).
 
-NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are not allowed.
+NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are not currently available.
 
 ## Tutorial
 
-The official Hive tutorial explains the basic functionality of HiveQL.
+The official Hive tutorial goes offer the basics of HiveQL.
 
 * [Hive Tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial)
 
@@ -26,7 +26,7 @@ The official language manual can be found here:
 
 ## Example Queries
 
-Here are some queries that you could run on logs consisting of the fields: ip, url, and time.
+Here are a couple of basic examples. The underlying table consiste of three fields: `ip`, `url`, and `time`.
 
 #### Number of Records
 
@@ -63,7 +63,7 @@ Here are some queries that you could run on logs consisting of the fields: ip, u
     SELECT COUNT(*) FROM www_access \
       WHERE time >= unix_timestamp('2011-08-19 00:00:00');
 
-NOTE: The 'time' column is a special column that stores the UNIX timestamp of the log.
+NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
 
 #### Number of Accesses Each Hour
 
