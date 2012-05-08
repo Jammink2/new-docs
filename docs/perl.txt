@@ -8,7 +8,7 @@ This article explains how to use the fluent-logger-perl library.
 
   * Basic knowledge of Perl and CPAN.
   * Basic knowledge of Treasure Data, including the latest installed version of [the toolbelt](http://toolbelt.treasure-data.com).
-  * An installed version of Perl 5.10 or higher (for local testing).
+  * Perl 5.10 or higher (for local testing).
 
 NOTE: The fluent-logger-perl library does not work in Heroku. Please see the <a href="/articles/heroku-notes">Heroku Notes</a> page for further information.
 
