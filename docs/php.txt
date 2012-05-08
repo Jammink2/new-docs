@@ -119,7 +119,7 @@ NOTE: The first argument of post() determines the database name and table name. 
 
 ### Use Apache and mod_php
 
-We recommend that you use Apache and mod_php. Other setups have not been validated yet.
+We recommend that you use Apache and mod_php. Other setups have not been fully validated.
 
 ### Use Apache prefork MPM
 
