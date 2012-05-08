@@ -1,24 +1,26 @@
 # Data Import from Python Applications
 
-In order to import data from Python applications to Treasure Data, we provide a library called '[fluent-logger-python](http://github.com/fluent/fluent-logger-python)'. This article describes how to use that library.
+'[fluent-logger-python](http://github.com/fluent/fluent-logger-python)' is used to import data from Python applications to Treasure Data. 
+
+This article explains how to use the fluent-logger-python library.
 
 ## Prerequisites
 
-  * Basic knowledge of Python
+  * Basic knowledge of Python.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * Python 2.6 or higher (for local testing)
+  * Python 2.6 or higher (for local testing).
 
-NOTE: This doesn't work on Heroku environment. See <a href="/articles/heroku-notes">Heroku Notes</a> page.
+NOTE: The fluent-logger-python library does not work in Heroku. Please see the <a href="/articles/heroku-notes">Heroku Notes</a> page for further information.
 
-## Install the td-agent
+## Installing td-agent
 
-At first, you need to setup `td-agent` on your application servers. ‘td-agent’ is a daemon program dedicated to the continuous upload of any kind of streaming data. td-agent is developed and maintained by Treasure Data, Inc.
+fluent-logger-python requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-Through [fluent-logger-python](http://github.com/fluent/fluent-logger-python) library, Python applications can post the records to local td-agent, and it uploads to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [fluent-logger-python](http://github.com/fluent/fluent-logger-python) library enables Python applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-Please refer to the following articles in setting up td-agent. For Linux systems, we're providing deb/rpm packages for the easy installation.
+To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
 <table>
   <tr>
@@ -35,17 +37,21 @@ Please refer to the following articles in setting up td-agent. For Linux systems
   </tr>
 </table>
 
-NOTE: Please note that td-agent is fully open-sourced as the <a href="http://github.com/fluent/">fluentd project</a>. td-agent is a package which contains fluentd and extension plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
-## Modify /etc/td-agent/td-agent.conf
+## Modifying /etc/td-agent/td-agent.conf
 
-We’ll also need to set the `apikey` option, which is a secret key to authenticate our account. Our api key can be shown by `td apikey:show`, as long as we have successfully authenticated our account using the `td account` command.:
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key with the *td apikey:show* command.
+
+Note: You must first authenticate your account using the ‘td account’ command.
 
     :::term
     $ td apikey:show
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
-Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_API_KEY* to your actual apikey string.
+Next, please set the `apikey` option in your td-agent.conf file. 
+
+Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::term
     # Treasure Data Input and Output
@@ -61,21 +67,21 @@ Let’s set the `apikey` option in our td-agent.conf file. Please replace *YOUR_
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Once these lines are in place, we’ll restart our agent.
+Please restart your agent once these lines are in place.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-By this configuration, td-agent accepts the data import via 24224. When it receives the records from the applications, the records are first buffered into the local disk (*/var/log/td-agent/buffer/td*). And every 5 minutes, those are automatically uploaded into the cloud.
+td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
-## Use fluent-logger-python
+## Using fluent-logger-python
 
-[fluent-logger-python](http://github.com/treasure-data/fluent-logger-python) is a Python library to record events to td-agent from a Python application. First, please install that package via pip.
+First, install the fluent-logger-python library via pip.
 
     :::term
     $ pip install fluent-logger-python
 
-Then, please insert these lines into your application, to initialize and post the events as follows.
+Next, initialize and post the records as follows.
 
     :::python
     # Initialize
@@ -89,15 +95,14 @@ Then, please insert these lines into your application, to initialize and post th
 
 ## Confirm the Import
 
-The posted records are first transferred to the local td-agent. td-agent buffers the records within local disk for a while, and uploads them every 5 minutes.
 
-Rather than waiting 5 minutes, sending SIGUSR1 signal to the agent flushes its buffe,r and it starts uploading immediately.
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
     $ python test.py
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm the data upload, please use `td tables`.
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
     :::term
     $ td tables
@@ -111,17 +116,17 @@ To confirm the data upload, please use `td tables`.
 
 ### Use gunicorn, tornado or modwsgi
 
-Use [gunicorn](http://gunicorn.org/), [tornado](http://www.tornadoweb.org/) or [modwsgi](http://code.google.com/p/modwsgi/). Other deployment options are not well tested.
+We recommend that you use [gunicorn](http://gunicorn.org/), [tornado](http://www.tornadoweb.org/) or [modwsgi](http://code.google.com/p/modwsgi/). Other setups have not been fully validated.
 
 ### High-Availablability Configurations of td-agent
 
-For high-traffic websites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
+For high-traffic websites (more than 5 application nodes), we recommend using a high availability configuration of td-agent. This will improve data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
-## Next Step
+## Next Steps
 
-Next, you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section to know more about queries.
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
 
 * [Schema Management](/articles/schema)
 * [Hive Query Language](http://localhost:9393/articles/hive)
