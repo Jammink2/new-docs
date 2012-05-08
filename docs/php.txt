@@ -144,15 +144,17 @@ We recommend that you periodically restart your PHP processes by setting *MaxReq
 
 NOTE: Do not set MaxRequestsPerChild to zero.
 
+## Production Deployments
+
 ### High-Availablability Configurations of td-agent
 
-For high-traffic websites (more than 5 application nodes), we recommend using high availability configuration for td-agent. This improves the data transfer reliability, and also the query performance.
+For high-traffic websites (more than 5 application nodes), we recommend using a high availability configuration of td-agent. This will improve data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
-## Next Step
+## Next Steps
 
-Next, you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section to know more about queries.
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
 
 * [Schema Management](/articles/schema)
 * [Hive Query Language](http://localhost:9393/articles/hive)
