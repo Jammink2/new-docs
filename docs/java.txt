@@ -155,7 +155,7 @@ To confirm that your data has been uploaded successfully, issue the *td tables* 
 
 ### High-Availablability Configurations of td-agent
 
-For sites with high loads (more than 5 application nodes), we recommend using a high availability configuration for td-agent. This will improve data transfer reliability and query performance.
+For high-traffic websites (more than 5 application nodes), we recommend using a high availability configuration of td-agent. This will improve data transfer reliability and query performance.
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
