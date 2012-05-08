@@ -120,27 +120,18 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  
+  <!-- MixPanel -->
   <script type="text/javascript">
     (function(event_type, super_property_type) {
-      mixpanel.register_once({ source: super_property_type });
       var query_string_pairs = location.search.substr(1).split('&');
-
       for (var i = 0; i < query_string_pairs.length; ++i) {
         if (query_string_pairs[i].substr(0, 2) == 's=') {
           mixpanel.register_once({ s: query_string_pairs[i].substr(2) });
         }
       }
-      // unfortunate hack around the fact the Mixpanel library does not
-      // load all of its methods in time.
-      var id = setInterval(function() {
-        if (mixpanel.get_property) {
-          mixpanel.track(event_type, {
-            source: mixpanel.get_property('source'),
-            s: mixpanel.get_property('s')
-          });
-          clearInterval(id);
-        }
-      }, 100);
+      mixpanel.register_once({s: super_property_type});
+      mixpanel.track(event_type);
     })('ViewDoc', 'docs');
   </script>
 </body>
