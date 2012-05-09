@@ -1,6 +1,6 @@
 # Scaling the Resource
 
-In Q2 2012, you can scale up or down your computing & storage resourceinstantly from the command line or API.
+In Q2 2012, you will be able to instantly scale your computing and storage resources up or down using the command line or API.
 
     :::term
     $ td scale node=100
