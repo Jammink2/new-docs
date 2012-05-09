@@ -1,9 +1,9 @@
 # Treasure Data 3rd Party Tools
 
-Treasure Data, Inc. already closed many partnerships with other companies, to meet your data analytics needs. The majority of them are visualization / ETL / BI tool companies, which enpowers the Treasure Data service.
+We have partnered with many companies to meet your data analytic needs. Most of our partners are visualization, ETL, and BI tool companies. They empower the Treasure Data service.
 
 <center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-We're providing JDBC drivers to easily connect with those 3rd party tools.  If you have a specific needs for visualizing data, please let us know. We know the proper tool.
+Our JDBC drivers provide a simple interface for 3rd party tools. If you have specific data visualization needs, please let us know. We know the right tool.
 
-The list of partners are soon to be announced.
+We will announce our list of partners soon.
