@@ -92,7 +92,7 @@ Here's an example configuration.
     
     <match filter>
       type exec_filter
-      command ruby /etc/td-agent/filter.rb
+      command /usr/lib64/fluent/ruby/bin/ruby /etc/td-agent/filter.rb
       in_format json  # takes JSON string from STDIN
       out_format json # generate JSON string to STDOUT
       tag_key tag     # The key for tags is "tag".
@@ -107,22 +107,28 @@ Here's an example configuration.
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-`/etc/td-agent/filter.rb` is the filter script (shown below). It filters out all the lines where the field "field0" is "certain_value".
+`/etc/td-agent/filter.rb` is the filter script (shown below). It filters out all the lines where the field "field0" is "certain_value". If the error happens, its output goes into `/var/log/td-agent/filter.rb.log`.
 
     :::ruby
-    require 'json'
-    while line = STDIN.gets
-      # parse
+    open('/var/log/td-agent/filter.rb.log', 'a') { |f|
+      f.puts "-- begin --"
       begin
-        h = JSON.parse line
-      rescue => e
-        next # broken line
+        require 'json'
+        STDOUT.sync = true
+        while line = STDIN.gets
+          # parse
+          begin
+            h = JSON.parse line
+          rescue => e
+            next # broken line
+          end
+          # filter
+          # next if h["field0"] == "certain_value"
+          # emit
+          h['tag'] = 'td.testdb.test_table'
+          puts h.to_json
+        end
+      rescue LoadError => e
+        f.puts e.to_s
       end
-      # filter
-      next if h["field0"] == "certain_value"
-      # emit
-      h['tag'] = 'td.test_db.test_table'
-      puts h.to_json
-      STDOUT.flush
-    end
-
+    }
