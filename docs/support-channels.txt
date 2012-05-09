@@ -2,8 +2,12 @@
 
 ## Documentation
 
-The articles here cover most of the basics as well as a number of important advanced features and areas where there has been confusion.
+We have tried to cover the following areas with these documents
+
+  * Basic use cases of Treasure Data
+  * Some of our important advanced features
+  * Areas that have confused our users in the past
 
 ## Support Desk
 
-[help.treasure-data.com](http://help.treasure-data.com/) enables you to submit a ticket. This lets you communicate directly with our support team and receive email updates as soon as there’s activity on your request. You can generally expect a response in a few business days.
+You can submit tickets at [help.treasure-data.com](http://help.treasure-data.com/). You can communicate directly with our support team and receive email updates on your tickets. We usually respond to you in a few business days.
