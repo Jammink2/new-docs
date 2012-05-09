@@ -2,7 +2,7 @@
 
 The '[td-logger-java](http://github.com/treasure-data/td-logger-java)' library is used to import data from Java Applications to Treasure Data.
 
-This article explains how to use the fluent-logger-java library.
+This article explains how to use the td-logger-java library.
 
 ## Prerequisites
 
