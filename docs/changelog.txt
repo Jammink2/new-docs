@@ -1,5 +1,15 @@
 # Treasure Data ChangeLog
 
+## May 10, 2012
+
+### Added bulk import feature
+
+A new version of the td command is available that supports bulk import feature.
+
+It enables you to upload large data set reliably since its operations are
+designed to be transactional and idempotent.
+
+
 ## April 4, 2012
 
 ### 'td' gem v0.10.22 released with bugfixes
