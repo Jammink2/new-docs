@@ -16,3 +16,7 @@
   <% end %>
   <%= @body %>
 </article>
+
+<% if @article.topic == 'quickstart' %>
+<img src="http://crm.treasure-data.com/lead/view_quickstart_document" />
+<% end %>
