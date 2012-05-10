@@ -104,4 +104,5 @@ You are ready to import *your real data* to the cloud. See the following tutoria
     * [Scala](scala)
   * Middleware
     * [Apache Logs](apache)
-
+  * Others
+    * [Existing Logs](td-agent-tail)

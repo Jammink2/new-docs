@@ -157,7 +157,7 @@ Note that if the buffer fills up, the data upload starts right away. The buffer 
 
 ## Next Step
 
-We have outlined [some caveats](/articles/heroku-notes) on using Treasure Data Hadoop addo-on. Also, you might want to consult [this article](/articles/schema) to learn more about our schema management. We also have a [little write-up](/articles/hive) on our SQL-like, Hive-compataible language.
+We have outlined [some caveats](/articles/heroku-notes) on using Treasure Data Hadoop addon. Also, you might want to consult [this article](/articles/schema) to learn more about our schema management. We also have a [little write-up](/articles/hive) on our SQL-like, Hive-compataible language.
 
 For further assistance, please consult our support forum.
 

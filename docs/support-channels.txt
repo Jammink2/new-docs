@@ -11,3 +11,7 @@ We have tried to cover the following areas with these documents
 ## Support Desk
 
 You can submit tickets at [help.treasure-data.com](http://help.treasure-data.com/). You can communicate directly with our support team and receive email updates on your tickets. We usually respond to you in a few business days.
+
+## Mail
+
+Please send your mail to `support@treasure-data.com`.
