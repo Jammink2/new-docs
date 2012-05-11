@@ -83,6 +83,7 @@ section 'reference', 'Reference' do
     article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
   end
   category 'bulk-operations', 'Bulk Operations' do
+    article 'one-time-import', 'One-Time Import'
     article 'bulk-import', 'Bulk Import'
     article 'bulk-export', 'Bulk Export'
   end

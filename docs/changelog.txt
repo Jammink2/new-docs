@@ -1,17 +1,9 @@
 # Treasure Data ChangeLog
 
-## May 10, 2012
+## May 10, 2012: Added bulk import feature
 
-### Added bulk import feature
+A new version of the td command is available that supports [bulk import](bulk-import) feature. It enables you to upload large data set reliably since its operations are designed to be transactional and idempotent.
 
-A new version of the td command is available that supports bulk import feature.
-
-It enables you to upload large data set reliably since its operations are
-designed to be transactional and idempotent.
-
-
-## April 4, 2012
-
-### 'td' gem v0.10.22 released with bugfixes
+## Apr 04, 2012: 'td' gem v0.10.22 released with bugfixes
 
 A new version of the Heroku CLI is available with bugfixes. See the [CLI changelog](https://github.com/treasure-data/td/blob/master/ChangeLog) for details.

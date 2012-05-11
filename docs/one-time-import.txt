@@ -1,0 +1,62 @@
+# One-Time Import
+
+This article explains how to import data with the `td table:import` command.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+
+## Three Categories of Import
+
+#### 1) Streaming Import
+
+The import for continuously generated data. In this case, [td-agent](td-agent) article is more appropriate.
+
+#### 2) Bulk Import
+
+The import for huge amounts of data, which could cause a network transfer failure between your side and Treasure Data. In this case, [Bulk Import](bulk-import) article is more appropriate, because it supports the multi-part upload, data validations, and the transactional commit. But it has additional steps.
+
+#### 3) One-Time Import
+
+The import for importing small amount of data, usually stored within one file, which rarely causes the transfer failrue. In this case, please proceed the following sections.
+
+## The *td table:import* Command
+
+For one-time import, please use `td table:import` command. The command takes the file path and format as arguments, and uploads the data into the cloud. It currently supports the following formats.
+
+### JSON
+
+In order to use JSON, the files should be formatted as follows:
+
+* One JSON-map per line. 
+* A `time` field is required. This field indicates the time in which the event was generated.
+
+The example entries are like this:
+
+    :::term
+    {"action":"login","user":2,"time":"2011-08-02 03:06:32 +0900"}
+    {"action":"login","user":4,"time":"2011-08-02 03:06:32 +0900"}
+    {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
+    ...
+
+You can import your data into the `test_table` table within your `test_db` database as follows.
+
+    :::term
+    $ td table:import test_db test_table \
+      --format json \
+      --time-key time \
+      file1.json file2.json
+
+### Apache Log
+
+The `td table:import` command can also parse Apache Logs stored in the 'combined' format. The command automatically splits the log records into meaningful fields (ex: time, user-agent, etc.) and imports the data into the cloud.
+
+    :::term
+    $ td table:import test_db test_table --format apache access_log.txt
+
+### Syslog
+
+The `td table:import` command can also parse logs stored in the 'syslog' format.
+
+    :::term
+    $ td table:import test_db test_table --format syslog syslog.txt
