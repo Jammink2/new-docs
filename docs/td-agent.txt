@@ -4,23 +4,23 @@ This guide covers how to continuously import the data with `td-agent` daemon.
 
 ## Logs Are Streams, Not Files
 
-The logs are usually roteted by time or size per hourly/daily basis, and the rotation generates the big files. To analyze these logs, these files are imported in batch-style. However, we believe that the logs are the continuously generated *STREAM*, not files in nature.
+Logs are usually rotated on an hourly or daily basis based on time or size. This system quickly produces a bunch of huge log files that needs to be batch imported for further analysis. This is an outdated approach. Logs are better thought to be continuously generated *STREAMS* as opposed to files.
 
-NOTE: Server daemons and applications sometimes offer a configuration parameter for a path to the program’s logfile. This can lead us to think of logs as files. But a better conceptual model is to treat logs as time-ordered streams. - <a href="http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/">Logs Are Streams, Not Files</a> by Adam Wiggins, Heroku
+NOTE: "Server daemons (such as PostgreSQL or Nginx) and applications (such as a Rails or Django app) sometimes offer a configuration parameter for a path to the program’s logfile. This can lead us to think of logs as files. But a better conceptual model is to treat logs as time-ordered streams..." - <a href="http://adam.heroku.com/past/2011/4/1/logs_are_streams_not_files/">Logs Are Streams, Not Files</a> Adam Wiggins, Heroku co-founder.
 
-To continuously import the data into Treasure Data, we're providing the data aggregation daemon called `td-agent` for this purpose. Although bulk imported is also supported, continuous importing via td-agent is highly recommended.
+You can use the data collection daemon called `td-agent` to import data continuously to Treasure Data. We also support bulk-import, but we recommend importing your data continuously via `td-agent`.
 
 ## About td-agent
 
-td-agent is a data collection daemon. It collects or receives logs from various data sources, and upload to Treasure Data.
+td-agent is a data collection daemon. It collects logs from various data sources and uploads them to Treasure Data.
 
 <center><img src="/images/td-agent.png" width="90%"></center>
 
-NOTE: td-agent is fully open-sourced as <a href="https://github.com/fluent/fluentd">fluentd project</a> on the github. td-agent is just the package which contains fluentd, with some extension plugins for Treasure Data. The difference between td-agent and the OSS fluentd version could be found <a href="http://community.fluentd.org/a/what-is-the-difference-with-td-agent-and-fluentd/">here</a>.
+NOTE: `td-agent` is fully open-sourced as <a href="https://github.com/fluent/fluentd">the Fluentd project</a> on Github. `td-agent` is just the package which contains fluentd with some plugins for Treasure Data. You can read up on the difference between `td-agent` and `fluentd` <a href="http://community.fluentd.org/a/what-is-the-difference-with-td-agent-and-fluentd/">here</a>.
 
 ## Install td-agent
 
-Please consult the following articles to setup it.
+Please consult the following articles for setup.
 
 <table>
   <tr>
@@ -39,9 +39,9 @@ Please consult the following articles to setup it.
 
 ## Setup td-agent
 
-After installing td-agent, you may modify your config file. It's installed at /etc/td-agent/td-agent.conf.
+After installing `td-agent`, you can modify your config file. It's installed at /etc/td-agent/td-agent.conf.
 
-The file includes some sample settings. Please open the file and find the following lines:
+The file includes some sample settings. You should find the following lines in your config.
 
     :::term
     # HTTP input
@@ -59,31 +59,31 @@ The file includes some sample settings. Please open the file and find the follow
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-You need to set the `apikey` option, which is a secret key to authenticate your account. Please copy the apikey from ~/.td/td.conf file:
+You need to set the `apikey` option, which is a secret key to authenticate your account. Copy the apikey from ~/.td/td.conf file:
 
     :::term
     $ grep apikey ~/.td/td.conf
     apikey = 1be3de7d01be3de7d01be3de7d01be3de7d01be3
 
-Now please restart the td-agent service.
+Now restart the td-agent service.
 
     :::term
     $ /etc/init.d/td-agent restart
 
 ### Confirm Data Upload
 
-You can add logs using send JSON data using HTTP.
+You can add logs in JSON using HTTP.
 
     :::term
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
-td-agent continuously uploads logs every 1 minute. By sending SIGUSR1 signal, td-agent flushes the buffered logs into the cloud.
+`td-agent` continuously uploads logs every minute. By sending SIGUSR1 signal, you can force `td-agent` to flush the buffered logs into the cloud.
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-You can confirm that the data import by using `td tables`:
+You can confirm that your data was imported successfully by running `td tables`:
 
     :::term
     $ td tables
@@ -93,7 +93,7 @@ You can confirm that the data import by using `td tables`:
     | testdb     | www_access | log  | 1         |
     +------------+------------+------+-----------+
 
-If you have any trouble, please look at /var/log/td-agent.log for further investigation.
+If you run into an issue, your log (/var/log/td-agent.log) is a good place to start your investigation.
 
 ## Files Installed by the Packages
 
@@ -128,23 +128,23 @@ Those files are installed by the rpm or debian packages.
   <tr>
     <td>Plugin Directory</td>
     <td>/etc/td-agent/plugin/</td>
-    <td>Your custom plugins must be located here.</td>
+    <td>Your custom plugins goes here.</td>
   </tr>
   <tr>
     <td>Ruby Interpreter</td>
     <td>/usr/lib{64}/fluent/ruby/bin/ruby</td>
-    <td>Ruby v1.9 is bundled within a package.</td>
+    <td>Ruby v1.9 is bundled with the package.</td>
   </tr>
   <tr>
     <td>jemalloc</td>
     <td>/usr/lib{64}/fluent/jemalloc/lib/libjemalloc.so</td>
-    <td><a href="http://www.canonware.com/jemalloc/">jemalloc</a> is bundled within a package, to avoid memory fragmentations. Loaded by default within a startup script.</td>
+    <td><a href="http://www.canonware.com/jemalloc/">jemalloc</a> is bundled together to avoid memory fragmentation. Loaded by default in the startup script.</td>
   </tr>
 </table>
 
 ### What's Next?
 
-Next, you need to modify the existing applications, to post the records. The following repository contains the sample codes for various languages, frameworks, or middleware. Please have a look at it.
+Next, you need to modify your existing applications to post data to Treasure Data. The articles explain how to do that (with sample code) for various languages, frameworks, and middleware.
 
   * Languages and Frameworks
     * [Java](java)
