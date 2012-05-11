@@ -6,6 +6,7 @@
 */
 
 /* =heroku header
+  Changes for Treasure Data Style
 ---------------------------------------------- */
 #hearoku-header * { /* mini CSS reset */
   border: 0;
@@ -20,11 +21,11 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  padding: 18px 0;
   width:960px;
   margin-left: auto;
   margin-right: auto;
-  background: white;
+  background: url('../images/header_bkg.png') repeat;
+  height: 109px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -45,20 +46,22 @@
 
 #heroku-header #heroku-header-hgroup {
   float: left;
-  margin-left:10px;
-}
+  margin-left: 20px;
+ }
 
 #heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {
-  background: url('/images/TD_logo_horizontal.png') no-repeat;
-  height: 55px;
+  background: url('../images/TD_logo_horizontal.png') no-repeat; 
+  height: 85px;
   display: block;
   text-indent: -99999px;
   width: 341px;
+  margin: 10px;
+  
 }
 
 #heroku-header #heroku-header-nav {
   float: right;
-  margin: 11px 0 0 0;
+  margin: 67px 0 0 0;
 }
 
 #heroku-header #heroku-header-nav:after {
@@ -77,7 +80,7 @@
   padding: 8px 0 9px 0;
   overflow: hidden;
 }
-
+/*
 #heroku-header #heroku-header-nav ul.group {
   background: #231d40;
   -moz-border-radius: 5px;
@@ -86,6 +89,11 @@
   -moz-box-shadow: 0 1px 1px rgba(255, 255, 255, .05), 0 0 1px rgba(0, 0, 0, .5) inset;
   -webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, .05), 0 0 1px rgba(0, 0, 0, .5) inset;
   box-shadow: 0 1px 1px rgba(255, 255, 255, .05), 0 0 1px rgba(0, 0, 0, .5) inset;
+  padding: 8px 10px 9px 10px;
+}
+*/
+
+#heroku-header #heroku-header-nav ul.group {
   padding: 8px 10px 9px 10px;
 }
 
@@ -102,8 +110,9 @@
   zoom: 1;
 }
 
+
 #heroku-header #heroku-header-nav ul li {
-  border-right: 2px solid #534890;
+/*  border-right: 2px solid #534890; */
   float: left;
   padding: 0 12px 0 0;
   margin: 0 12px 0 0;
@@ -123,7 +132,7 @@
 }
 
 #heroku-header #heroku-header-nav ul li a:hover, #heroku-header #heroku-header-nav ul li a:active {
-  color: #fff;
+  color: #fdb913;
 }
 
 #heroku-header #heroku-header-nav #heroku-header-aid li a:link, #heroku-header #heroku-header-nav #heroku-header-aid li a:visited {
@@ -265,29 +274,33 @@
 }
 
 #heroku-header #heroku-header-hgroup h1 a:link, #heroku-header #heroku-header-hgroup h1 a:visited {
-  background: url('/images/TD_logo_horizontal.png') no-repeat;
+  background: url('../images/TD_logo_horizontal.png') no-repeat; 
 }
 
 #heroku-header #heroku-header-nav ul.group {
 /*  background: rgba(46, 54, 70, .5); */
-  background: whitesmoke;
+  background: none;
 }
 
 #heroku-header #heroku-header-nav ul li {
 /*  border-right: 2px solid rgba(46, 54, 70, .9); */
-  border-right: 2px dotted #9DAAC5;
+/*  border-right: 2px dotted #9DAAC5; */
 }
 
 #heroku-header #heroku-header-nav ul li.last {
   border: none;
 }
 
+#heroku-header #heroku-header-nav ul li.current {
+  color: #fdb913;
+}
+
 #heroku-header #heroku-header-nav ul li a:link, #heroku-header #heroku-header-nav ul li a:visited {
-  color: #9daac5;
+  color: #fff;
 }
 
 #heroku-header #heroku-header-nav ul li a:hover, #heroku-header #heroku-header-nav ul li a:active {
-  color: #fff;
+  color: #fdb913;
 }
 
 #heroku-header #heroku-header-nav #heroku-header-aid li a:link, #heroku-header #heroku-header-nav #heroku-header-aid li a:visited {
@@ -325,3 +338,4 @@
     background: url('/images/dev-center/heroku-header-logo-mobile.png') no-repeat left center;
   }
 }
+
