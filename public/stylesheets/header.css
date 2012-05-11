@@ -292,10 +292,6 @@
   border: none;
 }
 
-#heroku-header #heroku-header-nav ul li.current {
-  color: #fdb913;
-}
-
 #heroku-header #heroku-header-nav ul li a:link, #heroku-header #heroku-header-nav ul li a:visited {
   color: #fff;
 }
