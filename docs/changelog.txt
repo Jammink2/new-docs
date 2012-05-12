@@ -4,6 +4,10 @@
 
 A new version of the td command is available that supports [bulk import](bulk-import) feature. It enables you to upload large data set reliably since its operations are designed to be transactional and idempotent.
 
-## Apr 04, 2012: 'td' gem v0.10.22 released with bugfixes
+## Apr 29, 2012: Added bulk export feature.
 
-A new version of the Heroku CLI is available with bugfixes. See the [CLI changelog](https://github.com/treasure-data/td/blob/master/ChangeLog) for details.
+Your data is yours. We've added [bulk export](bulk-export) feature.
+
+## Apr 04, 2012: td v0.10.22 released with bugfixes
+
+A new version of the td CLI is available with bugfixes. See the [CLI changelog](https://github.com/treasure-data/td/blob/master/ChangeLog) for details.
