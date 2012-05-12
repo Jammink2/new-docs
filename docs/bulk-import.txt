@@ -1,62 +1,90 @@
 # Bulk Import
 
-This guide explains how to bulk-import data with the `td` command.
+This guide explains how to bulk-import data with the `td bulk_import` command.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
 
-## Use Cases
+## Three Categories of Import
 
-Bulk import is primarily used in two ways.
+#### 1) Streaming Import
 
-#### First Data Upload
+The import for continuously generated data. In this case, [td-agent](td-agent) article is more appropriate.
 
-The first use case is when you first upload your data to Treasure Data Cloud. Bulk-import is useful if you already have data on hand and want to import it to Treasure Data Cloud.
+#### 2) Bulk Import
 
-#### Periodic Data Upload
+The import for huge amounts of data, which could cause a network transfer failure between your side and Treasure Data. In this case, please proceed to the folowing sections.
 
-The second use case is when you want to periodically import your data into the cloud. Let's suppose that your logs are rotated every hour. In this case, it makes sense to periodically launch the bulk-import tool to import the previous hour's data.
+#### 3) One-Time Import
 
-But for this use case, it is better to continuously upload data using `td-agent`. For further information, please refer to [Continuous Data Import with td-agent](td-agent).
+The import for importing small amount of data, usually stored within one file, which rarely causes the transfer failrue. In this case, please refer [One-Time Import](one-time-import) article.
 
-## The *td import* Command
+## About Bulk Import Feature
 
-The import sub-command in `td` is used for bulk importing. The command takes the file path and format as arguments, and uploads the data into the cloud. It currently supports the following formats.
+Because Treasure Data is the cloud services, the data needs to be transferred via an internet network connection. That causes the problems around huge data (> 100MB) uploads. Those are the examples:
 
-### JSON
+* If the network becomes unstable, the import could fail in halfway through. There's no easy way to pick up from where you left off, and you need to restart the upload from the beggining.
+* Your company sometimes limits the bandwidth for transferring the huge data with a single stream. Also, the limitations of the TCP/IP protocol make it very difficult for applications to saturate a network connection.
 
-In order to use JSON, the files should be formatted as follows:
+To overcome those problems, the bulk import feature was introduced. You can now break your larger data sets into smaller chunks, and upload them in parallel. If the upload of a chunk fails, you can simply restart it per chunk. You'll be able to impove your overall upload speed by taking advantage of parallelism.
 
-* One JSON-map per line. 
-* A `time` field is required. This field indicates the time in which the event was generated.
+## Bulk Import Steps
 
-The example entries are like this:
+### 0) Split Your Data into MessagePack.gz Files
 
-    :::term
-    {"action":"login","user":2,"time":"2011-08-02 03:06:32 +0900"}
-    {"action":"login","user":4,"time":"2011-08-02 03:06:32 +0900"}
-    {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
-    ...
+At first, you need to split your data into [MessagePack](http://msgpack.org/).gz format. Split into the monthly data is preferrable, but could be splitted into daily data if you have >1GB daily compressed data.
 
-You can import your data into the `test_table` table within your `test_db` database as follows.
+### 1) Create a Session
 
-    :::term
-    $ td import test_db test_table \
-      --format json \
-      --time-key time \
-      file1.json file2.json
+At first you need to create a `session`, which denotes the single instance containing the multiple parts. The session is associated with one table.
 
-### Apache Log
+    :::bash
+    $ td bulk_import:create bulk_201203 mydb mytable
 
-The `td import` command can also parse Apache Logs stored in the 'combined' format. The command automatically splits the log records into meaningful fields (ex: time, user-agent, etc.) and imports the data into the cloud.
+### 2) Upload a Part to the Session
 
-    :::term
-    $ td import test_db test_table --format apache access_log.txt
+Then, you can upload the `parts` into the session. Those uploads can be done in parallel.
 
-### Syslog
+    :::bash
+    $ td bulk_import:upload_part bulk_201203 01d 01d.msgpack.gz
+    $ td bulk_import:upload_part bulk_201203 02d 02d.msgpack.gz
+    $ td bulk_import:upload_part bulk_201203 03d 03d.msgpack.gz
 
-The `td import` command can also parse logs stored in the 'syslog' format.
+If the upload failed in halfway through, you can retry any time.
 
-    :::term
-    $ td import test_db test_table --format syslog syslog.txt
+    $ td bulk_import:upload_part bulk_201203 01d 01d.msgpack.gz
+
+Now, let's list the uploaded parts by `bulk_import:show`.
+
+    :::bash
+    $ td bulk_import:show bulk_201203
+
+### 3) Perform
+
+`bulk_import:perform` does a format conversion within a cloud. Your data is converted into more efficient format, and it takes time. The conversion is done in parallel, by execuating MapReduce jobs.
+
+    :::bash
+    $ td bulk_import:freeze bulk_201203
+    $ td bulk_import:perform bulk_201203 -w
+    $ td bulk_import:list bulk_201203
+    +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
+    | Name | Table     | Status | Frozen | JobID | Valid Parts | Error Parts | Valid Records | Error Records |
+    +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
+    | t01  | sfdb.bi02 | Ready  |        | 70220 | 2           | 1           | 100           | 10            |
+    +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
+
+### 3) Check Error Records
+
+After perform, some records could be invalid. You can list those invalid records by `bulk_import:error_records`.
+
+    :::bash
+    $ td bulk_import:error_records bulk_201203
+
+### 4) Commit
+
+If the uploaded data is correct, `bulk_import:commit` command will transactionally import the data into the table.
+
+    :::bash
+    $ td bulk_import:commit bulk_201203
+    $ td bulk_import:delete bluk_201203
