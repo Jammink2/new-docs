@@ -87,4 +87,4 @@ If the uploaded data is correct, `bulk_import:commit` command will transactional
 
     :::bash
     $ td bulk_import:commit bulk_201203
-    $ td bulk_import:delete bluk_201203
+    $ td bulk_import:delete bulk_201203
