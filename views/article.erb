@@ -4,6 +4,9 @@
   <hgroup>
     <h1><%= @title %></h1>
   </hgroup>
+  <% if @congrats %>
+    <p><b><font color="green">Congratulations! Your account was created!</font></b></p>
+  <% end %>
   <%= @intro %>
   <% if @toc.size > 0 %>
     <section id="table-of-contents"><h3>Table of Contents</h3>

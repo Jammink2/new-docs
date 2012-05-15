@@ -53,7 +53,7 @@ end
 
 get '/articles/:article' do
   cache_long
-  render_article params[:article]
+  render_article params[:article], params[:congrats]
 end
 
 get '/css/docs.css' do
@@ -99,7 +99,7 @@ helpers do
     status 404
   end
 
-  def render_article(article)
+  def render_article(article, congrats)
     source = File.read(article_file(article))
     @article = Article.load(article, source)
 
@@ -108,6 +108,7 @@ helpers do
     @intro   = @article.intro
     @toc     = @article.toc
     @body    = @article.body
+    @congrats = congrats ? true : false
 
     erb :article
   rescue Errno::ENOENT
