@@ -130,8 +130,8 @@
     (function(event_type, landing_page_type) {
       var query_string_pairs = location.search.substr(1).split('&');
       for (var i = 0; i < query_string_pairs.length; ++i) {
-        if (query_string_pairs[i].substr(0, 2) == 's=') {
-          mixpanel.register_once({ s: query_string_pairs[i].substr(2) });
+        if (query_string_pairs[i].substr(0, 2) == 'source=') {
+          mixpanel.register_once({ source: query_string_pairs[i].substr(2) });
           break;
         }
       }
