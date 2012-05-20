@@ -19,7 +19,7 @@ Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for you
 
 * [MacOS](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fmac)
 * [Windows](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fwin)
-* [Linux](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Flinux)
+* Linux ([Redhat/CentOS](http://help.treasure-data.com/kb/installation/installing-td-command-on-redhat-and-centos), [Debian/Ubuntu](http://help.treasure-data.com/kb/installation/installing-td-command-on-debian-and-ubuntu))
 * or `gem install td`
 
 Step 3: Authorize
