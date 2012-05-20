@@ -40,6 +40,28 @@ get '/' do
   redirect '/articles/quickstart'
 end
 
+get '/googlea3e57c0b93e4a272.html' do
+  erb :google_verification, :layout => false
+end
+
+get '/robots.txt' do
+  content_type 'text/plain'
+  "User-agent: *\nSitemap: /sitemap.xml"
+end
+
+get '/sitemap.xml' do
+  @articles = []
+  sections.each { |_, _, categories|
+    categories.each { |_, _, articles|
+      articles.each { |name, _, _|
+        @articles << name
+      }
+    }
+  }
+  content_type 'text/xml'
+  erb :sitemap, :layout => false
+end
+
 get '/search' do
   page = params[:page].to_i
   search, prev_page, next_page = search_for(params[:q], page)
