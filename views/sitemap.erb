@@ -3,7 +3,7 @@
   <% @articles.each do |article| %>
     <% if File.exist?("#{options.root}/docs/#{article}.txt") %>
       <url>
-        <loc>/<%= article %></loc>
+        <loc>/articles/<%= article %></loc>
         <lastmod><%= File::mtime("#{options.root}/docs/#{article}.txt").strftime("%Y-%m-%d") %></lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>

@@ -40,13 +40,9 @@ get '/' do
   redirect '/articles/quickstart'
 end
 
-get '/googlea3e57c0b93e4a272.html' do
-  erb :google_verification, :layout => false
-end
-
 get '/robots.txt' do
   content_type 'text/plain'
-  "User-agent: *\nSitemap: /sitemap.xml"
+  "User-agent: *\nSitemap: /sitemap.xml\n"
 end
 
 get '/sitemap.xml' do
