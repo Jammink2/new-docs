@@ -15,9 +15,12 @@ Sign-up for Treasure Data, unless you already have done so.
 Step 2: Install Treasure Data Toolbelt
 ------------------------------------------
 
-Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment.
+Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment. It contains `td` command, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
 
-The toolbelt contains `td`, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
+* [MacOS](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fmac)
+* [Windows](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fwin)
+* [Linux](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Flinux)
+* or `gem install td`
 
 Step 3: Authorize
 -----------------
