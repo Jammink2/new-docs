@@ -17,10 +17,10 @@ Step 2: Install Treasure Data Toolbelt
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment. It contains `td` command, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
 
-* [MacOS](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fmac)
-* [Windows](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fwin)
+* [MacOS Installer](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fmac)
+* [Windows Installer](http://crm.treasure-data.com/lead/download_toolbelt?url=http%3A%2F%2Ftoolbelt.treasure-data.com%2Fwin)
 * Linux ([Redhat/CentOS](http://help.treasure-data.com/kb/installation/installing-td-command-on-redhat-and-centos), [Debian/Ubuntu](http://help.treasure-data.com/kb/installation/installing-td-command-on-debian-and-ubuntu))
-* or `gem install td`
+* or `gem install td`. `td` command works both on Ruby 1.8 and 1.9.
 
 Step 3: Authorize
 -----------------
