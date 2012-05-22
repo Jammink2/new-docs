@@ -51,7 +51,7 @@ Let’s generate a sample Apache log and import it to the cloud. `td sample:apac
     $ tail -n 1 apache.json
     {"host":"200.129.205.208","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":62,"agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11","time":1334035906}
 
-After several seconds, the records will be imported into our database.
+After 20 to 60 seconds, the records will be imported into our database.
 
     :::term
     $ td tables
