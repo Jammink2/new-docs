@@ -1,5 +1,3 @@
-<script type="text/javascript">var mpq=[];mpq.push(["init","a71e7fcd0b07e91e9c89cbcc1e528c79"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})(); mpq.track("ViewArticle_<%= @article.topic %>");</script>
-
 <article>
   <hgroup>
     <h1><%= @title %></h1>
@@ -21,5 +19,12 @@
 </article>
 
 <% if @article.topic == 'quickstart' %>
-<img src="http://crm.treasure-data.com/lead/view_quickstart_document" />
+  <img src="http://crm.treasure-data.com/lead/view_quickstart_document" />
 <% end %>
+
+<% if ['java','ruby','python','php','perl','nodejs','scala','apache','td-agent-tail'].include?(@article.topic) %>
+  <script type="text/javascript">mixpanel.register_once({app_lang: "<%= @article.topic %>"});</script>
+  <img src="http://crm.treasure-data.com/lead/view_application_language?lang=<%= @article.topic %>" />
+<% end %>
+
+<script type="text/javascript">mixpanel.track("ViewArticle_<%= @article.topic %>");</script>
