@@ -10,7 +10,7 @@ Let's get started!
 Step 1: Sign-Up
 ---------------
 
-Sign-up for Treasure Data, unless you already have done so.
+[Sign-up](http://treasure-data.com/) for Treasure Data, unless you already have done so.
 
 Step 2: Install Treasure Data Toolbelt
 ------------------------------------------
@@ -41,12 +41,7 @@ Now you’re ready! Let’s get your feet wet by importing a sample Apache log. 
     :::term
     $ td db:create testdb
     $ td table:create testdb www_access
-    $ td tables
-    +------------+------------+------+-----------+
-    | Database   | Table      | Type | Count     |
-    +------------+------------+------+-----------+
-    | testdb     | www_access | log  | 0         |
-    +------------+------------+------+-----------+
+    Table 'testdb.www_access' is created.
 
 Let’s generate a sample Apache log and import it to the cloud. `td sample:apache` generates 5,000 lines of Apache log data as JSON. td table:import takes a JSON file and uploads it to the cloud.
 
