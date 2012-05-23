@@ -1,0 +1,70 @@
+# JDBC Driver
+
+This guide covers how to use [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver for Treasure Data. By using this driver, you can operate on Treasure Data with a standard JDBC interface.
+
+## Download
+
+You can download the driver itself from here. The driver is still in beta quality, so please report to us if you have any problems.
+
+* 2012/05/23: [td-jdbc-0.1.0-SNAPSHOT-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/td-jdbc/td-jdbc-0.1.0-SNAPSHOT-jar-with-dependencies.jar)
+
+## Query Execution Internals
+
+Because Treasure Data is a cloud service, the behavior of JDBC driver is slightly different from those for the traditional RDBMs.
+
+#### SELECT Query
+
+If the driver receives SELECT query, it's issued into the cloud. While running the jobs on the cloud, the driver *keeps polling* the job results. This might take several hours, so using background thread is recommended.
+
+#### INSERT Query
+
+If the driver receives INSERT query, the data is first buffered into the local memory. Those are uploaded into the cloud every 5 minutes. Please be careful that the upload doesn't occur in realtime.
+
+## Sample Java Program
+
+Here's a sample Java program, which executes the SELECT query. This counts the number of records within testdb.www_access.
+
+### JDBCSample.java
+
+    :::java
+    import java.io.IOException;
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.ResultSet;
+    import java.sql.Statement;
+    import java.util.Properties;
+    
+    import com.treasure_data.jdbc.TestTreasureDataDriver;
+    
+    public class JDBCSample {
+      public static void loadSystemProperties() throws IOException {
+        Properties props = System.getProperties();
+        props.load(TestTreasureDataDriver.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
+      }
+    
+      public static void main(String[] args) throws Exception {
+        loadSystemProperties();
+        try {
+          Class.forName("com.treasure_data.jdbc.TreasureDataDriver");
+        } catch (ClassNotFoundException e) {
+          e.printStackTrace();
+          System.exit(1);
+        }
+    
+        Connection conn = DriverManager.getConnection(
+                "jdbc:td://api.treasure-data.com/testdb", "", "");
+        Statement stmt = conn.createStatement();
+        String sql = "select count(1) from www_access";
+        System.out.println("Running: " + sql);
+        ResultSet res = stmt.executeQuery(sql);
+        while (res.next()) {
+          System.out.println(String.valueOf(res.getObject(1)));
+        }
+      }
+    }
+
+### treasure-data.properties
+
+    :::text
+    td.logger.agentmode=false
+    td.logger.api.key=<your API key>
