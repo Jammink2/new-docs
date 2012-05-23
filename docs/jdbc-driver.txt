@@ -67,4 +67,4 @@ Here's a sample Java program, which executes the SELECT query. This counts the n
 
     :::text
     td.logger.agentmode=false
-    td.logger.api.key=<your API key>
+    td.api.key=<your API key>
