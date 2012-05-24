@@ -94,6 +94,10 @@ section 'reference', 'Reference' do
     article 'heroku-rest', 'Data Import from REST API on Heroku'
     article 'heroku-notes', 'Heroku Addon Notes'
   end
+  category 'engine-yard', 'EngineYard Addon' do
+    article 'engine-yard-ruby', 'Ruby Apps on EngineYard'
+    article 'engine-yard-rails', 'Rails Apps on EngineYard'
+  end
 end
 
 section 'ab', 'Accounts & Billing' do

@@ -126,8 +126,8 @@ For high-traffic websites (more than 5 application nodes), we recommend using a 
 
 We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
 
-* [Schema Management](/articles/schema)
-* [Hive Query Language](http://localhost:9393/articles/hive)
+* [Schema Management](schema)
+* [Hive Query Language](hive)
 
 For more specific assistance, please visit our support resources:
 

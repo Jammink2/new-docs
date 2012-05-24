@@ -51,7 +51,7 @@ In the "Getting Started" guide, we set up a table with 'user' (int type) and 'ac
 
 You can now query this table without using *v*.
 
-    :::term
+    :::sql
     $ td query -w -d hoge "SELECT user, COUNT(*) AS cnt
       FROM www_access
       WHERE action='login'
@@ -59,7 +59,7 @@ You can now query this table without using *v*.
 
 Using *v* still works properly.
 
-    :::term
+    :::sql
     $ td query -w -d testdb "SELECT v['user'], COUNT(*) AS cnt
      FROM www_access
      WHERE v['action']='login' 
@@ -69,7 +69,7 @@ Using *v* still works properly.
 
 For queries, we leverage the Hive Query Language. 
 
-* [Hive Query Language](http://localhost:9393/articles/hive)
+* [Hive Query Language](hive)
 
 For more specific assistance, please visit our support resources:
 
