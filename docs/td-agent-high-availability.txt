@@ -1,43 +1,43 @@
 # High Availability td-agent Configuration
 
-This guide covers the advanced configurations of `td-agent`, especially for the environment which requires high availability.
+For high-traffic websites, we recommend using a high availability configuration of `td-agent`. 
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * Basic td-agent setup knowledge
+  * Basic knowledge of td-agent.
 
 ## Message Delivery Semantics
 
-td-agent is designed for event-log delivery system. there are multiple possible delivery guarantees that could be provided:
+td-agent is designed primarily for event-log delivery systems.
 
-* *At most once*: Messages are immediately transfered and never retried if it succeeded. So they can't be given out twice, but many failure scenarios may lead to losing messages.
-* *At least once*: Each message will be delivered at least once, but in failure cases may be delivered twice.
-* *Exactly once*: This is what people actually want, each message is delivered once and only once.
+In such systems, several delivery guarantees are possible:
 
-If you say you "can't lose a single event, and they must be transferred *exactly at once*," understand that that means you'll eventually need to stop ingesting events if you run out of the write capacity. The best way to deal with this, is to use synchronous logging and return the proper error responses if you can't accept the event.
+* *At most once*: Messages are immediately transferred. If the transfer succeeds, the message is never sent out again. However, many failure scenarios can cause lost messages (ex: no more write capacity)
+* *At least once*: Each message is delivered at least once. In failure cases, messages may be delivered twice.
+* *Exactly once*: Each message is delivered once and only once. This is what people want.
 
-By having the proper write capacity and collector failover chains, the message lost will be drastically reduced. Note that you'll get poor performance in this case.
+If the system "can't lose a single event", and must also transfer "*exactly once*", then the system must stop ingesting events when it runs out of write capacity. The proper approach would be to use synchronous logging and return errors when the event cannot be accepted. 
 
-That's why *td-agent takes 'At most once' guarantee*. it's designed for collecting massive amount of data, without impacting the application performance. To achieve that, the logging is done in an asynchronous manner. The performance is much better but the losses of the message delivery could happen.
+That's why *td-agent guarantees 'At most once' transfer*. In order to collect massive amounts of data without impacting application performance, a data logger must transfer data asynchronously. Performance improves at the cost of potential delivery failure.
 
-That said, most loss scenarios are preventable. The following section describes how to setup td-agent topology for HA.
+However, most failure scenarios are preventable. The following sections describe how to set up td-agent's topology for high availability.
 
 ## Network Topology
 
-For high availability, we assume '*log forwarders*' and '*log aggregators*' are located in your network.
+To configure td-agent for high availability, we assume that your network consists of '*log forwarders*' and '*log aggregators*'.
 
 <img src="/images/td-agent_ha.png" width="600px">
 
-Usually '*log forwarders*' are installed on every nodes, and receive local events. Once it receives the event, they forward it to the 'log aggregators' via network.
+'*log forwarders*' are typically installed on every node to receive local events. Once an event is received, they forward it to the 'log aggregators' through the network.
 
-'*log aggregators*' are the daemons, which continuously receives the events from forwarders. They buffer the events, and periodically upload into the cloud.
+'*log aggregators*' are daemons that continuously receive events from the log forwarders. They buffer the events and periodically upload the data into the cloud.
 
-td-agent can acts *both* as log forwarders and log aggreagators. They can be swiched via configuration. Next section describes how to setup them. We assume active log aggregator has ip '192.168.0.1' and backup has ip '192.168.0.2'.
+td-agent can act as either a log forwarder or a log aggreagator, depending on its configuration. The next sections describes the setups. We assume that the active log aggregator has ip '192.168.0.1' and that the backup has ip '192.168.0.2'.
 
 ## Log Forwarder Configuration
 
-At the log forwarder, please add those lines to your /etc/td-agent/td-agent.conf. This will transfer logs to the log aggregators.
+Please add the following lines to the /etc/td-agent/td-agent.conf file for your log forwarders. This will configure your log forwarders to transfer logs to log aggregators.
 
     :::term
     # TCP input
@@ -73,15 +73,15 @@ At the log forwarder, please add those lines to your /etc/td-agent/td-agent.conf
       buffer_path /var/log/td-agent/buffer/forward
     
       # use longer flush_interval to reduce CPU usage.
-      # this is trade-off of latency.
+      # note that this is a trade-off against latency.
       flush_interval 60s
     </match>
 
-When the active aggregator (192.168.0.1) dies, the logs are started sending to the backup/secondary aggregator (192.168.0.2). If both servers die, the logs are buffered on the disks at the forwarder node.
+When the active aggregator (192.168.0.1) dies, the logs will instead be sent to the backup aggregator (192.168.0.2). If both servers die, the logs are buffered on-disk at the corresponding forwarder nodes.
 
 ## Log Aggregator Configuration
 
-At the log aggregator, please set those lines to /etc/td-agent/td-agent.conf. The log transfer is done via TCP input source.
+Please add the following lines to the /etc/td-agent/td-agent.conf file for your log aggregators. The input source for the log transfer is TCP.
 
     :::term
     # TCP input
@@ -99,9 +99,9 @@ At the log aggregator, please set those lines to /etc/td-agent/td-agent.conf. Th
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-The received logs are buffered, and periodically uploaded into the cloud. If the upload fails, the logs are stored on the disks, until retransmission succeeds.
+The incoming logs are buffered, then periodically uploaded into the cloud. If upload fails, the logs are stored on the local disk until the retransmission succeeds.
 
-If you want to write logs to file in addition to TD, please use 'copy' output. This is an example configuration of writing logs into TD, file, and MongoDB.
+If you want to write logs to file in addition to TD, please use the 'copy' output. The following code is an example configuration for writing logs to TD, file, and MongoDB simultaneously.
 
     :::term
     <match td.*.*>
@@ -130,32 +130,32 @@ If you want to write logs to file in addition to TD, please use 'copy' output. T
 
 ### Forwarder Failure
 
-When forwarder receives an event from applications, the events are first written into disk buffer (specified by buffer_path). And after every flush_interval, the buffered data is forwarded to aggregators.
+When a log forwarder receives events from applications, the events are first written into a disk buffer (specified by buffer_path). After every flush_interval, the buffered data is forwarded to aggregators.
 
-Therefore, if td-agent process dies, the buffered data is properly transferred into aggregators after the restart. If the network between forwarders and aggregators are broken, the data transfer is automatically retried. However, here're some message lost scenarios:
+This process is inherently robust against data loss. If a log forwarder's td-agent process dies, the buffered data is properly transferred to its aggregator after it restarts. If the network between forwarders and aggregators breaks, the data transfer is automatically retried. That being said, possible message loss scenarios do exist:
 
-* The process dies, just after receiving the events, but before writing into the buffer.
-* The forwarder disk is broken, and file buffer is lost.
+* The process dies immediately after receiving the events, but before writing them into the buffer.
+* The forwarder's disk is broken, and the file buffer is lost.
 
 ### Aggregator Failure
 
-When aggregator receives an event from forwarders, the events are first written into disk buffer (specified by buffer_path). And after every flush_interval, the buffered data is uploaded into the cloud.
+When log aggregators receive events from log forwarders, the events are first written into a disk buffer (specified by buffer_path). After every flush_interval, the buffered data is uploaded into the cloud.
 
-Therefore, if td-agent process dies, the buffered data is properly transferred into aggregators after the restart. If the network between aggregators and cloud are broken, the data transfer is automatically retried.
+This process is inherenty robust against data loss. If a log aggregator's td-agent process dies, the data from the log forwarder is properly retransferred after it restarts. If the network between aggregators and the cloud breaks, the data transfer is automatically retried.
 
-However, here're some message lost scenarios:
+That being said, possible message loss scenarios do exist:
 
-* The process dies, just after receiving the events, but before writing into the buffer.
-* The forwarder disk is broken, and file buffer is lost.
+* The process dies immediately after receiving the events, but before writing them into the buffer.
+* The aggregator's disk is broken, and the file buffer is lost.
 
 ## What's Next?
 
-Now you've seen the HA configuration for td-agent. For further information, please refer those documents.
+Now you've learned about td-agent's high availability configurations. For further information, please refer to the documents below:
 
 * [Fluentd Documentation](http://fluent.github.com/doc/) (td-agent is open-sourced as `Fluentd`)
 * [Fluentd Knowledge Base](http://community.fluentd.org/browse/help-center/)
 * [Treasure Data Suppport](http://treasure-data.tenderapp.com/discussions)
 
-td-agent is maintained by Treasure Data, Inc. and released continuously. The changelog is available here.
+td-agent is actively maintained by Treasure Data, Inc. The changelog is available here:
 
-* [ChangeLog of td-agent](http://help.treasure-data.com/kb/installing-td-agent-daemon/changelog-of-td-agent)
+* [td-agent ChangeLog](http://help.treasure-data.com/kb/installing-td-agent-daemon/changelog-of-td-agent)
