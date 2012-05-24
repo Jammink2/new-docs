@@ -22,7 +22,7 @@
   <img src="http://crm.treasure-data.com/lead/view_quickstart_document" />
 <% end %>
 
-<% if ['java','ruby','python','php','perl','nodejs','scala','apache','td-agent-tail','heroku-ruby','heroku-rails','heroku-java','heroku-rest'].include?(@article.topic) %>
+<% if ['java','ruby','python','php','perl','nodejs','scala','apache','td-agent-tail','heroku-ruby','heroku-rails','heroku-java','heroku-rest','engine-yard-ruby','engine-yard-rails'].include?(@article.topic) %>
   <script type="text/javascript">mixpanel.register_once({app_lang: "<%= @article.topic %>"});</script>
   <img src="http://crm.treasure-data.com/lead/view_application_language?lang=<%= @article.topic %>" />
 <% end %>
