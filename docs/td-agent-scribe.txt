@@ -1,6 +1,6 @@
-# Storing Logs via Scribe protocol
+# Storing Logs via Scribe Protocol
 
-td-agent is able to talk Scribe protocol (Thrift-based), to co-exist or replace the existing Scribe infrastructure.
+td-agent understands the Scribe protocol (Thrift-based). It can also co-exist or replace your existing Scribe infrastructure.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ td-agent is able to talk Scribe protocol (Thrift-based), to co-exist or replace 
 
 ## Using Scribe input
 
-By using the configuration below, you can use a Scribe input plugin.
+The configuration below enables the Scribe input plugin:
 
     :::term
     <source>
@@ -17,7 +17,7 @@ By using the configuration below, you can use a Scribe input plugin.
       port 1463
     </source>
 
-The `category` field of Scribe protocol is used as a `tag` of td-agent. If you want to store your data into www_access table within test_db database, please emit the LogEntry like below (Ruby example).
+The `category` field of the Scribe protocol is used as a `tag` for td-agent. If you want to store your data in the www_access table within the test_db database, please send your LogEntry as shown below (Ruby example).
 
     :::ruby
     entry = LogEntry.new
@@ -25,7 +25,7 @@ The `category` field of Scribe protocol is used as a `tag` of td-agent. If you w
     entry.message = 'abcde'
     client.Log([entry])
 
-This message is organized as follows.
+This message is organized as shown below.
 
     :::term
     {
@@ -34,7 +34,7 @@ This message is organized as follows.
 
 ## Message as JSON string
 
-In many cases, the message field contains JSON string for semi-structured data. We have an option *msg_format*, to have an in-place parsing within td-agent.
+The message field of semi-structured data often contains JSON strings. td-agent uses the *msg_format* option to parse the JSON string in-place.
 
     :::term
     <source>
@@ -43,7 +43,7 @@ In many cases, the message field contains JSON string for semi-structured data. 
       msg_format json
     </source>
 
-Then, let's emit the record like below. Be careful that entry.message is a JSON string.
+Next, please send records as shown below. Please note that entry.message is a JSON string.
 
     :::ruby
     entry = LogEntry.new
@@ -51,7 +51,7 @@ Then, let's emit the record like below. Be careful that entry.message is a JSON 
     entry.message = {'a' => 'b', 'c' => d}.to_json
     client.Log([entry])
 
-This message is	organized as follows.
+This message is organized as shown below.
 
     :::term
     {
@@ -61,13 +61,13 @@ This message is	organized as follows.
 
 ## Other Formats
 
-*msg_format* option supports either `text`, `json`, or `url_param`. `url_param` format is like below.
+The *msg_format* option supports `text`, `json`, and `url_param`. The format for `url_param` is as follows.
 
     :::term
     key1=val1&key2=val2&key3=val3
 
-## Further Readings
+## Further Reading
 
-Please refer below, for more options of Scribe input plugin. The plugin also supports Scribe *output*.
+For more information regarding the Scribe input plugin, please refer to the document below. The plugin also supports Scribe *output*.
 
 * [fluent-plugin-scribe](https://github.com/fluent/fluent-plugin-scribe)
