@@ -4,7 +4,7 @@ You might want to store your logs from many places, using HTTP protocol.
 
 ## Configuration
 
-Please open the configuration file (*/etc/td-agent/td-agent.conf*) and add the following lines.
+Please add the following lines to your */etc/td-agent/td-agent.conf* file.
 
     :::term
     # HTTP input
@@ -22,20 +22,20 @@ Please open the configuration file (*/etc/td-agent/td-agent.conf*) and add the f
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-## Data Upload via HTTP protocol
+## Uploading Data via HTTP
 
-You can add logs using send JSON data using HTTP. Please use POST method here, and specify the database and table name by URL.
+You can add logs via HTTP by sending JSON data. Please use the POST method and specify the database and table name by URL.
 
     :::term
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
-td-agent continuously uploads logs every 1 minute. By sending SIGUSR1 signal, td-agent flushes the buffered logs into the cloud.
+td-agent continuously uploads logs every minute. Sending a SIGUSR1 signal will flush the buffer; upload will start immediately.
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-You can confirm that the data import by using `td tables`:
+To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
     :::term
     $ td tables
