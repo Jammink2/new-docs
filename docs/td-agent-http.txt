@@ -1,6 +1,6 @@
 # Storing Logs via HTTP protocol
 
-You might want to store your logs from many places, using HTTP protocol.
+You can use HTTP to add logs from many places to td-agent.
 
 ## Configuration
 
@@ -45,4 +45,4 @@ To confirm that your data has been uploaded successfully, issue the *td tables* 
     | testdb     | www_access | log  | 1         |
     +------------+------------+------+-----------+
 
-If you have any trouble, please look at /var/log/td-agent.log for further investigation.
+If you run into an issue, your log (/var/log/td-agent.log) is a good place to start your investigation.
