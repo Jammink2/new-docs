@@ -99,3 +99,116 @@ You can confirm that data is getting uploaded successfully with the `td tables` 
     +------------+------------+------+-----------+
     | test_db    | test_table | log  | 21321     |
     +------------+------------+------+-----------+
+
+## Sample Queries
+
+Those are the sample queries to calculate the interesting results.
+
+### Top User Agents
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT v['agent'] AS agent, COUNT(1) AS cnt \
+       FROM www_access \
+       GROUP BY v['agent'] ORDER BY cnt DESC LIMIT 3"
+    ...
+    Result:
+    +---------------------------------------------------------------------------+-----+
+    | agent                                                                     | cnt |
+    +---------------------------------------------------------------------------+-----+
+    | Mozilla/5.0 (Windows NT 6.0; rv:10.0.1) Gecko/20100101 Firefox/10.0.1     | 630 |
+    | Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)    | 497 |
+    | Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)  | 341 |
+    +---------------------------------------------------------------------------+-----+
+
+### Top Paths
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT v['path'] AS path, COUNT(1) AS cnt \
+       FROM www_access \
+       GROUP BY v['path'] ORDER BY cnt DESC LIMIT 3"
+    ...
+    Result:
+    +-----------------------+-----+
+    | path                  | cnt |
+    +-----------------------+-----+
+    | /category/electronics | 639 |
+    | /category/software    | 416 |
+    | /category/books       | 285 |
+    +-----------------------+-----+
+
+### Top Referers within a Specific Day
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT v['referer'] AS referer, COUNT(1) AS cnt \
+       FROM www_access6 \
+       WHERE \
+         unix_timestamp('2012-05-26', 'yyyy-MM-dd') <= time
+         AND time < unix_timestamp('2012-05-27', 'yyyy-MM-dd')
+       GROUP BY v['referer'] ORDER BY cnt DESC LIMIT 3"
+    ...
+    Result:
+    +-----------------------+------+
+    | referer               | cnt  |
+    +-----------------------+------+
+    | -                     | 1939 |
+    | /category/electronics | 327  |
+    | /category/software    | 235  |
+    +-----------------------+------+
+
+### Access Count by Day
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT to_date(from_unixtime(time)) AS day, COUNT(1) AS cnt \
+       FROM www_access \
+       GROUP BY to_date(from_unixtime(time))"
+    ....
+    Result:
+    +------------+------+
+    | day        | cnt  |
+    +------------+------+
+    | 2012-05-26 | 5000 |
+    | 2012-05-27 | 6000 |
+    +------------+------+
+
+### Status Code Distribution by Day
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT to_date(from_unixtime(time)) AS day, v['code'] AS code, COUNT(1) AS cnt \
+       FROM www_access \
+       GROUP BY to_date(from_unixtime(time)), v['code']"
+    ....
+    Result:
+    +------------+------+------+
+    | day        | code | cnt  |
+    +------------+------+------+
+    | 2012-05-26 | 200  | 4981 |
+    | 2012-05-26 | 404  | 17   |
+    | 2012-05-26 | 500  | 2    |
+    | 2012-05-27 | 200  | 4481 |
+    | 2012-05-27 | 404  | 517  |
+    | 2012-05-27 | 500  | 2    |
+    +------------+------+------+
+
+### Min/Max/Avg Size by Day
+
+    :::term
+    $ td query -w -d testdb \
+      "SELECT to_date(from_unixtime(time)) AS day, \
+         max(cast(v['size'] AS INT)) AS max, \
+         min(cast(v['size'] AS INT)) AS min, \
+         avg(cast(v['size'] AS INT)) AS avg  \
+       FROM www_access \
+       GROUP BY to_date(from_unixtime(time))"
+    ...
+    Result:
+    +------------+-----+-----+---------+
+    | day        | max | min | avg     |
+    +------------+-----+-----+---------+
+    | 2012-05-26 | 139 | 40  | 89.0056 |
+    | 2012-05-27 | 100 | 30  | 95.0056 |
+    +------------+-----+-----+---------+
