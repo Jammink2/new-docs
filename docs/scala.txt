@@ -10,7 +10,7 @@ This article explains how to use the td-logger-java library.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * JVM, Scala, [sbt](https://github.com/harrah/xsbt) v0.11 or later.
 
-NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> document explains how to use Scala applications on Heroku.
+NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> explains how to use Java applications on Heroku.
 
 ## Installing td-agent
 

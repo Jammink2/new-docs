@@ -11,6 +11,8 @@ This article explains how to use the td-logger-java library.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Java 6 or higher (for local testing).
 
+NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> explains how to use Java applications on Heroku.
+
 ## Installing td-agent
 
 td-logger-java requires `td-agent` to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
