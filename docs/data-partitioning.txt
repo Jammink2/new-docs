@@ -1,0 +1,8 @@
+# Data Partitioning
+
+Once you store the data into Treasure Data, all the data is partitioned based on their timestamp. More specifically, our data store automatically partitions the data with hourly basis.
+
+Threfore, you can avoid processing the whole dataset by having the constraints for 'time' column. This will give you a better performance.
+
+    :::sql
+    SELECT COUNT(1) FROM table WHERE time > 1338311795
