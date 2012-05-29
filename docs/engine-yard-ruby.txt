@@ -28,14 +28,13 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
     # Initialization
     require 'td'
     TreasureData::Logger.open('sample_database',
-                              :apikey=>ENV['TREASURE_DATA_API_KEY'],
                               :auto_create_table=>true)
     
     # Example1: login event
     TD.event.post('login', {:uid=>123})
     
     # Example2: follow event
-    TD.event.post('follow', {:uid=>123, :from=>'TD', :to=>'Heroku'})
+    TD.event.post('follow', {:uid=>123, :from=>'TD', :to=>'EngineYard'})
     
     # Example3: pay event
     TD.event.post('pay',
