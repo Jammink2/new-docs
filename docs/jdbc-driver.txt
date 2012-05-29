@@ -8,6 +8,8 @@ You can download the driver itself from here. The driver is still in beta qualit
 
 * 2012/05/23: [td-jdbc-0.1.0-SNAPSHOT-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/td-jdbc/td-jdbc-0.1.0-SNAPSHOT-jar-with-dependencies.jar)
 
+NOTE: This driver works only with Treasure Data, doesn't work with other environments like your local Hadoop/Hive cluster.
+
 ## Query Execution Internals
 
 Because Treasure Data is a cloud service, the behavior of JDBC driver is slightly different from those for the traditional RDBMs.
