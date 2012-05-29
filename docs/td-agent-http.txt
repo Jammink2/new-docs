@@ -20,6 +20,7 @@ Please add the following lines to your */etc/td-agent/td-agent.conf* file.
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 ## Uploading Data via HTTP

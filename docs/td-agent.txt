@@ -57,6 +57,7 @@ The file includes some sample settings. You should find the following lines in y
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 You need to set the `apikey` option, which is a secret key to authenticate your account. Copy the apikey from ~/.td/td.conf file:

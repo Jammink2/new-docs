@@ -20,6 +20,7 @@ The configuration below will store logs in your local disk (*/mnt/archive/logs*)
         auto_create_table
         buffer_type file
         buffer_path /var/log/td-agent/buffer/td
+        use_ssl true
       </store>
     </match>
 
@@ -44,6 +45,7 @@ The configuration below will store logs in your local MongoDB ReplicaSet and in 
         auto_create_table
         buffer_type file
         buffer_path /var/log/td-agent/buffer/td
+        use_ssl true
       </store>
     </match>
 

@@ -97,6 +97,7 @@ Please add the following lines to the /etc/td-agent/td-agent.conf file for your 
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 The incoming logs are buffered, then periodically uploaded into the cloud. If upload fails, the logs are stored on the local disk until the retransmission succeeds.
@@ -112,6 +113,7 @@ If you want to write logs to file in addition to TD, please use the 'copy' outpu
         auto_create_table
         buffer_type file
         buffer_path /var/log/td-agent/buffer/td
+        use_ssl true
       </store>
       <store>
         type file

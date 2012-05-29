@@ -28,6 +28,7 @@ NOTE: This feature is supported for td-agent v1.1.5.1 and higher.
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 The example log file is like below.
@@ -105,6 +106,7 @@ Here's an example configuration.
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 `/etc/td-agent/filter.rb` is the filter script (shown below). It filters out all the lines where the field "field0" is "certain_value". If the error happens, its output goes into `/var/log/td-agent/filter.rb.log`.

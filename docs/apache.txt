@@ -74,6 +74,7 @@ Note: *YOUR_API_KEY* should be your actual API key string.
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 Now, restart `td-agent` to reflect the above changes.

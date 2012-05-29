@@ -65,6 +65,7 @@ Note: *YOUR_API_KEY* should be your actual apikey string.
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
     </match>
 
 Please restart your agent once these lines are in place.
