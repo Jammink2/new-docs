@@ -7,6 +7,7 @@ gem 'haml', '2.2.17'
 gem 'json'
 gem 'coderay'
 gem 'rack-codehighlighter'
+gem 'sanitize'
 
 # Webserver
 gem 'unicorn', '~> 4.2.1'

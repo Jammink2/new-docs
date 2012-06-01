@@ -122,6 +122,7 @@ helpers do
     @article = Article.load(article, source)
 
     @title   = @article.title
+    @desc    = @article.desc
     @content = @article.content
     @intro   = @article.intro
     @toc     = @article.toc
