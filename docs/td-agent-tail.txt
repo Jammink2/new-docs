@@ -1,6 +1,6 @@
-# Tailing the Existing Log Files
+# Tailing Existing Log Files
 
-td-agent can "tail" log files like UNIX's *tail* command and import them into the cloud.
+td-agent can "tail" log files like the UNIX *tail* command, then import the results into the cloud.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ td-agent can "tail" log files like UNIX's *tail* command and import them into th
 
 We are using the [tail input plugin](http://fluentd.org/doc/plugin.html#tail) with the following configuration file. **We assume that each line of the log corresponds to a well-formed JSON (should not span multiple lines).**
 
-NOTE: This feature is supported for td-agent v1.1.5.1 and higher.
+NOTE: This feature is supported in td-agent v1.1.5.1 and higher.
 
     :::term
     <source>
@@ -31,7 +31,7 @@ NOTE: This feature is supported for td-agent v1.1.5.1 and higher.
       use_ssl true
     </match>
 
-The example log file is like below.
+Here is a sample log file. Every time a new line is appended to the log file, td-agent parses the line and adds it to its buffer. td-agent uploads the data into the cloud every 5 minutes; to upload the data immediately, please send a SIGUSR1 signal.
 
     :::term
     {"a"=>"b", "c"=>"d"}
@@ -40,14 +40,12 @@ The example log file is like below.
     {"a"=>"b", "c"=>"d"}
     {"a"=>"b", "c"=>"d", "e"=>1}
 
-Every time a new line is appended to the log, td-agent parses the line and buffers it. One can flush the buffer by sending the SIGUSR1 signal.
-
-Now, let's test we have configured everything correctly.
+Issue the commands below to confirm that everything is configured correctly.
 
     :::term
     # append new entries
-    $ tail -n 3 /path/to/the/file >sample.txt # taking the last three lines of the log...
-    $ cat sample.txt >>/path/to/the/file      # and appending them to the file to trigger the tail plugin.
+    $ tail -n 3 /path/to/log/file > sample.txt # take the last three lines of the log...
+    $ cat sample.txt >>/path/to/buffer/file    # and append them to the buffer file to trigger the tail plugin.
     
     # flush the buffer
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
@@ -55,30 +53,30 @@ Now, let's test we have configured everything correctly.
     # confirm the upload
     $ td tables test_db
 
-NOTE: <b>td-agent takes care of log-rotation</b>. By continuously checkpointing the last position of the log, td-agent ensures that each line is read exactly once even if the td-agent process goes down. There is one exception to this "exactly once" guarantee: because the last position of the log is tracked in a file, the exactly once guarantee breaks if this file gets corrupted.
+NOTE: <b>td-agent handles log-rotation</b>. td-agent keeps a record of the last position of the log, ensuring that each line is read exactly once even if the td-agent process goes down. However, since the information is kept in a file, the "exactly once" guarantee breaks down if the file becomes corrupted. 
 
 ## Tailing Custom-Formatted Logs
 
-If you already have logs with a custom format, you might need to write a custom parser [(Here is how.)](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin). Once you are done writing the parser, put the file into your */etc/td-agent/plugins/* directory.
+If your logs are in a custom format, you will need to write a custom parser [(instructions)](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin). Once you have written the parser, please put the file into your */etc/td-agent/plugins/* directory.
 
-We have written up two example parsers, "URL-param style key-value pairs" and "ascii character delimited format". Both of them seem to be fairly common.
+We provide two example parsers: "URL-param style key-value pairs" and "ascii character delimited format". Both formats are fairly common among our users.
 
     :::term
     # URL-param style key-value pairs
     last_name=smith&first_name=brian&age=22&state=CA
     
     # ASCII character delimited format. In this case, the delimiter is '|'.
-    # Usually, there is a separate file that annotates column names
+    # There is usually a separate file that annotates the column names
     smith|brian|22|CA 
 
-* [The Custom Parser for URL-Param Style Key-Value Pairs](https://gist.github.com/2565478)
-* [The Custom Parser for Ascii-Character Delimited Logs](https://gist.github.com/2565493)
+* [Custom Parser for URL-Param Style Key-Value Pairs](https://gist.github.com/2565478)
+* [Custom Parser for Ascii-Character Delimited Logs](https://gist.github.com/2565493)
 
 NOTE: Tailing existing logs is by far the easiest way to get started with Treasure Data. We recommend logging everything as JSON. <a href="http://blog.treasure-data.com/post/21881575472/log-everything-as-json-make-your-life-easier">Here's why</a>.
 
 ## Filtering Out the Records
 
-If you need to filter logs (ex: filtering out impressions and just keeping clicks), [the exec-filter plugin](http://fluentd.org/doc/plugin.html#exec-filter) comes in handy. This plugin launches another script, which takes STDIN as input and STDOUT as output, and filters logs accordingly.
+If you need to filter logs (ex: filtering out impressions and just keeping clicks), [the exec-filter plugin](http://fluentd.org/doc/plugin.html#exec-filter) is useful. This plugin launches another script which takes STDIN as input and STDOUT as output, and filters logs accordingly.
 
 Here's an example configuration.
 
@@ -94,8 +92,8 @@ Here's an example configuration.
     <match filter>
       type exec_filter
       command /usr/lib64/fluent/ruby/bin/ruby /etc/td-agent/filter.rb
-      in_format json  # takes JSON string from STDIN
-      out_format json # generate JSON string to STDOUT
+      in_format json  # takes a JSON string from STDIN
+      out_format json # generates a JSON string to STDOUT
       tag_key tag     # The key for tags is "tag".
       time_key time   # The key for timestamps is "time".
     </match>
@@ -109,7 +107,7 @@ Here's an example configuration.
       use_ssl true
     </match>
 
-`/etc/td-agent/filter.rb` is the filter script (shown below). It filters out all the lines where the field "field0" is "certain_value". If the error happens, its output goes into `/var/log/td-agent/filter.rb.log`.
+`/etc/td-agent/filter.rb` is the filter script (shown below). It filters out all the lines where the field "field0" is equal to "certain_value". Errors are recorded in `/var/log/td-agent/filter.rb.log`.
 
     :::ruby
     open('/var/log/td-agent/filter.rb.log', 'a') { |f|
