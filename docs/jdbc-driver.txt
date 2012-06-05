@@ -35,7 +35,6 @@ Here's a sample Java program, which executes the SELECT query. This counts the n
     import java.sql.ResultSet;
     import java.sql.Statement;
     import java.util.Properties;
-    
     import com.treasure_data.jdbc.TestTreasureDataDriver;
     
     public class JDBCSample {
@@ -54,9 +53,11 @@ Here's a sample Java program, which executes the SELECT query. This counts the n
         }
     
         Connection conn = DriverManager.getConnection(
-                "jdbc:td://api.treasure-data.com/testdb", "", "");
+          "jdbc:td://api.treasure-data.com/testdb",
+          "YOUR_MAIL_ADDRESS_HERE",
+          "YOUR_PASSWORD_HERE");
         Statement stmt = conn.createStatement();
-        String sql = "select count(1) from www_access";
+        String sql = "SELECT count(1) FROM www_access";
         System.out.println("Running: " + sql);
         ResultSet res = stmt.executeQuery(sql);
         while (res.next()) {
