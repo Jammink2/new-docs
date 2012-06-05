@@ -115,6 +115,9 @@ section 'tools', 'Tools & Specs' do
   category '3rd-party-tools-overview', 'Overview' do
     article 'tools', 'Tools'
   end
+  category 'r', 'R Language' do
+    article 'r', 'R Language'
+  end
   category 'driver', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
   end
