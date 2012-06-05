@@ -67,7 +67,7 @@ Now, let's list the uploaded parts by `bulk_import:show`.
     :::bash
     $ td bulk_import:freeze bulk_201203
     $ td bulk_import:perform bulk_201203 -w
-    $ td bulk_import:list bulk_201203
+    $ td bulk_import:list
     +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
     | Name | Table     | Status | Frozen | JobID | Valid Parts | Error Parts | Valid Records | Error Records |
     +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
