@@ -1,4 +1,4 @@
-# R Language with Treasure Data JDBC Driver
+# R Language with JDBC Driver
 
 This guide covers how to use Treasure Data with [R language](http://www.r-project.org/), through [RJDBC](http://www.rforge.net/RJDBC/) package.
 
