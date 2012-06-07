@@ -1,38 +1,40 @@
 # REST API
 
-This guide covers the public REST API, by which user can control Treasure Data.
+The user can control Treasure Data using the public REST API.
+
+This guide will explain how to use the public REST API.
 
 ## Endpoint
 
-All API requests should be thrown against *api.treasure-data.com*.
+All API requests should be sent to *api.treasure-data.com*.
 
 ## Authorization
 
-Every request to Treasure Data must contain *authentication information* to authorize your requests. This is done by putting the special 'AUTHORIZATION' HTTP headers. The header format is like the following:
+Every request to Treasure Data must contain *authentication information*, provided by the special 'AUTHORIZATION' HTTP headers. The header format is as follows:
 
     :::term
     "AUTHORIZATION: TD1 " + YourApiKeyHere
 
-API key is a secret key to authenticate your account. Please get the apikey from ~/.td/td.conf file:
+The API key is your authentication key. The API key can be found in your ~/.td/td.conf file.
 
     :::term
     $ grep apikey ~/.td/td.conf
     apikey = 1be3de7d01be3de7d01be3de7d01be3de7d01be3
 
-By curl command, the request is like this. -H option adds the AUTHORIZATION HTTP header to the request:
+The request looks like this when using the curl command. (The -H option adds the AUTHORIZATION HTTP header to the request)
 
     :::term
     $ curl -H "AUTHORIZATION: TD1 YourApiKeyHere" \
       "http://api.treasure-data.com/v3/job/result/2162"
 
 ## GET /v3/database/list
-This api is used for listing the databases.
+This command returns a list of your databases.
 
 #### Parameters
 No parameters are required.
 
 #### Output
-* **databases**: indicete an array of databases
+* **databases**: an array of your databases
 
 #### Example Result
     :::term
@@ -44,14 +46,14 @@ No parameters are required.
     }
 
 ## GET /v3/table/list/:database
-This api is used for listing the tables.
+This command returns a list of your tables.
 
 #### Parameters
-* **database**: indicates the name of the database
+* **database**: the name of the database
 
 #### Output
-* **database**: indicates the name of the database
-* **tables**: indicates the table names
+* **database**: the name of the database
+* **tables**: an array of your tables within the database
 
 #### Example Result
     :::term
@@ -70,15 +72,15 @@ This api is used for listing the tables.
     }
 
 ## POST /v3/job/issue/hive/:database
-This api is used for issuing the query.
+This command issues queries.
 
 #### Parameters
-* **database**: indicates the name of the database
-* **query**: indicates query string to issue
+* **database**: the name of the database
+* **query**: the query string
 
 #### Output
-* **database**: indicates the name of the database
-* **job_id**: indicates the table name to create
+* **database**: the name of the database
+* **job_id**: the name of the table created
 
 #### Example Result
     :::term
@@ -86,23 +88,23 @@ This api is used for issuing the query.
       "job_id": "12345"
       "type": "hive",
       "database": "www_access",
-      "url": "http://console.treasure-data.com/will-be-readly"
+      "url": "http://console.treasure-data.com/will-be-ready"
     }
 
 ## GET /v3/job/show/:job_id
-This api is used to show the status of the specific job.
+This command shows the status of a specific job.
 
 #### Parameters
-* **job_id**: indicates job_id
+* **job_id**: the specified job_id
 
 #### Output
-* **job_id**: indicates the specified job_id
-* **type**: indicates the job type, currently 'hive' only
-* **query**: indicates the query
-* **database**: indicates the name of the database
-* **status**: indicates the job status. status is either 'queued', 'booting', 'running', 'success', 'error'
-* **created_at**: indicates the job creation time
-* **updated_at**: indicates the last job updated time
+* **job_id**: the specified job_id
+* **type**: the job type (only 'hive' at the moment)
+* **query**: the query
+* **database**: the name of the database
+* **status**: the job status. The status can be 'queued', 'booting', 'running', 'success', or 'error'
+* **created_at**: the job creation time
+* **updated_at**: the latest job update time
 
 #### Examples
     :::term
@@ -117,14 +119,14 @@ This api is used to show the status of the specific job.
     }
 
 ## GET /v3/job/result/:job_id?format=tsv
-This api is used to get the result of the specific job. Please confirm the successful job completion by /v3/job/show/:job_id, before calling this API.
+This command returns the result of a specific job. Before issuing this command, please confirm that the job has been completed successfully via the /v3/job/show/:job_id command.
 
 #### Parameters
-* **job_id**: indicates job_id
-* **format**: indicates the result format. either 'tsv', 'csv', 'json'.
+* **job_id**: the specified job_id
+* **format**: the result format: 'tsv', 'csv', or 'json'.
 
 #### Output
-* the result in a specified format.
+* the result in the specified format.
 
 #### Example Result
 
@@ -160,11 +162,11 @@ This api is used to get the result of the specific job. Please confirm the succe
 
 ## Libraries
 
-We've developed the libraries to wrap above APIs. Those are developed by Treasure Data, Inc.
+There are several wrapper libraries for the REST API. The following libraries are developed by Treasure Data, Inc:
 
 * [Ruby Library for Treasure Data REST API](https://github.com/treasure-data/td-client-ruby)
 * [Java Library for Treasure Data REST API](https://github.com/treasure-data/td-client-java)
 
-3rd party developers are also actively developing the language bindings. Please find the useful one from below.
+3rd party developers are also actively developing language bindings:
 
 * [PHP Library for Treasure Data REST API](https://github.com/crocos/php-treasure-data)
