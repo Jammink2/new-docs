@@ -1,33 +1,34 @@
-# Writing the Query Results into your PostgreSQL Tables.
+# Writing the Query Results into your PostgreSQL Tables
 
-This guide shows you how to write job results into your existing PostgreSQL instance.
+This guide explains how to write job results to your existing PostgreSQL instance.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * **PostgreSQL instance**. Treasure Data must have SELECT, INSERT, DELETE, CREATE, DROP and ALTER privileges.
+  * **A PostgreSQL instance**. 
+  * Treasure Data must have SELECT, INSERT, DELETE, CREATE, DROP and ALTER privileges.
 
 ## Architecture
 
-A frontend application posts data to Treasure Data. Treasure Data runs MapReduce jobs and writes the output into your PostgreSQL tables.
+A front-end application first posts data to Treasure Data. Treasure Data runs MapReduce jobs on the data, then writes the job results to your PostgreSQL tables.
 
 <center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
 
-This is a pretty common architecture. Here is a couple of examples.
+Shown above is a fairly common architecture. Here are a few examples.
 
-#### Example 1: Ranking: "What's Top N of X?"
+#### Example 1: Ranking: What are the "Top N of X?"
 
-Every social/mobile application calculates "top N of X" (ex: top 5 movies watched today). Treasure Data already takes care of warehousing the raw data, and with this "write-to-PostgreSQL" feature, it takes care of persisting the "top N" data as well.
+Every social/mobile application calculates the "top N of X" (ex: top 5 movies watched today). Treasure Data already handles the raw data warehousing; the "write-to-PostgreSQL" feature enables Treasure Data to find the "top N" data as well.
 
 #### Example 2: Dashboard Application
 
-If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible by visualizing them nicely. Using this "write-to-PostgreSQL" feature, you can streamline the process and focus on what to query and how to visualized the query results.
+If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible via visualizations. Using this "write-to-PostgreSQL" feature, you can streamline the process and focus on your queries and your visualizations of the query results.
 
 ## Basic Usage
 
-### For Ad-hoc Jobs
+### For On-demand Jobs
 
-Just add `-r` option to `td query`. After the job is finished, the results are written into your table.
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into your table.
 
     :::sql
     $ td query -r 'postgresql://user:password@host/database/table' \
@@ -36,15 +37,15 @@ Just add `-r` option to `td query`. After the job is finished, the results are w
 
 ### For Scheduled Jobs
 
-Just add `-r` option when you are scheduling a job. Every time the job runs, the results are written into `mytbl`.
+For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
     :::term
     $ td result:create mydb postgresql://user:password@host/database
     $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" -r mydb:mytbl
 
-## 3 ways to modify data (append/replace/truncate)
+## Three Ways to Modify Data (Append/Replace/Truncate)
 
-You can add/delete data in three different ways.
+You can add or delete data in three ways.
 
     :::term
     postgresql://user:password@host/database/table               # append
@@ -56,20 +57,20 @@ All three modes are **atomic**.
 
 ### APPEND
 
-This is the default mode. Query results are appended to a table. If the table doesn't exist yet, it would be created on the fly.
+This is the default mode. The query results are appended to a table. If the table does not exist yet, a new table will be created.
 
 ### REPLACE
 
-If the table already exists, the rows of the existing table are replaced with the query results. If the table doesn't exist yet, it is created on the fly.
+If the table already exists, the rows of the existing table are replaced with the query results. If the table does not exist yet, a new table will be created.
 
 We achieve **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**.
 
 1. Create a temporary table.
 2. Write to the temporary table.
-3. Replace the existing table with the temporary table by ALTER TABLE RENAME.
+3. Replace the existing table with the temporary table using ALTER TABLE RENAME.
 
 ### TRUNCATE
 
-The system first truncates the existing table, and the query results are inserted into that table. If the table doesn't exist, a new table will be created.
+The system first truncates the existing table, then inserts the query results. If the table does not exist yet, a new table will be created.
 
 **Unlike REPLACE, TRUNCATE retains the indexes of your table.**
