@@ -27,7 +27,9 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
     :::ruby
     # Initialization
     require 'td'
+    require 'ey_config'
     TreasureData::Logger.open('sample_database',
+                              :apikey=>EY::Config.get(:td, 'TREASURE_DATA_API_KEY'),
                               :auto_create_table=>true)
     
     # Example1: login event
@@ -56,7 +58,7 @@ First, open your application on EngineYard. The recorded events are first buffer
 
 ### Step3: Check Your Uploaded Data
 
-At first, you need to setup your apikey into your local environment. Please check the apikey fron the console by clicking `Show Vars` button.
+At first, you need to setup your apikey into your local environment. Please check the apikey from the console by clicking `Show Vars` button.
 
 <center><img src="/images/engine_yard_addon.png" width="90%" /></center><br /><br />
 
@@ -94,7 +96,7 @@ If your data has been uploaded properly, then use the ‘td table:tail’ comman
 
     :::term
     $ td table:tail sample_database follow
-    {"action":"follow","uid":12345,"from":"TreasureData","to":"heroku","time":1320857514}
+    {"action":"follow","uid":12345,"from":"TreasureData","to":"EngineYard","time":1320857514}
 
 ### Step4: Analyze Your Data
 
@@ -128,15 +130,6 @@ The next example query counts the total number of logged actions for each day.
 
 The `td query –format csv` command will return the results in csv format.
 
-## Development Environment Setup
-
-Please set `TREASURE_DATA_API_KEY` env variable For development environment.
-
-    :::term
-    $ export TREASURE_DATA_API_KEY=`td apikey:show`
-
-Then, please start an application normally.
-
 ## Issue The Query
 
 This is an example code of issueing the query from the Ruby program. The query API is asynchronous, and you can wait the completion by pollings (e.g. job.finished? call).
@@ -144,7 +137,8 @@ This is an example code of issueing the query from the Ruby program. The query A
     :::ruby
     require 'td'
     require 'td-client'
-    cln = TreasureData::Client.new(ENV['TREASURE_DATA_API_KEY'])
+    require 'ey_config'
+    cln = TreasureData::Client.new(EY::Config.get(:td, 'TREASURE_DATA_API_KEY'))
     job = cln.query('testdb', 'SELECT COUNT(1) FROM www_access')
     until job.finished?
       sleep 2

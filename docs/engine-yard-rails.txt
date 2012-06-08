@@ -51,7 +51,7 @@ First, open your application on EngineYard. The recorded events are first buffer
 
 #### Set ApiKey
 
-At first, you need to setup your apikey into your local environment. Please check the apikey fron the console by clicking `Show Vars` button.
+At first, you need to setup your apikey into your local environment. Please check the apikey from the console by clicking `Show Vars` button.
 
 <center><img src="/images/engine_yard_addon.png" width="90%" /></center><br /><br />
 
@@ -146,7 +146,8 @@ Below is an example of how to query the data from Ruby. Observe that the query A
     :::ruby
     require 'td'
     require 'td-client'
-    cln = TreasureData::Client.new(ENV['TREASURE_DATA_API_KEY'])
+    require 'ey_config'
+    cln = TreasureData::Client.new(EY::Config.get(:td, 'TREASURE_DATA_API_KEY'))
     job = cln.query('testdb', 'SELECT COUNT(1) FROM www_access')
     until job.finished?
       sleep 2
