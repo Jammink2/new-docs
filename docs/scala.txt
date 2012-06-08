@@ -37,7 +37,7 @@ To set up td-agent, please refer to the following articles; we provide deb/rpm p
   </tr>
 </table>
 
-NOTE: td-agent is fully open-sourced under the <a href="http://github.com/fluent/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
+NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
 ## Modifying /etc/td-agent/td-agent.conf
 

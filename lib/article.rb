@@ -1,6 +1,7 @@
 Encoding.default_external = Encoding.default_internal = 'utf-8'
 
 require 'rdiscount'
+require 'sanitize'
 
 class Article
   def text_only
@@ -14,7 +15,7 @@ class Article
     return topic
   end
   
-  attr_reader :topic, :title, :content, :toc, :intro, :body
+  attr_reader :topic, :title, :desc, :content, :toc, :intro, :body
   
   def initialize(name, source)
     @topic = name
@@ -25,6 +26,7 @@ class Article
     @topic = topic
     @content = markdown(source)
     @title, @content = _title(@content)
+    @desc = _desc(@content)
     @toc, @content = _toc(@content)
     if @toc.any?
       @intro, @body = @content.split('<h2>', 2)
@@ -65,6 +67,11 @@ class Article
     title = content.match(/<h1>(.*)<\/h1>/)[1]
     content_minus_title = content.gsub(/<h1>.*<\/h1>/, '')
     return title, content_minus_title
+  end
+
+  def _desc(content)
+    desc = Sanitize.clean(content.match(/<p>(.*)<\/p>/)[1])
+    return desc
   end
 
   def slugify(title)

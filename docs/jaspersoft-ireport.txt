@@ -1,0 +1,46 @@
+# JasperSoft iReport with JDBC Driver
+
+This guide covers how to use Treasure Data with [JasperSoft iReport](http://jasperforge.org/projects/ireport), through [our JDBC driver](jdbc-driver).
+
+## Download JasperSoft iReport
+
+You can download the JasperSoft iReport from here. JasperSoft iReport v4.6.0 is used in this article.
+
+* [JasperForge iReport](http://jasperforge.org/projects/ireport)
+
+## Download JDBC Driver
+
+You can download the driver itself from here. The driver is still in beta quality, so please report to us if you have any problems.
+
+* 2012/06/04: [td-jdbc-0.1.1-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/td-jdbc/td-jdbc-0.1.1-jar-with-dependencies.jar)
+
+NOTE: This driver works only with Treasure Data, doesn't work with other environments like your local Hadoop/Hive cluster.
+
+## Add Treasure Data as Data Source
+
+Let's add Treasure Data as Jasper's data source. Please follow the procedure below.
+
+### Step1: Add JDBC Driver Jar to Classpath
+
+Please go to `Preferences -> iReport Tab -> Classpath`, and press `Add Jar` button. Then, select your downloaded driver and check the `Reloadable` box in the table.
+
+<a href="/images/jasper_add_classpath.png"><img src="/images/jasper_add_classpath.png" width="100%"></a>
+
+### Step2: Create New Data Source
+
+Please press the database icon, which is near 'Empty datasource' indicator. And add the new data source of `Database JDBC connection` type.
+
+<a href="/images/jasper_data_source.png"><img src="/images/jasper_data_source.png" width="100%"></a>
+
+### Step3: Configure JDBC Connection
+
+Then, please configure the jdbc parameter like the following figure. Be sure to fill your credentials (your email + password).
+
+<div style="padding-left: 15%;">
+<a href="/images/jasper_jdbc.png"><img src="/images/jasper_jdbc.png" width="60%"></a>
+</div>
+<br/><br/>
+
+### Step4: Create Reports
+
+Finally you can create the report by arbitrary SQL queries.

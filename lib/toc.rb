@@ -115,10 +115,16 @@ section 'tools', 'Tools & Specs' do
   category '3rd-party-tools-overview', 'Overview' do
     article 'tools', 'Tools'
   end
+  category 'api', 'REST API' do
+    article 'rest-api', 'REST API Specification'
+  end
   category 'driver', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
   end
-  category 'api', 'REST API' do
-    article 'rest-api', 'REST API Specification'
+  category 'jaspersoft-ireport', 'JasperSoft iReport' do
+    article 'jaspersoft-ireport', 'JasperSoft iReport'
+  end
+  category 'r-language', 'R Language' do
+    article 'r-language', 'R Language'
   end
 end
