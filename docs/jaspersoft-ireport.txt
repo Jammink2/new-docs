@@ -1,6 +1,6 @@
 # JasperSoft iReport with JDBC Driver
 
-This guide covers how to use Treasure Data with [JasperSoft iReport](http://jasperforge.org/projects/ireport), through [our JDBC driver](jdbc-driver).
+This article covers how to use Treasure Data with [JasperSoft iReport](http://jasperforge.org/projects/ireport), through [our JDBC driver](jdbc-driver). By combining Treasure Data with JasperSoft, the user can process huge volumes of data on the cloud, while continue using your existing JasperSoft instances.
 
 ## Download JasperSoft iReport
 
