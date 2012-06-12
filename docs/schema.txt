@@ -1,6 +1,6 @@
 # Schema Management
 
-Treasure Data Cloud uses the same convention as Relational Database Management Systems (RDBMSs) for managing data sets: *Databases* and *Tables*. In addition, *Schema* can be associated with tables. 
+Treasure Data uses the same convention as Relational Database Management Systems (RDBMSs) for managing data sets: *Databases* and *Tables*. In addition, *Schema* can be associated with tables. 
 
 Unlike traditional warehousing platforms, Treasure Data allows users to store-first, then schema-later. Schema can be changed at any time, with no cost. 
 

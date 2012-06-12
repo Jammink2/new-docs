@@ -2,6 +2,12 @@
 
 This guide covers how to use [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver for Treasure Data. By using this driver, you can operate on Treasure Data with a standard JDBC interface.
 
+## About JDBC
+
+Java Database Connectivity (JDBC) is an API for the Java programming language that defines how a client may access a database. It provides methods for querying and updating data in a database. JDBC is oriented towards relational databases.
+
+The Treasure Data JDBC driver is commonly used to allow application programs, such as those written in Java, to retrieve data directly from Treasure Data Cloud Data Warahousing Service. Some reporting tools also utilize JDBC for data connectivity.
+
 ## Download
 
 You can download the driver itself from here. The driver is still in beta quality, so please report to us if you have any problems.
@@ -10,21 +16,19 @@ You can download the driver itself from here. The driver is still in beta qualit
 
 NOTE: This driver works only with Treasure Data, doesn't work with other environments like your local Hadoop/Hive cluster.
 
-## Query Execution Internals
+## Connect to Treasure Data
 
-Because Treasure Data is a cloud service, the behavior of JDBC driver is slightly different from those for the traditional RDBMs.
+With JDBC, you can establish connection with a database using a URL. For the Treasure Data driver, you can specify the URL by this format:
 
-#### SELECT Query
+* `jdbc:td://api.treasure-data.com/<database>`
 
-If the driver receives SELECT query, it's issued into the cloud. While running the jobs on the cloud, the driver *keeps polling* the job results. This might take several hours, so using background thread is recommended.
+Also, the class name of the driver is:
 
-#### INSERT Query
-
-If the driver receives INSERT query, the data is first buffered into the local memory. Those are uploaded into the cloud every 5 minutes. Please be careful that the upload doesn't occur in realtime.
+* `com.treasure_data.jdbc.TreasureDataDriver`
 
 ## Sample Java Program
 
-Here's a sample Java program, which executes the SELECT query. This counts the number of records within testdb.www_access.
+Here's a sample Java program, which executes the SELECT query. This counts the number of records within testdb.www_access. To run the program, please add the downloaded jar file to your CLASSPATH.
 
 ### JDBCSample.java
 
@@ -71,3 +75,16 @@ Here's a sample Java program, which executes the SELECT query. This counts the n
     :::text
     td.logger.agentmode=false
     td.api.key=<your API key>
+
+## Query Execution Internals
+
+Because Treasure Data is a cloud service, the behavior of JDBC driver is slightly different from those for the traditional RDBMs.
+
+#### SELECT Query
+
+If the driver receives SELECT query, it's issued into the cloud. While running the jobs on the cloud, the driver *keeps polling* the job results. This might take several hours, so using background thread is recommended.
+
+#### INSERT Query
+
+If the driver receives INSERT query, the data is first buffered into the local memory. Those are uploaded into the cloud every 5 minutes. Please be careful that the upload doesn't occur in realtime.
+

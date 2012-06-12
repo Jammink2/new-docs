@@ -1,6 +1,6 @@
 # Database and Table Management
 
-Treasure Data Cloud uses the same convention as Relational Database Management Systems (RDBMSs) for managing data sets: *Databases* and *Tables*. Each database can contain several tables. However, each table can only belong to one database.
+Treasure Data uses the same convention as Relational Database Management Systems (RDBMSs) for managing data sets: *Databases* and *Tables*. Each database can contain several tables. However, each table can only belong to one database.
 
 ## Prerequisites
 
