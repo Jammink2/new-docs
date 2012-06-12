@@ -10,6 +10,9 @@ section 'overview', 'Overview' do
   category 'platform-constraints', 'Platform Constraints' do
     article 'constraints', 'Platform Constraints'
   end
+  category 'success-stories', 'Success Stories' do
+    article 'success-at-contextlogic', 'ContextLogic'
+  end
   category 'changelog', 'ChangeLog' do
     article 'changelog', 'Treasure Data ChangeLog'
   end
