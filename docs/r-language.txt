@@ -6,7 +6,7 @@ This guide shows how to use Treasure Data with the [R language](http://www.r-pro
 
 You can download the Treasure Data RJDB driver from the link below. The driver is still in beta, so any feedback is appreciated.
 
-* 2012/06/04: [td-jdbc-0.1.1-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/td-jdbc/td-jdbc-0.1.1-jar-with-dependencies.jar)
+* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
 NOTE: This driver only works with Treasure Data. It does not work in other environments, such as your local Hadoop/Hive cluster.
 

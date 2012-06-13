@@ -19,7 +19,7 @@ Please follow the installer instruction, and execute `Pentaho Report Designer`.
 
 You can download the driver itself from here. The driver is still in beta quality, so please report to us if you have any problems.
 
-* 2012/06/04: [td-jdbc-0.1.1-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/td-jdbc/td-jdbc-0.1.1-jar-with-dependencies.jar)
+* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
 NOTE: This driver works only with Treasure Data, doesn't work with other environments like your local Hadoop/Hive cluster.
 
