@@ -6,9 +6,7 @@ section 'overview', 'Overview' do
     article 'architecture-overview', 'Architecture Overview'
     article 'data-partitioning', 'Data Partitioning'
     article 'no-spof', 'No Single-Point-Of-Failure (SPOF)'
-  end
-  category 'platform-constraints', 'Platform Constraints' do
-    article 'constraints', 'Platform Constraints'
+    article 'constraints', 'Constraints'
   end
   category 'success-stories', 'Success Stories' do
     article 'success-at-contextlogic', 'ContextLogic'
