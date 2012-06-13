@@ -13,6 +13,7 @@ Please follow the installer instruction, and execute `Pentaho Report Designer`.
 <center>
 <a href="/images/pentaho.png"><img src="/images/pentaho.png" width="100%"></a>
 </center>
+<br /><br />
 
 ## Download JDBC Driver
 
@@ -41,6 +42,7 @@ From, `Data -> Add Data Source -> Advanced -> JDBC (Custom)` please open up the 
 <center>
 <a href="/images/pentaho_jdbc_source.png"><img src="/images/pentaho_jdbc_source.png" width="100%"></a>
 </center>
+<br /><br />
 
 ### Step3: Configure JDBC Connection
 
@@ -49,6 +51,7 @@ Then, please select `Generic database -> Native (JDBC)` and configure the jdbc c
 <center>
 <a href="/images/pentaho_database_connection.png"><img src="/images/pentaho_database_connection.png" width="100%"></a>
 </center>
+<br /><br />
 
 ### Step4: Create Reports
 
