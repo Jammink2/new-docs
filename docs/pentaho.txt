@@ -1,0 +1,59 @@
+# Pentaho Business Analytics with JDBC Driver
+
+This article covers how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/), through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can process huge volumes of data on the cloud, while continue using your existing Pentaho instances.
+
+## Download Pentaho
+
+You can download the Pentaho from here. Pentaho v4.5.0 GA is used in this article.
+
+* [Pentaho Download](http://www.pentaho.com/download/)
+
+Please follow the installer instruction, and execute `Pentaho Report Designer`.
+
+<center>
+<a href="/images/pentaho.png"><img src="/images/pentaho.png" width="100%"></a>
+</center>
+
+## Download JDBC Driver
+
+You can download the driver itself from here. The driver is still in beta quality, so please report to us if you have any problems.
+
+* 2012/06/04: [td-jdbc-0.1.1-jar-with-dependencies.jar](https://s3-us-west-1.amazonaws.com/td-jdbc/td-jdbc-0.1.1-jar-with-dependencies.jar)
+
+NOTE: This driver works only with Treasure Data, doesn't work with other environments like your local Hadoop/Hive cluster.
+
+## Add Treasure Data as Data Source
+
+Let's add Treasure Data as Pentaho's data source. Please follow the procedure below.
+
+### Step1: Copy JDBC Driver Jar to `jdbc` directory
+
+At first, please copy Treasure Data JDBC driver to the Pentaho's jdbc directory. At MacOS environment, please copy like follows.
+
+    :::term
+    $ cp td-jdbc-VERSION.jar \
+      /Applications/pentaho/design-tools/Pentaho\ Report\ Designer.app/lib/jdbc/
+
+### Step2: Create New Data Source
+
+From, `Data -> Add Data Source -> Advanced -> JDBC (Custom)` please open up the window like below. Then, please hit the GREEN plus botton pointed out by the red arrow below.
+
+<center>
+<a href="/images/pentaho_jdbc_source.png"><img src="/images/pentaho_jdbc_source.png" width="100%"></a>
+</center>
+
+### Step3: Configure JDBC Connection
+
+Then, please select `Generic database -> Native (JDBC)` and configure the jdbc connection like the following figure. Be sure to fill your credentials (your email + password).
+
+<center>
+<a href="/images/pentaho_database_connection.png"><img src="/images/pentaho_database_connection.png" width="100%"></a>
+</center>
+
+### Step4: Create Reports
+
+Finally you can create the report by arbitrary SQL queries. Open the window from `Data -> Add Datasource -> JDBC` to add the data source for the report. If you hit the preview button, the job starts running on the cloud (You can confirm by `td jobs`). Using this data source, please design your report.
+
+<center>
+<a href="/images/pentaho_report_data_source.png"><img src="/images/pentaho_report_data_source.png" width="100%"></a>
+</center>
