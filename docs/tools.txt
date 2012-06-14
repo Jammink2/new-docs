@@ -6,6 +6,6 @@ We have partnered with many companies to meet your data analytic needs. Most of 
 
 Our [JDBC driver](jdbc-driver) provide a simple interface for 3rd party tools. Those are the list of supported tools right now. If you have specific data visualization needs, please [let us know](http://treasure-data.com/contact-us/).
 
-* [JasperSoft](jasper-ireport)
+* [JasperSoft](jaspersoft-ireport)
 * [Pentaho](pentaho)
 * [R Language](r-language)
