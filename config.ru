@@ -10,4 +10,7 @@ use UnicornKiller::Oom, 96 * 1024 + Random.rand(32) * 1024
 require 'unicorn/oob_gc'
 use Unicorn::OobGC
 
+# Compression
+use Rack::Deflater
+
 run Sinatra::Application
