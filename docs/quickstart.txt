@@ -86,7 +86,7 @@ The above command takes roughly 15 seconds. It’s the overhead of setting up th
 Step 6: Logging from Your Application
 -------------------------------------
 
-You are ready to import *your real data* to the cloud. See the following tutorials to learn how to import your data from various sources.
+You are ready to import *your real data* to the cloud. See the following tutorials to learn how to import your data from various sources. To better understand the platform, please visit [architecture overview](architecture-overview).
 
   * Languages and Frameworks
     * [Java](java)
