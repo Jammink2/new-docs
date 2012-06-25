@@ -122,13 +122,10 @@ section 'tools', 'Tools & Specs' do
   category 'driver', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
   end
-  category 'jaspersoft-ireport', 'JasperSoft iReport' do
+  category 'bi-etl-tools', 'BI / ETL Tools' do
     article 'jaspersoft-ireport', 'JasperSoft iReport'
-  end
-  category 'pentaho', 'Pentaho Business Analytics' do
     article 'pentaho', 'Pentaho Business Analytics'
-  end
-  category 'r-language', 'R Language' do
     article 'r-language', 'R Language'
+    article 'talend', 'Talend Open Studio'
   end
 end
