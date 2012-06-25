@@ -41,8 +41,8 @@ section 'languages-and-middlewares', 'Languages' do
   end
 end
 
-section 'tutorials', 'Tutorials' do
-  category 'usecases', 'Use Cases' do
+section 'Usecases', 'Usecases' do
+  category 'Web Log Analytics', 'Web Log Analytics' do
     article 'apache', 'Analyzing Apache Logs'
 #     article 'game', 'Analyzing Social Gaming Logs'
 #     article 'ec', 'Analyzing E-Commerce Logs'
