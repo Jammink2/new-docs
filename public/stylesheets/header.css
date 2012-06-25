@@ -9,6 +9,11 @@ div#header li {
   list-style:none;
 }
 
+#td-header-inner {
+  text-align: center;
+  width: 940px;
+}
+
 #td-logo { float: left; margin-top: 8px; }
 #td-logo a {
   width: 265px;
