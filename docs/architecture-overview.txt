@@ -30,6 +30,10 @@ We designed our service solve those problems.
 
 We're providing **Cloud-based Data Warehousing** service. You can store, manage, and process large amount of data by taking advantages of cloud technologies. The major advantages are:
 
+<a href="/images/td_traditional_comparison.png">
+<img src="/images/td_traditional_comparison.png" height="250px" align="right" style="margin-left: 25px; border: 0px;" />
+</a>
+
 * **Instant** setup, with a monthly subscription model.
 * **Infinite** cloud storage capacity, with high availability.
 * **Easy** to use, without deep knowledge of "Big Data" technologies. Just focus on your data, not a cluster management.
