@@ -42,7 +42,7 @@ section 'languages-and-middlewares', 'Languages' do
 end
 
 section 'Usecases', 'Usecases' do
-  category 'Web Log Analytics', 'Web Log Analytics' do
+  category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'apache', 'Analyzing Apache Logs'
 #     article 'game', 'Analyzing Social Gaming Logs'
 #     article 'ec', 'Analyzing E-Commerce Logs'
