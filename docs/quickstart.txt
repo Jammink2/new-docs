@@ -26,7 +26,7 @@ After installing the toolbelt, you'll have access to `td` command from your comm
     :::term
     $ td account -f
     User name: k@example.com
-    Password (typing will be hidden): 
+    Password (typing will be hidden):
     Authenticated successfully.
 
 Step 4: Import Sample Dataset
@@ -83,20 +83,34 @@ The above command takes roughly 15 seconds. It’s the overhead of setting up th
     | 500  | 2    |
     +------+------+
 
-Step 6: Logging from Your Application
--------------------------------------
+What's Next?
+------------
 
-You are ready to import *your real data* to the cloud. See the following tutorials to learn how to import your data from various sources. To better understand the platform, please visit [architecture overview](architecture-overview).
+You are ready to import *your real data* to the cloud. See the following tutorials to learn how to import your data (e.g. Application Logs, Middleware Logs) from various sources. To better understand the platform, please visit [architecture overview](architecture-overview).
 
-  * Languages and Frameworks
-    * [Java](java)
-    * [Ruby](ruby) or [Rails](rails)
-    * [Python](python)
-    * [PHP](php)
-    * [Perl](perl)
-    * [Node.js](nodejs)
-    * [Scala](scala)
-  * Middleware
-    * [Apache Logs](apache)
-  * Others
-    * [Existing Logs](td-agent-tail)
+#### Languages and Frameworks
+<table>
+  <tr>
+    <th colspan="2">Supported Languages</th>
+    <tr>
+      <td style="text-align: left; width: 50%;"><a href="ruby">Ruby</a> or <a href="rails">Rails</a></td>
+      <td style="text-align: left;"><a href="java">Java</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="python">Python</a></td>
+      <td style="text-align: left;"><a href="php">Perl</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="php">PHP</a></td>
+      <td style="text-align: left;"><a href="nodejs">Node.js</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="scala">Scala</a></td>
+      <td style="text-align: left;"></td>
+    </tr>
+  </tr>
+</table>
+
+#### Middlewares
+* [Apache](apache)
+* [Tailing Existing CSV or TSV Logs](td-agent-tail)
