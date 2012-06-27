@@ -109,5 +109,5 @@ You are ready to import *your real data* to the cloud. See the following tutoria
 </table>
 
 #### Middlewares
-* [Apache](apache)
+* [Apache Logs](apache)
 * [Tailing Existing CSV or TSV Logs](td-agent-tail)
