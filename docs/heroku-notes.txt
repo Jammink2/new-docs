@@ -2,8 +2,8 @@
 
 ## 'heroku td', not 'td'
 
-You need to use `heroku td` instead of `td` on Heroku. The functionalities are identical.
+Please use the `heroku td` command instead of the `td` command when on Heroku. The functionalities are identical.
 
-## td-agent works with HTTP only
+## td-agent only works with HTTP
 
 Our data import daemon, `td-agent`, works only with HTTP input on Heroku. This limitation exists **only on Heroku**. If you administer `td-agent` elsewhere (e.g., your own dedicated server), you have access to the full functionalities of `td-agent`.
