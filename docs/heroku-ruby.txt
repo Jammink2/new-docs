@@ -1,16 +1,16 @@
-# Ruby Apps on Heroku
+# Data Import from Ruby Apps on Heroku
 
 ## Prerequisites
 
-  * Basic knowledge of Ruby, Gems, and Bundler
+  * Basic knowledge of Ruby, Gems, and Bundler.
   * Basic knowledge of Heroku, including the Heroku toolbelt.
-  * Ruby 1.8 or higher (for local testing)
+  * Ruby 1.8 or higher (for local testing).
 
-## Data Import
+## Importing Data
 
-It's a **4 STEP** approach. 1) **Embed** codes, 2) **Run** it, 3) **Check**, and 4) **Query** it.
+You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
 
-### Step1: Import Data Using 'td' Gem
+### Step1: Importing Data Using the 'td' Gem
 
 First, add the `td` (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
 
@@ -22,7 +22,7 @@ Next, install the gem locally via bundler.
     :::term
     $ bundle install
 
-The ‘td’ gem comes with a built-in library for recording in-app events. Insert code in the format below in order to record events from your app:
+The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
 
     :::ruby
     # Initialization
@@ -42,7 +42,7 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-Each event-logging code should be inserted near its corresponding event-generating code. Further details regarding the event logger API can be found here.
+Each piece of event-logging code should be placed near its corresponding event-generating code. Further details regarding the event logger API can be found here.
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
