@@ -35,7 +35,7 @@ First, you need to install [the td-logger library](https://github.com/treasure-d
       </repository>
     </repositories>
 
-Let's write some code to start logging from your application. You can find more information about the logger API here.
+Let's write some code to start logging from your application. You can find more information about the logger API [here](https://github.com/treasure-data/td-logger-java).
 
     :::java
     import com.treasure_data.logger.TreasureDataLogger;
