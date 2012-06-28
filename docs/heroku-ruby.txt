@@ -10,7 +10,7 @@
 
 You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
 
-### Step1: Importing Data Using the 'td' Gem
+### Step1: Set Up Data Import Using the 'td' Gem
 
 First, add the `td` (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
 
@@ -54,16 +54,16 @@ Once you have inserted your event-logging code, push the modifications to Heroku
     $ git commit -a -m "Added Treasure Data Plugin"
     $ git push heroku master
 
-### Step2: Accessing Your Application
+### Step2: Access Your Application
 
-First, open your application on Heroku. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded in 5 minute intervals.
+First, open your application on Heroku. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded every 5 minutes.
 
     :::term
     $ heroku open
 
 ### Step3: Check Your Uploaded Data
 
-Treasure Data Hadoop structures its data much like RDBMS: tables inside databases. In order to see the list of available databases, use the command: `heroku td dbs`.
+Treasure Data Hadoop's data structure is like RDBMS: tables inside databases. In order to see the list of available databases, use the command: `heroku td dbs`.
 
     :::term
     $ heroku td dbs
@@ -96,7 +96,7 @@ If your data has been uploaded properly, then use the ‘heroku td table:tail’
 
 ### Step4: Analyze Your Data
 
-Our service lets you to analyze your data using a SQL-style language. When your data is sent to us, your logs are imported into a Hadoop/Hive cluster. Hive lets its users query big data through a SQL-like interface.
+Our service lets you analyze your data using a SQL-style language. When your data is sent to us, your logs are imported into a Hadoop/Hive cluster. Hive lets its users query big data using a SQL-like interface.
 
 Please use the `heroku td query` command to issue queries to TD Hadoop; TD Hadoop will accept and execute queries within the cloud.
 
@@ -128,16 +128,16 @@ The `heroku td query –format csv` command will return the results in csv forma
 
 ## Development Environment Setup
 
-Please set `TREASURE_DATA_API_KEY` env variable For development environment.
+Please set the `TREASURE_DATA_API_KEY` env variable to enable your development environment.
 
     :::term
     $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
 
-Then, please start an application normally.
+Once your API key has been set, please start your application as usual.
 
-## Issue The Query
+## Issue Queries
 
-This is an example code of issueing the query from the Ruby program. The query API is asynchronous, and you can wait the completion by pollings (e.g. job.finished? call).
+This is an example of issueing the query from the Ruby program. The query API is asynchronous, and you can wait the completion by pollings (e.g. job.finished? call).
 
     :::ruby
     require 'td'
