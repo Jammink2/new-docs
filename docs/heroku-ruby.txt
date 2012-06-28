@@ -42,17 +42,19 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-Each piece of event-logging code should be placed near its corresponding event-generating code. Further details regarding the event logger API can be found here.
+Your event-logging code should be placed near its corresponding event-generating code. 
+
+Further details regarding the event logger API can be found here.
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
-After inserting your event-logging code, push the modifications to Heroku!
+Once you have inserted your event-logging code, push the modifications to Heroku!
 
     :::term
     $ git commit -a -m "Added Treasure Data Plugin"
     $ git push heroku master
 
-### Step2: Access Your Application
+### Step2: Accessing Your Application
 
 First, open your application on Heroku. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded in 5 minute intervals.
 
