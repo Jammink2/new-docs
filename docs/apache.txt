@@ -52,6 +52,8 @@ In order to import Apache logs with `td-agent`, you need to add the following li
       tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
     </source>
 
+NOTE: On Redhat based systems, you might need to change the directory permission by: `chmod g+rx /var/log/httpd`.
+
 For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
 Next, you specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
@@ -89,6 +91,7 @@ Now, restart `td-agent` to reflect the above changes.
 Sending a SIGUSR1 signal flushes td-agent's buffer and the data gets uploaded to the cloud immediately (as opposed to the usual 5 minute intervals).
 
     :::term
+    $ curl http://127.0.0.1/
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 You can confirm that data is getting uploaded successfully with the `td tables` command, which shows you how many rows have been saved on the cloud (the "Cloud" column).
