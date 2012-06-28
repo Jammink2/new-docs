@@ -1,6 +1,8 @@
-# Importing and Analyzing Apache Logs
+# Analyzing Apache Logs on the Cloud
 
-This guide explains how to import Apache logs with `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
+[Treasure Data](http://treasure-data.com/) enables you to analyze apache logs on the cloud. You can forget about server, and storages.
+
+This article explains how to import Apache logs with `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
 ## Prerequisites
 
