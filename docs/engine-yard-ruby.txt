@@ -43,7 +43,7 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-Each event-logging code should be inserted near its corresponding event-generating code. Further details regarding the event logger API can be found here.
+Each event-logging code should be inserted near its corresponding event-generating code. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
