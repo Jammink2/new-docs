@@ -9,3 +9,7 @@ Custom Hive UDFs cannot be added. If you have a specific request for a function,
 ## Hive Custom Map/Reduce Scripts
 
 [Custom Map/Reduce scripts](https://cwiki.apache.org/confluence/display/Hive/Tutorial#Tutorial-Custommap%2Freducescripts) cannot be used due to security considerations.
+
+## Query Result as an Another Table
+
+The output of the query cannot be stored in another table within Treasure Data (INSERT OVERWRITE in hive). This limitation is planned to be resolved, so please use SELECT subquery for now.
