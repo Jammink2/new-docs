@@ -164,7 +164,7 @@ This command returns the result of a specific job. Before issuing this command, 
 
 There are several wrapper libraries for the REST API. The following libraries are developed by Treasure Data, Inc:
 
-* [Ruby Library for Treasure Data REST API](https://github.com/treasure-data/td-client-ruby)
+* [Ruby Library for Treasure Data REST API](rest-api-ruby-client)
 * [Java Library for Treasure Data REST API](https://github.com/treasure-data/td-client-java)
   * TreasureData's [JDBC Driver](jdbc-driver) is also available.
 

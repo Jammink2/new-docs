@@ -118,7 +118,7 @@ section 'tools', 'Tools & Specs' do
   end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'
-    article 'rest-api-ruby-client', 'Ruby REST API Client'
+    article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
   end
   category 'driver', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
