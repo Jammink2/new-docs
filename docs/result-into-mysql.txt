@@ -1,6 +1,6 @@
 # Writing the Query Results into your MySQL Tables.
 
-This guide explains how to write job results to your existing MySQL instance.
+This article explains how to write job results to your existing MySQL instance.
 
 ## Prerequisites
 

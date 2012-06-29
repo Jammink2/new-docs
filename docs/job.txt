@@ -2,7 +2,7 @@
 
 Queries are known as *Jobs* on the cloud. The status and result of each job can be viewed with CUI commands.
 
-This guide will explain how to issue, list, and see the details of each job.
+This article will explain how to issue, list, and see the details of each job.
 
 ## Prerequisites
 

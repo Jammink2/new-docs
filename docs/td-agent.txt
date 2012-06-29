@@ -1,6 +1,6 @@
 # Continuous Data Import with td-agent
 
-This guide covers how to continuously import the data with `td-agent` daemon.
+This article covers how to continuously import the data with `td-agent` daemon.
 
 ## Logs Are Streams, Not Files
 

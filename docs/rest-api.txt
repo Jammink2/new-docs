@@ -2,7 +2,7 @@
 
 The user can control Treasure Data using the public REST API.
 
-This guide will explain how to use the public REST API.
+This article will explain how to use the public REST API.
 
 ## Endpoint
 

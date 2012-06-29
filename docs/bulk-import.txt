@@ -1,6 +1,6 @@
 # Bulk Import
 
-This guide explains how to bulk-import data with the `td bulk_import` command.
+This article explains how to bulk-import data with the `td bulk_import` command.
 
 ## Prerequisites
 

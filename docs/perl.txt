@@ -129,6 +129,7 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 
 * [Schema Management](schema)
 * [Hive Query Language](hive)
+* [Programatic Access with REST API and its Bindings](/categories/api)
 
 For more specific assistance, please visit our support resources:
 

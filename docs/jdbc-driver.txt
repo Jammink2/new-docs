@@ -1,6 +1,6 @@
 # Treasure Data JDBC Driver
 
-This guide covers how to use Treasure Data's [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver. This driver enables you to use Treasure Data with a standard JDBC interface.
+This article covers how to use Treasure Data's [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver. This driver enables you to use Treasure Data with a standard JDBC interface.
 
 ## Download
 

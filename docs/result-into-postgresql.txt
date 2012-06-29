@@ -1,6 +1,6 @@
 # Writing the Query Results into your PostgreSQL Tables
 
-This guide explains how to write job results to your existing PostgreSQL instance.
+This article explains how to write job results to your existing PostgreSQL instance.
 
 ## Prerequisites
 
