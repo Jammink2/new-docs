@@ -40,6 +40,8 @@ Below is an example of issuing a query from a Ruby program. The query API is asy
     end
     job.result_each { |row| p row } job.success?
 
+NOTE: job.result_each(&block) doesn't put the job result into the memory. It iterates the rows in a streaming fashion.
+
 ## List and Get the Status of Jobs
 
 Below is an example of listing and get the status of jobs.
