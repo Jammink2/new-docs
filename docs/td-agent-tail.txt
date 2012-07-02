@@ -13,7 +13,7 @@ We are using the [tail input plugin](http://fluentd.org/doc/plugin.html#tail) wi
 
 NOTE: This feature is supported in td-agent v1.1.5.1 and higher.
 
-    :::term
+    :::text
     <source>
       type tail
       path /path/to/the/file
@@ -33,7 +33,7 @@ NOTE: This feature is supported in td-agent v1.1.5.1 and higher.
 
 Here is a sample log file. Every time a new line is appended to the log file, td-agent parses the line and adds it to its buffer. td-agent uploads the data into the cloud every 5 minutes; to upload the data immediately, please send a SIGUSR1 signal.
 
-    :::term
+    :::js
     {"a"=>"b", "c"=>"d"}
     {"a"=>"b", "c"=>"d", "e"=>1}
     {"a"=>"b", "c"=>"d", "e"=>1, "f"=>2.0}
@@ -80,7 +80,7 @@ If you need to filter logs (ex: filtering out impressions and just keeping click
 
 Here's an example configuration.
 
-    :::term
+    :::text
     <source>
       type tail
       path /path/to/the/file1

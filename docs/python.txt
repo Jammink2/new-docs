@@ -10,7 +10,6 @@ This article explains how to use the fluent-logger-python library.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Python 2.6 or higher (for local testing).
 
-
 NOTE: The fluent-logger-python library does not work in Heroku (<a href="/articles/heroku-notes">here's why</a>) and EngineYard.
 
 ## Installing td-agent
@@ -54,7 +53,7 @@ Next, please set the `apikey` option in your td-agent.conf file.
 
 Note: *YOUR_API_KEY* should be your actual apikey string.
 
-    :::term
+    :::text
     # Treasure Data Input and Output
     <source>
       type forward

@@ -11,7 +11,7 @@ td-agent understands the Scribe protocol (Thrift-based). It can also co-exist or
 
 The configuration below enables the Scribe input plugin:
 
-    :::term
+    :::text
     <source>
       type scribe
       port 1463
@@ -27,7 +27,7 @@ The `category` field of the Scribe protocol is used as a `tag` for td-agent. If 
 
 This message is organized as shown below.
 
-    :::term
+    :::js
     {
       message => 'abcde'
     }
@@ -36,7 +36,7 @@ This message is organized as shown below.
 
 The message field of semi-structured data often contains JSON strings. td-agent uses the *msg_format* option to parse the JSON string in-place.
 
-    :::term
+    :::text
     <source>
       type scribe
       port 1463
@@ -53,7 +53,7 @@ Next, please send records as shown below. Please note that entry.message is a JS
 
 This message is organized as shown below.
 
-    :::term
+    :::js
     {
       'a' => 'b',
       'c' => 'd',
@@ -63,7 +63,7 @@ This message is organized as shown below.
 
 The *msg_format* option supports `text`, `json`, and `url_param`. The format for `url_param` is as follows.
 
-    :::term
+    :::text
     key1=val1&key2=val2&key3=val3
 
 ## Further Reading

@@ -6,7 +6,7 @@ You can use HTTP to add logs from many places to td-agent.
 
 Please add the following lines to your */etc/td-agent/td-agent.conf* file.
 
-    :::term
+    :::text
     # HTTP input
     <source>
       type http

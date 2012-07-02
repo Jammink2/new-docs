@@ -53,7 +53,7 @@ Next, please set the `apikey` option in your td-agent.conf file.
 
 Note: *YOUR_API_KEY* should be your actual apikey string.
 
-    :::term
+    :::text
     # Unix Domain Socket Input
     <source>
       type unix
@@ -106,6 +106,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 
 To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
+    :::term
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
@@ -134,7 +135,7 @@ Please use Apache prefork MPM. Other MPMs such as worker MPM should not be used.
 
 We recommend that you periodically restart your PHP processes by setting *MaxRequestsPerChild* in your Apache conf.
 
-    :::term
+    :::text
     <IfModule mpm_prefork_module>
       StartServers          32
       MinSpareServers       32

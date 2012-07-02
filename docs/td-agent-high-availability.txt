@@ -39,7 +39,7 @@ td-agent can act as either a log forwarder or a log aggreagator, depending on it
 
 Please add the following lines to the /etc/td-agent/td-agent.conf file for your log forwarders. This will configure your log forwarders to transfer logs to log aggregators.
 
-    :::term
+    :::text
     # TCP input
     <source>
       type forward
@@ -83,7 +83,7 @@ When the active aggregator (192.168.0.1) dies, the logs will instead be sent to 
 
 Please add the following lines to the /etc/td-agent/td-agent.conf file for your log aggregators. The input source for the log transfer is TCP.
 
-    :::term
+    :::text
     # TCP input
     <source>
       type forward
@@ -104,7 +104,7 @@ The incoming logs are buffered, then periodically uploaded into the cloud. If up
 
 If you want to write logs to file in addition to TD, please use the 'copy' output. The following code is an example configuration for writing logs to TD, file, and MongoDB simultaneously.
 
-    :::term
+    :::text
     <match td.*.*>
       type copy
       <store>

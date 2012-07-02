@@ -53,7 +53,7 @@ Next, please set the `apikey` option in your td-agent.conf file.
 
 Note: *YOUR_API_KEY* should be your actual apikey string.
 
-    :::term
+    :::text
     # Treasure Data Input and Output
     <source>
       type forward
@@ -106,6 +106,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 
 To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
+    :::term
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

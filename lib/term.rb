@@ -1,5 +1,3 @@
-# author: Vincent Landgraf <setcool@gmx.de>
-# licence: GPLv2.1
 require "rubygems"
 require "coderay"
 
@@ -15,12 +13,12 @@ module CodeRay
         until eos?
           line = scan(/.*?\n/)
           if line =~ /^(\$)(.*)/
-            tokens << [$1, :prompt]
-            tokens << [$2 + "\n", :command]
+            tokens << [$1, [:comment]]
+            tokens << [$2 + "\n", [:function]]
           elsif prev =~ /\\$/
-            tokens << [line, :command]
+            tokens << [line, [:function]]
           else
-            tokens << [line, :output]
+            tokens << [line, [:string]]
           end
           prev = line
         end

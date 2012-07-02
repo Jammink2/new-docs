@@ -6,7 +6,7 @@ While [td-agent](td-agent) is uploading the data into the cloud, you also may wa
 
 The configuration below will store logs in your local disk (*/mnt/archive/logs*) and in Treasure Data. The local files are created on an hourly basis.
 
-    :::term
+    :::text
     <match td.*.*>
       type copy
       <store>
@@ -30,7 +30,7 @@ For more information regarding file output options, please refer to [this page](
 
 The configuration below will store logs in your local MongoDB ReplicaSet and in Treasure Data. The logs are flushed into MongoDB every 60 seconds.
 
-    :::term
+    :::text
     <match td.*.*>
       type copy
       <store>

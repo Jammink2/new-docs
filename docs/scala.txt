@@ -53,7 +53,7 @@ Next, please set the `apikey` option in your td-agent.conf file.
 
 Note: *YOUR_API_KEY* should be your actual apikey string.
 
-    :::term
+    :::text
     # Treasure Data Input and Output
     <source>
       type forward
@@ -95,7 +95,7 @@ NOTE: If you need a all-in-one jar file, we provide one at <a href="http://treas
 
 Next, please configure your *treasure-data.properties* file using the commands shown below:
 
-    :::term
+    :::text
     td.logger.agentmode=true
     td.logger.agent.host=localhost
     td.logger.agent.port=24224
@@ -128,6 +128,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 
 To confirm the data upload, please use `td tables`.
 
+    :::term
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

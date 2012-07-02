@@ -43,7 +43,7 @@ After installing `td-agent`, you can modify your config file. It's installed at 
 
 The file includes some sample settings. You should find the following lines in your config.
 
-    :::term
+    :::text
     # HTTP input
     <source>
       type http
@@ -143,22 +143,35 @@ Those files are installed by the rpm or debian packages.
   </tr>
 </table>
 
-### What's Next?
+## What's Next?
 
 Next, you need to modify your existing applications to post data to Treasure Data. The articles explain how to do that (with sample code) for various languages, frameworks, and middleware.
 
-  * Languages and Frameworks
-    * [Java](java)
-    * [Ruby](ruby) or [Rails](rails)
-    * [Python](python)
-    * [PHP](php)
-    * [Perl](perl)
-    * [Node.js](nodejs)
-    * [Scala](scala)
-  * Middleware
-    * [Apache Logs](apache)
-  * Others
-    * [Existing Logs](td-agent-tail)
+#### Languages and Frameworks
+<table>
+  <tr>
+    <th colspan="3">Supported Languages</th>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="ruby">Ruby</a> or <a href="rails">Rails</a></td>
+      <td style="text-align: left;"><a href="java">Java</a></td>
+      <td style="text-align: left;"><a href="php">Perl</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="python">Python</a></td>
+      <td style="text-align: left;"><a href="php">PHP</a></td>
+      <td style="text-align: left;"><a href="scala">Scala</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="nodejs">Node.js</a></td>
+    </tr>
+  </tr>
+</table>
+
+#### Middlewares
+* [Apache Logs](apache)
+* [Tailing Existing CSV or TSV Logs](td-agent-tail)
+
+### High-Availability Configurations
 
 For high-traffic websites, we recommend using high availability configuration for td-agent.
 

@@ -45,7 +45,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">flu
 
 In order to import Apache logs with `td-agent`, you need to add the following lines to your `td-agent.conf` file. Note that you need to specify the database and table names using the `tag` parameter.
 
-    :::term
+    :::text
     # tail apache access_log
     <source>
       type tail
@@ -151,8 +151,8 @@ Those are the sample queries to calculate the interesting results.
       "SELECT v['referer'] AS referer, COUNT(1) AS cnt \
        FROM www_access6 \
        WHERE \
-         unix_timestamp('2012-05-26', 'yyyy-MM-dd') <= time
-         AND time < unix_timestamp('2012-05-27', 'yyyy-MM-dd')
+         unix_timestamp('2012-05-26', 'yyyy-MM-dd') <= time \
+         AND time < unix_timestamp('2012-05-27', 'yyyy-MM-dd') \
        GROUP BY v['referer'] ORDER BY cnt DESC LIMIT 3"
     ...
     Result:
