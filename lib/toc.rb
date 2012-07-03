@@ -75,6 +75,9 @@ section 'reference', 'Reference' do
     article 'hive', 'Hive (SQL-style) Query Language'
     article 'pig', 'Pig Latin Language'
   end
+  category 'data-deletion', 'Data Deletion' do
+    article 'deletion', 'Data Deletion'
+  end
   category 'result', 'Result Output' do
     article 'result-into-mysql', 'Writing the Job Result into your MySQL'
     article 'result-into-postgresql', 'Writing the Job Result into your PostgreSQL'

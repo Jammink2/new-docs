@@ -1,0 +1,29 @@
+# Deletion
+
+This article explains how to delete already imported data with `td table:partial_delete` command.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+
+## Deletion
+
+`td table:partial_delete` command lets you delete already imported data within a specific table, by specifying the time range. There's one limitation here. Because the stored data is partitioned per hour, the arguments given by `--from` and `--to` must be devided by 3600 (1 hour).
+
+    :::term
+    $ td table:partial_delete --help
+    usage:
+      $ td table:partial_delete <db> <table>
+    
+    example:
+      $ td table:partial_delete example_db table1 --from 1341000000 --to 1341003600
+    
+    description:
+      Delete logs from the table within the specified time range
+    
+    options:
+      -t, --to TIME                    end time of logs to delete
+      -f, --from TIME                  start time of logs to delete
+      -w, --wait                       wait for finishing the job
+
+The deletion is executed as `job`, so you can confirm the status by `td jobs` command. `-w` option let you wait until the job completion.
