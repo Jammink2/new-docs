@@ -1,5 +1,13 @@
 # Treasure Data ChangeLog
 
+## Jul 02, 2012: Added partial delete feature
+
+Now you can delete the data within a single table partially, by specifying the time range.
+
+## Jul 02, 2012: Added job priority feature
+
+Now you can set the 5-level priority to the job, and that enables you to give a higher priority to periodic jobs than adhoc jobs.
+
 ## May 10, 2012: Added bulk import feature
 
 A new version of the td command is available that supports [bulk import](bulk-import) feature. It enables you to upload large data set reliably since its operations are designed to be transactional and idempotent.
