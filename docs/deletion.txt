@@ -26,4 +26,4 @@ This article explains how to delete already imported data with `td table:partial
       -f, --from TIME                  start time of logs to delete
       -w, --wait                       wait for finishing the job
 
-The deletion is executed as `job`, so you can confirm the status by `td jobs` command. `-w` option let you wait until the job completion.
+The deletion is executed as `job`, so you can confirm the status by `td jobs` command (see [Job Management](job)). `-w` option let you wait until the job completion.

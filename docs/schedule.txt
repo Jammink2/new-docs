@@ -18,6 +18,16 @@ The new schedule can be created via `td sched:create`. The name of the schedule,
       "select count(1) from www_access" \
       -d testdb
 
+Sometimes scheduled job must be scheduled at a high priority. In that case, you can use `-P` option to specify the priority. The priority is between -2 (VERY LOW) to 2 (VERY HIGH), and 0 is the default. The priority can be changed later by `td sched:update -P`.
+
+    :::term
+    # VERY HIGH
+    $ td sched:create -P  2 ...
+    # NORMAL (Default)
+    $ td sched:create -P  0 ...
+    # VERY LOW
+    $ td sched:create -P -2 ...
+
 ## List the Schedules
 
 You can see the current schedule entries by `td sched:list`.

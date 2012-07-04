@@ -23,7 +23,7 @@ If you issue a query *WITHOUT* the -w option, the command will exit immediately 
     Job 704 is started.
     Use 'td job 704' to show the status.
 
-### Show Jobs
+## Show Jobs
 
 The 'td jobs' subcommand lists your submitted jobs. The most recent 20 jobs are shown by default. The command shows the JobID, status, starting time, elapsed time, and the submitted query for each job.
 
@@ -62,7 +62,7 @@ To see older jobs, please specify the page number as an argument.
     $ td jobs -p 1 # Jobs 21-40
     $ td jobs -p 2 # Jobs 41-60
 
-### Show Job Details and Job Results
+## Show Job Details and Job Results
 
 The `td job` sub-command shows a job's detailed information; the job is specified by the job_id argument. The command shows the job's status, query content, and result.
 
@@ -82,3 +82,19 @@ The `td job` sub-command shows a job's detailed information; the job is specifie
     Use '-v' option to show detailed messages.
 
 The '-v' option will show additional information, including execution logs.
+
+## Job Priority
+
+Sometimes job should be issued by low or high priority. For example, daily jobs must be executed with high priority for avoiding to be prevented by adhoc queries. `td query -P <priority> <query>` let you specify the job priority. 5-levels of priority is supported (-2 to 2), and priority 0 is the default.
+
+    :::term
+    # VERY HIGH
+    $ td query -P  2 <query>
+    # HIGH
+    $ td query -P  1 <query>
+    # NORMAL (Default)
+    $ td query -P  0 <query>
+    # LOW
+    $ td query -P -1 <query>
+    # VERY LOW
+    $ td query -P -2 <query>
