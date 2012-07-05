@@ -10,34 +10,34 @@ This article explains how to bulk-import data with the `td bulk_import` command.
 
 #### 1) Streaming Import
 
-The import for continuously generated data. In this case, [td-agent](td-agent) article is more appropriate.
+Importing continuously generated data. In this case, the [td-agent](td-agent) article is more appropriate.
 
 #### 2) Bulk Import
 
-The import for huge amounts of data, which could cause a network transfer failure between your side and Treasure Data. In this case, please proceed to the folowing sections.
+Importing huge amounts of data, which could cause a network transfer failure between your side and Treasure Data. This article covers this case.
 
 #### 3) One-Time Import
 
-The import for importing small amount of data, usually stored within one file, which rarely causes the transfer failrue. In this case, please refer [One-Time Import](one-time-import) article.
+If your data size is small (For example, the data fits in a single file), you can do [One-Time-Import](one-time-import) instead. This is easier since your data does not have to be the MessagePack format.
 
-## About Bulk Import Feature
+## Why Bulk Import?
 
-Because Treasure Data is the cloud services, the data needs to be transferred via an internet network connection. That causes the problems around huge data (> 100MB) uploads. Those are the examples:
+Because Treasure Data is a cloud service, the data needs to be transferred via an Internet network connection. This can get tricky once the data size gets big (> 100MB). Consider a couple of cases:
 
-* If the network becomes unstable, the import could fail in halfway through. There's no easy way to pick up from where you left off, and you need to restart the upload from the beggining.
-* Your company sometimes limits the bandwidth for transferring the huge data with a single stream. Also, the limitations of the TCP/IP protocol make it very difficult for applications to saturate a network connection.
+* If the network becomes unstable, the import could fail halfway through. There's no easy way to pick up from where you left off, and you need to restart the upload from the beggining.
+* Your company sometimes limits the bandwidth for transferring huge data with a single stream. Also, the limitations of the TCP/IP protocol make it difficult for applications to saturate a network connection.
 
-To overcome those problems, the bulk import feature was introduced. You can now break your larger data sets into smaller chunks, and upload them in parallel. If the upload of a chunk fails, you can simply restart it per chunk. You'll be able to impove your overall upload speed by taking advantage of parallelism.
+To overcome these problems, we implemented the bulk import feature. You can now break your larger data sets into smaller chunks, and upload them *in parallel*. If the upload of a chunk fails, you can restart the upload just for that chunk. You'll be able to impove your overall upload speed by taking advantage of parallelism.
 
 ## Bulk Import Steps
 
 ### 0) Split Your Data into MessagePack.gz Files
 
-At first, you need to split your data into [MessagePack](http://msgpack.org/).gz format. Split into the monthly data is preferrable, but could be splitted into daily data if you have >1GB daily compressed data.
+At first, you need to split your data into [MessagePack](http://msgpack.org/).gz format. Splitting the data by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
 
 ### 1) Create a Session
 
-At first you need to create a `session`, which denotes the single instance containing the multiple parts. The session is associated with one table.
+At first you need to create a `session`, which is a single instance containing multiple parts. One session is associated with one table.
 
     :::bash
     $ td bulk_import:create bulk_201203 mydb mytable
@@ -62,7 +62,7 @@ Now, let's list the uploaded parts by `bulk_import:show`.
 
 ### 3) Perform
 
-`bulk_import:perform` does a format conversion within a cloud. Your data is converted into more efficient format, and it takes time. The conversion is done in parallel, by execuating MapReduce jobs.
+`bulk_import:perform` does a format conversion on our cloud. Your data is converted into a more efficient format (This is why it takes a bit of time!). The conversion is done in parallel by executing MapReduce jobs.
 
     :::bash
     $ td bulk_import:freeze bulk_201203
@@ -76,7 +76,7 @@ Now, let's list the uploaded parts by `bulk_import:show`.
 
 ### 3) Check Error Records
 
-After perform, some records could be invalid. You can list those invalid records by `bulk_import:error_records`.
+After `perform`, some records could be invalid. You can list these invalid records by `bulk_import:error_records`.
 
     :::bash
     $ td bulk_import:error_records bulk_201203
