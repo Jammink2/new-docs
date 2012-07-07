@@ -75,7 +75,7 @@ Next, open your application on Heroku. The recorded events are first buffered lo
 
 #### Database Structure
 
-Treasure Data Hadoop's data structure is like that of RDBMSs: tables inside databases. In order to see the list of available databases, use the command: `heroku td dbs`.
+Treasure Data Hadoop's data structure is like RDBMS: tables inside databases. In order to see the list of available databases, use the command: `heroku td dbs`.
 
     :::term
     $ heroku td dbs
