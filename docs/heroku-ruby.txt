@@ -88,7 +88,7 @@ In order to see the tables inside the available databases, use the command: `her
 
 To confirm that your application data has been uploaded properly, please check the ‘Count’ column. If any of the ‘Count’ entries are non-zero, your event logs been transferred successfully.
 
-If your data has been uploaded properly, then use the ‘heroku td table:tail’ command to see the recent entries of a specific table.
+Once your data has been uploaded properly, use the ‘heroku td table:tail’ command to see the recent entries of a specific table.
 
     :::term
     $ heroku td table:tail sample_database follow
