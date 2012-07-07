@@ -1,6 +1,6 @@
 # Deletion
 
-This article explains how to delete already imported data with `td table:partial_delete` command.
+This article explains how to delete your imported data by using the `td table:partial_delete` command.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@ This article explains how to delete already imported data with `td table:partial
 
 ## Deletion
 
-`td table:partial_delete` command lets you delete already imported data within a specific table, by specifying the time range. There's one limitation here. Because the stored data is partitioned per hour, the arguments given by `--from` and `--to` must be devided by 3600 (1 hour).
+The `td table:partial_delete` command lets you delete your imported data within a specific table by specifying the time range. Please note that because the stored data is partitioned per hour, the arguments for `--from` and `--to` must be divided by 3600 (1 hour).
 
     :::term
     $ td table:partial_delete --help
@@ -24,6 +24,6 @@ This article explains how to delete already imported data with `td table:partial
     options:
       -t, --to TIME                    end time of logs to delete
       -f, --from TIME                  start time of logs to delete
-      -w, --wait                       wait for finishing the job
+      -w, --wait                       wait until the job is finished
 
-The deletion is executed as `job`, so you can confirm the status by `td jobs` command (see [Job Management](job)). `-w` option let you wait until the job completion.
+The data deletion is executed as a `job`. This means that you can confirm its status by issuing the `td jobs` command (see [Job Management](job)). The `-w` option lets you wait until the job is finished.
