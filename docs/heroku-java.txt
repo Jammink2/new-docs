@@ -150,7 +150,7 @@ In order to use Treasure Data Hadoop, you must set your `TREASURE_DATA_API_KEY` 
 
 Once it is set, you can start your application as usual.
 
-## Does Upload Impact App Performance?
+## Does Uploading Data Impact App Performance?
 
 The td-logger library buffers data locally at first, and the data is uploaded every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect your application's response time.
 
