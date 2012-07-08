@@ -96,11 +96,13 @@ get '/query_language.html' do redirect '/articles/hive' end
 helpers do
   def render_category(category)
     @articles = []
+    @desc = ''
     sections.each { |_, _, categories|
       categories.each { |name, title, articles|
         if name == category
           @title = title
           @articles = articles
+          @desc = title
           break
         end
       }
@@ -162,16 +164,17 @@ helpers do
     nil
   end
 
-  def find_keywords(article)
-    return nil if article.nil?
+  def find_keywords(article, category)
+    default = ['treasure data', 'hadoop', 'cloud data warehouse']
     sections.each { |_, _, categories|
-      categories.each { |_, _, articles|
+      categories.each { |category_name, _, articles|
+        return default + [category_name] if category_name == category
         articles.each { |article_name, _, keywords|
-          return keywords if article_name == article
+          return default + keywords if article_name == article
         }
       }
     }
-    []
+    default
   end
 
   def sections
@@ -221,7 +224,7 @@ module TOC
 
   # define a article
   def article(name, title, keywords=[])
-    keywords = ['treasure data', 'hadoop', 'cloud data warehouse', name] + keywords
+    keywords = [name] + keywords
     sections.last.last.last.last << [name, title, keywords]
   end
 
