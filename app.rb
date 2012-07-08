@@ -221,7 +221,7 @@ module TOC
 
   # define a article
   def article(name, title, keywords=[])
-    keywords = ['treasure data', 'hadoop', 'cloud data warehouse' + name] + keywords
+    keywords = ['treasure data', 'hadoop', 'cloud data warehouse', name] + keywords
     sections.last.last.last.last << [name, title, keywords]
   end
 
