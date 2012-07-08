@@ -70,7 +70,7 @@ Next, set the `apikey` option in your `td-agent.conf` file.
 
 Note: *YOUR_API_KEY* should be your actual API key string.
 
-    :::term
+    :::text
     # Treasure Data Input and Output
     <match td.*.*>
       type tdlog
