@@ -18,26 +18,26 @@ end
 
 section 'languages-and-middlewares', 'Languages' do
   category 'java', 'Java' do
-    article 'java', 'Data Import from Java Applications'
+    article 'java', 'Data Import from Java Applications',           ['fluentd', 'td-agent']
   end
   category 'ruby', 'Ruby' do
-    article 'ruby', 'Data Import from Ruby Applications'
-    article 'rails', 'Data Import from Ruby on Rails Applications'
+    article 'ruby', 'Data Import from Ruby Applications',           ['fluentd', 'td-agent']
+    article 'rails', 'Data Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
   end
   category 'python', 'Python' do
-    article 'python', 'Data Import from Python Applications'
+    article 'python', 'Data Import from Python Applications',       ['fluentd', 'td-agent'] 
   end
   category 'php', 'PHP' do
-    article 'php', 'Data Import from PHP Applications'
+    article 'php', 'Data Import from PHP Applications',             ['fluentd', 'td-agent']
   end
   category 'perl', 'Perl' do
-    article 'perl', 'Data Import from Perl Applications'
+    article 'perl', 'Data Import from Perl Applications',           ['fluentd', 'td-agent']
   end
   category 'nodejs', 'Node.js' do
-    article 'nodejs', 'Data Import from Node.js Applications'
+    article 'nodejs', 'Data Import from Node.js Applications',      ['fluentd', 'td-agent']
   end
   category 'scala', 'Scala' do
-    article 'scala', 'Data Import from Scala Applications'
+    article 'scala', 'Data Import from Scala Applications',         ['fluentd', 'td-agent']
   end
 end
 
@@ -61,13 +61,13 @@ section 'reference', 'Reference' do
     article 'schema', 'Schema Management'
   end
   category 'data-import', 'Data Import' do
-    article 'td-agent', 'Using td-agent'
-    article 'td-agent-high-availability', 'High-Availability td-agent Configurations'
-    article 'td-agent-tail', 'Tailing the Existing Log Files'
-    article 'td-agent-copy', 'Storing Logs Locally and Remotely'
-    article 'td-agent-http', 'Storing Logs via HTTP protocol'
-    article 'td-agent-scribe', 'Storing Logs via Scribe protocol'
-    article 'td-agent-changelog', 'ChangeLog of td-agent'
+    article 'td-agent', 'Using td-agent',                                              ['fluentd', 'td-agent']
+    article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
+    article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
+    article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
+    article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
+    article 'td-agent-scribe', 'Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
+    article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
   end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
