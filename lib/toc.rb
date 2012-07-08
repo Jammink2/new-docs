@@ -127,9 +127,9 @@ section 'tools', 'Tools & Specs' do
     article 'jdbc-driver', 'JDBC Driver'
   end
   category 'bi-etl-tools', 'BI / ETL Tools' do
-    article 'jaspersoft-ireport', 'JasperSoft iReport'
-    article 'pentaho', 'Pentaho Business Analytics'
-    article 'r-language', 'R Language'
-    article 'talend', 'Talend Open Studio'
+    article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
+    article 'pentaho', 'Pentaho Business Analytics',    ['Pentaho Business Analytics']
+    article 'r-language', 'R Language',                 ['R Language']
+    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
   end
 end

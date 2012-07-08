@@ -162,6 +162,18 @@ helpers do
     nil
   end
 
+  def find_keywords(article)
+    return nil if article.nil?
+    sections.each { |_, _, categories|
+      categories.each { |_, _, articles|
+        articles.each { |article_name, _, keywords|
+          return keywords if article_name == article
+        }
+      }
+    }
+    []
+  end
+
   def sections
     TOC.sections
   end
@@ -208,8 +220,9 @@ module TOC
   end
 
   # define a article
-  def article(name, title)
-    sections.last.last.last.last << [name, title, []]
+  def article(name, title, keywords=[])
+    keywords = ['treasure data', 'hadoop', 'cloud data warehouse' + name] + keywords
+    sections.last.last.last.last << [name, title, keywords]
   end
 
   file = File.dirname(__FILE__) + '/lib/toc.rb'
