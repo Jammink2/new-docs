@@ -112,4 +112,7 @@ Our users come from many industries like ad-tech, social media, social game, fin
 
 ## What's Next?
 
+If you need further information, please get and read [our white papers].
+
 If you don't have an account yet, please proceed to the [quickstart](/articles/quickstart) guide.
+
