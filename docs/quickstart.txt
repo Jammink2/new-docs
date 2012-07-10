@@ -6,7 +6,7 @@ Let's get started with Treasure Data! Treasure Data is a Hadoop-based **Cloud Da
 Step 1: Sign-Up
 ---------------
 
-[Sign up](http://treasure-data.com/signup.html) for Treasure Data if you haven't yet.
+[Sign up](http://treasure-data.com/signup/) for Treasure Data if you haven't yet.
 
 Step 2: Install Treasure Data Toolbelt
 ------------------------------------------
