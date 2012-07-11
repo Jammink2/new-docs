@@ -74,14 +74,14 @@ Now, let's list the uploaded parts by `bulk_import:show`.
     | t01  | sfdb.bi02 | Ready  |        | 70220 | 2           | 1           | 100           | 10            |
     +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
 
-### 3) Check Error Records
+### 4) Check Error Records
 
 After `perform`, some records could be invalid. You can list these invalid records by `bulk_import:error_records`.
 
     :::bash
     $ td bulk_import:error_records bulk_201203
 
-### 4) Commit
+### 5) Commit
 
 If the uploaded data is correct, `bulk_import:commit` command will transactionally import the data into the table.
 
