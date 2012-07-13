@@ -72,7 +72,7 @@ section 'reference', 'Reference' do
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
     article 'schedule', 'Scheduled Job'
-    article 'hive', 'Hive (SQL-style) Query Language'
+    article 'hive', 'Hive (SQL-style) Query Language', ['hive query language', 'hive sql', 'hive tutorial', 'hive manual']
     article 'pig', 'Pig Latin Language'
   end
   category 'data-deletion', 'Data Deletion' do
