@@ -165,7 +165,7 @@ helpers do
   end
 
   def find_keywords(article, category)
-    default = ['treasure data', 'hadoop', 'cloud data warehouse']
+    default = ['treasure data', 'hadoop', 'cloud data warehouse', 'data analytics']
     sections.each { |_, _, categories|
       categories.each { |category_name, _, articles|
         return default + [category_name] if category_name == category
