@@ -1,6 +1,6 @@
 # The Hive (SQL-style) Query Language
 
-[Treasure Data](http://treasure-data.com/) is a Hadoop-based cloud data warehousing, which provides a SQL-live query language interface called Hive query language. This article covers the basics of the Hive query language.
+[Treasure Data](http://treasure-data.com/) is a Hadoop-based cloud data warehousing, which provides a SQL-like query language interface called Hive query language. This article covers the basics of the Hive query language.
 
 ## Prerequisites
 
