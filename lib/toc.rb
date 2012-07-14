@@ -43,7 +43,7 @@ end
 
 section 'Usecases', 'Usecases' do
   category 'WeblogAnalytics', 'Weblog Analytics' do
-    article 'apache', 'Analyzing Apache Logs on the Cloud', ['apache log analysis', 'apache log analyzer']
+    article 'apache', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
 #     article 'game', 'Analyzing Social Gaming Logs'
 #     article 'ec', 'Analyzing E-Commerce Logs'
 #     article 'adtech', 'Analyzing Ad-Server Logs'
