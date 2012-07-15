@@ -76,10 +76,10 @@ td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffe
 
 ## Using fluent-logger-python
 
-First, install the fluent-logger-python library via pip.
+First, install the fluent-logger library via pip.
 
     :::term
-    $ pip install fluent-logger-python
+    $ pip install fluent-logger
 
 Next, initialize and post the records as follows.
 
