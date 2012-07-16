@@ -1,6 +1,6 @@
 # Analyzing Apache Logs on the Cloud
 
-[Treasure Data](http://treasure-data.com/) enables you to analyze apache logs on the cloud. You can forget about server, and storages. Focus 100% on Apache logs anaytics.
+[Treasure Data](http://treasure-data.com/), the Hadoop-based Cloud Datawarehouse, enables you to analyze apache logs on the cloud. You can forget about server, and storages. Focus 100% on Apache logs anaytics at a scale.
 
 This article explains how to import Apache logs with `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
