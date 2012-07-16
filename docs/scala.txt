@@ -79,13 +79,13 @@ td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffe
 
 First, please add the following lines to build.sbt. The logger's revision information can be found in [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
 
-NOTE: If you need a all-in-one jar file, we provide one at <a href="http://treasure-data.com/maven2/">http://treasure-data.com/maven2/</a>.
+NOTE: If you need a all-in-one jar file, we provide one at <a href="http://maven.treasure-data.com/">http://maven.treasure-data.com/</a>.
 
     :::scala
     /* in build.sbt */
     // Repositories
     resolvers ++= Seq(
-      "td-logger     Maven2 Repository" at "http://treasure-data.com/maven2/",
+      "td-logger     Maven2 Repository" at "http://maven.treasure-data.com/",
       "fluent-logger Maven2 Repository" at "http://fluentd.org/maven2/"
     )
     // Dependencies

@@ -26,7 +26,7 @@ First, please install [the td-logger library](https://github.com/treasure-data/t
       <repository>
         <id>treasure-data.com</id>
         <name>Treasure Data's Maven2 Repository</name>
-        <url>http://treasure-data.com/maven2</url>
+        <url>http://maven.treasure-data.com/</url>
       </repository>
       <repository>
         <id>fluentd.org</id>
