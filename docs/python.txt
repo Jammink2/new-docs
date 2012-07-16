@@ -86,8 +86,8 @@ Next, initialize and post the records as follows.
     :::python
     # Initialize
     from fluent import sender
-    sender.setup('test_db', host='host', port=24224)
-    
+    from fluent import event
+    sender.setup('td.test_db', host='localhost', port=24224)
     event.Event('follow', {
       'from': 'userA',
       'to':   'userB'
