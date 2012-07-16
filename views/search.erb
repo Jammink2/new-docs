@@ -1,3 +1,6 @@
+<div id="page">
+<div class="topic_content">
+
 <% @title = "Search for #{params[:q]}" %>
 <hgroup>
   <h1>Results for <em style="color:#4c4074"><%= params[:q] %></em>:</h1>
@@ -21,3 +24,5 @@
   <div id="prev_section"><a href="/search?q=<%= query %>&page=<%= prev_page %>">&larr; Prev Page</a></div>
 <% end %>
 
+</div><!-- /#topic_content -->
+</div><!-- /#page -->
