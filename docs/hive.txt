@@ -12,17 +12,39 @@ The Hive query language (HiveQL) is the primary data processing method for Treas
 
 NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are not currently available.
 
-## Tutorial
+## Official Documents 
 
-The official Hive tutorial goes offer the basics of HiveQL.
+* [The official Hive tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial) goes offer the basics of HiveQL.
+* [The official Hive language manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) covers all features of HiveQL.
 
-* [Hive Tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial)
+## CLI Usage
 
-## Reference
+You can submit the query by `td query` command.
 
-The official language manual can be found here:
+    :::term
+    usage:
+      $ td query <sql>
+    
+    example:
+      $ td query -d example_db -w -r rset1 "select count(*) from table1"
+    
+    description:
+      Issue a query
+    
+    options:
+      -d, --database DB_NAME           use the database (required)
+      -w, --wait                       wait for finishing the job
+      -o, --output PATH                write result to the file
+      -f, --format FORMAT              format of the result to write to the file (tsv, csv, json or msgpack)
+      -r, --result RESULT_URL          write result to the URL (see also result:create subcommand)
+      -u, --user NAME                  set user name for the result URL
+      -p, --password                   ask password for the result URL
+      -P, --priority PRIORITY          set priority
 
-* [HiveQL Language Manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+An example query is like this.
+
+    $ td query -w -d testdb \
+      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
 
 ## Example Queries
 
