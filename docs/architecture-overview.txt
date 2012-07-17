@@ -12,56 +12,56 @@ Focus 100% on your data analytics, and never worry about server scaling, storage
 
 ## Why We Started Our Business?
 
-The importance of data analytics and warehousing has been increasing, but most existing solutions are still a luxury only to large business. To take advantage of emerging data management and analytics technologies based on open source software, we are to democratize them.
+Despite the increasing importance of data warehousing and analytics, most solutions today remain luxuries available only to large businesses. We strive to bring data management and analytics to the masses by leveraging open source software. 
 
 ## Problems
 
-The data deluge is now a common problem across all industries beccause of the rise of smart phones, social medias and sensor devices. Many businesses try to find out valuable insights from such data, but handling large-scale data is always challenging.
+Data deluges are now a common problem across all industries, due to the proliferation of smart phones, social media, and sensors. Businesses today are trying to find valuable insights from their data. However, managing very large amounts of data has proven to be a challenge for many companies.
 
-This problem is known as *Big Data Problem*, mostly coming from:
+This is known as the *Big Data Problem*:
 
-* **Resource** problem: strong data engineers are the scarce resource.
-* **Economic** problem: the existing data warehouse is expensive, and operational overhead to manage large-scale clusters is a major concern for managements.
-* **Architectural** problem: the existing infrastructure is hard to change.
+* **Resource** Problem: Strong data engineers are in high demand.
+* **Economic** Problem: Existing data warehouses are expensive. The operational overhead to manage large-scale clusters is a major concern for management.
+* **Architectural** Problem: Changing the existing infrastructure is difficult.
 
-We designed our service solve those problems.
+Our service is designed to solve these problems.
 
 ## What We Provide
 
-We're providing **Cloud-based Data Warehousing** service. You can store, manage, and process large amount of data by taking advantages of cloud technologies. The major advantages are:
+We provide a **Cloud-based Data Warehousing** service. You can store, manage, and process large amounts of data by leveraging the advantages of cloud technologies. The major advantages are:
 
 <a href="/images/td_traditional_comparison.png">
 <img src="/images/td_traditional_comparison.png" height="250px" align="right" style="margin-left: 25px; border: 0px;" />
 </a>
 
-* **Instant** setup, with a monthly subscription model.
+* **Instant** setup.
 * **Infinite** cloud storage capacity, with high availability.
-* **Easy** to use, without deep knowledge of "Big Data" technologies. Just focus on your data, not a cluster management.
-* **Elastic** resource allocation, means scaling up and down at anytime.
-* **Connectivity** You can adopt it to your data sources and analytics applications without architectual changes.
-* **Cost** of cloud storage is extremely inexpensive, compared to existing data warehousing solutions.
+* **Easy** to use, and does not require deep knowledge of "Big Data" technologies. You focus on your data instead of cluster management.
+* **Elastic** resource allocation that can be scaled up or down anytime.
+* **Connectivity** to your existing data sources and analytics applications without architectual changes.
+* **Costs** for cloud storage are signficantly lower than traditional data warehousing solutions. Our monthly subscription model lowers initial investment requirements.
 
 ## Architecture Diagram
 
-This is the overall architecture diagram of Treasure Data.
+This is Treasure Data's architecture.
 
 <p><center><img src="/images/architecture.png" width="500px" /></center></p>
 <br />
 <br />
 
-And the key features are:
+Key features include:
 
 ### 1) Built-in Data Collector
 
-Treasure Data provides *[td-agent](/articles/td-agent)*, a data collection daemon. It will be installed in your existing infrastructure, collects records from various data sources, and continuously uploads them to Treasure Data.
+Treasure Data provides a data collection daemon, *[td-agent](/articles/td-agent)*, which is installed in your existing infrastructure. td-agent collects records from various data sources and continuously uploads the data to Treasure Data's cloud storage.
 
 ### 2) Cloud Columnar Storage
 
-All data is stored in the cloud storage, as a columnar data representation. This achieves far better performance and compression rate, compared to the existing RDBMSs. And of course, *your data is yours*. You can bulk-export your data at any time.
+All your data is stored in the cloud as a columnar data. This format achieves far better performance andcompression compared to existing RDBMSs. We also believe that *your data is yours*: you can bulk-export your data at any time.
 
 ### 3) SQL-Style Query with Parallel Execution
 
-A SQL-style language lets you analyze your data. The query is automatically executed in parallel at the cloud-hosted Hadoop cluster, so the users are able to handle large datasets without having to learn anything new. Also, our engine is schema-free. You can modify your data schema at any time.
+Treasure Data lets you analyze your data using a SQL-style language. The query is automatically executed in parallel at the cloud-hosted Hadoop cluster, so the users are able to handle large datasets without having to learn anything new. Also, our engine is schema-free. You can modify your data schema at any time.
 
 ### 4)Export to RDBMS/Traditional Warehouse
 
@@ -73,7 +73,7 @@ Treasure Data also provides a standard [JDBC interface](jdbc-driver) for data tr
 
 ### 6) Curation and Support
 
-We actively curate each layer, ensuring you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly. The dedicated support team is organized to help our users.
+We actively curate each piece of technology we use. We ensure that you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly. Our support team is dedicated to helping our users.
 
 ## Use Cases
 
