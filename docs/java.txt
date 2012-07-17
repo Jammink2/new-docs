@@ -112,6 +112,7 @@ Next, please configure your *treasure-data.properties* file using the commands s
     td.logger.agentmode=true
     td.logger.agent.host=localhost
     td.logger.agent.port=24224
+    td.logger.agent.tag=td
 
 Finally, please insert the following lines into your application. Further information regarding the API can be found [here](https://github.com/treasure-data/td-logger-java).
 
