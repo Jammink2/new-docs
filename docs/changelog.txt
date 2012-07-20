@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Jul 19, 2012: Added result output to Treasure Data
+
+Now you can [write your query result into another table](result-into-td).
+
 ## Jul 02, 2012: Added partial delete feature
 
 Now you can [delete the data within a single table partially](/articles/deletion), by specifying the time range.
