@@ -27,7 +27,7 @@ For scheduled jobs, just add the `-r` option when scheduling a job. Every time t
       -d testdb "select count(*) from www_access" \
       -r mydb:output_table
 
-## Three Ways to Modify Data (Append/Replace/Truncate)
+## Tow Ways to Modify Data (Append/Replace)
 
 You can add or delete data in two ways.
 
