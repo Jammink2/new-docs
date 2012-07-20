@@ -79,6 +79,7 @@ section 'reference', 'Reference' do
     article 'deletion', 'Data Deletion'
   end
   category 'result', 'Result Output' do
+    article 'result-into-td', 'Writing the Job Result into Treasure Data'
     article 'result-into-mysql', 'Writing the Job Result into your MySQL'
     article 'result-into-postgresql', 'Writing the Job Result into your PostgreSQL'
     article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'

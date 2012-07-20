@@ -1,0 +1,51 @@
+# Writing the Query Results into your TD Table.
+
+This article explains how to write job results to your Treasure Data (TD) table.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+
+## Basic Usage
+
+### For On-demand Jobs
+
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into your `output_table` within `testdb` database.
+
+    :::sql
+    $ td query -r 'td://@/testdb/output_table' \
+      -w -d testdb \
+      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"      
+
+### For Scheduled Jobs
+
+For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+
+    :::term
+    $ td result:create mydb td://@/testdb
+    $ td sched:create hourly_count_example "0 * * * *" \
+      -d testdb "select count(*) from www_access" \
+      -r mydb:output_table
+
+## Three Ways to Modify Data (Append/Replace/Truncate)
+
+You can add or delete data in two ways.
+
+    :::term
+    td://@/testdb/output_table              # append
+    td://@/testdb/output_table?mode=append  # append
+    td://@/testdb/output_table?mode=replace # replace
+
+### APPEND
+
+This is the default mode. The query results are appended to a table. If the table does not exist yet, a new table will be created. This operation is not idempotent.
+
+### REPLACE
+
+If the table already exists, the rows of the existing table are replaced with the query results. If the table does not exist yet, a new table will be created.
+
+We achieve **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**.
+
+1. Create a temporary table.
+2. Write to the temporary table.
+3. Replace the existing table with the temporary table atomically
