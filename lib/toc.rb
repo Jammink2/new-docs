@@ -61,13 +61,14 @@ section 'reference', 'Reference' do
     article 'schema', 'Schema Management'
   end
   category 'data-import', 'Data Import' do
-    article 'td-agent', 'Using td-agent',                                              ['fluentd', 'td-agent']
+    article 'td-agent', 'Using td-agent package',                                      ['fluentd', 'td-agent']
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
     article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
     article 'td-agent-scribe', 'Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
     article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
+    article 'fluentd-to-treasure-data', 'Using Fluentd Ruby gem',                      ['fluentd']
   end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'

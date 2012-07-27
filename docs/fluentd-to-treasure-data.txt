@@ -1,0 +1,62 @@
+# Continuous Data Import from Fluentd
+
+This article covers how to continuously import the data with `fluentd`.
+
+## About Fluentd
+
+[Fluentd](http://fluentd.org/) is a log collector daemon written in Ruby. Fluentd receives logs as JSON streams, buffers them, and sends them to other systems like MySQL, MongoDB, or even other instances of Fluentd.
+
+We're providing `td-agent` as rpm/deb package which contains Fluentd, howevery, there're many Fluentd users which installs fluentd by Ruby gems. This article is for them.
+
+**Not for td-agent users, but for Fluentd gem users**. The instruction with `td-agent` is <a href="/td-agent">described separately</a>.
+
+## Use fluent-plugin-td
+
+At first, please install `fluent-plugin-td` gem by this command.
+
+    :::term
+    $ gem install fluent-plugin-td
+
+Then, please put those lines to your configuration file. `fluent-plugin-td` contains `tdlog` output, which uploads the data into Treasure Data.
+
+    :::text
+    # HTTP input
+    <source>
+      type http
+      port 8888
+    </source>
+        
+    # Treasure Data output
+    <match td.*.*>
+      type tdlog
+      apikey ...
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
+    </match>
+
+## Confirm Data Upload
+
+You can add logs in JSON using HTTP.
+
+    :::term
+    $ curl -X POST -d 'json={"action":"login","user":2}' \
+      http://localhost:8888/td.testdb.www_access
+
+`td-agent` continuously uploads logs every minute. By sending SIGUSR1 signal, you can force `td-agent` to flush the buffered logs into the cloud.
+
+    :::term
+    $ kill -USR1 <pid_of_fluentd>
+
+You can confirm that your data was imported successfully by running `td tables`:
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | testdb     | www_access | log  | 1         |
+    +------------+------------+------+-----------+
+
+If you run into an issue, fluentd's log is a good place to start your investigation.
