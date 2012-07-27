@@ -133,5 +133,6 @@ section 'tools', 'Tools & Specs' do
     article 'pentaho', 'Pentaho Business Analytics',    ['Pentaho Business Analytics']
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
+    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
   end
 end
