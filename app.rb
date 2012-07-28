@@ -37,11 +37,11 @@ end
 get '/' do
   # cache_long
   # haml :index
-  @title   = 'Documentation | Treasure Data'
-  @desc    = 'Documentation of Treasure Data, Hadoop-based Cloud Data Warehouse.'
-  @toc     = []
-  erb :index
-  # redirect '/articles/quickstart'
+  # @title   = 'Documentation | Treasure Data'
+  # @desc    = 'Documentation of Treasure Data, Hadoop-based Cloud Data Warehouse.'
+  # @toc     = []
+  # erb :index
+  redirect '/articles/quickstart'
 end
 
 get '/robots.txt' do
