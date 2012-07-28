@@ -63,8 +63,6 @@ Step 5: Write Queries
 
 Finally, let’s write a SQL query. A Hadoop-based engine on the cloud executes your query and returns the result to you. The following query calculates the distribution of HTTP status codes.
 
-The above command takes roughly 15 seconds. It’s the overhead of setting up the jobs within the cloud based on Hadoop.
-
     :::term
     $ td query -w -d testdb \
       "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
@@ -83,6 +81,8 @@ The above command takes roughly 15 seconds. It’s the overhead of setting up th
     | 404  | 17   |
     | 500  | 2    |
     +------+------+
+
+The above command takes roughly 15 seconds. It’s the overhead of setting up the jobs within the cloud based on Hadoop.
 
 What's Next?
 ------------
