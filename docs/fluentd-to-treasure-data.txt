@@ -12,9 +12,10 @@ We're providing `td-agent` as rpm/deb package which contains Fluentd, howevery, 
 
 ## Use fluent-plugin-td
 
-At first, please install `fluent-plugin-td` gem by this command.
+At first, please install `fluentd` and `fluent-plugin-td` gem by this command.
 
     :::term
+    $ gem install fluentd
     $ gem install fluent-plugin-td
 
 Then, please put those lines to your configuration file. `fluent-plugin-td` contains `tdlog` output, which uploads the data into Treasure Data.
@@ -25,26 +26,31 @@ Then, please put those lines to your configuration file. `fluent-plugin-td` cont
       type http
       port 8888
     </source>
-        
+    
     # Treasure Data output
     <match td.*.*>
       type tdlog
       apikey ...
       auto_create_table
       buffer_type file
-      buffer_path /var/log/td-agent/buffer/td
+      buffer_path /path/to/buffer/td
       use_ssl true
     </match>
 
 ## Confirm Data Upload
 
-You can add logs in JSON using HTTP.
+At first, please start fluentd server.
+
+    :::term
+    $ ./bin/fluentd --config fluentd.conf
+
+Second, You can add logs in JSON using HTTP.
 
     :::term
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
-`td-agent` continuously uploads logs every minute. By sending SIGUSR1 signal, you can force `td-agent` to flush the buffered logs into the cloud.
+`fluentd` continuously uploads logs every minute. By sending SIGUSR1 signal, you can force `fluentd` to flush the buffered logs into the cloud.
 
     :::term
     $ kill -USR1 <pid_of_fluentd>
