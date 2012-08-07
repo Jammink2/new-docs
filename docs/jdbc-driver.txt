@@ -14,17 +14,17 @@ NOTE: This driver only works with Treasure Data. It does not run on other enviro
 
 Because Treasure Data is a cloud service, its JDBC driver behaves in a slightly different manner compared to that of traditional RDBMs.
 
-#### SELECT Query
+#### SELECT Statement
 
-When a SELECT query is sent to the driver, the driver will issue the query to the cloud. The driver will regularly poll the job results while the jobs run on the cloud. The query may take several hours, we recommend that you use a background thread.
+When a SELECT statement is sent to the driver, the driver will issue the query to the cloud. The driver will regularly poll the job results while the jobs run on the cloud. The query may take several hours, we recommend that you use a background thread.
 
-#### INSERT Query
+#### INSERT Statement
 
-When a INSERT query is sent to the driver, the data is first buffered in local memory. The data is uploaded into the cloud every 5 minutes. Please note that the upload doesn't occur in realtime.
+When a INSERT statement is sent to the driver, the data is first buffered in local memory. The data is uploaded into the cloud every 5 minutes. Please note that the upload doesn't occur in realtime.
 
 ## Sample Java Program
 
-Here's a sample Java program that executes a SELECT query. This program counts the number of records within the testdb.www_access table.
+Here's a sample Java program that executes a SELECT statement. This program counts the number of records within the testdb.www_access table.
 
 ### JDBCSample.java
 
@@ -68,7 +68,8 @@ Here's a sample Java program that executes a SELECT query. This program counts t
 
 ### treasure-data.properties
 
+If you use SELECT statement only, you don't need this file. This is required only for INSERT statement.
+
     :::text
     td.logger.agentmode=false
     td.api.key=<your API key>
-
