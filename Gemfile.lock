@@ -13,6 +13,7 @@ GEM
     indextank (1.0.12)
       faraday-stack
       yajl-ruby (>= 0.7.7)
+    je (0.0.6)
     json (1.6.6)
     kgio (2.7.4)
     mime-types (1.18)
@@ -52,6 +53,7 @@ DEPENDENCIES
   coderay
   haml (= 2.2.17)
   indextank (~> 1.0.12)
+  je (= 0.0.6)
   json
   newrelic_rpm
   rack-codehighlighter
