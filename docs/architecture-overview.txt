@@ -16,7 +16,7 @@ Despite the increasing importance of data warehousing and analytics, most soluti
 
 ## Problems
 
-Data deluges are now a common problem across all industries, due to the proliferation of smart phones, social media, and sensors. Businesses today are trying to find valuable insights from their data. However, managing very large amounts of data has proven to be a challenge for many companies.
+Overabundance of data is now a common problem across all industries, due to the proliferation of smart phones, social media, and sensors. Businesses today are trying to find valuable insights from their data. However, managing very large amounts of data has proven to be a challenge for many companies.
 
 This is known as the *Big Data Problem*:
 
@@ -77,7 +77,7 @@ We actively curate each piece of technology we use. We ensure that you have the 
 
 ## Use Cases
 
-Our users come from many industries like ad-tech, social media, social game, financial, e-commerce, etc. The actual examples are:
+Our users hail from a wide range of industries, including digital marketing, social media, social games, finance, e-commerce, etc. Some real use cases include:
 
 <table>
   <tr>
@@ -94,15 +94,15 @@ Our users come from many industries like ad-tech, social media, social game, fin
   </tr>
   <tr>
     <td>A/B Testing</td>
-    <td>Testing your feature with different sets of users</td>
+    <td>Comparing feature implementations between different sets of users</td>
   </tr>
   <tr>
     <td>Customer Segmentation</td>
-    <td>Slice and dice your user base, and see what happens</td>
+    <td>Slice and dice your user base, and see what trends emerge</td>
   </tr>
   <tr>
     <td>Sensor Data Analysis</td>
-    <td>Analyzing sensor data like smart meters</td>
+    <td>Analysis sensor data such as smart meters</td>
   </tr>
   <tr>
     <td>...</td>
