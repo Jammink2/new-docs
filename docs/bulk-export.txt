@@ -1,16 +1,19 @@
 # Bulk Export
 
-At Treasure Data, we believe that your data belongs to you, after importing to our platform. We MUST avoid vendor-lockin problem.
+This article explains Treasure Data's bulk-export feature, which lets you dump data into your Amazon S3 bucket.
 
-This article explans about bulk-export feature, which lets you dump your data into your Amazon S3 bucket.
+At Treasure Data, we believe that your data belongs to you, even after importing it to our platform. We believe that vendor-lockin MUST be stopped.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Amazon AWS account and Amazon S3 bucket.
 
 ## Table Dump
 
-The `td table:export` command lets you dump all of your data stored in TD, to your Amazon S3 bucket. That means, you need to setup your AWS account, and Amazon S3 bucket. The dump is done by MapReduce jobs.
+The `td table:export` command will dump all the data uploaded to TD into your Amazon S3 bucket. Please specify the database and table from which to dump your data. 
+
+The dump is performed via MapReduce jobs.
 
     :::term
     usage:
