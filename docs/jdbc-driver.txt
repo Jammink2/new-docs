@@ -35,12 +35,12 @@ Here's a sample Java program that executes a SELECT statement. This program coun
     import java.sql.ResultSet;
     import java.sql.Statement;
     import java.util.Properties;
-    import com.treasure_data.jdbc.TestTreasureDataDriver;
+    import com.treasure_data.jdbc.TreasureDataDriver;
     
     public class JDBCSample {
       public static void loadSystemProperties() throws IOException {
         Properties props = System.getProperties();
-        props.load(TestTreasureDataDriver.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
+        props.load(TreasureDataDriver.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
       }
     
       public static void main(String[] args) throws Exception {
