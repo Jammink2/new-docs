@@ -9,7 +9,8 @@
 ## Data Import
 
 You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
-### Step1: Import Data Using 'td' Gem
+
+### Step1: Set Up Data Import Using the 'td' Gem
 
 First, add the `td` (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
 
@@ -21,7 +22,7 @@ Next, install the gem locally via bundler.
     :::term
     $ bundle install
 
-The ‘td’ gem comes with a built-in library for recording in-app events. Insert code in the format below in order to record events from your app:
+The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
 
     :::ruby
     # Initialization
@@ -42,26 +43,28 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-Each event-logging code should be inserted near its corresponding event-generating code. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
+Your event-logging code should be placed near its corresponding event-generating code. 
+
+Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
-After inserting your event-logging code, please deploy your modification on EngineYard!
+Once you have inserted your event-logging code, push the modifications to EngineYard!
 
 ### Step2: Access Your Application
 
-First, open your application on EngineYard. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded in 5 minute intervals.
+First, open your application on EngineYard. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded every 5 minutes.
 
     :::term
     $ open http://your-site-url/
 
 ### Step3: Check Your Uploaded Data
 
-At first, you need to setup your apikey into your local environment. Please check the apikey from the console by clicking `Show Vars` button.
+First, get your TD apikey for EngineYard. You can see your apikey from the console by clicking the `Show Vars` button.
 
 <center><img src="/images/engine_yard_addon.png" width="90%" /></center><br /><br />
 
-Then, please set with `td apikey:set -f`. `td` command is installed with `td` gem.
+Next, set your apikey using `td apikey:set -f`. The `td` command is installed as part of the `td` gem.
 
     :::term
     $ td apikey:set -f 'YOUR_API_KEY_HERE'
@@ -99,7 +102,8 @@ If your data has been uploaded properly, then use the ‘td table:tail’ comman
 
 ### Step4: Analyze Your Data
 
-Our service lets you to analyze your data using a SQL-style language. When your data is sent to us, your logs are imported into a Hadoop/Hive cluster. Hive lets its users query big data through a SQL-like interface.
+
+Our service lets you analyze your data using a SQL-style language. When your data is sent to us, your logs are imported into a Hadoop/Hive cluster. Hive lets its users query big data using a SQL-like interface.
 
 Please use the `td query` command to issue queries to TD Hadoop; TD Hadoop will accept and execute queries within the cloud.
 
@@ -129,9 +133,9 @@ The next example query counts the total number of logged actions for each day.
 
 The `td query –format csv` command will return the results in csv format.
 
-## Issue The Query
+## Issue Queries from a Ruby Program
 
-This is an example code of issueing the query from the Ruby program. The query API is asynchronous, and you can wait the completion by pollings (e.g. job.finished? call).
+Below is an example of issuing a query from a Ruby program. The query API is asynchronous, and you can wait for the query to complete by polling the job periodically (e.g. by issuing job.finished? calls).
 
     :::ruby
     require 'td'
@@ -147,15 +151,15 @@ This is an example code of issueing the query from the Ruby program. The query A
       job.result_each { |row| p row }
     end
 
-## Does Upload Impact the App Performance?
+## Does Uploading Data Impact App Performance?
 
-Througth `td` gem, the posted records are buffered locally at first, and uploads are done every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect the response time.
+When using the `td` gem, the posted records are buffered locally at first, and the data is uploaded every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect your application's response time.
 
-There's also a size limit of the local buffer. If the local data size exceeds that limit, the records start uploaded immediately.
+The local buffer also has a size limit. If the local data exceeds this limit, the records will be uploaded immediately.
 
 ## Next Step
 
-Please look at this document to know about the EngineYard addon limitation. It's important to know it, before going to other articles. Also you may be curious about our schema mechanism, which is completely different from traditional RDBMSs. Also, please look at HiveQL section for example analysis queries.
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
 
 * [Schema Management](schema)
 * [Hive Query Language](hive)
