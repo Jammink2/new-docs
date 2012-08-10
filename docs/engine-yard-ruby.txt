@@ -2,14 +2,13 @@
 
 ## Prerequisites
 
-  * Basic knowledge of Ruby, Gems, and Bundler
-  * Basic knowledge of EngineYard
-  * Ruby 1.8 or higher (for local testing)
+  * Basic knowledge of Ruby, Gems, and Bundler.
+  * Basic knowledge of EngineYard.
+  * Ruby 1.8 or higher (for local testing).
 
 ## Data Import
 
-It's a **4 STEP** approach. 1) **Embed** codes, 2) **Run** it, 3) **Check**, and 4) **Query** it.
-
+You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
 ### Step1: Import Data Using 'td' Gem
 
 First, add the `td` (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
