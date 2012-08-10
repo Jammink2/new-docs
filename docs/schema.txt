@@ -43,6 +43,13 @@ In general, the default schema is acceptable. But a custom schema makes queries 
     :::term
     $ td schema:set <database> <table> <column_name>:<type>...
 
+Regarding the type, Treasure Data supports those types.
+
+* int
+* long
+* double
+* string
+* array&lt;T&gt;
 
 In the "Getting Started" guide, we set up a table with 'user' (int type) and 'action' (string type) columns. For this example, the schema would be added as follows.
 
