@@ -1,24 +1,24 @@
 # Continuous Data Import from Fluentd
 
-This article covers how to continuously import the data with `fluentd`.
+This article explains how to continuously import the data into Treasure Data using `Fluentd`.
 
 ## About Fluentd
 
-[Fluentd](http://fluentd.org/) is a log collector daemon written in Ruby. Fluentd receives logs as JSON streams, buffers them, and sends them to other systems like MySQL, MongoDB, or even other instances of Fluentd.
+[Fluentd](http://fluentd.org/) is a log collector daemon written in Ruby. It collects logs as JSON streams, buffers them, and sends them to other systems such as MySQL, MongoDB, or even other instances of Fluentd.
 
-We're providing `td-agent` as rpm/deb package which contains Fluentd, howevery, there're many Fluentd users which installs fluentd by Ruby gems. This article is for them.
+Treasure Data's `td-agent` logging daemon contains Fluentd. However, many users have installed Fluentd via Ruby gems. This article is written for users who wish to connect their existing Fluentd installations to Treasure Data. 
 
-**Not for td-agent users, but for Fluentd gem users**. The instruction with `td-agent` is <a href="/td-agent">described separately</a>.
+NOTE: Instructions for `td-agent` are <a href="/td-agent">described separately</a>.
 
-## Use fluent-plugin-td
+## Using fluent-plugin-td
 
-At first, please install `fluentd` and `fluent-plugin-td` gem by this command.
+First, please install the `fluentd` and `fluent-plugin-td` gems as shown below:
 
     :::term
     $ gem install fluentd
     $ gem install fluent-plugin-td
 
-Then, please put those lines to your configuration file. `fluent-plugin-td` contains `tdlog` output, which uploads the data into Treasure Data.
+Next, please add the following lines to your configuration file. `fluent-plugin-td` contains the `tdlog` output type, which is used to upload data into Treasure Data.
 
     :::text
     # HTTP input
@@ -39,23 +39,23 @@ Then, please put those lines to your configuration file. `fluent-plugin-td` cont
 
 ## Confirm Data Upload
 
-At first, please start fluentd server.
+First, please start the Fluentd server.
 
     :::term
     $ ./bin/fluentd --config fluentd.conf
 
-Second, You can add logs in JSON using HTTP.
+Next, add logs in JSON using HTTP.
 
     :::term
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
-`fluentd` continuously uploads logs every minute. By sending SIGUSR1 signal, you can force `fluentd` to flush the buffered logs into the cloud.
+`Fluentd` continuously uploads logs, sending data every minute. Sending a SIGUSR1 signal will force `fluentd` to flush the buffered logs into the cloud immediately.
 
     :::term
     $ kill -USR1 <pid_of_fluentd>
 
-You can confirm that your data was imported successfully by running `td tables`:
+Issue the `td tables` command to confirm that your data was imported successfully.
 
     :::term
     $ td tables
@@ -65,4 +65,4 @@ You can confirm that your data was imported successfully by running `td tables`:
     | testdb     | www_access | log  | 1         |
     +------------+------------+------+-----------+
 
-If you run into an issue, fluentd's log is a good place to start your investigation.
+If you run into any issues, fluentd's log is a good place to start investigating.
