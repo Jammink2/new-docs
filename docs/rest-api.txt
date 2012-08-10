@@ -27,6 +27,10 @@ The request looks like this when using the curl command. (The -H option adds the
     $ curl -H "AUTHORIZATION: TD1 YourApiKeyHere" \
       "http://api.treasure-data.com/v3/job/result/2162"
 
+## Limitation
+
+The extraordinaly API abuse could be limited, but for now, no specific limitation is imposed for REST API calls.
+
 ## GET /v3/database/list
 This command returns a list of your databases.
 
