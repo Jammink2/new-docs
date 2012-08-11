@@ -8,7 +8,7 @@
 
 ## Data Import
 
-### Step 1: Import Data Using `td` gem
+### Step 1: Import Data Using the `td` gem
 
 First, add the `td` (**T**reasure **D**ata) gem to your Gemfile.
 
