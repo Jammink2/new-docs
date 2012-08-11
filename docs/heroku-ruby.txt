@@ -12,7 +12,7 @@ You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1)
 
 ### Step1: Import Data Using the 'td' Gem
 
-First, add the `td` (stands for ‘T’reasure ‘D’ata) gem to your Gemfile.
+First, add the `td` (‘T’reasure ‘D’ata) gem to your Gemfile.
 
     :::ruby
     gem 'td', "~> 0.10.22"
