@@ -8,7 +8,7 @@
 
 ## Data Import
 
-You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
+You can import data from your Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
 
 ### Step1: Import Data Using the 'td' Gem
 
