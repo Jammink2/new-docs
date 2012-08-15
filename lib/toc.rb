@@ -134,5 +134,6 @@ section 'tools', 'Tools & Specs' do
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
     article 'metricinsights', 'Metric Insights',        ['Metric Insights']
+    article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   end
 end

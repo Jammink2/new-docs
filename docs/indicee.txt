@@ -1,0 +1,7 @@
+# Indicee with Treasure Data
+
+[Indicee](http://indicee.com/) is a cloud-based BI platform, which enables the users to start and get the value from data instantly.
+
+<center><img src="http://www.indicee.com/wp-content/themes/indicee/images/Indicee-Cloud-Diagram.png" width="80%" /></center><br />
+
+We've implemented the result output feature to Indicee. You can manage huge amount of data within Treasure Data at scale, and play with summerized data within Indicee interactively. Please [contact us](http://treasure-data.com/contact/) for more detail.
