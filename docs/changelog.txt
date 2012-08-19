@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Aug 19, 2012: Added Indicee Integration
+
+We've added the integration with [Indicee Cloud BI Platform](http://docs.treasure-data.com/articles/indicee).
+
 ## Jul 19, 2012: Added result output to Treasure Data
 
 Now you can [write your query result into another table](result-into-td).
