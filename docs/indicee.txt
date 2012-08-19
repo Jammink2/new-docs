@@ -2,6 +2,77 @@
 
 [Indicee](http://indicee.com/) is a cloud-based BI platform, which enables the users to start and get the value from data instantly.
 
-<center><img src="http://www.indicee.com/wp-content/themes/indicee/images/Indicee-Cloud-Diagram.png" width="80%" /></center><br />
+<center><a href="http://indicee.com/"><img src="http://www.indicee.com/wp-content/themes/indicee/images/Indicee-Cloud-Diagram.png" width="80%" /></a></center><br />
 
-We've implemented the result output feature to Indicee. You can manage huge amount of data within Treasure Data at scale, and play with summerized data within Indicee interactively. Please [contact us](http://treasure-data.com/contact/) for more detail.
+## Combining Indicee + Treasure Data
+
+Treasure Data is really great for capturing and storing all the historical data. And its MapReduce engine allows us to query against huge raw data. However, it's not an interactive process, because it's designed for batch processing. Also the connectivity with standard BI / visualization tools are weak.
+
+While Indicee is good for interactive analysis with existing BI / visualization tools. However, its scalability is limited and not good for storing and ever-increasing data. So it's natural to combine those two technology. But how? Here's the common pattern we've seen across our customers.
+
+## Architecture
+
+Here's an architecture diagram which shows how our customers combine Treasure Data and Indicee.
+
+<center><a href="/images/indicee-integration.png"><img src="/images/indicee-integration.png" width="80%" /></a></center><br />
+
+All of the data is first goes into Treasure Data, and archived. The data ingestion is done in a streaming fashion. Treasure Data can easily store the raw logs, even it has trillions of entries. Then, the periodic (hourly or daily) jobs run on Treasure Data, it summerizes the data within Treasure Data, and writes the result into Indicee.
+
+Finally, Indicee gives you interactive data exploration, reports, and beautiful figures. Let's look at each step more closely.
+
+## Cube Structure
+
+The key here is how to summerize the data. We've seen common patterns. You need to first define the 'dimentions' which you want to slice-and-dice the summery data, and aggreagates the raw data along with those dimentions. This structure is sometimes called [CUBE](http://en.wikipedia.org/wiki/OLAP_cube).
+
+The dimentions which commonly used are:
+
+* Date
+* Gender (Male or Female)
+* Age (0-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90, 91-100...)
+* Payment (Platinum, Gold, Silver, Bronze or Free)
+
+By using those dimentions, you can create the summary dataset on Indicee like below.
+
+<center><a href="/images/indicee-dimension.png"><img src="/images/indicee-dimension.png" width="80%" /></a></center><br />
+
+This table is easily created by Treasure Data by having multiple GROUP BY statement within a single query. One thing you need to care about is, you need to anticipate the max number of records within Indicee. In this case, the maximum number of records for 1 year are calculated by like this. If you have more dimentions, you have more entries.
+
+    :::term
+    36500 = 365(Date) * 2(Gender) * 10(Age) * 5(Payment)
+    
+## Basic Usage
+
+### For On-demand Jobs
+
+For on-demand jobs, just add the `-r` option to the `td query` command. The format is like following.
+
+    :::term
+     "indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/<dataset>/<contribution>"
+
+After the job is finished, the results are written into `c1` contribution within `ds1` dataset.
+
+    :::sql
+    $ td query -r \
+      'indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1' \
+      -w -d testdb \
+      "SELECT gender, age, count(1) FROM payment GROUP BY gender, age"
+
+### For Scheduled Jobs
+
+For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+
+    :::term
+    $ td result:create ds1 \
+      'indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1'
+    $ td sched:create hourly_count_example "0 * * * *" \
+      -d testdb "SELECT gender, age, count(1) FROM payment GROUP BY gender, age" \
+      -r ds1:c1
+
+## Two Ways to Modify Data (Append/Replace)
+
+You can add or delete data in two ways. By using replace mode, you can periodically replace existing contribution with a new query result.
+
+    :::term
+    indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1              # append
+    indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1?mode=append  # append
+    indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1?mode=replace # replace
