@@ -13,11 +13,14 @@ Our flagship product, [Wish](http://www.wishwall.me) improves online merchandise
 Because we firmly believe in data-driven product development, logging is the second highest priority only after serving. Every time our engineers add a new feature to the codebase, I review the code to ensure that the feature comes with thorough logging. When new engineers come on board, I explain to them in detail how critical logging is to us and why.
 
 ##Treasure Data: how we log everything robustly. 
+
 It is one thing to say, "We should log everything" and another to actually do it. In theory, logging is not difficult. **In practice, it is surprisingly costly to log data reliably and efficiently.** In the past, we tried Scribe, the logging software open-sourced by Facebook. Scribe was performant and robust, but it was resource-intensive to configure, build, and maintain on the scale we are at, and it had compatibility issues with our version of Python.
 
 It really comes to the question of "How much time do we want to spend on logging?" and the answer is "As little time as possible while logging everything correctly and keeping data accessible."
 
 Enter [Treasure Data](http://treasure-data.com).
+
+<center><img src="/images/architecture-cl.png" width="100%" /></center><br /><br />
 
 Treasure Data is a cloud storage/computation platform that provides a HiveQL (Apache Hive) interface. As someone who once cut teeth setting up Hadoop clusters and running large-scale MapReduce jobs, I immediately saw its value. We signed up for the service and started logging all of our data. Using their Python driver, it was as easy as adding a few lines to our code.
 
