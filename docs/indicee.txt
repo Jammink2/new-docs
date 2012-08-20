@@ -26,7 +26,7 @@ With your data in Indicee, you are ready to embark on data exploration. You can 
 
 ## Cube Structure
 
-The key here is how to summerize the data. First, you need to define the "dimentions" along which you want to slice-and-dice and aggreate your data. This structure is also called [CUBE](http://en.wikipedia.org/wiki/OLAP_cube).
+The key here is how to summarize the data. First, you need to define the "dimentions" along which you want to slice-and-dice and aggreate your data. This structure is also called [CUBE](http://en.wikipedia.org/wiki/OLAP_cube).
 
 The dimentions which commonly used are:
 
