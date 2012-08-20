@@ -1,42 +1,45 @@
 # Indicee with Treasure Data
 
-[Indicee](http://indicee.com/) is a cloud-based BI platform, which enables the users to start and get the value from data instantly.
+[Indicee](http://indicee.com/) is a leading cloud-based BI platform that changes the way people consume data in a fundamental way.
 
 <center><a href="http://indicee.com/"><img src="http://www.indicee.com/wp-content/themes/indicee/images/Indicee-Cloud-Diagram.png" width="80%" /></a></center><br />
 
-## Combining Indicee + Treasure Data
+## Combining Indicee and Treasure Data
 
-Treasure Data is really great for capturing and storing all the historical data. And its MapReduce engine allows us to query against huge raw data. However, it's not an interactive process, because it's designed for batch processing. Also the connectivity with standard BI / visualization tools are weak.
+Indicee and Treasure Data complement each other extremely well.
 
-While Indicee is good for interactive analysis with existing BI / visualization tools. However, its scalability is limited and not good for storing and ever-increasing data. So it's natural to combine those two technology. But how? Here's the common pattern we've seen across our customers.
+Treasure Data's strength lies in its ability to store and analyze petabytes of data efficiently. However, it is not best for exploring data interactively because our underlying technology, Hadoop, is designed for batch processing.
+
+Indicee fills in this void perfectly. Their platform truly shines when it comes to interactive data analysis. By combining Treasure Data's backend with Indicee's frontend, the customer can enjoy beautiful, interactive data analysis at scale.
+
+Let's walk through a typical use case.
 
 ## Architecture
 
-Here's an architecture diagram which shows how our customers combine Treasure Data and Indicee.
+This diagram shows a typical architecture for using Treasure Data with Indicee.
 
 <center><a href="/images/indicee-integration.png"><img src="/images/indicee-integration.png" width="80%" /></a></center><br />
 
-All of the data is first goes into Treasure Data, and archived. The data ingestion is done in a streaming fashion. Treasure Data can easily store the raw logs, even it has trillions of entries. Then, the periodic (hourly or daily) jobs run on Treasure Data, it summerizes the data within Treasure Data, and writes the result into Indicee.
+First, data is streamed to and archived on Treasure Data. Then, the customer sets up periodic jobs (hourly, daily, etc.). The results of those jobs are written into Indicee.
 
-Finally, Indicee gives you interactive data exploration, reports, and beautiful figures. Let's look at each step more closely.
+With your data in Indicee, you are ready to embark on data exploration. You can generate reports and toggle among different visualizations interactively.
 
 ## Cube Structure
 
-The key here is how to summerize the data. We've seen common patterns. You need to first define the 'dimentions' which you want to slice-and-dice the summery data, and aggreagates the raw data along with those dimentions. This structure is sometimes called [CUBE](http://en.wikipedia.org/wiki/OLAP_cube).
+The key here is how to summerize the data. First, you need to define the "dimentions" along which you want to slice-and-dice and aggreate your data. This structure is also called [CUBE](http://en.wikipedia.org/wiki/OLAP_cube).
 
 The dimentions which commonly used are:
 
 * Date
 * Gender (Male or Female)
 * Age (0-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90, 91-100...)
-* Payment (Platinum, Gold, Silver, Bronze or Free)
+* Payment type (Platinum, Gold, Silver, Bronze or Free)
 
-By using those dimentions, you can create the summary dataset on Indicee like below.
+By using these dimentions, you can create a summary dataset on Indicee as follows:
 
 <center><a href="/images/indicee-dimension.png"><img src="/images/indicee-dimension.png" width="80%" /></a></center><br />
 
-This table is easily created by Treasure Data by having multiple GROUP BY statement within a single query. One thing you need to care about is, you need to anticipate the max number of records within Indicee. In this case, the maximum number of records for 1 year are calculated by like this. If you have more dimentions, you have more entries.
-
+On Treasure Data, creating this table requires just one query with multiple GROUP BYs. One thing to keep in mind is the number of records created on Indicee. For example, with the said four dimentions, there would be 36500 records for one year (= 365 days).
     :::term
     36500 = 365(Date) * 2(Gender) * 10(Age) * 5(Payment)
     
