@@ -35,6 +35,8 @@ To overcome these problems, we implemented the bulk import feature. You can now 
 
 At first, you need to split your data into [MessagePack](http://msgpack.org/).gz format. Splitting the data by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
 
+Also, you must have `time` field for all records with POSIX epoch (integer) format. If you missed it, the records are regarded as invalid in the later stage.
+
 ### 1) Create a Session
 
 At first you need to create a `session`, which is a single instance containing multiple parts. One session is associated with one table.
