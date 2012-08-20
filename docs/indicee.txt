@@ -10,7 +10,7 @@ Indicee and Treasure Data complement each other extremely well.
 
 Treasure Data's strength lies in its ability to store and analyze petabytes of data efficiently. However, it is not best for exploring data interactively because our underlying technology, Hadoop, is designed for batch processing.
 
-Indicee fills in this void perfectly. Their platform truly shines when it comes to interactive data analysis. By combining Treasure Data's backend with Indicee's frontend, the customer can enjoy beautiful, interactive data analysis at scale.
+Indicee fills in this gap perfectly. Their platform is designed for interactive data analysis and large datasets may pose scalability challenges. By combining Treasure Data's backend with Indicee's frontend, the customer can enjoy beautiful, interactive data analysis at scale.
 
 Let's walk through a typical use case.
 
