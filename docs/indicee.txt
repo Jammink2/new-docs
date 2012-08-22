@@ -4,6 +4,10 @@
 
 <center><a href="http://indicee.com/"><img src="http://www.indicee.com/wp-content/themes/indicee/images/Indicee-Cloud-Diagram.png" width="80%" /></a></center><br />
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+
 ## Combining Indicee and Treasure Data
 
 Indicee and Treasure Data complement each other extremely well.

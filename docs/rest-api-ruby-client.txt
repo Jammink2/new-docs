@@ -2,6 +2,12 @@
 
 This article will explain how to use Ruby binding for REST API.
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * A table with some data. You can find an example in the [Getting Started](quickstart) guide.
+  * Basic knowledge of our [query language](hive).
+
 ## Install
 
 That's contained within `td` (stands for ‘T’reasure ‘D’ata) gem. Please add the following line to your Gemfile. The source code is [available at github](https://github.com/treasure-data/td-client-ruby).

@@ -2,6 +2,11 @@
 
 While [td-agent](td-agent) is uploading the data into the cloud, you also may want to store your logs in local nodes. In this case, please use td-agent's 'copy' function.
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+  * Basic knowledge of our log collector, [td-agent](td-agent).
+
 ## Local Disk and Treasure Data
 
 The configuration below will store logs in your local disk (*/mnt/archive/logs*) and in Treasure Data. The local files are created on an hourly basis.

@@ -1,5 +1,12 @@
 # Heroku Addon Notes
 
+## Prerequisites
+
+  * Basic knowledge of Ruby, Gems, and Bundler.
+  * Basic knowledge of Heroku, including the Heroku toolbelt.
+  * Basic knowledge of Treasure Data
+  * Ruby 1.8 or higher (for local testing).
+
 ## 'heroku td', not 'td'
 
 Please use the `heroku td` command instead of the `td` command when on Heroku. The two commands have identical functionality.

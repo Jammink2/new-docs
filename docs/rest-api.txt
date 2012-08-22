@@ -4,6 +4,12 @@ The user can control Treasure Data using the public REST API.
 
 This article will explain how to use the public REST API.
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * A table with some data. You can find an example in the [Getting Started](quickstart) guide.
+  * Basic knowledge of our [query language](hive).
+
 ## Endpoint
 
 All API requests should be sent to *api.treasure-data.com*.

@@ -2,6 +2,10 @@
 
 This article covers how to continuously import the data with `td-agent` daemon.
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+
 ## Logs Are Streams, Not Files
 
 Logs are usually rotated on an hourly or daily basis based on time or size. This system quickly produces a bunch of huge log files that needs to be batch imported for further analysis. This is an outdated approach. Logs are better thought to be continuously generated *STREAMS* as opposed to files.

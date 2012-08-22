@@ -2,6 +2,10 @@
 
 This article explains how to continuously import the data into Treasure Data using `Fluentd`.
 
+## Prerequisites
+
+  * Basic knowledge of [Fluentd](http://fluentd.org/), and its installation.
+
 ## About Fluentd
 
 [Fluentd](http://fluentd.org/) is a log collector daemon written in Ruby. It collects logs as JSON streams, buffers them, and sends them to other systems such as MySQL, MongoDB, or even other instances of Fluentd.
@@ -37,9 +41,13 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       use_ssl true
     </match>
 
-You need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey by `td apikey:show`.
+You need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey by [signing up](https://www.treasure-data.com/signup/), and installing and using `td` command.
 
     :::term
+    $ gem install td
+    $ td account -f
+    Email: k@treasure-data.com
+    Passwaord:
     $ td apikey:show
     1be3de7d01be3de7d01be3de7d01be3de7d01be3
 
