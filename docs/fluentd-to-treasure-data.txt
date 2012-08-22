@@ -37,6 +37,12 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       use_ssl true
     </match>
 
+You need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey by `td apikey:show`.
+
+    :::term
+    $ td apikey:show
+    1be3de7d01be3de7d01be3de7d01be3de7d01be3
+
 ## Confirm Data Upload
 
 First, please start the Fluentd server.

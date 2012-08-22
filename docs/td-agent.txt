@@ -60,11 +60,11 @@ The file includes some sample settings. You should find the following lines in y
       use_ssl true
     </match>
 
-You need to set the `apikey` option, which is a secret key to authenticate your account. Copy the apikey from ~/.td/td.conf file:
+You need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey by `td apikey:show`.
 
     :::term
-    $ grep apikey ~/.td/td.conf
-    apikey = 1be3de7d01be3de7d01be3de7d01be3de7d01be3
+    $ td apikey:show
+    1be3de7d01be3de7d01be3de7d01be3de7d01be3
 
 Now restart the td-agent service.
 
