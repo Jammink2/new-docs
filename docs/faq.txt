@@ -8,4 +8,4 @@ This document collects frequently asked questions.
 2. It looks like Treasure Data uses Hive? Does this mean I have to worry about schema change?
     Treasure Data supports HiveQL semantics, but unlike Apache Hive, we do not require table schema to be defined upfront and allow the customer to set and modify schema anytime. [Please see this document for more information](/articles/schema).
 
-## Please feel free to [email us](mailto:support@treasure-data.com) if you have any question.
+## If you have any question, please feel free to [contact us](http://treasure-data.com/contact/), or chat from the window at the bottom right.
