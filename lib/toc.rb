@@ -16,6 +16,12 @@ section 'overview', 'Overview' do
   end
 end
 
+section 'faq', 'FAQ' do
+  category 'faq', 'Frequently Asked Questions' do
+    article 'faq', 'Frequently Asked Questions'
+  end
+end
+
 section 'languages-and-middlewares', 'Languages' do
   category 'java', 'Java' do
     article 'java', 'Data Import from Java Applications',           ['fluentd', 'td-agent']
