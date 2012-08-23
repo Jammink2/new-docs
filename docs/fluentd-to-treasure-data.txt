@@ -12,7 +12,7 @@ This article explains how to continuously import the data into Treasure Data usi
 
 Treasure Data's `td-agent` logging daemon contains Fluentd. However, many users have installed Fluentd via Ruby gems. This article is written for users who wish to connect their existing Fluentd installations to Treasure Data. 
 
-NOTE: Instructions for `td-agent` are <a href="/td-agent">described separately</a>.
+NOTE: Instructions for `td-agent` (deb/rpm packages) are <a href="td-agent">described separately</a>.
 
 ## Using fluent-plugin-td
 
