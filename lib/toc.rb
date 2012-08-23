@@ -14,10 +14,7 @@ section 'overview', 'Overview' do
   category 'changelog', 'ChangeLog' do
     article 'changelog', 'Treasure Data ChangeLog'
   end
-end
-
-section 'faq', 'FAQ' do
-  category 'faq', 'Frequently Asked Questions' do
+  category 'faq', 'FAQs' do
     article 'faq', 'Frequently Asked Questions'
   end
 end
