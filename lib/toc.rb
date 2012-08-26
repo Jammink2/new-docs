@@ -77,7 +77,7 @@ section 'reference', 'Reference' do
     article 'job', 'Job Management'
     article 'schedule', 'Scheduled Job'
     article 'hive', 'Hive (SQL-style) Query Language', ['hive query language', 'hive sql', 'hive tutorial', 'hive manual']
-    article 'pig', 'Pig Latin Language'
+    # article 'pig', 'Pig Latin Language'
   end
   category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
@@ -86,10 +86,10 @@ section 'reference', 'Reference' do
     article 'result-into-td', 'Writing the Job Result into Treasure Data'
     article 'result-into-mysql', 'Writing the Job Result into your MySQL'
     article 'result-into-postgresql', 'Writing the Job Result into your PostgreSQL'
-    article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'
-    article 'result-into-redis', 'Writing the Job Result into your Redis'
-    article 'result-into-riak', 'Writing the Job Result into your Riak'
-    article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
+    # article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'
+    # article 'result-into-redis', 'Writing the Job Result into your Redis'
+    # article 'result-into-riak', 'Writing the Job Result into your Riak'
+    # article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
   end
   category 'bulk-operations', 'Bulk Operations' do
     article 'one-time-import', 'One-Time Import'
