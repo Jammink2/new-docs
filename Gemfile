@@ -14,7 +14,7 @@ gem 'je', '0.0.6'
 gem 'unicorn', '~> 4.2.1'
 
 # Addons
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '~> 3.4.1'
 gem 'indextank', '~> 1.0.12'
 
 # Dev

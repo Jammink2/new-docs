@@ -2,6 +2,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+  <%= ::NewRelic::Agent.browser_timing_header rescue "" %>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta charset="utf-8">
   <title><%=h @title %> | Treasure Data</title>
@@ -194,5 +195,7 @@
   </script>
   <noscript><a href="https://www.olark.com/site/7580-888-10-8664/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
   <!-- end olark code -->
+
+  <%= ::NewRelic::Agent.browser_timing_footer rescue "" %>
 </body>
 </html>
