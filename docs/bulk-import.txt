@@ -64,7 +64,7 @@ We supports csv, tsv, and json for --format option. Here're the examples.
     :::bash
     # TSV
     $ td bulk_import:prepare_parts ./logs_201208/*.tsv \
-        --format csv \
+        --format tsv \
         --column-header \
         --time-column 'time' \
         -o ./parts_201208/
@@ -72,26 +72,25 @@ We supports csv, tsv, and json for --format option. Here're the examples.
     # JSON
     $ td bulk_import:prepare_parts ./logs_201208/*.json \
         --format json \
-        --column-header \
         --time-column 'time' \
         -o ./parts_201208/
 
 ### 2) Upload a Part to the Session
 
-Then, you can upload the `parts` directory into the session. Those uploads can be done in parallel.
+Then, you can upload the `parts` directory into the session.
 
     :::bash
-    $ td bulk_import:upload_parts ./parts_201208/*
+    $ td bulk_import:upload_parts bulk_2012 ./parts_201208/*
 
 If the upload failed in halfway through, you can retry any time. No data duplication occurs.
 
-    $ td bulk_import:upload_parts ./parts_201208/*
+    $ td bulk_import:upload_parts bulk_2012 ./parts_201208/*
 
 You can import multiple parts within a single session.
 
-    $ td bulk_import:upload_parts ./parts_201207/*
-    $ td bulk_import:upload_parts ./parts_201206/*
-    $ td bulk_import:upload_parts ./parts_201205/*
+    $ td bulk_import:upload_parts bulk_2012 ./parts_201207/*
+    $ td bulk_import:upload_parts bulk_2012 ./parts_201206/*
+    $ td bulk_import:upload_parts bulk_2012 ./parts_201205/*
     ...
 
 Now, let's list the uploaded parts by `bulk_import:show`.
