@@ -22,3 +22,9 @@ group :development do
   gem 'rake'
   gem 'shotgun', '~> 0.9'
 end
+
+# Production
+group :production do
+  gem 'rack-cache', '~> 1.2'
+  gem 'dalli', '~> 2.1.0'
+end
