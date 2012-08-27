@@ -35,7 +35,7 @@ To overcome these problems, we implemented the bulk import feature. You can now 
 
 At first you need to create a `session`, which is a single instance containing multiple parts. One session is associated with one table.
 
-    :::bash
+    :::term
     $ td bulk_import:create bulk_2012 mydb mytable
 
 ### 2) Convert Your Data into Parts Files
@@ -44,7 +44,7 @@ Assume you have CSV files within ./logs_201208/ directory. At first, you need co
 
 NOTE: Splitting the data into separate directory by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
 
-    :::bash
+    :::term
     $ td bulk_import:prepare_parts ./logs_201208/*.csv \
         --format csv \
         --columns time,uid,price,count --time-column 'time' \
@@ -52,7 +52,7 @@ NOTE: Splitting the data into separate directory by month is recommended, but yo
 
 If you have a column name at the first line, please use --column-header option.
 
-    :::bash
+    :::term
     $ td bulk_import:prepare_parts ./logs_201208/*.csv \
         --format csv \
         --column-header \
@@ -61,7 +61,7 @@ If you have a column name at the first line, please use --column-header option.
 
 We supports csv, tsv, and json for --format option. Here're the examples.
 
-    :::bash
+    :::term
     # TSV
     $ td bulk_import:prepare_parts ./logs_201208/*.tsv \
         --format tsv \
@@ -79,7 +79,7 @@ We supports csv, tsv, and json for --format option. Here're the examples.
 
 Then, you can upload the `parts` directory into the session.
 
-    :::bash
+    :::term
     $ td bulk_import:upload_parts bulk_2012 ./parts_201208/*
 
 If the upload failed in halfway through, you can retry any time. No data duplication occurs.
@@ -95,14 +95,14 @@ You can import multiple parts within a single session.
 
 Now, let's list the uploaded parts by `bulk_import:show`.
 
-    :::bash
+    :::term
     $ td bulk_import:show bulk_2012
 
 ### 3) Perform
 
 `bulk_import:perform` does a format conversion on our cloud. Your data is converted into a more efficient format (This is why it takes a bit of time!). The conversion is done in parallel by executing MapReduce jobs.
 
-    :::bash
+    :::term
     $ td bulk_import:freeze bulk_2012
     $ td bulk_import:perform bulk_2012 -w
     $ td bulk_import:list
@@ -116,13 +116,13 @@ Now, let's list the uploaded parts by `bulk_import:show`.
 
 After `perform`, some records could be invalid. You can list these invalid records by `bulk_import:error_records`.
 
-    :::bash
+    :::term
     $ td bulk_import:error_records bulk_2012
 
 ### 5) Commit
 
 If the uploaded data is correct, `bulk_import:commit` command will transactionally import the data into the table.
 
-    :::bash
+    :::term
     $ td bulk_import:commit bulk_2012
     $ td bulk_import:delete bulk_2012
