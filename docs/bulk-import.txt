@@ -31,44 +31,81 @@ To overcome these problems, we implemented the bulk import feature. You can now 
 
 ## Bulk Import Steps
 
-### 0) Split Your Data into MessagePack.gz Files
-
-At first, you need to split your data into [MessagePack](http://msgpack.org/).gz format. Splitting the data by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
-
-Also, you must have `time` field for all records with POSIX epoch (integer) format. If you missed it, the records are regarded as invalid in the later stage.
-
 ### 1) Create a Session
 
 At first you need to create a `session`, which is a single instance containing multiple parts. One session is associated with one table.
 
     :::bash
-    $ td bulk_import:create bulk_201203 mydb mytable
+    $ td bulk_import:create bulk_2012 mydb mytable
+
+### 2) Convert Your Data into Parts Files
+
+Assume you have CSV files within ./logs_201208/ directory. At first, you need convert those files, into MessagePack.gz format which is our internal format. To do that, please perform the command below.
+
+NOTE: Splitting the data into separate directory by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
+
+    :::bash
+    $ td bulk_import:prepare_parts ./logs_201208/*.csv \
+        --format csv \
+        --columns time,uid,price,count --time-column 'time' \
+        -o ./parts_201208/
+
+If you have a column name at the first line, please use --column-header option.
+
+    :::bash
+    $ td bulk_import:prepare_parts ./logs_201208/*.csv \
+        --format csv \
+        --column-header \
+        --time-column 'time' \
+        -o ./parts_201208/
+
+We supports csv, tsv, and json for --format option. Here're the examples.
+
+    :::bash
+    # TSV
+    $ td bulk_import:prepare_parts ./logs_201208/*.tsv \
+        --format csv \
+        --column-header \
+        --time-column 'time' \
+        -o ./parts_201208/
+    
+    # JSON
+    $ td bulk_import:prepare_parts ./logs_201208/*.json \
+        --format json \
+        --column-header \
+        --time-column 'time' \
+        -o ./parts_201208/
 
 ### 2) Upload a Part to the Session
 
-Then, you can upload the `parts` into the session. Those uploads can be done in parallel.
+Then, you can upload the `parts` directory into the session. Those uploads can be done in parallel.
 
     :::bash
-    $ td bulk_import:upload_part bulk_201203 01d 01d.msgpack.gz
-    $ td bulk_import:upload_part bulk_201203 02d 02d.msgpack.gz
-    $ td bulk_import:upload_part bulk_201203 03d 03d.msgpack.gz
+    $ td bulk_import:upload_parts ./parts_201208/*
 
-If the upload failed in halfway through, you can retry any time.
+If the upload failed in halfway through, you can retry any time. No data duplication occurs.
 
-    $ td bulk_import:upload_part bulk_201203 01d 01d.msgpack.gz
+    $ td bulk_import:upload_parts ./parts_201208/*
+
+You can import multiple parts within a single session.
+
+    $ td bulk_import:upload_parts ./parts_201207/*
+    $ td bulk_import:upload_parts ./parts_201206/*
+    $ td bulk_import:upload_parts ./parts_201205/*
+    ...
 
 Now, let's list the uploaded parts by `bulk_import:show`.
 
     :::bash
-    $ td bulk_import:show bulk_201203
+    $ td bulk_import:show bulk_2012
 
 ### 3) Perform
 
 `bulk_import:perform` does a format conversion on our cloud. Your data is converted into a more efficient format (This is why it takes a bit of time!). The conversion is done in parallel by executing MapReduce jobs.
 
     :::bash
-    $ td bulk_import:freeze bulk_201203
-    $ td bulk_import:perform bulk_201203 -w
+    $ td bulk_import:freeze bulk_2012
+    $ td bulk_import:perform bulk_2012 -w
     $ td bulk_import:list
     +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
     | Name | Table     | Status | Frozen | JobID | Valid Parts | Error Parts | Valid Records | Error Records |
@@ -81,12 +118,12 @@ Now, let's list the uploaded parts by `bulk_import:show`.
 After `perform`, some records could be invalid. You can list these invalid records by `bulk_import:error_records`.
 
     :::bash
-    $ td bulk_import:error_records bulk_201203
+    $ td bulk_import:error_records bulk_2012
 
 ### 5) Commit
 
 If the uploaded data is correct, `bulk_import:commit` command will transactionally import the data into the table.
 
     :::bash
-    $ td bulk_import:commit bulk_201203
-    $ td bulk_import:delete bulk_201203
+    $ td bulk_import:commit bulk_2012
+    $ td bulk_import:delete bulk_2012

@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Aug 27, 2012: Added Bulk Import support for CSV, TSV, JSON format
+
+td v0.10.40 finally supports [bulk import from CSV, TSV, JSON format](bulk-import). This is the easiest way to import your existing data to TD.
+
 ## Aug 19, 2012: Added Indicee Integration
 
 We've added the integration with [Indicee Cloud BI Platform](http://docs.treasure-data.com/articles/indicee).
