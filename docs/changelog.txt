@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Aug 27, 2012: td-agent v1.1.9
+
+td-agent v1.1.9 is released, to fix /usr/bin/td problem and support Ubuntu LTS Precise 12.04. Please check the [changelog](http://help.treasure-data.com/kb/installing-td-agent-daemon/changelog-of-td-agent).
+
 ## Aug 27, 2012: Added Bulk Import support for CSV, TSV, JSON format
 
 td v0.10.40 finally supports [bulk import from CSV, TSV, JSON format](bulk-import). This is the easiest way to import your existing data to TD.
