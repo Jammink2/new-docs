@@ -18,7 +18,7 @@ This article explains how to import Apache logs with `td-agent`. The basic idea 
 
 When a user accesses an Apache web server, the web server appends a corresponding entry to the access log (typically located at */var/log/apache2/access_log*). `td-agent` continuously "tails" the access log, identifying the newly created entries.
 
-`td-agent` automatically parses the new log entries to create meaningful data fields (ex: IP address, URL path, etc.). The data is compressed and uploaded to the cloud periodically.
+`td-agent` automatically parses the new log entries to create meaningful data fields. The data is compressed and uploaded to the cloud periodically.
 
 ## Installing td-agent
 
