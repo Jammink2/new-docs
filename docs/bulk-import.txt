@@ -40,7 +40,7 @@ At first you need to create a `session`, which is a single instance containing m
 
 ### 2) Convert Your Data into Parts Files
 
-Assume you have CSV files within ./logs_201208/ directory. At first, you need convert those files, into MessagePack.gz format which is our internal format. To do that, please perform the command below.
+Assume you have CSV files in ./logs_201208/ directory. At first, you need to convert the files in ./logs_201208/*, into MessagePack.gz format (our internal format for efficient storage). To do this, please run the following commands:
 
 NOTE: Splitting the data into separate directory by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
 
