@@ -2,13 +2,20 @@
 
 This document collects frequently asked questions.
 
-1. How can I write out query results into X? (ex: How can I write query results into MongoDB?)
-    Treasure Data provides the ability to write query results into various datastores such as Treasure Data, MySQL and PostgreSQL. Please [check out the status of various options here](/categories/result).
+## How can I write out query results into X? (ex: How can I write query results into MySQL?)
 
-2. It looks like Treasure Data uses Hive? Does this mean I have to worry about schema change?
-    Treasure Data supports HiveQL semantics, but unlike Apache Hive, we do not require table schema to be defined upfront and allow the customer to set and modify schema anytime. [Please see this document for more information](/articles/schema).
+Treasure Data provides the ability to write query results into various datastores such as Treasure Data, MySQL and PostgreSQL. Please [check out the status of various options here](/categories/result).
 
-3. How can I handle nested JSON records?
-    Using [get_json_object UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) with HiveQL, the nested JSON records are able to be parsed. But it has additional performance overhead, so having flat JSON structure is recommended on our platform.
+## It looks like Treasure Data uses Hive? Does this mean I have to worry about schema change?
 
-## If you have any question, please feel free to [contact us](http://treasure-data.com/contact/), or chat from the window at the bottom right.
+Treasure Data supports HiveQL semantics, but unlike Apache Hive, we do not require table schema to be defined upfront and allow the customer to set and modify schema anytime. [Please see this document for more information](/articles/schema).
+
+## How can I handle nested JSON records?
+
+Using [get_json_object UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) with HiveQL, the nested JSON records are able to be parsed. But it has additional performance overhead, so having flat JSON structure is recommended on our platform.
+
+## How can I use proxy for td command?
+
+Please set the HTTP_PROXY variable like export HTTP_PROXY="proxy_host:8080". This is supported from td v0.10.41.
+
+### If you have any question, please feel free to [contact us](http://treasure-data.com/contact/), or chat from the window at the bottom right.
