@@ -87,7 +87,7 @@ Here are a couple of basic examples. The underlying table consiste of three fiel
 
 NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
 
-#### Number of Accesses Each Hour
+#### Number of Accesses Each Day
 
     :::sql
     SELECT from_unixtime(CAST(time/(60*60*24) AS INT)*60*60*24) AS day, \
