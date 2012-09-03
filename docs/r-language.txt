@@ -12,7 +12,7 @@ NOTE: This driver only works with Treasure Data. It does not work in other envir
 
 ## Installing the RJDBC Package
 
-First, please install the RJDBC Package as shown below:
+First, please install the [RJDBC Package](http://www.rforge.net/RJDBC/) as shown below:
 
     :::term
     $ R
