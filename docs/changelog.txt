@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Sep 04, 2012: td v0.10.43
+
+td v0.10.43 is released, to support [changing the password](change-password).
+
 ## Aug 30, 2012: td v0.10.41
 
 td v0.10.41 is released, and now it supports proxy server. [Here](http://docs.treasure-data.com/articles/faq#how-can-i-use-proxy-for-td-command) describes how it works.

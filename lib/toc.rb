@@ -110,10 +110,11 @@ section 'reference', 'Reference' do
 end
 
 section 'ab', 'Accounts & Billing' do
-  # category 'accounts', 'Accounts' do
+  category 'accounts', 'Accounts' do
+    article 'change-password', 'Changing the Password'
   #   article 'change-email-address', 'Changing your email address'
   #   article 'delete-account', 'Deleting the account'
-  # end
+  end
   category 'support', 'Support' do
     article 'paid-support', 'Paid Support'
     article 'support-channels', 'Support Channels'
