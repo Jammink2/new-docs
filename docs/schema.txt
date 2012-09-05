@@ -59,7 +59,7 @@ In the "Getting Started" guide, we set up a table with 'user' (int type) and 'ac
 You can now query this table without using *v*.
 
     :::sql
-    $ td query -w -d hoge "SELECT user, COUNT(*) AS cnt
+    $ td query -w -d testdb "SELECT user, COUNT(*) AS cnt
       FROM www_access
       WHERE action='login'
       GROUP BY user ORDER BY cnt DESC"
