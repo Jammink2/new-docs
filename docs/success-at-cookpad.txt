@@ -8,7 +8,7 @@ So, how does Cookpad.com serve up the right recipes at the right time? The short
 
 Cookpad.com's web application is written in the popular open-source framework Ruby on Rails. They have over one hundred instances of Rails applications to serve (the number of page views per month) page views per month.
 
-<img src="http://docs.treasure-data.com/images/cookpad-before.png">
+<center><img src="/images/cookpad-before.png" width="90%" /></center>
 
 Rails logs data into a local file system by default, and Cookpad.com used to consolidate these logs into a cluster of MySQL servers every night via rsync, a standard Unix utility.
 
@@ -28,11 +28,9 @@ Cookpad.com's original architecture was based on shared MySQL servers and had se
 
 ## The Solution
 
-
 By introducing Treasure Data, Cookpad.com transformed their infrastructure in two fundamental ways.
 
-<img src="http://docs.treasure-data.com/images/cookpad-after.png">
-
+<center><img src="/images/cookpad-after.png" width="90%" /></center>
 
 * Treasure Data's Cloud Data Warehouse replaced the cluster of MySQL servers. Now, they run scheduled jobs on Treasure Data that update the MySQL aggregation server that powers their in-house dashboard.
 * Instead of using the default file-based logging, td-agent has been installed on each Rails server to automatically forward logs to Treasure Data.
