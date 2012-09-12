@@ -1,0 +1,45 @@
+# Writing the Query Results into Google SpreadSheet
+
+This article explains how to write job results to your Google SpreadSheet.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Account of Google Docs
+
+## Basic Usage
+
+### For On-demand Jobs
+
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into your `output_table` within `testdb` database.
+
+    :::sql
+    $ td query
+      -r 'gspreadsheet://user:password@domain.com/spreadsheet_name/worksheet_name' \
+      -w -d testdb \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
+The example URL string is like followings.
+
+    :::text
+    Gmail
+    gspreadsheet://kazuki.ohta:password@gmail.com/TDTest/Sheet1
+    
+    Google Apps
+    gspreadsheet://kazuki.ohta:password@treasure-data.com/TDTest/Sheet1
+
+Here is the screenshot of the result.
+
+<center><img src="/images/google-spreadsheet.png" width="60%" /></center><br /><br />
+
+### For Scheduled Jobs
+
+For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+
+    :::term
+    $ td result:create mygss td://user:password@domain.com/spreadsheet_name
+    $ td sched:create hourly_count_example "0 * * * *" \
+      -d testdb \
+      -r mygss:worksheet_name \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
