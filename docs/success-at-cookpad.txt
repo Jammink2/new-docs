@@ -4,9 +4,9 @@
 
 <center><a href="http://info.cookpad.com/en/service"><img src="/images/cookpad-logo.gif"></a></center><br /><br />
 
-So, how does Cookpad.com serve up the right recipes at the right time? The short answer is "because they collect all sorts of data about their users." The long answer is the rest of this blog entry.
+So, how does Cookpad.com serve up the right recipes at the right time? The short answer is "because they collect all sorts of data about their users." The long answer is the rest of this article.
 
-## Before Treasure Data
+## Sharded MySQL for Analytics
 
 Cookpad.com's web application is written in the popular open-source framework Ruby on Rails. They have over one hundred instances of Rails applications to serve (the number of page views per month) page views per month.
 
@@ -18,7 +18,7 @@ The cluster of MySQL servers then computed various key metrics, such as page vie
 
 This last MySQL instance was responsible for answering questions about internal key metrics. This MySQL instance served as a data mart for Cookpad.com's in-house dashboard and Google Spreadsheet on which various non-engineering organizations relied everyday for decision-making.
 
-## The Problem
+## The Problems
 
 Cookpad.com's original architecture was based on shared MySQL servers and had severe scaling and maintainability limitations.
 
@@ -28,7 +28,7 @@ Cookpad.com's original architecture was based on shared MySQL servers and had se
 
 3. **Up to 24 Hours of Delay**: Because the first step of the ETL process, copying log files from Rails server to MySQL servers, was run once a day, data refreshes could take up to 24 hours. This delay made it almost impossible to measure the effectiveness of new website features or the popularity of new content and this slowed down product development.
 
-## The Solution
+## The Solution: Treasure Data
 
 By introducing Treasure Data, Cookpad.com transformed their infrastructure in two fundamental ways.
 
