@@ -1,0 +1,50 @@
+# Success Story at Cookpad
+
+Cookpad.com is Japan's No.1 recipe website. With more than fifteen million users and one million online recipes, Cookpad.com dominates the market of recipe search and sharing. In fact, according to Cookpad.com’s internal research, 50% of Japanese women in their 20s and 30s use Cookpad.com as their primary source of recipes and cooking advice.
+
+So, how does Cookpad.com serve up the right recipes at the right time? The short answer is "because they collect all sorts of data about their users." The long answer is the rest of this blog entry.
+
+## Before Treasure Data
+
+Cookpad.com's web application is written in the popular open-source framework Ruby on Rails. They have over one hundred instances of Rails applications to serve (the number of page views per month) page views per month.
+
+<img src="http://docs.treasure-data.com/images/cookpad-before.png">
+
+Rails logs data into a local file system by default, and Cookpad.com used to consolidate these logs into a cluster of MySQL servers every night via rsync, a standard Unix utility.
+
+The cluster of MySQL servers then computed various key metrics, such as page views per recipe, and the computed key metrics were copied over to another MySQL instance daily.
+
+This last MySQL instance was responsible for answering questions about internal key metrics. This MySQL instance served as a data mart for Cookpad.com's in-house dashboard and Google Spreadsheet on which various non-engineering organizations relied everyday for decision-making.
+
+## The Problem
+
+Cookpad.com's original architecture was based on shared MySQL servers and had severe scaling and maintainability limitations.
+
+1.    Limited Scalability: MySQL is great software. It's been deployed extensively for more than a decade and the support community is active and mature. However, MySQL was not designed to support petabytes of data. To make their MySQL servers more scalable, Cookpad.com, like most other large-scale MySQL users, aggressively shard their MySQL databases to alleviate the load on each individual instance. But this is not a robust solution and usually results in systems that are inflexible and brittle.
+
+2.    Rigid Schema: Relational databases, including MySQL, require a well-defined schema upfront. While a rigid schema can help you organize and document data, it is not well-suited to a fast-moving, data-driven company like Cookpad.com where the underlying data can change weekly if not daily.
+
+3.    Up to 24 Hours of Delay: Because the first step of the ETL process, copying log files from Rails server to MySQL servers, was run once a day, data refreshes could take up to 24 hours. This delay made it almost impossible to measure the effectiveness of new website features or the popularity of new content and this slowed down product development.
+
+## The Solution
+
+
+By introducing Treasure Data, Cookpad.com transformed their infrastructure in two fundamental ways.
+
+<img src="http://docs.treasure-data.com/images/cookpad-after.png">
+
+
+* Treasure Data's Cloud Data Warehouse replaced the cluster of MySQL servers. Now, they run scheduled jobs on Treasure Data that update the MySQL aggregation server that powers their in-house dashboard.
+* Instead of using the default file-based logging, td-agent has been installed on each Rails server to automatically forward logs to Treasure Data.
+
+Those changes essentially solved all three of the problems that Cookpad.com was facing. Let's look at them in detail.
+
+1. Scalability is no longer an issue: unlike MySQL, Treasure Data was designed from the ground up to scale. For us, adding more storage or CPU is only a few keystrokes away.
+
+
+2. Flexible Schema: Treasure Data's proprietary columnar database implements a flexible schema model meaning that you can add or remove schema at any given time. This means Cookpad.com no longer has to worry about changes in the underlying data model breaking their ETL process.
+
+
+3. Updates every 5 Minutes not every 24 Hours: td-agent is a versatile, robust logger that can handle up to 17,000 messages per second per instance. This means that you can upload data in near real-time. Because td-agent buffers data for reliability, this means fresh data every 5 minutes instead of nightly. By the way, this buffer window is configurable so you could get even closer to real-time if you need to.
+
+Cookpad.com now has a scalable, robust, high-performance data warehousing and analytics solution and all of this was achieved in less than three weeks. You could say that Treasure Data is Cookpad.com’s recipe for future success.
