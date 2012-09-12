@@ -8,7 +8,7 @@ So, how does Cookpad.com serve up the right recipes at the right time? The short
 
 ## Sharded MySQL for Analytics
 
-Cookpad.com's web application is written in the popular open-source framework Ruby on Rails. They have over one hundred instances of Rails applications to serve (the number of page views per month) page views per month.
+Cookpad.com's web application is written in the popular open-source framework Ruby on Rails. They have over one hundred instances of Rails applications to serve 20 million monthly unique users.
 
 <center><img src="/images/cookpad-before.png" width="90%" /></center><br /><br />
 
