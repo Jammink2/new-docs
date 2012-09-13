@@ -1,0 +1,5 @@
+# Using Java Binding of REST API
+
+[td-client-java](https://github.com/treasure-data/td-client-java) is the library which wraps Treasure Data's REST API.
+
+README covers how to install and user it.
