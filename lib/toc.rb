@@ -9,7 +9,7 @@ section 'overview', 'Overview' do
     article 'constraints', 'Constraints'
   end
   category 'success-stories', 'Success Stories' do
-    article 'success-at-contextlogic', 'ContextLogic - Top 100 Facebook App'
+    article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
     # article 'success-at-cookpad', 'Cookpad - Japan’s No.1 recipe website'
   end
   category 'changelog', 'ChangeLog' do
