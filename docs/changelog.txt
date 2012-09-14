@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Sep 14, 2012: Added result output to Google SpreadSheet
+
+Now you can [write your query result into Google SpreadSheet](result-into-google-spreadsheet).
+
 ## Sep 04, 2012: td v0.10.43
 
 td v0.10.43 is released, to support [changing the password](change-password).
