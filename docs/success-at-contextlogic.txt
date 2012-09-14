@@ -22,7 +22,7 @@ It is one thing to say, "We should log everything" and another to actually do it
 
 It really comes to the question of "How much time do we want to spend on logging?" and the answer is "As little time as possible while logging everything correctly and keeping data accessible."
 
-Enter [Treasure Data](http://treasure-data.com).
+Enter [Treasure Data](http://treasure-data.com) [1].
 
 <center><img src="/images/architecture-cl.png" width="100%" /></center><br /><br />
 
@@ -36,3 +36,6 @@ We have been using Treasure Data for 6 months now, and it's been great so far. T
 
 ## Advice to Startups
 As startups, we must wisely allocate our limited resources and focus on making a great product. To improve the product, however, you need to log relevant data. This creates a dilemma: How can we log thoroughly **and** accurately while spending as little time as possible on logging? [Treasure Data](http://treasure-data.com) was our solution, and I strongly recommend it to you as well.
+
+***
+1. The reader might raise questions about uploading access logs to a third-party service like Treasure Data. Don't fret, we worked closely with ContextLogic's data infrastructure team to ensure identity-related information is anonymized or filtered out to stay compliant with data privacy guidelines.

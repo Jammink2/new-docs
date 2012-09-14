@@ -30,7 +30,7 @@ Cookpad.com's original architecture was based on shared MySQL servers and had se
 
 ## The Solution: Treasure Data
 
-By introducing Treasure Data, Cookpad.com transformed their infrastructure in two fundamental ways.
+By introducing Treasure Data [1], Cookpad.com transformed their infrastructure in two fundamental ways.
 
 <center><img src="/images/cookpad-after.png" width="90%" /></center><br /><br />
 
@@ -48,3 +48,6 @@ Those changes essentially solved all three of the problems that Cookpad.com was 
 3. **Updates every 5 Minutes not every 24 Hours**: td-agent is a versatile, robust logger that can handle up to 17,000 messages per second per instance. This means that you can upload data in near real-time. Because td-agent buffers data for reliability, this means fresh data every 5 minutes instead of nightly. By the way, this buffer window is configurable so you could get even closer to real-time if you need to.
 
 Cookpad.com now has a scalable, robust, high-performance data warehousing and analytics solution and all of this was achieved in less than three weeks. You could say that Treasure Data is Cookpad.com’s recipe for future success.
+
+***
+1. The reader might raise questions about uploading access logs to a third-party service like Treasure Data. Don't fret, we worked closely with Cookpad's data infrastructure team to ensure identity-related information is anonymized or filtered out to stay compliant with data privacy guidelines.
