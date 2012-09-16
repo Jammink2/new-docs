@@ -39,6 +39,10 @@ Please consult the following articles for setup.
     <td>Redhat / CentOS System</td>
     <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
+  <tr>
+    <td>Joyent SmartOS</td>
+    <td><a href="http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
+  </tr>
 </table>
 
 ## Setup td-agent
