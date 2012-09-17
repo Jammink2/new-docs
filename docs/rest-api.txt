@@ -109,10 +109,10 @@ This command shows the status of a specific job. Faster and robust than /v3/job/
 
 #### Output
 * **job_id**: the specified job_id
-* **database**: the name of the database
 * **status**: the job status. The status can be 'queued', 'booting', 'running', 'success', or 'error'
 * **created_at**: the job creation time
-* **updated_at**: the latest job update time
+* **start_at**: the job starting time
+* **end_at**: the job end time
 
 #### Examples
     :::term
