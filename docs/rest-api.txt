@@ -125,9 +125,9 @@ This command shows the status of a specific job. Faster and robust than /v3/job/
     }
 
 ## GET /v3/job/show/:job_id
-This command shows the status and result of a specific job.
+This command shows the status and logs of a specific job.
 
-NOTE: The result sometimes becomes big, so using large timeout value (several minutes) is recommended for this call.
+NOTE: The logs sometimes become big, so using large timeout value (several minutes) is recommended for this call.
 
 #### Parameters
 * **job_id**: the specified job_id
@@ -140,6 +140,9 @@ NOTE: The result sometimes becomes big, so using large timeout value (several mi
 * **status**: the job status. The status can be 'queued', 'booting', 'running', 'success', or 'error'
 * **created_at**: the job creation time
 * **updated_at**: the latest job update time
+* **debug**
+  * **stderr**: stderr logs, including MapReduce job logs
+  * **cmdout**: stdout logs
 
 #### Examples
     :::term
@@ -150,11 +153,17 @@ NOTE: The result sometimes becomes big, so using large timeout value (several mi
       "status": "success",
       "url": "http://console.treasure-data.com/jobs/12345",
       "created_at":"Sun Jun 26 17:39:18 -0400 2011",
-      "updated_at":"Sun Jun 26 17:39:54 -0400 2011"
+      "updated_at":"Sun Jun 26 17:39:54 -0400 2011",
+      "debug": {
+        "stderr": "...",
+        "cmdout": "..."
+      }
     }
 
 ## GET /v3/job/result/:job_id?format=tsv
 This command returns the result of a specific job. Before issuing this command, please confirm that the job has been completed successfully via the /v3/job/show/:job_id command.
+
+NOTE: The results sometimes become big, so using large timeout value (several minutes) is recommended for this call.
 
 #### Parameters
 * **job_id**: the specified job_id
