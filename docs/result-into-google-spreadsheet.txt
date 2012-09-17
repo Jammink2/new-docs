@@ -11,11 +11,11 @@ This article explains how to write job results to your Google SpreadSheet.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into `output_table` within `testdb`.
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into the worksheet named `sample_worksheet` within the spreadsheet named `sample_spreadsheet`.
 
     :::sql
     $ td query
-      -r 'gspreadsheet://user:password@domain.com/spreadsheet_name/worksheet_name' \
+      -r 'gspreadsheet://user:password@domain.com/sample_spreadsheet/sample_worksheet' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
@@ -37,9 +37,9 @@ Here is the screenshot of the result.
 For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
     :::term
-    $ td result:create mygss td://user:password@domain.com/spreadsheet_name
+    $ td result:create mygss td://user:password@domain.com/sample_spreadsheet
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
-      -r mygss:worksheet_name \
+      -r mygss:sample_worksheet \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
