@@ -22,11 +22,11 @@ This last MySQL instance was responsible for answering questions about internal 
 
 Cookpad.com's original architecture was based on shared MySQL servers and had severe scaling and maintainability limitations.
 
-1. **Limited Scalability**: MySQL is great software. It's been deployed extensively for more than a decade and the support community is active and mature. However, MySQL was not designed to support petabytes of data. To make their MySQL servers more scalable, Cookpad.com, like most other large-scale MySQL users, aggressively shard their MySQL databases to alleviate the load on each individual instance. But this is not a robust solution and usually results in systems that are inflexible and brittle.
+1. **Limited Scalability**: MySQL is great software. It's been deployed extensively for more than a decade and the support community is active and mature. However, MySQL was not designed to support petabytes of data. To make their MySQL servers more scalable, Cookpad.com, like most other large-scale MySQL users, aggressively sharded their MySQL databases to alleviate the load on each  instance. But this is not a robust solution and usually results in systems that are brittle and hard to scale.
 
 2. **Rigid Schema**: Relational databases, including MySQL, require a well-defined schema upfront. While a rigid schema can help you organize and document data, it is not well-suited to a fast-moving, data-driven company like Cookpad.com where the underlying data can change weekly if not daily.
 
-3. **Up to 24 Hours of Delay**: Because the first step of the ETL process, copying log files from Rails server to MySQL servers, was run once a day, data refreshes could take up to 24 hours. This delay made it almost impossible to measure the effectiveness of new website features or the popularity of new content and this slowed down product development.
+3. **Up to 24 Hours of Delay**: Because the first step of the ETL process (copying log files from Rails server to MySQL servers) was run once a day, data refreshes could take up to 24 hours. Because of this delay, they couldn't evaluate the effectiveness of new features or the popularity of new content in a timely fashion. The long feedback loop meant slower product development.
 
 ## The Solution: Treasure Data
 
@@ -40,12 +40,8 @@ By introducing Treasure Data [1], Cookpad.com transformed their infrastructure i
 Those changes essentially solved all three of the problems that Cookpad.com was facing. Let's look at them in detail.
 
 1. **Scalability is no longer an issue**: unlike MySQL, Treasure Data was designed from the ground up to scale. For us, adding more storage or CPU is only a few keystrokes away.
-
-
-2. **Flexible Schema**: Treasure Data's proprietary columnar database implements a flexible schema model meaning that you can add or remove schema at any given time. This means Cookpad.com no longer has to worry about changes in the underlying data model breaking their ETL process.
-
-
-3. **Updates every 5 Minutes not every 24 Hours**: td-agent is a versatile, robust logger that can handle up to 17,000 messages per second per instance. This means that you can upload data in near real-time. Because td-agent buffers data for reliability, this means fresh data every 5 minutes instead of nightly. By the way, this buffer window is configurable so you could get even closer to real-time if you need to.
+2. **Flexible Schema**: Treasure Data's proprietary columnar database implements a flexible schema model that lets you add or remove a schema at any given time. This means Cookpad.com no longer has to worry about changes in the underlying data model breaking their ETL process.
+3. **Updates every 5 Minutes not every 24 Hours**: td-agent is a versatile, robust logger that can handle up to 17,000 messages per second per instance. Furthermore, it is far closer to real-time than uploading data in nightly batches: By default, td-agent buffers data locally for reliability and transfers it to Treasure Data every 5 minutes, so the data is never behind by more than 5 minutes. Of course, the size of the buffer window is configurable, so you can bring it as close to real-time as you need to.
 
 Cookpad.com now has a scalable, robust, high-performance data warehousing and analytics solution and all of this was achieved in less than three weeks. You could say that Treasure Data is Cookpad.com’s recipe for future success.
 
