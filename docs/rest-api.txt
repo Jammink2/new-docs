@@ -127,6 +127,8 @@ This command shows the status of a specific job. Faster and robust than /v3/job/
 ## GET /v3/job/show/:job_id
 This command shows the status and result of a specific job.
 
+NOTE: The result sometimes becomes big, so using large timeout value (several minutes) is recommended for this call.
+
 #### Parameters
 * **job_id**: the specified job_id
 
