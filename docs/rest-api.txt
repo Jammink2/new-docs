@@ -101,8 +101,31 @@ This command issues queries.
       "url": "http://console.treasure-data.com/will-be-ready"
     }
 
+## GET /v3/job/status/:job_id
+This command shows the status of a specific job. Faster and robust than /v3/job/show/:job_id.
+
+#### Parameters
+* **job_id**: the specified job_id
+
+#### Output
+* **job_id**: the specified job_id
+* **database**: the name of the database
+* **status**: the job status. The status can be 'queued', 'booting', 'running', 'success', or 'error'
+* **created_at**: the job creation time
+* **updated_at**: the latest job update time
+
+#### Examples
+    :::term
+    {
+      "job_id":"860329",
+      "status":"success",
+      "created_at":"2012-09-17 21:00:00 UTC",
+      "start_at":"2012-09-17 21:00:01 UTC",
+      "end_at":"2012-09-17 21:00:52 UTC"
+    }
+
 ## GET /v3/job/show/:job_id
-This command shows the status of a specific job.
+This command shows the status and result of a specific job.
 
 #### Parameters
 * **job_id**: the specified job_id
