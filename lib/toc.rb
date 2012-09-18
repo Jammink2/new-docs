@@ -10,7 +10,7 @@ section 'overview', 'Overview' do
   end
   category 'success-stories', 'Success Stories' do
     article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
-    # article 'success-at-cookpad', 'Cookpad - Japan’s No.1 recipe website'
+    article 'success-at-cookpad', 'Cookpad - Japan’s No.1 recipe website'
   end
   category 'changelog', 'ChangeLog' do
     article 'changelog', 'Treasure Data ChangeLog'
