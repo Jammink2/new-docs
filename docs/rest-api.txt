@@ -90,7 +90,7 @@ This command issues queries.
 
 #### Output
 * **database**: the name of the database
-* **job_id**: the name of the table created
+* **job_id**: the id of job
 
 #### Example Result
     :::term
@@ -158,6 +158,23 @@ NOTE: The logs sometimes become big, so using large timeout value (several minut
         "stderr": "...",
         "cmdout": "..."
       }
+    }
+
+## POST /v3/job/kill/:job_id
+This command kills the currently running job. The kill operation is done in an asynchronous way.
+
+#### Parameters
+* **job_id**: job id
+
+#### Output
+* **former_status**: current status of the given job
+* **job_id**: the specified job id
+
+#### Example Result
+    :::term
+    {
+      "former_status": "running",
+      "job_id": "12345"
     }
 
 ## GET /v3/job/result/:job_id?format=tsv
