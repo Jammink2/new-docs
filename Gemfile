@@ -8,7 +8,7 @@ gem 'json'
 gem 'coderay'
 gem 'rack-codehighlighter'
 gem 'sanitize'
-gem 'je', '0.0.6'
+gem 'je', '~> 0.1.2'
 
 # Webserver
 gem 'unicorn', '~> 4.2.1'
