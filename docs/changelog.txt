@@ -2,7 +2,7 @@
 
 ## Sep 19, 2012: td-agent runs on Joyent SmartOS
 
-Now td-agent (fluentd + td plugin) is running on Joyent SmartOS. Please check the instruction [here](http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos).
+Now td-agent (fluentd + td plugin) is running on Joyent SmartOS. Please check the [instruction](http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos).
 
 ## Sep 14, 2012: Added result output to Google SpreadSheet
 
