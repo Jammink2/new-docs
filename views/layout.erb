@@ -18,6 +18,7 @@
   <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" media="screen" />
   <link type="text/css" rel="stylesheet" href="/stylesheets/mobile.css" media="screen" />
   <link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="http://treasure-data.com/stylesheets/dropdown_menu.css" media="screen" />
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/javascripts/application.js"></script>
@@ -42,36 +43,60 @@
 </head>
 <body>
   <div id="header">
-  <center>
   <div id="td-header-inner">
-  <h1 id="td-logo"><a href="http://treasure-data.com/">Treasure Data</a></h1>
-          <ul id="td-nav">
+    <h1 id="td-logo"><a href="http://treasure-data.com/">Treasure Data</a></h1>
+    <ul id="td-nav">
+      <li>
+        <a href="http://treasure-data.com/signup/" class="td-signup">Sign Up!</a>
+      </li>
+      <li>
+        <ul class="dropdown">
           <li>
-            <a href="http://treasure-data.com/signup/" class="td-signup">Sign Up</a>
+            <a href="#">Service</a>
+            <ul>
+              <li><a href="/how/">How it Works</a></li>
+              <li><a href="/pricing/">Pricing</a></li>
+            </ul>
           </li>
           <li>
-            <a href="http://treasure-data.com/how/">How it Works</a>
+            <a href="#">Business</a>
+            <ul>
+              <li><a href="/whitepapers/">White Papers</a></li>
+              <li><a href="http://docs.treasure-data.com/categories/success-stories">Success Stories</a></li>
+            </ul>
           </li>
           <li>
-            <a href="http://treasure-data.com/pricing/">Pricing</a>
+            <a href="#">Developers</a>
+            <ul>
+              <li><a href="http://docs.treasure-data.com/">Documentation</a></li>
+              <li class="offset-1"><a href="http://help.treasure-data.com/discussions">Support</a></li>
+            </ul>
           </li>
           <li>
-            <a href="http://blog.treasure-data.com/">Blog</a>
+            <a href="#">Company</a>
+            <ul>
+              <li><a href="/about-us/">About Us</a></li>
+              <li><a href="/partners/">Partners</a></li>
+              <li><a href="http://blog.treasure-data.com/">Blog</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/careers/">Careers</a></li>
+            </ul>
           </li>
           <li>
-            <a href="http://docs.treasure-data.com/">Docs</a>
-          </li>
-          <li>
-            <a href="http://treasure-data.com/contact/">Contact</a>
-          </li>
-          <li>
-            <a href="http://www.facebook.com/TreasureData" target="_blank"><img src="/images/facebook_icon_small.png" /></a>
-            <a href="https://twitter.com/#!/TreasureData" target="_blank"><img src="/images/twitter_icon_small.png" /></a>
-            <a href="http://www.linkedin.com/company/treasure-data-inc-" target="_blank"><img src="/images/linkedin_icon_small.png" /></a>
+            <a href="#">Newsroom</a>
+            <ul>
+              <li><a href="/press-release/">Press Releases</a></li>
+            </ul>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="http://www.facebook.com/TreasureData" target="_blank"><img src="/images/facebook_icon_small.png" /></a>
+        <a href="https://twitter.com/#!/TreasureData" target="_blank"><img src="/images/twitter_icon_small.png" /></a>
+        <a href="http://www.linkedin.com/company/treasure-data-inc-" target="_blank"><img src="/images/linkedin_icon_small.png" /></a>
+      </li>
+    </ul>
   </div>
-  </center>
   </div>
 
   <div id="sheet">
@@ -197,5 +222,7 @@
   <!-- end olark code -->
 
   <%= ::NewRelic::Agent.browser_timing_footer rescue "" %>
+  <!-- Dropdown for older browsers -->
+  <script type="text/javascript" language="javascript" src="/javascripts/jquery.dropdown.js"></script>
 </body>
 </html>

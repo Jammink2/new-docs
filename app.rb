@@ -86,6 +86,14 @@ get '/css/docs.css' do
 end
 
 #
+# CSS
+#
+get '/stylesheets/header.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  erb :header_css, :layout => false
+end
+
+#
 # OLD REDIRECTS
 #
 get '/getting_started.html' do redirect '/articles/quickstart' end
