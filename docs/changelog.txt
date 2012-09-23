@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Sep 21, 2012: td v0.10.50 for Windows and MacOS X
+
+td v0.10.50 is released to fix some bugs, and we've updated Windows and MacOS X [toolbelt](http://toolbelt.treasure-data.com/).
+
 ## Sep 19, 2012: td-agent runs on Joyent SmartOS
 
 Now td-agent (fluentd + td plugin) is running on Joyent SmartOS. Please check the [instruction](http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos).
