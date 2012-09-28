@@ -106,7 +106,7 @@
 			<div id="search">
 			  <form action="/search">
 				<p>
-				  <input id="q" name="q" placeholder="search" required="required" type="text" style="background-color: white; color: black;" value="<%= params[:q] || '' %>" />
+				  <input id="q" name="q" placeholder="search" required="required" type="text" style="background-color: white; color: black;" value="<%=h params[:q] || '' %>" />
 				</p>
 			  </form>
 			</div>
