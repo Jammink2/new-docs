@@ -28,7 +28,7 @@ Enter [Treasure Data](http://treasure-data.com) [1].
 
 Treasure Data is a cloud storage/computation platform that provides a HiveQL (Apache Hive) interface. As someone who once cut teeth setting up Hadoop clusters and running large-scale MapReduce jobs, I immediately saw its value. We signed up for the service and started logging all of our data. Using their Python driver, it was as easy as adding a few lines to our code.
 
-We have been using Treasure Data for 6 months now, and it's been great so far. The service is reliable. We log more than 20,000 events (7.2 million line items) per day and have had 4 bad requests so far. They also provide first-class support, boosting my confidence in the service.
+We have been using Treasure Data for 6 months now, and it's been great so far. The service is reliable. We log millions of events (tens of millions line items) per day and have had few bad requests so far. They also provide first-class support, boosting my confidence in the service.
 
 ## Focus on Product, NOT Managing Infrastructure
 
