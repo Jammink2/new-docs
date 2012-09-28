@@ -2,13 +2,13 @@
 
 This article is written by Danny Zhang, a cofounder of [ContextLogic](http://www.contextlogic.com/). [Backed by notable investors](http://www.crunchbase.com/company/contextlogic), ContextLogic brings together top technical talent from Google, Facebook, and Yahoo!.
 
-## Wish: Facebook App with 3 Million Users
+## Wish: Facebook App with Millions of Active Users
 
 Our flagship product, [Wish](http://www.wishwall.me) improves online merchandise discovery by letting users discover and share cool products and get rewards.
 
 <center><img src="http://media.tumblr.com/tumblr_m5hannGFLs1r2sums.png" /></center>
 
-We launched Wish last November, and I am pleased to see that we have over 3 million registered users already, [making it one of the top 150 Facebook applications worldwide.](http://www.appdata.com/leaderboard/apps?fanbase=0&genre_id=Select+category&language_id=Select+language&list_select=apps&metric_select=mau&page=6&platform_id=Select+platform&start_date%5Bday%5D=11&start_date%5Bmonth%5D=6&start_date%5Byear%5D=2012)
+We launched Wish last November, and I am pleased to see that we have millions of registered users already, [making it one of the top 150 Facebook applications worldwide.](http://www.appdata.com/leaderboard/apps?fanbase=0&genre_id=Select+category&language_id=Select+language&list_select=apps&metric_select=mau&page=6&platform_id=Select+platform&start_date%5Bday%5D=11&start_date%5Bmonth%5D=6&start_date%5Byear%5D=2012)
 
 ## Data Driven Organization
 
