@@ -1,6 +1,6 @@
 # Supported UDFs (User Defined Functions)
 
-This article lists all the supported UDFs on Treasure Data.
+This article lists all the supported UDFs on Treasure Data. Supported UDFs consit of two parts: native UDFs supported by Hive, and Treasure Data specific functions start with **TD_** prefix.
 
 ## Hive native UDFs.
 
