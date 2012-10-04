@@ -1,0 +1,23 @@
+# Performance Tuning
+
+## Leverage Time-based Partitioning
+
+All imported data is automatically partitioned into hourly bucked, based on the **'time'** field within records. If you want to query against the data within a specific time range, you can query against part of your data to optimize the query performance by avoiding to process whole data set.
+
+### 1) WHERE time <=> Integer
+
+By **having a condition for 'time' field within WHERE clause**, the query parser can automatically recognize which partitions should be processed. Please note that *if you specify the time by float number, the partitioning doesn't work*.
+
+    :::sql
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
+
+### 2) TD_TIME_RANGE
+
+**More easier way to cut the data is using [TD_TIME_RANGE UDF](udfs#tdtimerange)**.
+
+    :::sql
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01",
+                                   TD_TIME_ADD("2013-01-01", "1day", "PDT"))

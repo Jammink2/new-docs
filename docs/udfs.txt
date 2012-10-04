@@ -28,6 +28,7 @@ Here's an example: Select records newer or equals to "2013-01-01 00:00:00 PDT"
 
 ### Description
 
+NOTE: This is extremely useful to leverage our time-based partitining. Please check <a href="performance-tuning">Performance Tuning</a> guide.
 
 This UDF returns true if the *unix_timestamp* is newer or equals to *start_time* and older than *end_time* (start_time <= time && time < end_time). If *end_time* is omitted or NULL, the UDF assumes it's infinite. If *start_time* is NULL, the UDF assumes it's 0.
 

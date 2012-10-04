@@ -81,6 +81,9 @@ section 'reference', 'Reference' do
     article 'udfs', 'Supported UDFs (User Defined Functions)'
     # article 'pig', 'Pig Latin Language'
   end
+  category 'performance-tuning', 'Performance Tuning' do
+    article 'performance-tuning', 'Performance Tuning'
+  end
   category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
   end
