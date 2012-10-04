@@ -1,0 +1,119 @@
+# Supported UDFs (User Defined Functions)
+
+This article lists all the supported UDFs on Treasure Data.
+
+## Hive native UDFs.
+
+All UDFs provided by Hive can be also used at Treasure Data. The list of UDFs are shown here.
+
+* [HiveQL Language Manual | UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF)
+
+## TD_TIME_RANGE()
+
+### Signature
+
+    :::term
+    boolean TD_TIME_RANGE(int/long unix_timestamp,
+                          int/long/string start_time,
+                          int/long/string end_time
+                          [, string default_timezone = 'UTC'])
+
+### Example
+
+Here's an example: Select records newer or equals to "2013-01-01 00:00:00 PDT"
+
+    :::sql
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
+
+### Description
+
+
+This UDF returns true if the *unix_timestamp* is newer or equals to *start_time* and older than *end_time* (start_time <= time && time < end_time). If *end_time* is omitted or NULL, the UDF assumes it's infinite. If *start_time* is NULL, the UDF assumes it's 0.
+
+*start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or UNIX timestamp (e.g. 1325343600).
+If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
+
+*default_timezone* is used to recognize *start_time* or *end_time*. If *start_time* or *end_time* themselves have timezone specification (e.g. "2012-01-01 +0700"), *default_timezone* is ignored. If there're no timezone specifications, the UDF uses 'UTC'.
+
+## TD_TIME_ADD()
+
+### Signature
+
+    :::term
+    long TD_TIME_ADD(int/long/string time,
+                     string duration
+                     [, string default_timezone = 'UTC(])
+
+### Example
+
+Here's an example: Select records newer or equals to "2013-01-01 00:00:00 UTC" and older than "2013-02-01 00:00:00 UTC".
+
+    :::sql
+    SELECT ... WHERE TD_TIME_RANGE(time,
+                                   "2013-01-01",
+                                   TD_TIME_ADD("2013-01-02", "1day"))
+
+### Description
+
+This UDF returns a timestamp after *duration* from *time*. The UDF supports following formats for the *duration*:
+
+* "Nd": after N days (e.g. "1d", "2d", "30d")
+* "-Nd": before N days (e.g. "-1d", "-2d", "-30d")
+* "Nh": after N hours (e.g. "1h", "2h", "48h")
+* "-Nh": before N hours (e.g. "-1h", "-2h", "-48h")
+* "Nm": after N minutes (e.g. "1m", "2m", "90m")
+* "-Nm": before N minutes (e.g. "-1m", "-2m", "-90m")
+* "Ns": after N seconds (e.g. "1s", "2s", "90s")
+* "-Ns": before N seconds (e.g. "-1s", "-2s", "-90s")
+
+You can use combination of above formats. For example, "1h30m" means "after 1 hour and 30 minutes".
+
+*default_timezone* is used to recognize *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), *default_timezone* is ignored. If there're no timezone specifications, the UDF uses 'UTC'.
+
+If the format of *time* or *duration* strings is invalid, the UDF returns NULL.
+
+NOTE: "M" or "month" is not supported)
+
+## TD_TIME_FORMAT()
+
+### Signature
+
+    :::term
+    string TD_TIME_FORMAT(long unix_timestamp,
+                          string format
+                          [, string timezone = 'UTC'])
+
+### Example
+
+Here's an example: Format timestamp to strings
+
+    :::sql
+    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd hh:mm:ss Z") ... FROM ...
+
+### Description
+
+This UDF converts unix timestamp to strings with given format (see [here](http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html) for the format) For example, "yyyy-MM-dd HH:mm:ss Z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If *timezone* is omitted, the UDF uses UTC.
+
+## TD_TIME_PARSE()
+
+    :::term
+    long TD_TIME_PARSE(string time
+                       [, string default_timezone = 'UTC'])
+
+This UDF converts time strings into an UNIX timestamp.
+
+*default_timezone* is used to recognize *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), *default_timezone* is ignored. If there're no timezone specifications, the UDF uses 'UTC'.
+
+If the format of *time* string is invalid, the UDF returns NULL.
+
+## TD_SCHEDULED_TIME()
+
+    :::term
+    long TD_SCHEDULED_TIME()
+
+This UDF returns the exact time when the job scheduled by [scheduled query] feature.
+The returned value could be different from NOW() because the actual time queries run could be delayed.
+
+If the query is not a scheduled query by [scheduled query] feature, the UDF returns the time when the job issued.
+You may use this UDF with TD_TIME_ADD to incremental aggregation.

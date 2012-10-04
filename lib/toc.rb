@@ -78,6 +78,7 @@ section 'reference', 'Reference' do
     article 'job', 'Job Management'
     article 'schedule', 'Scheduled Job'
     article 'hive', 'Hive (SQL-style) Query Language', ['hive query language', 'hive sql', 'hive tutorial', 'hive manual']
+    article 'udfs', 'Supported UDFs (User Defined Functions)'
     # article 'pig', 'Pig Latin Language'
   end
   category 'data-deletion', 'Data Deletion' do
