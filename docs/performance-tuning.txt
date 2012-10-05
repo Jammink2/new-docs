@@ -10,6 +10,8 @@ By **having a condition for 'time' field within WHERE clause**, the query parser
 
     :::sql
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 + 3600
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 - 3600
     [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
 
 ### 2) TD_TIME_RANGE
@@ -21,3 +23,16 @@ By **having a condition for 'time' field within WHERE clause**, the query parser
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01",
                                    TD_TIME_ADD("2013-01-01", "1day", "PDT"))
+
+## Set Custom Schema
+
+As [Schema Management](schema) describes, all tables has two fields: 'v' and 'time'. In addition to that, you can set [custome schema](schema#setting-custom-schema) on the tables.
+
+    :::term
+    $ td schema:set testdb www_access action:string user:int
+    $ td query -w -d testdb "SELECT user, COUNT(*) AS cnt
+         FROM www_access
+         WHERE action='login'
+         GROUP BY user ORDER BY cnt DESC"
+
+By setting schema and querying with columns instead of 'v', the query is executed with more optimized path by using the schema information. Expecially, GROUP BY performance will boost significantly.
