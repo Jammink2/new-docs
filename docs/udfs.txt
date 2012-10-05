@@ -48,12 +48,12 @@ If the format of *start_time* or *end_time* strings is invalid, the UDF returns 
 
 ### Example
 
-Here's an example: Select records newer or equals to "2013-01-01 00:00:00 UTC" and older than "2013-02-01 00:00:00 UTC".
+Here's an example: Select records newer or equals to "2013-01-01 00:00:00 UTC" and older than "2013-01-02 00:00:00 UTC".
 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time,
                                    "2013-01-01",
-                                   TD_TIME_ADD("2013-01-02", "1day"))
+                                   TD_TIME_ADD("2013-01-01", "1day"))
 
 ### Description
 
