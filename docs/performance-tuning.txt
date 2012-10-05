@@ -1,5 +1,12 @@
 # Performance Tuning
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of [td-agent](td-agent).
+  * Basic knowledge of [the query language](hive).
+  * Ruby 1.8 or higher (for local testing).
+
 ## Leverage Time-based Partitioning
 
 All imported data is automatically partitioned into hourly bucked, based on the **'time'** field within records. If you want to query against the data within a specific time range, you can query against part of your data to optimize the query performance by avoiding to process whole data set.
