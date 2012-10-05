@@ -33,7 +33,7 @@ By **having a condition for 'time' field within WHERE clause**, the query parser
 
 ## Set Custom Schema
 
-As [Schema Management](schema) describes, all tables has two fields: 'v' and 'time'. In addition to that, you can set [custome schema](schema#setting-custom-schema) on the tables.
+As [Schema Management](schema) describes, all tables has two fields: 'v' and 'time'. In addition to that, you can set [custom schema](schema#setting-custom-schema) on the tables.
 
     :::term
     $ td schema:set testdb www_access action:string user:int
