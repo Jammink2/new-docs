@@ -47,4 +47,37 @@ Please configure your jdbc parameters as shown in the following figure. Please m
 
 ### Step4: Create Reports
 
-You can now create reports through arbitrary SQL queries.
+The rest of the step is identical to how you would create reports with a JDBC source.
+
+You would first create a report by going to File -> New -> Report. **Make sure that your data source is configured to be "TreasureData"** (or whatever the name you gave to our JDBC connection).
+
+<div style="padding-left: 15%;">
+<a href="/images/jasper_ireport_step_1.png"><img src="/images/jasper_ireport_step_1.png" width="80%"></a>
+</div>
+<br/><br/>
+
+Here, the query is
+
+	SELECT code, COUNT(1) AS count FROM apache_log GROUP BY code
+
+A few words about this sample data.
+
+1. This table has data from a typical Apache log. The field `code` corresponds to HTTP status code. Essentially, we are counting the number of HTTP requests per status code. 
+2. Note that out of the box, Treasure Data has no pre-defined schama. This means that for the above query to work, we need to add schema for the field named `code`.
+
+		$ td table:show demo apache_log
+		Name      : demo.apache_log
+		Type      : log
+		Count     : 25000000
+		Schema    : (
+		    code:string
+		)
+
+	([This page explains](/articles/schema) how to add/remove/modify schema on our system.)
+
+The rest of the setup is exactly the same as any other reports.
+
+<div style="padding-left: 15%;">
+<a href="/images/jasper_ireport_step_2.png"><img src="/images/jasper_ireport_step_2.png" width="80%"></a>
+</div>
+<br/><br/>
