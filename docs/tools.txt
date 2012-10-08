@@ -4,7 +4,7 @@ We have partnered with many companies to meet your data analytic needs. Most of 
 
 <center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-Our [JDBC driver](jdbc-driver) provide a simple interface for 3rd party tools. Those are the list of supported tools right now. If you have specific data visualization needs, please [let us know](http://treasure-data.com/contact-us/).
+Our [JDBC driver](jdbc-driver) provide a simple interface for 3rd party tools. Those are the list of supported tools right now. If you have specific data visualization needs, please [let us know](http://treasure-data.com/contact/).
 
 * [JasperSoft](jaspersoft-ireport)
 * [Pentaho Business Analytics](pentaho)
