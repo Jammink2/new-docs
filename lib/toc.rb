@@ -118,6 +118,7 @@ end
 section 'ab', 'Accounts & Billing' do
   category 'accounts', 'Accounts' do
     article 'change-password', 'Changing the Password'
+    article 'access-control', 'Access Control'
   #   article 'change-email-address', 'Changing your email address'
   #   article 'delete-account', 'Deleting the account'
   end
