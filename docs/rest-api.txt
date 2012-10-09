@@ -35,7 +35,7 @@ The request looks like this when using the curl command. (The -H option adds the
 
 ## Limitation
 
-The extraordinaly API abuse could be limited, but for now, no specific limitation is imposed for REST API calls.
+We do not throttle access at the moment. However, we may limimt access to our API as deemed necessary.
 
 ## GET /v3/database/list
 This command returns a list of your databases.
