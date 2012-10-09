@@ -7,6 +7,7 @@ section 'overview', 'Overview' do
     article 'data-partitioning', 'Data Partitioning'
     article 'no-spof', 'No Single-Point-Of-Failure (SPOF)'
     article 'constraints', 'Constraints'
+    article 'status', 'Platform Status'
   end
   category 'success-stories', 'Success Stories' do
     article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'

@@ -1,0 +1,5 @@
+# Platform Status
+
+[Treasure Data Status](http://status.treasure-data.com/) provides the current status of the platform. The status site shows the historical uptime of our services including REST API endpoint, homepages, package distribution sites, etc.
+
+
