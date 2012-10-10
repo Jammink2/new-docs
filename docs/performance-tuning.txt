@@ -5,7 +5,6 @@
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Basic knowledge of [td-agent](td-agent).
   * Basic knowledge of [the query language](hive).
-  * Ruby 1.8 or higher (for local testing).
 
 ## Leverage Time-based Partitioning
 
