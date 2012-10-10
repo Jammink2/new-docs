@@ -81,6 +81,28 @@ This command returns a list of your tables.
       ]
     }
 
+## POST /v3/table/swap/:database/:table1/:table2
+This command swaps the contants between two tables.
+
+#### Parameters
+* **database**: database name
+* **table1**: table name (before)
+* **table2**: table name (after)
+
+#### Output
+* **database**: database name
+* **table1**: table name (before)
+* **table2**: table name (after)
+
+#### Example Result
+
+    :::term
+    {
+      "database": "db1",
+      "table1": "tbl1",
+      "table2": "tbl2",
+    }
+
 ## POST /v3/job/issue/hive/:database
 This command issues queries.
 
