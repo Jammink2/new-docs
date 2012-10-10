@@ -44,7 +44,7 @@ If the format of *start_time* or *end_time* strings is invalid, the UDF returns 
     :::term
     long TD_TIME_ADD(int/long/string time,
                      string duration
-                     [, string default_timezone = 'UTC(])
+                     [, string default_timezone = 'UTC'])
 
 ### Example
 
