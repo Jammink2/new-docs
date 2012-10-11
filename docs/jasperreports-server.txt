@@ -55,7 +55,7 @@ Select `View > Repository`. Right-click `Data Sources` and select `Add Resource 
 
 ### Step 5: Configure your JDBC Connection
 
-Configure your JDBC parameters as shown below. You will be asked to enter your email and password. Select `Test Connection` and `Submit` buttons. The data source is now registered on your JasperReports Server.
+Configure your JDBC parameters as shown below. You will be asked to enter your user name and password. Please use the credential on Treasure Data for these fields (User Name is the email address you've used to register on Treasure Data). Select `Test Connection` and `Submit` buttons. The data source is now registered on your JasperReports Server.
 
 <a href="/images/jasperserver-ds-config.png"><img src="/images/jasperserver-ds-config.png" width="100%"></a>
 
@@ -89,7 +89,6 @@ Please define the query as follows. Hit the `Save` button. The query would be re
 
 The above query is introduced in the article [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport).
 
-
 ### Step5: Register a New Report
 
 Select `View > Repository`. Right-click `Input data Types` and select `Add Resource > JasperReport` from the context menu.
@@ -113,7 +112,6 @@ Select sample Treasure Data data source that you registered as follows.
 Select the query that you registered as follows. Hit the `Submit` button. The report will be registered in JasperReports Server.
 
 <a href="/images/jasperserver-report-select-query.png"><img src="/images/jasperserver-report-select-query.png" width="100%"></a>
-
 
 ## Run Reports in JasperReports Server
 
