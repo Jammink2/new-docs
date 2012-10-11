@@ -8,9 +8,9 @@ This article explains how to use Treasure Data with [JasperReports Server](http:
 
 ## Download JasperReports Server
 
-You can download JasperReports Server from the link below. For this article, we tested with JasperReports Server JasperReports Server v4.7.0.
+You can download JasperReports Server from the link below. For this article, we tested with JasperReports Server v4.7.0.
 
-* [JasperForge JasperReports Server](http://jasperforge.org/projects/jasperreports-server)
+* [JasperSoft Community's JasperReports Server](http://community.jaspersoft.com/project/jasperreports-server)
 
 ## Download the Treasure Data JDBC Driver
 

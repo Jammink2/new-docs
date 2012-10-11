@@ -10,7 +10,7 @@ This article explains how to use Treasure Data with [JasperSoft iReport](http://
 
 You can download JasperSoft iReport from the link below. JasperSoft iReport v4.6.0 is used in this article.
 
-* [JasperForge iReport](http://jasperforge.org/projects/ireport)
+* [JasperSoft Community's iReport Designer](http://community.jaspersoft.com/project/ireport-designer)
 
 ## Download the Treasure Data JDBC Driver
 
