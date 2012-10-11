@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 section 'overview', 'Overview' do
   category 'getting-started', 'Getting Started' do
     article 'quickstart', 'Getting Started with Treasure Data'
@@ -143,6 +144,7 @@ section 'tools', 'Tools & Specs' do
   end
   category 'bi-etl-tools', 'BI / ETL Tools' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
+    article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
     article 'pentaho', 'Pentaho Business Analytics',    ['Pentaho Business Analytics']
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
