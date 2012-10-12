@@ -1,0 +1,88 @@
+# Pentaho Data Integration with JDBC Driver
+
+This article covers how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/), through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can process huge volumes of data on the cloud, while continue using your existing Pentaho instances.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data. [Getting Started](quickstart) is a good place to start.
+
+## Download Pentaho Data Integration
+
+You can download Pentaho Data Integration (Kettle) from the linke below. For this article, we tested with Pentaho Report Designer v4.3.0.
+
+* [Pentaho Data Integration (Kettle)](http://kettle.pentaho.com/)
+
+## Download JDBC Driver
+
+You can download the driver itself from the link below. The driver is still in beta; feedback is appreciated.
+
+* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
+
+NOTE: This driver is specifically for Treasure Data. It does not run in other environments such as your local Hadoop/Hive cluster.
+
+## Copy JDBC Driver Jar to Pentaho Data Integration
+
+First, copy Treasure Data JDBC driver to `libext/JDBC` directory specified by Pentaho Data Integration before starting Pentaho Data Integration.
+
+    :::term
+    $ cp td-jdbc-VERSION.jar \
+      <pentaho-data-integration-install>/data-integration/libext/JDBC/
+
+## Create Treasure Data Database Connection
+
+Let's add Treasure Data as Pentaho Data Integration's database connection and make a new transformation. Pealse follow the procedure below.
+
+### Step 1: Create a New Transform
+
+Select `Transforms` like follows. Right-click `New` from the context menu. A new transform is created.
+
+<a href="/images/pentaho-di-transformation-create-new.png"><img src="/images/pentaho-di-transformation-create-new.png" width="100%"></a>
+
+### Step 2: Create New Database Connection
+
+Select `Tools > Wizard > Create database connection...`. You get a pop-up window to create a new database connection. Select the database name and type as follows.
+
+<div style="padding-left: 15%;">
+<a href="/images/pentaho-di-database-select-database.png"><img src="/images/pentaho-di-database-select-database.png" width="60%"></a>
+</div>
+<br/><br/>
+
+### Step 3: Specify the Driver Class Name
+
+Specify the connection's URL and name of the driver class as follows.
+
+<div style="padding-left: 15%;">
+<a href="/images/pentaho-di-database-specify-driver.png"><img src="/images/pentaho-di-database-specify-driver.png" width="60%"></a>
+</div>
+<br/><br/>
+
+### Step 4: Set the Username and Password
+
+Specify your username and password as follows. Please use the credential on Treasure Data for these fields (User Name is the email address you've used to register on Treasure Data). Hit the `Finish` button. The database connection is now created on your Pentaho Data Integration.
+
+<div style="padding-left: 15%;">
+<a href="/images/pentaho-di-database-set-username.png"><img src="/images/pentaho-di-database-set-username.png" width="60%"></a>
+</div>
+<br/><br/>
+
+## Use Treasure Data Database as Table input
+
+### Step 1: Specify Table Input
+
+Select `Table input` from `Input` context menu of the transform. Drag and drop it on the workspace as follows.
+
+<a href="/images/pentaho-di-transformation-select-tableinput.png"><img src="/images/pentaho-di-transformation-select-tableinput.png" width="100%"></a>
+
+### Step 2: Edit the Table Input
+
+Right-click the `Table input` on the workspace. Select `Edit step` from the context menu. Configure your Table input as follows.
+
+<a href="/images/pentaho-di-transformation-edit-tableinput.png"><img src="/images/pentaho-di-transformation-edit-tableinput.png" width="100%"></a>
+
+The above query is introduced in the article [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport).
+
+### Step 3: Confirm the Table Input
+
+To confirm the behavior of the Table input, write out your data on Treasure Data to Output like Json output as follows.
+
+<a href="/images/pentaho-di-transformation-select-jsonoutput.png"><img src="/images/pentaho-di-transformation-select-jsonoutput.png" width="100%"></a>
