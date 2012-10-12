@@ -8,7 +8,7 @@ This article covers how to use Treasure Data with [Pentaho Business Analytics](h
 
 ## Download Pentaho Data Integration
 
-You can download Pentaho Data Integration (Kettle) from the linke below. For this article, we tested with Pentaho Report Designer v4.3.0.
+You can download Pentaho Data Integration (Kettle) from the linke below. For this article, we tested with Pentaho Data Integration v4.3.0.
 
 * [Pentaho Data Integration (Kettle)](http://kettle.pentaho.com/)
 
