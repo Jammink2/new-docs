@@ -1,6 +1,6 @@
 # Pentaho Data Integration with JDBC Driver
 
-This article covers how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/), through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can process huge volumes of data on the cloud, while continue using your existing Pentaho instances.
+This article covers how to use Treasure Data with [Pentaho Data Integration](http://www.pentaho.com/explore/pentaho-data-integration/), through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can process huge volumes of data on the cloud, while continue using your existing Pentaho Data Integration.
 
 ## Prerequisites
 
