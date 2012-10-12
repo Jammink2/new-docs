@@ -145,7 +145,7 @@ section 'tools', 'Tools & Specs' do
   category 'bi-etl-tools', 'BI / ETL Tools' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
     article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
-    article 'pentaho', 'Pentaho Business Analytics',    ['Pentaho Business Analytics']
+    article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
     article 'metricinsights', 'Metric Insights',        ['Metric Insights']

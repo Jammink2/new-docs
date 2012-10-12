@@ -1,14 +1,12 @@
-# Pentaho Business Analytics with JDBC Driver
+# Pentaho Report Designer with JDBC Driver
 
 This article covers how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/), through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can process huge volumes of data on the cloud, while continue using your existing Pentaho instances.
 
-## Download Pentaho
+## Download Pentaho Report Designer
 
-You can download the Pentaho from here. Pentaho v4.5.0 GA is used in this article.
+You can download Pentaho Report Designer from the linke below. For this article, we tested with Pentaho Report Designer v3.9.0-GA.
 
-* [Pentaho Download](http://www.pentaho.com/download/)
-
-Please follow the installer instruction, and execute `Pentaho Report Designer`.
+* [Pentaho Report Designer](http://reporting.pentaho.com/)
 
 <center>
 <a href="/images/pentaho.png"><img src="/images/pentaho.png" width="100%"></a>
