@@ -146,6 +146,7 @@ section 'tools', 'Tools & Specs' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
     article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
     article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
+    article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
     article 'metricinsights', 'Metric Insights',        ['Metric Insights']

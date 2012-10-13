@@ -9,6 +9,7 @@ Our [JDBC driver](jdbc-driver) provide a simple interface for 3rd party tools. T
 * [JasperSoft iReport](jaspersoft-ireport)
 * [JasperReports Server](jasperreports-server)
 * [Pentaho Report Designer](pentaho-reportdesigner)
+* [Pentaho Data Integration](pentaho-dataintegration)
 * [R Language](r-language)
 * [Talend Open Studio](talend)
 * [Metric Insights](metricinsights)
