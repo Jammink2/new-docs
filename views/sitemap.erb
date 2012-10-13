@@ -4,7 +4,7 @@
     <loc>http://docs.treasure-data.com/</loc>
     <lastmod><%= Time.now.strftime("%Y-%m-%d") %></lastmod>
     <changefreq>daily</changefreq>
-    <priority>5.0</priority>
+    <priority>1.0</priority>
   </url>
   <% @articles.each do |article| %>
     <% if File.exist?("#{options.root}/docs/#{article}.txt") %>
@@ -12,7 +12,7 @@
         <loc>http://docs.treasure-data.com/articles/<%= article %></loc>
         <lastmod><%= File::mtime("#{options.root}/docs/#{article}.txt").strftime("%Y-%m-%d") %></lastmod>
         <changefreq>daily</changefreq>
-        <priority>1.0</priority>
+        <priority>0.8</priority>
       </url>
     <% end %>
   <% end %>
