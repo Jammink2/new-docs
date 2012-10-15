@@ -10,6 +10,15 @@ $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 require 'article.rb'
 require 'term.rb'
 
+# Airbrake
+configure :production do
+  require 'airbrake'
+  Airbrake.configure do |config|
+    config.api_key = `ENV['AIRBRAKE_API_KEY']`
+  end
+  use Airbrake::Rack
+end
+
 # NewRelic
 configure :production do
   require 'newrelic_rpm'

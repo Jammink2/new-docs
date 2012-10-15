@@ -16,6 +16,7 @@ gem 'unicorn', '~> 4.2.1'
 # Addons
 gem 'newrelic_rpm', '~> 3.4.1'
 gem 'indextank', '~> 1.0.12'
+gem 'airbrake', '~> 3.1.5'
 
 # Dev
 group :development do
