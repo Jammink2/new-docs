@@ -199,14 +199,14 @@ This command kills the currently running job. The kill operation is done in an a
       "job_id": "12345"
     }
 
-## GET /v3/job/result/:job_id?format=tsv
+## GET /v3/job/result/:job_id?format=msgpack.gz
 This command returns the result of a specific job. Before issuing this command, please confirm that the job has been completed successfully via the /v3/job/show/:job_id command.
 
 NOTE: The results sometimes become big, so using large timeout value (several minutes) is recommended for this call.
 
 #### Parameters
 * **job_id**: the specified job_id
-* **format**: the result format: 'tsv', 'csv', or 'json'.
+* **format**: the result format: 'tsv', 'csv', 'json', or 'msgpack.gz'
 
 #### Output
 * the result in the specified format.
