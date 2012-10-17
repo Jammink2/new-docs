@@ -118,3 +118,27 @@ The returned value could be different from NOW() because the actual time queries
 
 If the query is not a scheduled query by [scheduled query] feature, the UDF returns the time when the job issued.
 You may use this UDF with TD_TIME_ADD to incremental aggregation.
+
+## TD_X_RANK()
+
+### Signature
+
+    :::term
+    long TD_X_RANK(keys)
+
+### Example
+
+Using this UDF requires you to do 'CLUSTER BY' or 'ORDER BY' within a sub query. 'CLUSTER BY' is more scalable compared to 'ORDER BY' because it doesn't ensure total order across multiple nodes, meaning allows us to process the query in parallel.
+
+    :::sql
+    SELECT TD_X_RANK(c), c, u FROM
+      (SELECT v['country'] AS c, v['user_id'] AS u
+       FROM users CLUSTER BY c) t
+    
+    SELECT TD_X_RANK(c, lc1), c, lc1, u FROM
+      (select v['country'] AS c, v['location1'] AS lc1, v['user_id'] AS u
+       FROM users CLUSTER BY c, lc1) t
+
+### Description
+
+Returns the rank of each row within the partition of the result set. The rank of a row is one plus the number of ranks that come before the row.
