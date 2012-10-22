@@ -36,7 +36,7 @@ As [the "Schema Management" article](schema) describes, all tables have two fiel
 
     :::term
     $ td schema:set testdb www_access action:string user:int
-    $ td query -w -d testdb "SELECT user, COUNT(*) AS cnt
+    $ td query -w -d testdb "SELECT user, COUNT(1) AS cnt
          FROM www_access
          WHERE action='login'
          GROUP BY user ORDER BY cnt DESC"

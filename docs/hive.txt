@@ -69,20 +69,20 @@ Here are a couple of basic examples. The underlying table consiste of three fiel
 #### Number of Accesses per Unique IP
 
     :::sql
-    SELECT v['ip'], COUNT(*) FROM www_access \
+    SELECT v['ip'], COUNT(1) FROM www_access \
       GROUP BY v['ip'] LIMIT 30;
 
 #### Unique IPs Sorted by Number of Accesses
 
     :::sql
-    SELECT v['ip'], COUNT(*) AS cnt FROM www_access \
+    SELECT v['ip'], COUNT(1) AS cnt FROM www_access \
       GROUP BY v['ip']
       ORDER BY cnt DESC LIMIT 30;
 
 #### Number of Accesses After a Certain Time
 
     :::sql
-    SELECT COUNT(*) FROM www_access \
+    SELECT COUNT(1) FROM www_access \
       WHERE time >= unix_timestamp('2011-08-19 00:00:00');
 
 NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
@@ -91,5 +91,5 @@ NOTE: The `time` column is a special column that is always present and stores th
 
     :::sql
     SELECT from_unixtime(CAST(time/(60*60*24) AS INT)*60*60*24) AS day, \
-      COUNT(*) FROM www_access \
+      COUNT(1) FROM www_access \
       GROUP BY CAST(time/(60*60*24) AS INT);
