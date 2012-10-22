@@ -4,7 +4,7 @@ Because Treasure Data is an cloud hosting environment, the platform has certain 
 
 ## Hive User Defined Functions (UDF)
 
-Custom Hive UDFs cannot be added. If you have a specific request for a function, please let us know.
+Although Treasure Data supports default Hive UDFs and Treasure Data specific UDFs (see [Supported UDFs](udfs)), custom Hive UDFs cannot be added. If you have a specific request for a function, please let us know.
 
 ## Hive Custom Map/Reduce Scripts
 

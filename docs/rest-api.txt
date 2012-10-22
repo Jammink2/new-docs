@@ -107,8 +107,9 @@ This command swaps the contants between two tables.
 This command issues queries.
 
 #### Parameters
-* **database**: the name of the database
-* **query**: the query string
+* **database**: name of the database
+* **query**: query string
+* **priority** (optional): priority of the job. -2 (VERY LOW) to 2 (VERY HIGH). The default is 0 (NORMAL).
 
 #### Output
 * **database**: the name of the database
