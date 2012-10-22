@@ -52,11 +52,12 @@ After 20 to 60 seconds, the records will be imported into our database.
 
     :::term
     $ td tables
-    +------------+------------+------+-----------+
-    | Database   | Table      | Type | Count     |
-    +------------+------------+------+-----------+
-    | testdb     | www_access | log  | 5000      |
-    +------------+------------+------+-----------+
+    +----------+------------+------+-------+--------+
+    | Database | Table      | Type | Count | Schema |
+    +----------+------------+------+-------+--------+
+    | testdb   | www_access | log  | 5000  |        |
+    +----------+------------+------+-------+--------+
+
 
 Step 5: Write Queries
 -----------------------
@@ -65,7 +66,7 @@ Finally, let’s write a SQL query. A Hadoop-based engine on the cloud executes 
 
     :::term
     $ td query -w -d testdb \
-      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code'] ORDER BY v['code']"
     queued...
     started at 2012-04-10T23:44:41Z
     2012-04-10 23:43:12,692 Stage-1 map = 0%,  reduce = 0%
@@ -82,7 +83,7 @@ Finally, let’s write a SQL query. A Hadoop-based engine on the cloud executes 
     | 500  | 2    |
     +------+------+
 
-The above command takes roughly 15 seconds. It’s the overhead of setting up the jobs within the cloud based on Hadoop.
+The above command takes 15-45 seconds. It’s the overhead of setting up the jobs within the cloud based on Hadoop.
 
 What's Next?
 ------------
