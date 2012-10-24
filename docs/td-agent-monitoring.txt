@@ -1,0 +1,28 @@
+# Monitoring td-agent
+
+This article covers how to monitor `td-agent` daemon.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+  * Basic knowledge of [td-agent](td-agent)
+
+## Port Monitoring
+
+By default configuration, td-agent opens these ports. Checking the availability of these port is recommended. If you send no data, the daemon doesn't do anything.
+
+  * TCP 0.0.0.0 8888 (HTTP)
+  * TCP 0.0.0.0 24224 (Forward)
+
+Debug port is also opened only to the local communication.
+
+  * TCP 127.0.0.1 24230
+
+## Process Monitoring
+
+Two `ruby` processes (parents and child) are executed. Please make sure these processes are running.
+
+    :::term
+    /usr/lib/fluent/ruby/bin/ruby /usr/sbin/td-agent
+      --daemon /var/run/td-agent/td-agent.pid
+      --log /var/log/td-agent/td-agent.log

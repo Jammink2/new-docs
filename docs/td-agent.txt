@@ -179,9 +179,10 @@ Next, you need to modify your existing applications to post data to Treasure Dat
 * [Apache Logs](apache)
 * [Tailing Existing CSV or TSV Logs](td-agent-tail)
 
-### High-Availability Configurations
+### High-Availability Configurations and Monitoring
 
-For high-traffic websites, we recommend using high availability configuration for td-agent.
+For high-traffic websites, we recommend using high availability configuration for td-agent. Monitoring the daemon is also important.
 
   * [High-Availability Configurations with td-agent](td-agent-high-availability)
+  * [Monitoring td-agent](td-agent-monitoring)
 

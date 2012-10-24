@@ -147,6 +147,12 @@ For high-traffic websites (more than 5 application nodes), we recommend using a 
 
 * [High-Availability Configurations of td-agent](td-agent-high-availability)
 
+### Monitoring td-agent
+
+Monitoring td-agent itself is also important. Please refer this document about general monitoring methods for td-agent.
+
+* [Monitoring td-agent](td-agent-monitoring)
+
 ## Next Steps
 
 We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.

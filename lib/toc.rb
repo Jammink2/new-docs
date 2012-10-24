@@ -69,6 +69,7 @@ section 'reference', 'Reference' do
   category 'data-import', 'Data Import' do
     article 'td-agent', 'Using td-agent package',                                      ['fluentd', 'td-agent']
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
+    article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
     article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
     article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
