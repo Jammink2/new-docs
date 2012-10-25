@@ -236,13 +236,11 @@ NOTE: The results sometimes become big, so using large timeout value (several mi
 
     :::term
     # URL: http://api.treasure-data.com/v3/job/result/2162?format=json
-    [
-      [aaaa,bbbb,cccc],
-      [aaaa,bbbb,cccc],
-      [aaaa,bbbb,cccc],
-      [aaaa,bbbb,cccc],
-      [aaaa,bbbb,cccc]
-    ]
+    [aaaa,bbbb,cccc]
+    [aaaa,bbbb,cccc]
+    [aaaa,bbbb,cccc]
+    [aaaa,bbbb,cccc]
+    [aaaa,bbbb,cccc]
 
 ## Libraries
 
