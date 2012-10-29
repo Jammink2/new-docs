@@ -169,7 +169,7 @@ helpers do
     if article.include?('/')
       article
     else
-      "#{options.root}/docs/#{article}.txt"
+      "#{settings.root}/docs/#{article}.txt"
     end
   end
 
