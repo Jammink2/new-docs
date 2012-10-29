@@ -1,6 +1,7 @@
 source :gemcutter
 
-gem 'sinatra', '1.3.2'
+gem 'sinatra', '1.3.3'
+gem 'sinatra-assetpack', '0.0.12.pre1', :require => 'sinatra/assetpack'
 gem 'rdiscount', '1.6.8'
 gem 'rest-client', '1.2.0'
 gem 'haml', '2.2.17'

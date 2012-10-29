@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/assetpack'
 require 'haml'
 require 'sass'
 require 'coderay'
@@ -40,6 +41,26 @@ set :static_cache_control, [:public, :max_age => 3600*24]
 not_found do
   erb :not_found
 end
+
+#
+# Static Assets
+# @see http://ricostacruz.com/sinatra-assetpack/
+#
+set :root, File.dirname(__FILE__)
+Sinatra.register Sinatra::AssetPack
+assets {
+  serve '/js',  from: 'app/js'  # Optional
+  serve '/css', from: 'app/css' # Optional
+  js :app, '/js/app.js', [
+    '/js/*.js'
+  ]
+  css :application, '/css/application.css', [
+    '/css/*.css'
+  ]
+  js_compression  :jsmin
+  css_compression :simple
+  prebuild true # only on production
+}
 
 #
 # PATHS
@@ -86,20 +107,6 @@ end
 get '/articles/:article' do
   cache_long
   render_article params[:article], params[:congrats]
-end
-
-get '/css/docs.css' do
-  cache_long
-  content_type 'text/css'
-  erb :css, :layout => false
-end
-
-#
-# CSS
-#
-get '/stylesheets/header.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  erb :header_css, :layout => false
 end
 
 #

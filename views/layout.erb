@@ -11,18 +11,11 @@
   <link rel="canonical" href="http://docs.treasure-data.com<%= request.fullpath %>" />
   <link href="http://docs.treasure-data.com/favicon.ico" rel="icon" type="image/x-icon">
   <link href="http://docs.treasure-data.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
-  <link type="text/css" rel="stylesheet" href="/css/docs.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/coderay.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/reset.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/library.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/fonts.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/base.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/mobile.css" media="screen" />
-  <link type="text/css" rel="stylesheet" href="/stylesheets/header.css" media="screen" />
+  <%= css :application, :media => 'screen' %>
   <link type="text/css" rel="stylesheet" href="http://www.treasure-data.com/stylesheets/dropdown_menu.css" media="screen" />
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="/javascripts/application.js"></script>
+  <%= js  :app %>
   <script type="text/javascript">
     $("#stack-compare tr").click(function(){
       window.location=$(this).find("a").attr("href");
