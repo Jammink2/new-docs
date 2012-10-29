@@ -26,7 +26,7 @@ Here's an example: select records newer or equal to "2013-01-01 00:00:00 PDT"
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
 
-NOTE: Notice how the time portion, "00:00:00", was omitted. Of course, you can specify up to seconds. In general, the time string format should be either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:10:23".
+NOTE: Notice how the time portion, "00:00:00", was omitted. Of course, you can specify up to seconds. In general, the time string format should be either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
 
 ### Description
 
