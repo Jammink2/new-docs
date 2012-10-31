@@ -9,6 +9,7 @@ section 'overview', 'Overview' do
     article 'no-spof', 'No Single-Point-Of-Failure (SPOF)'
     article 'constraints', 'Constraints'
     article 'status', 'Platform Status'
+    article 'open-source', 'Open Source'
   end
   category 'success-stories', 'Success Stories' do
     article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
