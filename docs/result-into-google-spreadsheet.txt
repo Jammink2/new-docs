@@ -28,6 +28,8 @@ Here is an example URL:
     Google Apps
     gspreadsheet://kazuki.ohta:password@treasure-data.com/TDTest/Sheet1
 
+NOTE: If your password includes special characters like ':', '@', etc, please convert them with URL encoding. See [https://en.wikipedia.org/wiki/Urlencode](https://en.wikipedia.org/wiki/Urlencode).
+
 Here is the screenshot of the result.
 
 <center><img src="/images/google-spreadsheet.png" width="60%" /></center><br /><br />
