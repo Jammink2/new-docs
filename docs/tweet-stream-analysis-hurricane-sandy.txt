@@ -1,6 +1,10 @@
 #What Does Twitter Tell Us About Hurricane Sandy?
 
-#Analyzing Hurricane Sandy Data
+##Introduction
+
+Social Media is an enormous source of information. For example, with more than 350 million Tweets per day, there is a lot of information to be mined. The question is: "where do you start?"
+
+As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States. We decided to collect Tweets with the word "Hurricane" into Treasure Data and asked a few questions.
 
 ##Step 1: Upload Tweets
 We assume that you have already downloaded td-command and td-agent.
@@ -70,7 +74,7 @@ This is probably the first question you would ask. Which Hurrican-related Tweet 
 	| 10779 | RT @FillWerrell: Hurricane Sandy wouldn't be here if Patrick would've just stopped making fun of Texas.                                      |
 	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
-I suppose it is no surprise that Justin Bieber's Tweet has been retweeted most. What's curious is how this [Gangnam Style meme] ranked the second. The Internet often associates two seemingly disparate entities in creative ways. This is all just for fun until your company or brand is one of the two entities: at that point, you want to identify the association quickly and act on it if it negatively positions your company or brand.
+I suppose it is no surprise that Justin Bieber's Tweet has been retweeted most. What's curious is how this [Gangnam Style meme](http://memegenerator.net/instance/29199524) ranked the second. The Internet often associates two seemingly disparate entities in creative ways. This is all just for fun until your company or brand is one of the two entities: at that point, you want to identify the association quickly and act on it if it negatively positions your company or brand.
 
 Here is another look at the Tweets. The following word cloud was generated based on the top 30 most popular bigrams. Font sizes are proportional to frequencies with some thresholding to make the layout look nicer.
 
