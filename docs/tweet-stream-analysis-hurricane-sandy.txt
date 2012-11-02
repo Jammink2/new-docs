@@ -1,0 +1,166 @@
+#What Does Twitter Tell Us About Hurricane Sandy?
+
+#Analyzing Hurricane Sandy Data
+
+##Step 1: Upload Tweets
+We assume that you have already downloaded td-command and td-agent.
+
+We will be uploading Tweets to Treasure Data continuously via td-agent. Luckily, there is already a couple of input plugins for td-agent that already takes care of souping up Tweets.
+
+For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream input plugin](https://gist.github.com/4004818). (Also, there is [fluent-plugin-twitter by y-ken](https://github.com/y-ken/fluent-plugin-twitter) who has contributed a number of useful plugins) The twitterstream input plugin requires just five parameters:
+
+1. `consumer_key`
+2. `consumer_secret`
+3. `access_token_key`
+4. `access_token_secret`
+5. one of `follow/track/locations`
+
+The first four parameters are generic authorization parameters for Twitter applications. The fifth parameter decides how you filter the Twitter stream.
+
+Here is our td-agent configuration file.
+
+	<source>
+	  type twitterstream
+	  consumer_key YOUR_CONSUMER_KEY
+	  consumer_secret YOUR_CONSUMER_KEY_SECRET
+	  access_token_key YOUR_ACCESS_TOKEN_KEY
+	  access_token_secret 76HyTgCH6C2epd4BpAxUfKIj990Et7Vdvs4czpaZ4
+
+	  tag twitterstream.hurricane_sandy
+	  track hurricane
+	</source>
+
+	<match twitterstream.*>
+	  type tdlog
+	  apikey YOUR_TD_API_KEY_HERE
+	  buffer_path YOUR_BUFFER_PATH
+	</match>
+
+Note that we are tracking the word "hurricane" here. Now just remember to
+
+1. make sure you have the twitterstream input plugin (`in_twitterstream.rb`) in your plugin path.
+2. make sure you have write access to YOUR_BUFFER_PATH.
+3. start td-agent and upload Tweets.
+
+##Step 2: Analyze & Vizualize!
+
+Once td-agent is up and running, you can start querying the data immediately on Treasure Data (Note the 5-minute delay due to td-agent's buffering). Here, I would like to show some queries I ran. Note that all the schema have been added already to streamline queries (here is more information about schema management on Treasure Data).
+
+###Which Tweet was Retweeted the Most?
+
+This is probably the first question you would ask. Which Hurrican-related Tweet got the most number of eyeballs (at least by one metric)? Here is the query to get the top 10.
+
+	$ td query -w -d twitterstream '
+	SELECT MAX(retweet_count) AS rt_ct, text
+	FROM hurricane_sandy GROUP BY text
+	ORDER BY rt_ct DESC LIMIT 10'
+
+	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
+	| rt_ct | text                                                                                                                                         |
+	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
+	| 61028 | RT @justinbieber: everyone dealing with the hurricane up north be safe                                                                       |
+	| 24868 | RT @hurricannesandy: WHAT IF GANGAM STYLE WAS ACTUALLY JSST A GIANT RAIN DANCE AND WE BROUGHT THIS HURRICANE ON OURSELVES?                   |
+	| 21809 | RT @ElectionParody: FOR EVERY 100 RETWEETS, WE WILL BE DONATING $1,000 TO HELP REBUILT COMMUNITIES DAMAGED BY HURRICANE SANDY. PLEASE RE ... |
+	| 21808 | RT @HurricaneSandyw: FOR EVERY 100 RETWEETS, WE WILL BE DONATING $1,000 TO HELP REBUILT COMMUNITIES DAMAGED BY HURRICANE SANDY. PLEASE R ... |
+	| 19926 | RT @RepublicanTips: Everyone in the path of the hurricane should head to their second or third home to safety #Sandy #RomneyStormTips        |
+	| 19924 | RT @ALiberalPundit: Everyone in the path of the hurricane should head to their second or third home to safety #Sandy #RomneyStormTips        |
+	| 15389 | RT @SandysHurricane: R.I.P to the 65 victims who lost their lives because of Hurricane Sandy. RT for respect &lt;3                           |
+	| 12549 | RT @Seth_Fried: If your apartment is hit by a dolphin, DO NOT GO OUT TO SEE IF THE DOLPHIN IS OKAY. That's how the hurricane tricks you  ... |
+	| 11084 | RT @AHurricaneSandy: I WENT TO HIGHSCHOOL WIT IRENE. SHE CAN'T EVEN TWERK. SHE AIN'T BOUT DAT HURRICANE LYFE.                                |
+	| 10779 | RT @FillWerrell: Hurricane Sandy wouldn't be here if Patrick would've just stopped making fun of Texas.                                      |
+	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+I suppose it is no surprise that Justin Bieber's Tweet has been retweeted most. What's curious is how this [Gangnam Style meme] ranked the second. The Internet often associates two seemingly disparate entities in creative ways. This is all just for fun until your company or brand is one of the two entities: at that point, you want to identify the association quickly and act on it if it negatively positions your company or brand.
+
+Here is another look at the Tweets. The following word cloud was generated based on the top 30 most popular bigrams. Font sizes are proportional to frequencies with some thresholding to make the layout look nicer.
+
+	$td query -w -d twitterstream 'SELECT NGRAMS(SENTENCES(LOWER(text)), 2, 100) FROM hurricane_sandy'
+
+<div id="word-cloud"></div>
+
+A few observations here:
+
+1. Predictably, the most popular bigram was "Hurricane Sandy".
+2. Note that "http t.co" is up next. Of course, this comes from Twitter's official URL shortener. What's interesting is how other URL shorteners such as "http bit.ly" or "http goo.gl" are absent from the top 30.
+
+###What Time Are People Tweeting?
+
+Twitter has become an increasingly important marketing tool. One natural question to ask is, "when are people active on Twitter?"
+
+	$td query -w -d twitterstream 'SELECT COUNT(*) AS ct, from_unixtime(3600*ROUND(unix_timestamp(created_at)/3600)) AS time FROM hurricane_sandy GROUP BY ROUND(unix_timestamp(created_at)/3600) ORDER BY time'
+
+####The number of Tweets by Hour
+<div id="count-by-hour"></div>
+<br/>
+<br/>
+At first, there is nothing too surprising here: a gradual increase toward early afternoon, peaking at 2PM. However, note that Twitter has a global presence and people tweet from many timezones. Yet, it seems that this dataset's timezone dwarfs other timezones. Can you guess which timezone this is? Pacific Standard Time.
+
+After all, this is not too surprising. PDT has Silicon Valley as well as Hollywood, two groups with a number of power Twitter users in them.
+
+
+##Conclusion
+Social media provides valuable datasets, but the challenge is getting and analyzing data quickly. With Treasure Data and its versatile td-agent, you can get up and running with your social media analysis in a few hours, not a few weeks or months.
+
+<script src="http://d3js.org/d3.v2.min.js"></script>
+<script src="/javascripts/d3.layout.cloud.js"></script>
+<script>
+(function(document, d3, word_cloud_id, count_by_hour_id) {
+
+var width = 600, height = width/1.61;
+d3.json('/data/json/tweet-stream-analysis/bigram.json', function(bigram_json) {
+  var max_size = d3.max(bigram_json, function(d){ return d[1]; });
+  var color_ordinal = d3.scale.category20();
+  d3.layout.cloud().size([width, height])
+      .words(
+        bigram_json.map(function(d) {
+          return {text: d[0].join(" "), size: 45*Math.max(d[1], 0.38*max_size)/max_size};
+        })
+      )
+      .fontSize(function(d) { return d.size; })
+      .on("end", draw)
+      .start();
+
+  function draw(words) {
+    d3.select(word_cloud_id).append("svg")
+        .attr("width", width)
+        .attr("height", height)
+      .append("g")
+        .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("fill", function(d, i) { return color_ordinal(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+});
+	
+var chart = d3.select(count_by_hour_id).append("div").attr("class", "chart");
+function color_changer(d) {
+  var t = parseInt(d[1].split(" ")[1].split(":")[0], 10);
+  var n = 160-8*Math.abs(12-t);
+  return d3.rgb(n, n, n)
+}
+
+d3.json('/data/json/tweet-stream-analysis/count_by_hour.json', function(count_hour_pair){
+  var max_count = d3.max(count_hour_pair, function(d) { return d[0] })
+  chart.selectAll("div")
+    .data(count_hour_pair)
+    .enter().append("div")
+    .style("width", function(d) { return (100*d[0]/max_count) + '%' })
+    .style("background-color", color_changer)
+    .style("font", "sans-serif 10px")
+    .style("color", "#44FF44")
+    .style("padding", "3px")
+    .style("margin", "3px")
+    .text(function(d) { return d[1] + "  (" + d[0] + ")"; });
+});
+
+
+})(document, d3, "#word-cloud", "#count-by-hour");
+
+</script>
