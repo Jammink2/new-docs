@@ -6,7 +6,7 @@ This article covers how to use Treasure Data's [JDBC](http://en.wikipedia.org/wi
 
 You can download the driver itself from the link below. The driver is still in beta; any feedback is appreciated.
 
-* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc) (2012/10/10 v0.1.6)
+* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc) (2012/11/03 v0.1.7)
 
 NOTE: This driver only works with Treasure Data. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
