@@ -1,11 +1,11 @@
 Open Source
 ===========
 
-Our client-side software is all open-sourced. No black box for client-side codes.
+All of our client-side software are open-sourced. We have no black boxes in our client-side code.
 
 # td command
 
-td command consists of three components. These are the source code repositories.
+The td command is comprised of three components. The source code repositories for each are shown below.
 
 * [td](https://github.com/treasure-data/td)
 * [td-client-ruby](https://github.com/treasure-data/td-client-ruby)
@@ -13,7 +13,7 @@ td command consists of three components. These are the source code repositories.
 
 # td-agent
 
-td-agent consists of Ruby interpreter, jemalloc library, and various Ruby gems.
+td-agent consists of the Ruby interpreter, jemalloc library, and various Ruby gems. The source code repositories for each are shown below.
 
 * [Ruby](http://www.ruby-lang.org/en/)
 * [jemalloc](http://www.canonware.com/jemalloc/)
