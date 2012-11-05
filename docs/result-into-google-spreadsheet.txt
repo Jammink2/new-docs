@@ -1,17 +1,17 @@
-# Writing the Query Results into Google SpreadSheet
+# Writing Query Results into Google SpreadSheet
 
-This article explains how to write job results to your Google SpreadSheet.
+This article explains how to write job results directly to your Google SpreadSheet.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A Google account (You need to have access to Google Docs)
+  * A Google account (for Google Docs).
 
 ## Basic Usage
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into the worksheet named `sample_worksheet` within the spreadsheet named `sample_spreadsheet`.
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into the worksheet `sample_worksheet` within the spreadsheet `sample_spreadsheet`.
 
     :::sql
     $ td query
@@ -19,7 +19,7 @@ For on-demand jobs, just add the `-r` option to the `td query` command. After th
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
-Here is an example URL:
+Here are some example URLs:
 
     :::text
     Gmail
@@ -28,15 +28,15 @@ Here is an example URL:
     Google Apps
     gspreadsheet://kazuki.ohta:password@treasure-data.com/TDTest/Sheet1
 
-NOTE: If your password includes special characters like ':', '@', etc, please convert them with URL encoding. See https://en.wikipedia.org/wiki/Urlencode.
+NOTE: If your password includes special characters such as ':', '@', etc., please convert them using URL encoding. Please see Wikipedia's [URL Encoding](https://en.wikipedia.org/wiki/Urlencode) article for details.
 
-Here is the screenshot of the result.
+Shown below is a screenshot of the result.
 
 <center><img src="/images/google-spreadsheet.png" width="60%" /></center><br /><br />
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are written into `mytbl`.
 
     :::term
     $ td result:create mygss td://user:password@domain.com/sample_spreadsheet
@@ -44,4 +44,3 @@ For scheduled jobs, just add the `-r` option when scheduling a job. Every time t
       -d testdb \
       -r mygss:sample_worksheet \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
-
