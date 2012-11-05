@@ -91,9 +91,9 @@ Next, please initialize and post the records as shown below.
     :::ruby
     # Initialize
     require 'td'
-    TreasureData::Logger.open('database_name',
-                              :apikey=>YOUR_API_KEY,
-                              :auto_create_table=>true)
+    TreasureData::Logger.open_agent('database_name',
+                                    :apikey=>YOUR_API_KEY,
+                                    :auto_create_table=>true)
 
     # Example1: login event
     TD.event.post('login', {:uid=>123})
