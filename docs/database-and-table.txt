@@ -17,7 +17,7 @@ The 'db:create' sub-command creates a database. For example, the following comma
     :::term
     $ td db:create test_db
 
-NOTE: The database name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown). Also, the database name must be 3 to 256 characters long."
+NOTE: The database name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown). Also, the database name must be 3 to 256 characters long.
 
 Your local environment remains unchanged; the database resides solely on the cloud.
 
@@ -58,7 +58,7 @@ The 'table:create' sub-command creates a table. For example, the following comma
     $ td table:create test_db test_table
     Table 'test_db.test_table' is created.
 
-NOTE: The table name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown). Also, the table name must be 3 to 256 characters long."
+NOTE: The table name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown). Also, the table name must be 3 to 256 characters long.
 
 Much like your database, this table only exists on the cloud. Your local environment remains unchanged. 
 
