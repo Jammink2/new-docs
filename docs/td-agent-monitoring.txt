@@ -4,12 +4,12 @@ This article covers how to monitor the `td-agent` daemon.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+  * Basic knowledge of Treasure Data (understanding of the [Getting Started](quickstart) guide).
   * Basic knowledge of [td-agent](td-agent).
 
 ## Port Monitoring
 
-In its default configuration, td-agent opens the ports shown below. We recommend checking the availability of these ports.
+td-agent opens the following ports by default. We recommend checking the availability of these ports.
 
   * TCP 0.0.0.0 8888 (HTTP)
   * TCP 0.0.0.0 24224 (Forward)
