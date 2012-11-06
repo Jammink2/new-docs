@@ -63,6 +63,21 @@ assets {
 }
 
 #
+# OLD REDIRECTS
+#
+get '/getting_started.html' do redirect '/articles/quickstart' end
+get '/getting_started_with_apache_logs.html' do redirect '/articles/quickstart' end
+get '/getting_started_with_ruby_on_rails.html' do redirect '/articles/rails' end
+get '/continuous_data_import_with_td-agent.html' do redirect '/articles/td-agent' end
+get '/td-agent_ha.html' do redirect '/articles/td-agent-high-availability' end
+get '/database_table_management.html' do redirect '/articles/database-and-table' end
+get '/schema_management.html' do redirect '/articles/schema' end
+get '/job_management.html' do redirect '/articles/job' end
+get '/query_language.html' do redirect '/articles/hive' end
+get '/articles/apache' do redirect '/articles/analyzing-apache-logs' end
+get '/articles/tweet-stream-analysis-hurricane-sandy' do redirect '/articles/analyzing-twitter-data' end
+
+#
 # PATHS
 #
 get '/' do
@@ -108,21 +123,6 @@ get '/articles/:article' do
   cache_long
   render_article params[:article], params[:congrats]
 end
-
-#
-# OLD REDIRECTS
-#
-get '/getting_started.html' do redirect '/articles/quickstart' end
-get '/getting_started_with_apache_logs.html' do redirect '/articles/quickstart' end
-get '/getting_started_with_ruby_on_rails.html' do redirect '/articles/rails' end
-get '/continuous_data_import_with_td-agent.html' do redirect '/articles/td-agent' end
-get '/td-agent_ha.html' do redirect '/articles/td-agent-high-availability' end
-get '/database_table_management.html' do redirect '/articles/database-and-table' end
-get '/schema_management.html' do redirect '/articles/schema' end
-get '/job_management.html' do redirect '/articles/job' end
-get '/query_language.html' do redirect '/articles/hive' end
-get '/articles/apache' do redirect '/articles/analyzing-apache-logs' end
-get '/articles/tweet-stream-analysis-hurricane-sandy' do redirect '/articles/analyzing-twitter-data' end
 
 helpers do
   def render_category(category)
