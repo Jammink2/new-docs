@@ -4,7 +4,7 @@ This article covers how to monitor the `td-agent` daemon.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data (understanding of the [Getting Started](quickstart) guide).
+  * Basic knowledge of Treasure Data (an understanding of the [Getting Started](quickstart) guide).
   * Basic knowledge of [td-agent](td-agent).
 
 ## Port Monitoring
