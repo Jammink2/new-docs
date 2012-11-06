@@ -176,7 +176,7 @@ Next, you need to modify your existing applications to post data to Treasure Dat
 </table>
 
 #### Middlewares
-* [Apache Logs](apache)
+* [Apache Logs](analyzing-apache-logs)
 * [Tailing Existing CSV or TSV Logs](td-agent-tail)
 
 ### High-Availability Configurations and Monitoring

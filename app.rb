@@ -121,6 +121,8 @@ get '/database_table_management.html' do redirect '/articles/database-and-table'
 get '/schema_management.html' do redirect '/articles/schema' end
 get '/job_management.html' do redirect '/articles/job' end
 get '/query_language.html' do redirect '/articles/hive' end
+get '/articles/apache' do redirect '/articles/analyzing-apache-logs' end
+get '/articles/tweet-stream-analysis-hurricane-sandy' do redirect '/articles/analyzing-twitter-data' end
 
 helpers do
   def render_category(category)
@@ -194,7 +196,7 @@ helpers do
   end
 
   def find_keywords(article, category)
-    default = ['treasure data', 'hadoop', 'cloud data warehouse', 'data analytics']
+    default = ['Treasure Data', 'hadoop', 'hive', 'cloud data warehouse']
     sections.each { |_, _, categories|
       categories.each { |category_name, _, articles|
         return default + [category_name] if category_name == category

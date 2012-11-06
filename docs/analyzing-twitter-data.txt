@@ -1,17 +1,49 @@
-#What Does Twitter Tell Us About Hurricane Sandy?
+# Analyzing Twitter Data on the Cloud
 
-##Introduction
+##What Does Twitter Data Tell Us About Hurricane Sandy?
 
 Social Media is an enormous source of information. For example, with more than 350 million Tweets per day, there is a lot of information to be mined. The question is: "where do you start?"
 
-As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States. We decided to collect Tweets with the word "Hurricane" into Treasure Data and asked a few questions.
+As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States. We decided to collect Tweets with the word "Hurricane" into Treasure Data Cloud Data Warehouse, and asked a few questions.
 
-##Step 1: Upload Tweets
-We assume that you have already downloaded td-command and td-agent.
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of td-agent.
+
+##Step 1: Installing td-agent
+
+You must first set up `td-agent` on your application servers. Please refer to the following articles. For Linux systems, we provide deb/rpm packages.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please look at...</th>
+  </tr>
+  <tr>
+    <td>Debian / Ubuntu Systems</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>Redhat / CentOS Systems</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+  </tr>
+</table>
+
+NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
+
+##Step 2: Upload Tweets
+We assume that you have already downloaded td toolbelt and td-agent.
 
 We will be uploading Tweets to Treasure Data continuously via td-agent. Luckily, there is already a couple of input plugins for td-agent that already takes care of souping up Tweets.
 
-For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream input plugin](https://gist.github.com/4004818). (Also, there is [fluent-plugin-twitter by y-ken](https://github.com/y-ken/fluent-plugin-twitter) who has contributed a number of useful plugins) The twitterstream input plugin requires just five parameters:
+For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream input plugin](https://gist.github.com/4004818). (Also, there is [fluent-plugin-twitter by y-ken](https://github.com/y-ken/fluent-plugin-twitter) who has contributed a number of useful plugins) Please put the file into the plugin directory `/etc/td-agent/plugin/`.
+
+    :::term
+    $ sudo /usr/lib/fluent/ruby/bin/fluent-gem install twitter
+    $ sudo curl 'http://bitly.com/TIDLvO' > /etc/td-agent/plugin/in-twitterstream.rb
+
+The twitterstream input plugin requires just five parameters:
 
 1. `consumer_key`
 2. `consumer_secret`
@@ -23,22 +55,26 @@ The first four parameters are generic authorization parameters for Twitter appli
 
 Here is our td-agent configuration file.
 
-	<source>
-	  type twitterstream
-	  consumer_key YOUR_CONSUMER_KEY
-	  consumer_secret YOUR_CONSUMER_KEY_SECRET
-	  access_token_key YOUR_ACCESS_TOKEN_KEY
-	  access_token_secret 76HyTgCH6C2epd4BpAxUfKIj990Et7Vdvs4czpaZ4
+    :::text
+    <source>
+      type twitterstream
+      consumer_key YOUR_CONSUMER_KEY
+      consumer_secret YOUR_CONSUMER_KEY_SECRET
+      access_token_key YOUR_ACCESS_TOKEN_KEY
+      access_token_secret 76HyTgCH6C2epd4BpAxUfKIj990Et7Vdvs4czpaZ4
 
-	  tag twitterstream.hurricane_sandy
-	  track hurricane
-	</source>
-
-	<match twitterstream.*>
-	  type tdlog
-	  apikey YOUR_TD_API_KEY_HERE
-	  buffer_path YOUR_BUFFER_PATH
-	</match>
+      tag twitterstream.hurricane_sandy
+      track hurricane
+    </source>
+    
+    <match twitterstream.*>
+      type tdlog
+      apikey YOUR_TD_API_KEY_HERE
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
+    </match>
 
 Note that we are tracking the word "hurricane" here. Now just remember to
 
@@ -46,39 +82,42 @@ Note that we are tracking the word "hurricane" here. Now just remember to
 2. make sure you have write access to YOUR_BUFFER_PATH.
 3. start td-agent and upload Tweets.
 
-##Step 2: Analyze & Vizualize!
+##Step 3: Analyze & Vizualize!
 
-Once td-agent is up and running, you can start querying the data immediately on Treasure Data (Note the 5-minute delay due to td-agent's buffering). Here, I would like to show some queries I ran. Note that all the schema have been added already to streamline queries (here is more information about schema management on Treasure Data).
+Once td-agent is up and running, you can start querying the data immediately on Treasure Data (Note the 5-minute delay due to td-agent's buffering). Here, I would like to show some queries I ran. Note that all the schema have been added already to streamline queries ([here](schema) is more information about schema management on Treasure Data).
 
 ###Which Tweet was Retweeted the Most?
 
 This is probably the first question you would ask. Which Hurrican-related Tweet got the most number of eyeballs (at least by one metric)? Here is the query to get the top 10.
 
-	$ td query -w -d twitterstream '
-	SELECT MAX(retweet_count) AS rt_ct, text
-	FROM hurricane_sandy GROUP BY text
-	ORDER BY rt_ct DESC LIMIT 10'
-
-	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
-	| rt_ct | text                                                                                                                                         |
-	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
-	| 61028 | RT @justinbieber: everyone dealing with the hurricane up north be safe                                                                       |
-	| 24868 | RT @hurricannesandy: WHAT IF GANGAM STYLE WAS ACTUALLY JSST A GIANT RAIN DANCE AND WE BROUGHT THIS HURRICANE ON OURSELVES?                   |
-	| 21809 | RT @ElectionParody: FOR EVERY 100 RETWEETS, WE WILL BE DONATING $1,000 TO HELP REBUILT COMMUNITIES DAMAGED BY HURRICANE SANDY. PLEASE RE ... |
-	| 21808 | RT @HurricaneSandyw: FOR EVERY 100 RETWEETS, WE WILL BE DONATING $1,000 TO HELP REBUILT COMMUNITIES DAMAGED BY HURRICANE SANDY. PLEASE R ... |
-	| 19926 | RT @RepublicanTips: Everyone in the path of the hurricane should head to their second or third home to safety #Sandy #RomneyStormTips        |
-	| 19924 | RT @ALiberalPundit: Everyone in the path of the hurricane should head to their second or third home to safety #Sandy #RomneyStormTips        |
-	| 15389 | RT @SandysHurricane: R.I.P to the 65 victims who lost their lives because of Hurricane Sandy. RT for respect &lt;3                           |
-	| 12549 | RT @Seth_Fried: If your apartment is hit by a dolphin, DO NOT GO OUT TO SEE IF THE DOLPHIN IS OKAY. That's how the hurricane tricks you  ... |
-	| 11084 | RT @AHurricaneSandy: I WENT TO HIGHSCHOOL WIT IRENE. SHE CAN'T EVEN TWERK. SHE AIN'T BOUT DAT HURRICANE LYFE.                                |
-	| 10779 | RT @FillWerrell: Hurricane Sandy wouldn't be here if Patrick would've just stopped making fun of Texas.                                      |
-	+-------+----------------------------------------------------------------------------------------------------------------------------------------------+
+    :::term
+    $ td query -w -d twitterstream
+      "SELECT MAX(retweet_count) AS rt_ct, text
+         FROM hurricane_sandy GROUP BY text
+         ORDER BY rt_ct DESC LIMIT 10"
+    +-------+----------------------------------------------------------------------------------------------------------------------------------------------+
+    | rt_ct | text                                                                                                                                         |
+    +-------+----------------------------------------------------------------------------------------------------------------------------------------------+
+    | 61028 | RT @justinbieber: everyone dealing with the hurricane up north be safe                                                                       |
+    | 24868 | RT @hurricannesandy: WHAT IF GANGAM STYLE WAS ACTUALLY JSST A GIANT RAIN DANCE AND WE BROUGHT THIS HURRICANE ON OURSELVES?                   |
+    | 21809 | RT @ElectionParody: FOR EVERY 100 RETWEETS, WE WILL BE DONATING $1,000 TO HELP REBUILT COMMUNITIES DAMAGED BY HURRICANE SANDY. PLEASE RE ... |
+    | 21808 | RT @HurricaneSandyw: FOR EVERY 100 RETWEETS, WE WILL BE DONATING $1,000 TO HELP REBUILT COMMUNITIES DAMAGED BY HURRICANE SANDY. PLEASE R ... |
+    | 19926 | RT @RepublicanTips: Everyone in the path of the hurricane should head to their second or third home to safety #Sandy #RomneyStormTips        |
+    | 19924 | RT @ALiberalPundit: Everyone in the path of the hurricane should head to their second or third home to safety #Sandy #RomneyStormTips        |
+    | 15389 | RT @SandysHurricane: R.I.P to the 65 victims who lost their lives because of Hurricane Sandy. RT for respect &lt;3                           |
+    | 12549 | RT @Seth_Fried: If your apartment is hit by a dolphin, DO NOT GO OUT TO SEE IF THE DOLPHIN IS OKAY. That's how the hurricane tricks you  ... |
+    | 11084 | RT @AHurricaneSandy: I WENT TO HIGHSCHOOL WIT IRENE. SHE CAN'T EVEN TWERK. SHE AIN'T BOUT DAT HURRICANE LYFE.                                |
+    | 10779 | RT @FillWerrell: Hurricane Sandy wouldn't be here if Patrick would've just stopped making fun of Texas.                                      |
+    +-------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 I suppose it is no surprise that Justin Bieber's Tweet has been retweeted most. What's curious is how this [Gangnam Style meme](http://memegenerator.net/instance/29199524) ranked the second. The Internet often associates two seemingly disparate entities in creative ways. This is all just for fun until your company or brand is one of the two entities: at that point, you want to identify the association quickly and act on it if it negatively positions your company or brand.
 
 Here is another look at the Tweets. The following word cloud was generated based on the top 30 most popular bigrams. Font sizes are proportional to frequencies with some thresholding to make the layout look nicer.
 
-	$td query -w -d twitterstream 'SELECT NGRAMS(SENTENCES(LOWER(text)), 2, 100) FROM hurricane_sandy'
+    :::term
+    $ td query -w -d twitterstream
+      "SELECT NGRAMS(SENTENCES(LOWER(text)), 2, 100)
+         FROM hurricane_sandy"
 
 <div id="word-cloud"></div>
 
@@ -91,7 +130,12 @@ A few observations here:
 
 Twitter has become an increasingly important marketing tool. One natural question to ask is, "when are people active on Twitter?"
 
-	$td query -w -d twitterstream 'SELECT COUNT(*) AS ct, from_unixtime(3600*ROUND(unix_timestamp(created_at)/3600)) AS time FROM hurricane_sandy GROUP BY ROUND(unix_timestamp(created_at)/3600) ORDER BY time'
+    :::term
+    $ td query -w -d twitterstream 
+      "SELECT COUNT(*) AS ct, from_unixtime(3600*ROUND(unix_timestamp(created_at)/3600)) AS time
+         FROM hurricane_sandy
+         GROUP BY ROUND(unix_timestamp(created_at)/3600)
+         ORDER BY time"
 
 ####The number of Tweets by Hour
 <div id="count-by-hour"></div>

@@ -50,11 +50,10 @@ end
 
 section 'Usecases', 'Usecases' do
   category 'WeblogAnalytics', 'Weblog Analytics' do
-    article 'apache', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
-#     article 'game', 'Analyzing Social Gaming Logs'
-#     article 'ec', 'Analyzing E-Commerce Logs'
-#     article 'adtech', 'Analyzing Ad-Server Logs'
-#     article 'ranking', 'Calculating Daily Rankings'
+    article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
+  end
+  category 'TwitterAnalytics', 'Twitter Data Analytics' do
+    article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
   end
 end
 
