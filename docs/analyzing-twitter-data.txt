@@ -41,7 +41,7 @@ For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream inpu
 
     :::term
     $ sudo /usr/lib/fluent/ruby/bin/fluent-gem install twitter
-    $ sudo curl 'http://bitly.com/TIDLvO' > /etc/td-agent/plugin/in-twitterstream.rb
+    $ sudo curl -L 'http://bitly.com/TIDLvO' > /etc/td-agent/plugin/in-twitterstream.rb
 
 The twitterstream input plugin requires just five parameters:
 
