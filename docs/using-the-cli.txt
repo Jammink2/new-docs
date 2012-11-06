@@ -1,7 +1,7 @@
 CLI Usage
 =========
 
-Running `td help:all` displays a usage summary:
+Running `td help:all` shows the commands available in Treasure Data:
 
     :::term
     $ td help:all
