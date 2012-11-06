@@ -1,37 +1,39 @@
 # One-Time Import
 
-This article explains how to import data with the `td table:import` command.
+This article explains how to import data using the `td table:import` command.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
 
-## Three Categories of Import
+## Three Types of Data Import
+
+You can import data to Treasure Data in three ways. Please choose the option that best suits your needs.
 
 #### 1) Streaming Import
 
-The import for continuously generated data. In this case, [td-agent](td-agent) article is more appropriate.
+Streaming import is used to import continuously generated data. Please refer to the [td-agent](td-agent) article for further information.
 
 #### 2) Bulk Import
 
-The import for huge amounts of data, which could cause a network transfer failure between your side and Treasure Data. In this case, [Bulk Import](bulk-import) article is more appropriate, because it supports the multi-part upload, data validations, and the transactional commit. But it has additional steps.
+Bulk import is used to import huge amounts of data which could cause a network transfer failure between your system and Treasure Data. Please refer to the [Bulk Import](bulk-import) article for further information. The article explains the additional steps required to enbale multi-part upload, data validation, and transactional commits.
 
 #### 3) One-Time Import
 
-The import for importing small amount of data, usually stored within one file, which rarely causes the transfer failrue. In this case, please proceed the following sections.
+One-time import is used to import small amount of data. Such data is usually stored within one file and rarely causes transfer failrues. The following sections explain how to perform one-time data import.
 
 ## The *td table:import* Command
 
-For one-time import, please use `td table:import` command. The command takes the file path and format as arguments, and uploads the data into the cloud. It currently supports the following formats.
+To perform one-time import, please use the `td table:import` command. This command takes the file path and data format as arguments and uploads the data into the cloud. It currently supports the following data formats.
 
 ### JSON
 
-In order to use JSON, the files should be formatted as follows:
+In order to perform one-time import with the JSON data format option, the files should be formatted as follows:
 
 * One JSON-map per line. 
 * A `time` field is required. This field indicates the time in which the event was generated.
 
-The example entries are like this:
+For example, entries could be formatted as follows:
 
     :::term
     {"action":"login","user":2,"time":"2011-08-02 03:06:32 +0900"}
