@@ -4,7 +4,7 @@ You can use HTTP to add logs from many places to td-agent.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+  * Basic knowledge of Treasure Data (an understanding of the [Getting Started](quickstart) guide).
 
 ## Configuration
 
