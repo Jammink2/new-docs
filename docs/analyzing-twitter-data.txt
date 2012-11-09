@@ -91,7 +91,7 @@ Once td-agent is up and running, you can start querying the data immediately on 
 This is probably the first question you would ask. Which Hurrican-related Tweet got the most number of eyeballs (at least by one metric)? Here is the query to get the top 10.
 
     :::term
-    $ td query -w -d twitterstream
+    $ td query -w -d twitterstream \
       "SELECT MAX(retweet_count) AS rt_ct, text
          FROM hurricane_sandy GROUP BY text
          ORDER BY rt_ct DESC LIMIT 10"
@@ -115,7 +115,7 @@ I suppose it is no surprise that Justin Bieber's Tweet has been retweeted most. 
 Here is another look at the Tweets. The following word cloud was generated based on the top 30 most popular bigrams. Font sizes are proportional to frequencies with some thresholding to make the layout look nicer.
 
     :::term
-    $ td query -w -d twitterstream
+    $ td query -w -d twitterstream \
       "SELECT NGRAMS(SENTENCES(LOWER(text)), 2, 100)
          FROM hurricane_sandy"
 
@@ -131,7 +131,7 @@ A few observations here:
 Twitter has become an increasingly important marketing tool. One natural question to ask is, "when are people active on Twitter?"
 
     :::term
-    $ td query -w -d twitterstream 
+    $ td query -w -d twitterstream \
       "SELECT COUNT(*) AS ct, from_unixtime(3600*ROUND(unix_timestamp(created_at)/3600)) AS time
          FROM hurricane_sandy
          GROUP BY ROUND(unix_timestamp(created_at)/3600)
