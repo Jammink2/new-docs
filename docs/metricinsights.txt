@@ -1,7 +1,7 @@
 # MetricInsights with Treasure Data
 
-[Metric Insights](http://www.metricinsights.com/) supports metric generation, backed by Treasure Data's cloud dawa warehouse capability. We're listed on their [big data source partners](http://www.metricinsights.com/solutions.html).
+Using [Metric Insights](http://www.metricinsights.com/) with Treasure Data allows users to generate metrics from huge amounts of data. We're listed on their [big data source partners](http://www.metricinsights.com/solutions.html).
 
 <center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-Please [contact us](http://treasure-data.com/contact/) for more detail.
+Please [contact us](http://treasure-data.com/contact/) for further information.
