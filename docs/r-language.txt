@@ -1,6 +1,6 @@
 # R Language with JDBC Driver
 
-This article shows how to use Treasure Data with the [R language](http://www.r-project.org/), through the [RJDBC](http://www.rforge.net/RJDBC/) package.
+This article shows how to use Treasure Data with the [R language](http://www.r-project.org/) by using the [RJDBC](http://www.rforge.net/RJDBC/) package.
 
 ## Download
 
@@ -8,7 +8,7 @@ You can download the Treasure Data RJDB driver from the link below. The driver i
 
 * [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
-NOTE: This driver only works with Treasure Data. It does not work in other environments, such as your local Hadoop/Hive cluster.
+NOTE: This driver only works with Treasure Data. It does not work in other environments such as your local Hadoop/Hive cluster.
 
 ## Installing the RJDBC Package
 
