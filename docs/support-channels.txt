@@ -2,16 +2,18 @@
 
 ## Documentation
 
-We have tried to cover the following areas with these documents
+We have tried to cover the following areas with our documentation:
 
   * Basic use cases of Treasure Data
   * Some of our important advanced features
   * Areas that have confused our users in the past
 
+However, we understand that no documentation can cover everything our users need. That's why we've set up Support Desk and Mail channels for you to communicate with us.
+
 ## Support Desk
 
-You can submit tickets at [help.treasure-data.com](http://help.treasure-data.com/discussions). You can communicate directly with our support team and receive email updates on your tickets. We usually respond to you in a few business days.
+You can submit tickets to our Support Desk at [help.treasure-data.com](http://help.treasure-data.com/discussions). Communicate directly with our support team and receive email updates on your tickets. We usually reply within a few business days.
 
 ## Mail
 
-Please send your mail to `support@treasure-data.com`.
+For issues that do not fit into the above categories, please send us an email at `support@treasure-data.com`.
