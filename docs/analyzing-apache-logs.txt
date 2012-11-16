@@ -146,13 +146,14 @@ Those are the sample queries to calculate the interesting results.
 
 ### Top Referers within a Specific Day
 
+Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is easy and performs well. See [Performance Tuning](performance-tuning).
+
     :::term
     $ td query -w -d testdb \
       "SELECT v['referer'] AS referer, COUNT(1) AS cnt \
        FROM www_access6 \
        WHERE \
-         unix_timestamp('2012-05-26', 'yyyy-MM-dd') <= time \
-         AND time < unix_timestamp('2012-05-27', 'yyyy-MM-dd') \
+         TD_TIME_RANGE(time, '2012-05-26', '2012-05-27', 'PDT') \
        GROUP BY v['referer'] ORDER BY cnt DESC LIMIT 3"
     ...
     Result:
@@ -166,11 +167,13 @@ Those are the sample queries to calculate the interesting results.
 
 ### Access Count by Day
 
+Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
+
     :::term
     $ td query -w -d testdb \
-      "SELECT to_date(from_unixtime(time)) AS day, COUNT(1) AS cnt \
+      "SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT") AS day, COUNT(1) AS cnt \
        FROM www_access \
-       GROUP BY to_date(from_unixtime(time))"
+       GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT")"
     ....
     Result:
     +------------+------+
@@ -182,11 +185,13 @@ Those are the sample queries to calculate the interesting results.
 
 ### Status Code Distribution by Day
 
+Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
+
     :::term
     $ td query -w -d testdb \
-      "SELECT to_date(from_unixtime(time)) AS day, v['code'] AS code, COUNT(1) AS cnt \
+      "SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT") AS day, v['code'] AS code, COUNT(1) AS cnt \
        FROM www_access \
-       GROUP BY to_date(from_unixtime(time)), v['code']"
+       GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT"), v['code']"
     ....
     Result:
     +------------+------+------+
@@ -202,14 +207,16 @@ Those are the sample queries to calculate the interesting results.
 
 ### Min/Max/Avg Size by Day
 
+Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
+
     :::term
     $ td query -w -d testdb \
-      "SELECT to_date(from_unixtime(time)) AS day, \
+      "SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT") AS day, \
          max(cast(v['size'] AS INT)) AS max, \
          min(cast(v['size'] AS INT)) AS min, \
          avg(cast(v['size'] AS INT)) AS avg  \
        FROM www_access \
-       GROUP BY to_date(from_unixtime(time))"
+       GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT")"
     ...
     Result:
     +------------+-----+-----+---------+

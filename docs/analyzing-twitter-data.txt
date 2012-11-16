@@ -132,9 +132,9 @@ Twitter has become an increasingly important marketing tool. One natural questio
 
     :::term
     $ td query -w -d twitterstream \
-      "SELECT COUNT(*) AS ct, from_unixtime(3600*ROUND(unix_timestamp(created_at)/3600)) AS time
+      "SELECT COUNT(*) AS ct, TD_TIME_FORMAT(time, "yyyy-MM-dd hh", "PDT") AS time
          FROM hurricane_sandy
-         GROUP BY ROUND(unix_timestamp(created_at)/3600)
+         GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd hh", "PDT")
          ORDER BY time"
 
 ####The number of Tweets by Hour

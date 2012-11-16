@@ -81,15 +81,19 @@ Here are a couple of basic examples. The underlying table consiste of three fiel
 
 #### Number of Accesses After a Certain Time
 
+Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is easy and performs well. See [Performance Tuning](performance-tuning).
+
     :::sql
     SELECT COUNT(1) FROM www_access \
-      WHERE time >= unix_timestamp('2011-08-19 00:00:00');
+      WHERE TD_TIME_RANGE(time, "2011-08-19", NULL, "PDT")
 
 NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
 
 #### Number of Accesses Each Day
 
     :::sql
-    SELECT from_unixtime(CAST(time/(60*60*24) AS INT)*60*60*24) AS day, \
-      COUNT(1) FROM www_access \
-      GROUP BY CAST(time/(60*60*24) AS INT);
+    SELECT \
+      TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT") AS day, \
+      COUNT(1) AS cnt \
+    FROM www_access \
+    GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT")
