@@ -2,24 +2,12 @@
 
 This article describes how to run `td-agent` on Heroku. `td-agent` is a data-import daemon for Treasure Data Hadoop. Although `td-agent` itself can accept data from various sources, the Heroku platform's limitations cause `td-agent` to only accept HTTP input.
 
-## Confirm Your API key
+## Install CLI Plugin
 
-First, enable the Treasure Data Add-on.
-
-    :::term
-    # Enable Addon
-    $ heroku addons:add treasure-data
-
-Next, install the `heroku-td` CLI plugin and check your API key.
+At first, please install the `heroku-td` CLI plugin and check your API key.
 
     :::term
-    # Install heroku-td Plugin
-    $ gem install td
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
-    
-    # Confirm your API key
-    $ heroku td apikey:show
-    2d14b1872cb789ed3733d4aa26ae8e6aba30bbbd
 
 ## Create Your App
 
@@ -31,13 +19,27 @@ Follow the steps below to create `td-agent` as a Heroku application.
     # Clone
     $ git clone git://github.com/treasure-data/heroku-td-agent.git
     $ cd heroku-td-agent
+    $ rm -fR .git
+    $ git init
+    $ git add .
+    $ git commit -m 'initial commit'
+    
+    # Create the app & deploy
+    $ heroku create --stack cedar
+    $ git push heroku master
+    
+    # Enable Addon
+    $ heroku addons:add treasure-data
+    
+    # Confirm your API key
+    $ heroku td apikey:show
+    2d14b1872cb789ed3733d4aa26ae8e6aba30bbbd
     
     # Set your API key
     $ vi td-agent.conf
     $ git commit -a -m 'update apikey'
     
-    # Create the app & deploy
-    $ heroku create --stack cedar
+    # Deploy
     $ git push heroku master
 
 ## Test
