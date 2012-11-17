@@ -159,12 +159,13 @@ The `heroku td query –format csv` command outputs the results in csv.
 
 ## Development Environment Setup
 
-In order to use Treasure Data Hadoop, you must set your `TREASURE_DATA_API_KEY` env variable.
+In order to use Treasure Data on development environment, please modify `config/treasure_data.yml`. It's disabled by default.
 
-    :::term
-    $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
-
-Once it is set, you can start your application as usual.
+    :::text
+    development:
+      apikey: "<%= `heroku td apikey:show`.strip %>"
+      database: rails_development
+      debug_mode: true
 
 ## Issue Queries from Ruby API
 
