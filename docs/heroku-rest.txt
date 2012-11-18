@@ -9,6 +9,8 @@ At first, please install the `heroku-td` CLI plugin and check your API key.
     :::term
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
 
+NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">Heroku toolbelt</a>. From December 1, 2012, Heroku will stop releasing new updates to the `heroku` gem.  We'll also stop supporting `heroku` gem.
+
 ## Create Your App
 
 You're now ready to set up `td-agent` as a separate Heroku application. `td-agent` will become your central log aggregation server. We provide [a boilerplate repository](https://github.com/treasure-data/heroku-td-agent) to get you started.
