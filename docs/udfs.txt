@@ -4,9 +4,7 @@ This article lists all the UDFs supported on Treasure Data. Treasure Data suppor
 
 ## Hive native UDFs
 
-All native UDFs on Hive can also be used on Treasure Data. The list of UDFs are shown here.
-
-* [HiveQL Language Manual | UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF)
+All native UDFs on Hive can also be used on Treasure Data. The complete list of UDFs can be found on the [HiveQL Language Manual's UDF Page](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF).
 
 ## TD_TIME_RANGE()
 
@@ -20,24 +18,23 @@ All native UDFs on Hive can also be used on Treasure Data. The list of UDFs are 
 
 ### Example
 
-Here's an example: select records newer or equal to "2013-01-01 00:00:00 PDT"
+This example selects records with timestamps "2013-01-01 00:00:00 PDT" or later.
 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
 
-NOTE: Notice how the time portion, "00:00:00", was omitted. Of course, you can specify up to seconds. In general, the time string format should be either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
+NOTE: Notice that the time of day ("00:00:00") can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
 
 ### Description
 
-NOTE: We strongly recommend that you take advantage of time-based partitioning. Please check <a href="performance-tuning">Performance Tuning</a> guide.
+NOTE: We strongly recommend that you take advantage of time-based partitioning. Please refer to the <a href="performance-tuning">Performance Tuning</a> article for more information.
 
-This UDF returns true if *unix_timestamp* is newer or equals to *start_time* and older than *end_time* (start_time <= time && time < end_time). If *end_time* is omitted or NULL, the UDF assumes it's infinite. If *start_time* is NULL, the UDF assumes it's 0.
+This UDF returns true if *unix_timestamp* is equal to or later than *start_time* and older than *end_time* (start_time <= time && time < end_time). If *end_time* is omitted or NULL, the UDF assumes it's infinite. If *start_time* is NULL, the UDF assumes it's 0.
 
-*start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or UNIX timestamp (e.g. 1325343600).
-If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
+*start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or a UNIX timestamp (e.g. 1325343600). If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
 
-*default_timezone* is used to recognize *start_time* or *end_time*. If *start_time* or *end_time* themselves have timezone specification (e.g. "2012-01-01 +0700"), *default_timezone* is ignored. If there're no timezone specifications, the UDF uses 'UTC'.
+*default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*.
 
 ## TD_TIME_ADD()
 
@@ -50,7 +47,7 @@ If the format of *start_time* or *end_time* strings is invalid, the UDF returns 
 
 ### Example
 
-Here's an example: select records newer or equal to "2013-01-01 00:00:00 UTC" and older than "2013-01-02 00:00:00 UTC".
+This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later but older than "2013-01-02 00:00:00 UTC".
 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time,
@@ -59,7 +56,7 @@ Here's an example: select records newer or equal to "2013-01-01 00:00:00 UTC" an
 
 ### Description
 
-This UDF returns a timestamp after *duration* from *time*. The UDF supports following formats for the *duration*:
+This UDF returns a timestamp equal to *time* offset by *duration*. The UDF supports the following formats for the *duration*:
 
 * "Nd": after N days (e.g. "1d", "2d", "30d")
 * "-Nd": before N days (e.g. "-1d", "-2d", "-30d")
@@ -70,11 +67,11 @@ This UDF returns a timestamp after *duration* from *time*. The UDF supports foll
 * "Ns": after N seconds (e.g. "1s", "2s", "90s")
 * "-Ns": before N seconds (e.g. "-1s", "-2s", "-90s")
 
-You can use combinations of the above formats. For example, "1h30m" means "after 1 hour and 30 minutes".
+The formats above can be combined. For example, "1h30m" means "after 1 hour and 30 minutes".
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), that timezone overrides *default_timezone*. If no timezone is specified, the UDF uses UTC.
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*.
 
-If the format of *time* or *duration* strings is invalid, the UDF returns NULL.
+If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
 
 NOTE: "M" or "month" is NOT supported.
 
@@ -89,36 +86,44 @@ NOTE: "M" or "month" is NOT supported.
 
 ### Example
 
-Here's an example: format timestamp to strings
+This example formats a UNIX timestamp into a date formatted string
 
     :::sql
     SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd hh:mm:ss Z") ... FROM ...
 
 ### Description
 
-This UDF converts a UNIX timestamp to a string with the given format (see [here](http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html) for available formats) For example, "yyyy-MM-dd HH:mm:ss Z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
+This UDF converts a UNIX timestamp to a string with the specified format (see [here](http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html) for available formats). For example, "yyyy-MM-dd HH:mm:ss Z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
 
 ## TD_TIME_PARSE()
+
+### Signature
 
     :::term
     long TD_TIME_PARSE(string time
                        [, string default_timezone = 'UTC'])
 
+### Description
+
 This UDF converts a time string into a UNIX timestamp.
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), *default_timezone* is ignored. If no timezone is specified, the UDF uses 'UTC'.
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*.
 
-If the format of *time* string is invalid, the UDF returns NULL.
+If the format of the *time* string is invalid, the UDF returns NULL.
 
 ## TD_SCHEDULED_TIME()
+
+### Signature
 
     :::term
     long TD_SCHEDULED_TIME()
 
-This UDF returns the exact time when the job was scheduled by the [scheduled query] feature.
-The returned value may differ from NOW() because the actual time queries run may be delayed.
+### Description
 
-If the query is not a scheduled query, the UDF returns the time when the job issued.
+This UDF returns the exact time when the job was scheduled by the [scheduled query] feature.
+The returned value may differ from NOW() because the actual query start time may be delayed.
+
+If the query is not a scheduled query, the UDF returns the time when the job was issued.
 You may use this UDF with TD_TIME_ADD for incremental aggregation.
 
 ## TD_X_RANK()
@@ -130,7 +135,7 @@ You may use this UDF with TD_TIME_ADD for incremental aggregation.
 
 ### Example
 
-You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. 'CLUSTER BY' is more scalable than 'ORDER BY' because it doesn't requires total order across multiple nodes, thereby allowing us to process the query in parallel.
+You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. 'CLUSTER BY' is more scalable than 'ORDER BY' because it doesn't require total order across multiple nodes, thus allowing us to process the query in parallel.
 
     :::sql
     SELECT TD_X_RANK(c), c, u FROM
