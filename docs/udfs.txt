@@ -120,11 +120,9 @@ If the format of the *time* string is invalid, the UDF returns NULL.
 
 ### Description
 
-This UDF returns the exact time when the job was scheduled by the [scheduled query] feature.
-The returned value may differ from NOW() because the actual query start time may be delayed.
+This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from NOW() because the actual query start time may be delayed.
 
-If the query is not a scheduled query, the UDF returns the time when the job was issued.
-You may use this UDF with TD_TIME_ADD for incremental aggregation.
+If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with TD_TIME_ADD for incremental aggregation.
 
 ## TD_X_RANK()
 
