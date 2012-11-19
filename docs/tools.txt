@@ -1,10 +1,10 @@
 # Treasure Data 3rd Party Tools
 
-We have partnered with many companies to meet your data analytic needs. Most of our partners are visualization, ETL, and BI tool companies. They empower the Treasure Data service.
+We have partnered with many companies to meet your data analytics needs. Most of our partners are visualization, ETL, and BI tool companies. By combining Treasure Data with these 3rd party tools, you can deliver insights from huge amounts of data.
 
 <center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-Our [JDBC driver](jdbc-driver) provide a simple interface for 3rd party tools. Those are the list of supported tools right now. If you have specific data visualization needs, please [let us know](http://treasure-data.com/contact/).
+Our [JDBC driver](jdbc-driver) provides a simple interface for 3rd party tools. The current list of supported tools is shown below.
 
 * [JasperSoft iReport](jaspersoft-ireport)
 * [JasperReports Server](jasperreports-server)
@@ -14,3 +14,5 @@ Our [JDBC driver](jdbc-driver) provide a simple interface for 3rd party tools. T
 * [Talend Open Studio](talend)
 * [Metric Insights](metricinsights)
 * [Indicee Cloud BI Platform](indicee)
+
+If you have specific data visualization needs, please [let us know](http://treasure-data.com/contact/).
