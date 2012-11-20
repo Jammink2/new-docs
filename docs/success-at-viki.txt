@@ -9,7 +9,7 @@ The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds 
 
 ## The Problems
 
-### Focus on Service, not Hadoop Maintainance
+### Focus on Service Development, not Hadoop Management
 At first, our engineers rolled up the sleeves and built out an in-house Hadoop cluster. Actually, building out the Hadoop cluster wasn't too difficult. After one month, our cluster was churning out MapReduce jobs. Those happy days didn't last long.
 
 Half a year later, the same cluster was giving our engineers a lot of headaches. Our in-house cluster simply couldn't keep up with the surging data volume, and taming Hadoop was taking up the precious engineering resources. The engineers were constantly sidetracked by infrastructure problems. We had to do something about it.
