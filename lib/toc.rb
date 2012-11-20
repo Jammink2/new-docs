@@ -105,17 +105,6 @@ section 'reference', 'Reference' do
     article 'bulk-import', 'Bulk Import'
     article 'bulk-export', 'Bulk Export'
   end
-  category 'heroku', 'Heroku Addon' do
-    article 'heroku-ruby', 'Ruby Apps on Heroku'
-    article 'heroku-rails', 'Rails Apps on Heroku'
-    article 'heroku-java', 'Java Apps on Heroku'
-    article 'heroku-rest', 'Data Import from REST API on Heroku'
-    article 'heroku-notes', 'Heroku Addon Notes'
-  end
-  category 'engine-yard', 'EngineYard Addon' do
-    article 'engine-yard-ruby', 'Ruby Apps on EngineYard'
-    article 'engine-yard-rails', 'Rails Apps on EngineYard'
-  end
 end
 
 section 'ab', 'Accounts & Billing' do
@@ -152,5 +141,19 @@ section 'tools', 'Tools & Specs' do
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
     article 'metricinsights', 'Metric Insights',        ['Metric Insights']
     article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
+  end
+end
+
+section 'paas', 'PaaS' do
+  category 'heroku', 'Heroku Addon' do
+    article 'heroku-ruby', 'Ruby Apps on Heroku'
+    article 'heroku-rails', 'Rails Apps on Heroku'
+    article 'heroku-java', 'Java Apps on Heroku'
+    article 'heroku-rest', 'Data Import from REST API on Heroku'
+    article 'heroku-notes', 'Heroku Addon Notes'
+  end
+  category 'engine-yard', 'EngineYard Addon' do
+    article 'engine-yard-ruby', 'Ruby Apps on EngineYard'
+    article 'engine-yard-rails', 'Rails Apps on EngineYard'
   end
 end
