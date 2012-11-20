@@ -7,39 +7,35 @@
 
 The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds of data and analyze them to inform our product decisions. The rest of this article describes how.
 
-## Leverage Cloud, Focus on Development
-Viki's goal is to build the world's best online video service, and anything that gets in the way of achieving that goal should be eliminated. To this end, we take advantage of cloud services whenever it makes sense. For example, Viki's main service runs on [Heroku](http://www.heroku.com/): by using Heroku, our engineers can stop worrying about managing infrastructure and focus on product development.
+## The Problems
 
-So, when we started architecting out data analytics system, we naturally searched for a good cloud-based analytics service. However, at the time, there wasn't any good service that met our needs.
-
-But we had to get the ball rolling with analytics, so our engineers rolled up the sleeves and built out an in-house Hadoop cluster. Actually, building out the Hadoop cluster wasn't too difficult. After one month, our cluster was churning out MapReduce jobs.
-
-Those happy days didn't last long.
+### Focus on Service, not Hadoop Maintainance
+At first, our engineers rolled up the sleeves and built out an in-house Hadoop cluster. Actually, building out the Hadoop cluster wasn't too difficult. After one month, our cluster was churning out MapReduce jobs. Those happy days didn't last long.
 
 Half a year later, the same cluster was giving our engineers a lot of headaches. Our in-house cluster simply couldn't keep up with the surging data volume, and taming Hadoop was taking up the precious engineering resources. The engineers were constantly sidetracked by infrastructure problems. We had to do something about it.
 
-## The Other Problem: Data Collection
+### Data Collection
 In addition to Hadoop's maintenance, we had problems collecting data in a robust way. Viki collects a lot of data. Last I checked, our service generates 100GB of gzip-compressed data per month, and it's been increasing month to month. 
 
 Data volume was one problem, but the other problem was variety: we collect our data from both our webapp and mobile apps, and we needed a data collection layer that could evolve with our frontend applications.
 
-We needed something that 1) could collect data from various sources in real-time and 2) would scale out well.
-
 ## Our Solution: Treasure Data
 Treasure Data was "one rock two birds" for us: they solved both the "Hadoop is taking up resources" problem and the "we need to collect data real-time in a manageable way" problem.
+
+<center><img src="/images/viki-after.png" width="90%" /></center><br /><br />
 
 ### No More Hadoop Maintenance
 Treasure Data's service let us forget about Hadoop altogether. Sure, Treasure Data uses Hadoop under the hood, but all we needed to do now was send data to them and query them later. We no longer had to worry about our Hadoop cluster going down or tuning parameters to improve performance. Treasure Data's dedicated engineers vigilantly monitor their systems around the clock, freeing up our engineers from infrastructure maintenance.
 
 ### td-agent, a versatile data collector
-Treasure Data's data collector, td-agent (open-sourced as Fluentd), simplified real-time data collection greatly. What we love the most is extensibility: we've written a couple of plugins (c.f. [fluent-plugin-http-enhanced](https://github.com/parolkar/fluent-plugin-http-enhanced), [fluent-plugin-udp](https://github.com/parolkar/fluent-plugin-udp) and [fluent-plugin-splunk](https://github.com/parolkar/fluent-plugin-splunk)) to customize td-agent.
+Treasure Data's data collector, td-agent (open-sourced as Fluentd), simplified real-time data collection greatly. What we love the most is extensibility: we've written a couple of plugins (c.f. [fluent-plugin-http-enhanced](https://github.com/parolkar/fluent-plugin-http-enhanced), [fluent-plugin-udp](https://github.com/parolkar/fluent-plugin-udp)) to customize td-agent.
 
-Also, td-agent is open-sourced and has a vibrant community: there are more than 60 plugins (yes, we've contributed a couple!) that makes it easy to plug-and-play with numerous data sources and sinks. This versatility gives us the confidence that td-agent can keep up with our evolving data pipeline.
+Also, td-agent is open-sourced and has a vibrant community: there are more than 60 plugins (yes, we've contributed a couple!) that makes it easy to plug-and-play with numerous data sources and sinks. This versatility gives us the confidence that td-agent can keep up with our evolving data pipeline. It even also enables us to collect data from geographcally distributed places.
 
 ### Result Output into PostgreSQL: Simplifying Our System Even More!
 Last but not least, one feature that we truly love is "Result Output". Before Treasure Data, we had custom scripts that would put the results of Hive queries into our PostgreSQL, which our internal tools accessed for interactive analytics. The problem was that our custom scripts would fail occasionally, leaving our PostgreSQL with bad data.
 
-Treasure Data, on the other hand, comes with a nice feature called [Result Output](/categories/result), which lets the user write query results into local data storage. Of course, they support PostgreSQL, so we started using it right away. It works reliably, eliminating another problem from our data pipeline.
+Treasure Data, on the other hand, comes with a nice feature called [Result Output](/categories/result), which lets the user write query results into local data storage. Of course, they support [PostgreSQL](result-into-postgresql), so we started using it right away. It works reliably, eliminating another problem from our data pipeline.
 
 ## Exceptional Support
 I tend to think there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is its support. Every time we seek their support, we are impressed with their deep technical expertise and dedication to ensure customers' success. They've always given us thorough and timely support peppered with insightful tips to make the best use of their service.
