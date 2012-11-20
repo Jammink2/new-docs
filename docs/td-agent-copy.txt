@@ -29,7 +29,7 @@ The configuration below will store logs in your local disk (*/mnt/archive/logs*)
       </store>
     </match>
 
-For more information regarding file output options, please refer to [this page](http://fluentd.org/doc/plugin.html#file).
+For more information regarding file output options, please refer to [this page](http://docs.fluentd.org/articles/out_file).
 
 ## Local MongoDB and Treasure Data
 
@@ -54,5 +54,36 @@ The configuration below will store logs in your local MongoDB ReplicaSet and in 
       </store>
     </match>
 
-For more information regarding MongoDB output options, please refer to [this page](https://github.com/fluent/fluent-plugin-mongo). There are plugins for various features such as authentication, capped collection, etc.
+For more information regarding MongoDB output options, please refer to [this page](http://docs.fluentd.org/articles/out_mongo). There are plugins for various features such as authentication, capped collection, etc.
 
+## Remote Amazon S3 and Treaaure Data
+
+The configuration below will store logs in your local MongoDB ReplicaSet and in Treasure Data. The logs are flushed into Amazon S3 every 1 hour. Note that first upload doesn't start immediately, so please wait 1 hour for the initial test.
+
+    :::text
+    <match td.*.*>
+      type copy
+      <store>
+        type s3
+
+        aws_key_id YOUR_AWS_KEY_ID
+        aws_sec_key YOUR_AWS_SECRET/KEY
+        s3_bucket YOUR_S3_BUCKET_NAME
+        path logs/
+        buffer_path /var/log/td-agent/buffer/s3
+
+        time_slice_format %Y%m%d-%H
+        time_slice_wait 10m
+        utc
+      </store>
+      <store>
+        type tdlog
+        apikey YOUR_API_KEY_HERE
+        auto_create_table
+        buffer_type file
+        buffer_path /var/log/td-agent/buffer/td
+        use_ssl true
+      </store>
+    </match>
+
+For more information regarding S3 output options, please refer to [this page](http://docs.fluentd.org/articles/out_s3)
