@@ -3,11 +3,13 @@
 ## Viki: a Global Online Video Service
 [Viki](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite shows, movies, sports games, etc. What really sets up apart is its international viewership: our contents are available in 150+ languages, all translated by our user community.
 
-<center><a href="http://www.viki.com/"><img src="/images/viki-logo.png" width="30%"></a></center><br /><br />
+<center><a href="http://www.viki.com/"><img src="/images/viki-logo.png" width="20%"></a></center><br /><br />
 
 The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds of data and analyze them to inform our product decisions. The rest of this article describes how.
 
 ## The Problems
+
+<center><img src="/images/viki-before.png" width="90%" /></center><br /><br />
 
 ### Focus on Service Development, not Hadoop Management
 At first, our engineers rolled up the sleeves and built out an in-house Hadoop cluster. Actually, building out the Hadoop cluster wasn't too difficult. After one month, our cluster was churning out MapReduce jobs. Those happy days didn't last long.
@@ -38,4 +40,6 @@ Last but not least, one feature that we truly love is "Result Output". Before Tr
 Treasure Data, on the other hand, comes with a nice feature called [Result Output](/categories/result), which lets the user write query results into local data storage. Of course, they support [PostgreSQL](result-into-postgresql), so we started using it right away. It works reliably, eliminating another problem from our data pipeline.
 
 ## Exceptional Support
-I tend to think there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is its support. Every time we seek their support, we are impressed with their deep technical expertise and dedication to ensure customers' success. They've always given us thorough and timely support peppered with insightful tips to make the best use of their service.
+I tend to think there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is its support. Every time we seek their support, we are impressed with their deep technical expertise and dedication to ensure customers' success.
+
+They've always given us thorough and timely support peppered with insightful tips to make the best use of their service.
