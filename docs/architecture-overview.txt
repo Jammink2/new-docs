@@ -93,6 +93,10 @@ Our users hail from a wide range of industries, including digital marketing, soc
     <td>Calculating daily UU and PV numbers</td>
   </tr>
   <tr>
+    <td><a href="/categories/TwitterAnalytics">Twitter Analysis</a></td>
+    <td>Who gets most ReTweets for topic X?</td>
+  </tr>
+  <tr>
     <td>A/B Testing</td>
     <td>Comparing feature implementations between different sets of users</td>
   </tr>
