@@ -40,7 +40,7 @@ Please press the database icon, which is located near the 'Empty datasource' ind
 
 Please configure your jdbc parameters as shown in the following figure. Please make sure to provide your credentials (your email + password).
 
-NOTE: Treasure Data's JDBC driver would NOT appear in the "JDBC Driver" dropdown. You can click on the dropdown area, and just type in `com.treasure_data.jdbc.TreasureDataDriver`.
+NOTE: Treasure Data's JDBC driver would NOT appear in the "JDBC Driver" dropdown. You can click on the dropdown area and just type in `com.treasure_data.jdbc.TreasureDataDriver`.
 
 <div style="padding-left: 15%;">
 <a href="/images/jasper_jdbc.png"><img src="/images/jasper_jdbc.png" width="60%"></a>
