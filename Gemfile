@@ -9,11 +9,11 @@ gem 'json'
 gem 'coderay'
 gem 'rack-codehighlighter'
 gem 'sanitize'
-gem 'jemalloc', '~> 0.1.6'
+gem 'jemalloc', '~> 0.1.7'
 
 # Webserver
 gem 'unicorn', '~> 4.2.1'
-gem 'unicorn-worker-killer', '~> 0.1.2'
+gem 'unicorn-worker-killer', '~> 0.2.0'
 
 # Addons
 gem 'newrelic_rpm', '~> 3.4.1'
