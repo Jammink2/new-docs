@@ -31,7 +31,7 @@ Treasure Data's service let us forget about Hadoop altogether. Treasure Data use
 
 We no longer had to worry about our Hadoop cluster going down or tuning parameters to improve performance. Treasure Data's dedicated engineers vigilantly monitor their systems around the clock, freeing up our engineers from infrastructure maintenance.
 
-### td-agent, a versatile data collector
+### td-agent, a Versatile Data Collector
 Treasure Data's data collector, td-agent (open-sourced as Fluentd), greatly simplified our real-time data collection. What we love the most about td-agent is its extensibility.
 
 Its vibrant community has created more than 60 plugins (yes, we've contributed a couple of them ourselves! cf. [fluent-plugin-http-enhanced](https://github.com/parolkar/fluent-plugin-http-enhanced), [fluent-plugin-udp](https://github.com/parolkar/fluent-plugin-udp)), making it simple to plug-and-play with numerous data sources and sinks. This versatility is what makes us confident that td-agent can keep up with our evolving data pipeline needs.
