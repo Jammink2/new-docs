@@ -1,0 +1,102 @@
+#Streaming Twitter Data into Treasure Data from Node.js
+
+##Introduction
+
+Node.js is an increasingly popular server-side implementation of JavaScript. In this article, we show how to stream Twitter Data into Treasure Data from Node.js via td-agent.
+
+NOTE: We have <a href="nodejs">another article</a> that covers using Treasure Data from Node.js in general.
+
+##Prerequisites
+
+* [Sign up](https://www.treasure-data.com/signup/) for Treasure Data and go through the [quickstart](quickstart) if you haven't done so yet.
+* Make sure you have `node` and `npm` installed on your machine.
+* You need to install td-agent (packaged version of [fluentd](http://fluentd.org)). [See here for how to install td-agent](td-agent)
+
+##Configuring td-agent
+
+At this point, you should have td-command (`td`) installed on your machine ([You can download td-command from the toolbelt](http://toolbelt.treasure-data.com) page). Also, you should have td-agent set up.
+
+Now, let's configure td-agent to listen to port 24224 (This port number is arbitrary. But later code assumes this is the case). Open the td-agent configuration file (most likely in '/etc/td-agent/td-agent.conf') and edit it as follows:
+
+	<match td.*.*>
+	  apikey YOUR_API_KEY
+	  ...
+	<source>
+	  type forward
+	  port 24224
+	  ...
+
+You can look up `YOUR_API_KEY` via td-command with `td apikey:show`.
+
+##Getting ntwitter + fluent-logger-node
+
+You need two Node.js libraries: [ntwitter](https://github.com/AvianFlu/ntwitter) to grab tweets from Twitter's Stream API and [fluent-logger-node](https://github.com/yssk22/fluent-logger-node) to send data to td-agent/fluentd.
+
+Here is what `package.json` should look like:
+
+	:::javascript
+	{
+	  "name": "sample-app",
+	  "version": "0.0.1",
+	  "private": true,
+	  "dependencies": {
+	    "ntwitter": "~0.5.0",
+	    "fluent-logger": "~0.1.0"
+	  }
+	}
+
+All you need to do now is run `npm install`.
+
+##Streaming Tweets into Treasure Data
+
+Here is the code that searches for the keyword `javascript` on Twitter, grabs tweets, and streams them onto Treasure Data.
+
+	:::javascript
+	/*jslint indent: 4*/
+	/*jslint node: true */
+	'use strict';
+
+	var Twitter = require('ntwitter'),
+	    logger = require('fluent-logger');
+	
+	// Configure the logger to post data to localhost:24224
+	// The "td.test_db" tag tells td-agent to store data in a database named "test_db". 
+	logger.configure('td.test_db', {host: 'localhost', port: 24224});
+
+	var twit = new Twitter({
+	    consumer_key: 'XXX',
+	    consumer_secret: 'XXX',
+	    access_token_key: 'XXX',
+	    access_token_secret: 'XXX',
+	});
+
+	// Tracking the keyword 'javascript'
+	twit.stream('statuses/filter', {'track': 'javascript'}, function (stream) {
+	    stream.on('data', function (data) {
+	    		// Sending the data to a table named "javascript"
+	        logger.emit('javascript', data);
+	    });
+	});
+
+For consumer_key/consumer_secret/access_token_key/access_token_secret, please use your own.
+
+**That's it!** Soon, you start seeing data populated on Treasure Data. You can see your data either via command-line (ex: `td tables`) or a [browser console](https://console.treasure-data.com).
+
+Here is an example query that returns the top 20 most retweeted Tweets:
+
+	$ td query -w -d test_db '
+		SELECT
+			get_json_object(v["user"], "$.screen_name"),
+			v["text"],
+			v["retweet_count"] AS retweet_count
+		FROM javascript
+		ORDER BY retweet_count DESC
+		LIMIT 20'
+
+##Next Steps
+
+[This article](nodejs) covers using Node.js with Treasure Data in general, including tips on how to set up Treasure Data for high availability.
+
+##Acknowledgement
+
+We would like to thank [@cou929](http://twitter.com/cou929) for writing a blog post that inspired this article (for instance, the Node.js code snippet was taken from his blog entry with some additional comments).

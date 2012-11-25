@@ -54,6 +54,7 @@ section 'Usecases', 'Usecases' do
   end
   category 'TwitterAnalytics', 'Twitter Data Analytics' do
     article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
+    article 'twitter-nodejs', 'Streaming Twitter Data into Treasure Data from Node.js', ['twitter data', 'twitter nodejs']
   end
 end
 
