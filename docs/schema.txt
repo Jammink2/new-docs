@@ -38,12 +38,12 @@ Furthermore, since the type of *v* is fixed as map<string, string>, all values a
 
 ## Setting Custom Schema
 
-In general, the default schema is acceptable. But a custom schema makes queries shorter, and improves performance up to 30%. To set a schema to a table, we can use the 'td schema:set' command, as shown below.
+In general, the default schema is acceptable. But a custom schema makes queries shorter, and improves performance up to 30%. To set a schema to a table, we can use the 'td schema:set' command, as shown below:
 
     :::term
     $ td schema:set <database> <table> <column_name>:<type>...
 
-Regarding the type, Treasure Data supports those types.
+Treasure Data supports the following data types:
 
 * int
 * long
