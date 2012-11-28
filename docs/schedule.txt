@@ -1,15 +1,15 @@
 # Scheduled Jobs
 
-Treasure Data supports periodic query execution by scheduler feature. You don't have to use `cron` daemon on your local datacenter. Our scheduler is distributed and operated carefully to achieve the high availability.
+Treasure Data has a scheduler feature that supports periodic query execution. We take great care in distributing and operating our scheduler in order to achieve high availability. By using this feature, you no longer need a `cron` daemon on your local datacenter.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A table with some data. You can find an example in the [Getting Started](quickstart) guide.
+  * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
 
 ## Create the Schedule
 
-The new schedule can be created via `td sched:create`. The name of the schedule, cron-style schedule, query, and the database name is required.
+A new schedule can be created using the `td sched:create` command. The name of the schedule, cron-style schedule, query, and the database name are required.
 
     :::term
     $ td sched:create \
@@ -18,7 +18,7 @@ The new schedule can be created via `td sched:create`. The name of the schedule,
       "select count(1) from www_access" \
       -d testdb
 
-Sometimes scheduled job must be scheduled at a high priority. In that case, you can use `-P` option to specify the priority. The priority is between -2 (VERY LOW) to 2 (VERY HIGH), and 0 is the default. The priority can be changed later by `td sched:update -P`.
+Scheduled jobs must sometimes be set as high priority items. The `-P` option is used to specify the priority. The priority is between -2 (VERY LOW) and 2 (VERY HIGH), where 0 is the default. The priority can be changed later using `td sched:update -P`.
 
     :::term
     # VERY HIGH
@@ -30,7 +30,7 @@ Sometimes scheduled job must be scheduled at a high priority. In that case, you 
 
 ## List the Schedules
 
-You can see the current schedule entries by `td sched:list`.
+You can see the list of currently scheduled entries by `td sched:list`.
 
     :::term
     $ td sched:list
@@ -42,7 +42,7 @@ You can see the current schedule entries by `td sched:list`.
 
 ## Show the History of Schedules
 
-`td sched:history` allows you to see the job history of each schedule entry. To investigate the results for each job, please use `td job <jobid>`.
+`td sched:history` shows the job history of a schedule entry. To investigate the results of each individual job, please use `td job <jobid>`.
 
     :::term
     $ td sched:history hourly_count
