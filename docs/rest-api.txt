@@ -7,7 +7,7 @@ This article will explain how to use the public REST API.
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A table with some data. You can find an example in the [Getting Started](quickstart) guide.
+  * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
   * Basic knowledge of our [query language](hive).
 
 ## Endpoint
@@ -35,7 +35,7 @@ The request looks like this when using the curl command. (The -H option adds the
 
 ## Limitation
 
-We do not throttle access at the moment. However, we may limimt access to our API as deemed necessary.
+We do not throttle access at the moment. However, we may limit access to our API as deemed necessary.
 
 ## GET /v3/database/list
 This command returns a list of your databases.
@@ -82,7 +82,7 @@ This command returns a list of your tables.
     }
 
 ## POST /v3/table/swap/:database/:table1/:table2
-This command swaps the contants between two tables.
+This command swaps the contents of two tables.
 
 #### Parameters
 * **database**: database name
@@ -113,7 +113,7 @@ This command issues queries.
 
 #### Output
 * **database**: the name of the database
-* **job_id**: the id of job
+* **job_id**: the id of the job
 
 #### Example Result
     :::term
@@ -125,7 +125,7 @@ This command issues queries.
     }
 
 ## GET /v3/job/status/:job_id
-This command shows the status of a specific job. Faster and robust than /v3/job/show/:job_id.
+This command shows the status of a specific job. It is faster and more robust than the /v3/job/show/:job_id command.
 
 #### Parameters
 * **job_id**: the specified job_id
@@ -150,7 +150,7 @@ This command shows the status of a specific job. Faster and robust than /v3/job/
 ## GET /v3/job/show/:job_id
 This command shows the status and logs of a specific job.
 
-NOTE: The logs sometimes become big, so using large timeout value (several minutes) is recommended for this call.
+NOTE: The resulting logs can be large, so using a large timeout value (i.e. several minutes) is recommended when using this command.
 
 #### Parameters
 * **job_id**: the specified job_id
@@ -184,7 +184,7 @@ NOTE: The logs sometimes become big, so using large timeout value (several minut
     }
 
 ## POST /v3/job/kill/:job_id
-This command kills the currently running job. The kill operation is done in an asynchronous way.
+This command kills the currently running job. The kill operation is performed asynchronously.
 
 #### Parameters
 * **job_id**: job id
@@ -203,7 +203,7 @@ This command kills the currently running job. The kill operation is done in an a
 ## GET /v3/job/result/:job_id?format=msgpack.gz
 This command returns the result of a specific job. Before issuing this command, please confirm that the job has been completed successfully via the /v3/job/show/:job_id command.
 
-NOTE: The results sometimes become big, so using large timeout value (several minutes) is recommended for this call.
+NOTE: The resulting logs can be large, so using a large timeout value (i.e. several minutes) is recommended when using this command.
 
 #### Parameters
 * **job_id**: the specified job_id
@@ -248,7 +248,7 @@ There are several wrapper libraries for the REST API. The following libraries ar
 
 * [Ruby Library for Treasure Data REST API](rest-api-ruby-client)
 * [Java Library for Treasure Data REST API](https://github.com/treasure-data/td-client-java)
-  * TreasureData's [JDBC Driver](jdbc-driver) is also available.
+  * [TreasureData's JDBC Driver](jdbc-driver)
 
 3rd party developers are also actively developing language bindings:
 
