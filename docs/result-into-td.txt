@@ -19,7 +19,7 @@ For on-demand jobs, just add the `-r` option to the `td query` command. Once the
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `output_table`.
 
     :::term
     $ td result:create mydb td://@/testdb
@@ -48,4 +48,4 @@ We achieve **atomicity** (so that a consumer of the table always has consistent 
 
 1. Create a temporary table.
 2. Write to the temporary table.
-3. Replace the existing table with the temporary table atomically
+3. Replace the existing table with the temporary table atomically.
