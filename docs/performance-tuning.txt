@@ -6,13 +6,13 @@
   * Basic knowledge of [td-agent](td-agent).
   * Basic knowledge of [the query language](hive).
 
-## Leverage Time-based Partitioning
+## Leveraging Time-based Partitioning
 
-All imported data is automatically partitioned into hourly buckets, based on the **'time'** field within data records. **This means you can speed up your query significantly by specifying which time range to query because you avoid reading only the necessary data.**
+All imported data is automatically partitioned into hourly buckets, based on the **'time'** field within each data record. **By specifying the time range to query, you avoid reading unnecessary data and can thus speed up your query significantly.**
 
 ### 1) WHERE time <=> Integer
 
-By **setting conditions for the 'time' field within your WHERE clause**, the query parser can automatically recognize which partition should be processed. Please note that *if you specify the time with `float` instead of `int`, partitioning doesn't work.*
+**When the 'time' field within the WHERE clause is specified**, the query parser will automatically detect which partition(s) should be processed. Please note that this auto detection will not work *if you specify the time with `float` instead of `int`.*
 
     :::sql
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
@@ -22,7 +22,7 @@ By **setting conditions for the 'time' field within your WHERE clause**, the que
 
 ### 2) TD_TIME_RANGE
 
-**An easier way to slice the data is using [TD_TIME_RANGE UDF](udfs#tdtimerange)**.
+**An easier way to slice the data is to use [TD_TIME_RANGE UDF](udfs#tdtimerange)**.
 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
@@ -32,7 +32,7 @@ By **setting conditions for the 'time' field within your WHERE clause**, the que
 
 ## Set Custom Schema
 
-As [the "Schema Management" article](schema) describes, all tables have two fields: 'v' and 'time'. In addition to that, you can set [custom schema](schema#setting-custom-schema) on the tables.
+As explained in [the "Schema Management" article](schema), all tables have two fields: 'v' and 'time'. In addition to these, you can set [custom schema](schema#setting-custom-schema) on the tables.
 
     :::term
     $ td schema:set testdb www_access action:string user:int
@@ -41,4 +41,4 @@ As [the "Schema Management" article](schema) describes, all tables have two fiel
          WHERE action='login'
          GROUP BY user ORDER BY cnt DESC"
 
-**By setting schema and querying with named columns instead of 'v'**, your query is executed with a more optimized execution path by using the schema information. Expecially, GROUP BY performance would improve significantly.
+After setting the schema, **queries issued with named columns instead of 'v'** will use the schema information to achieve a more optimized execution path. In particular, GROUP BY performance will improve significantly.
