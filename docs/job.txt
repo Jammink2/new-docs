@@ -85,7 +85,7 @@ The '-v' option will show additional information, including execution logs.
 
 ## Job Priority
 
-Sometimes job should be issued by low or high priority. For example, daily jobs must be executed with high priority for avoiding to be prevented by adhoc queries. `td query -P <priority> <query>` let you specify the job priority. 5-levels of priority is supported (-2 to 2), and priority 0 is the default.
+Scheduled jobs must sometimes be set as high or low priority items. For example, adhoc queries should not prevent mission critical daily jobs from running. The `td query -P <priority> <query>` command lets you specify the job priority. The priority is between -2 (VERY LOW) and 2 (VERY HIGH), where 0 is the default.
 
     :::term
     # VERY HIGH
