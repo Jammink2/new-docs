@@ -11,7 +11,7 @@ This article explains how to use the td-logger-java library.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Java 6 or higher (for local testing).
 
-NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> explains how to use Java applications on Heroku.
+NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> document explains how to use Java applications on Heroku.
 
 ## Installing td-agent
 
