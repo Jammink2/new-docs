@@ -10,7 +10,7 @@ This article explains how to write job results to your Treasure Data (TD) table.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into your `output_table` within `testdb` database.
+For on-demand jobs, just add the `-r` option to the `td query` command. Once the job is finished, the results are written into `output_table` within the `testdb` database.
 
     :::sql
     $ td query -r 'td://@/testdb/output_table' \
@@ -38,7 +38,7 @@ You can add or delete data in two ways.
 
 ### APPEND
 
-This is the default mode. The query results are appended to a table. If the table does not exist yet, a new table will be created. This operation is not idempotent.
+This is the default mode. The query results are appended to the table. If the table does not exist yet, a new table will be created. This operation is not idempotent.
 
 ### REPLACE
 
