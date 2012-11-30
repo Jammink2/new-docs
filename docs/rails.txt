@@ -10,7 +10,7 @@ This article explains how to use the td-logger-ruby library.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Ruby 1.8 or higher (for local testing).
 
-NOTE: The <a href="/articles/heroku-rails">Rails Apps on Heroku</a> explains how to use Rails applications on Heroku, and <a href="/articles/engine-yard-rails">Rails Apps on EngineYard</a> explains it on EngineYard.
+NOTE: The <a href="/articles/heroku-rails">Rails Apps on Heroku</a> and <a href="/articles/engine-yard-rails">Rails Apps on EngineYard</a>  documents explain how to use Rails applications on Heroku and EngineYard, respectively.
 
 ## Installing td-agent
 
