@@ -1,23 +1,25 @@
-# Using Ruby Binding of REST API
+# Using Ruby Bindings for REST API
 
-This article will explain how to use Ruby binding for REST API.
+This article will explain how to use Ruby bindings for REST API.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A table with some data. You can find an example in the [Getting Started](quickstart) guide.
+  * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
   * Basic knowledge of our [query language](hive).
 
-## Install
+## Installation
 
-That's contained within `td` (stands for ‘T’reasure ‘D’ata) gem. Please add the following line to your Gemfile. The source code is [available at github](https://github.com/treasure-data/td-client-ruby).
+The Ruby bindings are included in the `td` (stands for ‘T’reasure ‘D’ata) gem. Please add the following line to your Gemfile.
 
     :::ruby
     gem 'td', "~> 0.10.22"
 
+The source code is [available at github](https://github.com/treasure-data/td-client-ruby).
+
 ## List Databases and Tables
 
-Below is an example of listing databases and tables.
+The example below lists the databases and tables.
 
     :::ruby
     require 'td'
@@ -33,7 +35,7 @@ Below is an example of listing databases and tables.
 
 ## Issue Queries
 
-Below is an example of issuing a query from a Ruby program. The query API is asynchronous, and you can wait for the query to complete by polling the job periodically (e.g. by issuing job.finished? calls).
+The example below issues a query from a Ruby program. The query API is asynchronous -- you can check for query completion by polling the job periodically (e.g. by issuing job.finished? calls).
 
     :::ruby
     require 'td'
@@ -46,11 +48,11 @@ Below is an example of issuing a query from a Ruby program. The query API is asy
     end
     job.result_each { |row| p row } job.success?
 
-NOTE: job.result_each(&block) doesn't put the job result into the memory. It iterates the rows in a streaming fashion.
+NOTE: job.result_each(&block) does not put the job result into memory. It iterates through the rows in a streaming fashion.
 
 ## List and Get the Status of Jobs
 
-Below is an example of listing and get the status of jobs.
+The example below lists and gets the status of jobs.
 
     :::ruby
     require 'td'
