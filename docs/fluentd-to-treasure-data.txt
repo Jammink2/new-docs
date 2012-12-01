@@ -10,9 +10,9 @@ This article explains how to continuously import the data into Treasure Data usi
 
 [Fluentd](http://fluentd.org/) is a log collector daemon written in Ruby. It collects logs as JSON streams, buffers them, and sends them to other systems such as MySQL, MongoDB, or even other instances of Fluentd.
 
-Treasure Data's `td-agent` logging daemon contains Fluentd. However, many users have installed Fluentd via Ruby gems. This article is written for users who wish to connect their existing Fluentd installations to Treasure Data. 
+Treasure Data's `td-agent` logging daemon contains Fluentd. However, many users have installed Fluentd via Ruby gems. This article is written for users who wish to connect their existing Fluentd installations to Treasure Data. Instructions for `td-agent` (deb/rpm packages) can be found <a href="td-agent">here</a>.
 
-NOTE: Instructions for `td-agent` (deb/rpm packages) are <a href="td-agent">described separately</a>. Also, if you're using Joyent SmartOS, please follow <a href="http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos">this instruction</a>.
+NOTE: Instructions for Joyent SmartOS users can be found <a href="http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos">here</a>.
 
 ## Using fluent-plugin-td
 
@@ -41,7 +41,7 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       use_ssl true
     </match>
 
-You need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey by [signing up](https://www.treasure-data.com/signup/), and installing and using `td` command.
+The `apikey` is a secret key to authenticate your account. You can get your apikey by using the `td` command after [signing up](https://www.treasure-data.com/signup/) and installing Treasure Data.
 
     :::term
     $ gem install td
