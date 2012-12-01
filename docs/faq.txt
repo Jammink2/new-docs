@@ -4,18 +4,18 @@ This document collects frequently asked questions.
 
 ## How can I write out query results into X? (ex: How can I write query results into MySQL?)
 
-Treasure Data provides the ability to write query results into various datastores such as Treasure Data, MySQL and PostgreSQL. Please [check out the status of various options here](/categories/result).
+Treasure Data provides the ability to write query results into various datastores such as Treasure Data, MySQL and PostgreSQL. The list of currently supported output options can be found [here](/categories/result).
 
-## It looks like Treasure Data uses Hive? Does this mean I have to worry about schema change?
+## It looks like Treasure Data uses Hive. Does this mean I have to worry about schema changes?
 
-Treasure Data supports HiveQL semantics, but unlike Apache Hive, we do not require table schema to be defined upfront and allow the customer to set and modify schema anytime. [Please see this document for more information](/articles/schema).
+Treasure Data supports HiveQL semantics, but unlike Apache Hive, we allow the user to set and modify the schema at any time. We do not require table schema to be defined upfront. For more information, please refer to [this document](/articles/schema).
 
 ## How can I handle nested JSON records?
 
-Using [get_json_object UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) with HiveQL, the nested JSON records are able to be parsed. But it has additional performance overhead, so having flat JSON structure is recommended on our platform.
+Nested JSON records can be parsed by using the [get_json_object UDF](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF) command with HiveQL. However, we recommend that you maintain a flat JSON structure since this command is a source of additional performance overhead.
 
-## How can I use proxy for td command?
+## How can I use the td command through a proxy?
 
-Please set the HTTP_PROXY variable like export HTTP_PROXY="proxy_host:8080". This is supported from td v0.10.41.
+Please set the HTTP_PROXY variable (e.g. export HTTP_PROXY="proxy_host:8080"). This is supported from td v0.10.41.
 
-### If you have any question, please feel free to [contact us](http://treasure-data.com/contact/), or chat from the window at the bottom right.
+### If you have any questions, please feel free to [contact us](http://treasure-data.com/contact/), or chat with us live using the window at the bottom right.
