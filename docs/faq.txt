@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-This document collects frequently asked questions.
+Here are some questions frequently asked by our users.
 
 ## How can I write out query results into X? (ex: How can I write query results into MySQL?)
 
