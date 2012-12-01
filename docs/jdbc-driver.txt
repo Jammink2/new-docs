@@ -1,6 +1,6 @@
 # Treasure Data JDBC Driver
 
-This article covers how to use Treasure Data's [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver. This driver enables you to use Treasure Data with a standard JDBC interface.
+This article will explain how to use Treasure Data's [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver. This driver enables you to use Treasure Data with a standard JDBC interface.
 
 ## Download
 
@@ -68,7 +68,7 @@ Here's a sample Java program that executes a SELECT statement. This program coun
 
 ### treasure-data.properties
 
-If you use SELECT statement only, you don't need this file. This is required only for INSERT statement.
+This file is only required if using INSERT statements. If you are only using SELECT statement, this file is not required.
 
     :::text
     td.logger.agentmode=false
