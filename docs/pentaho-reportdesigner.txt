@@ -1,10 +1,10 @@
 # Pentaho Report Designer with JDBC Driver
 
-This article covers how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/), through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can process huge volumes of data on the cloud, while continue using your existing Pentaho instances.
+This article will explain how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/) using [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, users can process huge volumes of data on the cloud using existing Pentaho instances.
 
 ## Download Pentaho Report Designer
 
-You can download Pentaho Report Designer from the linke below. For this article, we tested with Pentaho Report Designer v3.9.0-GA.
+You can download Pentaho Report Designer from the link below. Version 3.9.0-GA was tested for this artcile.
 
 * [Pentaho Report Designer](http://reporting.pentaho.com/)
 
@@ -13,13 +13,13 @@ You can download Pentaho Report Designer from the linke below. For this article,
 </center>
 <br /><br />
 
-## Download JDBC Driver
+## Download our JDBC Driver
 
-You can download the driver itself from here. The driver is still in beta quality, so please report to us if you have any problems.
+You can download the driver from the link below. The driver is still in beta, so please report any issues to us.
 
 * [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
-NOTE: This driver works only with Treasure Data, doesn't work with other environments like your local Hadoop/Hive cluster.
+NOTE: This driver works only with Treasure Data. It does not work with other environments such as your local Hadoop/Hive cluster.
 
 ## Add Treasure Data as Data Source
 
@@ -27,7 +27,7 @@ Let's add Treasure Data as Pentaho's data source. Please follow the procedure be
 
 ### Step1: Copy JDBC Driver Jar to `jdbc` directory
 
-At first, please copy Treasure Data JDBC driver to the Pentaho's jdbc directory. At MacOS environment, please copy like follows.
+First, please copy the Treasure Data JDBC driver to Pentaho's jdbc directory. The command for a MacOS environment is shown below.
 
     :::term
     $ cp td-jdbc-VERSION.jar \
@@ -35,7 +35,7 @@ At first, please copy Treasure Data JDBC driver to the Pentaho's jdbc directory.
 
 ### Step2: Create New Data Source
 
-From, `Data -> Add Data Source -> Advanced -> JDBC (Custom)` please open up the window like below. Then, please hit the GREEN plus botton pointed out by the red arrow below.
+Please open the window shown below by navigating to `Data -> Add Data Source -> Advanced -> JDBC (Custom)`. Please hit the GREEN plus botton marked by the red arrow below.
 
 <center>
 <a href="/images/pentaho_jdbc_source.png"><img src="/images/pentaho_jdbc_source.png" width="100%"></a>
@@ -44,7 +44,7 @@ From, `Data -> Add Data Source -> Advanced -> JDBC (Custom)` please open up the 
 
 ### Step3: Configure JDBC Connection
 
-Then, please select `Generic database -> Native (JDBC)` and configure the jdbc connection like the following figure. Be sure to fill your credentials (your email + password).
+Next, please select `Generic database -> Native (JDBC)` and configure the jdbc connection as shown in the following figure. Be sure to fill in your credentials (your email + password).
 
 <center>
 <a href="/images/pentaho_database_connection.png"><img src="/images/pentaho_database_connection.png" width="100%"></a>
@@ -53,7 +53,7 @@ Then, please select `Generic database -> Native (JDBC)` and configure the jdbc c
 
 ### Step4: Create Reports
 
-Finally you can create the report by arbitrary SQL queries. Open the window from `Data -> Add Datasource -> JDBC` to add the data source for the report. If you hit the preview button, the job starts running on the cloud (You can confirm by `td jobs`). Using this data source, please design your report.
+You can now create reports using generic SQL queries. Open the window from `Data -> Add Datasource -> JDBC` to add Treasure Data as the data source for the report. Once you hit the preview button, the job will start running on the cloud (you can confirm this using the `td jobs` command). You can now design your reports using Treasure Data as your data source.
 
 <center>
 <a href="/images/pentaho_report_data_source.png"><img src="/images/pentaho_report_data_source.png" width="100%"></a>
