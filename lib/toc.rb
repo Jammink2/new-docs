@@ -13,7 +13,8 @@ section 'overview', 'Overview' do
   end
   category 'success-stories', 'Success Stories' do
     article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
-    article 'success-at-cookpad', 'Cookpad - Japan’s No.1 recipe website'
+    article 'success-at-cookpad', 'Cookpad - Japan’s No.1 Recipe Sharing Site'
+    article 'success-at-viki', 'Viki - Global Online Video Service'
   end
   category 'changelog', 'ChangeLog' do
     article 'changelog', 'Treasure Data ChangeLog'
