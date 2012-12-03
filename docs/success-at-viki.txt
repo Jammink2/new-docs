@@ -46,4 +46,12 @@ Treasure Data, on the other hand, comes with a nice feature called [Result Outpu
 ## Exceptional Support
 I believe that there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is its support. Every time we seek their support, we come away impressed with their deep technical expertise and dedication to ensuring their customers' success.
 
+Once we notice the transfering data from Treasure Data to our PostgreSQL was done in batch of 1000 rows, causing our huge-result query to be imported rather slow. Upon investigation they increased the batch size to 256KB and the import takes a lot faster. Talking about thoughtful customer support.
+
+Other time we had some problems with our fluentd data collector configuration, the guys at Treasure Data helped look into our code and fixed it. A couple of weeks later they even emailed us about their new release with a git patch to apply to our code.
+
 They've always given us thorough and timely support peppered with insightful tips to make the best use of their service.
+
+## Conclusion
+
+Overall we have been very happy with Treasure Data's services (product and support). We would gladly recommend Treasure Data to any other services out there facing the same problems we face.
