@@ -46,12 +46,12 @@ Treasure Data, on the other hand, comes with a nice feature called [Result Outpu
 ## Exceptional Support
 I believe that there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is its support. Every time we seek their support, we come away impressed with their deep technical expertise and dedication to ensuring their customers' success.
 
-Once we notice the transfering data from Treasure Data to our PostgreSQL was done in batch of 1000 rows, causing our huge-result query to be imported rather slow. Upon investigation they increased the batch size to 256KB and the import takes a lot faster. Talking about thoughtful customer support.
+At one point, we noticed that the data transfer from Treasure Data to our PostgreSQL was being done in batches of 1000 rows. As a result, our huge-result query was being imported rather slowly. Once Treasure Data's support team was contacted, they investigated the situation and promptly increased the batch size to 256KB, speeding up the import process significantly. Talk about thoughtful customer support.
 
-Other time we had some problems with our fluentd data collector configuration, the guys at Treasure Data helped look into our code and fixed it. A couple of weeks later they even emailed us about their new release with a git patch to apply to our code.
+On another occasion, we were having some problems configuring our Fluentd data collector properly. The guys at Treasure Data helped look into our code and fixed the issue for us. When they made a new Fluentd release a couple of weeks later, they took the time to email us directly about the release and even sent us a git patch to apply to our code.
 
 They've always given us thorough and timely support peppered with insightful tips to make the best use of their service.
 
 ## Conclusion
 
-Overall we have been very happy with Treasure Data's services (product and support). We would gladly recommend Treasure Data to any other services out there facing the same problems we face.
+Overall, we have been very happy with Treasure Data's services (both the product and their support). We would gladly recommend Treasure Data to any teams out there facing problems similar to ours.
