@@ -1,28 +1,28 @@
 # Pentaho Data Integration with JDBC Driver
 
-This article covers how to use Treasure Data with [Pentaho Data Integration](http://www.pentaho.com/explore/pentaho-data-integration/) through [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, the user can scale the existing Pentaho Data Integration to huge volumes of data.
+This article will explain how to use Treasure Data with [Pentaho Data Integration](http://www.pentaho.com/explore/pentaho-data-integration/) by using [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, users can scale their existing Pentaho Data Integration environment to handle huge volumes of data.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data. [Getting Started](quickstart) is a good place to start.
+  * Basic knowledge of Treasure Data. The [Quickstart Guide](quickstart) is a good place to start.
 
 ## Download Pentaho Data Integration (Kettle)
 
-You can download Pentaho Data Integration (Kettle) from the link below. For this article, we tested with Pentaho Data Integration v4.3.0.
+You can download Pentaho Data Integration (Kettle) from the link below. Version 4.3.0 was tested for this article
 
 * [Pentaho Data Integration (Kettle)](http://kettle.pentaho.com/)
 
 ## Download JDBC Driver
 
-You can download the driver itself from the link below. The driver is still in beta; feedback is appreciated.
+You can download the driver from the link below. The driver is still in beta, so any feedback would be appreciated.
 
 * [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
-NOTE: This driver is specifically for Treasure Data. It does not run in other environments such as your local Hadoop/Hive cluster.
+NOTE: This driver works only with Treasure Data. It does not work with other environments such as your local Hadoop/Hive cluster.
 
 ## Copy JDBC Driver Jar to Pentaho Data Integration
 
-First, copy Treasure Data JDBC driver to `libext/JDBC` directory specified by Pentaho Data Integration before starting Pentaho Data Integration.
+Before starting Pentaho Data Integration, please copy the Treasure Data JDBC driver to the `libext/JDBC` directory specified by Pentaho Data Integration.
 
     :::term
     $ cp td-jdbc-VERSION.jar \
@@ -30,17 +30,17 @@ First, copy Treasure Data JDBC driver to `libext/JDBC` directory specified by Pe
 
 ## Create Treasure Data Database Connection
 
-Let's add Treasure Data as Pentaho Data Integration's database connection and make a new transformation. Pealse follow the procedure below.
+Let's add Treasure Data as Pentaho Data Integration's database connection and make a new transformation. Please follow the procedure below.
 
 ### Step 1: Create a New Transform
 
-Select `Transforms` like follows. Right-click `New` from the context menu. A new transform is created.
+Select `Transforms` as shown in the figure below. To create a new transform, right-click `New` in the context menu.
 
 <a href="/images/pentaho-di-transformation-create-new.png"><img src="/images/pentaho-di-transformation-create-new.png" width="100%"></a>
 
 ### Step 2: Create New Database Connection
 
-Select `Tools > Wizard > Create database connection...`. You get a pop-up window to create a new database connection. Select the database name and type as follows.
+Navigating to `Tools > Wizard > Create database connection...` will bring up a pop-up window to create a new database connection. Select the database name and type as shown below.
 
 <div style="padding-left: 15%;">
 <a href="/images/pentaho-di-database-select-database.png"><img src="/images/pentaho-di-database-select-database.png" width="60%"></a>
@@ -49,7 +49,7 @@ Select `Tools > Wizard > Create database connection...`. You get a pop-up window
 
 ### Step 3: Specify the Driver Class Name
 
-Specify the connection's URL and name of the driver class as follows.
+Specify the connection's URL and name of the driver class as shown below.
 
 <div style="padding-left: 15%;">
 <a href="/images/pentaho-di-database-specify-driver.png"><img src="/images/pentaho-di-database-specify-driver.png" width="60%"></a>
@@ -58,7 +58,7 @@ Specify the connection's URL and name of the driver class as follows.
 
 ### Step 4: Set the Username and Password
 
-Specify your username and password as follows. Please use the credential on Treasure Data for these fields (User Name is the email address you've used to register on Treasure Data). Hit the `Finish` button. The database connection is now created on your Pentaho Data Integration.
+Specify your username and password as shown below. Please use your Treasure Data credentials for these fields (Your User Name is the email address used to register on Treasure Data). Press the `Finish` button to create the database connection on your Pentaho Data Integration environment.
 
 <div style="padding-left: 15%;">
 <a href="/images/pentaho-di-database-set-username.png"><img src="/images/pentaho-di-database-set-username.png" width="60%"></a>
@@ -69,20 +69,20 @@ Specify your username and password as follows. Please use the credential on Trea
 
 ### Step 1: Specify Table Input
 
-Select `Table input` from `Input` context menu of the transform. Drag and drop it on the workspace as follows.
+Select `Table input` from the transform's `Input` context menu. Drag and drop onto the workspace as shown below.
 
 <a href="/images/pentaho-di-transformation-select-tableinput.png"><img src="/images/pentaho-di-transformation-select-tableinput.png" width="100%"></a>
 
 ### Step 2: Edit the Table Input
 
-Right-click the `Table input` on the workspace. Select `Edit step` from the context menu. Configure your Table input as follows.
+Right-click the `Table input` icon on the workspace. Select `Edit step` from the context menu. Configure your Table input as shown below.
 
 <a href="/images/pentaho-di-transformation-edit-tableinput.png"><img src="/images/pentaho-di-transformation-edit-tableinput.png" width="100%"></a>
 
-The above query is introduced in the article [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport).
+We cover the query above in the [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport) article.
 
 ### Step 3: Confirm the Table Input
 
-To confirm the behavior of the Table input, write out your data on Treasure Data to Output like Json output as follows.
+To confirm the behavior of the Table input, write out your data on Treasure Data to JSON output as shown below.
 
 <a href="/images/pentaho-di-transformation-select-jsonoutput.png"><img src="/images/pentaho-di-transformation-select-jsonoutput.png" width="100%"></a>
