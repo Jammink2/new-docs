@@ -15,7 +15,7 @@ You can download Pentaho Report Designer from the link below. Version 3.9.0-GA w
 
 ## Download our JDBC Driver
 
-You can download the driver from the link below. The driver is still in beta, so please report any issues to us.
+You can download the driver from the link below. The driver is still in beta, so any feedback would be appreciated.
 
 * [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
