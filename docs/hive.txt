@@ -1,6 +1,6 @@
 # Hive (SQL-style) Query Language
 
-[Treasure Data](http://treasure-data.com/) is a Hadoop-based cloud data warehousing, which provides a SQL-like query language interface called Hive query language. This article covers the basics of the Hive query language.
+[Treasure Data](http://treasure-data.com/) is a Hadoop-based cloud data warehousing service. We provide a SQL-like query language interface called the Hive query language. This article covers the basics of the Hive query language.
 
 ## Prerequisites
 
@@ -10,16 +10,16 @@
 
 The Hive query language (HiveQL) is the primary data processing method for Treasure Data. HiveQL is powered by [Apache Hive](http://hive.apache.org/).
 
-NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are not currently available.
+NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are currently unavailable.
 
 ## Official Documents 
 
-* [The official Hive tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial) goes offer the basics of HiveQL.
+* [The official Hive tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial) covers the basics of HiveQL.
 * [The official Hive language manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) covers all features of HiveQL.
 
 ## CLI Usage
 
-You can submit the query by `td query` command.
+You can submit queries by using the `td query` command.
 
     :::term
     usage:
@@ -32,23 +32,23 @@ You can submit the query by `td query` command.
       Issue a query
     
     options:
-      -d, --database DB_NAME           use the database (required)
-      -w, --wait                       wait for finishing the job
-      -o, --output PATH                write result to the file
-      -f, --format FORMAT              format of the result to write to the file (tsv, csv, json or msgpack)
-      -r, --result RESULT_URL          write result to the URL (see also result:create subcommand)
+      -d, --database DB_NAME           use this database (required)
+      -w, --wait                       wait for the job to finish
+      -o, --output PATH                write results to this file
+      -f, --format FORMAT              write results to file in this format (tsv, csv, json or msgpack)
+      -r, --result RESULT_URL          write results to this URL (see also result:create subcommand)
       -u, --user NAME                  set user name for the result URL
-      -p, --password                   ask password for the result URL
+      -p, --password                   ask for the password for the result URL
       -P, --priority PRIORITY          set priority
 
-An example query is like this.
+Below is an example query.
 
     $ td query -w -d testdb \
       "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
 
 ## Example Queries
 
-Here are a couple of basic examples. The underlying table consiste of three fields: `ip`, `url`, and `time`.
+Here are some basic examples. The underlying table consists of three fields: `ip`, `url`, and `time`.
 
 #### Number of Records
 
@@ -81,7 +81,7 @@ Here are a couple of basic examples. The underlying table consiste of three fiel
 
 #### Number of Accesses After a Certain Time
 
-Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is easy and performs well. See [Performance Tuning](performance-tuning).
+[TD_TIME_RANGE UDF](udfs#tdtimerange) is efficient and simple to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
 
     :::sql
     SELECT COUNT(1) FROM www_access \
