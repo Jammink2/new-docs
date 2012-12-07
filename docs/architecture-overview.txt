@@ -94,7 +94,7 @@ Our users hail from a wide range of industries, including digital marketing, soc
   </tr>
   <tr>
     <td><a href="/categories/TwitterAnalytics">Twitter Analysis</a></td>
-    <td>Who gets most ReTweets for topic X?</td>
+    <td>Who gets the most ReTweets for topic X?</td>
   </tr>
   <tr>
     <td>A/B Testing</td>
