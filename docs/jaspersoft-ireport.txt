@@ -4,11 +4,11 @@ This article explains how to use Treasure Data with [JasperSoft iReport](http://
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, at least passed [Getting Started](quickstart) guide.
+  * Basic knowledge of Treasure Data, including our [Quickstart Guide](quickstart).
 
 ## Download JasperSoft iReport
 
-You can download JasperSoft iReport from the link below. JasperSoft iReport v4.6.0 is used in this article.
+You can download JasperSoft iReport from the link below. Version 4.6.0 was used for this article.
 
 * [JasperSoft Community's iReport Designer](http://community.jaspersoft.com/project/ireport-designer)
 
@@ -40,7 +40,7 @@ Please press the database icon, which is located near the 'Empty datasource' ind
 
 Please configure your jdbc parameters as shown in the following figure. Please make sure to provide your credentials (your email + password).
 
-NOTE: Treasure Data's JDBC driver would NOT appear in the "JDBC Driver" dropdown. You can click on the dropdown area and just type in `com.treasure_data.jdbc.TreasureDataDriver`.
+NOTE: Treasure Data's JDBC driver will NOT appear in the "JDBC Driver" dropdown. Please click on the dropdown area and type `com.treasure_data.jdbc.TreasureDataDriver`.
 
 <div style="padding-left: 15%;">
 <a href="/images/jasper_jdbc.png"><img src="/images/jasper_jdbc.png" width="60%"></a>
@@ -49,9 +49,9 @@ NOTE: Treasure Data's JDBC driver would NOT appear in the "JDBC Driver" dropdown
 
 ### Step4: Create Reports
 
-The rest of the step is identical to how you would create reports with a JDBC source.
+The procedure for this step is identical to creating reports with a JDBC source.
 
-You would first create a report by going to File -> New -> Report. **Make sure that your data source is configured to be "TreasureData"** (or whatever the name you gave to our JDBC connection).
+First, create a report by navigating to `File -> New -> Report`. **Make sure that your data source is set to "TreasureData"** (or your name for our JDBC connection).
 
 <div style="padding-left: 15%;">
 <a href="/images/jasper_ireport_step_1.png"><img src="/images/jasper_ireport_step_1.png" width="80%"></a>
@@ -60,24 +60,24 @@ You would first create a report by going to File -> New -> Report. **Make sure t
 
 Here, the query is
 
-	SELECT code, COUNT(1) AS count FROM apache_log GROUP BY code
+  SELECT code, COUNT(1) AS count FROM apache_log GROUP BY code
 
-A few words about this sample data.
+Some notes about this sample data:
 
-1. This table has data from a typical Apache log. The field `code` corresponds to HTTP status code. Essentially, we are counting the number of HTTP requests per status code. 
-2. Note that out of the box, Treasure Data has no pre-defined schama. This means that for the above query to work, we need to add schema for the field named `code`.
+1. The data in this table is taken from a typical Apache log. The field `code` corresponds to HTTP status code. Essentially, we are counting the number of HTTP requests per status code. 
+2. Treasure Data does not have a pre-defined schema out of the box. We therefore need to add schema for the field named `code` in order for the above query to work.
 
-		$ td table:show demo apache_log
-		Name      : demo.apache_log
-		Type      : log
-		Count     : 25000000
-		Schema    : (
-		    code:string
-		)
+    $ td table:show demo apache_log
+    Name      : demo.apache_log
+    Type      : log
+    Count     : 25000000
+    Schema    : (
+        code:string
+    )
 
-	([This page explains](/articles/schema) how to add/remove/modify schema on our system.)
+  ([The Schema article](/articles/schema) explains how to add/remove/modify schema on our system.)
 
-The rest of the setup is exactly the same as any other reports.
+The rest of the setup is exactly the same as any other report.
 
 <div style="padding-left: 15%;">
 <a href="/images/jasper_ireport_step_2.png"><img src="/images/jasper_ireport_step_2.png" width="80%"></a>
