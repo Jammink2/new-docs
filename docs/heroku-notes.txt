@@ -3,8 +3,8 @@
 ## Prerequisites
 
   * Basic knowledge of Ruby, Gems, and Bundler.
-  * Basic knowledge of Heroku, including the Heroku toolbelt.
-  * Basic knowledge of Treasure Data
+  * Basic knowledge of Heroku, including <a href="http://toolbelt.heroku.com/">the Heroku toolbelt</a>.
+  * Basic knowledge of Treasure Data, including our [Quickstart Guide](quickstart).
   * Ruby 1.8 or higher (for local testing).
 
 ## 'heroku td', not 'td'
