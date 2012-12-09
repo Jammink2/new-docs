@@ -8,7 +8,7 @@
 
 ## Provisioning the add-on
 
-Treasure Data addon can be attached to a Heroku application via the CLI:
+The Treasure Data addon can be attached to a Heroku application via the CLI:
 
     :::term
     $ heroku addons:add treasure-data:nano
@@ -16,14 +16,14 @@ Treasure Data addon can be attached to a Heroku application via the CLI:
 
 ## CLI setup
 
-The `heroku-td` CLI plugin is required to talk to the Treasure Data's backend systems. After installing the CLI plugin, you can execute the `heroku td` family of commands.
+The `heroku-td` CLI plugin is required to talk to Treasure Data's backend systems. Once you install the CLI plugin, you will be able to execute the `heroku td` family of commands.
 
     :::term
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
     $ heroku td
     usage: heroku td [options] COMMAND [args]
 
-NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">Heroku toolbelt</a>. From December 1, 2012, Heroku will stop releasing new updates to the `heroku` gem.  We'll also stop supporting `heroku` gem.
+NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">the Heroku toolbelt</a>. From December 1, 2012, Heroku will stop releasing new updates to the `heroku` gem.  We'll also stop supporting the `heroku` gem.
 
 ## Data Import
 
@@ -41,12 +41,12 @@ Next, install the gem locally via `bundler`.
 
 ### Step 2: Create `treasure_data.yml`
 
-[Download this file](http://bit.ly/UKfiIY) and save it at config/treasure_data.yml, or use the command below. You can modify this file further if you wish to tweak your Treasure Data configuration.
+[Download this file](http://bit.ly/UKfiIY) and save it to config/treasure_data.yml (or use the command below). You can modify this file if you wish to tweak your Treasure Data configuration.
 
     :::term
     $ curl -L 'http://bit.ly/UKfiIY' > config/treasure_data.yml
 
-### Step 3: Insert Logging Codes
+### Step 3: Insert Logging Code
 
 The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
 
@@ -70,7 +70,7 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
       end
     end
 
-Your event-logging code should be placed near its corresponding event-generating code.  Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
+Your event-logging code should be placed near its corresponding event-generating code. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
@@ -161,7 +161,7 @@ The `heroku td query –format csv` command outputs the results in csv.
 
 ## Development Environment Setup
 
-In order to use Treasure Data on development environment, please modify `config/treasure_data.yml`. It's disabled by default.
+In order to use Treasure Data on a development environment, please modify `config/treasure_data.yml`. It is disabled by default.
 
     :::text
     development:
