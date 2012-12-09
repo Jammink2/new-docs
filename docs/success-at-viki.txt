@@ -55,3 +55,6 @@ They've always given us thorough and timely support peppered with insightful tip
 ## Conclusion
 
 Overall, we have been very happy with Treasure Data's services (both the product and their support). We would gladly recommend Treasure Data to any teams out there facing problems similar to ours.
+
+<div style="text-align:right; font-family: helvetica; font-weight: 100;
+font-size: 1.2em">Huy Nguyen - Software Engineer, Viki.com</div>
