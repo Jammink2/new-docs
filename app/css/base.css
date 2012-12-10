@@ -1089,3 +1089,12 @@ del.differ, del.differ * {
 .languagebar li {
   display: inline;
 }
+
+/* Success Story Signature */
+
+div.success-story-signature {
+  text-align: right;
+  font-family: helvetica;
+  font-weight: 100;
+  font-size: 1.2em;
+}

@@ -40,4 +40,4 @@ I heard that Treasure Data is adding this pixel-tracking feature into future ver
 
 As a start-up veteran, I can tell you this: time is your most important resource, but whenever you take a shortcut, carefully consider what you are giving up. I think we made a right decision at Splurgy because Treasure Data offered the right balance of flexibility ("we can query anything") and abstraction ("we won't get paged at 2AM because our data analytics system borked"). I am very pleased with their service and highly recommend it to any company that needs a simple and flexible data analytics service.
 
-Michi Kono, co-founder of Splurgy
+<div class="success-story-signature">Michi Kono - co-founder, Splurgy</div>

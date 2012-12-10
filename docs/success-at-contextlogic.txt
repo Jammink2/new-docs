@@ -37,5 +37,7 @@ We have been using Treasure Data for 6 months now, and it's been great so far. T
 ## Advice to Startups
 As startups, we must wisely allocate our limited resources and focus on making a great product. To improve the product, however, you need to log relevant data. This creates a dilemma: How can we log thoroughly **and** accurately while spending as little time as possible on logging? [Treasure Data](http://treasure-data.com) was our solution, and I strongly recommend it to you as well.
 
+<div class="success-story-signature">Danny Zhang - co-founder, ContextLogic</div>
+
 ***
 1. The reader may have concerns about uploading access logs to a third-party service like Treasure Data. It's a valid concern, and we have you covered. We worked closely with ContextLogic's data infrastructure team to ensure that any identity-related information is anonymized or filtered out to stay compliant with data privacy guidelines.
