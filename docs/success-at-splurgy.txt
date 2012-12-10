@@ -1,0 +1,43 @@
+#Success Story at Splurgy: Simple and Flexible Data Analytics
+
+##What's Splurgy?
+
+<img src="http://www.treasure-data.com/images/logo-splurgy.png" width="400px"/>
+
+[Splurgy](http://splurgy.com), a San Francisco-based start-up, is a social marketing platform where brands can reward loyal customers with incentives in exchange for social engagements -- on your website (rather than your Facebook page).
+
+##Treasure Data for Both Ad-hoc Analysis and Reporting
+
+Splurgy uses Treasure Data for both ad-hoc analysis and reporting.
+
+1. **Ad-hoc analysis**
+
+	As a data-driven, fast-moving start-up, Splurgy is constantly mining data to improve our service. Which social media channel is growing fastest? Is any particular brand getting more value out of our platform than others? Or, simply, where does our web traffic come from?
+
+	These ad hoc analyses are very important but also hard to predict: you never know what question you want to ask three months now. This is one of the reasons we chose Treasure Data: unlike other "web analytics" services that only let you ask a restricted set of questions, I could write SQL queries to get the answers to whatever questions I had.
+
+	The "just add one line of JavaScript" school of analytics has its place. But it is not for everyone. I knew that Splurgy needed something more powerful and versatile than that, and I am happy that Treasure Data satisfies our requirements (without the development and management cost of a homegrown solution!)
+
+2. **Reporting**
+	
+	We provide our customers with stats and metrics via admin dashboards. For example, our customers would be interested in how their engagement rates are trending. We use Treasure Data to compute many of these stats and metrics.
+
+	Again, the key here is Treasure Data's flexibility. As our platform evolves, the set of stats and metrics will change inevitably. With Treasure Data, we know we will be able to tweak and add queries to meet future requirements because we have transparent access to our data on their platform.
+
+##How We Put Our Data on Treasure Data: Pixel Tracking
+
+<center><img src="/images/pixel-tracking.png"/></center>
+
+We use pixel tracking extensively to collect data. Pixel tracking, [aka web bug](https://en.wikipedia.org/wiki/Web_bug), is a well-known method of collecting user event data. For example, many email newsletter services use pixel tracking to calculate a campaign's open rate.
+
+At Splurgy, we wrote a little in-house library to generate event-tracking pixels on the client side. On the server side, we run a standalone service that listens to pixel-tracking HTTP requests. That service then parses URL parameters, converts them into JSON events, and posts them to Treasure Data. A pretty simple setup, right?
+
+Since we didn't have to build out a data store behind the scenes, we only had to write a bit of code initially to get this system going. And going forward, there is little to no overhead for our engineers. They just have to add one line of code whenever they want to log user events. The best part is that we don't have to manage our data. We just need to send user events to Treasure Data, and they will take care of the rest.
+
+I heard that Treasure Data is adding this pixel-tracking feature into future versions of td-agent. That means that it will be even easier to set up your pixel-tracking subsystem: just install td-agent! (I heard that my input had something to do with this upcoming enhancement ;-P)
+
+##Treasure Data: The Best of Both Worlds
+
+As a start-up veteran, I can tell you this: time is your most important resource, but whenever you take a shortcut, carefully consider what you are giving up. I think we made a right decision at Splurgy because Treasure Data offered the right balance of flexibility ("we can query anything") and abstraction ("we won't get paged at 2AM because our data analytics system borked"). I am very pleased with their service and highly recommend it to any company that needs a simple and flexible data analytics service.
+
+Michi Kono, co-founder of Splurgy
