@@ -14,6 +14,7 @@ section 'overview', 'Overview' do
   category 'success-stories', 'Success Stories' do
     article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
     article 'success-at-cookpad', 'Cookpad - Japan’s No.1 Recipe Sharing Site'
+    article 'success-at-splurgy', 'Splurgy - Social Marketing Platform'
     article 'success-at-viki', 'Viki - Global Online Video Service'
   end
   category 'changelog', 'ChangeLog' do
