@@ -1,11 +1,11 @@
 # Success Story at Viki.com
 
 ## Viki: a Global Online Video Service
-[Viki](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite TV shows, movies, sports games, and more. What really sets us apart is our international viewership: our content is available in over 150 languages, all translated by our user community.
+[Viki](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite TV shows, movies, sporting events, and more. What really sets us apart is our international viewership: our content is available in over 150 languages, all translated by our user community.
 
 <center><a href="http://www.viki.com/"><img src="/images/viki-logo.png" width="20%"></a></center><br /><br />
 
-The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds of data and analyze them to guide our product decisions. As our service grew in scale, Treasure Data helped solve our growing pains.
+The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds of data and analyze it to guide our product decisions. As our service grew in scale, Treasure Data helped solve our growing pains.
 
 ## The Problems
 
@@ -27,7 +27,7 @@ Treasure Data was a "two birds with one stone" solution for us: they solved both
 <center><img src="/images/viki-after.png" width="90%" /></center><br /><br />
 
 ### No More Hadoop Maintenance
-Treasure Data's service let us forget about Hadoop altogether. Treasure Data uses Hadoop under the hood, but its complexity was now completely hidden from us. We could now just send data to them and query them later.
+Treasure Data's service let us forget about Hadoop altogether. Treasure Data uses Hadoop under the hood, but its complexity was now completely hidden from us. We could now just send data to them and query it later.
 
 We no longer had to worry about our Hadoop cluster going down or tuning parameters to improve performance. Treasure Data's dedicated engineers vigilantly monitor their systems around the clock, freeing up our engineers from infrastructure maintenance.
 
@@ -44,7 +44,7 @@ Last but not least, one feature that we truly love is "Result Output". Before Tr
 Treasure Data, on the other hand, comes with a nice feature called [Result Output](/categories/result), which lets the user write query results directly into local data storage. They naturally support [PostgreSQL](result-into-postgresql), so we started using it right away. It works reliably, and has eliminated another problem from our data pipeline.
 
 ## Exceptional Support
-I believe that there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is its support. Every time we seek their support, we come away impressed with their deep technical expertise and dedication to ensuring their customers' success.
+I believe that there are two parts to any service: product and support. What's even more amazing than Treasure Data's product is their support. Every time we seek their support, we come away impressed with their deep technical expertise and dedication to ensuring their customers' success.
 
 At one point, we noticed that the data transfer from Treasure Data to our PostgreSQL was being done in batches of 1000 rows. As a result, our huge-result query was being imported rather slowly. Once Treasure Data's support team was contacted, they investigated the situation and promptly increased the batch size to 256KB, speeding up the import process significantly. Talk about thoughtful customer support.
 
