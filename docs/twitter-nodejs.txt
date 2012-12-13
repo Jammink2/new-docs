@@ -8,15 +8,15 @@ NOTE: We have <a href="nodejs">another article</a> that covers using Treasure Da
 
 ##Prerequisites
 
-* [Sign up](https://www.treasure-data.com/signup/) for Treasure Data and go through the [quickstart](quickstart) if you haven't done so yet.
-* Make sure you have `node` and `npm` installed on your machine.
-* You need to install td-agent (packaged version of [fluentd](http://fluentd.org)). [See here for how to install td-agent](td-agent)
+* [Sign up](https://www.treasure-data.com/signup/) for Treasure Data and go through the [Quickstart Guide](quickstart).
+* Install `node` and `npm` on your machine.
+* Install td-agent, the packaged version of [fluentd](http://fluentd.org) ([td-agent installation and usage guide](td-agent)).
 
 ##Configuring td-agent
 
-At this point, you should have td-command (`td`) installed on your machine ([You can download td-command from the toolbelt](http://toolbelt.treasure-data.com) page). Also, you should have td-agent set up.
+Having covered the prerequisites, you should already have the td-command (`td`) installed and set up on your machine (You can download the td-command from [the toolbelt page](http://toolbelt.treasure-data.com)).
 
-Now, let's configure td-agent to listen to port 24224 (This port number is arbitrary. But later code assumes this is the case). Open the td-agent configuration file (most likely in '/etc/td-agent/td-agent.conf') and edit it as follows:
+We will now configure td-agent to listen to port 24224 (This port number is arbitrary, but the sample code in this article assumes this port number). Edit the td-agent configuration file (found in '/etc/td-agent/td-agent.conf' by default) as shown below:
 
 	<match td.*.*>
 	  apikey YOUR_API_KEY
@@ -26,11 +26,11 @@ Now, let's configure td-agent to listen to port 24224 (This port number is arbit
 	  port 24224
 	  ...
 
-You can look up `YOUR_API_KEY` via td-command with `td apikey:show`.
+You can look up `YOUR_API_KEY` via the td-command by using `td apikey:show`.
 
 ##Getting ntwitter + fluent-logger-node
 
-You need two Node.js libraries: [ntwitter](https://github.com/AvianFlu/ntwitter) to grab tweets from Twitter's Stream API and [fluent-logger-node](https://github.com/yssk22/fluent-logger-node) to send data to td-agent/fluentd.
+You will need two Node.js libraries: [ntwitter](https://github.com/AvianFlu/ntwitter) to grab tweets from Twitter's Stream API and [fluent-logger-node](https://github.com/yssk22/fluent-logger-node) to send data to td-agent/fluentd.
 
 Here is what `package.json` should look like:
 
@@ -49,7 +49,7 @@ All you need to do now is run `npm install`.
 
 ##Streaming Tweets into Treasure Data
 
-Here is the code that searches for the keyword `javascript` on Twitter, grabs tweets, and streams them onto Treasure Data.
+The code shown below searches for the keyword `javascript` on Twitter, grabs the matching tweets, and streams them onto Treasure Data.
 
 	:::javascript
 	/*jslint indent: 4*/
@@ -78,11 +78,11 @@ Here is the code that searches for the keyword `javascript` on Twitter, grabs tw
 	    });
 	});
 
-For consumer_key/consumer_secret/access_token_key/access_token_secret, please use your own.
+For consumer_key/consumer_secret/access_token_key/access_token_secret, please use your own values.
 
-**That's it!** Soon, you start seeing data populated on Treasure Data. You can see your data either via command-line (ex: `td tables`) or a [browser console](https://console.treasure-data.com).
+**That's it!** You'll start seeing data populated on Treasure Data soon. You can view the data via the command-line (ex: `td tables`) or a [browser console](https://console.treasure-data.com).
 
-Here is an example query that returns the top 20 most retweeted Tweets:
+The example query below returns the top 20 most retweeted Tweets:
 
 	$ td query -w -d test_db '
 		SELECT
@@ -95,8 +95,8 @@ Here is an example query that returns the top 20 most retweeted Tweets:
 
 ##Next Steps
 
-[This article](nodejs) covers using Node.js with Treasure Data in general, including tips on how to set up Treasure Data for high availability.
+[The Node.js article](nodejs) explains how to use Node.js with Treasure Data in general. It also includes tips on how to set up Treasure Data for high availability.
 
 ##Acknowledgement
 
-We would like to thank [@cou929](http://twitter.com/cou929) for writing a blog post that inspired this article (for instance, the Node.js code snippet was taken from his blog entry with some additional comments).
+We would like to thank [@cou929](http://twitter.com/cou929) for writing the blog post that inspired this article (for instance, the Node.js code snippet was taken from his blog entry with some additional comments).
