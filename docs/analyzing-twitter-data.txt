@@ -1,10 +1,10 @@
 # Analyzing Twitter Data on the Cloud
 
-##What Does Twitter Data Tell Us About Hurricane Sandy?
+##What Can Twitter Data Tell Us About Hurricane Sandy?
 
 Social Media is an enormous source of information. For example, with more than 350 million Tweets per day, there is a lot of information to be mined. The question is: "where do you start?"
 
-As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States. We decided to collect Tweets with the word "Hurricane" into Treasure Data Cloud Data Warehouse, and asked a few questions.
+As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States in the fall of 2012. We decided to collect Tweets with the word "hurricane" into Treasure Data Cloud Data Warehouse, and asked a few questions.
 
 ## Prerequisites
 
@@ -33,11 +33,11 @@ You must first set up `td-agent` on your application servers. Please refer to th
 NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
 ##Step 2: Upload Tweets
-We assume that you have already downloaded td toolbelt and td-agent.
+We assume that you have already downloaded the td toolbelt and td-agent.
 
-We will be uploading Tweets to Treasure Data continuously via td-agent. Luckily, there is already a couple of input plugins for td-agent that already takes care of souping up Tweets.
+We will be uploading Tweets to Treasure Data continuously using td-agent. Luckily, there are already a couple of input plugins for td-agent that take care of collecting Tweets for us.
 
-For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream input plugin](https://gist.github.com/4004818). (Also, there is [fluent-plugin-twitter by y-ken](https://github.com/y-ken/fluent-plugin-twitter) who has contributed a number of useful plugins) Please put the file into the plugin directory `/etc/td-agent/plugin/`.
+For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream input plugin](https://gist.github.com/4004818) (There is also [fluent-plugin-twitter by y-ken](https://github.com/y-ken/fluent-plugin-twitter), who has contributed a number of useful plugins). Please put the file into the plugin directory `/etc/td-agent/plugin/`.
 
     :::term
     $ sudo /usr/lib/fluent/ruby/bin/fluent-gem install twitter
@@ -76,7 +76,7 @@ Here is our td-agent configuration file.
       use_ssl true
     </match>
 
-Note that we are tracking the word "hurricane" here. Now just remember to
+Note that we are tracking the word "hurricane" here. Now just remember to...
 
 1. make sure you have the twitterstream input plugin (`in_twitterstream.rb`) in your plugin path.
 2. make sure you have write access to YOUR_BUFFER_PATH.
@@ -84,11 +84,13 @@ Note that we are tracking the word "hurricane" here. Now just remember to
 
 ##Step 3: Analyze & Vizualize!
 
-Once td-agent is up and running, you can start querying the data immediately on Treasure Data (Note the 5-minute delay due to td-agent's buffering). Here, I would like to show some queries I ran. Note that all the schema have been added already to streamline queries ([here](schema) is more information about schema management on Treasure Data).
+Once td-agent is up and running, you can start querying the data immediately on Treasure Data (Note the 5-minute delay due to td-agent's buffering interval). 
+
+I would now like to show some queries I ran. Please note that all the schema have already been added to streamline queries (Please refer to the [Schema article](schema) to learn more about schema management on Treasure Data).
 
 ###Which Tweet was Retweeted the Most?
 
-This is probably the first question you would ask. Which Hurrican-related Tweet got the most number of eyeballs (at least by one metric)? Here is the query to get the top 10.
+This is probably the first question you would ask. Which Hurricane-related Tweet got the most number of eyeballs (at least by one metric)? Here is the query to get the top 10.
 
     :::term
     $ td query -w -d twitterstream \
@@ -110,7 +112,7 @@ This is probably the first question you would ask. Which Hurrican-related Tweet 
     | 10779 | RT @FillWerrell: Hurricane Sandy wouldn't be here if Patrick would've just stopped making fun of Texas.                                      |
     +-------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
-I suppose it is no surprise that Justin Bieber's Tweet has been retweeted most. What's curious is how this [Gangnam Style meme](http://memegenerator.net/instance/29199524) ranked the second. The Internet often associates two seemingly disparate entities in creative ways. This is all just for fun until your company or brand is one of the two entities: at that point, you want to identify the association quickly and act on it if it negatively positions your company or brand.
+I suppose it is no surprise that Justin Bieber's Tweet has been retweeted the most. What's curious is how this [Gangnam Style meme](http://memegenerator.net/instance/29199524) ranked second. The Internet often associates two seemingly disparate entities in creative ways. This is all just for fun until you find your company or brand as one of the two entities: at that point, you want to identify the association quickly and act on it if it negatively positions your company or brand.
 
 Here is another look at the Tweets. The following word cloud was generated based on the top 30 most popular bigrams. Font sizes are proportional to frequencies with some thresholding to make the layout look nicer.
 
@@ -141,13 +143,13 @@ Twitter has become an increasingly important marketing tool. One natural questio
 <div id="count-by-hour"></div>
 <br/>
 <br/>
-At first, there is nothing too surprising here: a gradual increase toward early afternoon, peaking at 2PM. However, note that Twitter has a global presence and people tweet from many timezones. Yet, it seems that this dataset's timezone dwarfs other timezones. Can you guess which timezone this is? Pacific Standard Time.
+At first glance, there is nothing too surprising here: a gradual increase toward early afternoon, peaking at 2PM. However, note that Twitter has a global presence and people tweet from many timezones. Yet this dataset suggests that one timezone dwarfs all other timezones. Can you guess which timezone this is? Pacific Standard Time.
 
-After all, this is not too surprising. PDT has Silicon Valley as well as Hollywood, two groups with a number of power Twitter users in them.
+In hindsight, this is not too surprising. PST includes both Silicon Valley and Hollywood, two groups with a large number of Twitter power users.
 
 
 ##Conclusion
-Social media provides valuable datasets, but the challenge is getting and analyzing data quickly. With Treasure Data and its versatile td-agent, you can get up and running with your social media analysis in a few hours, not a few weeks or months.
+Social media provides valuable datasets, but the challenge is in collecting and analyzing the data quickly. With Treasure Data and its versatile td-agent, you can get up and running with your social media analysis in a few hours, not weeks or months.
 
 <script src="http://d3js.org/d3.v2.min.js"></script>
 <script src="/javascripts/d3.layout.cloud.js"></script>
