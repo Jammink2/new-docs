@@ -4,27 +4,29 @@ This article explains how to use Treasure Data with [JasperReports Server](http:
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data. [Getting Started](quickstart) is a good place to start.
+  * Basic knowledge of Treasure Data, including our [Quickstart Guide](quickstart).
 
 ## Download JasperReports Server
 
-You can download JasperReports Server from the link below. For this article, we tested with JasperReports Server v4.7.0.
+You can download JasperReports Server from the link below. Version 4.7.0 was used for this article.
 
 * [JasperSoft Community's JasperReports Server](http://community.jaspersoft.com/project/jasperreports-server)
 
 ## Download the Treasure Data JDBC Driver
 
-You can download the driver itself from the link below. The driver is still in beta; feedback is appreciated.
+You can download the driver itself from the link below. The driver is still in beta; any feedback is appreciated.
 
 * [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
 
-NOTE: This driver is specifically for Treasure Data. It does not run in other environments such as your local Hadoop/Hive cluster.
+NOTE: This driver only works with Treasure Data. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
-## Register Treasure Data as Data Source in JasperReports Server
+## Add Treasure Data as Data Source
 
-### Step 1: Copy JDBC Driver Jar to Jasperserver Application.
+Let's add Treasure Data as Jasper's data source. Please follow the procedure below.
 
-First, copy Treasure Data JDBC driver to the JasperReports Server's jasperserver application before starting JasperReports Server.
+### Step 1: Copy JDBC Driver Jar to Jasperserver Application
+
+First, copy the Treasure Data JDBC driver to the JasperReports Server's jasperserver application before starting JasperReports Server.
 
     :::term
     $ cp td-jdbc-VERSION.jar \
@@ -32,15 +34,15 @@ First, copy Treasure Data JDBC driver to the JasperReports Server's jasperserver
 
 ### Step 2: Start JasperReports Server
 
-Start JasperReports Server like follows.
+Start JasperReports Server as shown below.
 
     :::term
     $ cd <jasper-server-install>
     $ ./ctlscript.sh start
 
-### Step 3: Login JasperReport Server as Administrators
+### Step 3: Log in to JasperReport Server as Administrator
 
-Administrators log into the standard login page, using the following default passwords:
+Administrators log in through the standard login page using the following default credentials:
 
 * Community edition: username jasperadmin and password jasperadmin
 * Commercial edition: username superuser and password superuser
@@ -55,13 +57,13 @@ Select `View > Repository`. Right-click `Data Sources` and select `Add Resource 
 
 ### Step 5: Configure your JDBC Connection
 
-Configure your JDBC parameters as shown below. You will be asked to enter your user name and password. Please use the credential on Treasure Data for these fields (User Name is the email address you've used to register on Treasure Data). Select `Test Connection` and `Submit` buttons. The data source is now registered on your JasperReports Server.
+Configure your JDBC parameters as shown below. When asked for your user name and password, please use your Treasure Data credentials (your user name is the email address you used to register on Treasure Data). Select `Test Connection` and then `Submit`. The data source is now registered on your JasperReports Server.
 
 <a href="/images/jasperserver-ds-config.png"><img src="/images/jasperserver-ds-config.png" width="100%"></a>
 
 ## Register Reports in JasperReports Server
 
-The rest of the steps are identical to how you would create and run reports with a JDBC source.
+The rest of the process is identical to how you would create and run reports with a JDBC source.
 
 ### Step 1: Register a New Query
 
@@ -71,23 +73,23 @@ Select `View > Repository`. Right-click `Input data Types` and select `Add Resou
 
 ### Step 2: Name the Query
 
-Name the query as follows. Hit the `Next` button.
+Name the query as shown below, then hit the `Next` button.
 
 <a href="/images/jasperserver-query-name.png"><img src="/images/jasperserver-query-name.png" width="100%"></a>
 
 ### Step 3: Link a Data Source to the Query
 
-Please select sample Treasure Data data source that you registered as follows. Hit the `Next` button.
+Please select the sample Treasure Data data source that you registered as shown below, then hit the `Next` button.
 
 <a href="/images/jasperserver-query-link-ds.png"><img src="/images/jasperserver-query-link-ds.png" width="100%"></a>
 
 ### Step 4: Define the Query
 
-Please define the query as follows. Hit the `Save` button. The query would be registered in JasperReports Server.
+Please define the query as shown below, then hit the `Save` button. The query will be registered in JasperReports Server.
 
 <a href="/images/jasperserver-query-define.png"><img src="/images/jasperserver-query-define.png" width="100%"></a>
 
-The above query is introduced in the article [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport).
+The query above is introduced in the [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport) article.
 
 ### Step5: Register a New Report
 
@@ -97,24 +99,24 @@ Select `View > Repository`. Right-click `Input data Types` and select `Add Resou
 
 ### Step 6: Set Up the Report
 
-Set up the report as shown in the following figure. Then, upload your JRXML file that was created in the article [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport).
+First, set up the report as shown in the figure below. Then, upload your JRXML file (the [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport) article explains how to create this file).
 
 <a href="/images/jasperserver-report-setup.png"><img src="/images/jasperserver-report-setup.png" width="100%"></a>
 
 ### Step 7: Link a Data Source to the Report
 
-Select sample Treasure Data data source that you registered as follows.
+Select the sample Treasure Data data source that you registered as shown below.
 
 <a href="/images/jasperserver-report-link-ds.png"><img src="/images/jasperserver-report-link-ds.png" width="100%"></a>
 
 ### Step 8: Locate Query
 
-Select the query that you registered as follows. Hit the `Submit` button. The report will be registered in JasperReports Server.
+Select the query that you registered as shown below, then hit the `Submit` button. The report will be registered in JasperReports Server.
 
 <a href="/images/jasperserver-report-select-query.png"><img src="/images/jasperserver-report-select-query.png" width="100%"></a>
 
 ## Run Reports in JasperReports Server
 
-Select `View > Repository`. When you select `Input data Types`, your registered report is displayed. Right-click it and select `Run` from the context menu.
+Select `View > Repository`. When you select `Input data Types`, you will see your registered report. Right-click it and select `Run` from the context menu.
 
 <a href="/images/jasperserver-report-run-report.png"><img src="/images/jasperserver-report-run-report.png" width="100%"></a>
