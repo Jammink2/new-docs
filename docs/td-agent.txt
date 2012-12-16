@@ -87,7 +87,7 @@ You can add logs in JSON format using HTTP.
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
-`td-agent` continuously uploads logs every minute. You can force `td-agent` to flush the buffered logs into the cloud by sending a SIGUSR1 signal.
+`td-agent` continuously uploads logs every 5 minutes. You can force `td-agent` to flush the buffered logs into the cloud by sending a SIGUSR1 signal.
 
     :::term
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
