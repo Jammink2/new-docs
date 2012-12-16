@@ -1,12 +1,12 @@
 # Bulk Import
 
-This article explains how to bulk-import data with the `td bulk_import` command.
+This article explains how to bulk-import data using the `td bulk_import` command.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
 
-## Three Categories of Import
+## Three Types of Data Import
 
 #### 1) Streaming Import
 
@@ -18,31 +18,31 @@ Importing huge amounts of data, which could cause a network transfer failure bet
 
 #### 3) One-Time Import
 
-If your data size is small (For example, the data fits in a single file), you can do [One-Time-Import](one-time-import) instead. This is easier since your data does not have to be the MessagePack format.
+If your data size is small (For example, the data fits in a single file), you can do an [One-Time-Import](one-time-import) instead. This is easier since your data does not have to be in MessagePack format.
 
 ## Why Bulk Import?
 
 Because Treasure Data is a cloud service, the data needs to be transferred via an Internet network connection. This can get tricky once the data size gets big (> 100MB). Consider a couple of cases:
 
-* If the network becomes unstable, the import could fail halfway through. There's no easy way to pick up from where you left off, and you need to restart the upload from the beggining.
-* Your company sometimes limits the bandwidth for transferring huge data with a single stream. Also, the limitations of the TCP/IP protocol make it difficult for applications to saturate a network connection.
+* If the network becomes unstable, the import could fail halfway through the data transfer. There's no easy way to pick up from where you left off, and you will need to restart the upload from scratch.
+* Your company sometimes has bandwidth limits for transferring huge data with a single stream. Also, the limitations of the TCP/IP protocol make it difficult for applications to saturate a network connection.
 
-To overcome these problems, we implemented the bulk import feature. You can now break your larger data sets into smaller chunks, and upload them *in parallel*. If the upload of a chunk fails, you can restart the upload just for that chunk. You'll be able to impove your overall upload speed by taking advantage of parallelism.
+We designed our bulk import feature to overcome these problems. You can now break your larger data sets into smaller chunks and upload them *in parallel*. If the upload of a particular chunk fails, you can restart the upload for that chunk only. This parallelism will improve your overall upload speed.
 
 ## Bulk Import Steps
 
 ### 1) Create a Session
 
-At first you need to create a `session`, which is a single instance containing multiple parts. One session is associated with one table.
+First create a `session` (a single instance containing multiple parts). One session is associated with one table.
 
     :::term
     $ td bulk_import:create bulk_2012 mydb mytable
 
 ### 2) Convert Your Data into Parts Files
 
-Assume you have CSV files in ./logs_201208/ directory. At first, you need to convert the files in ./logs_201208/*, into MessagePack.gz format (our internal format for efficient storage). To do this, please run the following commands:
+Let's say you have CSV files in the ./logs_201208/ directory. You will first need to convert these files into MessagePack.gz format (our internal format for efficient storage). To do this, please run the following commands:
 
-NOTE: Splitting the data into separate directory by month is recommended, but you can also split it by date if you have more than 1GB/day of data post-compression.
+NOTE: Splitting the data into separate directories by month is recommended. You can also split it by date if you have more than 1GB/day of data post-compression.
 
     :::term
     $ td bulk_import:prepare_parts ./logs_201208/*.csv \
@@ -50,7 +50,7 @@ NOTE: Splitting the data into separate directory by month is recommended, but yo
         --columns time,uid,price,count --time-column 'time' \
         -o ./parts_201208/
 
-If you have a column name at the first line, please use --column-header option.
+If your files include column names in the first line, please use the --column-header option.
 
     :::term
     $ td bulk_import:prepare_parts ./logs_201208/*.csv \
@@ -59,7 +59,7 @@ If you have a column name at the first line, please use --column-header option.
         --time-column 'time' \
         -o ./parts_201208/
 
-We supports csv, tsv, and json for --format option. Here're the examples.
+We support csv, tsv, and json formats for the --format option. Here are the remaining examples.
 
     :::term
     # TSV
@@ -77,12 +77,12 @@ We supports csv, tsv, and json for --format option. Here're the examples.
 
 ### 2) Upload a Part to the Session
 
-Then, you can upload the `parts` directory into the session.
+You can now upload the `parts` directory into the session.
 
     :::term
     $ td bulk_import:upload_parts bulk_2012 ./parts_201208/*
 
-If the upload failed in halfway through, you can retry any time. No data duplication occurs.
+If the upload fails, you can retry any time. No data duplication occurs.
 
     $ td bulk_import:upload_parts bulk_2012 ./parts_201208/*
 
@@ -93,14 +93,14 @@ You can import multiple parts within a single session.
     $ td bulk_import:upload_parts bulk_2012 ./parts_201205/*
     ...
 
-Now, let's list the uploaded parts by `bulk_import:show`.
+The uploaded parts can be viewed using `bulk_import:show`.
 
     :::term
     $ td bulk_import:show bulk_2012
 
 ### 3) Perform
 
-`bulk_import:perform` does a format conversion on our cloud. Your data is converted into a more efficient format (This is why it takes a bit of time!). The conversion is done in parallel by executing MapReduce jobs.
+The `bulk_import:perform` command converts the uploaded files into a more efficient format on the cloud (This is why it takes a bit of time!). The files are converted in parallel by executing MapReduce jobs.
 
     :::term
     $ td bulk_import:freeze bulk_2012
@@ -114,14 +114,14 @@ Now, let's list the uploaded parts by `bulk_import:show`.
 
 ### 4) Check Error Records
 
-After `perform`, some records could be invalid. You can list these invalid records by `bulk_import:error_records`.
+After running the `perform` command, some records could become invalid. You can list these invalid records with the `bulk_import:error_records` command.
 
     :::term
     $ td bulk_import:error_records bulk_2012
 
 ### 5) Commit
 
-If the uploaded data is correct, `bulk_import:commit` command will transactionally import the data into the table.
+Once you have confirmed that the uploaded data is correct, use the `bulk_import:commit` command to transactionally import the data into the table.
 
     :::term
     $ td bulk_import:commit bulk_2012
