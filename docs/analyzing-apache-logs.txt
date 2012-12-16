@@ -1,8 +1,8 @@
 # Analyzing Apache Logs on the Cloud
 
-[Treasure Data](http://treasure-data.com/), the Hadoop-based Cloud Datawarehouse, enables you to analyze apache logs on the cloud. You can forget about server, and storages. Focus 100% on Apache logs anaytics at a scale.
+With [Treasure Data](http://treasure-data.com/), you can analyze apache logs on the cloud. You can forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
 
-This article explains how to import Apache logs with `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
+This article explains how to import Apache logs using `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ This article explains how to import Apache logs with `td-agent`. The basic idea 
 
 `td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
 
-When a user accesses an Apache web server, the web server appends a corresponding entry to the access log (typically located at */var/log/apache2/access_log*). `td-agent` continuously "tails" the access log, identifying the newly created entries.
+When a user accesses an Apache web server, the web server appends a corresponding entry to the access log file (typically located at */var/log/apache2/access_log*). `td-agent` continuously "tails" the access log, identifying the newly created entries.
 
 `td-agent` automatically parses the new log entries to create meaningful data fields. The data is compressed and uploaded to the cloud periodically.
 
@@ -43,7 +43,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">flu
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-In order to import Apache logs with `td-agent`, you need to add the following lines to your `td-agent.conf` file. Note that you need to specify the database and table names using the `tag` parameter.
+In order to import Apache logs with `td-agent`, first add the following lines to your `td-agent.conf` file. Please note that the database and table names must be specified using the `tag` parameter.
 
     :::text
     # tail apache access_log
@@ -54,11 +54,11 @@ In order to import Apache logs with `td-agent`, you need to add the following li
       tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
     </source>
 
-NOTE: On Redhat based systems, you might need to change the directory permission by: `chmod g+rx /var/log/httpd`.
+NOTE: On Redhat based systems, you might need to change the directory permission with `chmod g+rx /var/log/httpd`.
 
 For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
-Next, you specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
+Next, specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
 
 NOTE: You must first authenticate your account using the `td account` command.
 
@@ -90,13 +90,13 @@ Now, restart `td-agent` to reflect the above changes.
 
 ## Confirming Import
 
-Sending a SIGUSR1 signal flushes td-agent's buffer and the data gets uploaded to the cloud immediately (as opposed to the usual 5 minute intervals).
+`td-agent` continuously uploads logs every 5 minutes. You can force `td-agent` to flush the buffered logs into the cloud by sending a SIGUSR1 signal.
 
     :::term
     $ curl http://127.0.0.1/
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-You can confirm that data is getting uploaded successfully with the `td tables` command, which shows you how many rows have been saved on the cloud (the "Cloud" column).
+You can confirm that data is getting uploaded successfully with the `td tables` command, which shows you how many rows have been saved on the cloud (the "Count" column).
 
     :::term
     $ td tables
@@ -108,7 +108,7 @@ You can confirm that data is getting uploaded successfully with the `td tables` 
 
 ## Sample Queries
 
-Those are the sample queries to calculate the interesting results.
+Here are a few sample queries that calculate some interesting results.
 
 ### Top User Agents
 
@@ -146,7 +146,7 @@ Those are the sample queries to calculate the interesting results.
 
 ### Top Referers within a Specific Day
 
-Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is easy and performs well. See [Performance Tuning](performance-tuning).
+Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is efficient and simple to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
 
     :::term
     $ td query -w -d testdb \
