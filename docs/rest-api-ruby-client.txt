@@ -46,7 +46,7 @@ The example below issues a query from a Ruby program. The query API is asynchron
       sleep 2
       job.update_status!
     end
-    job.result_each { |row| p row } job.success?
+    job.result_each { |row| p row }
 
 NOTE: job.result_each(&block) does not put the job result into memory. It iterates through the rows in a streaming fashion.
 
