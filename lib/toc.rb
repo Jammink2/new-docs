@@ -50,7 +50,7 @@ section 'languages-and-middlewares', 'Languages' do
   end
 end
 
-section 'Usecases', 'Usecases' do
+section 'Usecases', 'How to...' do
   category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
   end
