@@ -1,12 +1,14 @@
 # Start Analyzing Billions of Records within 2 Weeks
 
+## What's MobFox?
+
 MobFox is an european mobile advertising network, looking to allow publishers to more effectively monetize their european traffic on iPhone, Android, Blackberry Applications and mobile websites.
 
 MobFox currently serves ads to european users on more than 500 mobile applications and helps developers earn more from their european traffic by combining multiple ad networks.
 
 Serving orver 20 billion impressions / month, MobFox's data needs have also grown rapidly and become increasingly more sophisticated. At MobFox, immediate action was required to handle rapidly growing dataset. 
 
-## Solution: Treasure Data
+## Two Weeks with Treasure Data
 
 When I, Julian (CEO & Founder), first looked at Treasure Data, immediately realized that this was the solution we had been looking for. After passing the short tutorial, I've implemented data analytics system within 2 weeks. Here's how.
 
