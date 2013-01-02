@@ -6,25 +6,25 @@ MobFox currently serves ads to european users on more than 500 mobile applicatio
 
 Serving orver 20 billion impressions / month, MobFox's data needs have also grown rapidly and become increasingly more sophisticated. At MobFox, immediate action was required to handle rapidly growing dataset. 
 
-# Solution: Treasure Data
+## Solution: Treasure Data
 
 When I, Julian (CEO & Founder), first looked at Treasure Data, immediately realized that this was the solution we had been looking for. After passing the short tutorial, I've implemented data analytics system within 2 weeks. Here's how.
 
-## Week 1: Installing td-agent
+### Week 1: Installing td-agent
 
 Our ads are served by tons of application servers, and I don't want to change the existing infrastructure a lot. Therefore we've prepared five td-agent nodes on SoftLayer, which accept events from HTTP. The event is distributed by SoftLayer's load balancer.
 
 Then, by inserting one HTTP access to the application codes, the impression logs were immediately uploaded into Treasure Data. We've gradually rolled out the changes into production, and it worked perfectly.
 
-## Week 2: Replacing report backend
+### Week 2: Replacing report backend
 
 After having robust data collection pipeline, we've started query against that data. The query is issued within every 10 minutes to generate realtime reports. The query result is written into local RDBMS and the reporting dashboard accesses that DB for fast querying. Treasure Data's REST API is simple enough to implement this within a few days.
 
-# Exceptional Support
+## Exceptional Support
 
 During that two weeks, Treasure Data engineers helped us a lot by email and even at realtime chat. I would like to say what’s even more amazing than Treasure Data’s product is their support. Every time we seek their support, we come away impressed with their deep technical expertise and dedication to ensuring their customers' success.
 
-# Conclusion
+## Conclusion
 
 With Treasure Data, MobFox built robust analytics infrastructure, from data collection to data analytics within only two weeks. Considering our data volume (20 billion records / month), it would take almost several months or even a year by on-premise solutions. Treasure Data brings us a business speed.
 
