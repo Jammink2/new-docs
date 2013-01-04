@@ -1,5 +1,9 @@
 # Success Story at ContextLogic
 
+<div class="success-story-pull-quote">
+"Treasure Data was our solution, and I strongly recommend it to you as well."
+</div>
+
 This article is written by Danny Zhang, a cofounder of [ContextLogic](http://www.contextlogic.com/). [Backed by notable investors](http://www.crunchbase.com/company/contextlogic), ContextLogic brings together top technical talent from Google, Facebook, and Yahoo!.
 
 ## Wish: Facebook App with Millions of Active Users

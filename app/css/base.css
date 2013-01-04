@@ -1091,6 +1091,15 @@ del.differ, del.differ * {
 }
 
 /* Success Story Signature */
+div.success-story-pull-quote {
+  width: 80%;
+  margin: 30px auto;
+  font-family: helvetica;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 1.6em;
+  line-height: 130%;
+}
 
 div.success-story-signature {
   text-align: right;

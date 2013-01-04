@@ -1,5 +1,9 @@
 #Treasure Data at Splurgy: Simple and Flexible Data Analytics
 
+<div class="success-story-pull-quote">
+"Treasure Data offered the right balance of flexibility...and abstraction"
+</div>
+
 ##What's Splurgy?
 
 <img src="http://www.treasure-data.com/images/logo-splurgy.png" width="400px"/>

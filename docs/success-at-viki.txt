@@ -1,5 +1,9 @@
 # Success Story at Viki.com
 
+<div class="success-story-pull-quote">
+"[Treasure Data has] always given us thorough and timely support peppered with insightful tips to make the best use of their service."
+</div>
+
 ## Viki: a Global Online Video Service
 [Viki](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite TV shows, movies, sporting events, and more. What really sets us apart is our international viewership: our content is available in over 150 languages, all translated by our user community.
 

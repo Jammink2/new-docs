@@ -1,5 +1,9 @@
 # Success Story at Cookpad
 
+<div class="success-story-pull-quote">
+"Treasure Data is Cookpad.com’s recipe for future success."
+</div>
+
 [Cookpad.com](http://info.cookpad.com/en/service) ([TYO:2193](http://www.marketwatch.com/investing/stock/2193?countrycode=jp)) is Japan's No.1 recipe website. With more than fifteen million users and one million online recipes, Cookpad.com dominates the market of recipe search and sharing. In fact, according to Cookpad.com’s internal research, 50% of Japanese women in their 20s and 30s use Cookpad.com as their primary source of recipes and cooking advice.
 
 <center><a href="http://info.cookpad.com/en/service"><img src="/images/cookpad-logo.gif" width="60%"></a></center><br /><br />
