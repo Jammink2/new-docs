@@ -1,6 +1,6 @@
 # Using Node.js Client for REST API
 
-This article will explain how to use Node.js bindings for REST API.
+This article will explain how to use Node.js bindings for REST API.  Note: this module is still under active development, some REST API bindings are not yet implemented.
 
 ## Prerequisites
 
