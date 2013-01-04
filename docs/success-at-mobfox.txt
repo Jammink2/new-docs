@@ -8,7 +8,7 @@
 
 <center><a target="_blank" href="http://www.mobfox.com/"><img src="/images/mobfox-logo.png" width="30%"></a></center><br /><br />
 
-Mobfox serves mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than **20 billion ad impressions every month**. The ads are served on more than 500 applications running on iPhone, Android, Blackberry, etc.
+MobFox serves mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than **20 billion ad impressions every month**. The ads are served on more than 500 applications running on iPhone, Android, Blackberry, etc.
 
 ## Two Weeks with Treasure Data
 
