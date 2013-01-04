@@ -1,8 +1,12 @@
 # Start Analyzing Billions of Records within 2 Weeks
 
+<div class="success-story-pull-quote">
+"Time is the most precious asset in our fast-moving business, and Treasure Data saved us a lot of it."
+</div>
+
 ## What's MobFox?
 
-MobFox is one of the world's fastest-growing independent mobile advertising networks. Headquartered in Vienna, Austria, we deliver **over 20 billion monthly ad-impressions** with our core products that serve ads on more than 500 applications running on iPhone, Android, Blackberry, etc.
+[MobFox](http://www.mobfox.com/) is one of the world's fastest-growing independent mobile advertising networks. Headquartered in Vienna, Austria, we deliver **over 20 billion monthly ad-impressions** with our core products that serve ads on more than 500 applications running on iPhone, Android, Blackberry, etc.
 
 <center><a target="_blank" href="http://www.mobfox.com/"><img src="/images/mobfox-logo.png" width="30%"></a></center><br /><br />
 
