@@ -23,7 +23,7 @@ The example below lists your databases.
 
     :::javascript
     var TD = require('td');
-    var client = new TD('b32fa18a25c7ac85187386500171fe557479038b');
+    var client = new TD('TREASURE_DATA_API_KEY');
 
     client.listDatabases(function(err, results) {
         console.log(results);
