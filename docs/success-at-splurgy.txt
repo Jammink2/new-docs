@@ -1,14 +1,12 @@
 #Treasure Data at Splurgy: Simple and Flexible Data Analytics
 
 <div class="success-story-pull-quote">
-"Treasure Data offered the right balance of flexibility...and abstraction"
+"Treasure Data offered the right balance of flexibility...and abstraction" - Michi Kono, co-founder
 </div>
 
-##What's Splurgy?
+[Splurgy](http://splurgy.com), a San Francisco-based start-up, is a social marketing platform where brands reward loyal customers with incentives in exchange for social engagements -- on your website (rather than your Facebook page).
 
 <center><a target="_blank" href="http://www.splurgy.com/"><img src="/images/splurgy-logo.png" width="40%"></a></center><br /><br />
-
-[Splurgy](http://splurgy.com), a San Francisco-based start-up, is a social marketing platform where brands reward loyal customers with incentives in exchange for social engagements -- on your website (rather than your Facebook page).
 
 ##Treasure Data for Both Ad-hoc Analysis and Reporting
 

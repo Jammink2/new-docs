@@ -1,13 +1,14 @@
 # Success Story at Viki.com
 
 <div class="success-story-pull-quote">
-"[Treasure Data has] always given us thorough and timely support peppered with insightful tips to make the best use of their service."
+"[Treasure Data has] always given us thorough and timely support peppered with insightful tips to make the best use of their service." - Huy Nguyen, Software Engineer
 </div>
 
-## Viki: a Global Online Video Service
-[Viki](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite TV shows, movies, sporting events, and more. What really sets us apart is our international viewership: our content is available in over 150 languages, all translated by our user community.
+[Viki.com](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite TV shows, movies, sporting events, and more.
 
 <center><a target="_blank" href="http://www.viki.com/"><img src="/images/viki-logo.png" width="20%"></a></center><br /><br />
+
+What really sets us apart is our international viewership: our content is available in over 150 languages, all translated by our user community.
 
 The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds of data and analyze it to guide our product decisions. As our service grew in scale, Treasure Data helped solve our growing pains.
 

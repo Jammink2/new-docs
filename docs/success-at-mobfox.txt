@@ -1,18 +1,18 @@
-# Start Analyzing Billions of Records within 2 Weeks
+# Success at Mobfox
 
 <div class="success-story-pull-quote">
-"Time is the most precious asset in our fast-moving business, and Treasure Data saved us a lot of it."
+"Time is the most precious asset in our fast-moving business, and Treasure Data saved us a lot of it." - Julian Zehetmayr, CEO & Founder
 </div>
 
-## What's MobFox?
-
-[MobFox](http://www.mobfox.com/) is by far the largest mobile advertising network in Europe, and one of the 10 largest networks worldwide. We serve mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than **20 billion ad impressions every month**. Mobfox serves ads on more than 500 applications running on iPhone, Android, Blackberry, etc.
+[MobFox](http://www.mobfox.com/) is by far the largest mobile advertising network in Europe, and one of the 10 largest networks worldwide.
 
 <center><a target="_blank" href="http://www.mobfox.com/"><img src="/images/mobfox-logo.png" width="30%"></a></center><br /><br />
 
+Mobfox serves mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than **20 billion ad impressions every month**. The ads are served on more than 500 applications running on iPhone, Android, Blackberry, etc.
+
 ## Two Weeks with Treasure Data
 
-At first glance, I immediately knew that Treasure Data was _exactly_ what I was looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took me less than two weeks to integrate Treasure Data into MobFox. I will walk you through how I did this.
+At first glance, I, Julian, immediately knew that Treasure Data was _exactly_ what I was looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took me less than two weeks to integrate Treasure Data into MobFox. I will walk you through how I did this.
 
 <center><img src="/images/mobfox-after.png" width="100%" /></center><br /><br />
 
