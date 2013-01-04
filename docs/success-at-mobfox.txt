@@ -4,9 +4,13 @@
 
 MobFox is one of the world's fastest-growing independent mobile advertising networks. Headquartered in Vienna, Austria, we deliver **over 20 billion monthly ad-impressions** with our core products that serve ads on more than 500 applications running on iPhone, Android, Blackberry, etc.
 
+<center><a target="_blank" href="http://www.mobfox.com/"><img src="/images/mobfox-logo.png" width="30%"></a></center><br /><br />
+
 ## Two Weeks with Treasure Data
 
 At first glance, I immediately knew that Treasure Data was _exactly_ what I was looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took me less than two weeks to integrate Treasure Data into MobFox. I will walk you through how I did this.
+
+<center><img src="/images/mobfox-after.png" width="100%" /></center><br /><br />
 
 ### Week 1: Installing td-agent
 

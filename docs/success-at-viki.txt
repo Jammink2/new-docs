@@ -7,7 +7,7 @@
 ## Viki: a Global Online Video Service
 [Viki](http://www.viki.com/) is a global online video service that lets millions of people watch their favorite TV shows, movies, sporting events, and more. What really sets us apart is our international viewership: our content is available in over 150 languages, all translated by our user community.
 
-<center><a href="http://www.viki.com/"><img src="/images/viki-logo.png" width="20%"></a></center><br /><br />
+<center><a target="_blank" href="http://www.viki.com/"><img src="/images/viki-logo.png" width="20%"></a></center><br /><br />
 
 The key to Viki's rapid growth? Exhaustive data analytics. We collect all kinds of data and analyze it to guide our product decisions. As our service grew in scale, Treasure Data helped solve our growing pains.
 
