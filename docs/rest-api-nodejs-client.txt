@@ -1,0 +1,30 @@
+# Using Node.js Client for REST API
+
+This article will explain how to use Node.js bindings for REST API.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
+  * Basic knowledge of our [query language](hive).
+
+## Installation
+
+The module is published in NPM.  Please add the following line to your packages.json.
+
+    :::javascript
+    "td": ">=0.1.0"
+
+The source code is [available at github](https://github.com/treasure-data/td-client-node).
+
+## List Databases
+
+The example below lists your databases.
+
+    :::javascript
+    var TD = require('td');
+    var client = new TD('b32fa18a25c7ac85187386500171fe557479038b');
+
+    client.listDatabases(function(err, results) {
+        console.log(results);
+    });
