@@ -6,7 +6,7 @@
 
 ## What's MobFox?
 
-[MobFox](http://www.mobfox.com/) is by far the largest mobile advertising network in Europe, and one of the 10 largest networks worldwide. We serve mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than 20 billion ad impressions every month. Mobfox serves ads on more than 500 applications running on iPhone, Android, Blackberry, etc.
+[MobFox](http://www.mobfox.com/) is by far the largest mobile advertising network in Europe, and one of the 10 largest networks worldwide. We serve mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than **20 billion ad impressions every month**. Mobfox serves ads on more than 500 applications running on iPhone, Android, Blackberry, etc.
 
 <center><a target="_blank" href="http://www.mobfox.com/"><img src="/images/mobfox-logo.png" width="30%"></a></center><br /><br />
 
