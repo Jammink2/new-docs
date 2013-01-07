@@ -17,14 +17,65 @@ The module is published in NPM.  Please add the following line to your packages.
 
 The source code is [available at github](https://github.com/treasure-data/td-client-node).
 
-## List Databases
+## List Databases and Tables
 
-The example below lists your databases.
+The example below prints out to console all your tables.
 
     :::javascript
     var TD = require('td');
     var client = new TD('TREASURE_DATA_API_KEY');
 
     client.listDatabases(function(err, results) {
+      var i;
+      var fnPrint = function(err, results) {
         console.log(results);
+      };
+        
+      if (err || !results.databases) {
+        return;
+      }
+
+      for (i = 0; i < results.databases.length; i++) {
+        client.listTables(results.databases[i].name, fnPrint);
+      } 
     });
+
+## Issue Queries
+
+The example below issues a query from Node.js. After issuing the query, a job_id field is printed out.  This can be used to query the results
+
+    :::javascript
+    var TD = require('td');
+    var client = new TD('TREASURE_DATA_API_KEY');
+
+    client.hiveQuery('testdb', "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']", function(err, results) {
+      console.log(results);
+    });
+
+
+## List and Get the Status of Jobs
+
+The example below lists and gets the status of jobs.
+
+    :::javascript
+    var TD = require('td');
+    var client = new TD('TREASURE_DATA_API_KEY');
+    
+    var fnPrint = function(err, results) {
+      console.log(results);
+    };
+
+    // list recent 20 jobs
+    client.listJobs(fnPrint);
+    
+    // recent 127 jobs of specific status
+    client.listJobs(0, 127, 'running', fnPrint);
+    client.listJobs(0, 127, 'success', fnPrint);
+    client.listJobs(0, 127, 'error', fnPrint);
+    client.listJobs(0, 127, 'error', fnPrint);
+    
+    // get job status
+    client.showJob(job_id, fnPrint);
+    
+    // get job result
+    client.jobResult(job_id, fnPrint);
