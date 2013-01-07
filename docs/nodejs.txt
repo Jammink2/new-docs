@@ -1,6 +1,6 @@
 # Data Import from Node.js Applications
 
-'[fluent-logger-node](https://github.com/yssk22/fluent-logger-node)', a 3rd party library, is used to import data from Node.js applications to Treasure Data. 
+'[fluent-logger-node](https://github.com/fluent/fluent-logger-node)', a 3rd party library, is used to import data from Node.js applications to Treasure Data. 
 
 This article explains how to use the fluent-logger-node library.
 
