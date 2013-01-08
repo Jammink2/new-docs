@@ -36,7 +36,7 @@ During those two weeks, Treasure Data engineers were **incredibly helpful**.
 
 Whenever we emailed, Skyped or Olark-powered-chatted with them, they responded to our questions quickly and thoroughly, boosting our confidence in their service.
 
-To me, Treasure Data is essentially our Big Data operations team: we just store and analyze data, and they take care of everything else. And I must admit that it is one dependable and smart team to have =)
+To me, Treasure Data is essentially our Big Data operations team: we just store and analyze data, and they take care of everything else. And I must admit that it is one dependable and smart team to have.
 
 ## Conclusion
 
