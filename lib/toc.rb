@@ -12,6 +12,7 @@ section 'overview', 'Overview' do
     article 'open-source', 'Open Source'
   end
   category 'success-stories', 'Success Stories' do
+    article 'success-at-mobfox', "MobFox - Europe's Largest Mobile Network"
     article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
     article 'success-at-cookpad', 'Cookpad - Japan’s No.1 Recipe Sharing Site'
     article 'success-at-splurgy', 'Splurgy - Social Marketing Platform'
