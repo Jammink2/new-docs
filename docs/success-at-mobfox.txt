@@ -12,17 +12,17 @@ MobFox serves mobile display & mobile video ads to every corner in the world and
 
 ## Two Weeks with Treasure Data
 
-At first glance, I, Julian, immediately knew that Treasure Data was _exactly_ what I was looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took me less than two weeks to integrate Treasure Data into MobFox. I will walk you through how I did this.
+At first glance, we immediately knew that Treasure Data was _exactly_ what we were looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took us less than two weeks to integrate Treasure Data into MobFox. I will walk you through how we did this.
 
 <center><img src="/images/mobfox-after.png" width="100%" /></center><br /><br />
 
 ### Week 1: Installing td-agent
 
-We serve ads from a number of application servers around the clock, and these servers are the lifeblood of our operations. Therefore, I preferred to change as little as possible to integrate Treasure Data into our system (and you will soon see how little change was needed!)
+We serve ads from a number of application servers around the clock, and these servers are the lifeblood of our operations. Therefore, we preferred to change as little as possible to integrate Treasure Data into our system (and you will soon see how little change was needed!)
 
-First, I provisioned five td-agent nodes on SoftLayer to accept events via HTTP (we use SoftLayer's load balancer to distribute HTTP requests evenly among the five td-agents).
+First, we provisioned five td-agent nodes on SoftLayer to accept events via HTTP (we use SoftLayer's load balancer to distribute HTTP requests evenly among the five td-agents).
 
-Then, I just had to add a couple of lines to our application code to start logging ad impression events into Treasure Data via [td-agent](td-agent). We rolled out this change gradually, and everything went perfectly smoothly.
+Then, we just had to add a couple of lines to our application code to start logging ad impression events into Treasure Data via [td-agent](td-agent). We rolled out this change gradually, and everything went perfectly smoothly.
 
 ### Week 2: Replacing the report backend
 
@@ -36,7 +36,7 @@ During those two weeks, Treasure Data engineers were **incredibly helpful**.
 
 Whenever we emailed, Skyped or Olark-powered-chatted with them, they responded to our questions quickly and thoroughly, boosting our confidence in their service.
 
-To me, Treasure Data is essentially our Big Data operations team: we just store and analyze data, and they take care of everything else. And I must admit that it is one dependable and smart team to have.
+Treasure Data is essentially our Big Data operations team: we just store and analyze data, and they take care of everything else. And I must admit that it is one dependable and smart team to have.
 
 ## Conclusion
 
