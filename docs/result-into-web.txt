@@ -11,20 +11,30 @@ This article explains how to send job results directly to your web server.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent via a PUT request to the domain, port, and path specified.  The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).
-
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent via a PUT request to the URL specified.  
     :::term
     $ td query
-      -r 'web://user:pass@domain.com:80/path' \
+      -r 'web://domain.com/path' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
+Here is another example URL.  Note that basic HTTP authentication is supported, and you can optionally specify a port.
+
+    :::text
+    web://user:pass@domain.com:8080/path1/path2
+
+The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  The following is a sample output of what the above query might produce.
+    :::json
+    { column_names: [ '_c0', '_c1' ],
+      column_types: [ 'string', 'long' ],
+      data: [ [ '200', 4981 ], [ '500', 2 ], [ '404', 17 ] ] }
 
 ### For Scheduled Jobs
 
 For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same fashion as described previously.
 
     :::term
-    $ td result:create myweb web://user:pass@domain.com:80/
+    $ td result:create myweb web://domain.com/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       -r myweb:path \
