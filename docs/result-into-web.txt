@@ -15,7 +15,7 @@ For on-demand jobs, just add the `-r` option to the `td query` command. After th
 
     :::term
     $ td query
-      -r 'web://domain.com:80/path' \
+      -r 'web://user:pass@domain.com:80/path' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
@@ -24,7 +24,7 @@ For on-demand jobs, just add the `-r` option to the `td query` command. After th
 For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same fashion as described previously.
 
     :::term
-    $ td result:create myweb web://domain.com:80/
+    $ td result:create myweb web://user:pass@domain.com:80/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       -r myweb:path \
