@@ -36,7 +36,7 @@ Shown below is a screenshot of the result.
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are written into `mytbl`.
+For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are written into `sample_worksheet`.
 
     :::term
     $ td result:create mygss td://user:password@domain.com/sample_spreadsheet

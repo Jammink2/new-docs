@@ -1,0 +1,31 @@
+# Sending Query Results to Web Server
+
+This article explains how to send job results directly to your web server.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * A web server that that accepts a PUT request
+
+## Basic Usage
+
+### For On-demand Jobs
+
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent via a PUT request to the domain, port, and path specified.  The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).
+
+    :::term
+    $ td query
+      -r 'web://domain.com:80/path' \
+      -w -d testdb \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
+### For Scheduled Jobs
+
+For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same fashion as described previously.
+
+    :::term
+    $ td result:create myweb web://domain.com:80/
+    $ td sched:create hourly_count_example "0 * * * *" \
+      -d testdb \
+      -r myweb:path \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"

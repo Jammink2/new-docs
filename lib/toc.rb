@@ -99,6 +99,7 @@ section 'reference', 'Reference' do
     article 'result-into-mysql', 'Writing the Job Result into your MySQL'
     article 'result-into-postgresql', 'Writing the Job Result into your PostgreSQL'
     article 'result-into-google-spreadsheet', 'Writing the Job Result into Google SpreadSheet'
+    article 'result-into-web', 'Sending the Job Result to Web Server'
     # article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'
     # article 'result-into-redis', 'Writing the Job Result into your Redis'
     # article 'result-into-riak', 'Writing the Job Result into your Riak'
