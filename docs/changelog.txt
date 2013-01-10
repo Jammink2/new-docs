@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Jan 10, 2013: Added result output to web server
+
+Now you can [send your query result to a web server](result-into-web).
+
 ## Oct 16, 2012: td v0.10.56
 
 td v0.10.56 is released to allow users to download huge query result, and added compression support for the data transfer. We've also updated Windows and MacOS X [toolbelt](http://toolbelt.treasure-data.com/).

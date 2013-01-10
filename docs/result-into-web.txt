@@ -5,7 +5,7 @@ This article explains how to send job results directly to your web server.
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A web server that that accepts a PUT request
+  * A web server configured to accept the results in the form of PUT requests
 
 ## Basic Usage
 
