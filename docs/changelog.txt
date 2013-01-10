@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Jan 10, 2013: Added TD_LAST and TD_FIRST UDFs
+
+Now you can use [TD_LAST](udfs#tdlast) and [TD_FIRST](udfs#tdfirst) UDFs which make your analytic queries simple.
+
 ## Jan 10, 2013: Added result output to web server
 
 Now you can [send your query result to a web server](result-into-web).
