@@ -124,6 +124,42 @@ This UDF returns the exact time when the job was scheduled by the [scheduled que
 
 If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with TD_TIME_ADD for incremental aggregation.
 
+## TD_LAST()
+
+### Signature
+
+    :::term
+    TD_LAST(ret_col, cmp_col1, cmp_col2, ...)
+
+### Description
+
+This aggregate UDF returns a value of a row whose another column (or other columns) is the largest in a group.
+
+### Example
+
+This example selects an URL of the latest access log (a row which has the largest time) for each user.
+
+    :::sql
+    SELECT user, TD_LAST(url, time) AS last_url FROM access_logs GROUP BY user
+
+## TD_FIRST()
+
+### Signature
+
+    :::term
+    TD_FIRST(ret_col, cmp_col1, cmp_col2, ...)
+
+### Description
+
+This aggregate UDF returns a value of a row whose another column (or other columns) is the smallest in a group.
+
+### Example
+
+This example selects a referer URL of the first access log (a row which has the smallest time) for each page_id.
+
+    :::sql
+    SELECT page_id, TD_FIRST(referer, time) AS first_referer FROM access_logs GROUP BY page_id
+
 ## TD_X_RANK()
 
 ### Signature
