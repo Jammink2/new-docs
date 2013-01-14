@@ -4,7 +4,7 @@
 
 Social Media is an enormous source of information. For example, with more than 350 million Tweets per day, there is a lot of information to be mined. The question is: "where do you start?"
 
-As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States in the fall of 2012. We decided to collect Tweets with the word "hurricane" into Treasure Data Cloud Data Warehouse, and asked a few questions.
+As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast of the United States in the fall of 2012. We decided to collect Tweets with the word "hurricane" into Treasure Data, and asked a few questions.
 
 ## Prerequisites
 

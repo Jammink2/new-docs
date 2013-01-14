@@ -3,7 +3,7 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is a **Cloud Data Warehousing Service**, based on our own extensions of *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud.
+Treasure Data is a **Big Data as-a-Service**, based on *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud.
 
 <p><center><img src="/images/td_high_level_overview.png" width="500px" /></center></p>
 <br />

@@ -1,7 +1,7 @@
 Quickstart Guide
 ================
 
-Let's get started with Treasure Data! Treasure Data is a Hadoop-based **Cloud Data Warehousing** service. Forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
+Let's get started with Treasure Data! Treasure Data is a Hadoop-based **Big Data as-a-Service** service. Forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
 
 Step 1: Sign-Up
 ---------------

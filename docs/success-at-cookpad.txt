@@ -40,7 +40,7 @@ By introducing Treasure Data [1], Cookpad.com transformed their infrastructure i
 
 <center><img src="/images/cookpad-after.png" width="90%" /></center><br /><br />
 
-* **Treasure Data's Cloud Data Warehouse replaced the cluster of MySQL servers**. Cookpad.com now runs scheduled jobs on Treasure Data that update the MySQL aggregation server that powers their in-house dashboard.
+* **Treasure Data replaced the cluster of MySQL servers**. Cookpad.com now runs scheduled jobs on Treasure Data that update the MySQL aggregation server that powers their in-house dashboard.
 * Instead of using Rails' default file-based logging, **td-agent has been installed on each Rails server** to automatically forward logs to Treasure Data.
 
 These changes essentially solved all three of the problems that Cookpad.com was facing. Let's look at them in detail.
