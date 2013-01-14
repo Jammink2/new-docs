@@ -34,7 +34,7 @@ This UDF returns true if *unix_timestamp* is equal to or later than *start_time*
 
 *start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or a UNIX timestamp (e.g. 1325343600). If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
 
-*default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*.
+*default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*. Here's [a list](https://gist.github.com/4533752) of supported time zones.
 
 ## TD_TIME_ADD()
 
@@ -69,7 +69,7 @@ This UDF returns a timestamp equal to *time* offset by *duration*. The UDF suppo
 
 The formats above can be combined. For example, "1h30m" means "after 1 hour and 30 minutes".
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*.
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. Here's [a list](https://gist.github.com/4533752) of supported time zones.
 
 If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
 
@@ -107,7 +107,7 @@ This UDF converts a UNIX timestamp to a string with the specified format (see [h
 
 This UDF converts a time string into a UNIX timestamp.
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*.
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. Here's [a list](https://gist.github.com/4533752) of supported time zones.
 
 If the format of the *time* string is invalid, the UDF returns NULL.
 
