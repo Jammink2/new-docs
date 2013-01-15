@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Oct 16, 2012: td-client-java v0.1.3 and td-logger-java v0.1.4
+
+They are released to fix some bugs and upgrade versions of some dependent libraries.
+
 ## Jan 10, 2013: Added TD_LAST and TD_FIRST UDFs
 
 Now you can use [TD_LAST](udfs#tdlast) and [TD_FIRST](udfs#tdfirst) UDFs which make your analytic queries simple.
