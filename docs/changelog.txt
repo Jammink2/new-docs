@@ -1,6 +1,6 @@
 # Treasure Data ChangeLog
 
-## Oct 16, 2012: [td-client-java v0.1.3](https://github.com/treasure-data/td-client-java) and [td-logger-java v0.1.4](https://github.com/treasure-data/td-logger-java)
+## Jan 15, 2012: [td-client-java v0.1.3](https://github.com/treasure-data/td-client-java) and [td-logger-java v0.1.4](https://github.com/treasure-data/td-logger-java)
 
 They are released to fix some bugs and upgrade versions of some dependent libraries.
 
