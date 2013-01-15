@@ -183,3 +183,41 @@ You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. '
 ### Description
 
 Returns the rank of each row within the partition of the result set. The rank of a row is one plus the number of ranks that come before the row.
+
+## TD_FIRST()
+
+### Signature
+
+    :::term
+    type1 TD_FIRST(col1, col2[, col3, ...])
+
+where type1 is the type of col1.
+
+### Example
+
+    :::sql
+    SELECT user_id, TD_FIRST(action, time) AS first_action
+      FROM user_actions GROUP BY user_id
+
+### Description
+
+Returns the first value of col1 according to the ordering of col2 (and col3, col4, etc.)
+
+## TD_LAST()
+
+### Signature
+
+    :::term
+    type1 TD_LAST(col1, col2[, col3, ...])
+
+where type1 is the type of col1.
+
+### Example
+
+    :::sql
+    SELECT user_id, TD_LAST(action, time) AS last_action
+      FROM user_actions GROUP BY user_id
+
+### Description
+
+Returns the last value of col1 according to the ordering of col2 (and col3, col4, etc.)
