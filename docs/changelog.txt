@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Jan 16, 2013: td v0.10.66
+
+td v0.10.66 is released which supports new -R, --retry COUNT option on ad-hoc queries and scheduled queries. It allows you to retry failed jobs automatically and improves reliability.
+
 ## Jan 15, 2013: td-client-java v0.1.3 and td-logger-java v0.1.4
 
 [td-client-java v0.1.3](https://github.com/treasure-data/td-client-java) and [td-logger-java v0.1.4](https://github.com/treasure-data/td-logger-java) are released to fix some bugs and upgrade versions of some dependent libraries.
