@@ -8,17 +8,17 @@
 
 <center><a target="_blank" href="http://www.mobfox.com/"><img src="/images/mobfox-logo.png" width="30%"></a></center><br /><br />
 
-MobFox serves mobile display & mobile video ads to every corner in the world and can give Advertisers access to more than **20 billion ad impressions every month**. The ads are served on more than 15,000+ applications running on iPhone, Android, Blackberry, etc.
+MobFox serves mobile display & mobile video ads to every corner of the world and can give Advertisers access to more than **20 billion ad impressions every month**. The ads are served on more than 15,000+ applications running on iPhone, Android, Blackberry, etc.
 
 ## Two Weeks with Treasure Data
 
-At first glance, we immediately knew that Treasure Data was _exactly_ what we were looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took us less than two weeks to integrate Treasure Data into MobFox. I will walk you through how we did this.
+When we learned about Treasure Data, we immediately knew that the service was _exactly_ what we were looking for: a scalable, flexible and fully managed Big Data analytics platform that can handle our rapidly growing dataset. After working through [their simple tutorial](http://docs.treasure-data.com/articles/quickstart), it took us less than two weeks to integrate Treasure Data into MobFox. I will walk you through how we did this.
 
 <center><img src="/images/mobfox-after.png" width="100%" /></center><br /><br />
 
 ### Week 1: Installing td-agent
 
-We serve ads from a number of application servers around the clock, and these servers are the lifeblood of our operations. Therefore, we preferred to change as little as possible to integrate Treasure Data into our system (and you will soon see how little change was needed!)
+We serve ads from a number of application servers around the clock, and these servers are the lifeblood of our operations. Therefore, we preferred to change as little as possible in integrating Treasure Data into our system (and you will soon see how little change was needed!).
 
 First, we provisioned five td-agent nodes on SoftLayer to accept events via HTTP (we use SoftLayer's load balancer to distribute HTTP requests evenly among the five td-agents).
 
@@ -26,7 +26,7 @@ Then, we just had to add a couple of lines to our application code to start logg
 
 ### Week 2: Replacing the report backend
 
-Now that our data is on Treasure Data in real-time, it was time for us to generate reports. Because Treasure Data uses HiveQL, we could leverage our good old SQL skills to build up queries quickly.
+Now that our data was on Treasure Data in real-time, it was time for us to generate reports. Because Treasure Data uses HiveQL, we could leverage our good old SQL skills to build up queries quickly.
 
 As we built up our queries, we turned them into [scheduled jobs](schedule), [writing out the results into our local databases](/categories/result). Our dashboard application references the local databases for visualization and reporting. Thanks to Treasure Data's clean, simple [API](/categories/api), this step took us only a few days.
 
@@ -34,13 +34,13 @@ As we built up our queries, we turned them into [scheduled jobs](schedule), [wri
 
 During those two weeks, Treasure Data engineers were **incredibly helpful**.
 
-Whenever we emailed, Skyped or Olark-powered-chatted with them, they responded to our questions quickly and thoroughly, boosting our confidence in their service.
+Whenever we emailed, Skyped or Olark-chatted with them, they responded to our questions quickly and thoroughly, boosting our confidence in their service.
 
 Treasure Data is essentially our Big Data operations team: we just store and analyze data, and they take care of everything else. And I must admit that it is one dependable and smart team to have.
 
 ## Conclusion
 
-Using Treasure Data, MobFox built complete data analytic infrastructure, from data collection through storage to analytics, all within two weeks. Considering our large and increasing data volume (last month, we added 20 billion records into our system), I know it would have taken us at least several months to build our own data analytics system (and we would have had to maintain it ourselves).
+Using Treasure Data, MobFox built a complete data analytics infrastructure, from data collection through storage to analytics, all within two weeks. Considering our large and increasing data volume (last month, we added 20 billion records into our system), I know it would have taken us at least several months to build our own data analytics system (and we would have had to maintain it ourselves).
 
 Time is the most precious asset in our fast-moving business, and Treasure Data saved us a lot of it.
 
