@@ -52,7 +52,7 @@ This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time,
                                    "2013-01-01",
-                                   TD_TIME_ADD("2013-01-01", "1day"))
+                                   TD_TIME_ADD("2013-01-01", "1d"))
 
 ### Description
 
@@ -73,7 +73,7 @@ The formats above can be combined. For example, "1h30m" means "after 1 hour and 
 
 If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
 
-NOTE: "M" or "month" is NOT supported.
+NOTE: "year" and "month" durations are NOT supported.
 
 ## TD_TIME_FORMAT()
 
