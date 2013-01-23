@@ -1,29 +1,31 @@
-# Sending Query Results to Web Server
+# Sending Query Results to a Web Server
 
 This article explains how to send job results directly to your web server.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A web server configured to accept the results in the form of PUT requests
+  * A web server configured to accept query results as PUT requests.
 
 ## Basic Usage
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent via a PUT request to the URL specified.  
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent to the specified URL via a PUT request.
+
     :::term
     $ td query
       -r 'web://domain.com/path' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
-Here is another example URL.  Note that basic HTTP authentication is supported, and you can optionally specify a port.
+Here is another example URL. Basic HTTP authentication and port specifiection are supported.
 
     :::text
     web://user:pass@domain.com:8080/path1/path2
 
-The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  The following is a sample output of what the above query might produce.
+The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  An example of what the query above may output is shown below.
+
     :::json
     { column_names: [ '_c0', '_c1' ],
       column_types: [ 'string', 'long' ],
@@ -31,7 +33,7 @@ The request body is a JSON with the following fields: column_names, column_types
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same fashion as described previously.
+For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same manner as on-demand jobs.
 
     :::term
     $ td result:create myweb web://domain.com/
