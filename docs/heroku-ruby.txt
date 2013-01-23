@@ -23,47 +23,25 @@ The `heroku-td` CLI plugin is required to talk to Treasure Data's backend system
     $ heroku td
     usage: heroku td [options] COMMAND [args]
 
-NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">the Heroku toolbelt</a>. From December 1, 2012, Heroku will stop releasing new updates to the `heroku` gem.  We'll also stop supporting the `heroku` gem.
+NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">the Heroku toolbelt</a>. Since December 1, 2012, Heroku stopped releasing new updates to the <code>heroku</code> gem.  We have also stopped supporting the <code>heroku</code> gem.
 
 ## Data Import
 
-You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Embed** code, 2) **Run** the app, 3) **Check** the data, and 4) **Query** it.
+You can import data from your Heroku Ruby App to Treasure Data in Four Steps: 1) **Print to STDOUT**, 2) **Access** the app, 3) **Check** the data, and 4) **Query** it.
 
-### Step1: Import Data Using the 'td' Gem
+### Step 1: Import Data By Printing to STDOUT (Yes, that simple!)
 
-First, add the `td` (‘T’reasure ‘D’ata) gem to your Gemfile.
+**You can import data to Treasure Data by simply writing to STDOUT with a specific format**. The format is:
+
+    :::text
+    @[database.table] JSON-IN-ONE-LINE
+    
+Thus, in Ruby,
 
     :::ruby
-    gem 'td', "~> 0.10.22"
-
-Next, install the gem locally via bundler.
-
-    :::term
-    $ bundle install
-
-The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
-
-    :::ruby
-    # Initialization
-    require 'td'
-    TreasureData::Logger.open('sample_database',
-                              :apikey=>ENV['TREASURE_DATA_API_KEY'],
-                              :auto_create_table=>true)
-    
-    # Example1: login event
-    TD.event.post('login', {:uid=>123})
-    
-    # Example2: follow event
-    TD.event.post('follow', {:uid=>123, :from=>'TD', :to=>'Heroku'})
-    
-    # Example3: pay event
-    TD.event.post('pay',
-                  {:uid=>123, :item_name=>'Stone of Jordan',
-                   :category=>'ring', :price=>100, :count=>1})
-
-Your event-logging code should be placed near its corresponding event-generating code. 
-
-Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
+    puts "@[development.login] #{{'uid'=>123}.to_json}"
+    puts "@[development.follow] #{{'uid'=>123, 'from'=>'@TreasureData', 'to'=>'@Heroku'}.to_json}"
+    puts "@[development.pay] #{{'uid'=>123, 'item_name'=>'Stone of Jordan', 'category'=>'ring', 'price'=>100, 'count'=>1}.to_json}"
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
@@ -73,47 +51,52 @@ Once you have inserted your event-logging code, push the modifications to Heroku
     $ git commit -a -m "Added Treasure Data Plugin"
     $ git push heroku master
 
-### Step2: Access Your Application
+NOTE: In addition to writing to STDOUT, <a href="#appendix-importing-data-to-treasure-data-using-the-logger-library">you can also use the logger library</a> to post events to Treasure Data.
+
+### Step 2: Access Your Application
 
 First, open your application on Heroku. The recorded events are first buffered locally, then periodically uploaded into the cloud. In the current implementation, the buffered data is uploaded every 5 minutes.
 
     :::term
     $ heroku open
 
-### Step3: Check Your Uploaded Data
+### Step 3: Check Your Uploaded Data
 
 Treasure Data Hadoop's data structure is like RDBMS: tables inside databases. In order to see the list of available databases, use the command: `heroku td dbs`.
 
     :::term
     $ heroku td dbs
-    +------------------+
-    | Name             |
-    +------------------+
-    | sample_database |
-    +------------------+
+    +-------------+-------+
+    | Name        | Count |
+    +-------------+-------+
+    | development | 6     |
+    +-------------+-------+
     1 row in set
 
 In order to see the tables inside the available databases, use the command: `heroku td tables`.
 
     :::term
     $ heroku td tables
-    +------------------+--------+------+-------+--------+
-    | Database         | Table  | Type | Count | Schema |
-    +------------------+--------+------+-------+--------+
-    | sample_database  | follow | log  | 1     |        |
-    | sample_database  | pay    | log  | 7     |        |
-    +------------------+--------+------+-------+--------+
-    2 rows in set
+    +-------------+--------+------+-------+--------+---------------------------+--------+
+    | Database    | Table  | Type | Count | Size   | Last import               | Schema |
+    +-------------+--------+------+-------+--------+---------------------------+--------+
+    | development | follow | log  | 1     | 0.0 GB | 2013-01-22 20:27:37 -0800 |        |
+    | development | login  | log  | 1     | 0.0 GB | 2013-01-22 20:27:37 -0800 |        |
+    | development | pay    | log  | 1     | 0.0 GB | 2013-01-22 20:27:37 -0800 |        |
+    +-------------+--------+------+-------+--------+---------------------------+--------+
+    3 rows in set
+
+NOTE: You don't see your data uploaded to TD? Perhaps your stdout is buffered. See <a href="https://devcenter.heroku.com/articles/ruby#logging">here</a> for details.
 
 To confirm that your application data has been uploaded properly, please check the ‘Count’ column. If any of the ‘Count’ entries are non-zero, your event logs been transferred successfully.
 
 Once your data has been uploaded properly, use the ‘heroku td table:tail’ command to see the recent entries of a specific table.
 
     :::term
-    $ heroku td table:tail sample_database follow
-    {"action":"follow","uid":12345,"from":"TreasureData","to":"heroku","time":1320857514}
+    $ heroku td table:tail development follow
+    {"uid":123,"time":1358915021,"to":"@Heroku","from":"@TreasureData"}
 
-### Step4: Analyze Your Data
+### Step 4: Analyze Your Data
 
 Our service lets you analyze your data using a SQL-style language. When your data is sent to us, your logs are imported into a Hadoop/Hive cluster. Hive lets its users query big data using a SQL-like interface.
 
@@ -122,25 +105,31 @@ Please use the `heroku td query` command to issue queries to TD Hadoop; TD Hadoo
 The example query below counts the number of ‘follow’ actions that were generated by userid 12345:
 
     :::term
-    $ heroku td query -w -d sample_database \
-      "SELECT COUNT(1) FROM follow WHERE v['uid']=12345"
-    +---+
-    | 0 |
-    +---+
-    | 1 |
-    +---+
-    1 row in set
+    $ heroku td query -w -d development \
+      "SELECT COUNT(1) FROM follow WHERE v['uid'] = 123"
+    ...
+    (some MapReduce messages)
+    ...
+    +-----+
+    | _c0 |
+    +-----+
+    | 1   |
+    +-----+
+    1 row in set    
 
 The next example query counts the total number of logged actions for each day.
 
     :::term
-    $ heroku td query -w -d sample_database \
+    $ heroku td query -w -d development \
       "SELECT to_date(from_unixtime(time)) AS day, count(1) FROM follow GROUP BY to_date(from_unixtime(time)) ORDER BY day"
-    +------------+----+
-    | 0          | 1  |
-    +------------+----+
-    | 2011-11-09 | 1  |
-    +------------+----+
+    ...
+    (some MapReduce messages)
+    ...
+    +------------+-----+
+    | day        | _c1 |
+    +------------+-----+
+    | 2013-01-23 | 2   |
+    +------------+-----+
     1 row in set
 
 The `heroku td query –format csv` command will return the results in csv format.
@@ -190,3 +179,39 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 For more specific assistance, please visit our support resources:
 
 * [Treasure Data Discussion Forum](http://help.treasure-data.com/)
+
+## Appendix: Importing Data To Treasure Data Using The Logger Library
+
+First, add the `td` (‘T’reasure ‘D’ata) gem to your Gemfile.
+
+    :::ruby
+    gem 'td', "~> 0.10.22"
+
+Next, install the gem locally via bundler.
+
+    :::term
+    $ bundle install
+
+The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
+
+    :::ruby
+    # Initialization
+    require 'td'
+    TreasureData::Logger.open('sample_database',
+                              :apikey=>ENV['TREASURE_DATA_API_KEY'],
+                              :auto_create_table=>true)
+    
+    # Example1: login event
+    TD.event.post('login', {:uid=>123})
+    
+    # Example2: follow event
+    TD.event.post('follow', {:uid=>123, :from=>'TD', :to=>'Heroku'})
+    
+    # Example3: pay event
+    TD.event.post('pay',
+                  {:uid=>123, :item_name=>'Stone of Jordan',
+                   :category=>'ring', :price=>100, :count=>1})
+
+Your event-logging code should be placed near its corresponding event-generating code. 
+
+Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
