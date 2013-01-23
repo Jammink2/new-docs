@@ -134,15 +134,6 @@ The next example query counts the total number of logged actions for each day.
 
 The `heroku td query –format csv` command will return the results in csv format.
 
-## Development Environment Setup
-
-Please set the `TREASURE_DATA_API_KEY` env variable to enable your development environment.
-
-    :::term
-    $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
-
-Once your API key has been set, please start your application as usual.
-
 ## Issue Queries from a Ruby Program
 
 Below is an example of issuing a query from a Ruby program. The query API is asynchronous, and you can wait for the query to complete by polling the job periodically (e.g. by issuing job.finished? calls).
@@ -215,3 +206,12 @@ The ‘td’ gem comes with a built-in library for recording in-app events. Inse
 Your event-logging code should be placed near its corresponding event-generating code. 
 
 Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
+
+### Development Environment Setup (for TD Logger Library ONLY)
+
+Please set the `TREASURE_DATA_API_KEY` env variable to enable your development environment.
+
+    :::term
+    $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
+
+Once your API key has been set, please start your application as usual.
