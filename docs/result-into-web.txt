@@ -14,12 +14,12 @@ This article explains how to send job results directly to your web server.
 For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent to the specified URL via a PUT request.
 
     :::term
-    $ td query
+    $ td query \
       -r 'web://domain.com/path' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
-Here is another example URL. Basic HTTP authentication and port specifiection are supported.
+Here is another example URL. Basic HTTP authentication and port specification are supported.
 
     :::text
     web://user:pass@domain.com:8080/path1/path2
