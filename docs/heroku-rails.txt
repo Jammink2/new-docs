@@ -12,7 +12,7 @@ The Treasure Data addon can be attached to a Heroku application via the CLI:
 
     :::term
     $ heroku addons:add treasure-data:nano
-    -----> Adding treasure-data to sharp-mountain-4005... done, v18 (free)
+    Adding treasure-data:nano on <your_app_name>... done, v3 (free)
 
 ## CLI setup
 
