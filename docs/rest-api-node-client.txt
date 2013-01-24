@@ -1,6 +1,8 @@
 # Using Node.js Client for REST API
 
-This article will explain how to use Node.js bindings for REST API.  Note: this module is still under active development, some REST API bindings are not yet implemented.
+This article will explain how to use Node.js bindings for REST API.  
+
+NOTE: This module is still under active development. Some REST API bindings have not been implemented yet.
 
 ## Prerequisites
 
@@ -19,7 +21,7 @@ The source code is [available at github](https://github.com/treasure-data/td-cli
 
 ## List Databases and Tables
 
-The example below prints out to console all your tables.
+The example below prints out all your tables to the console.
 
     :::javascript
     var TD = require('td');
@@ -42,7 +44,7 @@ The example below prints out to console all your tables.
 
 ## Issue Queries
 
-The example below issues a query from Node.js. After issuing the query, a job_id field is printed out.  This can be used to query the results
+The example below issues a query from Node.js. After issuing the query, a job_id field is printed out.  This can be used to query the results.
 
     :::javascript
     var TD = require('td');
