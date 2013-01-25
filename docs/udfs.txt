@@ -153,8 +153,6 @@ This example selects the URL of the most recent access log (the row with the lar
 
 This aggregate UDF finds the row with the smallest value in the 'comparison column' (cmp_col1) and returns that row's 'retrieve column' (ret_col) value. Additional comparison columns (cmp_col2, cmp_col3, etc.) are used as tiebreakers when the preceding comparison column has more than one row with the smallest value.
 
-This aggregate UDF returns the value of a row whose another column (or other columns) is the smallest in a group.
-
 ### Example
 
 This example selects the referer URL of the earliest access log (the row with the smallest time) for each page_id.
