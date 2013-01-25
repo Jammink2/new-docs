@@ -34,7 +34,7 @@ This UDF returns true if *unix_timestamp* is equal to or later than *start_time*
 
 *start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or a UNIX timestamp (e.g. 1325343600). If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
 
-*default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*. Here's [a list](https://gist.github.com/4533752) of supported time zones.
+*default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
 
 ## TD_TIME_ADD()
 
@@ -69,7 +69,7 @@ This UDF returns a timestamp equal to *time* offset by *duration*. The UDF suppo
 
 The formats above can be combined. For example, "1h30m" means "after 1 hour and 30 minutes".
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. Here's [a list](https://gist.github.com/4533752) of supported time zones.
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
 
 If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
 
@@ -107,7 +107,7 @@ This UDF converts a UNIX timestamp to a string with the specified format (see [h
 
 This UDF converts a time string into a UNIX timestamp.
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. Here's [a list](https://gist.github.com/4533752) of supported time zones.
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
 
 If the format of the *time* string is invalid, the UDF returns NULL.
 
@@ -133,11 +133,11 @@ If the query is not a scheduled query, the UDF returns the time when the job was
 
 ### Description
 
-This aggregate UDF returns a value of a row whose another column (or other columns) is the largest in a group.
+This aggregate UDF finds the row with the largest value in the 'comparison column' (cmp_col1) and returns that row's 'retrieve column' (ret_col) value. Additional comparison columns (cmp_col2, cmp_col3, etc.) are used as tiebreakers when the preceding comparison column has more than one row with the largest value.
 
 ### Example
 
-This example selects an URL of the latest access log (a row which has the largest time) for each user.
+This example selects the URL of the most recent access log (the row with the largest time) for each user.
 
     :::sql
     SELECT user, TD_LAST(url, time) AS last_url FROM access_logs GROUP BY user
@@ -151,11 +151,13 @@ This example selects an URL of the latest access log (a row which has the larges
 
 ### Description
 
-This aggregate UDF returns a value of a row whose another column (or other columns) is the smallest in a group.
+This aggregate UDF finds the row with the smallest value in the 'comparison column' (cmp_col1) and returns that row's 'retrieve column' (ret_col) value. Additional comparison columns (cmp_col2, cmp_col3, etc.) are used as tiebreakers when the preceding comparison column has more than one row with the smallest value.
+
+This aggregate UDF returns the value of a row whose another column (or other columns) is the smallest in a group.
 
 ### Example
 
-This example selects a referer URL of the first access log (a row which has the smallest time) for each page_id.
+This example selects the referer URL of the earliest access log (the row with the smallest time) for each page_id.
 
     :::sql
     SELECT page_id, TD_FIRST(referer, time) AS first_referer FROM access_logs GROUP BY page_id
