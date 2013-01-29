@@ -31,6 +31,9 @@ section 'interacting', 'Interacting with TD' do
     article 'using-the-cli', 'CLI Usage'
     article 'installing-the-cli', 'Installing the Treasure Data CLI'
   end
+  # TODO: jeff - add an article about the web console
+  # category 'web-console', 'Web Console' do
+  # end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'
     article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'

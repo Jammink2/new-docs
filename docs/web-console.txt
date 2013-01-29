@@ -1,0 +1,3 @@
+# Using the Web Console
+
+The Treasure Data [Web Console](http://console.treasure-data.com/) gives you the ability to get an overview of your data and queries.
