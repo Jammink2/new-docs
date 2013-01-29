@@ -26,7 +26,7 @@ section 'overview', 'Overview' do
   end
 end
 
-section 'interacting', 'Interacting with Treasure Data' do
+section 'interacting', 'Interacting with TD' do
   category 'command-line', 'Command Line Interface' do
     article 'using-the-cli', 'CLI Usage'
     article 'installing-the-cli', 'Installing the Treasure Data CLI'
@@ -74,7 +74,7 @@ section 'import-data', 'Importing Data' do
   end
 end
 
-section 'query-data', 'Data Management and Querying' do
+section 'query-data', 'Data Processing' do
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
     article 'schedule', 'Job Scheduling'
