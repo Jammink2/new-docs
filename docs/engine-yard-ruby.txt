@@ -145,9 +145,10 @@ Below is an example of issuing a query from a Ruby program. The query API is asy
     job = cln.query('testdb', 'SELECT COUNT(1) FROM www_access')
     until job.finished?
       sleep 2
-      job.update_status!
+      job.update_progress!
     end
     if job.success?
+      job.update_status!  # get latest info
       job.result_each { |row| p row }
     end
 

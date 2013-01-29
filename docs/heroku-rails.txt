@@ -151,7 +151,7 @@ The `heroku td query –format csv` command outputs the results in csv.
 
 ## Issue Queries from Ruby API
 
-Below is an example of issuing a query from a Ruby program. The query API is asynchronous, and you can wait for the query to complete by polling the job periodically (e.g. by issuing `job.finished?` and `job.update_status!` calls).
+Below is an example of issuing a query from a Ruby program. The query API is asynchronous, and you can wait for the query to complete by polling the job periodically (e.g. by issuing `job.finished?` and `job.update_progress!` calls).
 
     :::ruby
     require 'td'
@@ -160,9 +160,10 @@ Below is an example of issuing a query from a Ruby program. The query API is asy
     job = cln.query('testdb', 'SELECT COUNT(1) FROM www_access')
     until job.finished?
       sleep 2
-      job.update_status!
+      job.update_progress!
     end
     if job.success?
+      job.update_status!  # get latest info
       job.result_each { |row| p row }
     end
 
