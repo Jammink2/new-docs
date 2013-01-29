@@ -6,7 +6,7 @@ The Treasure Data CLI allows you to create databases and tables, issue queries a
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
-NOTE: If you've followed the [Quickstart Guide](quickstart), you've already installed this.
+NOTE: If you've followed the <a href="/articles/quickstart">Quickstart Guide</a>, you've already installed this.
 
 If you are familiar with Ruby, you can install `td` from the command line using `gem`.
 
