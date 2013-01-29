@@ -24,6 +24,8 @@ Here is another example URL. Basic HTTP authentication and port specification ar
     :::text
     web://user:pass@domain.com:8080/path1/path2
 
+NOTE: If a port number is not specified, the default value is 80.  If username and password are not given, then authentication is not used.
+
 The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  An example of what the query above may output is shown below.
 
     :::json
