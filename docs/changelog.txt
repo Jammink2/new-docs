@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Jan 29, 2013: Added result output to ftp server
+
+Now you can [send your query result to a ftp server](result-into-ftp).
+
 ## Jan 16, 2013: td v0.10.66
 
 td v0.10.66 is released which supports new -R, --retry COUNT option on ad-hoc queries and scheduled queries. It allows you to retry failed jobs automatically and improves reliability.

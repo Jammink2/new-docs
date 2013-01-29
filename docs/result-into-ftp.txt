@@ -1,0 +1,42 @@
+# Sending Query Results to a FTP Server
+
+This article explains how to send job results directly to your ftp server.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * A web server configured to accept query results as PUT requests.
+
+## Basic Usage
+
+### For On-demand Jobs
+
+For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent to the specified FTP server.
+
+    :::term
+    $ td query \
+      -r 'ftp://user:password@domain.com/path.csv' \
+      -w -d testdb \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
+NOTE: If a port number is not specified, the default value is 21.
+
+The request body is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header which describes column names, new line is CRLF, text encoding is UTF-8, and quotation character is double quotes.
+
+    :::csv
+    _c0,_c1
+    a,b
+    c," d "
+    e,f
+
+### For Scheduled Jobs
+
+For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same manner as on-demand jobs.
+
+    :::term
+    $ td result:create myftp ftp://user:password@domain.com/
+    $ td sched:create hourly_count_example "0 * * * *" \
+      -d testdb \
+      -r myftp:path.csv \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
