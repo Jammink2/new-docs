@@ -1107,3 +1107,9 @@ div.success-story-signature {
   font-weight: 100;
   font-size: 1.2em;
 }
+
+/* Temporary Hack to over-ride the default dropdown setting. TODO: separate/unitfy the dropdown styles */
+
+.dropdown-hack { margin-top: 5px; }
+ul.dropdown-hack li { width: 88px; }
+ul.dropdown-hack ul { left: 0; }

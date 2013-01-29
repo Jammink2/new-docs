@@ -29,7 +29,7 @@ div#header li {
 #td-nav li a.td-signup {
   float: left;
   padding: 5px 15px;
-  margin-top: -4px;
+  margin: -10px 0 0 14px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
