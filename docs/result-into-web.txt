@@ -7,6 +7,8 @@ This article explains how to send job results directly to your web server.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * A web server configured to accept query results as PUT requests.
 
+NOTE: Number of result rows is limited up to 100,000 records.
+
 ## Basic Usage
 
 ### For On-demand Jobs
