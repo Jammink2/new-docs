@@ -26,58 +26,42 @@ section 'overview', 'Overview' do
   end
 end
 
-section 'interacting', 'Interacting with TD' do
-  category 'command-line', 'Command Line Interface' do
-    article 'using-the-cli', 'CLI Usage'
-    article 'installing-the-cli', 'Installing the Treasure Data CLI'
+section 'import-data', 'Data Import' do
+  category 'bulk-operations', 'Bulk Import' do
+    article 'one-time-import', 'One-Time Import'
+    article 'bulk-import', 'Bulk Import - Reliable Transactional Import'
+    # TODO: bulk import data from CSV/TSV/MySQL/PostgreSQL/MongoDB
   end
-  # TODO: jeff - add an article about the web console
-  # category 'web-console', 'Web Console' do
-  # end
-  category 'api', 'REST API' do
-    article 'rest-api', 'REST API Specification'
-    article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
-    article 'rest-api-java-client', 'Using Java Binding of REST API'
-    article 'rest-api-node-client', 'Using Node.js Binding of REST API'
-  end
-  category '3rd-party-tools-overview', 'Third Party Tools' do
-    article 'tools', 'Overview'
-    article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
-    article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
-    article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
-    article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
-    article 'r-language', 'R Language',                 ['R Language']
-    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
-    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
-    article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
-  end
-  category 'driver', 'JDBC Driver' do
-    article 'jdbc-driver', 'JDBC Driver'
-  end
-end
-
-section 'import-data', 'Importing Data' do
-  category 'td-agent-basic', 'Continuous Data Import with td-agent' do
+  category 'td-agent-basic', 'Streaming Import (Basics)' do
     article 'td-agent', 'Using td-agent package',                                      ['fluentd', 'td-agent']
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
+    article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
   end
-  category 'td-agent-advanced', 'Examples of using td-agent' do  
+  category 'td-agent-language', 'Streaming Import (Language)' do
+    article 'java', 'Data Import from Java Applications',           ['fluentd', 'td-agent']
+    article 'ruby', 'Data Import from Ruby Applications',           ['fluentd', 'td-agent']
+    article 'rails', 'Data Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
+    article 'python', 'Data Import from Python Applications',       ['fluentd', 'td-agent'] 
+    article 'php', 'Data Import from PHP Applications',             ['fluentd', 'td-agent']
+    article 'perl', 'Data Import from Perl Applications',           ['fluentd', 'td-agent']
+    article 'nodejs', 'Data Import from Node.js Applications',      ['fluentd', 'td-agent']
+    article 'scala', 'Data Import from Scala Applications',         ['fluentd', 'td-agent']
+  end
+  category 'td-agent-advanced', 'Streaming Import (Advanced)' do  
     article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
     article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
     article 'td-agent-scribe', 'Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
-    article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
     article 'fluentd-to-treasure-data', 'Using Fluentd Ruby gem',                      ['fluentd']
-  end
-  category 'bulk-operations', 'Bulk Import Operations' do
-    article 'one-time-import', 'Quick Import'
-    article 'bulk-import', 'Bulk Import - Reliable Transactional Import'
-    article 'bulk-export', 'Bulk Export'
   end
 end
 
 section 'query-data', 'Data Processing' do
+  category 'data-set-management', 'Data Set Management' do
+    article 'database-and-table', 'Database and Table Management'
+    article 'schema', 'Schema Management'
+  end
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
     article 'schedule', 'Job Scheduling'
@@ -85,15 +69,14 @@ section 'query-data', 'Data Processing' do
     article 'udfs', 'Supported UDFs (User Defined Functions)'
     # article 'pig', 'Pig Latin Language'
   end
-  category 'data-management', 'Data Management' do
-    article 'database-and-table', 'Database and Table Management'
-    article 'schema', 'Schema Management'
+  category 'data-deletion', 'Data Deletion' do
+    article 'deletion', 'Data Deletion'
+  end
+  category 'data-export', 'Data Export' do
+    article 'bulk-export', 'Bulk Data Export'
   end
   category 'performance-tuning', 'Performance Tuning' do
     article 'performance-tuning', 'Performance Tuning'
-  end
-  category 'data-deletion', 'Data Deletion' do
-    article 'deletion', 'Data Deletion'
   end
   category 'result', 'Output Query Results' do
     article 'result-into-td', 'Writing the Job Result into Treasure Data'
@@ -109,31 +92,6 @@ section 'query-data', 'Data Processing' do
   end
 end
 
-section 'languages-and-middlewares', 'Languages' do
-  category 'java', 'Java' do
-    article 'java', 'Data Import from Java Applications',           ['fluentd', 'td-agent']
-  end
-  category 'ruby', 'Ruby' do
-    article 'ruby', 'Data Import from Ruby Applications',           ['fluentd', 'td-agent']
-    article 'rails', 'Data Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
-  end
-  category 'python', 'Python' do
-    article 'python', 'Data Import from Python Applications',       ['fluentd', 'td-agent'] 
-  end
-  category 'php', 'PHP' do
-    article 'php', 'Data Import from PHP Applications',             ['fluentd', 'td-agent']
-  end
-  category 'perl', 'Perl' do
-    article 'perl', 'Data Import from Perl Applications',           ['fluentd', 'td-agent']
-  end
-  category 'nodejs', 'Node.js' do
-    article 'nodejs', 'Data Import from Node.js Applications',      ['fluentd', 'td-agent']
-  end
-  category 'scala', 'Scala' do
-    article 'scala', 'Data Import from Scala Applications',         ['fluentd', 'td-agent']
-  end
-end
-
 section 'Usecases', 'Usecases' do
   category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
@@ -141,6 +99,36 @@ section 'Usecases', 'Usecases' do
   category 'TwitterAnalytics', 'Twitter Data Analytics' do
     article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
     article 'twitter-nodejs', 'Streaming Twitter Data into Treasure Data from Node.js', ['twitter data', 'twitter nodejs']
+  end
+end
+
+section 'tools-and-apis', 'Tools & APIs' do
+  category 'command-line', 'Command Line Interface' do
+    article 'using-the-cli', 'CLI Usage'
+    article 'installing-the-cli', 'Installing the Treasure Data CLI'
+  end
+  # TODO: jeff - add an article about the web console
+  # category 'web-console', 'Web Console' do
+  # end
+  category 'api', 'REST API' do
+    article 'rest-api', 'REST API Specification'
+    article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
+    article 'rest-api-java-client', 'Using Java Binding of REST API'
+    article 'rest-api-node-client', 'Using Node.js Binding of REST API'
+  end
+  category 'driver', 'JDBC Driver' do
+    article 'jdbc-driver', 'JDBC Driver'
+  end
+  category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
+    article 'tools', 'Overview'
+    article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
+    article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
+    article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
+    article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
+    article 'r-language', 'R Language',                 ['R Language']
+    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
+    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
+    article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   end
 end
 
