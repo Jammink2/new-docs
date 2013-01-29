@@ -107,18 +107,22 @@ section 'tools-and-apis', 'Tools & APIs' do
     article 'using-the-cli', 'CLI Usage'
     article 'installing-the-cli', 'Installing the Treasure Data CLI'
   end
-  # TODO: jeff - add an article about the web console
-  # category 'web-console', 'Web Console' do
-  # end
+  category 'web-console', 'Web Console' do
+    article 'web-console', 'Using the Web Console'
+  end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'
     article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
     article 'rest-api-java-client', 'Using Java Binding of REST API'
     article 'rest-api-node-client', 'Using Node.js Binding of REST API'
   end
-  category 'driver', 'JDBC Driver' do
+  category 'jdbc', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
   end
+  # TODO: coming soon!
+  # category 'odbc', 'ODBC Driver' do
+  #   article 'odbc-deiver', 'ODBC Driver'
+  # end
   category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
     article 'tools', 'Overview'
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']

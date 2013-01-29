@@ -1,3 +1,18 @@
 # Using the Web Console
 
-The Treasure Data [Web Console](http://console.treasure-data.com/) gives you the ability to get an overview of your data and queries.
+The Treasure Data [Web Console](http://console.treasure-data.com/) gives an overview of your account, including information about databases, tables, and jobs you've created.  The console also gives interesting information, like the storage size of all your data (in bytes) and the total number of records you've accumulated.
+
+<p><center><img src="/images/web-console.png" width="500px" /></center></p>
+<br />
+
+## Databases
+
+The Databases page gives a list of all the databases you've created, the number of records it contains, its created time, etc.  Selecting an individual database shows all the tables that it contains.  You can also create a new database by clicking on the "+" icon in the top righthand corner
+
+## Job Results
+Clicking on the "Jobs" link on the navigation panel gives you a list of all the jobs that have recently been run and their status.  For all jobs that ran successfully, the result is available in TXT, CSV, and TSV format.  For jobs that are currently still running, you have the option of killing it.
+
+Click on a job ID to go to the job details page, which shows basic information about the job, as well as the original query and the stderr and cmdout.  This allows you to see exactly how the job performed and debug any errors that may have occured.
+
+## Issue New Queries
+On the "Query" page, you can select a database and issue a new query.  After clicking "Submit", you will be taken to the job details page for the new job you just initiated.
