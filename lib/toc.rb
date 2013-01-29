@@ -103,9 +103,10 @@ section 'Usecases', 'Usecases' do
 end
 
 section 'tools-and-apis', 'Tools & APIs' do
-  category 'command-line', 'Command Line Interface' do
-    article 'using-the-cli', 'CLI Usage'
-    article 'installing-the-cli', 'Installing the Treasure Data CLI'
+  category 'command-line', 'Command-line Interface' do
+    # article 'using-the-cli', 'CLI Usage'
+    # article 'installing-the-cli', 'Installing the Treasure Data CLI'
+    article 'command-line', 'Command-line Interface'
   end
   category 'web-console', 'Web Console' do
     article 'web-console', 'Using the Web Console'
