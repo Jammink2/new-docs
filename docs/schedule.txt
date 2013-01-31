@@ -18,6 +18,8 @@ A new schedule can be created using the `td sched:create` command. The name of t
       "select count(1) from www_access" \
       -d testdb
 
+NOTE: The `cron` parameter also accepts two special options: `@daily` and `@hourly`.
+
 Scheduled jobs must sometimes be set as high priority items. The `-P` option is used to specify the priority. The priority is between -2 (VERY LOW) and 2 (VERY HIGH), where 0 is the default. The priority can be changed later using `td sched:update -P`.
 
     :::term
