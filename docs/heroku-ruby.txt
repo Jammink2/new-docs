@@ -14,9 +14,36 @@ The Treasure Data addon can be attached to a Heroku application via the CLI:
     $ heroku addons:add treasure-data:nano
     Adding treasure-data:nano on <your_app_name>... done, v3 (free)
 
-## CLI setup
+## Treasure Data Toolbelt setup
 
-The `heroku-td` CLI plugin is required to talk to Treasure Data's backend systems. Once you install the CLI plugin, you will be able to execute the `heroku td` family of commands. 
+At first, please download and install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please look at...</th>
+  </tr>
+  <tr>
+    <td>Mac OS</td>
+    <td><a href="http://toolbelt.treasure-data.com/mac">Download Mac Installer</a></td>
+  </tr>
+  <tr>
+    <td>Windows</td>
+    <td><a href="http://toolbelt.treasure-data.com/win">Download Win Installer</a></td>
+  </tr>
+  <tr>
+    <td>Linux</td>
+    <td><a href="http://toolbelt.treasure-data.com/redhat">Redhat/CentOS</a>, <a href="http://toolbelt.treasure-data.com/debian">Debian/Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>Ruby gem</td>
+    <td>`gem install td`</td>
+  </tr>
+</table>
+
+## Heroku CLI setup
+
+`heroku-td` CLI plugin is also required to bridge between `heroku` CLI and `td` CLI. Once you install the CLI plugin, you will be able to execute the `heroku td` family of commands.
 
     :::term
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
