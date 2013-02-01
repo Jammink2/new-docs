@@ -145,6 +145,11 @@ The files shown below are installed by the rpm or debian packages.
     <td>Ruby v1.9 is bundled with the package.</td>
   </tr>
   <tr>
+    <td>Rubygems</td>
+    <td>/usr/lib{64}/fluent/ruby/bin/fluent-gem</td>
+    <td>Bundled rubygems to install fluentd plugins.  For example: `/usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-mongo`
+  </tr>
+  <tr>
     <td>jemalloc</td>
     <td>/usr/lib{64}/fluent/jemalloc/lib/libjemalloc.so</td>
     <td><a href="http://www.canonware.com/jemalloc/">jemalloc</a> is bundled together to avoid memory fragmentation. It is loaded by default in the startup script.</td>
@@ -179,7 +184,7 @@ Next, modify your existing applications to post data to Treasure Data. The artic
 * [Apache Logs](analyzing-apache-logs)
 * [Tailing Existing CSV or TSV Logs](td-agent-tail)
 
-### High-Availability Configurations and Monitoring
+#### High-Availability Configurations and Monitoring
 
 For high-traffic websites, we recommend using a high availability configuration for td-agent. Monitoring the daemon is also important.
 
