@@ -11,11 +11,11 @@ This article explains how to send job results directly to your web server.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent to the specified URL via a PUT request.
+For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are sent to the specified URL via a PUT request.
 
     :::term
     $ td query \
-      -r 'web://domain.com/path' \
+      --result 'web://domain.com/path' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
@@ -37,11 +37,11 @@ NOTE: Maximum number of rows is limited to 100,000. If the result exceeds 100,00
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same manner as on-demand jobs.
+For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are sent via PUT requests in the same manner as on-demand jobs.
 
     :::term
     $ td result:create myweb web://domain.com/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
-      -r myweb:path \
+      --result myweb:path \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"

@@ -11,11 +11,11 @@ This article explains how to send job results directly to your ftp server.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are sent to the specified FTP server.
+For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are sent to the specified FTP server.
 
     :::term
     $ td query \
-      -r 'ftp://user:password@domain.com/path.csv' \
+      --result 'ftp://user:password@domain.com/path.csv' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
@@ -31,12 +31,12 @@ The request body is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.tx
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. After every job run, the results are sent via PUT requests in the same manner as on-demand jobs.
+For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are sent via PUT requests in the same manner as on-demand jobs.
 
     :::term
     $ td result:create myftp ftp://user:password@domain.com/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
-      -r myftp:path.csv \
+      --result myftp:path.csv \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 

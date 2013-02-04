@@ -28,20 +28,20 @@ If you're a data scientist, you need to keep track of a range of metrics every h
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. After the job is finished, the results are written into your table.
+For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written into your table.
 
     :::sql
-    $ td query -r 'mysql://user:password@host/database/table' \
+    $ td query --result 'mysql://user:password@host/database/table' \
       -w -d testdb \
       "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"      
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+For scheduled jobs, just add the `--result` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
     :::term
     $ td result:create mydb mysql://user:password@host/database
-    $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" -r mydb:mytbl
+    $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" --result mydb:mytbl
 
 ## Three Ways to Modify Data (Append/Replace/Truncate)
 
