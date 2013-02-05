@@ -131,8 +131,14 @@ get '/categories/:category' do
 end
 
 get '/articles/:article' do
-  cache_long
-  render_article params[:article], params[:congrats]
+  m = /^success-at-(.*)/.match(params[:article])
+  
+  if m
+    redirect "http://www.treasure-data.com/success-stories/#{m[1]}"
+  else
+    cache_long
+    render_article params[:article], params[:congrats]
+  end
 end
 
 helpers do
