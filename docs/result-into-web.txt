@@ -29,7 +29,7 @@ NOTE: If a port number is not specified, the default value is 80.  If username a
 The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  An example of what the query above may output is shown below.
 
     :::json
-    { column_names: [ '_c0', '_c1' ],
+    { column_names: [ 'code', 'cnt' ],
       column_types: [ 'string', 'long' ],
       data: [ [ '200', 4981 ], [ '500', 2 ], [ '404', 17 ] ] }
 
