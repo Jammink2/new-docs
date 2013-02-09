@@ -10,22 +10,22 @@ This article explains how to write job results to your Treasure Data (TD) table.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `-r` option to the `td query` command. Once the job is finished, the results are written into `output_table` within the `testdb` database.
+For on-demand jobs, just add the `--result` option to the `td query` command. Once the job is finished, the results are written into `output_table` within the `testdb` database.
 
     :::sql
-    $ td query -r 'td://@/testdb/output_table' \
+    $ td query --result 'td://@/testdb/output_table' \
       -w -d testdb \
       "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"      
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `output_table`.
+For scheduled jobs, just add the `--result` option when scheduling a job. Every time the job runs, the results are written into `output_table`.
 
     :::term
     $ td result:create mydb td://@/testdb
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb "select count(*) from www_access" \
-      -r mydb:output_table
+      --result mydb:output_table
 
 ## Two Ways to Modify Data (Append/Replace)
 
