@@ -50,13 +50,13 @@ At first, please download and install the [Treasure Data Toolbelt](http://toolbe
     $ heroku td
     usage: heroku td [options] COMMAND [args]
 
-NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">the Heroku toolbelt</a>. Since December 1, 2012, Heroku stopped releasing new updates to the <code>heroku</code> gem.  We have also stopped supporting the <code>heroku</code> gem.
+NOTE: Please make sure to use <a href="http://toolbelt.heroku.com/">the Heroku toolbelt</a>. On December 1, 2012, Heroku stopped releasing new updates to the <code>heroku</code> gem.  We have also stopped supporting the <code>heroku</code> gem.
 
 ## Data Import
 
 ### Step 1: Import Data By Printing to STDOUT (Yes, that simple!)
 
-**You can import data to Treasure Data by simply writing to STDOUT with a specific format**. The format is:
+**You can import data to Treasure Data by simply writing to STDOUT in a specific format**. The format is:
 
     :::text
     @[database.table] JSON-IN-ONE-LINE
@@ -128,7 +128,7 @@ You can see the list of available tables by using the `heroku td tables` command
     +-------------+--------+------+-------+--------+---------------------------+--------+
     3 rows in set
 
-NOTE: You don't see your data uploaded to TD? Perhaps your stdout is buffered. See <a href="https://devcenter.heroku.com/articles/ruby#logging">here</a> for details.
+NOTE: If you don't see your data uploaded to TD, then your stdout may be buffered. See <a href="https://devcenter.heroku.com/articles/ruby#logging">here</a> for details.
 
 To confirm that your application data has been uploaded properly, check the "Count" column. If any of the "Count" entries are non-zero, your event logs been transferred successfully.
 
