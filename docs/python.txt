@@ -130,7 +130,7 @@ For high-traffic websites (more than 5 application nodes), we recommend using a 
 
 ### Monitoring td-agent
 
-Monitoring td-agent itself is also important. Please refer this document about general monitoring methods for td-agent.
+Monitoring td-agent itself is also important. Please refer to this document for general monitoring methods for td-agent.
 
 * [Monitoring td-agent](td-agent-monitoring)
 
