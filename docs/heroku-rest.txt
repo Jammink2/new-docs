@@ -4,7 +4,7 @@ This article describes how to run `td-agent` on Heroku. `td-agent` is a data-imp
 
 ## Treasure Data Toolbelt setup
 
-At first, please download and install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment.
+First, please download and install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment.
 
 <table>
   <tr>
@@ -31,7 +31,7 @@ At first, please download and install the [Treasure Data Toolbelt](http://toolbe
 
 ## Heroku CLI setup
 
-`heroku-td` CLI plugin is also required to bridge between `heroku` CLI and `td` CLI. Once you install the CLI plugin, you will be able to execute the `heroku td` family of commands.
+The `heroku-td` CLI plugin is also required as a bridge between the `heroku` CLI and the `td` CLI. Once you install the CLI plugin, you will be able to execute the `heroku td` family of commands.
 
     :::term
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git

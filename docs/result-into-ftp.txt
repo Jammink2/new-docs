@@ -21,7 +21,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
 
 NOTE: If a port number is not specified, the default value is 21.
 
-The request body is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header which describes column names, new line is CRLF, text encoding is UTF-8, and quotation character is double quotes.
+The request body is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header with the column names, new line is CRLF, text encoding is UTF-8, and quotation character is double quotes.
 
     :::csv
     _c0,_c1

@@ -147,7 +147,7 @@ The files shown below are installed by the rpm or debian packages.
   <tr>
     <td>Rubygems</td>
     <td>/usr/lib{64}/fluent/ruby/bin/fluent-gem</td>
-    <td>Bundled rubygems to install fluentd plugins.  For example: `/usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-mongo`
+    <td>Bundled rubygems to install fluentd plugins. For example: `/usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-mongo`
   </tr>
   <tr>
     <td>jemalloc</td>

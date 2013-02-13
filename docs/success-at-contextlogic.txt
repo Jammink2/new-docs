@@ -4,13 +4,13 @@
 "Treasure Data was our solution, and I strongly recommend it to you as well." - Danny Zhang, co-founder
 </div>
 
-[ContextLogic](http://www.contextlogic.com/) brings together top technical talent from Google, Facebook, and Yahoo! and [backed by notable investors](http://www.crunchbase.com/company/contextlogic).
+[ContextLogic](http://www.contextlogic.com/) brings together top technical talent from Google, Facebook, and Yahoo!, and is [backed by notable investors](http://www.crunchbase.com/company/contextlogic).
 
 <center><img src="http://media.tumblr.com/tumblr_m5hannGFLs1r2sums.png" /></center>
 
 Our flagship product, [Wish](http://www.wish.com/) improves online merchandise discovery by letting users discover and share cool products and get rewards.
 
-We launched Wish in November 2011, and I am pleased to see that we 9 millions of registered users at Jan 2013 already, [making it one of the top 150 Facebook applications worldwide.](http://www.appdata.com/leaderboard/apps?fanbase=0&genre_id=Select+category&language_id=Select+language&list_select=apps&metric_select=mau&page=6&platform_id=Select+platform&start_date%5Bday%5D=11&start_date%5Bmonth%5D=6&start_date%5Byear%5D=2012)
+We launched Wish in November 2011, and I am pleased to see that we have 9 million registered users as of January 2013, [making it one of the top 150 Facebook applications worldwide.](http://www.appdata.com/leaderboard/apps?fanbase=0&genre_id=Select+category&language_id=Select+language&list_select=apps&metric_select=mau&page=6&platform_id=Select+platform&start_date%5Bday%5D=11&start_date%5Bmonth%5D=6&start_date%5Byear%5D=2012)
 
 ## Data Driven Organization
 
