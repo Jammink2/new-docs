@@ -156,6 +156,7 @@ section 'paas', 'PaaS' do
     article 'heroku-rails', 'Rails Apps on Heroku'
     article 'heroku-java', 'Java Apps on Heroku'
     article 'heroku-rest', 'Data Import from REST API on Heroku'
+    article 'heroku-share-apikey', 'Sharing API key from Multiple Heroku Apps'
     article 'heroku-notes', 'Heroku Addon Notes'
   end
   category 'engine-yard', 'EngineYard Addon' do
