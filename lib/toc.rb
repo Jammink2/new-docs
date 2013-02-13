@@ -17,6 +17,7 @@ section 'overview', 'Overview' do
     article 'success-at-cookpad', 'Cookpad - Japan’s No.1 Recipe Sharing Site'
     article 'success-at-splurgy', 'Splurgy - Social Marketing Platform'
     article 'success-at-viki', 'Viki - Global Online Video Service'
+    article 'success-at-cloud9-ide', 'Cloud9 - Online IDE Service'
   end
   category 'faq', 'FAQs' do
     article 'faq', 'Frequently Asked Questions'
