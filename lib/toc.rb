@@ -18,7 +18,7 @@ section 'overview', 'Overview' do
     article 'success-at-splurgy', 'Splurgy - Social Marketing Platform'
     article 'success-at-viki', 'Viki - Global Online Video Service'
     article 'success-at-cloud9-ide', 'Cloud9 - Online IDE Service'
-    article 'success-at-getjar', 'Getjar - Mobile App Marketplace'
+    article 'success-at-getjar', 'Getjar -  One of the World’s Largest Mobile App Marketplaces'
   end
   category 'faq', 'FAQs' do
     article 'faq', 'Frequently Asked Questions'
