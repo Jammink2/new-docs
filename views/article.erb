@@ -37,5 +37,9 @@
 
 <script type="text/javascript">mixpanel.track("ViewArticle_<%= @article.topic %>");</script>
 
+<script type="text/javascript">
+  _kmq.push(['record', 'View Documents', {'Article': '<%= @article.topic %>'}]);
+</script>
+
 </div><!-- /#topic_content -->
 </div><!-- /#page -->
