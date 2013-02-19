@@ -26,17 +26,17 @@ For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) 
 The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header with the column names, new line is CRLF, text encoding is UTF-8, and quotation character is double quotes.
 
     :::csv
-    _c0,_c1
-    a,b
-    c," d "
-    e,f
+    code,cnt
+    "200",4981
+    "500,2
+    "404,17
 
 ### For Scheduled Jobs
 
 For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are sent in the same manner as on-demand jobs.
 
     :::term
-    $ td result:create mys3 ftp://user:password@domain.com/bucketname/
+    $ td result:create mys3 s3://acesskey:secretkey@/bucketname/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       --result mys3:path.csv \
