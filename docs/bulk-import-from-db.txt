@@ -23,7 +23,7 @@ Use `copy` to export a table from Postgres to a CSV file. For example:
     :::term
     COPY users TO '/tmp/result.csv' DELIMITER ','
 
-For more information see the [Postgres documentation](http://www.postgresql.org/docs/current/static/sql-copy.html).
+For more information, see the [Postgres documentation](http://www.postgresql.org/docs/current/static/sql-copy.html).
 
 ## MongoDB
 Use the `mongoexport` command to export a collection into CSV or JSON format. For example:

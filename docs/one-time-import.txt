@@ -6,7 +6,7 @@ This article explains how to import data using the `td table:import` command.
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
 
-## Why One-Time Import
+## Why One-Time Import?
 If you want to import a small amount of data (perhaps only a few files with small sizes) one-time import is a quick way to do so. This method doesn't use MessagePack compression and doesn't retry if there is a network failure during transfer. If a more reliable method is desired, please use [Bulk Import](bulk-import). 
 
 ## The *td table:import* Command
