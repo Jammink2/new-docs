@@ -6,20 +6,6 @@ This article explains how to bulk-import data using the `td bulk_import` command
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
 
-## Three Types of Data Import
-
-#### 1) Streaming Import
-
-Importing continuously generated data. In this case, the [td-agent](td-agent) article is more appropriate.
-
-#### 2) Bulk Import
-
-Importing huge amounts of data, which could cause a network transfer failure between your side and Treasure Data. This article covers this case.
-
-#### 3) One-Time Import
-
-If your data size is small (For example, the data fits in a single file), you can do an [One-Time-Import](one-time-import) instead. This is easier since your data does not have to be in MessagePack format.
-
 ## Why Bulk Import?
 
 Because Treasure Data is a cloud service, the data needs to be transferred via an Internet network connection. This can get tricky once the data size gets big (> 100MB). Consider a couple of cases:

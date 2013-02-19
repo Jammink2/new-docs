@@ -27,9 +27,11 @@ section 'overview', 'Overview' do
 end
 
 section 'import-data', 'Data Import' do
-  category 'bulk-operations', 'Bulk Import' do
-    article 'one-time-import', 'One-Time Import'
-    article 'bulk-import', 'Bulk Import - Reliable Transactional Import'
+  category 'import-overview', 'Overview' do
+    article 'import-overview', 'Overview'
+  end
+  category 'bulk-import', 'Bulk Import' do
+    article 'bulk-import', 'Bulk Import'
     # TODO: bulk import data from CSV/TSV/MySQL/PostgreSQL/MongoDB
   end
   category 'td-agent-basic', 'Streaming Import (Basics)' do
@@ -54,6 +56,9 @@ section 'import-data', 'Data Import' do
     article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
     article 'td-agent-scribe', 'Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
     article 'fluentd-to-treasure-data', 'Using Fluentd Ruby gem',                      ['fluentd']
+  end
+  category 'one-time-import', 'One-Time Import' do
+    article 'one-time-import', 'One-Time Import'
   end
 end
 
