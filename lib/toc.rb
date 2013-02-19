@@ -34,7 +34,7 @@ section 'import-data', 'Data Import' do
   end
   category 'bulk-import-category', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import'
-    article 'bulk-import-from-db', 'Import data from MySQL/MongoDB'
+    article 'bulk-import-from-db', 'Import data from MySQL/PostgresSQL/MongoDB'
   end
   category 'td-agent-basic', 'Streaming Import (Basics)' do
     article 'td-agent', 'Using td-agent package',                                      ['fluentd', 'td-agent']

@@ -2,9 +2,9 @@
 
 This article explains how dump data from a several popular databases and importing them into Treasure Data. The process is as follows:
 
-#### 1) Depending on your database, export your desired tables into a file (see below).
+1) Depending on your database, export your desired tables into a file (see below).
 
-#### 2) Use the [Bulk Import](bulk-import) feature to import the file into Treasure Data.
+2) Use the [Bulk Import](bulk-import) feature to import the file into Treasure Data.
 
 ## MySQL
 From the MySQL shell, use something like the following to export to a CSV file:
@@ -16,6 +16,14 @@ From the MySQL shell, use something like the following to export to a CSV file:
     ESCAPED BY ‘\\’
     LINES TERMINATED BY '\n'
     FROM users
+
+## PostgresSQL
+Use `copy` to export a table from Postgres to a CSV file. For example:
+
+    :::term
+    COPY users TO '/tmp/result.csv' DELIMITER ','
+
+For more information see the [Postgres documentation](http://www.postgresql.org/docs/current/static/sql-copy.html).
 
 ## MongoDB
 Use the `mongoexport` command to export a collection into CSV or JSON format. For example:
