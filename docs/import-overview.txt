@@ -1,0 +1,17 @@
+# Overview of Data Import
+
+This article explains the different options for importing data into Treasure Data and which choice is approprite for your use case.
+
+## Three Types of Data Import
+
+#### 1) Streaming Import
+
+Importing continuously generated data. In this case, the [td-agent](td-agent) article is appropriate.
+
+#### 2) Bulk Import
+
+Importing a large amount of existing data in a reliable way. This method takes into account possible network transfer failure between your side and Treasure Data and has appropriate methods for retrying. Supported file formats include CSV, TSV and JSON. See the [Bulk Import](bulk-import) article for details.
+
+#### 3) One-Time Import
+
+If your data size is small (for example, the data fits in a single file), you can do an [One-Time-Import](one-time-import). This is method is easy but sacrifices reliability checks and file compression in the transfer process.

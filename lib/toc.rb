@@ -32,7 +32,7 @@ section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
   end
-  category 'bulk-import', 'Bulk Import' do
+  category 'bulk-import-category', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import'
     # TODO: bulk import data from CSV/TSV/MySQL/PostgreSQL/MongoDB
   end
