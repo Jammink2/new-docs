@@ -1,0 +1,26 @@
+# Bulk Import from Databases
+
+This article explains how dump data from a several popular databases and importing them into Treasure Data. The process is as follows:
+
+#### 1) Depending on your database, export your desired tables into a file (see below).
+
+#### 2) Use the [Bulk Import](bulk-import) feature to import the file into Treasure Data.
+
+## MySQL
+From the MySQL shell, use something like the following to export to a CSV file:
+    :::sql
+    SELECT * 
+    INTO OUTFILE '/tmp/result.csv'
+    FIELDS TERMINATED BY ','
+    ENCLOSED BY '"'
+    ESCAPED BY ‘\\’
+    LINES TERMINATED BY '\n'
+    FROM users
+
+## MongoDB
+Use the `mongoexport` command to export a collection into CSV or JSON format. For example:
+
+    :::term
+    $ mongoexport --db users --collection contacts --csv --out /tmp/result.csv
+
+For more information, see the [MongoDB documentation](http://docs.mongodb.org/manual/reference/mongoexport/).

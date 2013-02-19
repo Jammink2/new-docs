@@ -6,21 +6,8 @@ This article explains how to import data using the `td table:import` command.
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
 
-## Three Types of Data Import
-
-You can import data to Treasure Data in three ways. Please choose the option that best suits your needs.
-
-#### 1) Streaming Import
-
-Streaming import is used to import continuously generated data. Please refer to the [td-agent](td-agent) article for further information.
-
-#### 2) Bulk Import
-
-Bulk import is used to import huge amounts of data which could cause a network transfer failure between your system and Treasure Data. Please refer to the [Bulk Import](bulk-import) article for further information. The article explains the additional steps required to enbale multi-part upload, data validation, and transactional commits.
-
-#### 3) One-Time Import
-
-One-time import is used to import small amount of data. Such data is usually stored within one file and rarely causes transfer failrues. The following sections explain how to perform one-time data import.
+## Why One-Time Import
+If you want to import a small amount of data (perhaps only a few files with small sizes) one-time import is a quick way to do so. This method doesn't use MessagePack compression and doesn't retry if there is a network failure during transfer. If a more reliable method is desired, please use [Bulk Import](bulk-import). 
 
 ## The *td table:import* Command
 
