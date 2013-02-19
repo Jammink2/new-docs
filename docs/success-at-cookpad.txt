@@ -8,7 +8,7 @@
 
 <center><a href="http://info.cookpad.com/en/service"><img src="/images/cookpad-logo.gif" width="60%"></a></center><br /><br />
 
-In fact, according to Cookpad.com’s internal research, 50% of Japanese women in their 20s and 30s use Cookpad.com as their primary source of recipes and cooking advice.
+In fact, according to Cookpad.com’s internal research, 50% of Japanese women in their 20s and 30s use Cookpad.com as their primary resource for recipes and cooking advice.
 
 So how does Cookpad.com serve up the right recipes at the right time? The short answer is "because they collect all sorts of data about their users." The long answer is the rest of this article.
 

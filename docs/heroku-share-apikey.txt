@@ -1,0 +1,33 @@
+# Sharing API key from Multiple Heroku Apps
+
+This article describes how to share the API key from multiple Heroku applications.
+
+## First App
+
+Just provision your addon like below.
+
+    :::term
+    $ cd app1_dir
+    $ heroku addons:add treasure-data:nano
+    Adding treasure-data:nano on <your_app_name>... done, v3 (free)
+
+You can get an apikey from the command below.
+
+    :::term
+    $ heroku td apikey:show
+    9832dsaf809123808fd0sa8037219873208fdsa3
+
+## Second App or Later
+
+DON't provision your addon. Please set TREASURE_DATA_API_KEY environment variable like below.
+
+    :::term
+    $ cd app2_dir
+    $ heroku config:add TREASURE_DATA_API_KEY='9832dsaf809123808fd0sa8037219873208fdsa3'
+
+After that, please use `td-logger-ruby` library or `td-logger-java` library to import the data.
+
+* [td-logger-ruby](heroku-ruby#appendix-importing-data-to-treasure-data-using-the-logger-library)
+* [td-logger-java](heroku-ruby#appendix-importing-data-to-treasure-data-using-the-logger-library)
+
+Unfortunately, you CAN'T import logs from STDOUT, due to the limitation between us and Heroku right now.

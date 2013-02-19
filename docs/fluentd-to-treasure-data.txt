@@ -31,6 +31,12 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       port 8888
     </source>
     
+    # TCP input
+    <source>
+      type forward
+      port 24224
+    </source>
+    
     # Treasure Data output
     <match td.*.*>
       type tdlog

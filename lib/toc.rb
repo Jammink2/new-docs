@@ -17,6 +17,8 @@ section 'overview', 'Overview' do
     article 'success-at-cookpad', 'Cookpad - Japan’s No.1 Recipe Sharing Site'
     article 'success-at-splurgy', 'Splurgy - Social Marketing Platform'
     article 'success-at-viki', 'Viki - Global Online Video Service'
+    article 'success-at-cloud9-ide', 'Cloud9 - Online IDE Service'
+    article 'success-at-getjar', 'Getjar -  One of the World’s Largest Mobile App Marketplaces'
   end
   category 'faq', 'FAQs' do
     article 'faq', 'Frequently Asked Questions'
@@ -161,6 +163,7 @@ section 'paas', 'PaaS' do
     article 'heroku-rails', 'Rails Apps on Heroku'
     article 'heroku-java', 'Java Apps on Heroku'
     article 'heroku-rest', 'Data Import from REST API on Heroku'
+    article 'heroku-share-apikey', 'Sharing API key from Multiple Heroku Apps'
     article 'heroku-notes', 'Heroku Addon Notes'
   end
   category 'engine-yard', 'EngineYard Addon' do

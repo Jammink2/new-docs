@@ -56,9 +56,9 @@ The configuration below will store logs in your local MongoDB ReplicaSet and in 
 
 For more information regarding MongoDB output options, please refer to [this page](http://docs.fluentd.org/articles/out_mongo). There are plugins for various features such as authentication, capped collection, etc.
 
-## Remote Amazon S3 and Treaaure Data
+## Remote Amazon S3 and Treasure Data
 
-The configuration below will store logs in both your local MongoDB ReplicaSet and in Treasure Data. The logs are flushed into Amazon S3 at the top of each hour, meaning that the first upload won't start immediately. Please wait until the top of the next hour to verify the initial test.
+The configuration below will store logs in both your Amazon S3 bucket and in Treasure Data. The logs are flushed into Amazon S3 at the top of each hour, meaning that the first upload won't start immediately. Please wait until the top of the next hour to verify the initial test.
 
     :::text
     <match td.*.*>
