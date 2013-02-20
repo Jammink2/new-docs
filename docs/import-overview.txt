@@ -15,3 +15,64 @@ Importing a large amount of existing data in a reliable way. This method takes i
 #### 3) One-Time Import
 
 If your data size is small (for example, the data fits in a single file), you can do an [One-Time-Import](one-time-import). This is method is easy but sacrifices reliability checks and file compression in the transfer process.
+
+## Data Import Suggestions
+
+<table>
+  <tr>
+    <th>Data Source</th>
+    <th>Need<br/> td-agent</th>
+    <th>Need<br/> td-toolbelt</th>
+    <th>See</th>
+    <th>Pros</th>
+    <th>Cons</th>
+  </tr>
+  <tr>
+    <td>Web Log</td>
+    <td>Y</td>
+    <td>N</td>
+    <td><a href="apache">td-agent</a></td>
+    <td>Robustness</td>
+    <td>Need extra process</td>
+  </tr>
+  <tr>
+    <td>App Log</td>
+    <td>Y</td>
+    <td>N</td>
+    <td><a href="/categories/td-agent-language">td-agent (w/ logger)</a></td>
+    <td>Robustness</td>
+    <td>Need extra process</td>
+  </tr>
+  <tr>
+    <td>Database</td>
+    <td>N</td>
+    <td>Y</td>
+    <td><a href="/categories/bulk-import-category">Bulk Import</a></td>
+    <td>Robustness</td>
+    <td>Need extra steps</td>
+  </tr>
+  <tr>
+    <td>Database</td>
+    <td>N</td>
+    <td>Y</td>
+    <td><a href="one-time-import">One Time Import</a></td>
+    <td>Easiness</td>
+    <td>No retry mechanism</td>
+  </tr>
+  <tr>
+    <td>CSV/TSV File</td>
+    <td>N</td>
+    <td>Y</td>
+    <td><a href="/categories/bulk-import-category">Bulk Import</a></td>
+    <td>Robustness</td>
+    <td>Need extra steps</td>
+  </tr>
+  <tr>
+    <td>CSV/TSV File</td>
+    <td>N</td>
+    <td>Y</td>
+    <td><a href="one-time-import">One Time Import</a></td>
+    <td>Easiness</td>
+    <td>No retry mechanism</td>
+  </tr>
+</table>
