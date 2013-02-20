@@ -12,7 +12,7 @@ Treasure Data provides multiple ways to import data from Heroku application. Her
     <th></th>
   </tr>
   <tr>
-    <td>Any Language</td>
+    <td>Any</td>
     <td>App Logs</td>
     <td>Y</td>
     <td>N</td>
@@ -44,7 +44,7 @@ Treasure Data provides multiple ways to import data from Heroku application. Her
     <td><a href="heroku-java#appendix-importing-data-to-treasure-data-using-the-logger-library">Use td-logger-java</a></td>
   </tr>
   <tr>
-    <td>Any Language</td>
+    <td>Any</td>
     <td>App Logs</td>
     <td>N</td>
     <td>N</td>
@@ -52,7 +52,7 @@ Treasure Data provides multiple ways to import data from Heroku application. Her
     <td><a href="heroku-rest">Use td-agent</a></td>
   </tr>
   <tr>
-    <td>Any Language</td>
+    <td>Any</td>
     <td>Database</td>
     <td></td>
     <td>Y</td>
@@ -60,7 +60,7 @@ Treasure Data provides multiple ways to import data from Heroku application. Her
     <td><a href="one-time-import">use One-Time Import</a></td>
   </tr>
   <tr>
-    <td>Any Language</td>
+    <td>Any</td>
     <td>Database</td>
     <td></td>
     <td>Y</td>
