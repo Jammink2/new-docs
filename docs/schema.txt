@@ -43,6 +43,8 @@ In general, the default schema is acceptable. But a custom schema makes queries 
     :::term
     $ td schema:set <database> <table> <column_name>:<type>...
 
+NOTE: At this time, schemas only support column names with lowercase alphabets, numbers, and "_".
+
 Treasure Data supports the following data types:
 
 * int
