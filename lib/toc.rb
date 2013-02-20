@@ -148,7 +148,7 @@ section 'ab', 'Accounts & Billing' do
   category 'accounts', 'Accounts' do
     article 'change-password', 'Changing the Password'
     article 'access-control', 'Access Control'
-  #   article 'change-email-address', 'Changing your email address'
+    article 'change-email-address', 'Changing your Email Address'
   #   article 'delete-account', 'Deleting the account'
   end
   category 'support', 'Support' do
@@ -159,6 +159,7 @@ end
 
 section 'paas', 'PaaS' do
   category 'heroku', 'Heroku Addon' do
+    article 'heroku-data-import', 'Data Import from Heroku Apps'
     article 'heroku-ruby', 'Ruby Apps on Heroku'
     article 'heroku-rails', 'Rails Apps on Heroku'
     article 'heroku-java', 'Java Apps on Heroku'
