@@ -19,7 +19,7 @@ You can get an apikey from the command below.
 
 ## Second App or Later
 
-DON't provision your addon. Please set TREASURE_DATA_API_KEY environment variable like below.
+DON'T provision your addon. Please set TREASURE_DATA_API_KEY environment variable like below.
 
     :::term
     $ cd app2_dir
