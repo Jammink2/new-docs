@@ -24,7 +24,12 @@ Here is another example URL. [Basic HTTP authentication](http://en.wikipedia.org
     :::text
     web://user:pass@domain.com:8080/path1/path2
 
-NOTE: If a port number is not specified, the default value is 80. If username and password are not given, then authentication is not used.
+We also support transfer via HTTPS if you use `webs` as the protocol header instead of `web`. For example:
+
+    :::text
+    webs://securedomain.com/path1/path2
+
+NOTE: If a port number is not specified, the default value is 80 for HTTP and 443 for HTTPS. If username and password are not given, then authentication is not used.
 
 The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  An example of what the query above may output is shown below.
 
