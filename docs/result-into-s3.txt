@@ -1,11 +1,11 @@
 # Writing Query Results to S3
 
-This article explains how to write job results directly to S3.
+This article explains how to write job results directly to Amazon S3.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A S3 bucket with write permission.
+  * An Amazon S3 bucket with write permission.
 
 ## Basic Usage
 
@@ -21,7 +21,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
 
 NOTE: The access key and secret key must be url encoded.
 
-For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage permission with respect to writing to S3.
+For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage S3 write access permissions.
 
 The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header with the column names, new line is CRLF, text encoding is UTF-8, and quotation character is double quotes.
 
@@ -41,4 +41,3 @@ For scheduled jobs, just add the `--result` option when scheduling a job. After 
       -d testdb \
       --result mys3:path.csv \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
-

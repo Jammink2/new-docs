@@ -89,7 +89,7 @@ NOTE: "year" and "month" durations are NOT supported.
 This example formats a UNIX timestamp into a date formatted string
 
     :::sql
-    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd hh:mm:ss Z") ... FROM ...
+    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss Z") ... FROM ...
 
 ### Description
 

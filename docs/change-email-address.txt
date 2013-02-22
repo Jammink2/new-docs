@@ -1,3 +1,3 @@
 # Change Email Address
 
-Unfortunately, this is now a manual operation. Please email to `support@treasure-data.com`, with your 1) old email address, and 2) new email address.
+Unfortunately, this is currently a manual operation. Please email us at `support@treasure-data.com`, with your 1) old email address, and 2) new email address.

@@ -1,6 +1,6 @@
 # Heroku Data Import
 
-Treasure Data provides multiple ways to import data from Heroku application. Here's a matrix which helps you choosing the right mechanism of data import.
+Treasure Data provides multiple ways to import data from Heroku applications. Here's a matrix to help you choose the right method for your needs.
 
 <table>
   <tr>
