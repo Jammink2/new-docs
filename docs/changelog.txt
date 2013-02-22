@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Feb 22, 2013: Added result output to S3
+
+We added a feature to [write query result to S3](result-into-s3).
+
 ## Jan 29, 2013: Added result output to ftp server
 
 Now you can [send your query result to a ftp server](result-into-ftp).
