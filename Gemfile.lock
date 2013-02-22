@@ -27,7 +27,7 @@ GEM
     kgio (2.7.4)
     mime-types (1.18)
     multipart-post (1.1.5)
-    newrelic_rpm (3.4.1)
+    newrelic_rpm (3.5.7.59)
     nokogiri (1.5.2)
     rack (1.5.2)
     rack-cache (1.2)
@@ -77,7 +77,7 @@ DEPENDENCIES
   indextank (~> 1.0.12)
   jemalloc (~> 0.1.7)
   json
-  newrelic_rpm (~> 3.4.1)
+  newrelic_rpm (~> 3.5.7.59)
   rack-cache (~> 1.2)
   rack-codehighlighter
   rake
