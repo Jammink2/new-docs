@@ -4,7 +4,9 @@ This article describes how to share a single Treasure Data API key between multi
 
 ## Prerequisites
 
-You need to install [heroku-toolbelt](http://toolbelt.heroku.com/) and [td-toolbelt](http://toolbelt.treasure-data.com/) on your PC. Then, please install the Heroku CLI plugin to bridge the toolbelts above.
+   * The [heroku-toolbelt](http://toolbelt.heroku.com/).
+   * The [td-toolbelt](http://toolbelt.treasure-data.com/).
+   * The Heroku CLI plugin (to bridge the toolbelts above).
 
     :::term
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
