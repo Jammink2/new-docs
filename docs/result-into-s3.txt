@@ -33,7 +33,7 @@ The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `--result` option when scheduling a job. Just like an on-demand job, when a scheduled job completes, the results are sent to S3. 
+For scheduled jobs, just add the `--result` option when scheduling a job. Just like an on-demand job, the results are sent to S3 once the job is completed. 
 
     :::term
     $ td result:create mys3 s3://accesskey:secretkey@/bucketname/
