@@ -1,3 +1,5 @@
 # Talend Open Studio
 
 This article explains how to use Treasure Data with [Talend Open Studio](http://www.talend.com/) by leveraging [our JDBC driver](jdbc-driver). By combining Treasure Data with Talend, you can process huge volumes of data using Hadoop on the cloud.
+
+NOTE: You <b>don't have time</b> to setup Talend + Treasure Data? We have <a href="setup-consultation">Setup Consultation Service</a>.

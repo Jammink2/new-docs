@@ -173,3 +173,12 @@ section 'paas', 'PaaS' do
     article 'engine-yard-rails', 'Rails Apps on EngineYard'
   end
 end
+
+section 'consulting', 'Consulting' do
+  category 'setup-consultation', 'Setup Consultation' do
+    article 'setup-consultation', "Setup Consultation by Treasure Data Engineers"
+  end
+  category 'scalability-consultation', 'Scalability Consultation' do
+    article 'scalability-consultation', 'Scalability Consultation by Treasure Data Engineers'
+  end
+end

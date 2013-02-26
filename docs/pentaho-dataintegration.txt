@@ -6,6 +6,8 @@ This article will explain how to use Treasure Data with [Pentaho Data Integratio
 
   * Basic knowledge of Treasure Data. The [Quickstart Guide](quickstart) is a good place to start.
 
+NOTE: You <b>don't have time</b> to setup Pentaho + Treasure Data? We have <a href="setup-consultation">Setup Consultation Service</a>.
+
 ## Download Pentaho Data Integration (Kettle)
 
 You can download Pentaho Data Integration (Kettle) from the link below. Version 4.3.0 was tested for this article

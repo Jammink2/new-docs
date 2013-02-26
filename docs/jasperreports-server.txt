@@ -6,6 +6,8 @@ This article explains how to use Treasure Data with [JasperReports Server](http:
 
   * Basic knowledge of Treasure Data, including our [Quickstart Guide](quickstart).
 
+NOTE: You <b>don't have time</b> to setup JasperSoft + Treasure Data? We have <a href="setup-consultation">Setup Consultation Service</a>.
+
 ## Download JasperReports Server
 
 You can download JasperReports Server from the link below. Version 4.7.0 was used for this article.
