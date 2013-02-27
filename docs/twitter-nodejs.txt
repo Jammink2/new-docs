@@ -4,7 +4,7 @@
 
 Node.js is an increasingly popular server-side implementation of JavaScript. In this article, we show how to stream Twitter Data into Treasure Data from Node.js via td-agent.
 
-NOTE: Leverage our <a href="nodejs">another article</a> that covers using Treasure Data from Node.js in general.
+NOTE: We have <a href="nodejs">another article</a> that covers using Treasure Data from Node.js in general.
 
 ##Prerequisites
 
