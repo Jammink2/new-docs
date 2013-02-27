@@ -1,6 +1,6 @@
 # Scalability Consultation
 
-We offer a `Scalability Consultation Service`, which includes:
+We offer a `Scalability Consultation Service` which includes:
 
 * Configuring td-agent for high availability
 * Tuning the td-agent buffer configuration to robustly handle > billion records/month
