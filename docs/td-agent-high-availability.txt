@@ -7,7 +7,7 @@ For high-traffic websites, we recommend using a high availability configuration 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
   * Basic knowledge of td-agent.
 
-NOTE: <b>Need mission critical</b> configuration of td-agent? We have <a href="scalability-consultation">Scalability Consultation Service</a>.
+NOTE: <b>Need mission critical</b> configuration of td-agent? Leverage our <a href="scalability-consultation">Scalability Consultation Service</a>.
 
 ## Message Delivery Semantics
 

@@ -8,7 +8,7 @@
 
   * Basic knowledge of Treasure Data. The [Quickstart Guide](quickstart) is a good place to start.
 
-NOTE: You <b>don't have time</b> to setup Indicee + Treasure Data? We have <a href="setup-consultation">Setup Consultation Service</a>.
+NOTE: <b>Don't have time</b> to setup Indicee + Treasure Data? Leverage our <a href="setup-consultation">Setup Consultation Service</a>.
 
 ## Combining Indicee and Treasure Data
 

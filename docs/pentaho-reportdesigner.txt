@@ -13,7 +13,7 @@ You can download Pentaho Report Designer from the link below. Version 3.9.0-GA w
 </center>
 <br /><br />
 
-NOTE: You <b>don't have time</b> to setup Pentaho + Treasure Data? We have <a href="setup-consultation">Setup Consultation Service</a>.
+NOTE: <b>Don't have time</b> to setup Pentaho + Treasure Data? Leverage our <a href="setup-consultation">Setup Consultation Service</a>.
 
 ## Download our JDBC Driver
 
