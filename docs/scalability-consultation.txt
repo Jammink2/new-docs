@@ -1,0 +1,9 @@
+# Scalability Consultation
+
+We offer a `Scalability Consultation Service` which includes:
+
+* Configuring td-agent for high availability
+* Tuning the td-agent buffer configuration to robustly handle > billion records/month
+* Tuning Hive queries
+
+If you're intersted, please contact Rob (<a href="mailto:rob@treasure-data.com">rob@treasure-data.com</a>).

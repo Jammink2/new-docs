@@ -11,19 +11,19 @@ This article explains how to write job results directly to Amazon S3.
 
 ### For On-demand Jobs
 
-For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written to the S3 bucket with the given name and at the given path.
+For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written to the S3 bucket with the given name and path.
 
     :::term
     $ td query \
-      --result 's3://acesskey:secretkey@/bucketname/path.csv' \
+      --result 's3://accesskey:secretkey@/bucketname/path.csv' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
-NOTE: The access key and secret key must be url encoded.
+NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoded</a>.
 
 For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage S3 write access permissions.
 
-The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header with the column names, new line is CRLF, text encoding is UTF-8, and quotation character is double quotes.
+The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header with the column names, new line is CRLF, the text encoding is UTF-8, and &quot; (double quote) is used to quote strings, e.g.,
 
     :::csv
     code,cnt
@@ -33,10 +33,10 @@ The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt
 
 ### For Scheduled Jobs
 
-For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are sent in the same manner as on-demand jobs.
+For scheduled jobs, just add the `--result` option when scheduling a job. Just like an on-demand job, the results are sent to S3 once the job is completed. 
 
     :::term
-    $ td result:create mys3 s3://acesskey:secretkey@/bucketname/
+    $ td result:create mys3 s3://accesskey:secretkey@/bucketname/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       --result mys3:path.csv \
