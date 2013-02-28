@@ -11,16 +11,16 @@
 
 A typical use case is to setup a scheduled query and output the results to a line graph in Leftronic. The resuling time series is provides a great at-a-glance performance metric. This can be done in a few simple steps:
 
-### Step 1: In the Leftronic dashboard, create a new line graph. Click on the properties for this graph and note down its `streamName`. This is a reference name to the graph which we'll use in the next steps. Also find out your `accessKey`, which can be found in their [documentation](https://www.leftronic.com/api/).
+Step 1: In the Leftronic dashboard, create a new line graph. Click on the properties for this graph and note down its `streamName`. This is a reference name to the graph which we'll use in the next steps. Also find out your `accessKey`, which can be found in their [documentation](https://www.leftronic.com/api/).
 
-### Step 2: On the command line, create a named result endpoint.
+Step 2: On the command line, create a named result endpoint.
 
     :::term
     $ td result:create mymetric "leftronic://accessKey/streamName"
 
 `accessKey` and `streamName` are the parameters mentioned in the previous step.
 
-### Step 3: Setup a scheduled query, which will periodically execute and send the query result to your Leftronic graph as a point.  
+Step 3: Setup a scheduled query, which will periodically execute and send the query result to your Leftronic graph as a point.  
 
     :::term
     $ td sched:create mymetric_hourly "0 * * * *" \
