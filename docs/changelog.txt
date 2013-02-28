@@ -1,6 +1,8 @@
 # Treasure Data ChangeLog
 
-## Feb 22, 2013: Added result output to S3
+## Feb 27, 2013: Added [result output to Leftronic](result-into-leftronic).
+
+## Feb 22, 2013: Added [result output to S3](result-into-s3).
 
 We added a feature to [write query result to S3](result-into-s3).
 

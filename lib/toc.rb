@@ -93,6 +93,7 @@ section 'query-data', 'Data Processing' do
     article 'result-into-web', 'Sending Job Result to Web Server'
     article 'result-into-ftp', 'Sending Job Result to FTP Server'
     article 'result-into-s3', 'Writing Job Result to S3'
+    article 'result-into-leftronic', 'Sending Job Result to Leftronic'
     # article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'
     # article 'result-into-redis', 'Writing the Job Result into your Redis'
     # article 'result-into-riak', 'Writing the Job Result into your Riak'
