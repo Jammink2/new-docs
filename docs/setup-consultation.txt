@@ -2,10 +2,10 @@
 
 We offer a paid `Setup Consultation Service` which includes:
 
-* 1-on-1 call to understand the Basic Architecture of Treasure Data
+* 1-on-1 call to describe the Basic Architecture of Treasure Data
 * Setting up streaming or bulk data importers
 * Setting up basic scheduled queries
 * Setting up intermediate databases
-* Setting up data visualization / dasbhoard / BI tools
+* Setting up data visualization / dashboard / BI tools
 
-If you're interested, please contact to Rob (<a href="mailto:rob@treasure-data.com">rob@treasure-data.com</a>).
+If you're interested, please contact Rob (<a href="mailto:rob@treasure-data.com">rob@treasure-data.com</a>).
