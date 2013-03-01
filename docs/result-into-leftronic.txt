@@ -1,29 +1,29 @@
 # Sending Query Results to Leftronic.
 
-[Leftronic](https://www.leftronic.com) is an online dashboard service. This article explains how to output query result as data points for dashboard graphs.
+[Leftronic](https://www.leftronic.com) is an online dashboard service. This article explains how to output query results as data points for dashboard graphs.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * An account with [Leftronic](https://www.leftronic.com).
+  * An [Leftronic](https://www.leftronic.com) account.
 
 ## Scheduled Queries
 
-A typical use case is to setup a scheduled query and output the results to a line graph in Leftronic. The resuling time series is provides a great at-a-glance performance metric. This can be done in a few simple steps:
+A typical use case is to setup a scheduled query in Treasure Data and output the results to a line graph in Leftronic. The resuling time series provides a great at-a-glance performance metric. This can be done in a few simple steps:
 
-Step 1: In the Leftronic dashboard, create a new line graph. Click on the properties for this graph and note down its `streamName`. This is a reference name to the graph which we'll use in the next steps. Also find out your `accessKey`, which can be found in their [documentation](https://www.leftronic.com/api/).
+Step 1: In the Leftronic dashboard, create a new line graph. Click on the properties for this graph and take note of its `streamName`. This is a reference name to the graph, which we'll use in the next steps. Also find out your `accessKey`. Leftronic's [documentation](https://www.leftronic.com/api/) describes how to obtain your accessKey.
 
 <p><center><img src="/images/result_leftronic.png" width="500px" /></center></p>
 <br />
 
-Step 2: On the command line, create a named result endpoint.
+Step 2: Create a named result endpoint using the command line.
 
     :::term
     $ td result:create mymetric "leftronic://accessKey/streamName"
 
-`accessKey` and `streamName` are the parameters mentioned in the previous step.
+`accessKey` and `streamName` are the parameters mentioned in Step 1.
 
-Step 3: Setup a scheduled query, which will periodically execute and send the query result to your Leftronic graph as a point.  
+Step 3: Set up a scheduled query. This will execute periodically and send the result to your Leftronic graph as a data point.
 
     :::term
     $ td sched:create mymetric_hourly "0 * * * *" \
@@ -31,5 +31,5 @@ Step 3: Setup a scheduled query, which will periodically execute and send the qu
       --result mymetric:path \
       "SELECT TD_SCHEDULED_TIME(), COUNT(1) FROM www_access TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(),'-1h'), TD_SCHEDULED_TIME())"
 
-The result of your query should contain only one row with two columns. The first column should be a timestamp value in [unix epoch format](http://en.wikipedia.org/wiki/Unix_time). The second column should be the value of associated with the time. In this example, we are counting the number of entries from the `www_access` table that occured within the past hour.
+The query result should contain only one row with two columns. The first column should contain a timestamp value in [UNIX epoch format](http://en.wikipedia.org/wiki/Unix_time). The second column should contain the value associated with each timestamp. In this example, we are counting the number of entries in the `www_access` table that occured within the past hour.
 
