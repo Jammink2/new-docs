@@ -90,7 +90,7 @@ Then, create result output and scheduled jobs from heroku td command. By using [
        WHERE \
          TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h'), TD_SCHEDULED_TIME()) \
        GROUP BY \
-         v['item_category']"
+         TD_SCHEDULED_TIME(), v['item_category']"
 
 Now that the information like below is automatically inserted into `payment_history` table in hourly basis.
 
