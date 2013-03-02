@@ -1,0 +1,108 @@
+# Data Analytics Solutions for Heroku Applications
+
+## Overview
+
+This article shows how to analyze and understand your user base on Heroku applications.
+
+## Tracking Web Behaviors
+
+### Page View Tracking
+
+As basics, [Google Analytics](http://www.google.com/analytics/) provides the page-view tracking. The basic metrics like daily PVs, UUs, or search keywords can be retrieved by it. The integration is easy: just put the JS fragment into every pages you render.
+
+### Web Event Tracking
+
+Beyond page views, [MixPanel](http://mixpanel.com/) or [KISSmetrics](https://www.kissmetrics.com/) can be used to track events and people, rather than page views. To correctly measure the engagement of your userbase, sometimes page views may not be sufficient. For example, the number of comments must be a key metrics. Both MixPanel and KISSmetrics provides JavaScript library to track events and people.
+
+## Tracking Everything on Your Business
+
+Today's mobile/web applications are complex, so the behavior of users aren't necessarily done only on the web. The mobile app often hits the server-side REST APIs.
+
+And as you grow, more custom & sophisticated analytics infrastructure will be required for the custom reporting, adhoc analysis, alerting, etc. The data sources will also vary.
+
+### Hadoop + RDBMS + BI
+
+To analyze the growing data in a flexible way, here's our recommended architecture of analyzing user behaviors on Heroku.
+
+<center><img src="/images/heroku-data-analytics-architecture.png" width="90%" /></center><br /><br />
+
+#### Hadoop
+
+Hadoop is designed for capturing raw data in a cost effective manner, and processing it in parallel. Now all the internet giants capture every data as much as possible to Hadoop. Hadoop is really good at handling large volume of data, but it's originally designed for batch processing. 
+
+#### RDBMS
+
+RDBMS stores data as structured data, and returns the result of the query in an interactive way. However, scaling RDBMS is tough. That means, using both Hadoop and RDBMS brings scalability with interactive analytics.
+
+## Treasure Data Hadoop + Heroku Postgres + Chart.IO
+
+Implementing the reference architecture above is easy on Heroku. Heroku's [Treasure Data addon]() offers cloud-hosted hadoop solution. Also Heroku itself provides [Heroku Postgres](), PostgreSQL as-a-service. [Chartio](http://chartio.com/) is a cloud-hosted business dashboard which can talk directly with your RDBMS.
+
+The following steps will show you how to analyze user's behavior within typical social / mobile applications.
+
+### Step 0) Heroku + Chartio Account
+
+Please ensure you have working [Heroku](http://www.heroku.com/) and [Chartio](http://chartio.com/) account.
+
+### Step 1) Data Injestion to Treasure Data
+
+At first, you need to enable treasure-data addon, and install heroku-td CLI plugin
+
+    :::term
+    $ heroku addons:add treasure-data:nano
+    $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
+    $ heroku td
+    usage: heroku td [options] COMMAND [args]
+
+Now that you can inject the data from logplex by output your data into STDOUT. To keep this document in general, the example app will track these actions: register, login, pay, access.
+
+    :::ruby
+    # Ruby
+    puts "@[production.register] #{{'uid'=>123}.to_json}"
+    puts "@[production.login] #{{'uid'=>123}.to_json}"
+    puts "@[production.pay] #{{'uid'=>123, 'item_id'=>7326, 'item_category'=>'categoryA', 'price'=>321321}.to_json}"
+    puts "@[production.access] #{{'uid'=>123, 'url'=>'http://..../'}.to_json}"
+
+### Step 2) Scheduled Aggregation to Heroku PostgreSQL
+
+Next, [Scheduled Jobs](schedule) can be used for periodic job execution. Also the job query result can be easily [inserted into Heroku PostgreSQL](result-into-postgresql). First, please check your Heroku Postgres connection URL.
+
+    :::term
+    $ heroku config | grep POSTGRE
+    HEROKU_POSTGRESQL_NAVY_URL: postgres://user:pass@host:port/db
+
+Then, create result output and scheduled jobs from heroku td command. By using [TD_TIME_RANGE() udf](udfs), you can process the most recent 1 hour data.
+
+    :::term
+    $ heroku td result:create heroku_db postgresql://user:pass@host:port/db
+    $ heroku td sched:create pay_hourly "0 * * * *" \
+      -d testdb \
+      -D 600 \
+      --result heroku_db:payment_history \
+      "SELECT \
+         TD_SCHEDULED_TIME() AS time, \
+         v['item_category'] AS category, \
+         SUM(CAST(v['price'] AS price)) AS sum \
+       FROM \
+         www_access \
+       WHERE \
+         TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h'), TD_SCHEDULED_TIME()) \
+       GROUP BY \
+         v['item_category']"
+
+Now that the information like below is automatically inserted into `payment_history` table in hourly basis.
+
+     2012-03-01 00, categoryA, 32132
+     2012-03-01 00, categoryB, 3133
+     2012-03-01 01, categoryA, 310310
+     2012-03-01 02, categoryB, 1332
+
+### Step 3) Setup Chartio
+
+Please setup connection from Chartio to Heroku PostgreSQL by looking at [this document](http://chartio.com/docs/datasources/connections/heroku).
+
+<center><a href="http://chartio.com/docs/datasources/connections/heroku"><img src="https://chartio.com/hmedia/images/docs/datasources/connections/heroku/form.png" width="90%" /></a></center><br /><br />
+
+Now you can setup and create your dashboard which shows the payment per category.
+
+<center><img src="/images/chartio-screenshot.png" width="90%" /></center><br /><br />

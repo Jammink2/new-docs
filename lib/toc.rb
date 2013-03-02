@@ -161,6 +161,7 @@ end
 
 section 'paas', 'PaaS' do
   category 'heroku', 'Heroku Addon' do
+    article 'heroku-data-analytics', 'Data Analytics Solutions for Heroku'
     article 'heroku-data-import', 'Data Import from Heroku Apps'
     article 'heroku-ruby', 'Ruby Apps on Heroku'
     article 'heroku-rails', 'Rails Apps on Heroku'
