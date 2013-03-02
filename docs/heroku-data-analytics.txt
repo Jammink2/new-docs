@@ -38,6 +38,8 @@ RDBMS stores data as structured data, and returns the result of the query in an 
 
 Implementing the reference architecture above is easy on Heroku. Heroku's [Treasure Data addon]() offers cloud-hosted hadoop solution. Also Heroku itself provides [Heroku Postgres](), PostgreSQL as-a-service. [Chartio](http://chartio.com/) is a cloud-hosted business dashboard which can talk directly with your RDBMS.
 
+<center><img src="/images/heroku-data-analytics-heroku-treasure-data-chartio.png" width="90%" /></center><br /><br />
+
 The following steps will show you how to analyze user's behavior within typical social / mobile applications.
 
 ### Step 0) Heroku + Chartio Account
