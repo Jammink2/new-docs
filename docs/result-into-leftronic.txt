@@ -15,16 +15,12 @@ Step 1: In the Leftronic dashboard, create a new line graph. Click on the proper
 
 <center>
 <p><img src="/images/result_leftronic_new_graph.png" width="500px" /></p>
-Create a new "Line Graph" in Leftronic
-<br />
-</center>
+<p>Create a new "Line Graph" in Leftronic</p>
 
-<center>
 <p><img src="/images/result_leftronic.png" width="500px" /></p>
-Get the "Stream Name" from graph properties
-<br />
+<p>Get the "Stream Name" from graph properties</p>
 </center>
-
+<br>
 
 Step 2: Create a named result endpoint using the command line.
 
