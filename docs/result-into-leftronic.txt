@@ -13,8 +13,12 @@ A typical use case is to setup a scheduled query in Treasure Data and output the
 
 Step 1: In the Leftronic dashboard, create a new line graph. Click on the properties for this graph and take note of its `streamName`. This is a reference name to the graph, which we'll use in the next steps. Also find out your `accessKey`. Leftronic's [documentation](https://www.leftronic.com/api/) describes how to obtain your accessKey.
 
-<p><center><img src="/images/result_leftronic.png" width="500px" /></center></p>
+<center>
+<p><img src="/images/result_leftronic.png" width="500px" /></p>
 <br />
+Get the "Stream Name" from graph properties
+</center>
+
 
 Step 2: Create a named result endpoint using the command line.
 
