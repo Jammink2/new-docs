@@ -8,47 +8,47 @@ This article shows how to analyze and understand your user base on Heroku applic
 
 ### Page View Tracking
 
-As basics, [Google Analytics](http://www.google.com/analytics/) provides the page-view tracking. The basic metrics like daily PVs, UUs, or search keywords can be retrieved by it. The integration is easy: just put the JS fragment into every pages you render.
+For basic page view metrics, [Google Analytics](http://www.google.com/analytics/) is sufficient. It can track page views, unique users or search keywords on a daily basis. Integration is easy: just place the JS fragment on every page you render.
 
 ### Web Event Tracking
 
-Beyond page views, [MixPanel](http://mixpanel.com/) or [KISSmetrics](https://www.kissmetrics.com/) can be used to track events and people, rather than page views. To correctly measure the engagement of your userbase, sometimes page views may not be sufficient. For example, the number of comments must be a key metrics. Both MixPanel and KISSmetrics provides JavaScript library to track events and people.
+For metrics beyond page views, [MixPanel](http://mixpanel.com/) or [KISSmetrics](https://www.kissmetrics.com/) can be used to track events and people, rather than page views. To correctly measure the engagement of your userbase, page views are not always enough. The number of comments is one such key metrics. Both MixPanel and KISSmetrics provide JavaScript libraries to track events and people.
 
 ## Tracking Everything on Your Business
 
-Today's mobile/web applications are complex, so the behavior of users aren't necessarily done only on the web. The mobile app often hits the server-side REST APIs.
+Today's mobile/web applications are complex. User interactions with the application aren't restricted to the web. The mobile app often hits the server-side REST APIs.
 
-And as you grow, more custom & sophisticated analytics infrastructure will be required for the custom reporting, adhoc analysis, alerting, etc. The data sources will also vary.
+As you grow, a custom & sophisticated analytics infrastructure will be needed for custom reporting, ad hoc analysis, alerting, etc. The analytics system will need to adapt to varying data sources as well.
 
 ### Hadoop + RDBMS + BI
 
-To analyze the growing data in a flexible way, here's our recommended architecture of analyzing user behaviors on Heroku.
+To analyze the growing data in a flexible way, we recommend the following architecture on Heroku to analyze user behavior.
 
 <center><img src="/images/heroku-data-analytics-architecture.png" width="90%" /></center><br /><br />
 
 #### Hadoop
 
-Hadoop is designed for capturing raw data in a cost effective manner, and processing it in parallel. Now all the internet giants capture every data as much as possible to Hadoop. Hadoop is really good at handling large volume of data, but it's originally designed for batch processing. 
+Hadoop is designed to capture raw data in a cost effective manner and process it in parallel. All the internet giants now capture as much data possible to send to Hadoop. Hadoop excels at handling large amounts of data, but it is originally designed for batch processing. 
 
 #### RDBMS
 
-RDBMS stores data as structured data, and returns the result of the query in an interactive way. However, scaling RDBMS is tough. That means, using both Hadoop and RDBMS brings scalability with interactive analytics.
+RDBMS store data as structured data and return query results in an interactive manner. However, scaling RDBMS is difficult. But by combining Hadoop with RDBMS, we can achieve scalability together with interactive analytics.
 
-## Treasure Data Hadoop + Heroku Postgres + Chart.IO
+## Treasure Data Hadoop + Heroku Postgres + Chartio
 
-Implementing the reference architecture above is easy on Heroku. Heroku's [Treasure Data addon]() offers cloud-hosted hadoop solution. Also Heroku itself provides [Heroku Postgres](), PostgreSQL as-a-service. [Chartio](http://chartio.com/) is a cloud-hosted business dashboard which can talk directly with your RDBMS.
+Implementing the architecture above is easy on Heroku. First, Heroku's [Treasure Data addon]() enables a cloud-hosted Hadoop solution. Second, [Heroku Postgres]() provides PostgreSQL as-a-service. Finally, [Chartio](http://chartio.com/), a cloud-hosted business dashboard, is able to talk directly with your RDBMS.
 
 <center><img src="/images/heroku-data-analytics-heroku-treasure-data-chartio.png" width="90%" /></center><br /><br />
 
-The following steps will show you how to analyze user's behavior within typical social / mobile applications.
+The following steps will show you how to analyze user behavior within typical social / mobile applications.
 
 ### Step 0) Heroku + Chartio Account
 
-Please ensure you have working [Heroku](http://www.heroku.com/) and [Chartio](http://chartio.com/) account.
+You will need working accounts for both [Heroku](http://www.heroku.com/) and [Chartio](http://chartio.com/).
 
 ### Step 1) Data Injestion to Treasure Data
 
-At first, you need to enable treasure-data addon, and install heroku-td CLI plugin
+First, enable the treasure-data addon and install the heroku-td CLI plugin.
 
     :::term
     $ heroku addons:add treasure-data:nano
@@ -56,7 +56,7 @@ At first, you need to enable treasure-data addon, and install heroku-td CLI plug
     $ heroku td
     usage: heroku td [options] COMMAND [args]
 
-Now that you can inject the data from logplex by output your data into STDOUT. To keep this document in general, the example app will track these actions: register, login, pay, access.
+You can now inject data from Heroku's logplex by outputting your data to STDOUT. To keep this document general, the example app will only track the following actions: register, login, pay, and access.
 
     :::ruby
     # Ruby
@@ -67,13 +67,13 @@ Now that you can inject the data from logplex by output your data into STDOUT. T
 
 ### Step 2) Scheduled Aggregation to Heroku PostgreSQL
 
-Next, [Scheduled Jobs](schedule) can be used for periodic job execution. Also the job query result can be easily [inserted into Heroku PostgreSQL](result-into-postgresql). First, please check your Heroku Postgres connection URL.
+Next, [Scheduled Jobs](schedule) will be used to execute jobs periodically. The job query result can easily be [inserted into Heroku PostgreSQL](result-into-postgresql). First, please check your Heroku Postgres connection URL.
 
     :::term
     $ heroku config | grep POSTGRE
     HEROKU_POSTGRESQL_NAVY_URL: postgres://user:pass@host:port/db
 
-Then, create result output and scheduled jobs from heroku td command. By using [TD_TIME_RANGE() udf](udfs), you can process the most recent 1 hour data.
+Then, create result output and scheduled jobs using the heroku td command. You can limit the processed data by using [TD_TIME_RANGE() udf](udfs) (e.g. to limit the data to the last hour).
 
     :::term
     $ heroku td result:create heroku_db postgresql://user:pass@host:port/db
@@ -92,19 +92,19 @@ Then, create result output and scheduled jobs from heroku td command. By using [
        GROUP BY \
          TD_SCHEDULED_TIME(), v['item_category']"
 
-Now that the information like below is automatically inserted into `payment_history` table in hourly basis.
+Payment data will now be inserted in the `payment_history` table on an hourly basis as shown below.
 
      2012-03-01 00, categoryA, 32132
      2012-03-01 00, categoryB, 3133
      2012-03-01 01, categoryA, 310310
      2012-03-01 02, categoryB, 1332
 
-### Step 3) Setup Chartio
+### Step 3) Set Up Chartio
 
-Please setup connection from Chartio to Heroku PostgreSQL by looking at [this document](http://chartio.com/docs/datasources/connections/heroku).
+Please set up your connection from Chartio to Heroku PostgreSQL as shown in [this document](http://chartio.com/docs/datasources/connections/heroku).
 
 <center><a href="http://chartio.com/docs/datasources/connections/heroku"><img src="https://chartio.com/hmedia/images/docs/datasources/connections/heroku/form.png" width="90%" /></a></center><br /><br />
 
-Now you can setup and create your dashboard which shows the payment per category.
+You can now set up and create your dashboard showing payments per category.
 
 <center><img src="/images/chartio-screenshot.png" width="90%" /></center><br /><br />
