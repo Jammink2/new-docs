@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Mar 18, 2013: td-client-java v0.2.1
+
+[td-client-java v0.2.1](https://github.com/treasure-data/td-client-java) is released which adds new APIs and refines existing methods. Please see [the commit log](https://github.com/treasure-data/td-client-java/commits/master).
+
 ## Feb 27, 2013: Added [result output to Leftronic](result-into-leftronic).
 
 ## Feb 22, 2013: Added [result output to S3](result-into-s3).
