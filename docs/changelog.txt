@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## Mar 26, 2013: td-client-java v0.2.4
+
+[td-client-java v0.2.4](https://github.com/treasure-data/td-client-java) is released which refines some log messages within td-client program. The change might makes it easy for users to nderstand the behavior. Please see [the commit log](https://github.com/treasure-data/td-client-java/commits/master).
+
 ## Mar 18, 2013: td-client-java v0.2.1
 
 [td-client-java v0.2.1](https://github.com/treasure-data/td-client-java) is released which adds new APIs and refines existing methods. Please see [the commit log](https://github.com/treasure-data/td-client-java/commits/master).
