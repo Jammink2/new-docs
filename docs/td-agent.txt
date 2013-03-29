@@ -41,7 +41,7 @@ Please consult the following articles to set up `td-agent`.
   </tr>
   <tr>
     <td>Joyent SmartOS</td>
-    <td><a href="http://help.treasure-data.com/kb/frequently-asked-questions/installing-fluentd-td-plugin-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-fluentd-fluent-plugin-td-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
   </tr>
 </table>
 
