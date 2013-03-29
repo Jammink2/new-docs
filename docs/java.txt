@@ -40,6 +40,10 @@ To set up td-agent, please refer to the following articles; we provide deb/rpm p
     <td>Joyent SmartOS</td>
     <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-fluentd-fluent-plugin-td-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
   </tr>
+  <tr>
+    <td>Amazon Beanstalk</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-amazon-beanstalk">Installing td-agent on Amazon Beanstalk</a></td>
+  </tr>
 </table>
 
 NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
