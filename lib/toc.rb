@@ -175,6 +175,9 @@ section 'paas', 'PaaS' do
     article 'engine-yard-ruby', 'Ruby Apps on EngineYard'
     article 'engine-yard-rails', 'Rails Apps on EngineYard'
   end
+  category 'beanstalk', 'Amazon Beanstalk' do
+    article 'beanstalk', 'Apps on Amazon Beanstalk'
+  end
 end
 
 section 'consulting', 'Consulting' do

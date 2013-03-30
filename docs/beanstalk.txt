@@ -1,0 +1,37 @@
+# Importing Data from Amazon Beanstalk Apps
+
+By combining Amazon Beanstalk and Treasure Data, you can achieve both scalable frontend and backend system instantly.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data
+  * Basic knowledge of Amazon Beanstalk
+
+## Installing td-agent
+
+Please follow the instruction below, to install `td-agent`, our streaming data collector, into your application.
+
+* [Installing td-agent on Amazon Beanstalk](http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-amazon-beanstalk)
+
+## Import Data from Applications
+
+You're now ready to import data from your applications to TD via td-agent! Please choose your application language for the next step.
+
+<table>
+  <tr>
+    <th colspan="3">Supported Languages</th>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="ruby#using-td-logger-ruby">Ruby</a> or <a href="rails#using-td-logger-ruby">Rails</a></td>
+      <td style="text-align: left;"><a href="java#using-td-logger-java">Java</a></td>
+      <td style="text-align: left;"><a href="perl#using-fluent-logger-perl">Perl</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="python#using-fluent-logger-python">Python</a></td>
+      <td style="text-align: left;"><a href="php#using-fluent-logger-php">PHP</a></td>
+      <td style="text-align: left;"><a href="scala#using-td-logger-java">Scala</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="nodejs#using-fluent-logger-node">Node.js</a></td>
+    </tr>
+  </tr>
+</table>
