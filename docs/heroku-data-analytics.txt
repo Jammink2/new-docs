@@ -12,7 +12,7 @@ For basic page view metrics, [Google Analytics](http://www.google.com/analytics/
 
 ### Web Event Tracking
 
-For metrics beyond page views, [MixPanel](http://mixpanel.com/) or [KISSmetrics](https://www.kissmetrics.com/) can be used to track events and people, rather than page views. To correctly measure the engagement of your userbase, page views are not always enough. The number of comments is one such key metrics. Both MixPanel and KISSmetrics provide JavaScript libraries to track events and people.
+For metrics beyond page views, [MixPanel](http://mixpanel.com/) or [KISSmetrics](https://www.kissmetrics.com/) can be used to track events and people, rather than page views. To correctly measure the engagement of your userbase, page views are not always enough. The number of comments is one such key metric. Both MixPanel and KISSmetrics provide JavaScript libraries to track events and people.
 
 ## Tracking Everything on Your Business
 
