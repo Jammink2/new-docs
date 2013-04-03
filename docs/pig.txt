@@ -1,4 +1,85 @@
 Pig Latin Language
 ==================
 
-[Pig Latin](http://pig.apache.org/) will be supported in Q2 2012 :-)
+[Pig Latin](http://pig.apache.org/) is a relational data-flow language built on top of the Hadoop platform. This article covers how Pig can be used as a query interface for Treasure Data.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+
+## About Apache Pig
+
+The Pig Latin language is a supported data processing method for Treasure Data. [Pig](http://hive.apache.org/) is a top level project of the Apache foundation. The currently supported version of Pig is version 0.10.0.
+
+## Documentation and References 
+
+* [The official Pig documentation](http://pig.apache.org/docs/r0.10.0/) gives an overview of Pig.
+* [Pig Latin basic](http://pig.apache.org/docs/r0.10.0/basic.html) covers the basics of Pig syntax and writing queries.
+* [Comparing Pig and Hive](http://developer.yahoo.com/blogs/hadoop/posts/2010/01/comparing_pig_latin_and_sql_fo/) a high level comparison of Hive and Pig.
+* [DataFu](https://github.com/linkedin/datafu) a package containing useful UDFs for Pig
+
+## CLI Usage
+
+You can submit queries by using the `td query` command.
+
+    :::term
+    usage:
+      $ td query -t pig <pig scripts>
+    
+    example:
+      $ td query -d example_db -t pig "select count(*) from table1"
+    
+    description:
+      Issue a query
+    
+    options:
+      -t, --type TYPE                  specify the type of query (requires specifying 'pig' in order ot issue queries in Pig Latin)
+      -q, --query PATH                 read query from a file instead of inline
+      -d, --database DB_NAME           use this database (required)
+      -w, --wait                       wait for the job to finish
+      -o, --output PATH                write results to this file
+      -f, --format FORMAT              write results to file in this format (tsv, csv, json or msgpack)
+      -r, --result RESULT_URL          write results to this URL (see also result:create subcommand)
+      -u, --user NAME                  set user name for the result URL
+      -p, --password                   ask for the password for the result URL
+      -P, --priority PRIORITY          set priority
+
+## Pig on Treasure Data
+Because Treasure Data operates on a multi-tenant model with data stored in a columnar format, it is different than the typical Hadoop environment. Below is a list of characteristics unique to the Treasure Data platform:
+
+  * We prepopulate all other scripts with `LOAD` statements that define all tables as variables. For example, if `www_access` is a table in the selected database, then the variable `www_access` is automatically created. You may create further statements referring to this variable, for example `A = GROUP a BY v#'code'`. Since all tables load statements are predefined, you do not need any `LOAD`s in your script.
+  * `STORE` statements are also not needed. The last declared variable in your script will automatically be saved as the result of your query.
+  * For security reasons, the following keywords are not supported: `set`, `cat`, `cd`, `kill`, `ls`, `pwd`, `move`, `copy`, `mkdir`, `remove`, `fs`, `sh`.
+
+
+## Example Queries
+
+Here are some basic examples. Assume underlying table consists of three fields: `ip`, `url`, and `time`. The schema on this table is assumed to be unset.
+
+#### Number of records
+
+    :::term
+    OUT = FOREACH (GROUP www_access ALL) GENERATE COUNT(www_access);
+
+#### Number of records per unique IP
+
+    :::term
+    OUT = FOREACH (GROUP www_access BY v#'ip') GENERATE group AS ip, COUNT(www_access) AS cnt;
+
+#### Number of records per unique IP to the root page
+
+    :::term
+    F = FILTER www_access BY v#'url' == '/';
+    OUT = FOREACH (GROUP F BY v#'ip') GENERATE group AS ip, COUNT(www_access) AS cnt;
+
+#### Unique IPs sorted by number of accesses
+
+    :::term
+    F = FILTER www_access BY v#'url' == '/';
+    GROUP = FOREACH (GROUP F BY v#'ip') GENERATE group AS ip, COUNT(www_access) AS cnt;
+    OUT = ORDER GROUP BY cnt DESC;
+
+
+## UDFs
+The [DataFu](https://github.com/linkedin/datafu) package of Pig UDFs are included in our platform. Please see the linked documentation for usage instructions.
+
