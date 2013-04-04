@@ -78,7 +78,9 @@ Here are some basic examples. Assume underlying table consists of three fields: 
 
 ## Parameter Substitution
 Parameters are values that are passed in at runtime to substitute for some variable. We provide some variables by default for the scheduled query feature:
-    * `$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage: `FILTER www_access BY time > $TD_SCHEDULED_TIME;`
+  * `$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage: 
+    :::term
+    FILTER www_access BY time > $TD_SCHEDULED_TIME;
 
 ## UDFs
 The [DataFu](https://github.com/linkedin/datafu) package of Pig UDFs are included in our platform. Please see its documentation for usage instructions.
