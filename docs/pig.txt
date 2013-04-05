@@ -47,6 +47,7 @@ Because Treasure Data operates on a multi-tenant model with data stored in a col
   * We prepopulate all other scripts with `LOAD` statements that define all tables as variables. For example, if `www_access` is a table in the selected database, then the variable `www_access` is automatically created. You may create further statements referring to this variable, for example `A = GROUP a BY v#'code'`. Since all tables load statements are predefined, you do not need any `LOAD`s in your script.
   * `STORE` statements are also not needed. The last declared variable in your script will automatically be saved as the result of your query.
   * For security reasons, the following keywords are not supported: `set`, `cat`, `cd`, `kill`, `ls`, `pwd`, `move`, `copy`, `mkdir`, `remove`, `fs`, `sh`.
+  * Pig requires field and relation names start with a alphabetic character. Because of this, if your table has fields that start with a numeric character or a symbol, it cannot be processed.
 
 
 ## Example Queries
@@ -80,6 +81,7 @@ Here are some basic examples. Assume underlying table consists of three fields: 
 Parameters are values that are passed in at runtime to substitute for some variable. We provide some variables by default for the scheduled query feature:
 
   * `$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage: 
+  
     :::term
     FILTER www_access BY time > $TD_SCHEDULED_TIME;
 
