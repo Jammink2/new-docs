@@ -27,7 +27,7 @@ You can issue queries using the `td query` command.
       $ td query -t pig <pig scripts>
     
     example:
-      $ td query -d example_db -t pig "select count(*) from table1"
+      $ td query -d example_db -t pig "OUT = FOREACH (GROUP www_access ALL) GENERATE COUNT(www_access);"
     
     options:
       -t, --type TYPE specify the type of query (requires specifying 'pig' in order to issue queries in Pig Latin)
