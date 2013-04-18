@@ -41,7 +41,7 @@ You can issue queries using the `td query` command.
       -p, --password ask for the password for the result URL
       -P, --priority PRIORITY set priority
 
-Often, a pig script can contain multiple lines. The following example shows how to load pig script from a file using the `-q` parameter.
+A pig script often consists of multiple lines, which makes loading scripts from files useful. You can load pig scripts from files using the `-q` parameter as shown below.
 
     :::term
     $ td query -d example_db -t pig -q pig-script.txt
