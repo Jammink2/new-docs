@@ -1,17 +1,17 @@
-# Importing Data from Amazon Beanstalk Apps
+# Importing Data from AWS Elastic Beanstalk Apps
 
-By combining Amazon Beanstalk and Treasure Data, you can achieve scalability in both your front-end and back-end systems immediately.
+By combining AWS Elastic Beanstalk and Treasure Data, you can achieve scalability in both your front-end and back-end systems immediately.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data
-  * Basic knowledge of Amazon Beanstalk
+  * Basic knowledge of AWS Elastic Beanstalk
 
 ## Installing td-agent
 
 Please follow the instructions below to install `td-agent`, our streaming data collector, into your application.
 
-* [Installing td-agent on Amazon Beanstalk](http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-amazon-beanstalk)
+* [Installing td-agent on AWS Elastic Beanstalk](http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-aws-elastic-beanstalk)
 
 ## Importing Data from Applications
 
