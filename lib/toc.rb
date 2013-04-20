@@ -33,17 +33,16 @@ section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
   end
-  category 'bulk-import-category', 'Bulk Import' do
-    article 'bulk-import', 'Bulk Import'
-    article 'bulk-import-from-db', 'Import data from MySQL/PostgresSQL/MongoDB'
+  category 'one-time-import', 'One-Time Import' do
+    article 'one-time-import', 'One-Time Import'
   end
-  category 'td-agent-basic', 'Streaming Import (Basics)' do
+  category 'td-agent-basic', 'Streaming Import' do
     article 'td-agent', 'Using td-agent package',                                      ['fluentd', 'td-agent']
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
     article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
   end
-  category 'td-agent-language', 'Streaming Import (Language)' do
+  category 'td-agent-language', 'Streaming Import from Apps' do
     article 'java', 'Data Import from Java Applications',           ['fluentd', 'td-agent']
     article 'ruby', 'Data Import from Ruby Applications',           ['fluentd', 'td-agent']
     article 'rails', 'Data Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
@@ -60,8 +59,9 @@ section 'import-data', 'Data Import' do
     article 'td-agent-scribe', 'Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
     article 'fluentd-to-treasure-data', 'Using Fluentd Ruby gem',                      ['fluentd']
   end
-  category 'one-time-import', 'One-Time Import' do
-    article 'one-time-import', 'One-Time Import'
+  category 'bulk-import-category', 'Bulk Import' do
+    article 'bulk-import', 'Bulk Import'
+    article 'bulk-import-from-db', 'Import data from MySQL/PostgresSQL/MongoDB'
   end
 end
 

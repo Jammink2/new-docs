@@ -29,6 +29,10 @@ To set up td-agent, please refer to the following articles; we provide deb/rpm p
     <th>Please look at...</th>
   </tr>
   <tr>
+    <td>MacOS X</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
+  </tr>
+  <tr>
     <td>Debian / Ubuntu System</td>
     <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
   </tr>
