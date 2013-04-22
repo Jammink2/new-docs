@@ -77,7 +77,7 @@ ol.CodeRay li             { white-space: pre }
 .CodeRay .regexp .modifier         { }
 .CodeRay .regexp .function          { }
 
-.CodeRay .string               { color: #adc6ee; } /* string */
+.CodeRay .string               { color: #b2b2b2; } /* string */
 .CodeRay .string .string            { }
 .CodeRay .string .string .string         { }
 .CodeRay .string .content            { }
