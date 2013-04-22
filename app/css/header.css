@@ -9,7 +9,7 @@ div#header li {
   list-style:none;
 }
 
-#td-header-inner { width: 1140px; }
+#td-header-inner { width: 1070px; margin: 0 auto;}
 #td-logo { float: left; margin-top: -32px;}
 #td-logo a {
   display: block;
