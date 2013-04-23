@@ -1,4 +1,4 @@
-# Data Import from Python Applications
+# Streaming Import from Python Apps
 
 '[fluent-logger-python](http://github.com/fluent/fluent-logger-python)' is used to import data from Python applications to Treasure Data. 
 
@@ -14,7 +14,7 @@ NOTE: The fluent-logger-python library does not work in Heroku (<a href="/articl
 
 ## Installing td-agent
 
-fluent-logger-python requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the continuous upload of any kind of streaming log data. td-agent is developed and maintained by Treasure Data, Inc.
+fluent-logger-python requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data. td-agent is developed and maintained by Treasure Data, Inc.
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 

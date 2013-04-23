@@ -1,4 +1,4 @@
-# Continuous Data Import with td-agent
+# Streaming Import via HTTP POST
 
 This article will explain how to continuously import data using the `td-agent` daemon.
 

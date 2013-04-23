@@ -36,23 +36,21 @@ section 'import-data', 'Data Import' do
   category 'one-time-import', 'One-Time Import' do
     article 'one-time-import', 'One-Time Import'
   end
-  category 'td-agent-basic', 'Streaming Import' do
-    article 'td-agent', 'Using td-agent package',                                      ['fluentd', 'td-agent']
+  category 'td-agent-language', 'Streaming Import' do
+    article 'td-agent', 'Streaming Import via HTTP POST',                ['fluentd', 'td-agent']
+    article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
+    article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
+    article 'rails', 'Streaming Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
+    article 'python', 'Streaming Import from Python Applications',       ['fluentd', 'td-agent'] 
+    article 'php', 'Streaming Import from PHP Applications',             ['fluentd', 'td-agent']
+    article 'perl', 'Streaming Import from Perl Applications',           ['fluentd', 'td-agent']
+    article 'nodejs', 'Streaming Import from Node.js Applications',      ['fluentd', 'td-agent']
+    article 'scala', 'Streaming Import from Scala Applications',         ['fluentd', 'td-agent']
+  end
+  category 'td-agent-advanced', 'Streaming Import (Advanced)' do  
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
     article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
-  end
-  category 'td-agent-language', 'Streaming Import from Apps' do
-    article 'java', 'Data Import from Java Applications',           ['fluentd', 'td-agent']
-    article 'ruby', 'Data Import from Ruby Applications',           ['fluentd', 'td-agent']
-    article 'rails', 'Data Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
-    article 'python', 'Data Import from Python Applications',       ['fluentd', 'td-agent'] 
-    article 'php', 'Data Import from PHP Applications',             ['fluentd', 'td-agent']
-    article 'perl', 'Data Import from Perl Applications',           ['fluentd', 'td-agent']
-    article 'nodejs', 'Data Import from Node.js Applications',      ['fluentd', 'td-agent']
-    article 'scala', 'Data Import from Scala Applications',         ['fluentd', 'td-agent']
-  end
-  category 'td-agent-advanced', 'Streaming Import (Advanced)' do  
     article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
     article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
