@@ -45,15 +45,16 @@ For scheduled jobs, just add the `--result` option when scheduling a job. Every 
 
 ## Three Ways to Modify Data (Append/Replace/Truncate)
 
-You can add or delete data in three ways.
+You can add or delete data in four ways.
 
     :::term
     mysql://user:password@host/database/table               # append
     mysql://user:password@host/database/table?mode=append   # append
     mysql://user:password@host/database/table?mode=replace  # replace
     mysql://user:password@host/database/table?mode=truncate # truncate
+    mysql://user:password@host/database/table?mode=update   # update
 
-All three modes are **atomic**.
+All four modes are **atomic**.
 
 ### APPEND
 
@@ -74,3 +75,7 @@ We achieve **atomicity** (so that a consumer of the table always has consistent 
 The system first truncates the existing table, then inserts the query results. If the table does not exist yet, a new table will be created.
 
 **Unlike REPLACE, TRUNCATE retains the indexes of your table.**
+
+### UPDATE
+
+This mode uses MySQL's "INSERT ... ON DUPLICATE KEY UPDATE" syntax (see (MySQL's documentation)[http://dev.mysql.com/doc/refman/5.1/en/insert-on-duplicate.html]). In short, a row is inserted unless it would cause a duplicate value in the unique index or primary key, in which case an update is performed.
