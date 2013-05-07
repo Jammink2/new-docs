@@ -61,7 +61,7 @@ We support csv, tsv, and json formats for the --format option. Here are the rema
         --time-column 'time' \
         -o ./parts_201208/
 
-### 2) Upload a Part to the Session
+### 3) Upload a Part to the Session
 
 You can now upload the `parts` directory into the session.
 
@@ -84,7 +84,7 @@ The uploaded parts can be viewed using `bulk_import:show`.
     :::term
     $ td bulk_import:show bulk_2012
 
-### 3) Perform
+### 4) Perform
 
 The `bulk_import:perform` command converts the uploaded files into a more efficient format on the cloud (This is why it takes a bit of time!). The files are converted in parallel by executing MapReduce jobs.
 
@@ -98,14 +98,14 @@ The `bulk_import:perform` command converts the uploaded files into a more effici
     | t01  | sfdb.bi02 | Ready  |        | 70220 | 2           | 1           | 100           | 10            |
     +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
 
-### 4) Check Error Records
+### 5) Check Error Records
 
 After running the `perform` command, some records could become invalid. You can list these invalid records with the `bulk_import:error_records` command.
 
     :::term
     $ td bulk_import:error_records bulk_2012
 
-### 5) Commit
+### 6) Commit
 
 Once you have confirmed that the uploaded data is correct, use the `bulk_import:commit` command to transactionally import the data into the table.
 
