@@ -43,7 +43,7 @@ For scheduled jobs, just add the `--result` option when scheduling a job. Every 
     $ td result:create mydb postgresql://user:password@host/database
     $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" --result mydb:mytbl
 
-## Three Modes to Modify Data (Append/Replace/Truncate)
+## Three Modes to Modify Data
 
 You can add or delete data in three ways.
 
@@ -55,7 +55,7 @@ You can add or delete data in three ways.
 
 All three modes are **atomic**.
 
-### APPEND
+### APPEND (default)
 
 This is the default mode. The query results are appended to a table. If the table does not exist yet, a new table will be created.
 
@@ -85,8 +85,8 @@ There are a couple of methods for writing the data. By default, the "insert" met
     postgresql://user:password@host/database/table?method=copy     # copy
     postgresql://user:password@host/database/table?mode=append&method=copy  # can combine method with any mode
 
-### INSERT
+### INSERT (default)
 Data is written to Postgres using INSERT statements. This is the most reliable and compatible method and is recommended for most situations
 
 ### COPY
-In this case, data is first stored in a temporary file on the server, and then written to Postgres using (COPY)[http://www.postgresql.org/docs/8.1/static/sql-copy.html]. This method is faster than INSERT, so it is good in situations where your result data is large.
+In this case, data is first stored in a temporary file on the server, and then written to Postgres using [COPY](http://www.postgresql.org/docs/8.1/static/sql-copy.html). This method is faster than INSERT, so it is good in situations where your result data is large.
