@@ -77,7 +77,7 @@ The system first truncates the existing table, then inserts the query results. I
 
 
 ## Two Methods of Writing Data
-There are a couple of methods for writing the data. By default, the "insert" method is used. This is also the recommended method for most situations. You can combine a method with any mode (see example below).
+There are two methods for writing data. By default, the "insert" method is used. This is also the recommended method for most situations. You can combine a method with any mode (see example below).
 
     :::term
     postgresql://user:password@host/database/table                 # insert
@@ -89,4 +89,4 @@ There are a couple of methods for writing the data. By default, the "insert" met
 Data is written to Postgres using INSERT statements. This is the most reliable and compatible method and is recommended for most situations
 
 ### COPY
-In this case, data is first stored in a temporary file on the server, and then written to Postgres using [COPY](http://www.postgresql.org/docs/8.1/static/sql-copy.html). This method is faster than INSERT, so it is good in situations where your result data is large.
+Data is first stored in a temporary file on the server, then written to Postgres using [COPY](http://www.postgresql.org/docs/8.1/static/sql-copy.html). This method is faster than INSERT, so it is useful when handling a large amount of data.
