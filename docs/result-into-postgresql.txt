@@ -76,7 +76,7 @@ The system first truncates the existing table, then inserts the query results. I
 **Unlike REPLACE, TRUNCATE retains the indexes of your table.**
 
 
-## Two Methods of Writing Data (Insert/Copy)
+## Two Methods of Writing Data
 There are a couple of methods for writing the data. By default, the "insert" method is used. This is also the recommended method for most situations. You can combine a method with any mode (see example below).
 
     :::term
