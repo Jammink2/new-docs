@@ -5,7 +5,7 @@ This article explains how to write job results directly to your Google SpreadShe
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-  * A Google account (for Google Docs).
+  * A Google account (for Google Drive).
 
 ## Basic Usage
 
@@ -44,6 +44,23 @@ For scheduled jobs, just add the `--result` option when scheduling a job. After 
       -d testdb \
       --result mygss:sample_worksheet \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
+## Two Ways to Modify Data (Append/Replace)
+
+You can add or delete data in two ways.
+
+    :::term
+    td://user:password@domain.com/sample_spreadsheet/worksheet              # replace
+    td://user:password@domain.com/sample_spreadsheet/worksheet?mode=replace # replace
+    td://user:password@domain.com/sample_spreadsheet/worksheet?mode=append  # append
+
+### REPLACE
+
+This is the default mode. If the table already exists, the rows of the existing table are replaced with the query results. If the table does not exist yet, a new table will be created.
+
+### APPEND
+
+The query results are appended to the table. If the table does not exist yet, a new table will be created.
 
 ### Note
 
