@@ -1,5 +1,9 @@
 # Treasure Data ChangeLog
 
+## May 18, 2013: Added result output to Google SpreadSheet with 'append' mode
+
+Now you can [send your query result to Google SpreadSheet with 'append' mode](result-into-google-spreadsheet).
+
 ## Mar 26, 2013: td-client-java v0.2.4
 
 [td-client-java v0.2.4](https://github.com/treasure-data/td-client-java) is released which refines some log messages within td-client program. The change might makes it easy for users to nderstand the behavior. Please see [the commit log](https://github.com/treasure-data/td-client-java/commits/master).
@@ -52,7 +56,7 @@ Now td-agent (fluentd + td plugin) is running on Joyent SmartOS. Please check th
 
 ## Sep 14, 2012: Added result output to Google SpreadSheet
 
-Now you can [write your query result into Google SpreadSheet](result-into-google-spreadsheet).
+result-into-google-spreadsheet.txt can [write your query result into Google SpreadSheet](result-into-google-spreadsheet).
 
 ## Sep 04, 2012: td v0.10.43
 
