@@ -54,7 +54,7 @@ In order to import Apache logs with `td-agent`, first add the following lines to
       tag td.YOUR_DATABASE_NAME.YOUR_TABLE_NAME
     </source>
 
-NOTE: On Redhat based systems, you might need to change the directory permission with `chmod g+rx /var/log/httpd`.
+NOTE: On Redhat based systems, you might need to change the directory permission with `chmod g+rx /var/log/httpd` or `chmod o+rx /var/log/httpd`.
 
 For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
