@@ -13,7 +13,7 @@ If you'd like to propose an edit to the TD docs, fork this repo, then send us a 
 
 # Build Search Index
 
-    $ bundle exec rake indexing
+    $ heroku run rake index
 
 # Deploy
 
