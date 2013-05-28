@@ -1,11 +1,13 @@
 # Setup Consultation
 
-We offer a paid `Setup Consultation Service` which includes:
+We offer a paid `Setup Consultation Service`. This is usually 2 - 4 weeks process, heavily supported by Treasure Data engineers. The package includes:
 
 * 1-on-1 call to describe the Basic Architecture of Treasure Data
+* Weekly setup
 * Setting up streaming or bulk data importers
 * Setting up basic scheduled queries
 * Setting up intermediate databases
 * Setting up data visualization / dashboard / BI tools
 
-If you're interested, please contact Rob (<a href="mailto:rob@treasure-data.com">rob@treasure-data.com</a>).
+<span></span>
+<iframe src="http://go.treasure-data.com/l/24122/2013-05-28/77i" width="100%" height="180" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
