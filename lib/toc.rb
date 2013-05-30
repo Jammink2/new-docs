@@ -98,6 +98,9 @@ section 'query-data', 'Data Processing' do
     # article 'result-into-riak', 'Writing the Job Result into your Riak'
     # article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
   end
+  category 'udfs', 'User Defined Functions' do
+    article 'udfs', 'Supported UDFs (User Defined Functions)'
+  end
 end
 
 section 'Usecases', 'Usecases' do
