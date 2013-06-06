@@ -99,9 +99,9 @@ To make these UDFs, you either need to specify the fully qualified name or use a
 
 Examples:
 
-:::term
-FILTER www_access BY org.apache.pig.piggybank.evaluation.IsInt(v#'code');
+    :::term
+    FILTER www_access BY org.apache.pig.piggybank.evaluation.IsInt(v#'code');
 
-:::term
-define IsInt org.apache.pig.piggybank.evaluation.IsInt();
-FILTER www_access BY IsInt(v#'code');
+    :::term
+    define IsInt org.apache.pig.piggybank.evaluation.IsInt();
+    FILTER www_access BY IsInt(v#'code');
