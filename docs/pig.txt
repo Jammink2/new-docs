@@ -85,10 +85,23 @@ Here are some basic examples. We will assume that the underlying table consists 
 ## Parameter Substitution
 Parameters are values that are passed in at runtime as substitutes for some variables. We provide some default variables for the scheduled query feature:
 
-  * `$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage:
+`$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage:
   
     :::term
     FILTER www_access BY time > $TD_SCHEDULED_TIME;
 
 ## UDFs
 The [DataFu](https://github.com/linkedin/datafu) package of Pig UDFs are included in our platform. Please refer to its documentation for usage instructions.
+
+The [Piggybank](http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/) set of UDFs are also included.
+
+To make these UDFs, you either need to specify the fully qualified name or use a define statement as demonstrated in the below examples.
+
+Examples:
+
+:::term
+FILTER www_access BY org.apache.pig.piggybank.evaluation.IsInt(v#'code');
+
+:::term
+define IsInt org.apache.pig.piggybank.evaluation.IsInt();
+FILTER www_access BY IsInt(v#'code');
