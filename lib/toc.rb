@@ -73,7 +73,7 @@ section 'query-data', 'Data Processing' do
     article 'schedule', 'Job Scheduling'
     article 'hive', 'Hive (SQL-style) Query Language', ['hive query language', 'hive sql', 'hive tutorial', 'hive manual']
     article 'udfs', 'Supported UDFs (User Defined Functions)'
-    # article 'pig', 'Pig Latin Language'
+    article 'pig', 'Pig Latin Language'
   end
   category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
