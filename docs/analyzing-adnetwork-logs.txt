@@ -1,14 +1,8 @@
-# Game KPI Reporting on the Cloud
+# Ad-Network Reporting on the Cloud
 
-Leading gaming companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers to enhance existing game system and deliver a better customer experience which will result into higher revenues.
+Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement reporting and optimization features.
 
-This article will give you how to log data from your applications, and calculate some basic KPIs using Treasure Data. Rather than spending human / IT resources to maintain data analytics infrastructure, Treasure Data enables your team to just focus on building awesome games.
-
-## Background
-
-Online gaming companies run their entire business on the web. For these companies, monitoring business KPI and user behavior analytics is a top strategic priority. To handle requests millions of users from various devices (e.g. iPhone, Android, PC), the application is deployed on hundreds of servers.
-
-These application processes generate tera bytes of user behavior data every day: `access`, `register`, `login`, `invite`, `battle` logs, etc. By processing that data, the company can track key metrics like ARPU, ARPPU and more game specific metrics like the distribution of user levels. Maintaining and tracking these KPIs is a critical thing to improve the game system continuously.
+This article will give you how to log records from your applications, and calculate some basic numbers using Treasure Data. Rather than spending human / IT resources to maintain data analytics infrastructure, Treasure Data enables your team to just focus on building profitable and scalable adnetwork or adexchange.
 
 ## Prerequisites
 
@@ -113,107 +107,89 @@ Here, we assume that the application is written by [Ruby](ruby). Let's first do 
 Here's the actual code to do the logging for important events. time is automatically added by the logging library.
 
     :::ruby
-    # access (all accesses)
-    TD.event.post('access', {:uid=>123})
+    # impression
+    TD.event.post('impressions', {
+      :device=>'iPhone',
+      :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
+      :url=>'http://www.treasure-data.com/',
+      :publisher_id=>12345,
+      :advertiser_id=>7691,
+      :campaign_id=>456,
+      :creative_id=>9134,
+      :user_hash=>'76f868ca5e75d7410d1d4931293a16f1',
+      :cpm=>1.34,
+    }
 
-    # register
-    TD.event.post('register', {:uid=>123, :from=>'AdCampaign1234'})
+    # click
+    TD.event.post('clicks', {
+      :device=>'iPhone',
+      :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
+      :url=>'http://www.treasure-data.com/',
+      :publisher_id=>12345,
+      :advertiser_id=>7691,
+      :campaign_id=>456,
+      :creative_id=>9134,
+      :user_hash=>'76f868ca5e75d7410d1d4931293a16f1',
+      :cpc=>0.02,
+    }
 
-    # login
-    TD.event.post('login', {:uid=>123})
-
-    # home
-    TD.event.post('home', {:uid=>123, :level=>13, :hp=>21323, :mp=>313})
-
-    # invite
-    TD.event.post('invite', {:uid=>123, :target_uid=>567})
-
-    # invite_accept
-    TD.event.post('invite_accept', {:uid=>567})
-    
-    # pay
-    TD.event.post('pay', {:uid=>123, :item_name=>'Stone of Jordan',
-                          :category=>'ring', :price=>100, :count=>1})
-    # resign
-    TD.event.post('resign', {:uid=>123})
-
-## Sample Queries
+# Sample Queries
 
 Here are a few sample queries that calculate some KPIs.
 
-### Daily Access Count
+### Daily Impressions
 
     :::term
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
          COUNT(1) AS cnt
-       FROM access
+       FROM impressions
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
 
-### Daily Access User (DAU)
+### Hourly Impressions
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT') AS hour,
+         COUNT(1) AS cnt
+       FROM impressions
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT')"
+
+### Daily Clicks
 
     :::term
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
-         COUNT(DISTINCT v['uid']) AS cnt
-       FROM access
+         COUNT(1) AS cnt
+       FROM clicks
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
 
-### Montly Access User (MAU)
-
-    :::term
-    $ td query -w -d production \
-      "SELECT
-         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
-         COUNT(DISTINCT v['uid']) AS cnt
-       FROM pay
-       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
-
-### Daily Paid User
+### Daily Earnings by CPM per Advertiser
 
     :::term
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
-         COUNT(DISTINCT v['uid']) AS cnt
-       FROM access
+         advertiser_id,
+         SUM(cpm / 1000.0)
+       FROM impressions
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT'), advertiser_id"
 
-### Daily Sales
+### Daily Earnings by CPC per Advertiser
 
     :::term
     $ td query -w -d production \
       "SELECT
-         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
-         SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
-       FROM pay
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         advertiser_id,
+         SUM(cpc)
+       FROM clicks
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
-
-### Daily Sales per Item Name
-
-    :::term
-    $ td query -w -d production \
-      "SELECT
-         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
-         v['item_name'] AS item_name,
-         SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
-       FROM pay
-       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY v['item_name'], TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
-
-### ARPU (Average Revenue per User)
-
-    :::term
-    Daily Sales / DAU    
-
-### ARPPU (Average Revenue per Paid User)
-
-    :::term
-    Daily Sales / Daily Paid User
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT'), advertiser_id"

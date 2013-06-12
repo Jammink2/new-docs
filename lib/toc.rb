@@ -104,8 +104,11 @@ section 'query-data', 'Data Processing' do
 end
 
 section 'Usecases', 'Usecases' do
-  category 'GameAnalytics', 'Game Analytics' do
+  category 'GameKPIReporting', 'Game KPI Reporting' do
     article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
+  end
+  category 'AdNetworkReporting', 'Ad-Network Reporting' do
+    article 'analyzing-adnetwork-logs', 'Analyzing Ad-Network Logs on the Cloud', ['ad-network analysis']
   end
   category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
