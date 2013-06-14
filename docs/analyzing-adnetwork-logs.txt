@@ -1,8 +1,8 @@
 # Ad-Network Reporting on the Cloud
 
-Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement reporting and optimization features.
+Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
 
-This article will give you how to log records from your applications, and calculate some basic numbers using Treasure Data. Rather than spending human / IT resources to maintain data analytics infrastructure, Treasure Data enables your team to just focus on building profitable and scalable adnetwork or adexchange.
+This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources in maintaining a data analytics infrastructure.
 
 ## Prerequisites
 
@@ -14,9 +14,9 @@ This article will give you how to log records from your applications, and calcul
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
 
-When an application post the logs to td-agent, td-agent continuously 1) receives the data 2) buffers it 3) and uploads into the cloud. The data is automatically compressed before uploading into the cloud.
+When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 
 ## Installing td-agent
 
@@ -51,7 +51,7 @@ You must first set up `td-agent` on your application servers. Please refer to th
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey with the `td apikey:show` command.
+You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
 
 NOTE: You must first authenticate your account using the `td account` command.
 
@@ -74,16 +74,16 @@ Note: *YOUR_API_KEY* should be your actual API key string.
       use_ssl true
     </match>
 
-Now, restart `td-agent` to reflect the above changes.
+Now, restart `td-agent` to reflect the changes you made above.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
 
 `td-agent` is now ready to accept logs from your application.
 
-## Logging from Game Applications
+## Logging from Applications
 
-Here, we assume that the application is written by [Ruby](ruby). Let's first do the logging for important game events. For other languages, please refer these documents.
+In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important game events. For other languages, please refer these documents.
 
 <table>
   <tr>
@@ -104,7 +104,7 @@ Here, we assume that the application is written by [Ruby](ruby). Let's first do 
   </tr>
 </table>
 
-Here's the actual code to do the logging for important events. time is automatically added by the logging library.
+Here's the actual code to log important events. The time is automatically added by the logging library.
 
     :::ruby
     # impression
