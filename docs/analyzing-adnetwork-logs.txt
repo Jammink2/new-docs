@@ -2,7 +2,7 @@
 
 Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
 
-This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources  maintaining a data analytics infrastructure.
+This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources maintaining a data analytics infrastructure.
 
 ## Prerequisites
 
@@ -83,7 +83,7 @@ Now, restart `td-agent` to reflect the changes you made above.
 
 ## Logging from Applications
 
-In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important game events. For other languages, please refer these documents.
+In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important events. For other languages, please refer to these documents.
 
 <table>
   <tr>
