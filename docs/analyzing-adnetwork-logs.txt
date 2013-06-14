@@ -2,7 +2,7 @@
 
 Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
 
-This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources in maintaining a data analytics infrastructure.
+This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources  maintaining a data analytics infrastructure.
 
 ## Prerequisites
 

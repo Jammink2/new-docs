@@ -1,14 +1,14 @@
 # Game KPI Reporting on the Cloud
 
-Leading gaming companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers to enhance existing game system and deliver a better customer experience which will result into higher revenues.
+Leading gaming companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers enhance existing game systems and deliver a better customer experience, resulting in higher revenues.
 
-This article will give you how to log data from your applications, and calculate some basic KPIs using Treasure Data. Rather than spending human / IT resources to maintain data analytics infrastructure, Treasure Data enables your team to just focus on building awesome games.
+This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team just focus on building awesome games instead of having to opend valuable human / IT resources maintaining a data analytics infrastructure.
 
 ## Background
 
-Online gaming companies run their entire business on the web. For these companies, monitoring business KPI and user behavior analytics is a top strategic priority. To handle requests millions of users from various devices (e.g. iPhone, Android, PC), the application is deployed on hundreds of servers.
+Online gaming companies run their entire businesses on the web. For these companies, monitoring business KPI and analyzing user behavior are top strategic priorities. Their applications are deployed on hundreds of servers in order to handle requests from millions of users from various devices (e.g. iPhone, Android, PC).
 
-These application processes generate tera bytes of user behavior data every day: `access`, `register`, `login`, `invite`, `battle` logs, etc. By processing that data, the company can track key metrics like ARPU, ARPPU and more game specific metrics like the distribution of user levels. Maintaining and tracking these KPIs is a critical thing to improve the game system continuously.
+These application processes generate terabytes of user behavior data every day: `access`, `register`, `login`, `invite`, `battle` logs, etc. By processing that data, the company can track key metrics like ARPU and ARPPU, as well as more game specific metrics such as the distribution of user levels. Maintaining and tracking these KPIs is a critical activity in continuously improving the game system.
 
 ## Prerequisites
 
@@ -20,9 +20,9 @@ These application processes generate tera bytes of user behavior data every day:
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
 
-When an application post the logs to td-agent, td-agent continuously 1) receives the data 2) buffers it 3) and uploads into the cloud. The data is automatically compressed before uploading into the cloud.
+When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 
 ## Installing td-agent
 
@@ -57,7 +57,7 @@ You must first set up `td-agent` on your application servers. Please refer to th
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey with the `td apikey:show` command.
+You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
 
 NOTE: You must first authenticate your account using the `td account` command.
 
@@ -80,7 +80,7 @@ Note: *YOUR_API_KEY* should be your actual API key string.
       use_ssl true
     </match>
 
-Now, restart `td-agent` to reflect the above changes.
+Now, restart `td-agent` to reflect the changes you made above.
 
     :::term
     $ sudo /etc/init.d/td-agent restart
@@ -89,7 +89,7 @@ Now, restart `td-agent` to reflect the above changes.
 
 ## Logging from Game Applications
 
-Here, we assume that the application is written by [Ruby](ruby). Let's first do the logging for important game events. For other languages, please refer these documents.
+In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important game events. For other languages, please refer to these documents.
 
 <table>
   <tr>
@@ -110,7 +110,7 @@ Here, we assume that the application is written by [Ruby](ruby). Let's first do 
   </tr>
 </table>
 
-Here's the actual code to do the logging for important events. time is automatically added by the logging library.
+Here's the actual code to log important events. The time is automatically added by the logging library.
 
     :::ruby
     # access (all accesses)
