@@ -83,7 +83,7 @@ Now, restart `td-agent` to reflect the changes you made above.
 
 ## Logging from Applications
 
-In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important game events. For other languages, please refer to these documents.
+In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important events. For other languages, please refer to these documents.
 
 <table>
   <tr>
