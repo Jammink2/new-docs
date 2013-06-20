@@ -9,7 +9,7 @@ This article covers how to monitor the `td-agent` daemon.
 
 ## Monitoring via HTTP
 
-`td-agent` has a built-in monitoring agent to retrieve internal metrics by JSON via HTTP. Please put the following lines to your configuration file.
+`td-agent` has a built-in monitoring agent to retrieve internal metrics in JSON via HTTP. Please add the following lines to your configuration file.
 
     :::text
     <source>
@@ -26,7 +26,7 @@ Next, please restart the agent and get the metrics via HTTP.
 
 ## Process Monitoring
 
-Two `ruby` processes (parent and child) are executed. Please make sure these processes are running.
+Two `ruby` processes (parent and child) are executed. Please make sure that these processes are running.
 
     :::term
     /usr/lib/fluent/ruby/bin/ruby /usr/sbin/td-agent
