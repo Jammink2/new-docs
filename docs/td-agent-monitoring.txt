@@ -7,6 +7,38 @@ This article covers how to monitor the `td-agent` daemon.
   * Basic knowledge of Treasure Data (an understanding of the [Getting Started](quickstart) guide).
   * Basic knowledge of [td-agent](td-agent).
 
+## Monitoring via HTTP
+
+`td-agent` has a built-in monitoring agent to retrieve internal metrics in JSON via HTTP. Please add the following lines to your configuration file.
+
+    :::text
+    <source>
+      type monitor_agent
+      bind 0.0.0.0
+      port 24220
+    </source>
+
+Next, please restart the agent and get the metrics via HTTP.
+
+    :::term
+    $ curl http://host:24220/api/plugins.json
+    {"plugins":[{"plugin_id":"object:3fec669d6ac4","type":"forward","output_plugin":false,"config":{"type":"forward"}},{"plugin_id":"object:3fec669daf98","type":"http","output_plugin":false,"config":{"type":"http","port":"8888"}},{"plugin_id":"object:3fec669dfa48","type":"monitor_agent","output_plugin":false,"config":{"type":"monitor_agent","port":"24220"}},{"plugin_id":"object:3fec66a52e94","type":"debug_agent","output_plugin":false,"config":{"type":"debug_agent","port":"24230"}},{"plugin_id":"object:3fec66ae3dcc","type":"stdout","output_plugin":true,"config":{"type":"stdout"}},{"plugin_id":"object:3fec66aead48","type":"forward","output_plugin":true,"buffer_queue_length":0,"buffer_total_queued_size":0,"retry_count":0,"config":{"type":"forward","host":"192.168.0.11"}}]}%
+
+## Process Monitoring
+
+Two `ruby` processes (parent and child) are executed. Please make sure that these processes are running.
+
+    :::term
+    /usr/lib/fluent/ruby/bin/ruby /usr/sbin/td-agent
+      --daemon /var/run/td-agent/td-agent.pid
+      --log /var/log/td-agent/td-agent.log
+
+For td-agent on Linux, you can check the process statuses with the following command. Two processes should be shown if there are no issues.
+
+    $ ps w -C ruby -C td-agent --no-heading
+    32342 ?        Sl     0:00 /usr/lib/fluent/ruby/bin/ruby /usr/sbin/td-agent --daemon /var/run/td-agent/td-agent.pid --log /var/log/td-agent/td-agent.log
+    32345 ?        Sl     0:01 /usr/lib/fluent/ruby/bin/ruby /usr/sbin/td-agent --daemon /var/run/td-agent/td-agent.pid --log /var/log/td-agent/td-agent.log
+
 ## Port Monitoring
 
 td-agent opens the following ports by default. We recommend checking the availability of these ports.
@@ -21,12 +53,3 @@ If you don't send any data, the daemon doesn't do anything.
 A debug port for local communication is also opened.
 
   * TCP 127.0.0.1 24230
-
-## Process Monitoring
-
-Two `ruby` processes (parent and child) are executed. Please make sure these processes are running.
-
-    :::term
-    /usr/lib/fluent/ruby/bin/ruby /usr/sbin/td-agent
-      --daemon /var/run/td-agent/td-agent.pid
-      --log /var/log/td-agent/td-agent.log

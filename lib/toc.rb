@@ -73,7 +73,7 @@ section 'query-data', 'Data Processing' do
     article 'schedule', 'Job Scheduling'
     article 'hive', 'Hive (SQL-style) Query Language', ['hive query language', 'hive sql', 'hive tutorial', 'hive manual']
     article 'udfs', 'Supported UDFs (User Defined Functions)'
-    # article 'pig', 'Pig Latin Language'
+    article 'pig', 'Pig Latin Language'
   end
   category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
@@ -98,9 +98,18 @@ section 'query-data', 'Data Processing' do
     # article 'result-into-riak', 'Writing the Job Result into your Riak'
     # article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
   end
+  category 'udfs', 'User Defined Functions' do
+    article 'udfs', 'Supported UDFs (User Defined Functions)'
+  end
 end
 
 section 'Usecases', 'Usecases' do
+  category 'GameKPIReporting', 'Game KPI Reporting' do
+    article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
+  end
+  category 'AdNetworkReporting', 'Ad-Network Reporting' do
+    article 'analyzing-adnetwork-logs', 'Analyzing Ad-Network Logs on the Cloud', ['ad-network analysis']
+  end
   category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
   end

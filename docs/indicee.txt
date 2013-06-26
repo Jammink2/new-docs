@@ -2,7 +2,7 @@
 
 [Indicee](http://indicee.com/) is a leading cloud-based Business Intelligence (BI) platform that changes the way people consume data in a fundamental way.
 
-<center><a href="http://indicee.com/"><img src="http://www.indicee.com/wp-content/themes/indicee/images/Indicee-Cloud-Diagram.png" width="80%" /></a></center><br />
+<center><a href="http://indicee.com/"><img src="/images/indicee.png" width="60%" /></a></center><br />
 
 ## Prerequisites
 

@@ -1,0 +1,195 @@
+# Ad-Network Reporting on the Cloud
+
+Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
+
+This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources maintaining a data analytics infrastructure.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of td-agent.
+  * Ruby 1.8 or higher (for local testing).
+
+## Architecture
+
+<center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
+
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+
+When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
+
+## Installing td-agent
+
+You must first set up `td-agent` on your application servers. Please refer to the following articles. For Linux systems, we provide deb/rpm packages.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please look at...</th>
+  </tr>
+  <tr>
+    <td>Debian / Ubuntu System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>Redhat / CentOS System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+  </tr>
+  <tr>
+    <td>MacOS X</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
+  </tr>
+  <tr>
+    <td>Joyent SmartOS</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-fluentd-fluent-plugin-td-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
+  </tr>
+  <tr>
+    <td>AWS Elastic Beanstalk</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-aws-elastic-beanstalk">Installing td-agent on AWS Elastic Beanstalk</a></td>
+  </tr>
+</table>
+
+## Modifying /etc/td-agent/td-agent.conf
+
+You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
+
+NOTE: You must first authenticate your account using the `td account` command.
+
+    :::term
+    $ td apikey:show
+    3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
+
+Next, set the `apikey` option in your `td-agent.conf` file. 
+
+Note: *YOUR_API_KEY* should be your actual API key string.
+
+    :::text
+    # Treasure Data Input and Output
+    <match td.*.*>
+      type tdlog
+      apikey YOUR_API_KEY
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
+    </match>
+
+Now, restart `td-agent` to reflect the changes you made above.
+
+    :::term
+    $ sudo /etc/init.d/td-agent restart
+
+`td-agent` is now ready to accept logs from your application.
+
+## Logging from Applications
+
+In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important events. For other languages, please refer to these documents.
+
+<table>
+  <tr>
+    <th colspan="3">Supported Languages</th>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="ruby">Ruby</a> or <a href="rails">Rails</a></td>
+      <td style="text-align: left;"><a href="java">Java</a></td>
+      <td style="text-align: left;"><a href="perl">Perl</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="python">Python</a></td>
+      <td style="text-align: left;"><a href="php">PHP</a></td>
+      <td style="text-align: left;"><a href="scala">Scala</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="nodejs">Node.js</a></td>
+    </tr>
+  </tr>
+</table>
+
+Here's the actual code to log important events. The time is automatically added by the logging library.
+
+    :::ruby
+    # impression
+    TD.event.post('impressions', {
+      :device=>'iPhone',
+      :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
+      :url=>'http://www.treasure-data.com/',
+      :publisher_id=>12345,
+      :advertiser_id=>7691,
+      :campaign_id=>456,
+      :creative_id=>9134,
+      :user_hash=>'76f868ca5e75d7410d1d4931293a16f1',
+      :cpm=>1.34,
+    }
+
+    # click
+    TD.event.post('clicks', {
+      :device=>'iPhone',
+      :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
+      :url=>'http://www.treasure-data.com/',
+      :publisher_id=>12345,
+      :advertiser_id=>7691,
+      :campaign_id=>456,
+      :creative_id=>9134,
+      :user_hash=>'76f868ca5e75d7410d1d4931293a16f1',
+      :cpc=>0.02,
+    }
+
+# Sample Queries
+
+Here are a few sample queries that calculate some KPIs.
+
+### Daily Impressions
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         COUNT(1) AS cnt
+       FROM impressions
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+
+### Hourly Impressions
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT') AS hour,
+         COUNT(1) AS cnt
+       FROM impressions
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT')"
+
+### Daily Clicks
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         COUNT(1) AS cnt
+       FROM clicks
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+
+### Daily Earnings by CPM per Advertiser
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         advertiser_id,
+         SUM(cpm / 1000.0)
+       FROM impressions
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT'), advertiser_id"
+
+### Daily Earnings by CPC per Advertiser
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         advertiser_id,
+         SUM(cpc)
+       FROM clicks
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT'), advertiser_id"

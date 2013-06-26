@@ -7,7 +7,7 @@ This article explains how to dump data from several popular databases and import
 2) Use the [Bulk Import](bulk-import) feature to import the file into Treasure Data.
 
 ## MySQL
-From the MySQL shell, export data to a SCV file as shown below:
+From the MySQL shell, export data to a CSV file as shown below:
 
     :::sql
     SELECT * 

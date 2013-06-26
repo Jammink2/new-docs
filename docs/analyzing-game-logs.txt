@@ -1,0 +1,219 @@
+# Game KPI Reporting on the Cloud
+
+Leading gaming companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers enhance existing game systems and deliver a better customer experience, resulting in higher revenues.
+
+This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team just focus on building awesome games instead of having to opend valuable human / IT resources maintaining a data analytics infrastructure.
+
+## Background
+
+Online gaming companies run their entire businesses on the web. For these companies, monitoring business KPI and analyzing user behavior are top strategic priorities. Their applications are deployed on hundreds of servers in order to handle requests from millions of users from various devices (e.g. iPhone, Android, PC).
+
+These application processes generate terabytes of user behavior data every day: `access`, `register`, `login`, `invite`, `battle` logs, etc. By processing that data, the company can track key metrics like ARPU and ARPPU, as well as more game specific metrics such as the distribution of user levels. Maintaining and tracking these KPIs is a critical activity in continuously improving the game system.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of td-agent.
+  * Ruby 1.8 or higher (for local testing).
+
+## Architecture
+
+<center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
+
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+
+When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
+
+## Installing td-agent
+
+You must first set up `td-agent` on your application servers. Please refer to the following articles. For Linux systems, we provide deb/rpm packages.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please look at...</th>
+  </tr>
+  <tr>
+    <td>Debian / Ubuntu System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>Redhat / CentOS System</td>
+    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+  </tr>
+  <tr>
+    <td>MacOS X</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
+  </tr>
+  <tr>
+    <td>Joyent SmartOS</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-fluentd-fluent-plugin-td-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
+  </tr>
+  <tr>
+    <td>AWS Elastic Beanstalk</td>
+    <td><a href="http://help.treasure-data.com/kb/installing-td-agent-daemon/installing-td-agent-on-aws-elastic-beanstalk">Installing td-agent on AWS Elastic Beanstalk</a></td>
+  </tr>
+</table>
+
+## Modifying /etc/td-agent/td-agent.conf
+
+You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
+
+NOTE: You must first authenticate your account using the `td account` command.
+
+    :::term
+    $ td apikey:show
+    3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
+
+Next, set the `apikey` option in your `td-agent.conf` file. 
+
+Note: *YOUR_API_KEY* should be your actual API key string.
+
+    :::text
+    # Treasure Data Input and Output
+    <match td.*.*>
+      type tdlog
+      apikey YOUR_API_KEY
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
+    </match>
+
+Now, restart `td-agent` to reflect the changes you made above.
+
+    :::term
+    $ sudo /etc/init.d/td-agent restart
+
+`td-agent` is now ready to accept logs from your application.
+
+## Logging from Game Applications
+
+In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important game events. For other languages, please refer to these documents.
+
+<table>
+  <tr>
+    <th colspan="3">Supported Languages</th>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="ruby">Ruby</a> or <a href="rails">Rails</a></td>
+      <td style="text-align: left;"><a href="java">Java</a></td>
+      <td style="text-align: left;"><a href="perl">Perl</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; width: 33%;"><a href="python">Python</a></td>
+      <td style="text-align: left;"><a href="php">PHP</a></td>
+      <td style="text-align: left;"><a href="scala">Scala</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><a href="nodejs">Node.js</a></td>
+    </tr>
+  </tr>
+</table>
+
+Here's the actual code to log important events. The time is automatically added by the logging library.
+
+    :::ruby
+    # access (all accesses)
+    TD.event.post('access', {:uid=>123})
+
+    # register
+    TD.event.post('register', {:uid=>123, :from=>'AdCampaign1234'})
+
+    # login
+    TD.event.post('login', {:uid=>123})
+
+    # home
+    TD.event.post('home', {:uid=>123, :level=>13, :hp=>21323, :mp=>313})
+
+    # invite
+    TD.event.post('invite', {:uid=>123, :target_uid=>567})
+
+    # invite_accept
+    TD.event.post('invite_accept', {:uid=>567})
+    
+    # pay
+    TD.event.post('pay', {:uid=>123, :item_name=>'Stone of Jordan',
+                          :category=>'ring', :price=>100, :count=>1})
+    # resign
+    TD.event.post('resign', {:uid=>123})
+
+## Sample Queries
+
+Here are a few sample queries that calculate some KPIs.
+
+### Daily Access Count
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         COUNT(1) AS cnt
+       FROM access
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+
+### Daily Access User (DAU)
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         COUNT(DISTINCT v['uid']) AS cnt
+       FROM access
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+
+### Montly Access User (MAU)
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
+         COUNT(DISTINCT v['uid']) AS cnt
+       FROM pay
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
+
+### Daily Paid User
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
+         COUNT(DISTINCT v['uid']) AS cnt
+       FROM access
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+
+### Daily Sales
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
+         SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
+       FROM pay
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
+
+### Daily Sales per Item Name
+
+    :::term
+    $ td query -w -d production \
+      "SELECT
+         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
+         v['item_name'] AS item_name,
+         SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
+       FROM pay
+       WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
+       GROUP BY v['item_name'], TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
+
+### ARPU (Average Revenue per User)
+
+    :::term
+    Daily Sales / DAU    
+
+### ARPPU (Average Revenue per Paid User)
+
+    :::term
+    Daily Sales / Daily Paid User

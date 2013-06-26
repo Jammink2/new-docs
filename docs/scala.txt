@@ -124,7 +124,7 @@ Finally, please insert the following lines into your application to initialize a
       def main(args: Array[String]) {
         var props = System.getProperties();
         props.load(getClass.getResourceAsStream("treasure-data.properties"));
-        var LOG = TreasureDataLogger.getLogger("my_database");
+        var LOG = TreasureDataLogger.getLogger("test_db");
     
         var map = Map("from" -> "userA", "to" -> "userB");
         LOG.log("follow", map.asJava.asInstanceOf[java.util.Map[String, java.lang.Object]]);
@@ -146,7 +146,7 @@ To confirm the data upload, please use `td tables`.
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
     +------------+------------+------+-----------+
-    | test_db    | test_table | log  | 1         |
+    | test_db    | follow     | log  | 1         |
     +------------+------------+------+-----------+
 
 ## Production Deployments
