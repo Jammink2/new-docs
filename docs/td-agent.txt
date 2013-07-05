@@ -175,7 +175,7 @@ Next, modify your existing applications to post data to Treasure Data. The artic
     <tr>
       <td style="text-align: left; width: 33%;"><a href="ruby">Ruby</a> or <a href="rails">Rails</a></td>
       <td style="text-align: left;"><a href="java">Java</a></td>
-      <td style="text-align: left;"><a href="php">Perl</a></td>
+      <td style="text-align: left;"><a href="perl">Perl</a></td>
     </tr>
     <tr>
       <td style="text-align: left; width: 33%;"><a href="python">Python</a></td>
