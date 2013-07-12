@@ -104,6 +104,9 @@ section 'query-data', 'Data Processing' do
 end
 
 section 'Usecases', 'Usecases' do
+  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
+    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
+  end
   category 'GameKPIReporting', 'Game KPI Reporting' do
     article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
   end

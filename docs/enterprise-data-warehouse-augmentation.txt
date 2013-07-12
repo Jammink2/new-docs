@@ -1,0 +1,43 @@
+# Data Warehouse Augumentation
+
+An enterprise data warehoure (EDW) is frequently used as a central place of analytic data architecture, but it's too expensive to store cold or high-volume data.
+
+[Treasure Data](http://www.treasure-data.com/) provides cost-effective way of capturing and storing cold or high-volume data, while providing the connectivity with EDW which allows our users to remain using EDW for primary analytics.
+
+## Prerequisites
+
+  * Basic knowledge of Enterprise Data Warehouse
+  * Basic knowledge of Big Data Technologies (e.g. Hadoop, NoSQL etc)
+
+## Problems to Solve
+
+Some of EDW users have a following problems. This article describes how to overcome these problems by combining EDW + Treasue Data, while keeping EDW's benefits such as speed, BI connectivity, etc.
+
+  * Cost of Enterprise Data Warehouse (EDW)
+  * Complex Schema Management
+  * Frequent Schema Change
+  * Frequent Data Source Addition
+
+## Architecture
+
+This diagram shows a frequently used data architecture pattern to solve the problems above.
+
+<center><img src="/images/edw-augumentation.png" width="80%" /></center><br /><br />
+
+### Store-All to Treasure Data (TD)
+
+At first, all of the generated data is first stored into Treasure Data. Treasure Data provides cloud-based cost effective storage, and it's highly scalable. And more importantly, Treasure Data handles all data as schema-less structure. This makes load process really simple, because you don't need to sync the schema between data source and the analytics infrastructure.
+
+We've often seen many cases that the analytics team need to change the schema every night, and just consume their time to sync the schema between multiple data sources and the analytics system. This is just a waste of time.
+
+### Treasure Data (TD) to EDW
+
+While Treasure Data provides cost-effective, schema-less and scalable infrastructure, EDW provides more performance and connectivities with other BI, analytics tools. To leverage the benefit of both systems, our customers often use TD to refine and aggregate data and put the result into the data warehouse.
+
+### Success Stories
+
+Please check these success stories for this pattern.
+
+* [MobFox - Europe's Largest Mobile Network](success-at-mobfox)
+* [Viki - Global Online Video Servic](success-at-viki)
+* [Getjar - One of the World’s Largest Mobile App Marketplaces](success-at-getjar)
