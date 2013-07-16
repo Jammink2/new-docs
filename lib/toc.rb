@@ -81,6 +81,10 @@ section 'import-data', 'Data Import' do
     article 'bulk-import', 'Bulk Import'
     article 'bulk-import-from-db', 'Import data from MySQL/PostgresSQL/MongoDB'
   end
+  category 'mobile-sdk', 'Mobile SDK' do
+    article 'android-mobile-sdk', 'Treasure Data Android SDK'
+    article 'iphone-mobile-sdk', 'Treasure Data iPhone SDK'
+  end
 end
 
 section 'query-data', 'Data Processing' do
@@ -206,3 +210,4 @@ section 'consulting', 'Consulting' do
     article 'scalability-consultation', 'Scalability Consultation by Treasure Data Engineers'
   end
 end
+

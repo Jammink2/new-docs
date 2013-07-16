@@ -1,0 +1,15 @@
+# Treasure Data Android SDK
+
+This article describes how to import data from Android applications.
+
+## Overview
+
+If you're building Mobile apps, you may want to import events/logs directly from Mobile apps to Treasure Data. [td-android-sdk](https://github.com/treasure-data/td-android-sdk) is a SDK (Software Development Kit) which is embedded into your applications.
+
+## SDK Repository
+
+* [td-android-sdk](https://github.com/treasure-data/td-android-sdk)
+
+## Example Applications
+
+* [td-android-sdk/examples](https://github.com/treasure-data/td-android-sdk/tree/master/example)
