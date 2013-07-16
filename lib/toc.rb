@@ -29,6 +29,25 @@ section 'overview', 'Overview' do
   end
 end
 
+section 'Usecases', 'Usecases' do
+  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
+    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
+  end
+  category 'GameKPIReporting', 'Game KPI Reporting' do
+    article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
+  end
+  category 'AdNetworkReporting', 'Ad-Network Reporting' do
+    article 'analyzing-adnetwork-logs', 'Analyzing Ad-Network Logs on the Cloud', ['ad-network analysis']
+  end
+  category 'WeblogAnalytics', 'Weblog Analytics' do
+    article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
+  end
+  category 'TwitterAnalytics', 'Twitter Data Analytics' do
+    article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
+    article 'twitter-nodejs', 'Streaming Twitter Data into Treasure Data from Node.js', ['twitter data', 'twitter nodejs']
+  end
+end
+
 section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
@@ -71,9 +90,6 @@ section 'query-data', 'Data Processing' do
   category 'data-processing', 'Data Processing' do
     article 'job', 'Job Management'
     article 'schedule', 'Job Scheduling'
-    article 'hive', 'Hive (SQL-style) Query Language', ['hive query language', 'hive sql', 'hive tutorial', 'hive manual']
-    article 'udfs', 'Supported UDFs (User Defined Functions)'
-    article 'pig', 'Pig Latin Language'
   end
   category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
@@ -97,28 +113,6 @@ section 'query-data', 'Data Processing' do
     # article 'result-into-redis', 'Writing the Job Result into your Redis'
     # article 'result-into-riak', 'Writing the Job Result into your Riak'
     # article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
-  end
-  category 'udfs', 'User Defined Functions' do
-    article 'udfs', 'Supported UDFs (User Defined Functions)'
-  end
-end
-
-section 'Usecases', 'Usecases' do
-  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
-    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
-  end
-  category 'GameKPIReporting', 'Game KPI Reporting' do
-    article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
-  end
-  category 'AdNetworkReporting', 'Ad-Network Reporting' do
-    article 'analyzing-adnetwork-logs', 'Analyzing Ad-Network Logs on the Cloud', ['ad-network analysis']
-  end
-  category 'WeblogAnalytics', 'Weblog Analytics' do
-    article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
-  end
-  category 'TwitterAnalytics', 'Twitter Data Analytics' do
-    article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
-    article 'twitter-nodejs', 'Streaming Twitter Data into Treasure Data from Node.js', ['twitter data', 'twitter nodejs']
   end
 end
 
@@ -157,7 +151,20 @@ section 'tools-and-apis', 'Tools & APIs' do
   end
 end
 
-section 'ab', 'Accounts & Billing' do
+section 'Language References', 'Language References' do
+  category 'Hive QL Reference', 'Hive QL Reference' do
+    article 'hive', 'Hive Query Language (HiveQL) Overview'
+    article 'hive-operators', 'Hive Built-in Operators'
+    article 'hive-functions', 'Hive Built-in Functions'
+    article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
+    article 'udfs', 'Hive Treasure Data UDFs'
+  end
+  category 'Pig Latin Reference', 'Pig Latin Reference' do
+    article 'pig', 'Pig Latin Language'
+  end
+end
+
+section 'accounts-and-billing', 'Accounts & Billing' do
   category 'accounts', 'Accounts' do
     article 'change-password', 'Changing the Password'
     article 'access-control', 'Access Control'

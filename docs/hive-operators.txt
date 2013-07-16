@@ -1,0 +1,204 @@
+# Hive Built-in Operators
+
+This article lists all built-in operators, which is supported at Hive 0.10.0 (CDH 4.3.1).
+
+## Predicate Operators
+
+<table>
+  <tr>
+    <th>Operator</th><th>Types</th><th>Description</th>
+  </tr>
+  <tr>
+    <td>A = B</td><td>All primitive types</td><td>TRUE if expression A is equal to expression B otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A <=> B</td>
+    <td>All primitive types</td>
+    <td>Returns same result with EQUAL(=) operator for non-null operands, but returns TRUE if both are NULL, FALSE if one of the them is NULL (as of version 0.9.0)</td>
+  </tr>
+  <tr>
+    <td>A == B</td>
+    <td>None!</td>
+    <td>Fails because of invalid syntax. SQL uses =, not ==</td>
+  </tr>
+  <tr>
+    <td>A <> B</td>
+    <td>All primitive types</td>
+    <td>NULL if A or B is NULL, TRUE if expression A is NOT equal to expression B otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A != B</td>
+    <td>All primitive types</td>
+    <td>a synonym for the <> operator</td>
+  </tr>
+  <tr>
+    <td>A < B</td>
+    <td>All primitive types</td>
+    <td>NULL if A or B is NULL, TRUE if expression A is less than expression B otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A <= B</td>
+    <td>All primitive types</td>
+    <td>NULL if A or B is NULL, TRUE if expression A is less than or equal to expression B otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A > B</td>
+    <td>All primitive types</td>
+    <td>NULL if A or B is NULL, TRUE if expression A is greater than expression B otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A >= B</td>
+    <td>All primitive types</td>
+    <td>NULL if A or B is NULL, TRUE if expression A is greater than or equal to expression B otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A [NOT] BETWEEN B AND C</td>
+    <td>All primitive types</td>
+    <td>NULL if A, B or C is NULL, TRUE if A is greater than or equal to B AND A less than or equal to C otherwise FALSE. This can be inverted by using the NOT keyword. (as of version 0.9.0)</td>
+  </tr>
+  <tr>
+    <td>A IS NULL</td>
+    <td>all types</td>
+    <td>TRUE if expression A evaluates to NULL otherwise FALSE</td>
+  </tr>
+  <tr>
+    <td>A IS NOT NULL</td>
+    <td>All types</td>
+    <td>FALSE if expression A evaluates to NULL otherwise TRUE</td>
+  </tr>
+  <tr>
+    <td>A LIKE B</td>
+    <td>strings</td>
+    <td>NULL if A or B is NULL, TRUE if string A matches the SQL simple regular expression B, otherwise FALSE. The comparison is done character by character. The _ character in B matches any character in A(similar to . in posix regular expressions) while the % character in B matches an arbitrary number of characters in A(similar to .* in posix regular expressions) e.g. 'foobar' like 'foo' evaluates to FALSE where as 'foobar' like 'foo_ _ _' evaluates to TRUE and so does 'foobar' like 'foo%'</td>
+  </tr>
+  <tr>
+    <td>A RLIKE B</td>
+    <td>strings</td>
+    <td>NULL if A or B is NULL, TRUE if any (possibly empty) substring of A matches the Java regular expression B, otherwise FALSE. E.g. 'foobar' RLIKE 'foo' evaluates to FALSE whereas 'foobar' RLIKE '^f.*r$' evaluates to TRUE.</td>
+  </tr>
+  <tr>
+    <td>A REGEXP B</td>
+    <td>strings</td>
+    <td>Same as RLIKE</td>
+  </tr>
+</table>
+
+## Arithmetic Operators
+
+<table>
+  <tr>
+    <th>Operator</th>
+    <th>Types</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>A + B</td>
+    <td>Numbers</td>
+    <td>Gives the result of adding A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. e.g. since every integer is a float, therefore float is a containing type of integer so the + operator on a float and an int will result in a float.</td>
+  </tr>
+  <tr>
+    <td>A - B</td>
+    <td>Numbers</td>
+    <td>Gives the result of subtracting B from A. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.
+  </tr>
+  <tr>
+    <td>A * B</td>
+    <td>Numbers</td>
+    <td>Gives the result of multiplying A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands. Note that if the multiplication causing overflow, you will have to cast one of the operators to a type higher in the type hierarchy.</td>
+  </tr>
+  <tr>
+    <td>A / B</td>
+    <td>Numbers</td>
+    <td>Gives the result of dividing B from A. The result is a double type.</td>
+  </tr>
+  <tr>
+    <td>A % B</td>
+    <td>Numbers</td>
+    <td>Gives the reminder resulting from dividing A by B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+  </tr>
+  <tr>
+    <td>A & B</td>
+    <td>Numbers</td>
+    <td>Gives the result of bitwise AND of A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+  </tr>
+  <tr>
+    <td>A | B</td>
+    <td>Numbers</td>
+    <td>Gives the result of bitwise OR of A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+  </tr>
+  <tr>
+    <td>A ^ B</td>
+    <td>Numbers</td>
+    <td>Gives the result of bitwise XOR of A and B. The type of the result is the same as the common parent(in the type hierarchy) of the types of the operands.</td>
+  </tr>
+  <tr>
+    <td>~A</td>
+    <td>Numbers</td>
+    <td>Gives the result of bitwise NOT of A. The type of the result is the same as the type of A.</td>
+  </tr>
+</table>
+
+## Logical Operators
+
+<table>
+  <tr>
+    <th>Operator</th>
+    <th>Types</th>
+    <th>Description</th>
+  <tr>
+  </tr>
+    <td>A AND B</td>
+    <td>boolean</td>
+    <td>TRUE if both A and B are TRUE, otherwise FALSE. NULL if A or B is NULL</td>
+  <tr>
+  </tr>
+    <td>A && B</td>
+    <td>boolean</td>
+    <td>Same as A AND B</td>
+  <tr>
+  </tr>
+    <td>A OR B</td>
+    <td>boolean</td>
+    <td>TRUE if either A or B or both are TRUE; FALSE OR NULL is NULL; otherwise FALSE</td>
+  <tr>
+  </tr>
+    <td>A || B</td>
+    <td>boolean</td>
+    <td>Same as A OR B</td>
+  <tr>
+  </tr>
+    <td>NOT A</td>
+    <td>boolean</td>
+    <td>TRUE if A is FALSE or NULL if A is NULL. Otherwise FALSE.</td>
+  <tr>
+  </tr>
+    <td>! A</td>
+    <td>boolean</td>
+    <td>Same as NOT A</td>
+  <tr>
+</table>
+
+## Operators for Complex Types
+
+<table>
+  <tr>
+    <th>Operator</th>
+    <th>Types</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>A[n]</td>
+    <td>A is an Array and n is an int</td>
+    <td>Returns the nth element in the array A. The first element has index 0 e.g. if A is an array comprising of ['foo', 'bar'] then A[0] returns 'foo' and A[1] returns 'bar'</td>
+  </tr>
+  <tr>
+    <td>M[key]</td>
+    <td>M is a Map<K, V> and key has type K</td>
+    <td>Returns the value corresponding to the key in the map e.g. if M is a map comprising of {'f' -> 'foo', 'b' -> 'bar', 'all' -> 'foobar'} then M['all'] returns 'foobar'</td>
+  </tr>
+  <tr>
+    <td>S.x</td>
+    <td>S is a struct</td>
+    <td>Returns the x field of S. e.g for struct foobar {int foo, int bar} foobar.foo returns the integer stored in the foo field of the struct.</td>
+  </tr>
+</table>
