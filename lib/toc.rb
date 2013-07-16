@@ -69,6 +69,7 @@ section 'import-data', 'Data Import' do
   category 'td-agent-advanced', 'Streaming Import (Advanced)' do  
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
+    article 'td-agent-upgrade', 'Upgrading td-agent',                                  ['fluentd', 'td-agent']
     article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
     article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']

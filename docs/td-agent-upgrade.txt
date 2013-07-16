@@ -1,0 +1,27 @@
+# Upgrading td-agent
+
+This article covers how to upgrade the `td-agent` daemon.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data (an understanding of the [Getting Started](quickstart) guide).
+  * Basic knowledge of [td-agent](td-agent).
+
+## Upgrade
+
+Please use `apt` (Ubuntu) or `yum` (RHEL, CentOS) to upgrade td-agent package.
+
+    :::term
+    # Ubuntu
+    $ apt-get update && apt-get install td-agent
+    
+    # Redhat
+    $ yum update && yum install td-agent
+
+## Considerations
+
+Upgrading td-agent requires the restart of the daemon. During that, the application could possibly post the logs to `td-agent`.
+
+If you're using [td-logger-ruby](ruby) or [td-logger-java](java), the logger library itself buffers the logged events for a certain amount of size. Once the daemon got back, the buffered events will be flushed to td-agent.
+
+If you're using other languages, no buffering mechanism is implemented. So if you don't want to lose your logs, please stop your applications first (by separating from your load balancer or terminating the process etc.) and upgrade td-agent.
