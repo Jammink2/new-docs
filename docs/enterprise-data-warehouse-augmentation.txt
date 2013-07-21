@@ -6,33 +6,33 @@ An enterprise data warehoure (EDW) is frequently used as a central place of anal
 
 ## Prerequisites
 
-  * Basic knowledge of Enterprise Data Warehouse
-  * Basic knowledge of Big Data Technologies (e.g. Hadoop, NoSQL etc)
+  * Basic knowledge of an Enterprise Data Warehouse.
+  * Basic knowledge of Big Data Technologies (e.g. Hadoop, NoSQL etc).
 
 ## Problems to Solve
 
-Some of EDW users have a following problems. This article describes how to overcome these problems by combining EDW + Treasue Data, while keeping EDW's benefits such as speed, BI connectivity, etc.
+This article describes how EDW users can overcome some of their most frequently encountered challenges by combining EDW + Treasue Data, while keeping EDW's benefits such as speed, BI connectivity, etc. The challenges faced by EDW users include:
 
-  * Cost of Enterprise Data Warehouse (EDW)
+  * High cost of an Enterprise Data Warehouse (EDW)
   * Complex Schema Management
-  * Frequent Schema Change
-  * Frequent Data Source Addition
+  * Frequent Schema Changes
+  * Frequent Data Source Additions
 
 ## Architecture
 
-This diagram shows a frequently used data architecture pattern to solve the problems above.
+This diagram shows one frequently used data architecture pattern that solves the problems above.
 
 <center><img src="/images/edw-augumentation.png" width="80%" /></center><br /><br />
 
 ### Store-All to Treasure Data (TD)
 
-At first, all of the generated data is first stored into Treasure Data. Treasure Data provides cloud-based cost effective storage, and it's highly scalable. And more importantly, Treasure Data handles all data as schema-less structure. This makes load process really simple, because you don't need to sync the schema between data source and the analytics infrastructure.
+All generated data is first stored in Treasure Data. Treasure Data provides a highly scalable and cost effective cloud-based storage solution. Furthermore, Treasure Data handles all data as schema-less structure. This makes load the process really simple, since you don't need to sync the schema between data source and the analytics infrastructure.
 
-We've often seen many cases that the analytics team need to change the schema every night, and just consume their time to sync the schema between multiple data sources and the analytics system. This is just a waste of time.
+We've seen many cases where the analytics team needs to change the schema every night, spending many hours syncing the schema between multiple data sources and the analytics system. This is just a waste of time and can be avoided using Treasure Data with your EDW.
 
 ### Treasure Data (TD) to EDW
 
-While Treasure Data provides cost-effective, schema-less and scalable infrastructure, EDW provides more performance and connectivities with other BI, analytics tools. To leverage the benefit of both systems, our customers often use TD to refine and aggregate data and put the result into the data warehouse.
+While Treasure Data provides a cost-effective, schema-less and scalable infrastructure, an DW provides higher performance and better connectivitity with other BI solutions and analytics tools. To leverage the benefits of both systems, our customers often use TD to refine and aggregate data and put the result into their data warehouse.
 
 ### Success Stories
 
