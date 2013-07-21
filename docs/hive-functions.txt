@@ -1,6 +1,6 @@
 # Hive Built-in Functions
 
-This article lists all built-in functions, which is supported at Hive 0.10.0 (CDH 4.3.1).
+This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
 
 ## Mathematical Functions
 
