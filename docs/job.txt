@@ -23,7 +23,7 @@ If you issue a query *WITHOUT* the -w option, the command will exit immediately 
     Job 704 is started.
     Use 'td job 704' to show the status.
 
-Currently we're supporting [Hive](hive) and [Pig](pig) for query language. The example above uses Hive.
+We currently support the [Hive](hive) and [Pig](pig) query languages. The example above uses Hive.
 
 ## Show Jobs
 
