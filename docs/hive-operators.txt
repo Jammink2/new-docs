@@ -1,6 +1,6 @@
 # Hive Built-in Operators
 
-This article lists all built-in operators, which is supported at Hive 0.10.0 (CDH 4.3.1).
+This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
 
 ## Predicate Operators
 
