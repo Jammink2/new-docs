@@ -10,7 +10,7 @@ NOTE: Users can only issue "SELECT" statements. All other types of statements (e
 
 ## What is Treasure Data?
 
-[Treasure Data](http://www.treasure-data.com/) is a cloud data platform, which allows users to collect, store, and analyze the data on the cloud. Treasure Data manages its own Hadoop cluster, which accepts the query from users and execute it with Hadoop MapReduce framework. HiveQL is one of the language it supports.
+[Treasure Data](http://www.treasure-data.com/) is a cloud data platform that allows users to collect, store, and analyze their data on the cloud. Treasure Data manages its own Hadoop cluster, which accepts queries from users and executes them using the Hadoop MapReduce framework. HiveQL is one of the languages it supports.
 
 ## CLI Usage
 
@@ -21,7 +21,7 @@ You can submit queries by using the `td query` command. Below is an example comm
 
 ## SELECT Statement Syntax
 
-Here's a syntax of Hive's SELECT statement.
+Here's the syntax of Hive's SELECT statement.
 
     :::text
     SELECT [ALL | DISTINCT] select_expr, select_expr, ...
@@ -35,56 +35,56 @@ Here's a syntax of Hive's SELECT statement.
 
 SELECT is the projection operator in SQL. The points are:
 
-* `SELECT` scans the table specified by `FROM` clause
-* `WHERE` gives a condition of what to filter
-* `GROUP BY` gives a list of columns which specifiy how to aggregate the records
+* `SELECT` scans the table specified by the `FROM` clause
+* `WHERE` gives the condition of what to filter
+* `GROUP BY` gives a list of columns which specify how to aggregate the records
 * `CLUSTER BY`, `DISTRIBUTE BY`, `SORT BY` specify the sort order and algorithm
 * `LIMIT` specifies how many # of records to retrieve
 
 ### Computing with Columns
 
-When you select the columns, you can manipulate column values using either arithmetic operators and function calls. The popular ones are the mathematical, date, or string functions.
+When you select the columns, you can manipulate column values using either arithmetic operators or function calls. Math, date, and string functions are popular.
 
 * [List of Arithmetic Operators](hive-operators#arithmetic-operators)
 * [List of Functions](hive-functions)
 
-Here's an example of using both operators and functions.
+Here's an example query that uses both operators and functions.
 
     :::sql
     SELECT upper(name), sales-cost FROM products;
 
 ### WHERE Clauses
 
-`WHERE` clause is used to filter the result set by using *predicate operators* and *logical operators*. Functions can also be used to compute the condition.
+A `WHERE` clause is used to filter the result set by using *predicate operators* and *logical operators*. Functions can also be used to compute the condition.
 
 * [List of Predicate Operators](hive-operators#predicate-operators)
 * [List of Logical Operators](hive-operators#logical-operators)
 * [List of Functions](hive-functions)
 
-Here's an example of using WHERE clause.
+Here's an example query that uses a WHERE clause.
 
     :::sql
     SELECT name FROM products WHERE name = 'stone of jordan';
 
 ### GROUP BY Clauses
 
-`GROUP BY` clause is frequently used with *aggregate functions*, to group the result set by columns and apply aggregate functions over each group. Functions can also be used to compute the grouping key.
+A `GROUP BY` clause is frequently used with *aggregate functions*, to group the result set by columns and apply aggregate functions over each group. Functions can also be used to compute the grouping key.
 
 * [List of Aggregate Functions](hive-aggregate-functions)
 * [List of Functions](hive-functions)
 
-Here's an example of grouping and counts by category.
+Here's an example query that groups and counts by category.
 
     :::sql
     SELECT category, count(1) FROM products GROUP BY category;
 
 ### HAVING Clauses
 
-`HAVING` clause lets you filter the groups produced by `GROPU BY`, by applying *predicate operators* to each groups.
+A `HAVING` clause lets you filter the groups produced by `GROUP BY`, by applying *predicate operators* to each groups.
 
 * [List of Predicate Operators](hive-operators#predicate-operators)
 
-Here's an example of grouping and counts by category, and then retrieve only count > 10;
+Here's an example query that groups and counts by category, and then retrieves only counts > 10;
 
     :::sql
     SELECT category, count(1) AS cnt FROM products GROUP BY category HAVING cnt > 10;
@@ -127,13 +127,13 @@ Here are some basic examples. The underlying table consists of three fields: `ip
     GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT")
 
 
-[TD_TIME_RANGE UDF](udfs#tdtimerange) is efficient and simple to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
+[TD_TIME_RANGE UDF](udfs#tdtimerange) is simple and efficient to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
 
 NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
 
 ## See Other Documents
 
-Here we have a list of documents about HiveQL.
+Here is a list of documents regarding the HiveQL.
 
 * [Hive Built-in Operators](hive-operators)
 * [Hive Built-in Functions](hive-functions)
