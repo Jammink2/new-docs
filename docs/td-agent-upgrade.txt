@@ -1,6 +1,6 @@
 # Upgrading td-agent
 
-This article covers how to upgrade the `td-agent` daemon.
+This article explains how to upgrade the `td-agent` daemon.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ This article covers how to upgrade the `td-agent` daemon.
 
 ## Upgrade
 
-Please use `apt` (Ubuntu) or `yum` (RHEL, CentOS) to upgrade td-agent package.
+Please use `apt` (Ubuntu) or `yum` (RHEL, CentOS) to upgrade the td-agent package.
 
     :::term
     # Ubuntu
@@ -20,8 +20,8 @@ Please use `apt` (Ubuntu) or `yum` (RHEL, CentOS) to upgrade td-agent package.
 
 ## Considerations
 
-Upgrading td-agent requires the restart of the daemon. During that, the application could possibly post the logs to `td-agent`.
+When updating td-agent, you will need to restart the daemon. During this time, your application may post logs to `td-agent`.
 
-If you're using [td-logger-ruby](ruby) or [td-logger-java](java), the logger library itself buffers the logged events for a certain amount of size. Once the daemon got back, the buffered events will be flushed to td-agent.
+If you're using [td-logger-ruby](ruby) or [td-logger-java](java), the logger library itself buffers the logged events up to a certain amount of data. Once the daemon returns, the buffered events will be flushed to td-agent.
 
-If you're using other languages, no buffering mechanism is implemented. So if you don't want to lose your logs, please stop your applications first (by separating from your load balancer or terminating the process etc.) and upgrade td-agent.
+If you're using other languages, no buffering mechanism is implemented. So if you don't want to lose your logs, please stop your applications first (by separating it from your load balancer or terminating the process, etc.) and then upgrade td-agent.
