@@ -1,6 +1,6 @@
 # Hive Built-in Aggregate Functions
 
-This article lists all built-in aggregate functions (UDAF), which is supported at Hive 0.10.0 (CDH 4.3.1).
+This article lists all built-in aggregate functions (UDAF) supported by Hive 0.10.0 (CDH 4.3.1).
 
 ### Aggregate Functions (UDAF)
 
