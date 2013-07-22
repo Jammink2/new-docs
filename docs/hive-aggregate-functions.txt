@@ -1,0 +1,103 @@
+# Hive Built-in Aggregate Functions
+
+This article lists all built-in aggregate functions (UDAF) supported by Hive 0.10.0 (CDH 4.3.1).
+
+### Aggregate Functions (UDAF)
+
+<table>
+  <tr>
+    <th>Return Type</B></th>
+    <th>Name(Signature)</B></th>
+    <th>Description</B></th>
+  </tr>
+  <tr>
+    <td>bigint</td>
+    <td>count&#40;*), count(expr), count(DISTINCT expr[, expr_.])</td>
+    <td>count&#40;*) - Returns the total number of retrieved rows, including rows containing NULL values; count(expr) - Returns the number of rows for which the supplied expression is non-NULL; count(DISTINCT expr[, expr]) - Returns the number of rows for which the supplied expression(s) are unique and non-NULL.</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>sum(col), sum(DISTINCT col)</td>
+    <td>Returns the sum of the elements in the group or the sum of the distinct values of the column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>avg(col), avg(DISTINCT col)</td>
+    <td>Returns the average of the elements in the group or the average of the distinct values of the column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>min(col)</td>
+    <td>Returns the minimum of the column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>max(col)</td>
+    <td>Returns the maximum value of the column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>variance(col), var_pop(col)</td>
+    <td>Returns the variance of a numeric column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>var_samp(col)</td>
+    <td>Returns the unbiased sample variance of a numeric column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>stddev_pop(col)</td>
+    <td>Returns the standard deviation of a numeric column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>stddev_samp(col)</td>
+    <td>Returns the unbiased sample standard deviation of a numeric column in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>covar_pop(col1, col2)</td>
+    <td>Returns the population covariance of a pair of numeric columns in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>covar_samp(col1, col2)</td>
+    <td>Returns the sample covariance of a pair of a numeric columns in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>corr(col1, col2)</td>
+    <td>Returns the Pearson coefficient of correlation of a pair of a numeric columns in the group</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>percentile(BIGINT col, p)</td>
+    <td>Returns the exact p<SUP>th</SUP> percentile of a column in the group (does not work with floating point types). p must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral.</td>
+  </tr>
+  <tr>
+    <td>array&lt;double&gt;</td>
+    <td>percentile(BIGINT col, array(p<SUB>1</SUB> [, p<SUB>2</SUB>]...))</td>
+    <td>Returns the exact percentiles p<SUB>1</SUB>, p<SUB>2</SUB>, ... of a column in the group (does not work with floating point types). p<SUB>i</SUB> must be between 0 and 1. NOTE: A true percentile can only be computed for integer values. Use PERCENTILE_APPROX if your input is non-integral.</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>percentile_approx(DOUBLE col, p [, B])</td>
+    <td>Returns an approximate p<SUP>th</SUP> percentile of a numeric column (including floating point types) in the group. The B parameter controls approximation accuracy at the cost of memory. Higher values yield better approximations, and the default is 10,000. When the number of distinct values in col is smaller than B, this gives an exact percentile value.</td>
+  </tr>
+  <tr>
+    <td>array&lt;double&gt;</td>
+    <td>percentile_approx(DOUBLE col, array(p<SUB>1</SUB> [, p<SUB>2</SUB>]...) [, B])</td>
+    <td>Same as above, but accepts and returns an array of percentile values instead of a single one.</td>
+  </tr>
+  <tr>
+    <td>array&lt;struct {<TT>'x','y'</TT>}&gt;</td>
+    <td>histogram_numeric(col, b)</td>
+    <td>Computes a histogram of a numeric column in the group using b non-uniformly spaced bins. The output is an array of size b of double-valued (x,y) coordinates that represent the bin centers and heights</td>
+  </tr>
+  <tr>
+    <td>array</td>
+    <td>collect_set(col)</td>
+    <td>Returns a set of objects with duplicate elements eliminated</td>
+  </tr>
+</table>

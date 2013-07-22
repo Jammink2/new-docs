@@ -23,6 +23,8 @@ If you issue a query *WITHOUT* the -w option, the command will exit immediately 
     Job 704 is started.
     Use 'td job 704' to show the status.
 
+We currently support the [Hive](hive) and [Pig](pig) query languages. The example above uses Hive.
+
 ## Show Jobs
 
 The 'td jobs' subcommand lists your submitted jobs. The most recent 20 jobs are shown by default. The command shows the JobID, status, starting time, elapsed time, and the submitted query for each job.

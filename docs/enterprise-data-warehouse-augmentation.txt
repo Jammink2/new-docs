@@ -1,0 +1,43 @@
+# Data Warehouse Augumentation
+
+An enterprise data warehoure (EDW) is frequently used as a central location for analytic data architecture, but it's too expensive to store cold or high-volume data.
+
+[Treasure Data](http://www.treasure-data.com/) provides a cost-effective way of capturing and storing cold or high-volume data while providing connectivity with the EDW. This allows our users to continue using their EDW for primary analytics while capturing the cost and flexibility advantages of Treasure Data.
+
+## Prerequisites
+
+  * Basic knowledge of an Enterprise Data Warehouse.
+  * Basic knowledge of Big Data Technologies (e.g. Hadoop, NoSQL etc).
+
+## Problems to Solve
+
+This article describes how EDW users can overcome some of their most frequently encountered challenges by combining EDW + Treasue Data, while keeping EDW's benefits such as speed, BI connectivity, etc. The challenges faced by EDW users include:
+
+  * High cost of an Enterprise Data Warehouse (EDW)
+  * Complex Schema Management
+  * Frequent Schema Changes
+  * Frequent Data Source Additions
+
+## Architecture
+
+This diagram shows one frequently used data architecture pattern that solves the problems above.
+
+<center><img src="/images/edw-augumentation.png" width="80%" /></center><br /><br />
+
+### Store-All to Treasure Data (TD)
+
+All generated data is first stored in Treasure Data. Treasure Data provides a highly scalable and cost effective cloud-based storage solution. Furthermore, Treasure Data handles all data as schema-less structure. This makes load the process really simple, since you don't need to sync the schema between data source and the analytics infrastructure.
+
+We've seen many cases where the analytics team needs to change the schema every night, spending many hours syncing the schema between multiple data sources and the analytics system. This is just a waste of time and can be avoided using Treasure Data with your EDW.
+
+### Treasure Data (TD) to EDW
+
+While Treasure Data provides a cost-effective, schema-less and scalable infrastructure, an DW provides higher performance and better connectivitity with other BI solutions and analytics tools. To leverage the benefits of both systems, our customers often use TD to refine and aggregate data and put the result into their data warehouse.
+
+### Success Stories
+
+Please check these success stories for this pattern.
+
+* [MobFox - Europe's Largest Mobile Network](success-at-mobfox)
+* [Viki - Global Online Video Servic](success-at-viki)
+* [Getjar - One of the World’s Largest Mobile App Marketplaces](success-at-getjar)

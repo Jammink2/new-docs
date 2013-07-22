@@ -2,98 +2,145 @@
 
 [Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data as-a-Service. We provide a SQL-like query language interface called the Hive query language. This article covers the basics of the Hive query language.
 
-## Prerequisites
-
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
-
 ## About Apache Hive
 
 The Hive query language (HiveQL) is the primary data processing method for Treasure Data. HiveQL is powered by [Apache Hive](http://hive.apache.org/).
 
 NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are currently unavailable.
 
-## Official Documents 
+## What is Treasure Data?
 
-* [The official Hive tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial) covers the basics of HiveQL.
-* [The official Hive language manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) covers all features of HiveQL.
+[Treasure Data](http://www.treasure-data.com/) is a cloud data platform that allows users to collect, store, and analyze their data on the cloud. Treasure Data manages its own Hadoop cluster, which accepts queries from users and executes them using the Hadoop MapReduce framework. HiveQL is one of the languages it supports.
 
 ## CLI Usage
 
-You can submit queries by using the `td query` command.
-
-    :::term
-    usage:
-      $ td query <sql>
-    
-    example:
-      $ td query -d example_db -w -r rset1 "select count(*) from table1"
-    
-    description:
-      Issue a query
-    
-    options:
-      -d, --database DB_NAME           use this database (required)
-      -w, --wait                       wait for the job to finish
-      -o, --output PATH                write results to this file
-      -f, --format FORMAT              write results to file in this format (tsv, csv, json or msgpack)
-      -r, --result RESULT_URL          write results to this URL (see also result:create subcommand)
-      -u, --user NAME                  set user name for the result URL
-      -p, --password                   ask for the password for the result URL
-      -P, --priority PRIORITY          set priority
-
-Below is an example query.
+You can submit queries by using the `td query` command. Below is an example command.
 
     $ td query -w -d testdb \
       "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
 
-## Example Queries
+## SELECT Statement Syntax
+
+Here's the syntax of Hive's SELECT statement.
+
+    :::text
+    SELECT [ALL | DISTINCT] select_expr, select_expr, ...
+    FROM table_reference
+    [WHERE where_condition]
+    [GROUP BY col_list]
+    [HAVING having_condition]
+    [CLUSTER BY col_list | [DISTRIBUTE BY col_list] [SORT BY col_list]]
+    [LIMIT number]
+    ;
+
+SELECT is the projection operator in SQL. The points are:
+
+* `SELECT` scans the table specified by the `FROM` clause
+* `WHERE` gives the condition of what to filter
+* `GROUP BY` gives a list of columns which specify how to aggregate the records
+* `CLUSTER BY`, `DISTRIBUTE BY`, `SORT BY` specify the sort order and algorithm
+* `LIMIT` specifies how many # of records to retrieve
+
+### Computing with Columns
+
+When you select the columns, you can manipulate column values using either arithmetic operators or function calls. Math, date, and string functions are popular.
+
+* [List of Arithmetic Operators](hive-operators#arithmetic-operators)
+* [List of Functions](hive-functions)
+
+Here's an example query that uses both operators and functions.
+
+    :::sql
+    SELECT upper(name), sales-cost FROM products;
+
+### WHERE Clauses
+
+A `WHERE` clause is used to filter the result set by using *predicate operators* and *logical operators*. Functions can also be used to compute the condition.
+
+* [List of Predicate Operators](hive-operators#predicate-operators)
+* [List of Logical Operators](hive-operators#logical-operators)
+* [List of Functions](hive-functions)
+
+Here's an example query that uses a WHERE clause.
+
+    :::sql
+    SELECT name FROM products WHERE name = 'stone of jordan';
+
+### GROUP BY Clauses
+
+A `GROUP BY` clause is frequently used with *aggregate functions*, to group the result set by columns and apply aggregate functions over each group. Functions can also be used to compute the grouping key.
+
+* [List of Aggregate Functions](hive-aggregate-functions)
+* [List of Functions](hive-functions)
+
+Here's an example query that groups and counts by category.
+
+    :::sql
+    SELECT category, count(1) FROM products GROUP BY category;
+
+### HAVING Clauses
+
+A `HAVING` clause lets you filter the groups produced by `GROUP BY`, by applying *predicate operators* to each groups.
+
+* [List of Predicate Operators](hive-operators#predicate-operators)
+
+Here's an example query that groups and counts by category, and then retrieves only counts > 10;
+
+    :::sql
+    SELECT category, count(1) AS cnt FROM products GROUP BY category HAVING cnt > 10;
+
+### Example Queries
 
 Here are some basic examples. The underlying table consists of three fields: `ip`, `url`, and `time`.
 
-#### Number of Records
-
     :::sql
+    # Number of Records
     SELECT COUNT(1) FROM www_access;
-
-#### Number of Unique IPs
-
-    :::sql
+    
+    # Number of Unique IPs
     SELECT COUNT(distinct v['ip']) FROM www_access;
-
-#### Number of Unique IPs that Accessed the Top Page
-
-    :::sql
+    
+    # Number of Unique IPs that Accessed the Top Page
     SELECT COUNT(distinct v['ip']) FROM www_access \
       WHERE v['url']='/';
-
-#### Number of Accesses per Unique IP
-
-    :::sql
+    
+    # Number of Accesses per Unique IP
     SELECT v['ip'], COUNT(1) FROM www_access \
       GROUP BY v['ip'] LIMIT 30;
-
-#### Unique IPs Sorted by Number of Accesses
-
-    :::sql
+    
+    # Unique IPs Sorted by Number of Accesses
     SELECT v['ip'], COUNT(1) AS cnt FROM www_access \
       GROUP BY v['ip']
       ORDER BY cnt DESC LIMIT 30;
-
-#### Number of Accesses After a Certain Time
-
-[TD_TIME_RANGE UDF](udfs#tdtimerange) is efficient and simple to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
-
+    
+    # Number of Accesses After a Certain Time
     :::sql
     SELECT COUNT(1) FROM www_access \
       WHERE TD_TIME_RANGE(time, "2011-08-19", NULL, "PDT")
-
-NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
-
-#### Number of Accesses Each Day
-
+    
+    # Number of Accesses Each Day
     :::sql
     SELECT \
       TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT") AS day, \
       COUNT(1) AS cnt \
     FROM www_access \
     GROUP BY TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT")
+
+
+[TD_TIME_RANGE UDF](udfs#tdtimerange) is simple and efficient to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
+
+NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
+
+## See Other Documents
+
+Here is a list of documents regarding the HiveQL.
+
+* [Hive Built-in Operators](hive-operators)
+* [Hive Built-in Functions](hive-functions)
+* [Hive Built-in Aggregate Functions](hive-aggregate-functions)
+* [Hive Treasuer Data UDFs](udfs)
+
+Here are the official Hive tutorial and language manual.
+
+* [The official Hive tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial) covers the basics of HiveQL.
+* [The official Hive language manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual) covers all features of HiveQL.
