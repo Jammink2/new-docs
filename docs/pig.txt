@@ -57,30 +57,23 @@ Because Treasure Data operates on a multi-tenant model with data stored in colum
 
 ## Example Queries
 
-Here are some basic examples. We will assume that the underlying table consists of three fields: `ip`, `url`, and `time`. The schema on this table is assumed to be unset.
+Here are some basic examples. We will assume that the underlying table (for example the table created from the [Quickstart](quickstart)) consists of at least three fields: `host`, `path`, and `time`. The schema on this table is assumed to be unset.
 
 #### Number of records
 
     :::term
     OUT = FOREACH (GROUP www_access ALL) GENERATE COUNT(www_access);
 
-#### Number of records per unique IP
+#### Number of records per unique host
 
     :::term
-    OUT = FOREACH (GROUP www_access BY v#'ip') GENERATE group AS ip, COUNT(www_access) AS cnt;
+    OUT = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT(www_access) AS cnt;
 
-#### Number of records per unique IP to the root page
-
-    :::term
-    F = FILTER www_access BY v#'url' == '/';
-    OUT = FOREACH (GROUP F BY v#'ip') GENERATE group AS ip, COUNT(www_access) AS cnt;
-
-#### Unique IPs sorted by number of accesses
+#### Unique host IPs sorted by number of accesses
 
     :::term
-    F = FILTER www_access BY v#'url' == '/';
-    GROUP = FOREACH (GROUP F BY v#'ip') GENERATE group AS ip, COUNT(www_access) AS cnt;
-    OUT = ORDER GROUP BY cnt DESC;
+    A = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT(www_access) AS cnt;
+    OUT = ORDER A BY cnt DESC;
 
 ## Parameter Substitution
 Parameters are values that are passed in at runtime as substitutes for some variables. We provide some default variables for the scheduled query feature:
