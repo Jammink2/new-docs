@@ -69,7 +69,7 @@ Here are some basic examples. We will assume that the underlying table (for exam
     :::term
     OUT = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT(www_access) AS cnt;
 
-#### Unique host IPs sorted by number of accesses
+#### Unique hosts sorted by number of accesses
 
     :::term
     A = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT(www_access) AS cnt;
