@@ -18,6 +18,21 @@ Nested JSON records can be parsed by using the [get_json_object UDF](https://cwi
 
 Please set the HTTP_PROXY variable (e.g. export HTTP_PROXY="proxy_host:8080"). This is supported from td v0.10.41.
 
+## I cannot import my data to Treasure Data. Canyou help?
+
+Sorry to hear that. Here are a couple of scenarios that we can think of.
+    
+    1. Make sure your network is alive and allow you to access external networks.
+    2. Does your data have numbers greater than 2<sup>64</sup>? If so, please upgrade your td command/td-agent to the latest version. If you are using fluentd instead, please upgrade fluent-plugin-td to version 0.10.15 or above.
+
+## When I query my table, I get "null" for some of my integer values. Is this a bug?
+
+Is your integer greater than or equal to 2<sup>64</sup>? If it is, then you need to cast it as `decimal` like this:
+
+    :::bash
+    SELECT CAST(v['my_huge_number'] AS DECIMAL) FROM tbl...
+
+
 ## Hive's reserved keywords (Why do I get a warning about reserved keywords?)
 
 Treasure Data uses Hive as a querying language. One of Hive's limitations is that a table name cannot be a reserved keyword. Thus, if your table (or database) name is identical to a reserved keyword, you won't be able to query data in that table (or database).
