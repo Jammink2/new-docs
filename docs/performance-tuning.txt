@@ -49,4 +49,4 @@ If all but one of the tables being joined are small, Hive can perform the join o
     :::sql
     SELECT /*+ MAPJOIN(tbl2) */ ... FROM tbl1 join tbl2 on tbl1.key = tbl2.key
 
-In this example, we're specifying `b` as a Mapjoin table that is much smaller than `a` and should fit in memory. For more information on this optimization, please refer to the [Hive documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins#LanguageManualJoins-Mapjoinrestrictions).
+In this example, we're specifying `tbl2` as a Mapjoin table that is much smaller than `tbl1` and should fit in memory. For more information on this optimization, please refer to the [Hive documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins#LanguageManualJoins-Mapjoinrestrictions).
