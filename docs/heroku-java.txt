@@ -200,9 +200,9 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 * [Schema Management](schema)
 * [Hive Query Language](hive)
 
-For more specific assistance, please visit our support resources:
+For more specific assistance, please visit our support center:
 
-* [Treasure Data Discussion Forum](http://help.treasure-data.com/)
+* [Treasure Data Support Center](http://help.treasure-data.com/)
 
 ## Appendix: Importing Data To Treasure Data Using The Logger Library
 
@@ -262,3 +262,4 @@ In order to use Treasure Data Hadoop, you must set your `TREASURE_DATA_API_KEY` 
     $ export TREASURE_DATA_API_KEY=`heroku td apikey:show`
 
 Once it is set, you can start your application as usual.
+

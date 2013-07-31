@@ -173,6 +173,6 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 * [Schema Management](schema)
 * [Hive Query Language](hive)
 
-For more specific assistance, please visit our support resources:
+For more specific assistance, please visit our support center:
 
-* [Treasure Data Discussion Forum](http://help.treasure-data.com/discussions)
+* [Treasure Data Support Center](http://help.treasure-data.com/)

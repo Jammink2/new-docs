@@ -80,6 +80,6 @@ For queries, we leverage the Hive Query Language.
 
 * [Hive Query Language](hive)
 
-For more specific assistance, please visit our support resources:
+For more specific assistance, please visit our support center:
 
-* [Treasure Data Discussion Forum](http://help.treasure-data.com/)
+* [Treasure Data Support Center](http://help.treasure-data.com/)
