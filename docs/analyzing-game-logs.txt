@@ -170,7 +170,7 @@ Here are a few sample queries that calculate some KPIs.
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
          COUNT(DISTINCT v['uid']) AS cnt
-       FROM pay
+       FROM access
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
 
@@ -181,7 +181,7 @@ Here are a few sample queries that calculate some KPIs.
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
          COUNT(DISTINCT v['uid']) AS cnt
-       FROM access
+       FROM pay
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
 
