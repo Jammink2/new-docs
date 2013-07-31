@@ -163,4 +163,4 @@ Now you've learned about td-agent's high availability configurations. For furthe
 
 td-agent is actively maintained by Treasure Data, Inc. The changelog is available here:
 
-* [td-agent ChangeLog](http://help.treasure-data.com/kb/installing-td-agent-daemon/changelog-of-td-agent)
+* [td-agent ChangeLog](td-agent-changelog)
