@@ -126,13 +126,16 @@ get '/search' do
 end
 
 get '/categories/:category' do
-  cache_long
-  render_category params[:category]
+  if params[:category] == 'success-stories'
+    redirect "http://www.treasure-data.com/case-studies"
+  else
+    cache_long
+    render_category params[:category]
+  end
 end
 
 get '/articles/:article' do
   m = /^success-at-(.*)/.match(params[:article])
-  
   if m
     redirect "http://www.treasure-data.com/success-stories/#{m[1]}"
   else

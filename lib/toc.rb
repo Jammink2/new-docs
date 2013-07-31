@@ -11,16 +11,6 @@ section 'overview', 'Overview' do
     article 'status', 'Platform Status'
     article 'open-source', 'Open Source'
   end
-  category 'success-stories', 'Success Stories' do
-    article 'success-at-mobfox', "MobFox - Europe's Largest Mobile Network"
-    article 'success-at-contextlogic', 'ContextLogic - Top 150 Facebook App'
-    article 'success-at-cookpad', 'Cookpad - Japan’s No.1 Recipe Sharing Site'
-    article 'success-at-splurgy', 'Splurgy - Social Marketing Platform'
-    article 'success-at-viki', 'Viki - Global Online Video Service'
-    article 'success-at-cloud9-ide', 'Cloud9 - Online IDE Service'
-    article 'success-at-getjar', 'Getjar - One of the World’s Largest Mobile App Marketplaces'
-    article 'success-at-reevoo', 'Reevoo - Leading Cloud-based Social Commerce'
-  end
   category 'faq', 'FAQs' do
     article 'faq', 'Frequently Asked Questions'
   end
