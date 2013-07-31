@@ -190,23 +190,23 @@ Here are a few sample queries that calculate some KPIs.
     :::term
     $ td query -w -d production \
       "SELECT
-         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
          SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
        FROM pay
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
+       GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
 
 ### Daily Sales per Item Name
 
     :::term
     $ td query -w -d production \
       "SELECT
-         TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
+         TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
          v['item_name'] AS item_name,
          SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
        FROM pay
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY v['item_name'], TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
+       GROUP BY v['item_name'], TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
 
 ### ARPU (Average Revenue per User)
 
