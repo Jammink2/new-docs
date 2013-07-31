@@ -159,16 +159,19 @@ section 'Language References', 'Language References' do
   end
 end
 
-section 'accounts-and-billing', 'Accounts & Billing' do
+section 'support-and-billing', 'Support & Status' do
+  category 'support', 'Support' do
+    article 'paid-support', 'Paid Support'
+    article 'support-channels', 'Support Channels'
+  end
+  category 'service-status', 'Service Status' do
+    article 'service-status', 'Service Status'
+  end
   category 'accounts', 'Accounts' do
     article 'change-password', 'Changing the Password'
     article 'access-control', 'Access Control'
     article 'change-email-address', 'Changing your Email Address'
   #   article 'delete-account', 'Deleting the account'
-  end
-  category 'support', 'Support' do
-    article 'paid-support', 'Paid Support'
-    article 'support-channels', 'Support Channels'
   end
 end
 

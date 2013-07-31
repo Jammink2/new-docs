@@ -1,0 +1,9 @@
+# Service Status
+
+## Status Page
+
+[status.treasure-data.com](http://status.treasure-data.com/) provides historical information of our service status. You can also subscribe the outage / performance degradation event via RSS, email, or SMS. It's recommended for all paid users to subscribe the events.
+
+## Uptime Page
+
+[uptime.treasure-data.com](http://uptime.treasure-data.com/) provides historical uptime and response time information.
