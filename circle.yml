@@ -3,4 +3,4 @@ deployment:
     branch: master
     commands:
       - git push git@heroku.com:td-docs.git $CIRCLE_SHA1:master
-      - curl -d "" -H "Fastly-Key: 516fee11efa06302faa8233e21e9fbae" "https://api.fastly.com/service/sNkXKfYY6YwAN5DUN2hZ/purge_all"
+      - curl -d a=b -H Fastly-Key:516fee11efa06302faa8233e21e9fbae https://api.fastly.com/service/sNkXKfYY6YwAN5DUN2hZ/purge_all
