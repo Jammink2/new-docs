@@ -50,3 +50,23 @@ If all but one of the tables being joined are small, Hive can perform the join o
     SELECT /*+ MAPJOIN(tbl2) */ ... FROM tbl1 join tbl2 on tbl1.key = tbl2.key
 
 In this example, we're specifying `tbl2` as a Mapjoin table that is much smaller than `tbl1` and should fit in memory. For more information on this optimization, please refer to the [Hive documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins#LanguageManualJoins-Mapjoinrestrictions).
+
+## DISTRIBUTE BY...SORT BY v. ORDER BY
+
+In Hive, ORDER BY is not a very fast operation because it forces all the data to go into the same node. By doing this, Hive ensures [total ordering](http://en.wikipedia.org/wiki/Total_order).
+
+However, we sometimes do not need total ordering. For example, suppose you have a table called `user_action_table` where each row has `user_id`, `action`, and `time`. Your goal is order them by time **per user_id**.
+
+If you are doing this with ORDER BY, you would run
+
+    :::sql
+    SELECT time, user_id, action FROM user_action_table ORDER BY time
+
+However, you can achieve the same result with
+
+    :::sql
+    SELECT time, user_id, action FROM user_action_table DISTRIBUTE BY user_id SORT BY time
+
+because all the rows belonging to the same user_id goes to the same reducer ("DISTRIBUTE BY user_id"), and each reducer, rows are sorted by time ("SORT BY time"). This is faster than the other query because it uses multiple reducers as opposed to a single reducer.
+
+You can learn more about the difference between ORDER BY and SORT BY [here](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+SortBy#LanguageManualSortBy-DifferencebetweenSortByandOrderBy).
