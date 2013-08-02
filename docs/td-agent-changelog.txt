@@ -2,6 +2,16 @@
 
 This article lists the changelog of [td-agent](td-agent).
 
+## 2013/08/02: version v1.1.15
+- fluentd [v0.10.36](https://github.com/fluent/fluentd/blob/master/ChangeLog)
+- td-client [v0.8.53](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
+- td [v0.10.84](https://github.com/treasure-data/td/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.3.4](https://github.com/fluent/fluent-plugin-s3/blob/master/ChangeLog)
+- fluent-plugin-webhdfs [v0.2.1](https://github.com/fluent/fluent-plugin-webhdfs/blob/master/ChangeLog)
+- fluent-plugin-mongo [v0.7.1](https://github.com/fluent/fluent-plugin-mongo/blob/master/ChangeLog)
+- fluent-plugin-td [v0.10.15](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- cool.io v1.1.1
+
 ## 2013/06/24: version v1.1.14
 - fluentd [v0.10.35](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.52](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
