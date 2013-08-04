@@ -57,7 +57,7 @@ Because Treasure Data operates on a multi-tenant model with data stored in colum
 
 ## Example Queries
 
-Here are some basic examples. We will assume that the underlying table (for example the table created from the [Quickstart](quickstart)) consists of at least three fields: `host`, `path`, and `time`. The schema on this table is assumed to be unset.
+Here are some basic examples. We will assume that the underlying table consists of at least three fields: `host`, `path`, and `time` (this is true for the table created in the [Quickstart guide](quickstart)). The schema on this table is assumed to be unset.
 
 #### Number of records
 
