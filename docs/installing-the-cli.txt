@@ -3,9 +3,70 @@ Installing the Treasure Data CLI
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
+##Installing for Ubuntu (Precise or Lucid)
+###Precise
+
+Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
+
+	:::term
+	$ curl -L http://toolbelt.treasure-data.com/sh/install-ubuntu-precise.sh | sh
+
+###Lucid
+
+Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
+
+	:::term
+	$ curl -L http://toolbelt.treasure-data.com/sh/install-ubuntu-lucid.sh | sh
+
+###init.d scripts
+
+/etc/init.d/td-agent script is also provided to start, stop, or restart the agent.
+
+	:::term
+	$ /etc/init.d/td-agent start
+	$ /etc/init.d/td-agent stop
+	$ /etc/init.d/td-agent restart
+
+The logs are located under /var/log/td-agent. The daemon is running in td-agent user and td-agent group.
+
+The config file is located at /etc/td-agent/td-agent.conf. After its modification, please restart the agent.
+
+##RedHat/CentOS
+
+Installation
+
+This article shows how to install td-agent for CentOS, RHEL 5.0+.
+
+First, please create **/etc/yum.repos.d/td.repo** with the following contents.
+
+	:::text
+	[treasuredata]
+	name=TreasureData
+	baseurl=http://packages.treasure-data.com/redhat/$basearch
+	gpgcheck=0
+
+Then, you can install via yum command.
+
+	:::term
+	$ yum update
+	$ yum install td-agent
+	$ /etc/init.d/td-agent start
+
+*/etc/init.d/td-agent* script is also provided to start, stop, or restart the agent.
+
+	:::term
+	$ /etc/init.d/td-agent start
+	$ /etc/init.d/td-agent stop
+	$ /etc/init.d/td-agent restart
+
+The logs are located under */var/log/td-agent*. The daemon is running in *td-agent* user and *td-agent* group.
+
+The config file is located at */etc/td-agent/td-agent.conf*. After its modification, please restart the agent. 
+
+##If you are familiar with Ruby
 If you are familiar with Ruby, you can install `td` from the command line using `gem`.
 
-    :::term
-    $ gem install td
+	:::term
+	$ gem install td
 
 Alternative installation options, including a Mac OSX installer and a Windows installer, can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasure-data.com/).
