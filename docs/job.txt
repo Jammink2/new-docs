@@ -100,3 +100,5 @@ Scheduled jobs must sometimes be set as high or low priority items. For example,
     $ td query -P -1 <query>
     # VERY LOW
     $ td query -P -2 <query>
+
+NOTE: 'VERY HIGH' or 'HIGH' options allow users to submit jobs to hadoop cluster firster than other jobs specified with normal priority (or 'VERY LOW', 'LOW'). They also enable preempting normal jobs running in parallel since they assign the resources to higher priority jobs on the hadoop cluster.
