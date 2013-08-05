@@ -3,7 +3,7 @@ Installing the Treasure Data CLI
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
-##Installing for Ubuntu (Precise or Lucid)
+##Ubuntu (Precise or Lucid)
 ###Precise
 
 Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
