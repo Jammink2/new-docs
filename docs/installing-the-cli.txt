@@ -20,7 +20,7 @@ Please add the Treasure Data apt packages repository to your sources list. This 
 
 ###init.d scripts
 
-/etc/init.d/td-agent script is also provided to start, stop, or restart the agent.
+The /etc/init.d/td-agent script is used to start, stop, or restart the agent.
 
 	:::term
 	$ /etc/init.d/td-agent start
@@ -29,13 +29,11 @@ Please add the Treasure Data apt packages repository to your sources list. This 
 
 The logs are located under /var/log/td-agent. The daemon is running in td-agent user and td-agent group.
 
-The config file is located at /etc/td-agent/td-agent.conf. After its modification, please restart the agent.
+The config file is located at /etc/td-agent/td-agent.conf. Please restart the agent after whenever you have modified the file.
 
 ##RedHat/CentOS
 
-Installation
-
-This article shows how to install td-agent for CentOS, RHEL 5.0+.
+This section shows how to install td-agent for CentOS, RHEL 5.0+.
 
 First, please create **/etc/yum.repos.d/td.repo** with the following contents.
 
@@ -45,14 +43,14 @@ First, please create **/etc/yum.repos.d/td.repo** with the following contents.
 	baseurl=http://packages.treasure-data.com/redhat/$basearch
 	gpgcheck=0
 
-Then, you can install via yum command.
+Then, you can install td-agent via the yum command.
 
 	:::term
 	$ yum update
 	$ yum install td-agent
 	$ /etc/init.d/td-agent start
 
-*/etc/init.d/td-agent* script is also provided to start, stop, or restart the agent.
+The */etc/init.d/td-agent* script is used to start, stop, or restart the agent.
 
 	:::term
 	$ /etc/init.d/td-agent start
@@ -61,7 +59,7 @@ Then, you can install via yum command.
 
 The logs are located under */var/log/td-agent*. The daemon is running in *td-agent* user and *td-agent* group.
 
-The config file is located at */etc/td-agent/td-agent.conf*. After its modification, please restart the agent. 
+The config file is located at */etc/td-agent/td-agent.conf*. Please restart the agent after whenever you have modified the file.
 
 ##If you are familiar with Ruby
 If you are familiar with Ruby, you can install `td` from the command line using `gem`.
