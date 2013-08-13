@@ -39,7 +39,7 @@ Shown below is a screenshot of the result.
 For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are written into `sample_worksheet`.
 
     :::term
-    $ td result:create mygss td://user:password@domain.com/sample_spreadsheet
+    $ td result:create mygss gspreadsheet://user:password@domain.com/sample_spreadsheet
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       --result mygss:sample_worksheet \
@@ -50,9 +50,9 @@ For scheduled jobs, just add the `--result` option when scheduling a job. After 
 You can add or delete data in two ways.
 
     :::term
-    td://user:password@domain.com/sample_spreadsheet/worksheet              # replace
-    td://user:password@domain.com/sample_spreadsheet/worksheet?mode=replace # replace
-    td://user:password@domain.com/sample_spreadsheet/worksheet?mode=append  # append
+    gspreadsheet://user:password@domain.com/sample_spreadsheet/worksheet              # replace
+    gspreadsheet://user:password@domain.com/sample_spreadsheet/worksheet?mode=replace # replace
+    gspreadsheet://user:password@domain.com/sample_spreadsheet/worksheet?mode=append  # append
 
 ### REPLACE
 
