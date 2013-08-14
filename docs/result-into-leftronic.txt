@@ -22,20 +22,15 @@ Step 1: In the Leftronic dashboard, create a new line graph. Click on the proper
 </center>
 <br>
 
-Step 2: Create a named result endpoint using the command line.
-
-    :::term
-    $ td result:create mymetric "leftronic://accessKey/streamName"
-
-`accessKey` and `streamName` are the parameters mentioned in Step 1.
-
-Step 3: Set up a scheduled query. This will execute periodically and send the result to your Leftronic graph as a data point.
+Step 2: Set up a scheduled query. This will execute periodically and send the result to your Leftronic graph as a data point.
 
     :::term
     $ td sched:create mymetric_hourly "0 * * * *" \
       -d testdb \
-      --result mymetric:path \
+      --result "leftronic://accessKey/streamName" \
       "SELECT TD_SCHEDULED_TIME(), COUNT(1) FROM www_access TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(),'-1h'), TD_SCHEDULED_TIME())"
+
+Note that `accessKey` and `streamName` are the parameters mentioned in Step 1.
 
 The query result should contain only one row with two columns. The first column should contain a timestamp value in [UNIX epoch format](http://en.wikipedia.org/wiki/Unix_time). The second column should contain the value associated with each timestamp. In this example, we are counting the number of entries in the `www_access` table that occured within the past hour.
 
