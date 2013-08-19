@@ -14,6 +14,8 @@ A front-end application first posts data to Treasure Data. Treasure Data runs Ma
 
 <center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
 
+NOTE: The results is written from AWS US-East region. If you want to have better security contro, please ask support@treasure-data.com about its account ID and security group name.
+
 Shown above is a fairly common architecture. Here are a few examples.
 
 #### Example 1: Ranking: What are the "Top N of X?"
