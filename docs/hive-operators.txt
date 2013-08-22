@@ -176,6 +176,16 @@ This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
     <td>boolean</td>
     <td>Same as NOT A</td>
   <tr>
+  </tr>
+    <td>A IN (val1, val2, ...)</td>
+    <td>boolean</td>
+    <td>TRUE if A is equal to any of the values</td>
+  <tr>
+  </tr>
+    <td>A NOT IN (val1, val2, ...)</td>
+    <td>boolean</td>
+    <td>TRUE if A is not equal to any of the values</td>
+  <tr>
 </table>
 
 ## Operators for Complex Types
