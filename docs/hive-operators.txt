@@ -67,7 +67,7 @@ This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
     <td>FALSE if expression A evaluates to NULL otherwise TRUE</td>
   </tr>
   <tr>
-    <td>A LIKE B</td>
+    <td>A NOT LIKE B</td>
     <td>strings</td>
     <td>NULL if A or B is NULL, TRUE if string A matches the SQL simple regular expression B, otherwise FALSE. The comparison is done character by character. The _ character in B matches any character in A(similar to . in posix regular expressions) while the % character in B matches an arbitrary number of characters in A(similar to .* in posix regular expressions) e.g. 'foobar' like 'foo' evaluates to FALSE where as 'foobar' like 'foo_ _ _' evaluates to TRUE and so does 'foobar' like 'foo%'</td>
   </tr>
