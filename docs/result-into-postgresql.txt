@@ -14,7 +14,7 @@ A front-end application first posts data to Treasure Data. Treasure Data runs Ma
 
 <center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
 
-NOTE: The results is written from AWS US-East region. If you want to have better security contro, please ask support@treasure-data.com about its account ID and security group name.
+NOTE: The results are written from the AWS US-East region. If you want better security control, please message support@treasure-data.com and ask for its account ID and security group name.
 
 Shown above is a fairly common architecture. Here are a few examples.
 
