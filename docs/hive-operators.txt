@@ -12,7 +12,7 @@ This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
     <td>A = B</td><td>All primitive types</td><td>TRUE if expression A is equal to expression B otherwise FALSE</td>
   </tr>
   <tr>
-    <td>A <=> B</td>
+    <td>A &lt;=> B</td>
     <td>All primitive types</td>
     <td>Returns same result with EQUAL(=) operator for non-null operands, but returns TRUE if both are NULL, FALSE if one of the them is NULL (as of version 0.9.0)</td>
   </tr>
@@ -22,7 +22,7 @@ This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
     <td>Fails because of invalid syntax. SQL uses =, not ==</td>
   </tr>
   <tr>
-    <td>A <> B</td>
+    <td>A &lt;> B</td>
     <td>All primitive types</td>
     <td>NULL if A or B is NULL, TRUE if expression A is NOT equal to expression B otherwise FALSE</td>
   </tr>
@@ -32,12 +32,12 @@ This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
     <td>a synonym for the <> operator</td>
   </tr>
   <tr>
-    <td>A < B</td>
+    <td>A &lt; B</td>
     <td>All primitive types</td>
     <td>NULL if A or B is NULL, TRUE if expression A is less than expression B otherwise FALSE</td>
   </tr>
   <tr>
-    <td>A <= B</td>
+    <td>A &lt;= B</td>
     <td>All primitive types</td>
     <td>NULL if A or B is NULL, TRUE if expression A is less than or equal to expression B otherwise FALSE</td>
   </tr>
