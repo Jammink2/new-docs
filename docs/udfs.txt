@@ -183,3 +183,30 @@ You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. '
 ### Description
 
 Returns the rank of each row within the partition of the result set. The rank of a row is one plus the number of ranks that come before the row.
+
+
+## TD_SESSIONIZE()
+
+### Signature
+
+    :::term
+    string TD_SESSIONIZE(time, timeout, )
+
+### Description
+
+This UDF takes three arguments (the time field specified in epoch time, a timeout window - period of this amount indicates that a new session has started, 
+and field name to sessionize by) and returns a UUID for the session of the request.
+
+### Example
+
+Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' within a sub query. You also need to sort by the time field in asending order.
+
+    :::sql
+    SELECT TD_SESSIONIZE(time, 6000, host) as session_id, time, host, path
+    FROM (
+      SELECT time, v['host'] as host, v['path'] as path
+      from web_logs
+      distribute by host
+      sort by time
+    ) t
+
