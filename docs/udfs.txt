@@ -202,7 +202,7 @@ this amount indicates that a new session has started, and field name to sessioni
 Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessionize_by* field, and sort by the *unix_timestamp* field.
 
     :::sql
-    SELECT TD_SESSIONIZE(time, 6000, host) as session_id, time, host, path
+    SELECT TD_SESSIONIZE(time, 3600, host) as session_id, time, host, path
     FROM (
       SELECT time, v['host'] as host, v['path'] as path
       from web_logs
