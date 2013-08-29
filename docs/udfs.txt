@@ -207,6 +207,6 @@ Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessioni
       SELECT time, v['host'] as host, v['path'] as path
       from web_logs
       distribute by host
-      sort by time
+      sort by host,time
     ) t
 
