@@ -2,6 +2,12 @@
 
 This article lists the changelog of [td-agent](td-agent).
 
+## 2013/08/30: version v1.1.16
+- fluentd [v0.10.38](https://github.com/fluent/fluentd/blob/master/ChangeLog)
+- td-client [v0.8.54](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
+- td [v0.10.86](https://github.com/treasure-data/td/blob/master/ChangeLog)
+- Add configtest and use configtest at restart
+
 ## 2013/08/02: version v1.1.15
 - fluentd [v0.10.36](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.53](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
