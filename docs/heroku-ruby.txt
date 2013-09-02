@@ -72,6 +72,8 @@ Thus, in Ruby,
 
 NOTE: The action name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown).
 
+NOTE: If you can't see your logs with "heroku logs" command, please check if your stdout is flushed correctly in your code.
+
 Once you have inserted your event-logging code, push the modifications to Heroku!
 
     :::term
