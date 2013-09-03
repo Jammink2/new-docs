@@ -135,13 +135,14 @@ section 'tools-and-apis', 'Tools & APIs' do
   # end
   category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
     article 'tools', 'Overview'
+    article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
+    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
     article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
     article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
     article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
-    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
     article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   end
 end

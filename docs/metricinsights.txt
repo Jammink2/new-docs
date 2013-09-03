@@ -1,10 +1,10 @@
-# MetricInsights with Treasure Data
+# Metric Insights with Treasure Data
 
 Using [Metric Insights](http://www.metricinsights.com/) with Treasure Data allows users to generate metrics from huge amounts of data. We're listed on their [big data source partners](http://www.metricinsights.com/solutions.html).
 
 <center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-NOTE: <b>Don't have time</b> to setup Metric Insights + Treasure Data? Leverage our <a href="setup-consultation">Setup Consultation Service</a>.
+Currently, Metric Insights connector is only provided for enterprise customers. Please contact from below for the request.
 
-Please [contact us](http://treasure-data.com/contact/) for further information.
+<iframe src="http://go.treasure-data.com/l/24122/2013-05-28/77i" width="100%" height="180" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
 
