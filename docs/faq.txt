@@ -58,4 +58,9 @@ The following are the reserved keywords in Hive:
     COLUMNS, RLIKE, REGEXP, TEMPORARY, FUNCTION, EXPLAIN, EXTENDED, SERDE, WITH,
     SERDEPROPERTIES, LIMIT, SET, TBLPROPERTIES
 
+If you hit reserved keyword problem in your query, please wrap name with '`' like below.
+
+    :::sql
+    SELECT `keyword_column`, COUNT(1) AS cnt FROM table_name GROUP BY `keyword_column`
+
 ### If you have any questions, please feel free to [contact us](http://treasure-data.com/contact/), or chat with us live using the window at the bottom right.
