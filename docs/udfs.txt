@@ -194,8 +194,13 @@ Returns the rank of each row within the partition of the result set. The rank of
 
 ### Description
 
-This UDF takes three arguments (the time field specified in [unix epoch](http://en.wikipedia.org/wiki/Unix_time), a timeout window in seconds - period of 
-this amount indicates that a new session has started, and field name to sessionize by) and returns a UUID for the session of the request.
+This UDF takes three arguments: 
+
+1. The time field specified in [unix epoch](http://en.wikipedia.org/wiki/Unix_time)
+2. A timeout window in seconds (when this amount of time elapses, it indicates the start of a new session)
+3. The field name to sessionize by
+
+It returns a UUID for the session of the request.
 
 ### Example
 
