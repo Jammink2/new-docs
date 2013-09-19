@@ -118,7 +118,7 @@ This command issues queries.
 #### Example Result
     :::term
     {
-      "job_id": "12345"
+      "job_id": "12345",
       "type": "hive",
       "database": "www_access",
       "url": "http://console.treasure-data.com/will-be-ready"
