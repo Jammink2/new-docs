@@ -58,6 +58,11 @@ You can add or delete data in four ways.
 
 All four modes are **atomic**.
 
+**In the "host" section, you can specify the port as well.** Here is an example:
+
+    :::term
+    mysql://superadmin:superstrongpassword@data.science.com:27013/transaction/user_info
+
 ### APPEND
 
 This is the default mode. The query results are appended to a table. If the table does not exist yet, a new table will be created.
@@ -80,4 +85,4 @@ The system first truncates the existing table, then inserts the query results. I
 
 ### UPDATE
 
-This mode uses MySQL's "INSERT ... ON DUPLICATE KEY UPDATE" syntax (see (MySQL's documentation)[http://dev.mysql.com/doc/refman/5.1/en/insert-on-duplicate.html]). In short, a row is inserted unless it would cause a duplicate value in the unique index or primary key, in which case an update is performed.
+This mode uses MySQL's "INSERT ... ON DUPLICATE KEY UPDATE" syntax (see [MySQL's documentation](http://dev.mysql.com/doc/refman/5.1/en/insert-on-duplicate.html)). In short, a row is inserted unless it would cause a duplicate value in the unique index or primary key, in which case an update is performed.
