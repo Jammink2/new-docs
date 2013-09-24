@@ -2,6 +2,14 @@
 
 This article lists the changelog of [td-agent](td-agent).
 
+## 2013/09/25: version v1.1.17
+- fluentd [v0.10.39](https://github.com/fluent/fluentd/blob/master/ChangeLog)
+- td-client [v0.8.55](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
+- td [v0.10.89](https://github.com/treasure-data/td/blob/master/ChangeLog)
+- fluent-plugin-td [v0.10.16](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- Fix configtest permission issue at restart
+- Create /etc/default/td-agent to set daemon options at Debian and Ubuntu
+
 ## 2013/08/30: version v1.1.16
 - fluentd [v0.10.38](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.54](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
