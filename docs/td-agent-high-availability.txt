@@ -157,9 +157,8 @@ That being said, possible message loss scenarios do exist:
 Now you've learned about td-agent's high availability configurations. For further information, please refer to the documents below:
 
 * [Monitoring td-agent](td-agent-monitoring)
-* [Fluentd Documentation](http://fluent.github.com/doc/) (td-agent is open-sourced as `Fluentd`)
-* [Fluentd Knowledge Base](http://community.fluentd.org/browse/help-center/)
-* [Treasure Data Suppport](http://treasure-data.tenderapp.com/discussions)
+* [Fluentd Documentation](http://docs.fluentd.org/) (td-agent is open-sourced as `Fluentd`)
+* [Treasure Data Suppport](http://treasure-data.tenderapp.com/)
 
 td-agent is actively maintained by Treasure Data, Inc. The changelog is available here:
 
