@@ -10,10 +10,14 @@ We have tried to cover the following areas with our documentation:
 
 However, we understand that no documentation can cover everything our users need. That's why we've set up Support Desk and Mail channels for you to communicate with us.
 
+## Email
+
+This is the most common way of submitting the support inquiry. Please send us an email at `support@treasure-data.com`.
+
 ## Support Desk
 
 You can submit tickets to our Support Desk at [help.treasure-data.com](http://help.treasure-data.com/). Communicate directly with our support team and receive email updates on your tickets. We usually reply within a few business days.
 
-## Mail
+## More Support Options
 
-For issues that do not fit into the above categories, please send us an email at `support@treasure-data.com`.
+Paying customers have access to higher levels of support and faster support response times. Please [contact us](http://treasure-data.com/contact/) for more information.

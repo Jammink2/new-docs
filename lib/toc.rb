@@ -162,7 +162,6 @@ end
 
 section 'support-and-billing', 'Support & Status' do
   category 'support', 'Support' do
-    article 'paid-support', 'Paid Support'
     article 'support-channels', 'Support Channels'
   end
   category 'service-status', 'Service Status' do
