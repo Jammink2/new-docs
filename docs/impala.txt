@@ -1,22 +1,22 @@
 # Impala Query (Alpha Version)
 
-[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data as-a-Service. Treasure Data supports Impala query, which enables low-latency access to the data. This is still an alpha release phase.
+[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Impala, which enables low-latency queries to the data. This feature is still in alpha release.
 
 ## What is Impala?
 
-[Impala](http://github.com/cloudera/impala) is an open-source parallel query execution engine. Unlike Hive, Impala is NOT using MapReduce To avoid latency. Impala directly accesses the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.
+[Impala](http://github.com/cloudera/impala) is an open-source parallel query execution engine. Unlike Hive, Impala does NOT use MapReduce in order avoid latency. Instead, Impala directly accesses the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.
 
 <center><img src="http://blog.cloudera.com/blog/wp-content/uploads/2012/10/impala.png" width="80%" /></center>
 
-Treasure Data customized Impala to directly talk with our distributed columnar storage layer, with almost the same user experience from the user's point of view.
+Treasure Data customized Impala to directly talk with our distributed columnar storage layer, with almost the same experience from the user's point of view.
 
 ## Does Impala replace Hive?
 
-**No**. Hive is designed for batch processing, while Impala is designed for short queries.
+**No**. Hive is designed for batch processing, while Impala is designed for short interactive queries useful for data exploration.
 
-Currently, Impala doesn't support fault tolerance within a query. If a node fails in the middle of processing, the whole query has to be re-run. On the other hand, it will run these small queries often 10-50x faster than Hive.
+Currently, Impala doesn't support fault tolerance within a query. If a node fails in the middle of processing, the whole query has to be re-run. On the other hand, it will execute queries 10-50x faster than Hive. Thus, even if a node fails and a query execution has to be restarted, the total runtime will often beat Hive significantly. 
 
-So, even if a node fails and it has to start over from the start, the total runtime will often beat Hive significantly. So, Impala has a big advantage in queries where the runtime is short enough that node failures during the query are unlikely.
+Another caveat is that Impala has limited support for caching to disk. So if a particularly large data set causes Impala's processor to run out of memory, it will cause the query execution to fail.
 
 There will continue be many viable use cases for MapReduce and Hive (for example, for long-running data transformation workloads).
 
@@ -68,6 +68,10 @@ For [Performance Tuning](performance-tuning), the queries can leverage time-base
     [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
     [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+
+### Scheduled queries not supported
+
+Currently, we don't support schedule queries for Impala.
 
 ## See Also
 
