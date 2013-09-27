@@ -1,6 +1,14 @@
-# Impala Query
+# Impala Query (Alpha Version)
 
-[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data as-a-Service. We started supporting Impala query, which enables low-latency access to the data.
+[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data as-a-Service. Treasure Data supports Impala query, which enables low-latency access to the data. This is still an alpha release phase.
+
+## What is Impala?
+
+[Impala](http://github.com/cloudera/impala) is an open-source parallel query execution engine. Unlike Hive, Impala is NOT using MapReduce To avoid latency. Impala directly accesses the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.
+
+<center><img src="http://blog.cloudera.com/blog/wp-content/uploads/2012/10/impala.png" width="80%" /></center>
+
+Treasure Data customized Impala to directly talk with our distributed columnar storage layer, with almost the same user experience from the user's point of view.
 
 ## Does Impala replace Hive?
 
@@ -28,7 +36,7 @@ We're in an alpha stage of Impala availablity. Compared to Hive, there exists so
 
 ### Lack of UDFs
 
-A lot of UDFs available for Hive, is NOT available for Impala at this point. This will be resolved at the end of 2013.
+A lot of Hive UDFs, are NOT available for Impala at this point. This will be resolved at the end of 2013.
 
 ### Lack of Complex Types
 
@@ -55,8 +63,13 @@ You must set the [Schema](schema)s onto the table, when you want to query via Im
 For [Performance Tuning](performance-tuning), the queries can leverage time-based partitioning of data. While Hive supports a lot of UDFs like TD_TIME_RANGE or TD_TIME_ADD, but Impala doesn't support it now. Please specify POSIX timestamp as an integer within WHERE clause.
 
     :::sql
-    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
-    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 + 3600
-    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 - 3600
-    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
-    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+    [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020
+    [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020 + 3600
+    [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
+    [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
+    [BAD]:  SELECT field1 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+
+## See Also
+
+* [Cloudera Impala Documentation](http://www.cloudera.com/content/support/en/documentation/cloudera-impala/cloudera-impala-documentation-v1-latest.html)
+* [Cloudera Impala: Real-Time Queries in Apache Hadoop, For Real](http://blog.cloudera.com/blog/2012/10/cloudera-impala-real-time-queries-in-apache-hadoop-for-real/)
