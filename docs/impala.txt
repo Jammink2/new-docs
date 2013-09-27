@@ -1,0 +1,62 @@
+# Impala Query
+
+[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data as-a-Service. We started supporting Impala query, which enables low-latency access to the data.
+
+## Does Impala replace Hive?
+
+**No**. Hive is designed for batch processing, while Impala is designed for short queries.
+
+Currently, Impala doesn't support fault tolerance within a query. If a node fails in the middle of processing, the whole query has to be re-run. On the other hand, it will run these small queries often 10-50x faster than Hive.
+
+So, even if a node fails and it has to start over from the start, the total runtime will often beat Hive significantly. So, Impala has a big advantage in queries where the runtime is short enough that node failures during the query are unlikely.
+
+There will continue be many viable use cases for MapReduce and Hive (for example, for long-running data transformation workloads).
+
+## How to use Impala?
+
+Please specify `-T impala` for `td query` command. v0.10.85 or newer client is required.
+
+    :::term
+    $ td query -w -T impala -d testdb \
+      "SELECT code, COUNT(1) FROM www_access GROUP BY code"
+
+For REST API, please specify `type=impala` parameter to `/v3/job/issue/hive/:database` endpoint.
+
+## Known Limitations
+
+We're in an alpha stage of Impala availablity. Compared to Hive, there exists some limitations at this point. These will be improved for the future.
+
+### Lack of UDFs
+
+A lot of UDFs available for Hive, is NOT available for Impala at this point. This will be resolved at the end of 2013.
+
+### Lack of Complex Types
+
+`map`, `array`, and `struct` are not available at this point.
+
+### JOIN Order
+
+Impala doesn't support cost-based JOIN optimization and disk-based JOIN right now. You must be careful about JOIN manually. The right-hand side of the table must be fitted into the memory at this point, otherwise the query will fail.
+
+    :::sql
+    SELECT
+      ...
+    FROM
+      large_table
+    JOIN
+      small_table
+
+### Schemas are Required
+
+You must set the [Schema](schema)s onto the table, when you want to query via Impala. `v` doesn't work, because Impala doesn't have map type now.
+
+### Limited Time-based Partitioning Capabilities
+
+For [Performance Tuning](performance-tuning), the queries can leverage time-based partitioning of data. While Hive supports a lot of UDFs like TD_TIME_RANGE or TD_TIME_ADD, but Impala doesn't support it now. Please specify POSIX timestamp as an integer within WHERE clause.
+
+    :::sql
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 + 3600
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 - 3600
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
