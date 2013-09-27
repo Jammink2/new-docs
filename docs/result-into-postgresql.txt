@@ -45,17 +45,18 @@ For scheduled jobs, just add the `--result` option when scheduling a job. Every 
     $ td result:create mydb postgresql://user:password@host/database
     $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" --result mydb:mytbl
 
-## Three Modes to Modify Data
+## Four Modes to Modify Data (Append/Replace/Truncate/Update)
 
-You can add or delete data in three ways.
+You can add or delete data in four ways.
 
     :::term
     postgresql://user:password@host/database/table               # append
     postgresql://user:password@host/database/table?mode=append   # append
     postgresql://user:password@host/database/table?mode=replace  # replace
     postgresql://user:password@host/database/table?mode=truncate # truncate
+    postgresql://user:password@host/database/table?mode=update&unique=[col1,col2]   # update
 
-All three modes are **atomic**.
+All four modes are **atomic**.
 
 ### APPEND (default)
 
@@ -76,6 +77,10 @@ We achieve **atomicity** (so that a consumer of the table always has consistent 
 The system first truncates the existing table, then inserts the query results. If the table does not exist yet, a new table will be created.
 
 **Unlike REPLACE, TRUNCATE retains the indexes of your table.**
+
+### UPDATE
+
+A row is inserted unless it would cause a duplicate value in the columns specified in the "unique" parameter, in which case an update is performed. Please note that the "unique" parameter is required when using this mode.
 
 
 ## Two Methods of Writing Data

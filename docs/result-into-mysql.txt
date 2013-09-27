@@ -45,7 +45,7 @@ For scheduled jobs, just add the `--result` option when scheduling a job. Every 
     $ td result:create mydb mysql://user:password@host/database
     $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" --result mydb:mytbl
 
-## Three Ways to Modify Data (Append/Replace/Truncate)
+## Four Modes to Modify Data (Append/Replace/Truncate/Update)
 
 You can add or delete data in four ways.
 
