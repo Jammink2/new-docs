@@ -1,50 +1,50 @@
 # Impala Query (Alpha Version)
 
-[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Impala, which enables low-latency queries to the data. This feature is still in alpha release.
+[Treasure Data](http://treasure-data.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Impala, which enables low-latency queries to the data. This feature is currently an alpha release.
 
 ## What is Impala?
 
-[Impala](http://github.com/cloudera/impala) is an open-source parallel query execution engine. Unlike Hive, Impala does NOT use MapReduce in order avoid latency. Instead, Impala directly accesses the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.
+[Impala](http://github.com/cloudera/impala) is an open-source parallel query execution engine. Unlike Hive, Impala avoids latency by NOT using MapReduce. Instead, Impala directly accesses the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.
 
 <center><img src="http://blog.cloudera.com/blog/wp-content/uploads/2012/10/impala.png" width="80%" /></center>
 
-Treasure Data customized Impala to directly talk with our distributed columnar storage layer, with almost the same experience from the user's point of view.
+Treasure Data has customized Impala to talk directly with our distributed columnar storage layer. As a result, the end user experience is nearly identical to Impala itself.
 
-## Does Impala replace Hive?
+## Does Impala Replace Hive?
 
 **No**. Hive is designed for batch processing, while Impala is designed for short interactive queries useful for data exploration.
 
-Currently, Impala doesn't support fault tolerance within a query. If a node fails in the middle of processing, the whole query has to be re-run. On the other hand, it will execute queries 10-50x faster than Hive. Thus, even if a node fails and a query execution has to be restarted, the total runtime will often beat Hive significantly. 
+Impala currently doesn't support fault tolerance within a query. If a node fails while processing, the whole query must be re-run. On the other hand, it executes queries 10-50x faster than Hive. Thus, even if a node fails and a query execution must be restarted, the total runtime will often beat Hive significantly. 
 
 Another caveat is that Impala has limited support for caching to disk. So if a particularly large data set causes Impala's processor to run out of memory, it will cause the query execution to fail.
 
-There will continue be many viable use cases for MapReduce and Hive (for example, for long-running data transformation workloads).
+Even with Impala on the scene, MapReduce and Hive will continue to have many viable use cases (ex: long-running data transformation workloads).
 
-## How to use Impala?
+## How to Use Impala?
 
-Please specify `-T impala` for `td query` command. v0.10.85 or newer client is required.
+Please specify `-T impala` in the `td query` command. A v0.10.85 or newer client is required.
 
     :::term
     $ td query -w -T impala -d testdb \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
-For REST API, please specify `type=impala` parameter to `/v3/job/issue/hive/:database` endpoint.
+For REST API, please specify the `type=impala` parameter to the `/v3/job/issue/hive/:database` endpoint.
 
 ## Known Limitations
 
-We're in an alpha stage of Impala availablity. Compared to Hive, there exists some limitations at this point. These will be improved for the future.
+We're currently in the alpha stages of Impala availablity. Naturally, there are some limitations compared to Hive at this point. These will be improved in the future.
 
 ### Lack of UDFs
 
-A lot of Hive UDFs, are NOT available for Impala at this point. This will be resolved at the end of 2013.
+A lot of Hive UDFs are currently NOT available for Impala. This will be resolved at the end of 2013.
 
 ### Lack of Complex Types
 
-`map`, `array`, and `struct` are not available at this point.
+`map`, `array`, and `struct` are currently not available.
 
 ### JOIN Order
 
-Impala doesn't support cost-based JOIN optimization and disk-based JOIN right now. You must be careful about JOIN manually. The right-hand side of the table must be fitted into the memory at this point, otherwise the query will fail.
+Impala currently does not support cost-based JOIN optimizations or disk-based JOINs. We must unfortunately ask you to be careful about you manual JOINs. As of now, the right-hand side of the table must fit in memory. Otherwise, the query will fail.
 
     :::sql
     SELECT
@@ -54,13 +54,13 @@ Impala doesn't support cost-based JOIN optimization and disk-based JOIN right no
     JOIN
       small_table
 
-### Schemas are Required
+### Schemas Are Required
 
-You must set the [Schema](schema)s onto the table, when you want to query via Impala. `v` doesn't work, because Impala doesn't have map type now.
+You must set [Schema](schema)s onto the table when querying via Impala. `v` doesn't work, because Impala doesn't have the map type yet.
 
 ### Limited Time-based Partitioning Capabilities
 
-For [Performance Tuning](performance-tuning), the queries can leverage time-based partitioning of data. While Hive supports a lot of UDFs like TD_TIME_RANGE or TD_TIME_ADD, but Impala doesn't support it now. Please specify POSIX timestamp as an integer within WHERE clause.
+For [Performance Tuning](performance-tuning), the queries can leverage time-based partitioning of data. While Hive supports many UDFs such as TD_TIME_RANGE or TD_TIME_ADD, Impala does not support these yet. Please specify the POSIX timestamp as an integer within the WHERE clause.
 
     :::sql
     [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020
@@ -69,9 +69,9 @@ For [Performance Tuning](performance-tuning), the queries can leverage time-base
     [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
 
-### Scheduled queries not supported
+### Scheduled Queries Are Not Supported
 
-Currently, we don't support schedule queries for Impala.
+We currently do not support scheduled queries for Impala.
 
 ## See Also
 
