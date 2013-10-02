@@ -1,5 +1,5 @@
 # Platform Status
 
-Treasure Data's [Status Page](http://status.treasure-data.com/) shows the current status of the various components of the TD service platform. Services tracked include the REST API endpoint, homepages, package distribution sites, etc.
+Treasure Data's [Status Page](http://status.treasure-data.com/) shows the current status of the various components of the TD service platform. Services tracked include the REST API endpoint, homepages, package distribution sites, etc...
 
 Historical uptime is shown as well.

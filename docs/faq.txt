@@ -16,18 +16,18 @@ Nested JSON records can be parsed by using the [get_json_object UDF](https://cwi
 
 ## How can I use the td command through a proxy?
 
-Please set the HTTP_PROXY variable (e.g. export HTTP_PROXY="proxy_host:8080"). This is supported from td v0.10.41.
+Please set the HTTP_PROXY variable (e.g. export HTTP_PROXY="proxy_host:8080"). This is supported starting in td v0.10.41.
 
-## I cannot import my data to Treasure Data. Canyou help?
+## I cannot import my data to Treasure Data. Can you help?
 
 Sorry to hear that. Here are a couple of scenarios that we can think of.
     
     1. Make sure your network is alive and allow you to access external networks.
-    2. Does your data have numbers greater than 2<sup>64</sup>? If so, please upgrade your td command/td-agent to the latest version. If you are using fluentd instead, please upgrade fluent-plugin-td to version 0.10.15 or above.
+    2. Does your data have numbers greater than 2e64? If so, please upgrade your td command/td-agent to the latest version. If you are using fluentd instead, please upgrade fluent-plugin-td to version 0.10.15 or above.
 
 ## When I query my table, I get "null" for some of my integer values. Is this a bug?
 
-Is your integer greater than or equal to 2<sup>64</sup>? If it is, then you need to cast it as `decimal` like this:
+Is your integer greater than or equal to 2e64? If it is, then you need to cast it as `decimal` like this:
 
     :::bash
     SELECT CAST(v['my_huge_number'] AS DECIMAL) FROM tbl...
@@ -63,4 +63,4 @@ If you encounter a reserved keyword issue in your query, please wrap the infring
     :::sql
     SELECT `keyword_column`, COUNT(1) AS cnt FROM table_name GROUP BY `keyword_column`
 
-### If you have any questions, please feel free to [contact us](http://treasure-data.com/contact/), or chat with us live using the window at the bottom right.
+If you have any questions, please feel free to [contact us](http://treasure-data.com/contact/), or chat with us live using the window at the bottom right.
