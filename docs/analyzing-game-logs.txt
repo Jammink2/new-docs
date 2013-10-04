@@ -2,7 +2,7 @@
 
 Leading gaming companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers enhance existing game systems and deliver a better customer experience, resulting in higher revenues.
 
-This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team just focus on building awesome games instead of having to opend valuable human / IT resources maintaining a data analytics infrastructure.
+This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team just focus on building awesome games instead of having to spend valuable human / IT resources maintaining a data analytics infrastructure.
 
 ## Background
 
@@ -20,18 +20,18 @@ These application processes generate terabytes of user behavior data every day: 
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data - it's developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
 
 When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 
 ## Installing td-agent
 
-You must first set up `td-agent` on your application servers. Please refer to the following articles. For Linux systems, we provide deb/rpm packages.
+You must first set up `td-agent` on your application servers. Please refer to the following articles. 
 
 <table>
   <tr>
     <th>If you have...</th>
-    <th>Please look at...</th>
+    <th>Please refer to...</th>
   </tr>
   <tr>
     <td>MacOS X</td>
@@ -55,9 +55,11 @@ You must first set up `td-agent` on your application servers. Please refer to th
   </tr>
 </table>
 
+For Linux systems, we provide deb/rpm packages.
+
 ## Modifying /etc/td-agent/td-agent.conf
 
-You need to specify your authentication key at `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
+You need to specify your authentication key in `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
 
 NOTE: You must first authenticate your account using the `td account` command.
 
@@ -66,8 +68,6 @@ NOTE: You must first authenticate your account using the `td account` command.
     3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
 
 Next, set the `apikey` option in your `td-agent.conf` file. 
-
-Note: *YOUR_API_KEY* should be your actual API key string.
 
     :::text
     # Treasure Data Input and Output
@@ -80,6 +80,8 @@ Note: *YOUR_API_KEY* should be your actual API key string.
       use_ssl true
     </match>
 
+NOTE: *YOUR_API_KEY* should be your actual API key string.
+
 Now, restart `td-agent` to reflect the changes you made above.
 
     :::term
@@ -89,7 +91,7 @@ Now, restart `td-agent` to reflect the changes you made above.
 
 ## Logging from Game Applications
 
-In this example, we will assume that the application is written is [Ruby](ruby). Let's first set up the logging code for important game events. For other languages, please refer to these documents.
+In this example, we will assume that the application is written is [Ruby](ruby). For other languages, please refer to these documents.
 
 <table>
   <tr>
@@ -110,7 +112,7 @@ In this example, we will assume that the application is written is [Ruby](ruby).
   </tr>
 </table>
 
-Here's the actual code to log important events. The time is automatically added by the logging library.
+Let's first set up the logging code for important game events - here's the actual code to log important events. The time is automatically added by the logging library.
 
     :::ruby
     # access (all accesses)
@@ -139,7 +141,7 @@ Here's the actual code to log important events. The time is automatically added 
 
 ## Sample Queries
 
-Here are a few sample queries that calculate some KPIs.
+Here are a few sample queries that calculate some KPIs accessing the logs posted in the *production* database.
 
 ### Daily Access Count
 

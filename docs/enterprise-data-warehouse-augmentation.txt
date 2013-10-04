@@ -32,12 +32,12 @@ We've seen many cases where the analytics team needs to change the schema every 
 
 ### Treasure Data (TD) to EDW
 
-While Treasure Data provides a cost-effective, schema-less and scalable infrastructure, an DW provides higher performance and better connectivitity with other BI solutions and analytics tools. To leverage the benefits of both systems, our customers often use TD to refine and aggregate data and put the result into their data warehouse.
+While Treasure Data provides a cost-effective, schema-less and scalable infrastructure, a DW provides higher performance and better connectivitity with other BI solutions and analytic tools. To leverage the benefits of both systems, our customers often use TD to refine and aggregate data and put the results back into their data warehouse.
 
 ### Success Stories
 
 Please check these success stories for this pattern.
 
 * [MobFox - Europe's Largest Mobile Network](success-at-mobfox)
-* [Viki - Global Online Video Servic](success-at-viki)
+* [Viki - Global Online Video Service](success-at-viki)
 * [Getjar - One of the World’s Largest Mobile App Marketplaces](success-at-getjar)

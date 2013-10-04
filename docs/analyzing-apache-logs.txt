@@ -22,12 +22,12 @@ When a user accesses an Apache web server, the web server appends a correspondin
 
 ## Installing td-agent
 
-You must first set up `td-agent` on your application servers. Please refer to the following articles. For Linux systems, we provide deb/rpm packages.
+You must first set up `td-agent` on your application servers. Please refer to the following articles.
 
 <table>
   <tr>
     <th>If you have...</th>
-    <th>Please look at...</th>
+    <th>Please refer to...</th>
   </tr>
   <tr>
     <td>Debian / Ubuntu Systems</td>
@@ -38,6 +38,8 @@ You must first set up `td-agent` on your application servers. Please refer to th
     <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
 </table>
+
+For Linux systems, we provide deb/rpm packages.
 
 NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
 
@@ -68,7 +70,7 @@ NOTE: You must first authenticate your account using the `td account` command.
 
 Next, set the `apikey` option in your `td-agent.conf` file. 
 
-Note: *YOUR_API_KEY* should be your actual API key string.
+NOTE: *YOUR_API_KEY* should be your actual API key string.
 
     :::text
     # Treasure Data Input and Output

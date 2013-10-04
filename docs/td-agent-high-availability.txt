@@ -19,7 +19,7 @@ In such systems, several delivery guarantees are possible:
 * *At least once*: Each message is delivered at least once. In failure cases, messages may be delivered twice.
 * *Exactly once*: Each message is delivered once and only once. This is what people want.
 
-If the system "can't lose a single event", and must also transfer "*exactly once*", then the system must stop ingesting events when it runs out of write capacity. The proper approach would be to use synchronous logging and return errors when the event cannot be accepted. 
+If the system "can't lose a single event", and must also transfer "*exactly once*", then the system must stop dropping events when it runs out of write capacity. The proper approach would be to use synchronous logging and return errors when the event cannot be accepted. 
 
 That's why *td-agent guarantees 'At most once' transfer*. In order to collect massive amounts of data without impacting application performance, a data logger must transfer data asynchronously. Performance improves at the cost of potential delivery failure.
 

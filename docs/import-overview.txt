@@ -41,7 +41,7 @@ If your data size is small (ex: the data fits in a single file), you can do an [
     <td>N</td>
     <td><a href="/categories/td-agent-language">td-agent (w/ logger)</a></td>
     <td>Robustness</td>
-    <td>Needs an extra process</td>
+    <td>Needs extra process</td>
   </tr>
   <tr>
     <td>Database</td>
@@ -65,7 +65,7 @@ If your data size is small (ex: the data fits in a single file), you can do an [
     <td>Y</td>
     <td><a href="/categories/bulk-import-category">Bulk Import</a></td>
     <td>Robustness</td>
-    <td>Needs an extra steps</td>
+    <td>Needs extra steps</td>
   </tr>
   <tr>
     <td>CSV/TSV File</td>

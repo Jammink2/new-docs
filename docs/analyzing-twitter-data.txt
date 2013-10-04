@@ -18,7 +18,7 @@ You must first set up `td-agent` on your application servers. Please refer to th
 <table>
   <tr>
     <th>If you have...</th>
-    <th>Please look at...</th>
+    <th>Please refer to...</th>
   </tr>
   <tr>
     <td>Debian / Ubuntu Systems</td>

@@ -9,7 +9,7 @@ First, please download and install the [Treasure Data Toolbelt](http://toolbelt.
 <table>
   <tr>
     <th>If you have...</th>
-    <th>Please look at...</th>
+    <th>Please refer to...</th>
   </tr>
   <tr>
     <td>Mac OS</td>

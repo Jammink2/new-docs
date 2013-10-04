@@ -29,7 +29,7 @@ Please consult the following articles to set up `td-agent`.
 <table>
   <tr>
     <th>If you have...</th>
-    <th>Please look at...</th>
+    <th>Please refer to...</th>
   </tr>
   <tr>
     <td>MacOS X</td>
@@ -110,7 +110,7 @@ You can confirm that your data was imported successfully by issuing the `td tabl
     | testdb     | www_access | log  | 1         |
     +------------+------------+------+-----------+
 
-If you run into any issues, your log (/var/log/td-agent.log) is a good place to start your investigation.
+If you run into any issues, the `td-agent` log (/var/log/td-agent.log) is a good place to start your investigation.
 
 ## Files Installed by the Packages
 

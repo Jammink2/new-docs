@@ -25,7 +25,7 @@ You must first set up `td-agent` on your application servers. Please refer to th
 <table>
   <tr>
     <th>If you have...</th>
-    <th>Please look at...</th>
+    <th>Please refer to...</th>
   </tr>
   <tr>
     <td>MacOS X</td>
@@ -61,7 +61,7 @@ NOTE: You must first authenticate your account using the `td account` command.
 
 Next, set the `apikey` option in your `td-agent.conf` file. 
 
-Note: *YOUR_API_KEY* should be your actual API key string.
+NOTE: *YOUR_API_KEY* should be your actual API key string.
 
     :::text
     # Treasure Data Input and Output
