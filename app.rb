@@ -144,6 +144,10 @@ get '/articles/:article' do
   end
 end
 
+require 'toc'
+$TOC = TOC.new("en")
+
+
 helpers do
   def render_category(category)
     @articles = []
@@ -232,7 +236,7 @@ helpers do
   end
 
   def sections
-    TOC.sections
+    $TOC.sections
   end
 
   def next_section(current_slug, root=sections)
@@ -257,31 +261,3 @@ helpers do
   alias_method :h, :escape_html
 end
 
-module TOC
-  extend self
-
-  def sections
-    @sections ||= []
-  end
-
-  # define a section
-  def section(name, title)
-    sections << [name, title, []]
-    yield if block_given?
-  end
-
-  # define a category
-  def category(name, title)
-    sections.last.last << [name, title, []]
-    yield if block_given?
-  end
-
-  # define a article
-  def article(name, title, keywords=[])
-    keywords = [name] + keywords
-    sections.last.last.last.last << [name, title, keywords]
-  end
-
-  file = File.dirname(__FILE__) + '/lib/toc.rb'
-  eval File.read(file), binding, file
-end
