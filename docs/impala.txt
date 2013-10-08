@@ -33,8 +33,8 @@ For REST API, please specify the `type=impala` parameter to the `/v3/job/issue/h
 ## Impala SQL Language Reference
 
 * [Impala SQL Language Reference](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_langref.html)
-** [Impala SQL Language Elements](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_langref_sql.html)
-** [Built-in Function Support](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_functions.html)
+  * [Impala SQL Language Elements](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_langref_sql.html)
+  * [Built-in Function Support](http://www.cloudera.com/content/cloudera-content/cloudera-docs/Impala/latest/Installing-and-Using-Impala/ciiu_functions.html)
 
 ## Known Limitations
 
