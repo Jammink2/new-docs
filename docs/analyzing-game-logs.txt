@@ -20,7 +20,7 @@ These application processes generate terabytes of user behavior data every day: 
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-`td-agent` is a versatile daemon program that can process various kinds of streaming log data - it's developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. It is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
 
 When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 
@@ -112,7 +112,7 @@ In this example, we will assume that the application is written is [Ruby](ruby).
   </tr>
 </table>
 
-Let's first set up the logging code for important game events - here's the actual code to log important events. The time is automatically added by the logging library.
+Let's first set up the logging code for important game events. Ohown below is actual code that can be used. The time is automatically added by the logging library.
 
     :::ruby
     # access (all accesses)
