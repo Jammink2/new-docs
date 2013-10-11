@@ -74,8 +74,8 @@ For [Performance Tuning](performance-tuning), the queries can leverage time-base
 
     :::sql
     [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020
-    [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020 + 3600
-    [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
+    [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020 + 3600
+    [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
     [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
 
