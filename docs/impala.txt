@@ -28,7 +28,7 @@ Please specify `-T impala` in the `td query` command. A v0.10.85 or newer client
     $ td query -w -T impala -d testdb \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
-For REST API, please specify the `type=impala` parameter to the `/v3/job/issue/hive/:database` endpoint.
+For REST API, the endpoint is `/v3/job/issue/impala/:database`.
 
 ## Impala SQL Language Reference
 
