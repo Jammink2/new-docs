@@ -47,6 +47,9 @@ Please check the [Unsupported Language Elements](http://www.cloudera.com/content
 ### Lack of UDFs
 
 A lot of Hive UDFs are currently NOT available for Impala. This will be resolved at the end of 2013.
+The available UDFs are as follows:
+
+* [TD_TIME_FORMAT](http://docs.treasure-data.com/articles/udfs#tdtimeformat)
 
 ### Lack of Complex Types
 
@@ -74,8 +77,8 @@ For [Performance Tuning](performance-tuning), the queries can leverage time-base
 
     :::sql
     [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020
-    [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020 + 3600
-    [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
+    [GOOD]:  SELECT field1 FROM tbl WHERE time > 1349393020 + 3600
+    [GOOD]:  SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
     [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
 
