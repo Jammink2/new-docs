@@ -47,8 +47,8 @@ Please check the [Unsupported Language Elements](http://www.cloudera.com/content
 ### Lack of UDFs
 
 A lot of Hive UDFs are currently NOT available for Impala. This will be resolved at the end of 2013.
-The available UDFs are as follows:
 
+The available UDFs are as follows:
 * [TD_TIME_FORMAT](http://docs.treasure-data.com/articles/udfs#tdtimeformat)
 
 ### Lack of Complex Types
