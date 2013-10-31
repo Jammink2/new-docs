@@ -17,7 +17,9 @@ All imported data is automatically partitioned into hourly buckets, based on the
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 + 3600
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 - 3600
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 13493930200 / 10 
     [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time BETWEEN 1349392000 AND 1349394000
 
 ### 2) TD_TIME_RANGE
 
