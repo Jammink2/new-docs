@@ -1,4 +1,4 @@
-# Streaming Import via HTTP POST
+# Multi-protocol Streaming Import (e.g., TCP/IP, HTTP, tailing a log file, etc.)
 
 This article will explain how to continuously import data using the `td-agent` daemon.
 
@@ -163,6 +163,15 @@ The files shown below are installed by the rpm or debian packages.
     <td><a href="http://www.canonware.com/jemalloc/">jemalloc</a> is bundled together to avoid memory fragmentation. It is loaded by default in the startup script.</td>
   </tr>
 </table>
+
+## Debugging
+
+If you are having issues, please add the following line to `/etc/default/td-agent` to enable verbose loggin:
+
+    :::text
+    DAEMON_ARGS=-vv
+
+After that, please restart the daemon. You can now find more verbose logs in /var/log/td-agent.log
 
 ## What's Next?
 
