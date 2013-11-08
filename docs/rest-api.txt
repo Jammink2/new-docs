@@ -207,7 +207,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 
 #### Parameters
 * **job_id**: the specified job_id
-* **format**: the result format: 'tsv', 'csv', 'json', or 'msgpack.gz'
+* **format**: the result format: 'tsv', 'csv', 'json', 'msgpack' or 'msgpack.gz'
 
 #### Output
 * the result in the specified format.
@@ -241,6 +241,12 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
+
+&nbsp;
+
+    :::term
+    # URL: http://api.treasure-data.com/v3/job/result/2162?format=msgpack
+    MessagePack format of above result
 
 ## Libraries
 
