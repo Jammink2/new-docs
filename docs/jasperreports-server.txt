@@ -91,7 +91,7 @@ Please define the query as shown below, then hit the `Save` button. The query wi
 
 <a href="/images/jasperserver-query-define.png"><img src="/images/jasperserver-query-define.png" width="100%"></a>
 
-The query above is introduced in the [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport) article.
+The query above is introduced in the [JasperSoft iReport with JDBC Driver](http://docs.treasuredata.com/articles/jaspersoft-ireport) article.
 
 ### Step5: Register a New Report
 
@@ -101,7 +101,7 @@ Select `View > Repository`. Right-click `Input data Types` and select `Add Resou
 
 ### Step 6: Set Up the Report
 
-First, set up the report as shown in the figure below. Then, upload your JRXML file (the [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport) article explains how to create this file).
+First, set up the report as shown in the figure below. Then, upload your JRXML file (the [JasperSoft iReport with JDBC Driver](http://docs.treasuredata.com/articles/jaspersoft-ireport) article explains how to create this file).
 
 <a href="/images/jasperserver-report-setup.png"><img src="/images/jasperserver-report-setup.png" width="100%"></a>
 

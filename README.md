@@ -1,6 +1,6 @@
 # TD Docs App
 
-Ultrasimple CMS and content for documentation of the Treasure Data platform.  The production site is [here](http://docs.treasure-data.com/).
+Ultrasimple CMS and content for documentation of the Treasure Data platform.  The production site is [here](http://docs.treasuredata.com/).
 
 If you'd like to propose an edit to the TD docs, fork this repo, then send us a pull request.
 

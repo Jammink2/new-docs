@@ -50,7 +50,7 @@ A lot of Hive UDFs are currently NOT available for Impala. This will be resolved
 
 The available UDFs are as follows:
 
-* [TD_TIME_FORMAT](http://docs.treasure-data.com/articles/udfs#tdtimeformat)
+* [TD_TIME_FORMAT](http://docs.treasuredata.com/articles/udfs#tdtimeformat)
 
 ### Lack of Complex Types
 

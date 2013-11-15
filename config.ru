@@ -25,4 +25,8 @@ use Rack::Deflater
 #     entitystore: "memcached://#{memcache_servers}"
 #end
 
+# Canonical Host
+require 'rack/canonical_host'
+use Rack::CanonicalHost, ENV['CANONICAL_HOST'] if ENV['CANONICAL_HOST']
+
 run Sinatra::Application

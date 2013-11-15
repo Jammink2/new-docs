@@ -81,7 +81,7 @@ Right-click the `Table input` icon on the workspace. Select `Edit step` from the
 
 <a href="/images/pentaho-di-transformation-edit-tableinput.png"><img src="/images/pentaho-di-transformation-edit-tableinput.png" width="100%"></a>
 
-We cover the query above in the [JasperSoft iReport with JDBC Driver](http://docs.treasure-data.com/articles/jaspersoft-ireport) article.
+We cover the query above in the [JasperSoft iReport with JDBC Driver](/articles/jaspersoft-ireport) article.
 
 ### Step 3: Confirm the Table Input
 

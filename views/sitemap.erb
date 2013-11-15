@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
   <url>
-    <loc>http://docs.treasure-data.com/</loc>
+    <loc>http://docs.treasuredata.com/</loc>
     <lastmod><%= Time.now.strftime("%Y-%m-%d") %></lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -9,7 +9,7 @@
   <% @articles.each do |article| %>
     <% if File.exist?("#{options.root}/docs/#{article}.txt") %>
       <url>
-        <loc>http://docs.treasure-data.com/articles/<%= article %></loc>
+        <loc>http://docs.treasuredata.com/articles/<%= article %></loc>
         <lastmod><%= File::mtime("#{options.root}/docs/#{article}.txt").strftime("%Y-%m-%d") %></lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
