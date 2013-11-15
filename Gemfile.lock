@@ -31,6 +31,9 @@ GEM
     rack (1.5.2)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-canonical-host (0.0.8)
+      addressable
+      rack (~> 1.0)
     rack-codehighlighter (0.5.0)
       nokogiri (>= 1.4.1)
       rack (>= 1.0.0)
@@ -77,6 +80,7 @@ DEPENDENCIES
   jemalloc (~> 0.1.7)
   newrelic_rpm (~> 3.5.7.59)
   rack-cache (~> 1.2)
+  rack-canonical-host (~> 0.0.8)
   rack-codehighlighter
   rake
   rdiscount (= 1.6.8)

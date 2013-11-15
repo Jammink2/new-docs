@@ -12,6 +12,7 @@ gem 'coderay'
 gem 'rack-codehighlighter'
 gem 'sanitize'
 gem 'jemalloc', '~> 0.1.7'
+gem 'rack-canonical-host', '~> 0.0.8'
 
 # Webserver
 gem 'unicorn', '~> 4.2.1'
