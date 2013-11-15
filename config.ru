@@ -27,6 +27,6 @@ use Rack::Deflater
 
 # Canonical Host
 require 'rack/canonical_host'
-use Rack::CanonicalHost, ENV['CANONICAL_HOST'] if ENV['CANONICAL_HOST']
+use Rack::CanonicalHost, ENV['CANONICAL_HOST'], ignore: ['td-docs.herokuapp.com'] if ENV['CANONICAL_HOST']
 
 run Sinatra::Application
