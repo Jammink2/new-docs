@@ -6,5 +6,5 @@ Using [Metric Insights](http://www.metricinsights.com/) with Treasure Data allow
 
 As of now, the Metric Insights connector is only provided for enterprise customers. Please send us a request using the form below.
 
-<iframe src="http://go.treasure-data.com/l/24122/2013-05-28/77i" width="100%" height="180" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
+<iframe src="https://go.pardot.com/l/24122/2013-05-28/77i" width="100%" height="180" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
 
