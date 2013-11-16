@@ -13,11 +13,11 @@ div#header li {
 #td-logo { float: left; }
 #td-logo a {
   display: block;
-  margin: 0 auto;
+  margin: auto;
   width: 379px;
   height: 60px;
   text-indent: -9999px;
-  background: url("https://unbouncepages-com.s3.amazonaws.com/try.treasure-data.com/contact-us/1ds7mcx-td-851-reverse-transparent_06202906201f00000e.jpg") no-repeat 28px top;
+  background: url("/images/treasure-logo-red.png") no-repeat 28px top;
 }
 
 #td-nav li {
@@ -45,5 +45,5 @@ div#header li {
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5) inset;
-  background-color: rgb(247, 148, 29);
+  background-color: #D60000;
 }

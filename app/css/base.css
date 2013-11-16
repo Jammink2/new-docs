@@ -40,7 +40,7 @@ h4 {
 /* =links
 ---------------------------------------------- */
 a:link, a:visited {
-  color: #eb5f24;
+  color: #D60000;
   text-decoration: none;
 }
 
@@ -361,7 +361,7 @@ object {
 
       #search form p input[type='text']:focus {
         background-position: right 9px;
-        border: 1px solid #eb5f24;
+        border: 1px solid #D60000;
         -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1) inset;
         -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1) inset;
         box-shadow: 0 1px 4px rgba(0, 0, 0, .1) inset;
@@ -448,7 +448,7 @@ object {
       }
 
       #nav .category-group .tags li.active a:link, #nav .category-group .tags li.active a:visited {
-        color: #eb5f24;
+        color: #D60000;
       }
       /* ------------------------------------------- */
     /* ------------------------------------------- */
