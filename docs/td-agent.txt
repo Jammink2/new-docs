@@ -166,7 +166,7 @@ The files shown below are installed by the rpm or debian packages.
 
 ## Debugging
 
-If you are having issues, please add the following line to `/etc/default/td-agent` to enable verbose loggin:
+If you are having issues, please add the following line to `/etc/default/td-agent` to enable verbose logging:
 
     :::text
     DAEMON_ARGS=-vv
