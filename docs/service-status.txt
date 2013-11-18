@@ -6,4 +6,4 @@
 
 ## Uptime Page
 
-[uptime.treasure-data.com](http://uptime.treasure-data.com/) provides historical uptime and response time information.
+[uptime.treasuredata.com](http://uptime.treasuredata.com/) provides historical uptime and response time information.
