@@ -6,17 +6,17 @@ Let's get started with Treasure Data! Treasure Data is a Hadoop-based **Big Data
 Step 1: Sign-Up
 ---------------
 
-[Sign up](http://treasure-data.com/signup/) for Treasure Data if you haven't yet.
+[Sign up](http://treasuredata.com/signup/) for Treasure Data if you haven't yet.
 
 Step 2: Install the Treasure Data Toolbelt
 ------------------------------------------
 
-Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment. It contains the `td` command, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
+Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) for your development environment. It contains the `td` command, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
 
-* [MacOS Installer](http://toolbelt.treasure-data.com/mac)
-* [Windows Installer](http://toolbelt.treasure-data.com/win)
-* Linux ([Redhat/CentOS](http://toolbelt.treasure-data.com/redhat), [Debian/Ubuntu](http://toolbelt.treasure-data.com/debian))
-* or '[gem install td](http://toolbelt.treasure-data.com/gem)' for those who are familiar with Ruby. `td` works on both 1.8 and 1.9.
+* [MacOS Installer](http://toolbelt.treasuredata.com/mac)
+* [Windows Installer](http://toolbelt.treasuredata.com/win)
+* Linux ([Redhat/CentOS](http://toolbelt.treasuredata.com/redhat), [Debian/Ubuntu](http://toolbelt.treasuredata.com/debian))
+* or '[gem install td](http://toolbelt.treasuredata.com/gem)' for those who are familiar with Ruby. `td` works on both 1.8 and 1.9.
 
 Step 3: Authorize
 -----------------

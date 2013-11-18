@@ -1,12 +1,12 @@
 # Ad-Network Reporting on the Cloud
 
-Leading Ad-Network companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
+Leading Ad-Network companies have used [Treasure Data](http://www.treasuredata.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
 
 This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources maintaining a data analytics infrastructure.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of td-agent.
   * Ruby 1.8 or higher (for local testing).
 
@@ -14,7 +14,7 @@ This article will explain how to record logs from your applications and calculat
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasuredata.com).
 
 When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 
@@ -111,7 +111,7 @@ Here's the actual code to log important events. The time is automatically added 
     TD.event.post('impressions', {
       :device=>'iPhone',
       :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
-      :url=>'http://www.treasure-data.com/',
+      :url=>'http://www.treasuredata.com/',
       :publisher_id=>12345,
       :advertiser_id=>7691,
       :campaign_id=>456,
@@ -124,7 +124,7 @@ Here's the actual code to log important events. The time is automatically added 
     TD.event.post('clicks', {
       :device=>'iPhone',
       :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
-      :url=>'http://www.treasure-data.com/',
+      :url=>'http://www.treasuredata.com/',
       :publisher_id=>12345,
       :advertiser_id=>7691,
       :campaign_id=>456,

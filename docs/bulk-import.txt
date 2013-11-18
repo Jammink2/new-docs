@@ -4,7 +4,7 @@ This article explains how to bulk-import data using the `td import` command for 
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Java runtime (6 and above).
 
 ## Why Bulk Import?

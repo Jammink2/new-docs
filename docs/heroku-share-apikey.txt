@@ -5,7 +5,7 @@ This article describes how to share a single Treasure Data API key between multi
 ## Prerequisites
 
    * The [heroku-toolbelt](http://toolbelt.heroku.com/).
-   * The [td-toolbelt](http://toolbelt.treasure-data.com/).
+   * The [td-toolbelt](http://toolbelt.treasuredata.com/).
    * The Heroku CLI plugin (to bridge the toolbelts above).
 
     :::term

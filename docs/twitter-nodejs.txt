@@ -8,13 +8,13 @@ NOTE: We have <a href="nodejs">another article</a> that covers using Treasure Da
 
 ##Prerequisites
 
-* [Sign up](https://www.treasure-data.com/signup/) for Treasure Data and go through the [Quickstart Guide](quickstart).
+* [Sign up](https://www.treasuredata.com/signup/) for Treasure Data and go through the [Quickstart Guide](quickstart).
 * Install `node` and `npm` on your machine.
 * Install td-agent, the packaged version of [fluentd](http://fluentd.org) ([td-agent installation and usage guide](td-agent)).
 
 ##Configuring td-agent
 
-Having covered the prerequisites, you should already have the td-command (`td`) installed and set up on your machine (You can download the td-command from [the toolbelt page](http://toolbelt.treasure-data.com)).
+Having covered the prerequisites, you should already have the td-command (`td`) installed and set up on your machine (You can download the td-command from [the toolbelt page](http://toolbelt.treasuredata.com)).
 
 We will now configure td-agent to listen to port 24224 (This port number is arbitrary, but the sample code in this article assumes this port number). Edit the td-agent configuration file (found in '/etc/td-agent/td-agent.conf' by default) as shown below:
 

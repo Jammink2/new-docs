@@ -8,7 +8,7 @@ This article explains how to use the td-logger-java library.
 
   * Basic knowledge of Java.
   * Basic knowledge of Maven2.
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Java 6 or higher (for local testing).
 
 NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> document explains how to use Java applications on Heroku.

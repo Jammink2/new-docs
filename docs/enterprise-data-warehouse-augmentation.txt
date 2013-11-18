@@ -2,7 +2,7 @@
 
 An enterprise data warehoure (EDW) is frequently used as a central location for analytic data architecture, but it's too expensive to store cold or high-volume data.
 
-[Treasure Data](http://www.treasure-data.com/) provides a cost-effective way of capturing and storing cold or high-volume data while providing connectivity with the EDW. This allows our users to continue using their EDW for primary analytics while capturing the cost and flexibility advantages of Treasure Data.
+[Treasure Data](http://www.treasuredata.com/) provides a cost-effective way of capturing and storing cold or high-volume data while providing connectivity with the EDW. This allows our users to continue using their EDW for primary analytics while capturing the cost and flexibility advantages of Treasure Data.
 
 ## Prerequisites
 

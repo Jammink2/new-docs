@@ -1,7 +1,7 @@
 Installing the Treasure Data CLI
 ================================
 
-Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
+Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
 ##Ubuntu (Precise or Lucid)
 ###Precise
@@ -9,14 +9,14 @@ Install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) to set 
 Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
 
 	:::term
-	$ curl -L http://toolbelt.treasure-data.com/sh/install-ubuntu-precise.sh | sh
+	$ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
 
 ###Lucid
 
 Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
 
 	:::term
-	$ curl -L http://toolbelt.treasure-data.com/sh/install-ubuntu-lucid.sh | sh
+	$ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
 
 ###init.d scripts
 
@@ -67,4 +67,4 @@ If you are familiar with Ruby, you can install `td` from the command line using 
 	:::term
 	$ gem install td
 
-Alternative installation options, including a Mac OSX installer and a Windows installer, can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasure-data.com/).
+Alternative installation options, including a Mac OSX installer and a Windows installer, can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasuredata.com/).

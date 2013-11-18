@@ -6,7 +6,7 @@ NOTE: This module is still under active development. Some REST API bindings have
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
   * Basic knowledge of our [query language](hive).
 

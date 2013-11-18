@@ -116,7 +116,7 @@ Our users hail from a wide range of industries, including digital marketing, soc
 
 ## What's Next?
 
-If you need further information, please get and read [our white papers](http://treasure-data.com/whitepapers/).
+If you need further information, please get and read [our white papers](http://www.treasuredata.com/whitepapers/).
 
 If you don't have an account yet, please proceed to the [quickstart](/articles/quickstart) guide.
 

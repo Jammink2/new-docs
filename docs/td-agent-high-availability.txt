@@ -4,7 +4,7 @@ For high-traffic websites, we recommend using a high availability configuration 
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of td-agent.
 
 NOTE: <b>Need mission critical</b> configuration of td-agent? Leverage our <a href="scalability-consultation">Scalability Consultation Service</a>.
@@ -158,7 +158,7 @@ Now you've learned about td-agent's high availability configurations. For furthe
 
 * [Monitoring td-agent](td-agent-monitoring)
 * [Fluentd Documentation](http://docs.fluentd.org/) (td-agent is open-sourced as `Fluentd`)
-* [Treasure Data Suppport](http://treasure-data.tenderapp.com/)
+* [Treasure Data Suppport](http://help.treasuredata.com/)
 
 td-agent is actively maintained by Treasure Data, Inc. The changelog is available here:
 

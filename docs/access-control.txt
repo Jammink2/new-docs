@@ -1,3 +1,3 @@
 # Access Control
 
-Role-based access control features are available for Enterprise-Grade cutomers. Please [contact us](http://treasure-data.com/contact/) for more information.
+Role-based access control features are available for Enterprise-Grade cutomers. Please [contact us](http://www.treasuredata.com/contact/) for more information.

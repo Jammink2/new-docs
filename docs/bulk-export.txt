@@ -6,7 +6,7 @@ At Treasure Data, we believe that your data belongs to you, even after importing
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Amazon AWS account and Amazon S3 bucket.
 
 ## Table Dump

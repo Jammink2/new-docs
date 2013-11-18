@@ -40,7 +40,7 @@ Now you can [send your query result to a web server](result-into-web).
 
 ## Oct 16, 2012: td v0.10.56
 
-td v0.10.56 is released to allow users to download huge query result, and added compression support for the data transfer. We've also updated Windows and MacOS X [toolbelt](http://toolbelt.treasure-data.com/).
+td v0.10.56 is released to allow users to download huge query result, and added compression support for the data transfer. We've also updated Windows and MacOS X [toolbelt](http://toolbelt.treasuredata.com/).
 
 ## Oct 15, 2012: td-agent v1.1.10.2
 
@@ -48,7 +48,7 @@ td-agent v1.1.10.2 is released to increase the stability of uploading. All platf
 
 ## Sep 21, 2012: td v0.10.50 for Windows and MacOS X
 
-td v0.10.50 is released to fix some bugs, and we've updated Windows and MacOS X [toolbelt](http://toolbelt.treasure-data.com/).
+td v0.10.50 is released to fix some bugs, and we've updated Windows and MacOS X [toolbelt](http://toolbelt.treasuredata.com/).
 
 ## Sep 19, 2012: td-agent runs on Joyent SmartOS
 
@@ -64,7 +64,7 @@ td v0.10.43 is released, to support [changing the password](change-password).
 
 ## Aug 30, 2012: td v0.10.41
 
-td v0.10.41 is released, and now it supports proxy server. [This page](http://docs.treasure-data.com/articles/faq#how-can-i-use-proxy-for-td-command) describes how it works.
+td v0.10.41 is released, and now it supports proxy server. [This page](http://docs.treasuredata.com/articles/faq#how-can-i-use-proxy-for-td-command) describes how it works.
 
 ## Aug 27, 2012: td-agent v1.1.9
 
@@ -76,7 +76,7 @@ td v0.10.40 finally supports [bulk import from CSV, TSV, JSON format](bulk-impor
 
 ## Aug 19, 2012: Added Indicee Integration
 
-We've added the integration with [Indicee Cloud BI Platform](http://docs.treasure-data.com/articles/indicee).
+We've added the integration with [Indicee Cloud BI Platform](http://docs.treasuredata.com/articles/indicee).
 
 ## Jul 19, 2012: Added result output to Treasure Data
 

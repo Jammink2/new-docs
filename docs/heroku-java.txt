@@ -16,7 +16,7 @@ The Treasure Data addon can be attached to a Heroku application via the CLI:
 
 ## Treasure Data Toolbelt setup
 
-First, please download and install the [Treasure Data Toolbelt](http://toolbelt.treasure-data.com/) for your development environment.
+First, please download and install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) for your development environment.
 
 <table>
   <tr>
@@ -25,15 +25,15 @@ First, please download and install the [Treasure Data Toolbelt](http://toolbelt.
   </tr>
   <tr>
     <td>Mac OS</td>
-    <td><a href="http://toolbelt.treasure-data.com/mac">Download Mac Installer</a></td>
+    <td><a href="http://toolbelt.treasuredata.com/mac">Download Mac Installer</a></td>
   </tr>
   <tr>
     <td>Windows</td>
-    <td><a href="http://toolbelt.treasure-data.com/win">Download Win Installer</a></td>
+    <td><a href="http://toolbelt.treasuredata.com/win">Download Win Installer</a></td>
   </tr>
   <tr>
     <td>Linux</td>
-    <td><a href="http://toolbelt.treasure-data.com/redhat">Redhat/CentOS</a>, <a href="http://toolbelt.treasure-data.com/debian">Debian/Ubuntu</a></td>
+    <td><a href="http://toolbelt.treasuredata.com/redhat">Redhat/CentOS</a>, <a href="http://toolbelt.treasuredata.com/debian">Debian/Ubuntu</a></td>
   </tr>
   <tr>
     <td>Ruby gem</td>

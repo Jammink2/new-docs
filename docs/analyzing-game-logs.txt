@@ -1,6 +1,6 @@
 # Game KPI Reporting on the Cloud
 
-Leading gaming companies have used [Treasure Data](http://www.treasure-data.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers enhance existing game systems and deliver a better customer experience, resulting in higher revenues.
+Leading gaming companies have used [Treasure Data](http://www.treasuredata.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers enhance existing game systems and deliver a better customer experience, resulting in higher revenues.
 
 This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team just focus on building awesome games instead of having to spend valuable human / IT resources maintaining a data analytics infrastructure.
 
@@ -12,7 +12,7 @@ These application processes generate terabytes of user behavior data every day: 
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of td-agent.
   * Ruby 1.8 or higher (for local testing).
 
@@ -20,7 +20,7 @@ These application processes generate terabytes of user behavior data every day: 
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-`td-agent` is a versatile daemon program that can process various kinds of streaming log data. It is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streaming log data. It is developed and maintained by [Treasure Data, Inc.](http://www.treasuredata.com).
 
 When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 

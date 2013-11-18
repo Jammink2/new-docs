@@ -4,7 +4,7 @@ This article explains how to write job results to your Treasure Data (TD) table.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
 
 ## Basic Usage
 

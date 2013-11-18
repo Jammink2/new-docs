@@ -7,7 +7,7 @@ This article explains how to use the fluent-logger-node library.
 ## Prerequisites
 
   * Basic knowledge of Node.js and NPM.
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Node.js 0.6 or higher (for local testing).
 
 NOTE: The fluent-logger-node library does not work in Heroku (<a href="/articles/heroku-notes">here's why</a>) or EngineYard.

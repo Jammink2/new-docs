@@ -1,12 +1,12 @@
 # Analyzing Apache Logs on the Cloud
 
-With [Treasure Data](http://treasure-data.com/), you can analyze apache logs on the cloud. You can forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
+With [Treasure Data](http://www.treasuredata.com/), you can analyze apache logs on the cloud. You can forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
 
 This article explains how to import Apache logs using `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of td-agent.
   * Ruby 1.8 or higher (for local testing).
 
@@ -14,7 +14,7 @@ This article explains how to import Apache logs using `td-agent`. The basic idea
 
 <center><img src="/images/apache_log_with_td-agent.png" width="90%" /></center>
 
-`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasure-data.com).
+`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasuredata.com).
 
 When a user accesses an Apache web server, the web server appends a corresponding entry to the access log file (typically located at */var/log/apache2/access_log*). `td-agent` continuously "tails" the access log, identifying the newly created entries.
 
@@ -31,11 +31,11 @@ You must first set up `td-agent` on your application servers. Please refer to th
   </tr>
   <tr>
     <td>Debian / Ubuntu Systems</td>
-    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-debian-and-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246846-installing-td-agent-on-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
   </tr>
   <tr>
     <td>Redhat / CentOS Systems</td>
-    <td><a href="http://treasure-data.tenderapp.com/kb/installing-td-agent-daemon/installing-td-agent-for-redhat-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246904-installing-td-agent-on-rhel-and-centos">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
 </table>
 

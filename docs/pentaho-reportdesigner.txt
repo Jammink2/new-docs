@@ -19,7 +19,7 @@ NOTE: <b>Don't have time</b> to setup Pentaho + Treasure Data? Leverage our <a h
 
 You can download the driver from the link below. The driver is still in beta, so any feedback would be appreciated.
 
-* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
+* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc)
 
 NOTE: This driver works only with Treasure Data. It does not work with other environments such as your local Hadoop/Hive cluster.
 

@@ -6,7 +6,7 @@ This article will explain how to issue, list, and see the details of each job.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
 
 ## Issue Jobs
 

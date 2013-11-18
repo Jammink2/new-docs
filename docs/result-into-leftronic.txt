@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * An [Leftronic](https://www.leftronic.com) account.
 
 ## Scheduled Queries

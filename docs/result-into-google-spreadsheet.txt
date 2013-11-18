@@ -4,7 +4,7 @@ This article explains how to write job results directly to your Google SpreadShe
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * A Google account (for Google Drive).
 
 ## Basic Usage

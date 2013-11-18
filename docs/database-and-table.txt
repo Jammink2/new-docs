@@ -4,7 +4,7 @@ Treasure Data uses the same convention as Relational Database Management Systems
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
 
 ## Database Management
 

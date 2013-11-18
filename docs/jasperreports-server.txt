@@ -18,7 +18,7 @@ You can download JasperReports Server from the link below. Version 4.7.0 was use
 
 You can download the driver itself from the link below. The driver is still in beta; any feedback is appreciated.
 
-* [JDBC Driver Download](http://toolbelt.treasure-data.com/jdbc)
+* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc)
 
 NOTE: This driver only works with Treasure Data. It does not run on other environments, such as your local Hadoop/Hive cluster.
 

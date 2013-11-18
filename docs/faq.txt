@@ -63,4 +63,4 @@ If you encounter a reserved keyword issue in your query, please wrap the infring
     :::sql
     SELECT `keyword_column`, COUNT(1) AS cnt FROM table_name GROUP BY `keyword_column`
 
-If you have any questions, please feel free to [contact us](http://treasure-data.com/contact/), or chat with us live using the window at the bottom right.
+If you have any questions, please feel free to [contact us](http://www.treasuredata.com/contact/), or chat with us live using the window at the bottom right.

@@ -4,7 +4,7 @@ This article explains how to delete your imported data by using the `td table:pa
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasure-data.com).
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
 
 ## Deletion
 
