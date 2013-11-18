@@ -82,4 +82,4 @@ For queries, we leverage the Hive Query Language.
 
 For more specific assistance, please visit our support center:
 
-* [Treasure Data Support Center](http://help.treasure-data.com/)
+* [Treasure Data Support Center](http://help.treasuredata.com/)

@@ -29,23 +29,23 @@ To set up td-agent, please refer to the following articles; we provide deb/rpm p
   </tr>
   <tr>
     <td>MacOS X</td>
-    <td><a href="http://help.treasure-data.com/customer/portal/articles/1246940-installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246940-installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
   </tr>
   <tr>
     <td>Ubuntu System</td>
-    <td><a href="http://help.treasure-data.com/customer/portal/articles/1246846-installing-td-agent-on-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246846-installing-td-agent-on-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
   </tr>
   <tr>
     <td>RHEL / CentOS System</td>
-    <td><a href="http://help.treasure-data.com/customer/portal/articles/1246904-installing-td-agent-on-rhel-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246904-installing-td-agent-on-rhel-and-centos">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
   <tr>
     <td>Joyent SmartOS</td>
-    <td><a href="http://help.treasure-data.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
   </tr>
   <tr>
     <td>AWS Elastic Beanstalk</td>
-    <td><a href="http://help.treasure-data.com/customer/portal/articles/1246939-installing-td-agent-on-aws-elastic-beanstalk">Installing td-agent on AWS Elastic Beanstalk</a></td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246939-installing-td-agent-on-aws-elastic-beanstalk">Installing td-agent on AWS Elastic Beanstalk</a></td>
   </tr>
 </table>
 
@@ -182,4 +182,4 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 
 For more specific assistance, please visit our support center:
 
-* [Treasure Data Support Center](http://help.treasure-data.com/)
+* [Treasure Data Support Center](http://help.treasuredata.com/)

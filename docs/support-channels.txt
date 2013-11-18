@@ -16,7 +16,7 @@ This is the most common way of submitting the support inquiry. Please send us an
 
 ## Support Desk
 
-You can submit tickets to our Support Desk at [help.treasure-data.com](http://help.treasure-data.com/). Communicate directly with our support team and receive email updates on your tickets. We usually reply within a few business days.
+You can submit tickets to our Support Desk at [help.treasuredata.com](http://help.treasuredata.com/). Communicate directly with our support team and receive email updates on your tickets. We usually reply within a few business days.
 
 ## More Support Options
 

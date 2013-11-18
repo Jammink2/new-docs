@@ -202,7 +202,7 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 
 For more specific assistance, please visit our support center:
 
-* [Treasure Data Support Center](http://help.treasure-data.com/)
+* [Treasure Data Support Center](http://help.treasuredata.com/)
 
 ## Appendix: Importing Data To Treasure Data Using The Logger Library
 
