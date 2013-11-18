@@ -76,7 +76,7 @@ You must set [Schema](schema)s onto the table when querying via Impala. `v` does
 
 ### Limited Time-based Partitioning Capabilities
 
-For [Performance Tuning](performance-tuning), the queries can leverage time-based partitioning of data. While Hive supports many UDFs such as TD_TIME_RANGE or TD_TIME_ADD, Impala does not support these yet. Please specify the POSIX timestamp as an integer within the WHERE clause.
+For [Performance Tuning](performance-tuning), the queries can leverage time-based partitioning of data. While Hive supports many UDFs such as TD_TIME_ADD, Impala does not support some of these yet. Also, please avoid using TD_TIME_PARSE in the WHERE clause for the performance.
 
     :::sql
     [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020
@@ -84,6 +84,7 @@ For [Performance Tuning](performance-tuning), the queries can leverage time-base
     [GOOD]: SELECT field1 FROM tbl WHERE time > 1349393020 - 3600
     [GOOD]: SELECT field1 FROM tbl WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
     [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
+    [BAD]:  SELECT field1 FROM tbl WHERE time > TD_TIME_PARSE("2013-01-01")
 
 ### Scheduled Queries Are Not Supported
 
