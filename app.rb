@@ -127,7 +127,7 @@ end
 
 get '/categories/:category' do
   if params[:category] == 'success-stories'
-    redirect "http://www.treasure-data.com/case-studies"
+    redirect "http://www.treasuredata.com/en/learn/customer-stories.php"
   else
     cache_long
     render_category params[:category]
@@ -137,7 +137,7 @@ end
 get '/articles/:article' do
   m = /^success-at-(.*)/.match(params[:article])
   if m
-    redirect "http://www.treasure-data.com/success-stories/#{m[1]}"
+    redirect "http://www.treasuredata.com/en/case-studies/#{m[1]}.php"
   else
     cache_long
     render_article params[:article], params[:congrats]
