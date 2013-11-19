@@ -1,115 +1,52 @@
 Quickstart Guide
 ================
 
-Let's get started with Treasure Data! Treasure Data is a Hadoop-based **Big Data as-a-Service** service. Forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
+Let's get started with Treasure Data! Treasure Data is the first cloud service for the entire data pipeline, including acquisition, storage, and analysis. We manage and support the entire infrastructure so you can focus on analyzing data, rather than managing it.
 
-Step 1: Sign-Up
+Step 1: Sign Up
 ---------------
 
-[Sign up](http://treasuredata.com/signup/) for Treasure Data if you haven't yet.
+[Sign up](https://console.treasure-data.com/users/sign_up) for Treasure Data if you haven't yet.
 
-Step 2: Install the Treasure Data Toolbelt
-------------------------------------------
+Step 2: Confirm Your Email Address (recommended)
+------------------------------------------------
 
-Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) for your development environment. It contains the `td` command, a [CLI tool](/categories/command-line) for importing, managing, and querying your data.
+<img style="margin:auto" src="/images/quickstart-confirm-email.png" alt="confirm your email"/>
 
-* [MacOS Installer](http://toolbelt.treasuredata.com/mac)
-* [Windows Installer](http://toolbelt.treasuredata.com/win)
-* Linux ([Redhat/CentOS](http://toolbelt.treasuredata.com/redhat), [Debian/Ubuntu](http://toolbelt.treasuredata.com/debian))
-* or '[gem install td](http://toolbelt.treasuredata.com/gem)' for those who are familiar with Ruby. `td` works on both 1.8 and 1.9.
+Once you sign up, we  send you an email to confirm your email address. You should confirm your email at some point to get important feature- and service-related announcements, but feel free to skip this step if you are in a hurry.
 
-Step 3: Authorize
------------------
+<img style="margin:auto" src="/images/quickstart-tutorial-unconfirmed.png" alt="confirm your email"/>
 
-Once you have installed the toolbelt, you will have access to the `td` command from your command line. Authorize your account with the `td account` command. Please use the user name and password you used when signing up when prompted.
+Step 3: Query the Sample Table
+------------------------------
 
-    :::term
-    $ td account -f
-    Enter your Treasure Data credentials.
-    Email: k@treasure-data.com
-    Password (typing will be hidden): 
-    Authenticated successfully.
+Let's query the sample table!
 
-Step 4: Import Sample Dataset
------------------------------
+1. Click on the "New Query" tab on the left vertical tab inside the Management Console.
+2. Select "sample_db" from the "Database" dropdown menu.
+3. Write a query of your choice against the table named "www_access". Here is one example query that counts and sorts HTTP requests by their status codes.
 
-Now you’re ready! Let’s get our feet wet by importing a sample Apache log. You will first need to create a database and a table on the cloud via the CLI.
+        SELECT
+          code AS http_status_code,
+          COUNT(1) AS num_requests
+        FROM
+          www_access
+        GROUP BY
+          code
+        ORDER BY
+          num_requests
 
-    :::term
-    $ td db:create testdb
-    $ td table:create testdb www_access
-    Table 'testdb.www_access' is created.
+    <img style="margin:auto" src="/images/quickstart-run-query.png" alt="run your SQL query"/>
+4. Hit the blue Submit button. You will be sent to the job page where you can track your job's progress.
 
-Let’s generate a sample Apache log and import it to the cloud. `td sample:apache` generates 5,000 lines of Apache log data in JSON format. td table:import takes a JSON file and uploads it to the cloud.
+    <img style="margin:auto" src="/images/quickstart-running-job.png" alt="Running a job on Treasure Data Serivce"/>
 
-    :::term
-    $ td sample:apache apache.json
-    $ td table:import testdb www_access --json apache.json
-    $ tail -n 1 apache.json
-    {"host":"200.129.205.208","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":62,"agent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11","time":1334035906}
+5. Once the job is done, the "running" sign (in blue) turns into "success" (in green). You can view the results within the Management Console as well as download it as CSV/TSV/JSON (see the red circle below).
 
-The records will be imported into our database after about 20-60 seconds.
+    <img style="margin:auto" src="/images/quickstart-query-result.png" alt="view and download your query results"/>
 
-    :::term
-    $ td tables
-    +----------+------------+------+-------+--------+
-    | Database | Table      | Type | Count | Schema |
-    +----------+------------+------+-------+--------+
-    | testdb   | www_access | log  | 5000  |        |
-    +----------+------------+------+-------+--------+
+##What's next?
 
+If you haven't signed up already, [get started for free here](https://console.treasure-data.com/users/sign_up)! If you already have an account with us, you will have [a more detailed quickstart inside the Management Console.](https://console.treasure-data.com/start)
 
-Step 5: Issue Queries
------------------------
-
-Finally, let’s issue a SQL query. Our Hadoop-based engine on the cloud executes your query and returns the result to you. The following query calculates the distribution of HTTP status codes.
-
-    :::term
-    $ td query -w -d testdb \
-      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
-    queued...
-    started at 2012-04-10T23:44:41Z
-    2012-04-10 23:43:12,692 Stage-1 map = 0%,  reduce = 0%
-    2012-04-10 23:43:18,766 Stage-1 map = 100%,  reduce = 0%
-    2012-04-10 23:43:29,925 Stage-1 map = 100%,  reduce = 33%
-    2012-04-10 23:43:32,973 Stage-1 map = 100%,  reduce = 100%
-    Status     : success
-    Result     :
-    +------+------+
-    | code | cnt  |
-    +------+------+
-    | 404  | 17   |
-    | 500  | 2    |
-    | 200  | 4981 |
-    +------+------+
-
-The command above will take about 15-45 seconds, owing mainly to the overhead in setting up jobs within the cloud-based Hadoop engine.
-
-What's Next?
-------------
-
-You're now ready to import *your real data* to the cloud! The following tutorials will explain how to import your data (e.g. Application Logs, Middleware Logs) from various sources. For a deeper understanding of the platform, please refer to the [architecture overview article](architecture-overview).
-
-#### Languages and Frameworks
-<table>
-  <tr>
-    <th colspan="3">Supported Languages</th>
-    <tr>
-      <td style="text-align: left; width: 33%;"><a href="ruby">Ruby</a> or <a href="rails">Rails</a></td>
-      <td style="text-align: left;"><a href="java">Java</a></td>
-      <td style="text-align: left;"><a href="perl">Perl</a></td>
-    </tr>
-    <tr>
-      <td style="text-align: left; width: 33%;"><a href="python">Python</a></td>
-      <td style="text-align: left;"><a href="php">PHP</a></td>
-      <td style="text-align: left;"><a href="scala">Scala</a></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;"><a href="nodejs">Node.js</a></td>
-    </tr>
-  </tr>
-</table>
-
-#### Middleware
-* [Apache Logs](analyzing-apache-logs)
-* [Tailing Existing CSV or TSV Logs](td-agent-tail)
+Also, if you prefer CLI to GUI, you can learn more about our command line tool [here](command-line).
