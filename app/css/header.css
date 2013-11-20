@@ -1,6 +1,6 @@
 div#header {
   background-color: #333333;
-  color: #BBBBBB;
+  color: #000;
   height: 50px;
   padding: 20px;
 }
@@ -17,7 +17,7 @@ div#header li {
   width: 379px;
   height: 60px;
   text-indent: -9999px;
-  background: url("/images/treasure-logo-red.png") no-repeat 28px top;
+  background: url("/images/treasure-logo-white.png") no-repeat 28px top;
 }
 
 #td-nav li {
