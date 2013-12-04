@@ -33,7 +33,7 @@ All imported data is automatically partitioned into hourly buckets, based on the
 
 ## Set Custom Schema
 
-As explained in [the "Schema Management" article](schema), all tables have two fields: 'v' and 'time'. In addition to these, you can set [custom schema](schema#setting-custom-schema) on the tables.
+As explained in the [Schema Management](schema) article, all tables have two fields: 'v' and 'time'. In addition to these, you can set [custom schema](schema#setting-custom-schema) on the tables.
 
     :::term
     $ td schema:set testdb www_access action:string user:int
