@@ -51,9 +51,9 @@ To finish setting up the query to run on an hourly basis, we create a scheduled 
     $ td sched:create \
       hourly_agg \
       "@hourly" \
-      -d testdb
-      -D 1800
-      "select count(1) from www_access" \
+      -d testdb \
+      -D 1800 \
+      "...[sql query above]..."
 
 Here, `@hourly` is the same as the cron `0 * * * *`. The `-D` parameter allows you specify a delay time in seconds, here it's 1800 seconds or 30 minutes. This means, the job will execute 30 minutes after each hour.
 
