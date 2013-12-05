@@ -32,7 +32,7 @@ Scheduled jobs must sometimes be set as high priority items. The `-P` option is 
 
 ## Example: Periodic Aggregation
 
-A common pattern is to periodically summarize the data from a main table into another table.
+A common pattern is to periodically summarize data from a main table into another table.
 
     :::sql
     SELECT
@@ -43,7 +43,7 @@ A common pattern is to periodically summarize the data from a main table into an
     WHERE
         TD_TIME_RANGE(time, TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h') , TD_SCHEDULED_TIME())
 
-This example above would aggregate web request results from an access log on an hour basis. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation.
+The example above aggregates web request results from an access log on an hourly basis. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation.
 
 To finish setting up the query to run on an hourly basis, we create a scheduled query as demonstrated earlier.
 
@@ -55,7 +55,7 @@ To finish setting up the query to run on an hourly basis, we create a scheduled 
       -D 1800 \
       "...[sql query above]..."
 
-Here, `@hourly` is the same as the cron `0 * * * *`. The `-D` parameter allows you specify a delay time in seconds, here it's 1800 seconds or 30 minutes. This means, the job will execute 30 minutes after each hour.
+Here, `@hourly` is the same as the cron `0 * * * *`. The `-D` parameter allows you specify a delay time in seconds. In the example above, we set the delay to 1800 seconds or 30 minutes. The job will execute 30 minutes after each hour.
 
 
 ## List the Schedules
