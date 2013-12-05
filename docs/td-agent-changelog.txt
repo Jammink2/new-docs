@@ -173,5 +173,3 @@ This article lists the changelog of [td-agent](td-agent).
 ## 2011/09/20: version 1.0.8
 * fluent [v0.9.14](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 * fluent-plugin-td v0.9.10
-
-snip...
