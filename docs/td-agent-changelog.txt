@@ -2,6 +2,15 @@
 
 This article lists the changelog of [td-agent](td-agent).
 
+## 2013/12/05: version v1.1.18
+- ruby [v1.9.3-p484](https://www.ruby-lang.org/en/news/2013/11/22/ruby-1-9-3-p484-is-released/) (security fix)
+- fluentd [v0.10.41](https://github.com/fluent/fluentd/blob/master/ChangeLog)
+- td-client [v0.8.56](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
+- td [v0.10.96](https://github.com/treasure-data/td/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.3.5](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-td [v0.10.17](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-rewrite-tag-filter v1.3.1 (https://github.com/fluent/fluent-plugin-rewrite-tag-filter)
+
 ## 2013/09/25: version v1.1.17
 - fluentd [v0.10.39](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.55](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
