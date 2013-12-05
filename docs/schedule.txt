@@ -34,8 +34,8 @@ Scheduled jobs must sometimes be set as high priority items. The `-P` option is 
 
 A common pattern is to periodically summarize the data from a main table into another table.
 
-    :::term
-    $ SELECT
+    :::sql
+    SELECT
         user, code, method, path, agent, host, avg(size)
     FROM www_access
     GROUP BY
