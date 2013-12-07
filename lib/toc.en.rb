@@ -46,7 +46,7 @@ section 'import-data', 'Data Import' do
     article 'one-time-import', 'One-Time Import'
   end
   category 'td-agent-language', 'Streaming Import' do
-    article 'td-agent', 'Streaming Import via HTTP POST',                ['fluentd', 'td-agent']
+    article 'td-agent', 'Multi-protocol Streaming Import (e.g., TCP/IP, HTTP, tailing a log file, etc.)', ['fluentd', 'td-agent']
     article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
     article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
     article 'rails', 'Streaming Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
