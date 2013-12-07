@@ -31,7 +31,7 @@ All imported data is automatically partitioned into hourly buckets, based on the
     SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01",
                                    TD_TIME_ADD("2013-01-01", "1day", "PDT"))
 
-**However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partition opimization doesn't work. For instance, the following conditions disable optimization**.
+However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partition opimization doesn't work. For instance, the following conditions disable optimization.
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time, TD_TIME_FORMAT(TD_SCHEDULED_TIME(), 'yyyy-MM-dd'))
     SELECT ... WHERE TD_TIME_RANGE(time, TD_TIME_FORMAT(1356998401, 'yyyy-MM-dd'))
