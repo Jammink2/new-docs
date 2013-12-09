@@ -98,7 +98,9 @@ Here are some basic examples. The underlying table consists of three fields: `ip
     SELECT COUNT(1) FROM www_access;
     
     # Number of Unique IPs
-    SELECT COUNT(distinct v['ip']) FROM www_access;
+    SELECT COUNT(1) FROM ( \
+      SELECT DISTINCT v['ip'] FROM www_access \
+    ) t;
     
     # Number of Unique IPs that Accessed the Top Page
     SELECT COUNT(distinct v['ip']) FROM www_access \
