@@ -60,7 +60,7 @@ The available UDFs are as follows:
 
 ### JOIN Order
 
-Impala currently does not support cost-based JOIN optimizations or disk-based JOINs. We must unfortunately ask you to be careful about you manual JOINs. As of now, the right-hand side of the table must fit in memory. Otherwise, the query will fail.
+Impala does not currently support cost-based JOIN optimizations or disk-based JOINs. Please be careful when executing JOINs: for the time being, the right-hand side of the table must fit in memory. Otherwise the query will fail.
 
     :::sql
     SELECT
@@ -72,7 +72,7 @@ Impala currently does not support cost-based JOIN optimizations or disk-based JO
 
 ### Schemas Are Required
 
-You must set [Schema](schema)s onto the table when querying via Impala. `v` doesn't work, because Impala doesn't have the map type yet.
+When querying via Impala, you must set a [Schema](schema) for the table(s); this is because`v` doesn't work (Impala doesn't support the map type yet).
 
 ### Limited Time-based Partitioning Capabilities
 

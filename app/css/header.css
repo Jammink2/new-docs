@@ -17,7 +17,7 @@ div#header li {
   width: 379px;
   height: 60px;
   text-indent: -9999px;
-  background: url("/images/treasure-logo-white.png") no-repeat 28px top;
+  background: url("/images/treasure-logo-white.png") no-repeat 28px 14px;
 }
 
 #td-nav li {

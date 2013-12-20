@@ -1,7 +1,6 @@
 # REST API
 
 The user can control Treasure Data using the public REST API.
-
 This article will explain how to use the public REST API.
 
 ## Prerequisites
@@ -50,8 +49,75 @@ No parameters are required.
     :::term
     {
       "databases": [
-        { "name": "db0" },
-        { "name": "db1" }
+        {
+          "name": "database1",
+          "count": 5000,
+          "created_at": "2013-11-01 16:48:41 -0700",
+          "updated_at": "2013-11-01 16:48:41 -0700",
+          "organization": null
+        },
+        {
+          "name": "database2",
+          "count": 5000,
+          "created_at": "2013-11-08 17:47:22 -0800",
+          "updated_at": "2013-11-08 17:47:22 -0800",
+          "organization": null
+        },
+      ]
+    }
+
+## GET /v3/job/list
+This command returns a list of your jobs.
+
+#### Parameters
+No parameters are required.
+
+#### Output
+* a json structure containing the number of jobs, to, from, and **jobs** an array of the jobs.
+
+#### Example Result
+    :::term
+    {
+      "count": 2,
+      "from": null,
+      "to": null,
+      "jobs": [
+        {
+          "status": "success",
+          "job_id": "12345",
+          "created_at": "2013-11-13 19:39:19 UTC",
+          "updated_at": "2013-11-13 19:39:20 UTC",
+          "start_at": "2013-11-13 19:39:19 UTC",
+          "end_at": "2013-11-13 19:39:20 UTC",
+          "query": null,
+          "type": "hive",
+          "priority": 0,
+          "retry_limit": 0,
+          "hive_result_schema": null,
+          "result": "",
+          "url": "http://console.treasure-data.com/jobs/215782",
+          "user_name": "owner",
+          "organization": null,
+          "database": "database1"
+        },
+        {
+          "status": "success",
+          "job_id": "56789",
+          "created_at": "2013-11-13 19:32:45 UTC",
+          "updated_at": "2013-11-13 19:32:46 UTC",
+          "start_at": "2013-11-13 19:32:45 UTC",
+          "end_at": "2013-11-13 19:32:46 UTC",
+          "query": null,
+          "type": "bulk_import_perform",
+          "priority": 0,
+          "retry_limit": 0,
+          "hive_result_schema": null,
+          "result": "",
+          "url": "http://console.treasure-data.com/jobs/215781",
+          "user_name": "owner",
+          "organization": null,
+          "database": "database2"
+        },
       ]
     }
 
