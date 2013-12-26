@@ -10,6 +10,18 @@ You can download the driver itself from the link below. The driver is still in b
 
 NOTE: This driver only works with Treasure Data. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
+## JDBC URL
+
+Use the following JDBC URL format with your Java application, or JDBC-compliant SQL or BI tool.
+
+    :::text
+    jdbc:td://api.treasure-data.com/<db_name>
+    
+For example, to access the database named "sample_db" in your account, your JDBC URL would be:
+
+    :::text
+    jdbc:td://api.treasure-data.com/sample_db
+
 ## Query Execution Internals
 
 Because Treasure Data is a cloud service, its JDBC driver behaves in a slightly different manner compared to that of traditional RDBMs.
