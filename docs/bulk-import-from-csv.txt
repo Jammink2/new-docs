@@ -9,6 +9,17 @@ This article explains how to dump data from CSV files and import them into Treas
 
 ## Importing data from a CSV
 
+Suppose you have a file called `data.csv` and its content is like this:
+
+    :::term
+    $ head data.csv
+
+    "host","log_name","date_time","method","url","res_code","bytes","referer","user_agent"
+    "64.242.88.10","-","2004-03-07 16:05:49","GET","/twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables",401,12846,"",""
+    "64.242.88.10","-","2004-03-07 16:06:51","GET","/twiki/bin/rdiff/TWiki/NewUserTemplate?rev1=1.3&rev2=1.2",200,4523,"",""
+    "64.242.88.10","-","2004-03-07 16:10:02","GET","/mailman/listinfo/hsdivision",200,6291,"",""
+    "64.242.88.10","-","2004-03-07 16:11:58","GET","/twiki/bin/view/TWiki/WikiSyntax",200,7352,"",""
+
 Open the terminal (OSX/Linux) or command prompt (Windows) and issue the following command
 
     :::term
