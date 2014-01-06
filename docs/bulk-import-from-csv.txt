@@ -1,0 +1,29 @@
+# Bulk Import from CSV Files
+
+This article explains how to dump data from CSV files and import them into Treasure Data.
+
+## Prerequisites
+
+* An account with Treasure Data ([You can sign up here](https://console.treasure-data.com/users/sign_up))
+* Treasure Data command line tool ([You can download it here](http://toolbelt.treasuredata.com/))
+
+## Importing data from a CSV
+
+Open the terminal (OSX/Linux) or command prompt (Windows) and issue the following command
+
+    :::term
+    td import:upload --format csv --column-header --time-column \
+    date_time --time-format "%Y-%m-%d %H:%M:%S" ./data.csv \
+    --auto-create sampledb.sampletbl --auto-perform --auto-commit --auto-delete
+
+In the above command, we assumed
+
+* The data file is called `data.csv` and is located in the current directory (hence `./data.csv`)
+* The first line indicates column names
+* The time field is called "date_time"
+* The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
+* The table called `sampletbl` would be created in the database called `sampledb` on Treasure Data.
+
+For further details, please see [this page](bulk-import).
+
+Do you need to import data from an RDBMS? [See here](bulk-import-from-db).
