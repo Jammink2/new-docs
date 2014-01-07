@@ -1,8 +1,6 @@
 # TD Docs App
 
-Ultrasimple CMS and content for documentation of the Treasure Data platform.  The production site is [here](http://docs.treasuredata.com/).
-
-If you'd like to propose an edit to the TD docs, fork this repo, then send us a pull request.
+Ultrasimple CMS and content for documentation of the Treasure Data platform.  The production site is [here](http://docs.treasuredata.com/). If you'd like to propose an edit to the TD docs, fork this repo, then send us a pull request.
 
 # Install
 
@@ -10,14 +8,6 @@ If you'd like to propose an edit to the TD docs, fork this repo, then send us a 
     $ bundle install --path vendor/bundle
     $ bundle exec rake server
     $ open "http://localhost:9393/articles/quickstart"
-
-# Build Search Index
-
-    $ heroku run rake index
-
-# Deploy
-
-    $ git push heroku master
 
 # Acknowledgement
 
