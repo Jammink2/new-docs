@@ -50,6 +50,8 @@ A couple of assumptions for the example above:
 1. We assume that the data is in CSV format.
 2. We assume that the first row of each input file contains column names (This is done with the `--column-header` option. You can also treat all rows as data and specify column names with `--columns c1,c2,c3...` as well.)
 
+NOTE: On Windows OS, the regular expression can't be used. So, please rewrite filename from data_*.csv to (YOUR_TARGET_FILENAME)
+
 ## Importing Large Data Reliably with Bulk Import (Step by Step)
 
 ### 1) Create a Session
