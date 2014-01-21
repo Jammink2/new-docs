@@ -20,7 +20,7 @@ td-agent is a data collection daemon. It collects logs from various data sources
 
 <center><img src="/images/td-agent.png" width="90%"></center>
 
-NOTE: `td-agent` is fully open-sourced as <a href="http://fluentd.org/">the fluentd project</a>. `td-agent` is a package that contains fluentd along with some plugins for Treasure Data. You can learn more about the differences between `td-agent` and `fluentd` <a href="http://docs.fluentd.org/articles/faq#what-is-the-difference-with-td-agent-and-fluentd">here</a>.
+NOTE: `td-agent` is fully open-sourced as <a href="http://fluentd.org/">the fluentd project</a>. `td-agent` is a package that contains fluentd along with some plugins for Treasure Data. You can learn more about the differences between `td-agent` and `fluentd` <a href="http://docs.fluentd.org/articles/faq#http://docs.fluentd.org/articles/faq#what-are-the-differences-between-td-agent-and-fluentd">here</a>.
 
 ## Install td-agent
 
