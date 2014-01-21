@@ -20,7 +20,7 @@ td-agent is a data collection daemon. It collects logs from various data sources
 
 <center><img src="/images/td-agent.png" width="90%"></center>
 
-NOTE: `td-agent` is fully open-sourced as <a href="http://fluentd.org/">the fluentd project</a>. `td-agent` is a package that contains fluentd along with some plugins for Treasure Data. You can learn more about the differences between `td-agent` and `fluentd` <a href="http://docs.fluentd.org/articles/faq#what-is-the-difference-with-td-agent-and-fluentd">here</a>.
+NOTE: `td-agent` is fully open-sourced as <a href="http://fluentd.org/">the fluentd project</a>. `td-agent` is a package that contains fluentd along with some plugins for Treasure Data. You can learn more about the differences between `td-agent` and `fluentd` <a href="http://docs.fluentd.org/articles/faq#http://docs.fluentd.org/articles/faq#what-are-the-differences-between-td-agent-and-fluentd">here</a>.
 
 ## Install td-agent
 
@@ -33,15 +33,15 @@ Please consult the following articles to set up `td-agent`.
   </tr>
   <tr>
     <td>MacOS X</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246940-installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-homebrew">Installing td-agent on MacOS X</a></td>
   </tr>
   <tr>
     <td>Ubuntu System</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246846-installing-td-agent-on-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-deb">Installing td-agent for Debian and Ubuntu</a></td>
   </tr>
   <tr>
     <td>RHEL / CentOS System</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246904-installing-td-agent-on-rhel-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-rpm">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
   <tr>
     <td>Joyent SmartOS</td>
@@ -49,7 +49,7 @@ Please consult the following articles to set up `td-agent`.
   </tr>
   <tr>
     <td>AWS Elastic Beanstalk</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246939-installing-td-agent-on-aws-elastic-beanstalk">Installing td-agent on AWS Elastic Beanstalk</a></td>
+    <td><a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">Installing td-agent on AWS Elastic Beanstalk</a></td>
   </tr>
 </table>
 
