@@ -144,6 +144,16 @@ get '/articles/:article' do
   end
 end
 
+get '/feedback' do
+  erb :feedback, :layout => false
+end  
+get '/feedback_client' do
+  erb :feedback_client, :layout => false
+end  
+get '/feedback_platform' do
+  erb :feedback_platform, :layout => false
+end  
+
 require 'toc'
 $TOC = TOC.new("en")
 
