@@ -35,15 +35,15 @@ You must first set up `td-agent` on your application servers. Please refer to th
   </tr>
   <tr>
     <td>MacOS X</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246940-installing-td-agent-on-macos-x">Installing td-agent on MacOS X</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-homebrew">Installing td-agent on MacOS X</a></td>
   </tr>
   <tr>
     <td>Ubuntu System</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246846-installing-td-agent-on-ubuntu">Installing td-agent for Debian and Ubuntu</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-deb">Installing td-agent for Debian and Ubuntu</a></td>
   </tr>
   <tr>
     <td>RHEL / CentOS System</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246904-installing-td-agent-on-rhel-and-centos">Installing td-agent for Redhat and CentOS</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-rpm">Installing td-agent for Redhat and CentOS</a></td>
   </tr>
   <tr>
     <td>Joyent SmartOS</td>
@@ -51,7 +51,7 @@ You must first set up `td-agent` on your application servers. Please refer to th
   </tr>
   <tr>
     <td>AWS Elastic Beanstalk</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246939-installing-td-agent-on-aws-elastic-beanstalk">Installing td-agent on AWS Elastic Beanstalk</a></td>
+    <td><a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">Installing td-agent on AWS Elastic Beanstalk</a></td>
   </tr>
 </table>
 
