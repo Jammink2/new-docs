@@ -70,7 +70,7 @@ If you are doing this with ORDER BY, you would run
 
     :::sql
     SELECT time, user_id, action FROM user_action_table
-    ORDER BY time
+    ORDER BY user_id, time
 
 However, you can achieve the same result with
 
