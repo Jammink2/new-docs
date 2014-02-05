@@ -129,12 +129,24 @@
 			<% end %>
 		  </ul>
 		  <section id="search">
-                    <div id="livechat">
-                      <a href="javascript:olark('api.box.expand');">
-                        Live Chat
-                      </a>
-                    </div>
-                  </section>
+        <div id="livechat">
+        <a href='#' target="_blank"><div id="pdf-download">Download as PDF</div></a>
+        </div>
+      </section>
+
+      <section class="pie-clearfix pie-clearfix-ie">
+      </section>
+      <div id='pdf-modal' class='modal'>
+        <div class='modal-head'>Download Documentation as PDF</div>
+        <div class='modal-content'>
+          <p>Please provide a valid email address and we will send you a copy of the Fluentd Documentation PDF immediately.</p>
+          <form action='https://pi.pardot.com/formHandler/read/id/712' method='post'>
+            <label class='email' for='email'>Email </label>
+            <input type='email' name='email' class='email' required>
+          </form>
+        </div>
+      </div>
+
 		</aside><!-- /#sidebar -->
 		<section id="main">
 			  <%= yield %>
