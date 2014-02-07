@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,31 +39,148 @@
         text-decoration: none solid rgb(51, 51, 51);
         vertical-align: middle;
         white-space: nowrap;
-        /*width: 200px;*/
+        width: 250px;
         background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
         border: 1px solid rgb(204, 204, 204);
         border-radius: 4px 4px 4px 4px;
         font: normal normal normal 14px/20px 'Open Sans', sans-serif;
         outline: rgb(51, 51, 51) none 0px;
         padding: 6px 12px;
+        margin: 0px 0px 20px 0px;
     }
     .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active  {
       color: #333333;
       background-color: #ebebeb;
       border-color: #adadad;
     }
+
+    #pad-wrapper {
+      padding: 0 50px;
+      margin-top: 35px;
+      width: 400px;
+    }
+
     h1 {
       font-size:120%;
       padding: 10px 5px 10px 5px;
     }
+    h3 {
+      border-bottom: 1px solid #e5e5e5;
+      border-top: 1px solid #e5e5e5;
+      color: white;
+      //padding: 15px 0px 15px 0px;
+      //margin: 15px 0px 0px 0px;
+    }
+    h3.top {
+      padding: 15px 0px 15px 0px;
+      margin: 15px 0px 0px 0px;
+    }
+    h3.bottom {
+      padding: 15px 0px 15px 0px;
+      margin: 0px 0px 0px 0px;
+    }
+
+    .buttons {
+      margin: 20px 0px 0px 75px;
+    }
+
   </style>
-  <div style="position:absolute; top:5%; left:5%">
-    <br/>
-    <a href="/feedback_client" class="btn-default"><h1>Click to Send Feedback for Client Tools</h1></a>
-    <br/>
-    <br/>
-    <a href="/feedback_platform" class="btn-default"><h1>Click to Send Feedback for the Platform</h1></a>
-    <br/>
-  </div>
+
+  <div id="pad-wrapper">
+    <div>
+      <h3 class="top">
+        Clicking on either of these buttons will open a form to file a ticket 
+        in the Engineering JIRA ticket tracking system.
+      </h3>
+    </div>
+
+    <div class="buttons">
+      <!-- Client Tools -->
+      <a href="#" id="feedback-button-clt" class='btn-default' title="Client Tools Feedback">
+        <h1>Client Tools Feedback</h1>
+      </a>
+      <script type="text/javascript" src="https://treasure-data.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USfxw171-1988229788/6251/62/1.4.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=e47706c7">
+      </script>
+      <script type="text/javascript">
+        window.ATL_JQ_PAGE_PROPS = 
+          $.extend(window.ATL_JQ_PAGE_PROPS, {
+            'e47706c7' : {
+              "triggerFunction": function(showCollectorDialog) {
+                //Requries that jQuery is available! 
+                jQuery("#feedback-button-clt").click(function(e) {
+                  e.preventDefault();
+                  showCollectorDialog();
+                })
+              }
+            }
+          }
+        );
+      </script>
+
+      <!-- Platform -->
+      <a href="#" id="feedback-button-plt" class='btn-default'><h1>Platform Feedback</h1></a>
+      <script type="text/javascript" src="https://treasure-data.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USfxw171-1988229788/6251/62/1.4.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=eb749fe6">
+      </script>
+      <script type="text/javascript">
+        window.ATL_JQ_PAGE_PROPS = 
+          $.extend(window.ATL_JQ_PAGE_PROPS, {
+            'eb749fe6' : {
+              "triggerFunction": function(showCollectorDialog) {
+                //Requries that jQuery is available! 
+                jQuery("#feedback-button-plt").click(function(e) {
+                  e.preventDefault();
+                  showCollectorDialog();
+                })
+              }
+            }
+          }
+        );
+      </script>
+
+      <!-- Operations - SalesOps -->
+      <a href="#" id="feedback-button-ops" class='btn-default'><h1>Operations Request</h1></a>
+      <script type="text/javascript" src="https://treasure-data.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USfxw171-1988229788/6251/62/1.4.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=b682c22b">
+      </script>
+      <script type="text/javascript">
+        window.ATL_JQ_PAGE_PROPS = 
+          $.extend(window.ATL_JQ_PAGE_PROPS, {
+            'b682c22b' : {
+              "triggerFunction": function(showCollectorDialog) {
+                //Requries that jQuery is available! 
+                jQuery("#feedback-button-ops").click(function(e) {
+                  e.preventDefault();
+                  showCollectorDialog();
+                })
+              },
+              "fieldValues": {
+                //summary : '',
+                //description : '',
+                components : '10301'  // SalesOps hardcoded
+              }
+            }
+          }
+        );
+      </script>
+    </div>
+
+    <div>
+      <h3 class="bottom">
+        Tickets are not final until the 'Submit' button is pressed
+        and the form reports the assigned ticket number in a confirmation message similar to this (click to enlarge):
+        <img id="confirmation" title="click to enlarge" onclick="javascript:toggleBigSmall();" src="images/jira_ticket_confirmation.png" width=400px style="padding-top:20px;"/>
+      </h3>
+    </div>
+  <div>
+  <script type="text/javascript">
+    function toggleBigSmall() {
+      img = $('#confirmation');
+      if (img.width() == 400) {
+        img.width(800);
+      } else {
+        img.width(400);
+      }
+      console.debug(img);
+    }
+  </script
 </body>
 </html>
