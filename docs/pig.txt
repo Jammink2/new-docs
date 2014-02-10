@@ -84,7 +84,7 @@ Parameters are values that are passed in at runtime as substitutes for some vari
     FILTER www_access BY time > $TD_SCHEDULED_TIME;
 
 ## UDFs
-The [DataFu](https://github.com/linkedin/datafu) package of Pig UDFs are included in our platform. Please refer to its documentation for usage instructions.
+The [DataFu](https://github.com/linkedin/datafu) package of Pig UDFs are included in our platform. Please refer to its documentation for usage instructions. (current version: 0.0.4)
 
 The [Piggybank](http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/) set of UDFs are also included.
 
