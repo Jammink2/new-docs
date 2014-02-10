@@ -18,7 +18,7 @@ fluent-logger-node requires `td-agent` to be installed on your application serve
 
 <center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
 
-The [fluent-logger-node](https://github.com/yssk22/fluent-logger-perl) library enables Node.js applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [fluent-logger-node](https://github.com/fluent/fluent-logger-node) library enables Node.js applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
 To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
