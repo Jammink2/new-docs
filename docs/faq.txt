@@ -32,7 +32,7 @@ There are several reasons:
     1. Your network becomes unstable
     2. Treasure Data's API shutdown the connection by unexpected network / node condition
 
-But Treasure Agent has robust retry mechanizm for these cases, so continue to import the data to Treasure Data.
+But Treasure Agent has robust retry mechanism for these cases, so continue to import the data to Treasure Data.
 You can see "retry succeeded" in your logs after several retries. It is no problem.
 
 If continue to get same error and exceeds the retry limit, it is non-network problem. Please let me know.
