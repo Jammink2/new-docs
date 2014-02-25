@@ -89,11 +89,11 @@ NOTE: "year" and "month" durations are NOT supported.
 This example formats a UNIX timestamp into a date formatted string
 
     :::sql
-    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss Z") ... FROM ...
+    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") ... FROM ...
 
 ### Description
 
-This UDF converts a UNIX timestamp to a string with the specified format (see [here](http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html) for available formats). For example, "yyyy-MM-dd HH:mm:ss Z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
+This UDF converts a UNIX timestamp to a string with the specified format (see [here](http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html) for available formats). For example, "yyyy-MM-dd HH:mm:ss z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
 
 ## TD_TIME_PARSE()
 
