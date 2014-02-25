@@ -25,6 +25,18 @@ Sorry to hear that. Here are a couple of scenarios that we can think of.
     1. Make sure your network is alive and allow you to access external networks.
     2. Does your data have numbers greater than 2e64? If so, please upgrade your td command/td-agent to the latest version. If you are using fluentd instead, please upgrade fluent-plugin-td to version 0.10.15 or above.
 
+## Treasure Agent sometimes gets "Failed to upload to TreasureData: Import failed" error. Is it a serious problem?
+
+There are several reasons:
+
+    1. Your network becomes unstable
+    2. Treasure Data's API shutdown the connection by unexpected network / node condition
+
+But Treasure Agent has robust retry mechanizm for these cases, so continue to import the data to Treasure Data.
+You can see "retry succeeded" in your logs after several retries. It is no problem.
+
+If continue to get same error and exceeds the retry limit, it is non-network problem. Please let me know.
+
 ## When I query my table, I get "null" for some of my integer values. Is this a bug?
 
 Is your integer greater than or equal to 2e64? If it is, then you need to cast it as `decimal` like this:
