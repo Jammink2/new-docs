@@ -89,24 +89,24 @@
   <div id="pad-wrapper">
     <div>
       <h3 class="top">
-        Clicking on either of these buttons will open a form to file a ticket 
+        Clicking on either of these buttons will open a form to file a ticket
         in the Engineering JIRA ticket tracking system.
       </h3>
     </div>
 
     <div class="buttons">
       <!-- Client Tools -->
-      <a href="#" id="feedback-button-clt" class='btn-default' title="Client Tools Feedback">
+      <a href="#" id="feedback-button-clt" class='btn-default' title="Click to create an Client Tools Feedback ticket">
         <h1>Client Tools Feedback</h1>
       </a>
       <script type="text/javascript" src="https://treasure-data.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USfxw171-1988229788/6251/62/1.4.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=e47706c7">
       </script>
       <script type="text/javascript">
-        window.ATL_JQ_PAGE_PROPS = 
+        window.ATL_JQ_PAGE_PROPS =
           $.extend(window.ATL_JQ_PAGE_PROPS, {
             'e47706c7' : {
               "triggerFunction": function(showCollectorDialog) {
-                //Requries that jQuery is available! 
+                //Requires that jQuery is available!
                 jQuery("#feedback-button-clt").click(function(e) {
                   e.preventDefault();
                   showCollectorDialog();
@@ -118,15 +118,17 @@
       </script>
 
       <!-- Platform -->
-      <a href="#" id="feedback-button-plt" class='btn-default'><h1>Platform Feedback</h1></a>
+      <a href="#" id="feedback-button-plt" class='btn-default' title="Click to create a Platform Feedback ticket">
+        <h1>Platform Feedback</h1>
+      </a>
       <script type="text/javascript" src="https://treasure-data.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USfxw171-1988229788/6251/62/1.4.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=eb749fe6">
       </script>
       <script type="text/javascript">
-        window.ATL_JQ_PAGE_PROPS = 
+        window.ATL_JQ_PAGE_PROPS =
           $.extend(window.ATL_JQ_PAGE_PROPS, {
             'eb749fe6' : {
               "triggerFunction": function(showCollectorDialog) {
-                //Requries that jQuery is available! 
+                //Requires that jQuery is available!
                 jQuery("#feedback-button-plt").click(function(e) {
                   e.preventDefault();
                   showCollectorDialog();
@@ -138,15 +140,17 @@
       </script>
 
       <!-- Operations - SalesOps -->
-      <a href="#" id="feedback-button-ops" class='btn-default'><h1>Operations Request</h1></a>
+      <a href="#" id="feedback-button-ops" class='btn-default' title="Click to create an Operations Request ticket">
+        <h1>Operations Request</h1>
+      </a>
       <script type="text/javascript" src="https://treasure-data.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USfxw171-1988229788/6251/62/1.4.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=b682c22b">
       </script>
       <script type="text/javascript">
-        window.ATL_JQ_PAGE_PROPS = 
+        window.ATL_JQ_PAGE_PROPS =
           $.extend(window.ATL_JQ_PAGE_PROPS, {
             'b682c22b' : {
               "triggerFunction": function(showCollectorDialog) {
-                //Requries that jQuery is available! 
+                //Requires that jQuery is available!
                 jQuery("#feedback-button-ops").click(function(e) {
                   e.preventDefault();
                   showCollectorDialog();
@@ -155,7 +159,7 @@
               "fieldValues": {
                 //summary : '',
                 //description : '',
-                components : '10301'  // SalesOps hardcoded
+                components : '10301',  // SalesOps hardcoded
               }
             }
           }
@@ -167,20 +171,19 @@
       <h3 class="bottom">
         Tickets are not final until the 'Submit' button is pressed
         and the form reports the assigned ticket number in a confirmation message similar to this (click to enlarge):
-        <img id="confirmation" title="click to enlarge" onclick="javascript:toggleBigSmall();" src="images/jira_ticket_confirmation.png" width=400px style="padding-top:20px;"/>
+        <img id="confirmation_message" title="click to enlarge" onclick="javascript:toggleBigSmall();" src="images/jira_ticket_confirmation.png" width=400px style="padding-top:20px;"/>
       </h3>
     </div>
   <div>
   <script type="text/javascript">
     function toggleBigSmall() {
-      img = $('#confirmation');
+      img = $('#confirmation_message');
       if (img.width() == 400) {
         img.width(800);
       } else {
         img.width(400);
       }
-      console.debug(img);
     }
-  </script
+  </script>
 </body>
 </html>
