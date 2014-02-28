@@ -75,4 +75,9 @@ If you encounter a reserved keyword issue in your query, please wrap the infring
     :::sql
     SELECT `keyword_column`, COUNT(1) AS cnt FROM table_name GROUP BY `keyword_column`
 
+## What protocol is used between I and Treasure Data?
+
+Treasure Agent and td command use HTTPS by default so that we ensure security.
+
+
 If you have any questions, please feel free to [contact us](http://www.treasuredata.com/en/about/contact-us.php), or chat with us live using the window at the bottom right.
