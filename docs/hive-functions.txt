@@ -373,7 +373,7 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
   <tr>
     <td>array&lt;struct&lt;string,double&gt;&gt;</td>
     <td>context_ngrams(array&lt;array&lt;string&gt;&gt;, array&lt;string&gt;, int K, int pf)</td>
-    <td>Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of &quot;context&quot;. See <A href="statisticsanddatamining.html" title="StatisticsAndDataMining">StatisticsAndDataMining</A> for more information.</td>
+    <td>Returns the top-k contextual N-grams from a set of tokenized sentences, given a string of &quot;context&quot;. See <A href="https://cwiki.apache.org/confluence/display/Hive/StatisticsAndDataMining" title="StatisticsAndDataMining">StatisticsAndDataMining</A> for more information.</td>
   </tr>
   <tr>
     <td>string</td>
