@@ -14,8 +14,13 @@ section 'overview', 'Overview' do
   category 'faq', 'FAQs' do
     article 'faq', 'Frequently Asked Questions'
   end
-  category 'changelog', 'ChangeLog' do
-    article 'changelog', 'Treasure Data ChangeLog'
+  category 'releasenotes', 'Release Notes' do
+    # NOTE: the releasenotes article is just a placeholder to give the page
+    #       a title and heading. The actual content of the page is specified
+    #       in the erb template 'view/releasenotes_redirect.erb.
+    #       The 'get '/articles/:article' do' route redirect to the releasenotes
+    #       article that uses the :releasenotes_redirect template.
+    article 'releasenotes', 'Release Notes'
   end
 end
 
@@ -50,13 +55,13 @@ section 'import-data', 'Data Import' do
     article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
     article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
     article 'rails', 'Streaming Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
-    article 'python', 'Streaming Import from Python Applications',       ['fluentd', 'td-agent'] 
+    article 'python', 'Streaming Import from Python Applications',       ['fluentd', 'td-agent']
     article 'php', 'Streaming Import from PHP Applications',             ['fluentd', 'td-agent']
     article 'perl', 'Streaming Import from Perl Applications',           ['fluentd', 'td-agent']
     article 'nodejs', 'Streaming Import from Node.js Applications',      ['fluentd', 'td-agent']
     article 'scala', 'Streaming Import from Scala Applications',         ['fluentd', 'td-agent']
   end
-  category 'td-agent-advanced', 'Streaming Import (Advanced)' do  
+  category 'td-agent-advanced', 'Streaming Import (Advanced)' do
     article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
     article 'td-agent-upgrade', 'Upgrading td-agent',                                  ['fluentd', 'td-agent']

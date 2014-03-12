@@ -139,8 +139,14 @@ get '/articles/:article' do
   if m
     redirect "http://www.treasuredata.com/en/case-studies/#{m[1]}.php"
   else
-    cache_long
-    render_article params[:article], params[:congrats]
+    m = /^releasenotes$/.match(params[:article])
+    if m
+      render_template params[:article], false, :releasenotes_redirect
+      #erb :releasenotes_redirect
+    else
+      cache_long
+      render_template params[:article], params[:congrats], :article
+    end
   end
 end
 
@@ -178,7 +184,7 @@ helpers do
     status 404
   end
 
-  def render_article(article, congrats)
+  def render_template(article, congrats, template)
     @filepath = article_file(article)
     unless $IO_CACHE.has_key? @filepath
       $IO_CACHE[@filepath] = File.read(@filepath)
@@ -193,7 +199,7 @@ helpers do
     @body    = @article.body
     @congrats = congrats ? true : false
 
-    erb :article
+    erb template
   rescue Errno::ENOENT
     status 404
   end
