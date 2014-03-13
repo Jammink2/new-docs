@@ -71,7 +71,7 @@ The `td job` sub-command shows a job's detailed information; the job is specifie
     :::term
     $ td job 783
     JobID      : 783
-    URL        : http://console.treasure-data.com/will-be-ready
+    URL        : http://console.treasuredata.com/will-be-ready
     Status     : success
     Query      : SELECT COUNT(1) FROM www_access
     Result     :

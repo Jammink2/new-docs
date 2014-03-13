@@ -11,7 +11,7 @@ This article will explain how to use the public REST API.
 
 ## Endpoint
 
-All API requests should be sent to *api.treasure-data.com*.
+All API requests should be sent to *api.treasuredata.com*.
 
 ## Authorization
 
@@ -30,7 +30,7 @@ The request looks like this when using the curl command. (The -H option adds the
 
     :::term
     $ curl -H "AUTHORIZATION: TD1 YourApiKeyHere" \
-      "http://api.treasure-data.com/v3/job/result/2162"
+      "http://api.treasuredata.com/v3/job/result/2162"
 
 ## Limitation
 
@@ -95,7 +95,7 @@ No parameters are required.
           "retry_limit": 0,
           "hive_result_schema": null,
           "result": "",
-          "url": "http://console.treasure-data.com/jobs/215782",
+          "url": "http://console.treasuredata.com/jobs/215782",
           "user_name": "owner",
           "organization": null,
           "database": "database1"
@@ -113,7 +113,7 @@ No parameters are required.
           "retry_limit": 0,
           "hive_result_schema": null,
           "result": "",
-          "url": "http://console.treasure-data.com/jobs/215781",
+          "url": "http://console.treasuredata.com/jobs/215781",
           "user_name": "owner",
           "organization": null,
           "database": "database2"
@@ -187,7 +187,7 @@ This command issues queries.
       "job_id": "12345",
       "type": "hive",
       "database": "www_access",
-      "url": "http://console.treasure-data.com/will-be-ready"
+      "url": "http://console.treasuredata.com/will-be-ready"
     }
 
 ## GET /v3/job/status/:job_id
@@ -240,7 +240,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
       "query": "SELECT * FROM ACCESS",
       "job_id": "12345",
       "status": "success",
-      "url": "http://console.treasure-data.com/jobs/12345",
+      "url": "http://console.treasuredata.com/jobs/12345",
       "created_at":"Sun Jun 26 17:39:18 -0400 2011",
       "updated_at":"Sun Jun 26 17:39:54 -0400 2011",
       "debug": {
@@ -281,7 +281,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 #### Example Result
 
     :::term
-    # URL: http://api.treasure-data.com/v3/job/result/2162?format=tsv
+    # URL: http://api.treasuredata.com/v3/job/result/2162?format=tsv
     aaaa    bbbb    cccc
     aaaa    bbbb    cccc
     aaaa    bbbb    cccc
@@ -291,7 +291,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 &nbsp;
 
     :::term
-    # URL: http://api.treasure-data.com/v3/job/result/2162?format=csv
+    # URL: http://api.treasuredata.com/v3/job/result/2162?format=csv
     aaaa,bbbb,cccc
     aaaa,bbbb,cccc
     aaaa,bbbb,cccc
@@ -301,7 +301,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 &nbsp;
 
     :::term
-    # URL: http://api.treasure-data.com/v3/job/result/2162?format=json
+    # URL: http://api.treasuredata.com/v3/job/result/2162?format=json
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
@@ -311,7 +311,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 &nbsp;
 
     :::term
-    # URL: http://api.treasure-data.com/v3/job/result/2162?format=msgpack
+    # URL: http://api.treasuredata.com/v3/job/result/2162?format=msgpack
     MessagePack format of above result
 
 ## Libraries

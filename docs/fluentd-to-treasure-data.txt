@@ -28,13 +28,13 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       type http
       port 8888
     </source>
-    
+
     # TCP input
     <source>
       type forward
       port 24224
     </source>
-    
+
     # Treasure Data output
     <match td.*.*>
       type tdlog
@@ -45,7 +45,7 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       use_ssl true
     </match>
 
-The `apikey` is a secret key to authenticate your account. You can get your apikey by using the `td` command after [signing up](https://console.treasure-data.com/users/sign_up) and installing Treasure Data.
+The `apikey` is a secret key to authenticate your account. You can get your apikey by using the `td` command after [signing up](https://console.treasuredata.com/users/sign_up) and installing Treasure Data.
 
     :::term
     $ gem install td

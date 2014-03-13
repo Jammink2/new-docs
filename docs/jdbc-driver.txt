@@ -15,12 +15,12 @@ NOTE: This driver only works with Treasure Data. It does not run on other enviro
 Use the following JDBC URL format with your Java application or JDBC-compliant SQL/BI tool.
 
     :::text
-    jdbc:td://api.treasure-data.com/<db_name>
-    
+    jdbc:td://api.treasuredata.com/<db_name>
+
 For example, to access a database named "sample_db" in your account, your JDBC URL would be:
 
     :::text
-    jdbc:td://api.treasure-data.com/sample_db
+    jdbc:td://api.treasuredata.com/sample_db
 
 ## Query Execution Internals
 
@@ -48,13 +48,13 @@ Here's a sample Java program that executes a SELECT statement. This program coun
     import java.sql.Statement;
     import java.util.Properties;
     import com.treasure_data.jdbc.TreasureDataDriver;
-    
+
     public class JDBCSample {
       public static void loadSystemProperties() throws IOException {
         Properties props = System.getProperties();
         props.load(TreasureDataDriver.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
       }
-    
+
       public static void main(String[] args) throws Exception {
         loadSystemProperties();
         try {
@@ -63,9 +63,9 @@ Here's a sample Java program that executes a SELECT statement. This program coun
           e.printStackTrace();
           System.exit(1);
         }
-    
+
         Connection conn = DriverManager.getConnection(
-          "jdbc:td://api.treasure-data.com/testdb",
+          "jdbc:td://api.treasuredata.com/testdb",
           "YOUR_MAIL_ADDRESS_HERE",
           "YOUR_PASSWORD_HERE");
         Statement stmt = conn.createStatement();

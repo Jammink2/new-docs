@@ -4,7 +4,7 @@ This article explains how to import data from CSV files to Treasure Data.
 
 ## Prerequisites
 
-* An account with Treasure Data ([You can sign up here](https://console.treasure-data.com/users/sign_up))
+* An account with Treasure Data ([You can sign up here](https://console.treasuredata.com/users/sign_up))
 * Treasure Data command line tool ([You can download it here](http://toolbelt.treasuredata.com/))
 
 ## Importing data from a CSV

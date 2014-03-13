@@ -28,7 +28,7 @@ To issue queries, please use the RJDBC package together with the Treasure Data J
                 "/path/to/td-jdbc-<td-jdbc.version>-jar-with-dependencies.jar",
                 identifier.quote="`")
     conn <- dbConnect(drv,
-                      "jdbc:td://api.treasure-data.com/testdb",
+                      "jdbc:td://api.treasuredata.com/testdb",
                       "YOUR_USER_NAME_HERE",
                       "YOUR_PASSWORD_HERE")
     dbListTables(conn)
