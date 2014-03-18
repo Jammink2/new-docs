@@ -27,6 +27,14 @@ Bulk Import consists of four key steps: prepare, upload, perform and commit.
 * Perform: the uploaded data is then transformed into our column-oriented data format using MapReduce.
 * Commit: After the perform step, the data is now compatible with Plazma (Treasure Data's columnar, distributed storage system). So, the commit step copies the data over into Plazma.
 
+## Updating only Bulk Import
+
+In the section below, we will show you how to update Bulk Import. We suggest that you use the newest version of Bulk Import.
+You can run 
+
+    :::term
+    $ td import:jar_update
+
 ## Importing Large Data Reliably with Bulk Import (in ONE step)
 
 In the section below, we will show you how to use Bulk Import step by step. While it is important to understand each step, it is often unwieldy to perform all these steps one by one. Thus we provide several command line options to automate (and pipeline) the prepare-upload-perform-commit workflow. Specifically, you want to run `td import:upload` like this:
