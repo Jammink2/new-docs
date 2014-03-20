@@ -28,8 +28,8 @@ The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt
     :::csv
     code,cnt
     "200",4981
-    "500,2
-    "404,17
+    "500",2
+    "404",17
 
 ### For Scheduled Jobs
 
