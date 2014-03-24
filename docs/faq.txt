@@ -21,9 +21,9 @@ Please set the HTTP_PROXY variable. This is supported starting in td v0.10.41.
     :::term
     e.g.
     Windows:
-     set HTTP_PROXY=http://proxy_host:8080
+    $ set HTTP_PROXY=http://proxy_host:8080
     Other:
-     export HTTP_PROXY="proxy_host:8080")
+    $ export HTTP_PROXY="proxy_host:8080"
 
 ## I cannot import my data to Treasure Data. Can you help?
 
