@@ -86,9 +86,6 @@ For [Performance Tuning](performance-tuning), the queries can leverage time-base
     [BAD]:  SELECT field1 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1 FROM tbl WHERE time > TD_TIME_PARSE("2013-01-01")
 
-### Scheduled Queries Are Not Supported
-
-We currently do not support scheduled queries for Impala.
 
 ## See Also
 
