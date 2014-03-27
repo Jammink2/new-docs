@@ -50,6 +50,7 @@ Treasure Data supports the following data types:
 * int
 * long
 * double
+* float
 * string
 * array&lt;T&gt;
 
