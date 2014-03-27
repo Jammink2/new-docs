@@ -235,7 +235,7 @@ os and ua return json. With _family, _major and _minor return a string. Other op
 
 ### Example
 
-    The example shows the result of parsing user agent from access log.
+The example shows the result of parsing user agent from access log.
 
     :::sql
     SELECT TD_PARSE_USER_AGENT(agent) AS agent FROM www_access
