@@ -30,6 +30,39 @@ The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt
     "200",4981
     "500",2
     "404",17
+    
+
+The Result Output to S3 also provide to write files in TSV format, and several options for both formats:
+
+Name      | Description                                                      | Restrictions                 | CSV default                  | TSV default            |
+:-------: | :--------------------------------------------------------------: | :--------------------------: | :--------------------------: | :--------------------: |
+format    | Main setting to specify the file format                          |                              | csv                          | csv                    |
+          |                                                                  |                              |                              | Use 'tsv' to select the TSV format |
+delimiter | Used to specify the delimiter character                          |                              | ,                            | \t                      |
+          |                                                                  |                              |(comma)                       | (tab)                   |
+quote     | Used to specify the quote character                              | not available for TSV format | "                            | no character            |
+          |                                                                  |                              |(double quote)                |                         |
+escape    | Specifies the character used to escape other special characters  | not available for TSV format | "                            |                         |
+          |              |                                                   |                              | (double quote)               |                         |
+null      | Used to specify how a 'null' value is displayed                  |                              | empty string                 | \N                      |
+          |                                                                  |                              |                              | (slash captial n)       |
+newline   | Used to specify the EOL (End-Of-Line) representation             |                              | \r\n                        　|                         |
+          |                                                                  |                              |(carriage return + line feed)　|                         |
+header    | Can be used to suppress the column header                        |                              | column header printed       　| column header printed   |
+          |                                                                  |                              | use 'false' to suppress     　| use 'false' to suppress |
+
+    :::term
+    $ td query \
+      --result 's3://accesskey:secretkey@/(bucket name)/path.tsv?format=tsv&null=empty' \
+      -w -d testdb \
+      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+
+    :::tsv
+    code  cnt
+    404 17
+    500 2
+    200 4981
+
 
 ### For Scheduled Jobs
 
