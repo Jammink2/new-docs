@@ -36,20 +36,13 @@ The Result Output to S3 also provide to write files in TSV format, and several o
 
 Name      | Description                                                      | Restrictions                 | CSV default                  | TSV default            |
 :-------: | :--------------------------------------------------------------: | :--------------------------: | :--------------------------: | :--------------------: |
-format    | Main setting to specify the file format                          |                              | csv                          | csv                    |
-          |                                                                  |                              |                              | Use 'tsv' to select the TSV format |
-delimiter | Used to specify the delimiter character                          |                              | ,                            | \t                      |
-          |                                                                  |                              |(comma)                       | (tab)                   |
-quote     | Used to specify the quote character                              | not available for TSV format | "                            | no character            |
-          |                                                                  |                              |(double quote)                |                         |
-escape    | Specifies the character used to escape other special characters  | not available for TSV format | "                            |                         |
-          |              |                                                   |                              | (double quote)               |                         |
-null      | Used to specify how a 'null' value is displayed                  |                              | empty string                 | \N                      |
-          |                                                                  |                              |                              | (slash captial n)       |
-newline   | Used to specify the EOL (End-Of-Line) representation             |                              | \r\n                        　|                         |
-          |                                                                  |                              |(carriage return + line feed)　|                         |
-header    | Can be used to suppress the column header                        |                              | column header printed       　| column header printed   |
-          |                                                                  |                              | use 'false' to suppress     　| use 'false' to suppress |
+format    | Main setting to specify the file format                          |                              | csv                          | csv (Use 'tsv' to select the TSV format)
+delimiter | Used to specify the delimiter character                          |                              | , (comma)                    | \t (tab)
+quote     | Used to specify the quote character                              | not available for TSV format | " (double quote)             | (no character)
+escape    | Specifies the character used to escape other special characters  | not available for TSV format | " (double quote)             | (no character)
+null      | Used to specify how a 'null' value is displayed                  |                              | (empty string)               | \N (slash captial n)
+newline   | Used to specify the EOL (End-Of-Line) representation             |                              | \r\n (carriage return + line feed) | \r\n (carriage return + line feed)
+header    | Can be used to suppress the column header                        |                              | column header printed use 'false' to suppress | column header printed (use 'false' to suppress)
 
     :::term
     $ td query \
