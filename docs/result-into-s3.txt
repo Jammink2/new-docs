@@ -50,6 +50,7 @@ header    | Can be used to suppress the column header                        |  
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
+
     :::tsv
     code  cnt
     404 17
