@@ -191,10 +191,6 @@ section 'paas', 'PaaS' do
     article 'heroku-share-apikey', 'Sharing API key from Multiple Heroku Apps'
     article 'heroku-notes', 'Heroku Addon Notes'
   end
-  category 'engine-yard', 'EngineYard Addon' do
-    article 'engine-yard-ruby', 'Ruby Apps on EngineYard'
-    article 'engine-yard-rails', 'Rails Apps on EngineYard'
-  end
   category 'beanstalk', 'Amazon Beanstalk' do
     article 'beanstalk', 'Apps on Amazon Beanstalk'
   end
