@@ -26,7 +26,7 @@ We will now configure td-agent to listen to port 24224 (This port number is arbi
 	  port 24224
 	  ...
 
-You can look up `YOUR_API_KEY` via the td-command by using `td apikey:show`.
+You can look up `YOUR_API_KEY` from the [console](https://console.treasuredata.com/users/current).
 
 ##Getting ntwitter + fluent-logger-node
 

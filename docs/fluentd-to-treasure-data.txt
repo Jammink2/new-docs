@@ -45,15 +45,7 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       use_ssl true
     </match>
 
-The `apikey` is a secret key to authenticate your account. You can get your apikey by using the `td` command after [signing up](https://console.treasuredata.com/users/sign_up) and installing Treasure Data.
-
-    :::term
-    $ gem install td
-    $ td account -f
-    Email: k@treasure-data.com
-    Passwaord:
-    $ td apikey:show
-    1be3de7d01be3de7d01be3de7d01be3de7d01be3
+The `apikey` is a secret key to authenticate your account. You can get your apikey from the [console](https://console.treasuredata.com/users/current).
 
 ## Confirm Data Upload
 

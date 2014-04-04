@@ -76,11 +76,7 @@ The config file comes with some sample settings. You will find the following lin
       use_ssl true
     </match>
 
-You will need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey by issuing the `td apikey:show` command.
-
-    :::term
-    $ td apikey:show
-    1be3de7d01be3de7d01be3de7d01be3de7d01be3
+You will need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey from the [console](https://console.treasuredata.com/users/current).
 
 Now restart the td-agent service.
 

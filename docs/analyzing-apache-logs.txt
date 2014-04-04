@@ -60,15 +60,7 @@ NOTE: On Redhat based systems, you might need to change the directory permission
 
 For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
-Next, specify your authentication key by setting the `apikey` option. You can view your api key with the `td apikey:show` command.
-
-NOTE: You must first authenticate your account using the `td account` command.
-
-    :::term
-    $ td apikey:show
-    3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
-
-Next, set the `apikey` option in your `td-agent.conf` file. 
+Next, specify your authentication key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current). Next, set the `apikey` option in your `td-agent.conf` file. 
 
 NOTE: *YOUR_API_KEY* should be your actual API key string.
 

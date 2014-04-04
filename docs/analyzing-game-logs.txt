@@ -59,15 +59,7 @@ For Linux systems, we provide deb/rpm packages.
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-You need to specify your authentication key in `/etc/td-agent/td-agent.conf`. You can check your apikey using the `td apikey:show` command.
-
-NOTE: You must first authenticate your account using the `td account` command.
-
-    :::term
-    $ td apikey:show
-    3b7118fd3ad7e35bbd3c0e4f607ec7263aa93c30
-
-Next, set the `apikey` option in your `td-agent.conf` file. 
+You need to specify your authentication key in `/etc/td-agent/td-agent.conf`. You can check your apikey from the [console](https://console.treasuredata.com/users/current). Next, set the `apikey` option in your `td-agent.conf` file. 
 
     :::text
     # Treasure Data Input and Output
