@@ -81,3 +81,19 @@ However, you can achieve the same result with
 This is because all the rows belonging to the same user_id go to the same reducer ("DISTRIBUTE BY user_id") and in each reducer, rows are sorted by time ("SORT BY time"). This is faster than the other query because it uses multiple reducers as opposed to a single reducer.
 
 You can learn more about the differences between ORDER BY and SORT BY [here](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+SortBy#LanguageManualSortBy-DifferencebetweenSortByandOrderBy).
+
+## Avoid "SELECT count(DISTINCT field) FROM tbl"
+
+This query looks familier to SQL users, but this query is very slow because **only one reducer** is used to process the request.
+
+    :::sql
+    SELECT count(DISTINCT field) FROM tbl
+
+So please rewrite the query like below to leverage multiple reducers.
+
+    :::sql
+    SELECT
+      count(1)
+    FROM (
+      SELECT DISTINCT field FROM tbl
+    ) t
