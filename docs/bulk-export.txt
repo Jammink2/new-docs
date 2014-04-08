@@ -6,25 +6,25 @@ At Treasure Data, we believe that your data belongs to you, even after importing
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com).
   * Amazon AWS account and Amazon S3 bucket.
 
 ## Table Dump
 
-The `td table:export` command will dump all the data uploaded to TD into your Amazon S3 bucket. Please specify the database and table from which to dump your data. 
+The `td table:export` command will dump all the data uploaded to TD into your Amazon S3 bucket. Please specify the database and table from which to dump your data.
 
 The dump is performed via MapReduce jobs.
 
     :::term
     usage:
       $ td table:export <db> <table>
-    
+
     example:
       $ td table:export example_db table1 --s3-bucket mybucket -k KEY_ID -s SECRET_KEY
-    
+
     description:
       Dump logs in a table to the specified storage
-    
+
     options:
       -f, --from TIME                  export data which is newer than or same with the TIME
       -t, --to TIME                    export data which is older than the TIME

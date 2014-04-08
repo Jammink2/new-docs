@@ -1,23 +1,21 @@
 # Command-line Interface
 
-The Treasure Data CLI allows you to create databases and tables, issue queries, view existing job results, and import/export data.
+The Treasure Data CLI allows you to create databases and tables, [import](one-time-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
 
-## Installation
+
+## Step 1: Installation
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
-
-NOTE: If you've followed the <a href="/articles/quickstart">Quickstart Guide</a>, you've already installed this.
 
 If you are familiar with Ruby, you can install `td` from the command line using `gem`.
 
     :::term
     $ gem install td
 
-Alternative installation options, including a Mac OSX installer and a Windows installer, can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasuredata.com/).
+Alternative installation options, including a Mac OSX installer, a Windows installer, or installing `td` as part of `td-agent` on Linux can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasuredata.com/).
 
 
-Step 1: Authorize
------------------
+## Step 2: Authorize
 
 Once you have installed the toolbelt, you will have access to the `td` command from your command line. Authorize your account with the `td account` command. Please use the user name and password you used when signing up when prompted.
 
@@ -25,11 +23,11 @@ Once you have installed the toolbelt, you will have access to the `td` command f
     $ td account -f
     Enter your Treasure Data credentials.
     Email: k@treasure-data.com
-    Password (typing will be hidden): 
+    Password (typing will be hidden):
     Authenticated successfully.
 
-Step 2: Query the Sample Dataset
------------------------------
+
+## Step 3: Query the Sample Dataset
 
 Let’s issue a SQL query. Out of the box, we have a table called www_access in the dabase called sample_db. The following query calculates the distribution of HTTP status codes.
 
@@ -54,12 +52,21 @@ Let’s issue a SQL query. Out of the box, we have a table called www_access in 
 
 The command above will take about 15-45 seconds, owing mainly to the overhead in setting up jobs within the cloud-based MapReduce engine.
 
-What's Next?
-------------
 
-You're now ready to import *your real data* to the cloud! The following tutorials will explain how to import your data (e.g. Application Logs, Middleware Logs) from various sources. For a deeper understanding of the platform, please refer to the [architecture overview article](architecture-overview).
+## Step 4: Import Data Into A Table
 
-#### Languages and Frameworks
+You're now ready to import **your real data** to the cloud! The following tutorials will explain how to import your data (e.g. Application Logs, Middleware Logs) from various sources. For a deeper understanding of the platform, please refer to the [architecture overview article](architecture-overview).
+
+### CLI
+
+This example shows how to use the CLI to generate a sample apache log in json format and import it into a brand new table in the 'sample_db' database.
+
+    :::term
+    $ td sample:apache sample_apache.json
+    $ td table:import sample_db sample_tbl \
+      --auto-create-table -f json sample_apache.json
+
+### Languages and Frameworks
 <table>
   <tr>
     <th colspan="3">Supported Languages</th>
@@ -79,22 +86,64 @@ You're now ready to import *your real data* to the cloud! The following tutorial
   </tr>
 </table>
 
-#### Middleware
+### Middleware
 * [Apache Logs](analyzing-apache-logs)
 * [Tailing Existing CSV or TSV Logs](td-agent-tail)
 
-## td help:all
+
+## Upgrading
+
+Depending on how the CLI was originally installed on your machine, there are different way it gets updated or can be updated.
+
+
+### Installed as Toolbelt on MACOSX or Windows
+
+Whether you downloaded the CLI as a Toolbelt installer package (.pkg file) for Mac OSX or as a Toolbelt installer executable for Windows (64 bit support only) from the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) website and installed it on a MACOSX machine, the Toolbelt CLI is enabled with ability to self update itself.
+
+Whenever a command is invoked from the CLI, the program will check whether a more updated version exists: if so it will download the updated version and install it in the background. The CLI will check for an updated version every hour. The user can at any time trigger an auto update with the following command:
+
+    :::term
+    $ td update
+
+The auto update feature is available as of v0.10.77. If you are running an earlier version (please check the version with the `td --version` command) please upgrade as soon as possbile by installing a more recent package from [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+
+### Installed as a Gem
+
+If you installed the CLI as a gem (whether on Linux, Windows, or Mac OSX) through:
+
+    :::term
+    $ gem install td
+
+you will need to periodically check whether a newer version exists. It is always reccomended to update to the latest version since we strive to maintain 100% backwards compatibilty. To update using the gem command run:
+
+    :::term
+    $ gem update td
+
+NOTE: If are using a ruby environment manager such as `rbevn` or `rvm`, different versions of the td CLI may be confined within each environment/ruby version in use.<br/>
+You will need to ensure each version and environment is updated independently.
+
+### Installed with td-agent
+
+The easier way of installing the td CLI in a Linux environment beside using a gem (see above) is to install td as part of the `td-agent` distribution package. Several Linux environments are supported, see [Installing the Treasure Data CLI](installing-the-cli) documentation page.
+
+The Treasure Agent environment provisions its own gem environemnt and the corresponding gem command is accessible in this location `/usr/lib*/fluent/ruby/bin/fluent-gem`. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
+
+    :::term
+    $ /usr/lib*/fluent/ruby/bin/fluent-gem update td
+
+
+## Additional Help
 
 Running `td help:all` shows the commands available in Treasure Data:
 
     :::term
     $ td help:all
-  
-      db:list             # Show list of tables in a database
-      db:show <db>        # Describe a information of a database
-      db:create <db>      # Create a database
-      db:delete <db>      # Delete a database
-      
+
+      database:list             # Show list of tables in a database
+      database:show <db>        # Describe a information of a database
+      database:create <db>      # Create a database
+      database:delete <db>      # Delete a database
+
       ....
 
 If you want more information about individual commands, you can run `td help <command>:<subcommand>`, e.g.,
@@ -115,3 +164,5 @@ If you want more information about individual commands, you can run `td help <co
     options:
       -n, --num_threads VAL            number of threads to get list in parallel
           --show-bytes                 show estimated table size in bytes
+
+See the [td command line tool reference](td-cli) page for a complete list of commands and their helpers.
