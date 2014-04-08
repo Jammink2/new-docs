@@ -161,7 +161,7 @@ This page documents most of `td` subcommands.
 
     -T, --type TYPE                  set table type (log or item)
         --primary-key PRIMARY_KEY_AND_TYPE
-                                     [primary key]:[primary key type]
+                                     [primary key]:[primary key type(int or string)]
 
 
 ## td table:delete
@@ -310,9 +310,9 @@ This page documents most of `td` subcommands.
 ###options:
 
 
-    -t, --to TIME                    end time of logs to delete
-    -f, --from TIME                  start time of logs to delete
-    -w, --wait                       wait for finishing the job
+    -t, --to TIME                    end time of logs to delete in Unix time multiple of 3600 (1 hour)
+    -f, --from TIME                  start time of logs to delete in Unix time multiple of 3600 (1 hour)
+    -w, --wait                       wait for the job to finish
 
 
 ## td table:expire
@@ -331,6 +331,436 @@ This page documents most of `td` subcommands.
 
 
     Expire data in table after specified number of days
+
+
+## td import:list
+
+###usage:
+
+
+    $ td import:list
+  
+###example:
+
+
+    $ td import:list
+  
+###description:
+
+
+    List bulk import sessions
+  
+###options:
+
+
+    -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
+
+
+## td import:show
+
+###usage:
+
+
+    $ td import:show <name>
+  
+###example:
+
+
+    $ td import:show
+  
+###description:
+
+
+    Show list of uploaded parts
+
+
+## td import:create
+
+###usage:
+
+
+    $ td import:create <name> <db> <table>
+  
+###example:
+
+
+    $ td import:create logs_201201 example_db event_logs
+  
+###description:
+
+
+    Create a new bulk import session to the the table
+
+
+## td import:jar_version
+
+  td-import-java 0.4.11 via import:jar_update
+
+
+## td import:jar_update
+
+  Installed td-import.jar is already at the latest version.
+
+
+## td import:prepare
+
+###usage:
+
+
+    $ td import:prepare <files...>
+  
+###example:
+
+
+    $ td import:prepare logs/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
+    $ td import:prepare logs/*.csv --format csv --columns date_code,uid,price,count --time-value 1394409600,10 -o parts/
+    $ td import:prepare mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
+  
+###description:
+
+
+    Convert files into part file format
+  
+###options:
+
+
+      -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
+      -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
+      -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+      -e, --encoding TYPE              encoding type [utf-8]
+      -o, --output DIR                 output directory
+      -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
+      -t, --time-column NAME           name of the time column
+      --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
+                                       users can auto-generate the time column's value in 2 ways:
+                                        * Fixed time value with --time-value TIME:
+                                          where TIME is a Unix time in seconds since Epoch. The time
+                                          column value is constant and equal to TIME seconds.
+                                          E.g. '--time-value 1394409600' assigns the equivalent of
+                                          timestamp 2014-03-10T00:00:00 to all records imported.
+                                        * Incremental time value with --time-value TIME,HOURS:
+                                          where TIME is the Unix time in seconds since Epoch and
+                                          HOURS is the maximum range of the timestamps in hours.
+                                          This mode can be used to assign incremental timestamps to
+                                          subsequent records. Timestmaps will be incremented by 1 second
+                                          each record. If the number of records causes the timestamp to
+                                          overflow the range (timestamp >= TIME + HOURS * 3600), the
+                                          next timestamp will restart at TIME and continue from there.
+                                          E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
+                                          to the first record, timestamp 1394409601 to the second, 1394409602
+                                          to the third, and so on until the 36000th record which will have
+                                          timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                          to the 36001th record will be 1394409600 again and the timestamp
+                                          will restart from there.
+      --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
+      --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
+      --only-columns NAME,NAME,...     only columns
+      --exclude-columns NAME,NAME,...  exclude columns
+      --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+      --error-records-output DIR       write error records; default directory is directory specified as 'output' option
+      --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
+      --column-types TYPE,TYPE,...     column types [string, int, long, double]
+      --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
+      -S, --all-string                 disable automatic type conversion
+  
+      CSV/TSV specific options:
+      --column-header                  first line includes column names
+      --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+      --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
+      --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
+  
+      MySQL specific options:
+      --db-url URL                     JDBC connection URL
+      --db-user NAME                   user name for MySQL account
+      --db-password PASSWORD           password for MySQL account
+  
+      REGEX specific options:
+      --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
+
+
+## td import:upload
+
+###usage:
+
+
+    $ td import:upload <session name> <files...>
+  
+###example:
+
+
+    $ td import:upload mysess parts/* --parallel 4
+    $ td import:upload mysess parts/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
+    $ td import:upload parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
+    $ td import:upload mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
+  
+###description:
+
+
+    Upload or re-upload files into a bulk import session
+###options:
+
+
+      --retry-count NUM                upload process will automatically retry at specified time; default: 10
+      --auto-create DATABASE.TABLE     create automatically bulk import session by specified database and table names
+                                       If you use 'auto-create' option, you MUST not specify any session name as first argument.
+      --auto-perform                   perform bulk import job automatically
+      --auto-commit                    commit bulk import job automatically
+      --auto-delete                    delete bulk import session automatically
+      --parallel NUM                   upload in parallel (default: 2; max 8)
+  
+      -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
+      -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
+      -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+      -e, --encoding TYPE              encoding type [utf-8]
+      -o, --output DIR                 output directory
+      -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
+      -t, --time-column NAME           name of the time column
+      --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
+                                       users can auto-generate the time column's value in 2 ways:
+                                        * Fixed time value with --time-value TIME:
+                                          where TIME is a Unix time in seconds since Epoch. The time
+                                          column value is constant and equal to TIME seconds.
+                                          E.g. '--time-value 1394409600' assigns the equivalent of
+                                          timestamp 2014-03-10T00:00:00 to all records imported.
+                                        * Incremental time value with --time-value TIME,HOURS:
+                                          where TIME is the Unix time in seconds since Epoch and
+                                          HOURS is the maximum range of the timestamps in hours.
+                                          This mode can be used to assign incremental timestamps to
+                                          subsequent records. Timestmaps will be incremented by 1 second
+                                          each record. If the number of records causes the timestamp to
+                                          overflow the range (timestamp >= TIME + HOURS * 3600), the
+                                          next timestamp will restart at TIME and continue from there.
+                                          E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
+                                          to the first record, timestamp 1394409601 to the second, 1394409602
+                                          to the third, and so on until the 36000th record which will have
+                                          timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                          to the 36001th record will be 1394409600 again and the timestamp
+                                          will restart from there.
+      --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
+      --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
+      --only-columns NAME,NAME,...     only columns
+      --exclude-columns NAME,NAME,...  exclude columns
+      --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+      --error-records-output DIR       write error records; default directory is directory specified as 'output' option
+      --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
+      --column-types TYPE,TYPE,...     column types [string, int, long, double]
+      --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
+      -S, --all-string                 disable automatic type conversion
+  
+      CSV/TSV specific options:
+      --column-header                  first line includes column names
+      --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+      --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
+      --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
+  
+      MySQL specific options:
+      --db-url URL                     JDBC connection URL
+      --db-user NAME                   user name for MySQL account
+      --db-password PASSWORD           password for MySQL account
+  
+      REGEX specific options:
+      --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
+
+
+## td import:auto
+
+###usage:
+
+
+    $ td import:auto <session name> <files...>
+  
+###example:
+
+
+    $ td import:auto mysess parts/* --parallel 4
+    $ td import:auto mysess parts/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
+    $ td import:auto parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
+    $ td import:auto mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
+  
+###description:
+
+
+    Automatically upload or re-upload files into a bulk import session. It's functional equivalent of 'upload' command with 'auto-perform', 'auto-commit' and 'auto-delete' options. But it, by default, doesn't provide 'auto-create' option. If you want 'auto-create' option, you explicitly must declare it as command options.
+  
+###options:
+
+
+      --retry-count NUM                upload process will automatically retry at specified time; default: 10
+      --auto-create DATABASE.TABLE     create automatically bulk import session by specified database and table names
+                                       If you use 'auto-create' option, you MUST not specify any session name as first argument.
+      --parallel NUM                   upload in parallel (default: 2; max 8)
+  
+      -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
+      -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
+      -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+      -e, --encoding TYPE              encoding type [utf-8]
+      -o, --output DIR                 output directory
+      -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
+      -t, --time-column NAME           name of the time column
+      --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
+                                       users can auto-generate the time column's value in 2 ways:
+                                        * Fixed time value with --time-value TIME:
+                                          where TIME is a Unix time in seconds since Epoch. The time
+                                          column value is constant and equal to TIME seconds.
+                                          E.g. '--time-value 1394409600' assigns the equivalent of
+                                          timestamp 2014-03-10T00:00:00 to all records imported.
+                                        * Incremental time value with --time-value TIME,HOURS:
+                                          where TIME is the Unix time in seconds since Epoch and
+                                          HOURS is the maximum range of the timestamps in hours.
+                                          This mode can be used to assign incremental timestamps to
+                                          subsequent records. Timestmaps will be incremented by 1 second
+                                          each record. If the number of records causes the timestamp to
+                                          overflow the range (timestamp >= TIME + HOURS * 3600), the
+                                          next timestamp will restart at TIME and continue from there.
+                                          E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
+                                          to the first record, timestamp 1394409601 to the second, 1394409602
+                                          to the third, and so on until the 36000th record which will have
+                                          timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                          to the 36001th record will be 1394409600 again and the timestamp
+                                          will restart from there.
+      --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
+      --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
+      --only-columns NAME,NAME,...     only columns
+      --exclude-columns NAME,NAME,...  exclude columns
+      --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+      --error-records-output DIR       write error records; default directory is directory specified as 'output' option
+      --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
+      --column-types TYPE,TYPE,...     column types [string, int, long, double]
+      --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
+      -S, --all-string                 disable automatic type conversion
+  
+      CSV/TSV specific options:
+      --column-header                  first line includes column names
+      --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+      --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
+      --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
+  
+      MySQL specific options:
+      --db-url URL                     JDBC connection URL
+      --db-user NAME                   user name for MySQL account
+      --db-password PASSWORD           password for MySQL account
+  
+      REGEX specific options:
+      --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
+
+
+## td import:perform
+
+###usage:
+
+
+    $ td import:perform <name>
+  
+###example:
+
+
+    $ td import:perform logs_201201
+  
+###description:
+
+
+    Start to validate and convert uploaded files
+  
+###options:
+
+
+    -w, --wait                       wait for finishing the job
+    -f, --force                      force start performing
+
+
+## td import:error_records
+
+###usage:
+
+
+    $ td import:error_records <name>
+  
+###example:
+
+
+    $ td import:error_records logs_201201
+  
+###description:
+
+
+    Show records which did not pass validations
+
+
+## td import:commit
+
+###usage:
+
+
+    $ td import:commit <name>
+  
+###example:
+
+
+    $ td import:commit logs_201201
+  
+###description:
+
+
+    Start to commit a performed bulk import session
+  
+###options:
+
+
+    -w, --wait                       wait for finishing the commit
+
+
+## td import:delete
+
+###usage:
+
+
+    $ td import:delete <name>
+  
+###example:
+
+
+    $ td import:delete logs_201201
+  
+###description:
+
+
+    Delete a bulk import session
+
+
+## td import:freeze
+
+###usage:
+
+
+    $ td import:freeze <name>
+  
+###example:
+
+
+    $ td import:freeze logs_201201
+  
+###description:
+
+
+    Reject succeeding uploadings to a bulk import session
+
+
+## td import:unfreeze
+
+###usage:
+
+
+    $ td import:unfreeze <name>
+  
+###example:
+
+
+    $ td import:unfreeze logs_201201
+  
+###description:
+
+
+    Unfreeze a frozen bulk import session
 
 
 ## td result:list
@@ -367,7 +797,7 @@ This page documents most of `td` subcommands.
 ###example:
 
 
-    $ td result mydb
+    $ td result name
   
 ###description:
 
@@ -385,7 +815,7 @@ This page documents most of `td` subcommands.
 ###example:
 
 
-    $ td result:create mydb mysql://my-server/mydb
+    $ td result:create name mysql://my-server/mydb
   
 ###description:
 
@@ -409,7 +839,7 @@ This page documents most of `td` subcommands.
 ###example:
 
 
-    $ td result:delete mydb
+    $ td result:delete name
   
 ###description:
 
@@ -535,7 +965,13 @@ This page documents most of `td` subcommands.
 
 
     -d, --database DB_NAME           use the database (required)
-    -t, --timezone TZ                name of the timezone (like Asia/Tokyo)
+    -t, --timezone TZ                name of the timezone.
+                                       Only extended timezones like 'Asia/Tokyo', 'America/Los_Angeles' are supported,
+                                       (no 'PST', 'PDT', etc...).
+                                       When a timezone is specified, the cron schedule is referred to that timezone.
+                                       Otherwise, the cron schedule is referred to the UTC timezone.
+                                       E.g. cron schedule '0 12 * * *' will execute daily at 5 AM without timezone option
+                                       and at 12PM with the -t / --timezone 'America/Los_Angeles' timezone option
     -D, --delay SECONDS              delay time of the schedule
     -r, --result RESULT_URL          write result to the URL (see also result:create subcommand)
     -u, --user NAME                  set user name for the result URL
@@ -588,7 +1024,13 @@ This page documents most of `td` subcommands.
     -q, --query SQL                  change the query
     -d, --database DB_NAME           change the database
     -r, --result RESULT_TABLE        change the result table
-    -t, --timezone TZ                change the name of the timezone (like Asia/Tokyo)
+    -t, --timezone TZ                name of the timezone.
+                                       Only extended timezones like 'Asia/Tokyo', 'America/Los_Angeles' are supported,
+                                       (no 'PST', 'PDT', etc...).
+                                       When a timezone is specified, the cron schedule is referred to that timezone.
+                                       Otherwise, the cron schedule is referred to the UTC timezone.
+                                       E.g. cron schedule '0 12 * * *' will execute daily at 5 AM without timezone option
+                                       and at 12PM with the -t / --timezone 'America/Los_Angeles' timezone option
     -D, --delay SECONDS              change the delay time of the schedule
     -P, --priority PRIORITY          set priority
     -R, --retry COUNT                automatic retrying count
@@ -676,8 +1118,10 @@ This page documents most of `td` subcommands.
     -P, --priority PRIORITY          set priority
     -R, --retry COUNT                automatic retrying count
     -q, --query PATH                 use file instead of inline query
-    -T, --type TYPE                  set query type (hive or pig)
+    -T, --type TYPE                  set query type (hive, pig, impala, presto)
         --sampling DENOMINATOR       enable random sampling to reduce records 1/DENOMINATOR
+    -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
+    -c, --column-header              output of the columns' header when the schema is available for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
 
 
@@ -705,7 +1149,10 @@ This page documents most of `td` subcommands.
     -w, --wait                       wait for finishing the job
     -G, --vertical                   use vertical table to show results
     -o, --output PATH                write result to the file
-    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json or msgpack)
+    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
+    -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
+    -c, --column-header              output of the columns' header when the schema is available
+                                       for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
 
 

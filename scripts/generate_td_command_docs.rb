@@ -7,7 +7,7 @@ def list_all_commands
   commands = []
   command_output.split("\n").each { |cmd|
     if m = /^  ([^ ]+)/.match(cmd)
-      commands << m[1] if not /^(status|import|bulk_import|apikey)/.match(m[1])
+      commands << m[1] if not /^(status|bulk_import|apikey)/.match(m[1])
     end
   }
   commands
@@ -18,7 +18,7 @@ def format_cmd_detail(cmd_str)
   cmd_str.split("\n").each { |line|
     if /^\w+:/.match(line)
       cmd_lines << "###" + line
-      cmd_lines << "\n" 
+      cmd_lines << "\n"
     elsif
       cmd_lines << ("  "+line)
     end
@@ -42,7 +42,7 @@ out_file.write(intro)
 
 list_all_commands.each { |cmd|
   cmd_detail = format_cmd_detail(`td help #{cmd}`)
-  
+
   desc = <<cmd
 
 ## td #{cmd}
