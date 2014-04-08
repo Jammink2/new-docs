@@ -16,3 +16,20 @@ Click on a job ID to go to the job details page, which shows basic information a
 
 ## Issue New Queries
 On the "Query" page, you can select a database and issue a new query. After clicking "Submit", you will be taken to the job details page for the new query.
+
+## Edit Access Control List (Free user can't use)
+Clicking on the "User" link on the navigation panel gives a list of all your users.
+
+                                  | ADMIN | FULL ACCESS | QUERY ONLY | IMPORT ONLY | NO ACCESS |
+:-------------------------------: | :---: | :---------: | :--------: | :---------: | :-------: |
+ADD USER                          | OK    |             |            |             |           |
+DELETE USER                       | OK    |             |            |             |           |
+CREATE DATABASE                   | OK    |             |            |             |           |
+DELETE DATABASE                   | OK    |             |            |             |           |
+CREATE TABLE                      | OK    | OK          |            |             |           |
+DELETE TABLE                      | OK    | OK          |            |             |           |
+DATA IMPORT (td-agent)            | OK    | OK          |            | OK          |           |
+DATA IMPORT (Bulk Import)         | OK    | OK          |            |             |           |
+DATA IMPORT (Result Output to TD) | OK    | OK          |            |             |           |
+DELETE DATA                       | OK    | OK          |            |             |           |
+ISSIE QUERY                       | OK    | OK          | OK         |             |           |
