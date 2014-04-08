@@ -1,35 +1,58 @@
 # Using the Web Console
 
-The Treasure Data [Web Console](http://console.treasuredata.com/) gives an overview of your account, including information about databases, tables, and jobs you've created. The console also shows the total storage size of your data (in bytes) and the total number of records you've accumulated.
+The Treasure Data [Web Console](http://console.treasuredata.com) gives an overview of your account, including information about databases & tables, jobs, scheduled queries, users, resource utilization, managing users, as well as creating new queries. The Web Console implements exactly the same functionalities provided by td CLI and some more.
 
-<p><center><img src="/images/web-console.png" width="500px" /></center></p>
-<br />
+## Databases & Tables
 
-## Databases
+Plesae visit the Console's [databases page](https://console.treasuredata.com/databases).
 
-The Databases page gives a list of all the databases you've created, the number of records they contain, the creation times, etc. Selecting an individual database shows all the tables that it contains. You can also create a new database by clicking on the "+" icon in the top righthand corner
+Each database show in the list above can own 0 to any number of tables. For example, click on the default 'sample_db' database to see the list of tables.
+Click on the table name to see a preview of the table content in the Table detailed view.
 
-## Job Results
-Clicking on the "Jobs" link on the navigation panel gives a list of all your recent jobs (and their status). For all jobs that ran successfully, the result is available in TXT, CSV, and TSV format. For jobs that are currently still running, you have the option of killing it.
+## Jobs
 
-Click on a job ID to go to the job details page, which shows basic information about the job, as well as the original query and the stderr and cmdout. This shows you exactly how the job performed and lets you debug any errors that may have occured.
+Please visit this page to get to [list of jobs](https://console.treasuredata.com/jobs). Jobs can be filtered by 'Running', 'Finished', 'Failed', and 'Slow'.
 
-## Issue New Queries
-On the "Query" page, you can select a database and issue a new query. After clicking "Submit", you will be taken to the job details page for the new query.
+Click on any of the job numbers to view the job details page. Click on any of the databases each job refers to, to visit the corresponding database.
 
-## Edit Access Control List (Free user can't use)
-Clicking on the "User" link on the navigation panel gives a list of all your users.
+Click on a job ID to go to the job details page, which shows basic information about the job, as well as the original query, as well as the job's output and details information. This shows you exactly how the job performed and gives you an high level overview of any error that may have occured.
 
-                                  | ADMIN | FULL ACCESS | QUERY ONLY | IMPORT ONLY | NO ACCESS |
-:-------------------------------: | :---: | :---------: | :--------: | :---------: | :-------: |
-ADD USER                          | OK    |             |            |             |           |
-DELETE USER                       | OK    |             |            |             |           |
-CREATE DATABASE                   | OK    |             |            |             |           |
-DELETE DATABASE                   | OK    |             |            |             |           |
-CREATE TABLE                      | OK    | OK          |            |             |           |
-DELETE TABLE                      | OK    | OK          |            |             |           |
-DATA IMPORT (td-agent)            | OK    | OK          |            | OK          |           |
-DATA IMPORT (Bulk Import)         | OK    | OK          |            |             |           |
-DATA IMPORT (Result Output to TD) | OK    | OK          |            |             |           |
-DELETE DATA                       | OK    | OK          |            |             |           |
-ISSIE QUERY                       | OK    | OK          | OK         |             |           |
+## Schedules
+
+The [schedules list](https://console.treasuredata.com/schedules) shows the list of the schedules for the account.
+Clicking on any of the schedules will open the schedule details page with information about it, the query associated to it, as well as a list of all the jobs that originated from the query itself.
+
+## Utilization
+
+The [utilization page](https://console.treasuredata.com/utilization) summarizes the utilization of the allocated computation cores as well as the total number of records, the total compressed size,  and number of queries issues.
+
+## New Queries and Schedules
+
+Please visit the [new query page](https://console.treasuredata.com/query_forms/new) to create a new query or define a new schedules query. This page also allow specifying a target to write the query output result onto.
+
+## Users and Access Control
+
+The [users page](https://console.treasuredata.com/users) displayes the users associated with an account. The [users page](https://console.treasuredata.com/users) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access. Various other roles are designed below administrator. See the table below for a summary of the permissions associated with each role.
+
+    :::term
+                                      | ADMIN | FULL ACCESS | QUERY ONLY | IMPORT ONLY | NO ACCESS |
+    :-------------------------------: | :---: | :---------: | :--------: | :---------: | :-------: |
+    ADD USER                          | OK    |             |            |             |           |
+    DELETE USER                       | OK    |             |            |             |           |
+    CREATE DATABASE                   | OK    |             |            |             |           |
+    DELETE DATABASE                   | OK    |             |            |             |           |
+    CREATE TABLE                      | OK    | OK          |            |             |           |
+    DELETE TABLE                      | OK    | OK          |            |             |           |
+    DATA IMPORT (td-agent)            | OK    | OK          |            | OK          |           |
+    DATA IMPORT (Bulk Import)         | OK    | OK          |            |             |           |
+    DATA IMPORT (Result Output to TD) | OK    | OK          |            |             |           |
+    DELETE DATA                       | OK    | OK          |            |             |           |
+    ISSIE QUERY                       | OK    | OK          | OK         |             |           |
+
+Provided the user has adequate permission to access the [users page](https://console.treasuredata.com/users), clicking on any of the users will allow doing one of the following:
+
+* grand/deny administrator permissions;
+* grand/deny full/query/import access to any of the databases.
+
+The logged in [user account page](https://console.treasuredata.com/users/current) is accessible provided information about the user as well as allowing changing the password and other basic information.
+
