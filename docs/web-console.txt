@@ -43,8 +43,8 @@ Delete Database                   | OK    |             |            |
 Create Table                      | OK    | OK          |            |
 Delete Table                      | OK    | OK          |            |
 Data Import (td-agent)            | OK    | OK          |            | OK
+Data Import (Result Output to TD) | OK    | OK          |            | OK
 Data Import (Bulk Import)         | OK    | OK          |            |
-Data Import (Result Output to TD) | OK    | OK          | OK         |
 Delete Data                       | OK    | OK          |            |
 Issue Query                       | OK    | OK          | OK         |
 

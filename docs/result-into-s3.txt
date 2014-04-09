@@ -7,15 +7,13 @@ This article explains how to write job results directly to Amazon S3.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * An Amazon S3 bucket with write permission.
 
-## Basic Usage
-
-### For On-demand Jobs
+## Usage
 
 For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written to the S3 bucket with the given name and path.
 
     :::term
     $ td query \
-      --result 's3://accesskey:secretkey@/bucketname/path.csv' \
+      --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
@@ -23,16 +21,7 @@ NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wik
 
 For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage S3 write access permissions.
 
-The result file is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.txt)) where the first line is a header with the column names, new line is CRLF, the text encoding is UTF-8, and &quot; (double quote) is used to quote strings, e.g.,
-
-    :::csv
-    code,cnt
-    "200",4981
-    "500",2
-    "404",17
-    
-
-The Result Output to S3 also provide to write files in TSV format, and several options for both formats:
+The default result output format is [CSV RFC 4180](http://www.ietf.org/rfc/rfc4180.txt). Output in TSV format is also supported. For both CSV and TSV formats these are the available options to customize the final format of the files written to S3:
 
 Name      | Description                                                      | Restrictions                 | CSV default                  | TSV default            |
 :-------: | :--------------------------------------------------------------: | :--------------------------: | :--------------------------: | :--------------------: |
@@ -40,32 +29,31 @@ format    | Main setting to specify the file format                          |  
 delimiter | Used to specify the delimiter character                          |                              | , (comma)                    | \t (tab)
 quote     | Used to specify the quote character                              | not available for TSV format | " (double quote)             | (no character)
 escape    | Specifies the character used to escape other special characters  | not available for TSV format | " (double quote)             | (no character)
-null      | Used to specify how a 'null' value is displayed                  |                              | (empty string)               | \N (slash captial n)
-newline   | Used to specify the EOL (End-Of-Line) representation             |                              | \r\n (carriage return + line feed) | \r\n (carriage return + line feed)
-header    | Can be used to suppress the column header                        |                              | column header printed use 'false' to suppress | column header printed (use 'false' to suppress)
+null      | Used to specify how a 'null' value is displayed                  |                              | (empty string)               | \N (backslash capital n)
+newline   | Used to specify the EOL (End-Of-Line) representation             |                              | \r\n (CRLF)                  | \r\n (CRLF)
+header    | Can be used to suppress the column header                        |                              | column header printed. Use 'false' to suppress | column header printed. Use 'false' to suppress
 
+ This is the a default sample output in CSV format when no customization is requested:
+
+    :::csv
+    code,cnt
+    "200",4981
+    "302",
+    "404",17
+    "500",2
+
+When the format=tsv, delimiter=", and null=NULL options are specified:
     :::term
     $ td query \
-      --result 's3://accesskey:secretkey@/(bucket name)/path.tsv?format=tsv&null=empty' \
+      --result 's3://accesskey:secretkey@/bucket_name/path/to/file.tsv?format=tsv&delimiter=%22&null=empty' \
       -w -d testdb \
       "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
 
-The result file is in TSV format, e.g.
+the output will change to:
 
     :::tsv
-    code  cnt
-    404 17
-    500 2
-    200 4981
-
-
-### For Scheduled Jobs
-
-For scheduled jobs, just add the `--result` option when scheduling a job. Just like an on-demand job, the results are sent to S3 once the job is completed. 
-
-    :::term
-    $ td result:create mys3 s3://accesskey:secretkey@/bucketname/
-    $ td sched:create hourly_count_example "0 * * * *" \
-      -d testdb \
-      --result mys3:path.csv \
-      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+    "code" "cnt"
+    "200" 4981
+    "302" NULL
+    "404" 17
+    "500" 2
