@@ -34,20 +34,19 @@ Please visit the [new query page](https://console.treasuredata.com/query_forms/n
 
 The [users page](https://console.treasuredata.com/users) displayes the users associated with an account. The [users page](https://console.treasuredata.com/users) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access. Various other roles are designed below administrator. See the table below for a summary of the permissions associated with each role.
 
-    :::term
-                                      | ADMIN | FULL ACCESS | QUERY ONLY | IMPORT ONLY | NO ACCESS |
-    :-------------------------------: | :---: | :---------: | :--------: | :---------: | :-------: |
-    ADD USER                          | OK    |             |            |             |           |
-    DELETE USER                       | OK    |             |            |             |           |
-    CREATE DATABASE                   | OK    |             |            |             |           |
-    DELETE DATABASE                   | OK    |             |            |             |           |
-    CREATE TABLE                      | OK    | OK          |            |             |           |
-    DELETE TABLE                      | OK    | OK          |            |             |           |
-    DATA IMPORT (td-agent)            | OK    | OK          |            | OK          |           |
-    DATA IMPORT (Bulk Import)         | OK    | OK          |            |             |           |
-    DATA IMPORT (Result Output to TD) | OK    | OK          |            |             |           |
-    DELETE DATA                       | OK    | OK          |            |             |           |
-    ISSIE QUERY                       | OK    | OK          | OK         |             |           |
+Action                            | Admin | Full Access | Query only | Import only
+:-------------------------------: | :---: | :---------: | :--------: | :---------:
+Add User                          | OK    |             |            |
+Delete User                       | OK    |             |            |
+Create Database                   | OK    |             |            |
+Delete Database                   | OK    |             |            |
+Create Table                      | OK    | OK          |            |
+Delete Table                      | OK    | OK          |            |
+Data Import (td-agent)            | OK    | OK          |            | OK
+Data Import (Bulk Import)         | OK    | OK          |            |
+Data Import (Result Output to TD) | OK    | OK          | OK         |
+Delete Data                       | OK    | OK          |            |
+Issue Query                       | OK    | OK          | OK         |
 
 Provided the user has adequate permission to access the [users page](https://console.treasuredata.com/users), clicking on any of the users will allow doing one of the following:
 
