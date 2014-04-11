@@ -9,6 +9,8 @@ This article explains how to bulk-import data using the `td import` command for 
 
 ## Why Bulk Import?
 
+<center><img src="/images/bulk-import.png" width="100%" /></center><br /><br />
+
 Because Treasure Data is a cloud service, the data needs to be transferred via an Internet network connection. This can get tricky once the data size gets big (> 100MB). Consider a couple of cases:
 
 * If the network becomes unstable, the import could fail halfway through the data transfer. There's no easy way to pick up from where you left off, and you will need to restart the upload from scratch.
@@ -18,7 +20,7 @@ We designed our bulk import feature to overcome these problems. You can now brea
 
 ## Bulk Import Mechanism: Prepare, Upload, Perform and Commit
 
-<img style="display:block" src="/images/bulk-import-mechanism.png"/>
+<center><img style="display:block" src="/images/bulk-import-mechanism.png" width="90%" /></center>
 
 Bulk Import consists of four key steps: prepare, upload, perform and commit.
 
