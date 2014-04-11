@@ -410,7 +410,9 @@ object {
         display: block;
         -webkit-font-smoothing: antialiased;
         font-size: 14px;
-        padding: 10px 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
         position: relative;
         z-index: 2;
       }

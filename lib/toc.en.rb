@@ -80,25 +80,33 @@ section 'import-data', 'Data Import' do
   end
 end
 
-section 'query-data', 'Data Processing' do
+section 'query-data', 'Data Management' do
   category 'data-set-management', 'Data Set Management' do
     article 'database-and-table', 'Database and Table Management'
     article 'schema', 'Schema Management'
-  end
-  category 'data-processing', 'Data Processing' do
-    article 'job', 'Job Management'
-    article 'schedule', 'Job Scheduling'
-  end
-  category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
+    article 'bulk-export', 'Data Export'
   end
-  category 'data-export', 'Data Export' do
-    article 'bulk-export', 'Bulk Data Export'
+  category 'job-management', 'Job Management' do
+    article 'job', 'Job Management'
   end
-  category 'performance-tuning', 'Performance Tuning' do
-    article 'performance-tuning', 'Performance Tuning'
+  category 'scheduled-job', 'Scheduled Job' do
+    article 'schedule', 'Scheduled Job'
   end
-  category 'result', 'Output Query Results' do
+end
+section 'Data Analysis', 'Data Analysis & Integration' do
+  category 'Hive QL Reference', 'Hive QL Reference' do
+    article 'hive', 'Hive Query Language (HiveQL) Overview'
+    article 'hive-operators', 'Hive Built-in Operators'
+    article 'hive-functions', 'Hive Built-in Functions'
+    article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
+    article 'udfs', 'Hive Treasure Data UDFs'
+    article 'performance-tuning', 'Hive Performance Tuning'
+  end
+  category 'Pig Latin Reference', 'Pig Latin Reference' do
+    article 'pig', 'Pig Latin Language'
+  end
+  category 'Job Result Output', 'Job Result Output' do
     article 'result-into-td', 'Writing Job Result into Treasure Data'
     article 'result-into-mysql', 'Writing Job Result into MySQL'
     article 'result-into-postgresql', 'Writing Job Result into PostgreSQL'
@@ -107,23 +115,18 @@ section 'query-data', 'Data Processing' do
     article 'result-into-ftp', 'Sending Job Result to FTP Server'
     article 'result-into-s3', 'Writing Job Result to S3'
     article 'result-into-leftronic', 'Sending Job Result to Leftronic'
-    # article 'result-into-mongodb', 'Writing the Job Result into your MongoDB'
-    # article 'result-into-redis', 'Writing the Job Result into your Redis'
-    # article 'result-into-riak', 'Writing the Job Result into your Riak'
-    # article 'result-into-dynamodb', 'Writing the Job Result into your DynamoDB'
   end
-end
-
-section 'Language References', 'Language References' do
-  category 'Hive QL Reference', 'Hive QL Reference' do
-    article 'hive', 'Hive Query Language (HiveQL) Overview'
-    article 'hive-operators', 'Hive Built-in Operators'
-    article 'hive-functions', 'Hive Built-in Functions'
-    article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
-    article 'udfs', 'Hive Treasure Data UDFs'
-  end
-  category 'Pig Latin Reference', 'Pig Latin Reference' do
-    article 'pig', 'Pig Latin Language'
+  category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
+    article 'tools', 'Overview'
+    article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
+    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
+    article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
+    article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
+    article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
+    article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
+    article 'r-language', 'R Language',                 ['R Language']
+    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
+    article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   end
 end
 
@@ -136,12 +139,6 @@ section 'tools-and-apis', 'Tools & APIs' do
     # article 'installing-the-cli', 'Installing the Treasure Data CLI'
     article 'command-line', 'Command-Line Interface'
   end
-  category 'api', 'REST API' do
-    article 'rest-api', 'REST API Specification'
-    article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
-    article 'rest-api-java-client', 'Using Java Binding of REST API'
-    article 'rest-api-node-client', 'Using Node.js Binding of REST API'
-  end
   category 'jdbc', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
   end
@@ -149,17 +146,11 @@ section 'tools-and-apis', 'Tools & APIs' do
   # category 'odbc', 'ODBC Driver' do
   #   article 'odbc-deiver', 'ODBC Driver'
   # end
-  category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
-    article 'tools', 'Overview'
-    article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
-    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
-    article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
-    article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
-    article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
-    article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
-    article 'r-language', 'R Language',                 ['R Language']
-    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
-    article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
+  category 'api', 'REST API' do
+    article 'rest-api', 'REST API Specification'
+    article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
+    article 'rest-api-java-client', 'Using Java Binding of REST API'
+    article 'rest-api-node-client', 'Using Node.js Binding of REST API'
   end
 end
 
