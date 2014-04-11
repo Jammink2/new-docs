@@ -21,6 +21,8 @@ In this model schema dependence adds a significant tax that can become prohibiti
 
 ## The TD Approach: Store-First, Schema-Later
 
+<center><img src="/images/schemaless.png" width="100%" /></center><br /><br />
+
 Unlike traditional warehousing platforms, TD users can assign schema even after importing data to a table. This means that you can add or remove fields at any time. 
 
 This system is much more flexible, and schema changes no longer take days of work.
