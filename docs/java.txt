@@ -17,7 +17,7 @@ NOTE: The <a href="/articles/heroku-java">Java Apps on Heroku</a> document expla
 
 td-logger-java requires `td-agent` to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of time-series data. td-agent is developed and maintained by Treasure Data, Inc.
 
-<center><img src="/images/td-agent-app.png" width="90%" /></center><br /><br />
+<center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
 
 The [td-logger-java](http://github.com/treasure-data/td-logger-java) library enables Java applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 

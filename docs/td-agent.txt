@@ -1,4 +1,4 @@
-# Multi-protocol Streaming Import (e.g., TCP/IP, HTTP, tailing a log file, etc.)
+# Overview of Streaming Import by Treasure Agent (td-agent)
 
 This article will explain how to continuously import data using the `td-agent` daemon.
 
