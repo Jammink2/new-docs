@@ -22,7 +22,8 @@ We designed our bulk import feature to overcome these problems. You can now brea
 
 Because bulk import is a complex mechanism to achieve performance reliability, you can have these short cuts to achieve your goal.
 
-- [Bulk Import from CSV files](bulk-import-from-csv)
+- [Bulk Import from CSV file](bulk-import-from-csv)
+- [Bulk Import from TSV file](bulk-import-from-tsv)
 - [Bulk Import from Databases (MySQL, PostgreSQL, MongoDB)](bulk-import-from-db)
 
 To understand the bulk import internals, please refer the documents below.

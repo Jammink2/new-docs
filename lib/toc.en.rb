@@ -51,7 +51,7 @@ section 'import-data', 'Data Import' do
     article 'one-time-import', 'One-Time Import'
   end
   category 'td-agent-language', 'Streaming Import' do
-    article 'td-agent', 'Overview of Streaming Import by Treasure Agent (td-agent)', ['fluentd', 'td-agent']
+    article 'td-agent', 'Streaming Import Overview', ['fluentd', 'td-agent']
     article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
     article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
     article 'rails', 'Streaming Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
@@ -72,9 +72,9 @@ section 'import-data', 'Data Import' do
   end
   category 'bulk-import-category', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import Overview'
+    article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-from-csv', 'Import data from CSV files'
     article 'bulk-import-from-db', 'Import data from Databases (MySQL/PostgresSQL/MongoDB)'
-    article 'bulk-import-internal', 'Bulk Import Internals'
   end
   category 'iphone-sdk', 'iPhone SDK' do
     article 'iphone-mobile-sdk', 'Treasure Data iPhone SDK'

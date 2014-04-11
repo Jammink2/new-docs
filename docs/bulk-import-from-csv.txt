@@ -1,4 +1,4 @@
-# Bulk Import from CSV Files
+# Bulk Import from CSV files
 
 This article explains how to import data from CSV files to Treasure Data.
 
@@ -7,27 +7,36 @@ This article explains how to import data from CSV files to Treasure Data.
   * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [Bulk Import](bulk-import)
 
+## Update Bulk Import
+
+First, please make sure you have an up-to-date version of our bulk import program.
+
+    :::term
+    $ td import:jar_update
+    Installed td-import.jar 0.x.xx into /path/to/.td/java
+
 ## Importing data from a CSV
 
 Suppose you have a file called `data.csv` and its content is like this:
 
     :::term
-    $ head data.csv
+    $ head -n 5 data.csv
     "host","log_name","date_time","method","url","res_code","bytes","referer","user_agent"
     "64.242.88.10","-","2004-03-07 16:05:49","GET","/twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables",401,12846,"",""
     "64.242.88.10","-","2004-03-07 16:06:51","GET","/twiki/bin/rdiff/TWiki/NewUserTemplate?rev1=1.3&rev2=1.2",200,4523,"",""
     "64.242.88.10","-","2004-03-07 16:10:02","GET","/mailman/listinfo/hsdivision",200,6291,"",""
     "64.242.88.10","-","2004-03-07 16:11:58","GET","/twiki/bin/view/TWiki/WikiSyntax",200,7352,"",""
 
-Open the terminal (OSX/Linux) or command prompt (Windows) and issue the following command
 
-    :::term
-    $ td import:upload \
+Next, please execute the following commands to upload the CSV file.
+
+    $ td db:create sampledb
+    $ td db:create sampletbl
+    $ td import:auto \
       --format csv --column-header \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
       --auto-create sampledb.sampletbl \
-      --auto-perform --auto-commit --auto-delete \
       ./data.csv
 
 In the above command, we assumed that:

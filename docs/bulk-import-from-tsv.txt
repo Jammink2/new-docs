@@ -1,0 +1,45 @@
+# Bulk Import from TSV files
+
+This article explains how to import data from TSV files to Treasure Data.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of [Bulk Import](bulk-import)
+
+## Update Bulk Import
+
+First, please make sure you have an up-to-date version of our bulk import program.
+
+    :::term
+    $ td import:jar_update
+    Installed td-import.jar 0.x.xx into /path/to/.td/java
+
+## Importing data from a TSV
+
+Suppose you have a file called `data.tsv` and its content is like this:
+
+    :::term
+    $ head -n 2 data.tsv
+    host   log_name     date_time       method  url     res_code        bytes   referer user_agent
+    64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846      
+
+Next, please execute the following commands to upload the TSV file.
+
+    $ td db:create sampledb
+    $ td db:create sampletbl
+    $ td import:auto \
+      --format tsv --column-header \
+      --time-column date_time \
+      --time-format "%Y-%m-%d %H:%M:%S" \
+      --auto-create sampledb.sampletbl \
+      ./data.tsv
+
+In the above command, we assumed that:
+
+* The data file is called `data.tsv` and is located in the current directory (hence `./data.tsv`)
+* The first line indicates column names
+* The time field is called "date_time"
+* The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
+
+For further details, check the [Bulk Import Internals](bulk-import-internal).
