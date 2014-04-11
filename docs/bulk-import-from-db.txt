@@ -6,6 +6,11 @@ This article explains how to dump data from several popular databases and import
 
 2) Use the [Bulk Import](bulk-import) feature to import the file into Treasure Data.
 
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of [Bulk Import](bulk-import)
+
 ## MySQL
 From the MySQL shell, export data to a CSV file as shown below:
 

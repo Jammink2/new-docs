@@ -71,8 +71,10 @@ section 'import-data', 'Data Import' do
     article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                             ['fluentd', 'td-agent']
   end
   category 'bulk-import-category', 'Bulk Import' do
-    article 'bulk-import', 'Bulk Import'
-    article 'bulk-import-from-db', 'Import data from MySQL/PostgresSQL/MongoDB'
+    article 'bulk-import', 'Bulk Import Overview'
+    article 'bulk-import-from-csv', 'Import data from CSV files'
+    article 'bulk-import-from-db', 'Import data from Databases (MySQL/PostgresSQL/MongoDB)'
+    article 'bulk-import-internal', 'Bulk Import Internals'
   end
   category 'mobile-sdk', 'Mobile SDK' do
     article 'android-mobile-sdk', 'Treasure Data Android SDK'

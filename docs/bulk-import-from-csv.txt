@@ -4,8 +4,8 @@ This article explains how to import data from CSV files to Treasure Data.
 
 ## Prerequisites
 
-* An account with Treasure Data ([You can sign up here](https://console.treasuredata.com/users/sign_up))
-* Treasure Data command line tool ([You can download it here](http://toolbelt.treasuredata.com/))
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of [Bulk Import](bulk-import)
 
 ## Importing data from a CSV
 
@@ -13,7 +13,6 @@ Suppose you have a file called `data.csv` and its content is like this:
 
     :::term
     $ head data.csv
-
     "host","log_name","date_time","method","url","res_code","bytes","referer","user_agent"
     "64.242.88.10","-","2004-03-07 16:05:49","GET","/twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables",401,12846,"",""
     "64.242.88.10","-","2004-03-07 16:06:51","GET","/twiki/bin/rdiff/TWiki/NewUserTemplate?rev1=1.3&rev2=1.2",200,4523,"",""
@@ -23,9 +22,13 @@ Suppose you have a file called `data.csv` and its content is like this:
 Open the terminal (OSX/Linux) or command prompt (Windows) and issue the following command
 
     :::term
-    $ td import:upload --format csv --column-header --time-column \
-    date_time --time-format "%Y-%m-%d %H:%M:%S" ./data.csv \
-    --auto-create sampledb.sampletbl --auto-perform --auto-commit --auto-delete
+    $ td import:upload \
+      --format csv --column-header \
+      --time-column date_time \
+      --time-format "%Y-%m-%d %H:%M:%S" \
+      --auto-create sampledb.sampletbl \
+      --auto-perform --auto-commit --auto-delete \
+      ./data.csv
 
 In the above command, we assumed that:
 
@@ -35,6 +38,4 @@ In the above command, we assumed that:
 * The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
 * The table called `sampletbl` would be created in the database called `sampledb` on Treasure Data.
 
-For further details, please see [this page](bulk-import).
-
-Do you need to import data from an RDBMS? [See here](bulk-import-from-db).
+For further details, check the [Bulk Import Internals](bulk-import-internal).
