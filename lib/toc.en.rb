@@ -51,7 +51,7 @@ section 'import-data', 'Data Import' do
     article 'one-time-import', 'One-Time Import'
   end
   category 'td-agent-language', 'Streaming Import' do
-    article 'td-agent', 'Multi-protocol Streaming Import (e.g., TCP/IP, HTTP, tailing a log file, etc.)', ['fluentd', 'td-agent']
+    article 'td-agent', 'Overview of Streaming Import by Treasure Agent (td-agent)', ['fluentd', 'td-agent']
     article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
     article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
     article 'rails', 'Streaming Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
@@ -60,17 +60,15 @@ section 'import-data', 'Data Import' do
     article 'perl', 'Streaming Import from Perl Applications',           ['fluentd', 'td-agent']
     article 'nodejs', 'Streaming Import from Node.js Applications',      ['fluentd', 'td-agent']
     article 'scala', 'Streaming Import from Scala Applications',         ['fluentd', 'td-agent']
-  end
-  category 'td-agent-advanced', 'Streaming Import (Advanced)' do
-    article 'td-agent-high-availability', 'High-Availability td-agent Configurations', ['fluentd', 'td-agent']
-    article 'td-agent-monitoring', 'Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
-    article 'td-agent-upgrade', 'Upgrading td-agent',                                  ['fluentd', 'td-agent']
-    article 'td-agent-tail', 'Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
-    article 'td-agent-copy', 'Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
-    article 'td-agent-http', 'Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
-    article 'td-agent-scribe', 'Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
-    article 'fluentd-to-treasure-data', 'Using Fluentd Ruby gem',                      ['fluentd']
-    article 'td-agent-changelog', 'ChangeLog of td-agent',                             ['fluentd', 'td-agent']
+    article 'td-agent-high-availability', 'Config: High-Availability td-agent Configurations', ['fluentd', 'td-agent']
+    article 'td-agent-tail', 'Config: Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
+    article 'td-agent-copy', 'Config: Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
+    article 'td-agent-http', 'Config: Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
+    article 'td-agent-scribe', 'Config: Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
+    article 'fluentd-to-treasure-data', 'Ops: Using Fluentd Ruby gem',                      ['fluentd']
+    article 'td-agent-monitoring', 'Ops: Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
+    article 'td-agent-upgrade', 'Ops: Upgrading td-agent',                                  ['fluentd', 'td-agent']
+    article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                             ['fluentd', 'td-agent']
   end
   category 'bulk-import-category', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import'
@@ -116,14 +114,27 @@ section 'query-data', 'Data Processing' do
   end
 end
 
-section 'tools-and-apis', 'Tools & APIs' do
-  category 'command-line', 'Command-line Interface' do
-    # article 'using-the-cli', 'CLI Usage'
-    # article 'installing-the-cli', 'Installing the Treasure Data CLI'
-    article 'command-line', 'Command-line Interface'
+section 'Language References', 'Language References' do
+  category 'Hive QL Reference', 'Hive QL Reference' do
+    article 'hive', 'Hive Query Language (HiveQL) Overview'
+    article 'hive-operators', 'Hive Built-in Operators'
+    article 'hive-functions', 'Hive Built-in Functions'
+    article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
+    article 'udfs', 'Hive Treasure Data UDFs'
   end
+  category 'Pig Latin Reference', 'Pig Latin Reference' do
+    article 'pig', 'Pig Latin Language'
+  end
+end
+
+section 'tools-and-apis', 'Tools & APIs' do
   category 'web-console', 'Web Console' do
     article 'web-console', 'Using the Web Console'
+  end
+  category 'command-line', 'Command-Line Interface' do
+    # article 'using-the-cli', 'CLI Usage'
+    # article 'installing-the-cli', 'Installing the Treasure Data CLI'
+    article 'command-line', 'Command-Line Interface'
   end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'
@@ -149,19 +160,6 @@ section 'tools-and-apis', 'Tools & APIs' do
     article 'r-language', 'R Language',                 ['R Language']
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
     article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
-  end
-end
-
-section 'Language References', 'Language References' do
-  category 'Hive QL Reference', 'Hive QL Reference' do
-    article 'hive', 'Hive Query Language (HiveQL) Overview'
-    article 'hive-operators', 'Hive Built-in Operators'
-    article 'hive-functions', 'Hive Built-in Functions'
-    article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
-    article 'udfs', 'Hive Treasure Data UDFs'
-  end
-  category 'Pig Latin Reference', 'Pig Latin Reference' do
-    article 'pig', 'Pig Latin Language'
   end
 end
 
