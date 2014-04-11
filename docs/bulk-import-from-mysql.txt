@@ -1,6 +1,6 @@
-# Bulk Import from TSV file
+# Bulk Import from MySQL
 
-This article explains how to import data from TSV files to Treasure Data.
+This article explains how to import data from MySQL to Treasure Data.
 
 ## Prerequisites
 
@@ -15,31 +15,25 @@ First, please make sure you have an up-to-date version of our bulk import progra
     $ td import:jar_update
     Installed td-import.jar 0.x.xx into /path/to/.td/java
 
-## Importing data from a TSV
+## Importing data from MySQL
 
-Suppose you have a file called `data.tsv` and its content is like this:
-
-    :::term
-    $ head -n 2 data.tsv
-    host   log_name     date_time       method  url     res_code        bytes   referer user_agent
-    64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846      
-
-Next, please execute the following commands to upload the TSV file.
+Please execute the following commands to upload the CSV file.
 
     $ td db:create sampledb
     $ td table:create sampledb sampletbl
     $ td import:auto \
-      --format tsv --column-header \
+      --format mysql \
       --time-column date_time \
-      --time-format "%Y-%m-%d %H:%M:%S" \
-      --auto-create sampledb.sampletbl \
-      ./data.tsv
+      --db-url jdbc:mysql://localhost/mydb \
+      --db-user myuser \
+      --db-password mypass
+      mytable
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 
-* The data file is called `data.tsv` and is located in the current directory (hence `./data.tsv`)
+* The data file is called `data.csv` and is located in the current directory (hence `./data.csv`)
 * The first line indicates column names
 * The time field is called "date_time"
 * The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)

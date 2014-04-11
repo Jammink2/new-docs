@@ -1,6 +1,6 @@
-# Bulk Import from CSV file
+# Bulk Import from Amazon S3
 
-This article explains how to import data from CSV files to Treasure Data.
+This article explains how to import data from Amazon S3 to Treasure Data.
 
 ## Prerequisites
 
@@ -15,12 +15,11 @@ First, please make sure you have an up-to-date version of our bulk import progra
     $ td import:jar_update
     Installed td-import.jar 0.x.xx into /path/to/.td/java
 
-## Importing data from a CSV
+## Importing data from Amazon S3
 
-Suppose you have a file called `data.csv` and its content is like this:
+Suppose you have a file called `data.csv` on Amazon S3 and its content is like this:
 
     :::term
-    $ head -n 5 data.csv
     "host","log_name","date_time","method","url","res_code","bytes","referer","user_agent"
     "64.242.88.10","-","2004-03-07 16:05:49","GET","/twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables",401,12846,"",""
     "64.242.88.10","-","2004-03-07 16:06:51","GET","/twiki/bin/rdiff/TWiki/NewUserTemplate?rev1=1.3&rev2=1.2",200,4523,"",""
@@ -35,14 +34,14 @@ Next, please execute the following commands to upload the CSV file.
       --format csv --column-header \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
-      --auto-create sampledb.sampletbl \
-      ./data.csv
+      --auto-create sampledb.sampletbl
+      "s3://<access_key_id>:<secret_key>@/mybucket/path/to/*.csv"
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 
-* The data file is called `data.csv` and is located in the current directory (hence `./data.csv`)
+* The CSV files are located at AmazonS3, within a bucket called `mybucket` with a path under `/path/to/`.
 * The first line indicates column names
 * The time field is called "date_time"
 * The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)

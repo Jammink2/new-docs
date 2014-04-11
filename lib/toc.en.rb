@@ -73,8 +73,13 @@ section 'import-data', 'Data Import' do
   category 'bulk-import-category', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import Overview'
     article 'bulk-import-internal', 'Bulk Import Internals'
-    article 'bulk-import-from-csv', 'Import data from CSV files'
-    article 'bulk-import-from-db', 'Import data from Databases (MySQL/PostgresSQL/MongoDB)'
+    article 'bulk-import-from-csv', 'Bulk Import from CSV file'
+    article 'bulk-import-from-tsv', 'Bulk Import from TSV file'
+    article 'bulk-import-from-json', 'Bulk Import from JSON file'
+    article 'bulk-import-from-s3', 'Bulk Import from Amazon S3'
+    article 'bulk-import-from-mysql', 'Bulk Import from MySQL'
+    article 'bulk-import-from-postgres', 'Bulk Import from PostgreSQL'
+    article 'bulk-import-from-mongodb', 'Bulk Import from MongoDB'
   end
   category 'iphone-sdk', 'iPhone SDK' do
     article 'iphone-mobile-sdk', 'Treasure Data iPhone SDK'

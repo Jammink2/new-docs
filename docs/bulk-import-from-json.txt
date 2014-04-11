@@ -1,6 +1,6 @@
-# Bulk Import from TSV file
+# Bulk Import from JSON file
 
-This article explains how to import data from TSV files to Treasure Data.
+This article explains how to import data from JSON files to Treasure Data.
 
 ## Prerequisites
 
@@ -15,31 +15,30 @@ First, please make sure you have an up-to-date version of our bulk import progra
     $ td import:jar_update
     Installed td-import.jar 0.x.xx into /path/to/.td/java
 
-## Importing data from a TSV
+## Importing data from a JSON
 
-Suppose you have a file called `data.tsv` and its content is like this:
+Suppose you have a file called `data.json` and its content is like this:
 
     :::term
-    $ head -n 2 data.tsv
-    host   log_name     date_time       method  url     res_code        bytes   referer user_agent
-    64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846      
+    $ head -n 1 data.json
+    {"host":"224.225.147.72","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":43,"agent":"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)","date_time":"2004-03-07 16:05:49"}
 
-Next, please execute the following commands to upload the TSV file.
+Next, please execute the following commands to upload the JSON file.
 
     $ td db:create sampledb
     $ td table:create sampledb sampletbl
     $ td import:auto \
-      --format tsv --column-header \
+      --format json --column-header \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
       --auto-create sampledb.sampletbl \
-      ./data.tsv
+      ./data.json
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 
-* The data file is called `data.tsv` and is located in the current directory (hence `./data.tsv`)
+* The data file is called `data.json` and is located in the current directory (hence `./data.json`)
 * The first line indicates column names
 * The time field is called "date_time"
 * The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)

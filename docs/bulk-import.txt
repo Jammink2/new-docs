@@ -24,7 +24,11 @@ Because bulk import is a complex mechanism to achieve performance reliability, y
 
 - [Bulk Import from CSV file](bulk-import-from-csv)
 - [Bulk Import from TSV file](bulk-import-from-tsv)
-- [Bulk Import from Databases (MySQL, PostgreSQL, MongoDB)](bulk-import-from-db)
+- [Bulk Import from JSON file](bulk-import-from-json)
+- [Bulk Import from Amazon S3](bulk-import-from-s3)
+- [Bulk Import from MySQL](bulk-import-from-mysql)
+- [Bulk Import from PostgreSQL](bulk-import-from-postgresql)
+- [Bulk Import from MongoDB](bulk-import-from-mongodb)
 
 To understand the bulk import internals, please refer the documents below.
 

@@ -1,0 +1,22 @@
+# Bulk Import from PostgreSQL
+
+This article explains how to dump data from PostgreSQL and import them into Treasure Data.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of [Bulk Import](bulk-import)
+
+## Dump
+Use `copy` to export a table from PostgreSQL to a CSV file as shown below:
+
+    :::term
+    COPY users TO '/tmp/data.csv' DELIMITER ','
+
+For more information, please see the [PostgreSQL documentation](http://www.postgresql.org/docs/current/static/sql-copy.html).
+
+## Bulk Import CSV file
+
+Please refer [Bulk Import from CSV](bulk-import-from-csv) about how to import CSV files.
+
+For further details, check the [Bulk Import Internals](bulk-import-internal).
