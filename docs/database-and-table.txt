@@ -4,13 +4,21 @@ Treasure Data uses the same convention as Relational Database Management Systems
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data.
 
-## Database Management
+## Database and Table
 
-A *Database* is a collection of tables.
+A *Database* is a collection of tables, which is similar to other database systems. *Tables* contain your actual data. A given table can only belong to a single database.
 
-### Creating a Database
+## Management from Web Console
+
+[Databases](https://console.treasuredata.com/databases) page allows you to navigate/create/delete databases and tables from the browser. This is the most preferred way to interact with dbs and tables.
+
+## Management from Toolbelt
+
+By using [the toolbelt](http://toolbelt.treasuredata.com), you can manage databases and tables from the command line.
+
+#### Creating a Database
 
 The 'db:create' sub-command creates a database. For example, the following command will create a table named 'test_db' on the cloud. 
 
@@ -21,7 +29,7 @@ NOTE: The database name only supports alphanumeric characters and underscores. H
 
 Your local environment remains unchanged; the database resides solely on the cloud.
 
-### A List of Your Databases
+#### A List of Your Databases
 
 The 'dbs' sub-command lists all the databases in your account.
 
@@ -36,7 +44,7 @@ The 'dbs' sub-command lists all the databases in your account.
     +---------------+
     3 rows in set
 
-### Removing a Database
+#### Removing a Database
 
 The 'db:delete' sub-command removes a database. This will remove all tables and all data stored within the database as well. 
 
@@ -46,11 +54,7 @@ The 'db:delete' sub-command removes a database. This will remove all tables and 
 
 NOTE: This operation cannot be rolled back. The data will be unrecoverable.
 
-## Table Management
-
-*Tables* contain your actual data. A given table can only belong to a single database.
-
-### Creating a Table
+#### Creating a Table
 
 The 'table:create' sub-command creates a table. For example, the following command will create a table named 'test_table' within the database 'test_db'.
 
@@ -62,7 +66,7 @@ NOTE: The table name only supports alphanumeric characters and underscores. Hyph
 
 Much like your database, this table only exists on the cloud. Your local environment remains unchanged. 
 
-### A List of Your Tables
+#### A List of Your Tables
 
 The 'tables' sub-command lists all the tables within the specified database. The number of records in each table will be shown as well (currently zero).
 
@@ -91,7 +95,7 @@ Issuing the 'tables' command without an argument will list all the databases and
     +----------+-------------+------+-------------+
     8 rows in set
 
-### Drop Table
+#### Drop Table
 
 The 'table:delete' sub-command removes a table from a database. This will remove all data stored within the table as well. 
 
