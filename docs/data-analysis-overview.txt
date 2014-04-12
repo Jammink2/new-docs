@@ -34,7 +34,7 @@ We take great care in distributing and operating our scheduler in order to achie
 
 #### 1) Result Output
 
-[Result Output](/categories/Job%20Result%20Output) is a feature to push Treasure Data's query result into other systems, such as RDBMS (MySQL, PostgreSQL, RedShift), Google Spread Sheet, FTP, etc. By using this feature, you can integrate Treasure Data with your existing system instantly.
+[Result Output](/categories/result) is a feature to push Treasure Data's query result into other systems, such as RDBMS (MySQL, PostgreSQL, RedShift), Google Spread Sheet, FTP, etc. By using this feature, you can integrate Treasure Data with your existing system instantly.
 
 You can use [Scheduled Jobs](schedule) with Result Output, so that you can periodically launch Treasure Data jobs and write the result into somewhere else.
 
