@@ -8,16 +8,7 @@ Step 1: Sign Up
 
 [Sign up](https://console.treasuredata.com/users/sign_up) for Treasure Data if you haven't yet.
 
-Step 2: Confirm Your Email Address (recommended)
-------------------------------------------------
-
-<img style="margin:auto" src="/images/quickstart-confirm-email.png" alt="confirm your email"/>
-
-Once you sign up, we  send you an email to confirm your email address. You should confirm your email at some point to get important feature- and service-related announcements, but feel free to skip this step if you are in a hurry.
-
-<img style="margin:auto" src="/images/quickstart-tutorial-unconfirmed.png" alt="confirm your email"/>
-
-Step 3: Query the Sample Table
+Step 2: Query the Sample Table
 ------------------------------
 
 Let's query the sample table!
