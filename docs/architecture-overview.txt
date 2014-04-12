@@ -5,7 +5,7 @@ Architecture Overview
 
 Treasure Data is a **Big Data as-a-Service**, based on *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud.
 
-<p><center><img src="/images/td_high_level_overview.png" width="500px" /></center></p>
+<p><center><img src="/images/td_high_level_overview.png" width="100%" /></center></p>
 <br />
 
 Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
@@ -45,8 +45,7 @@ We provide a **Cloud-based Data Warehousing** service. You can store, manage, an
 
 This is Treasure Data's architecture.
 
-<p><center><img src="/images/architecture.png" width="500px" /></center></p>
-<br />
+<p><center><img src="/images/td_high_level_overview.png" width="100%" /></center></p>
 <br />
 
 Key features include:
