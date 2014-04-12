@@ -89,21 +89,28 @@ section 'import-data', 'Data Import' do
   end
 end
 
-section 'query-data', 'Data Management' do
-  category 'data-set-management', 'Data Set Management' do
-    article 'database-and-table', 'Database and Table Management'
+section 'query-data', 'Data Set Management' do
+  category 'database-and-table', 'Database and Table' do
+    article 'database-and-table', 'Database and Table'
+  end
+  category 'schema', 'Schema' do
     article 'schema', 'Schema Management'
+  end
+  category 'data-deletion', 'Data Deletion' do
     article 'deletion', 'Data Deletion'
+  end
+  category 'data-export', 'Data Export' do
     article 'bulk-export', 'Data Export'
+  end
+end
+
+section 'Data Analysis', 'Data Analysis & Integration' do
+  category 'data-analysis-overview', 'Overview' do
+    article 'data-analysis-overview', 'Overview'
   end
   category 'job-management', 'Job Management' do
     article 'job', 'Job Management'
   end
-  category 'scheduled-job', 'Scheduled Job' do
-    article 'schedule', 'Scheduled Job'
-  end
-end
-section 'Data Analysis', 'Data Analysis & Integration' do
   category 'Hive QL Reference', 'Hive QL Reference' do
     article 'hive', 'Hive Query Language (HiveQL) Overview'
     article 'hive-operators', 'Hive Built-in Operators'
@@ -114,6 +121,9 @@ section 'Data Analysis', 'Data Analysis & Integration' do
   end
   category 'Pig Latin Reference', 'Pig Latin Reference' do
     article 'pig', 'Pig Latin Language'
+  end
+  category 'scheduled-job', 'Scheduled Job' do
+    article 'schedule', 'Scheduled Job'
   end
   category 'Job Result Output', 'Job Result Output' do
     article 'result-into-td', 'Writing Job Result into Treasure Data'

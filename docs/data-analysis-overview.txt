@@ -1,0 +1,47 @@
+# Data Analysis and Integrations
+
+This article explains the different options for processing and analyzing the data within Treasure Data.
+
+## Data Analysis and Integration Options
+
+Once the data is in, Treasure Data provides a wide range of data analysis and data integration options.
+
+<center><img src="/images/analysis.png" width="100%" /></center><br /><br />
+
+## Basic Jobs with Multiple Engines
+
+Treasure Data allows users to issue jobs (see [Job Management](job)) to process the data. When you issue the jobs, you can specify which data processing engine to use. Currently we're supporting three types of the engine.
+
+#### 1) Heavy Lifting SQL (Hive)
+
+[Hive](/categories/Hive%20QL%20Reference) is a MapReduce-based SQL engine. This engine is really powerful when you do large data processing and heavy JOINs. Often used for ETL or sessionization.
+
+#### 2) Scripted Processing (Pig)
+
+[Pig](/categories/Pig%20Latin%20Reference) is a relational data-flow language built on top of the Hadoop platform. If you need the complex data processing which requires multiple phases of data transformation, Pig would be recommended.
+
+#### 3) Interactive SQL (TQA)
+
+TQA provides the low-latency SQL access to the dataset.
+
+## Scheduled Jobs
+
+Treasure Data has a scheduler feature called [Scheduled Jobs](schedule) that supports periodic query execution. This allows you to launch hourly / daily / weekly / monthly jobs, **WITHOUT having a cron** daemon.
+
+We take great care in distributing and operating our scheduler in order to achieve high availability. You can use any engines mentioned above for scheduled jobs.
+
+## BI / Data Integrations
+
+#### 1) Result Output
+
+[Result Output](/categories/Job%20Result%20Output) is a feature to push Treasure Data's query result into other systems, such as RDBMS (MySQL, PostgreSQL, RedShift), Google Spread Sheet, FTP, etc. By using this feature, you can integrate Treasure Data with your existing system instantly.
+
+You can use [Scheduled Jobs](schedule) with Result Output, so that you can periodically launch Treasure Data jobs and write the result into somewhere else.
+
+#### 2) JDBC Driver
+
+Our [JDBC Driver](jdbc-driver) allows you to query from your custom Java applications & Java-based BI tools.
+
+#### 3) ODBC Driver
+
+TQA supports direct connection to Tableau via ODBC driver.
