@@ -1,3 +1,6 @@
 # Change Email Address
 
-Unfortunately, this is currently a manual operation. Please email us at `support@treasure-data.com`, with your 1) old email address, and 2) new email address.
+You can change the email from the Web console.
+
+Please access to [user's page](https://console.treasuredata.com/users/current), and change the email.
+
