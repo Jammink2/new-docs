@@ -17,6 +17,10 @@ Click on any of the job numbers to view the job details page. Click on any of th
 
 Click on a job ID to go to the job details page, which shows basic information about the job, as well as the original query, as well as the job's output and details information. This shows you exactly how the job performed and gives you an high level overview of any error that may have occured.
 
+## New Queries and Schedules
+
+Please visit the [new query page](https://console.treasuredata.com/query_forms/new) to create a new query or define a new schedules query. This page also allow specifying a target to write the query output result onto.
+
 ## Schedules
 
 The [schedules list](https://console.treasuredata.com/schedules) shows the list of the schedules for the account.
@@ -26,32 +30,8 @@ Clicking on any of the schedules will open the schedule details page with inform
 
 The [utilization page](https://console.treasuredata.com/utilization) summarizes the utilization of the allocated computation cores as well as the total number of records, the total compressed size,  and number of queries issues.
 
-## New Queries and Schedules
-
-Please visit the [new query page](https://console.treasuredata.com/query_forms/new) to create a new query or define a new schedules query. This page also allow specifying a target to write the query output result onto.
-
 ## Users and Access Control
 
-The [users page](https://console.treasuredata.com/users) displayes the users associated with an account. The [users page](https://console.treasuredata.com/users) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access. Various other roles are designed below administrator. See the table below for a summary of the permissions associated with each role.
+The [users page](https://console.treasuredata.com/users) displays the users associated with an account. The [users page](https://console.treasuredata.com/users) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access.
 
-Action                            | Admin | Full Access | Query only | Import only
-:-------------------------------: | :---: | :---------: | :--------: | :---------:
-Add User                          | OK    |             |            |
-Delete User                       | OK    |             |            |
-Create Database                   | OK    |             |            |
-Delete Database                   | OK    |             |            |
-Create Table                      | OK    | OK          |            |
-Delete Table                      | OK    | OK          |            |
-Data Import (td-agent)            | OK    | OK          |            | OK
-Data Import (Result Output to TD) | OK    | OK          |            | OK
-Data Import (Bulk Import)         | OK    | OK          |            |
-Delete Data                       | OK    | OK          |            |
-Issue Query                       | OK    | OK          | OK         |
-
-Provided the user has adequate permission to access the [users page](https://console.treasuredata.com/users), clicking on any of the users will allow doing one of the following:
-
-* grand/deny administrator permissions;
-* grand/deny full/query/import access to any of the databases.
-
-The logged in [user account page](https://console.treasuredata.com/users/current) is accessible provided information about the user as well as allowing changing the password and other basic information.
-
+Various other roles are designed below administrator. See the table at [Access Control](access-control) for a summary of the permissions associated with each role.

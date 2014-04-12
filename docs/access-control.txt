@@ -1,3 +1,24 @@
 # Access Control
 
-Role-based access control features are available for Enterprise-Grade cutomers. Please [contact us](http://www.treasuredata.com/en/about/contact-us.php) for more information.
+The [users page](https://console.treasuredata.com/users) displays the users associated with an account. The [users page](https://console.treasuredata.com/users) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access. Various other roles are designed below administrator. See the table below for a summary of the permissions associated with each role.
+
+Action                            | Admin | Full Access | Query only | Import only
+:-------------------------------: | :---: | :---------: | :--------: | :---------:
+Add User                          | OK    |             |            |
+Delete User                       | OK    |             |            |
+Create Database                   | OK    |             |            |
+Delete Database                   | OK    |             |            |
+Create Table                      | OK    | OK          |            |
+Delete Table                      | OK    | OK          |            |
+Data Import (td-agent)            | OK    | OK          |            | OK
+Data Import (Result Output to TD) | OK    | OK          |            | OK
+Data Import (Bulk Import)         | OK    | OK          |            |
+Delete Data                       | OK    | OK          |            |
+Issue Query                       | OK    | OK          | OK         |
+
+Provided the user has adequate permission to access the [users page](https://console.treasuredata.com/users), clicking on any of the users will allow doing one of the following:
+
+* grand/deny administrator permissions;
+* grand/deny full/query/import access to any of the databases.
+
+The logged in [user account page](https://console.treasuredata.com/users/current) is accessible provided information about the user as well as allowing changing the password and other basic information.
