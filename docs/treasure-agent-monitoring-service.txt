@@ -1,0 +1,61 @@
+# Treasure Agent Monitoring Service
+
+This article covers how to use Treasure Agent Monitoring Service (TAMS), to monitor all the streaming import capabilities.
+
+## Prerequisites
+
+  * Treasure Data account (Please [sign up](https://console.treasuredata.com/users/sign_up) if you don't have it).
+  * Basic knowledge of Treasure Data (an understanding of the [Getting Started](quickstart) guide).
+  * Basic knowledge of [td-agent](td-agent).
+
+## Overview
+
+Treasure Agent Monitoring Service (TAMS) is a service offerred by Treasure Data. This service allows you to monitor Treasure Agent metrics instantly, and have alerts on these metrics.
+
+## Configuration
+
+To enable TAMS, you need to change 8 lines within `/etc/td-agent/td-agent.conf`.
+
+### 1) `td_monitor_agent` Configuration
+
+Please add the following configuration to your `/etc/td-agent/td-agent.conf`. You can find Treasure Data API key from [here](https://console.treasuredata.com/users/current).
+
+    :::text
+    <source>
+      type td_monitor_agent
+      apikey YOUR_TREASURE_DATA_APIKEY
+      instance_id YOUR_INSTANCE_NAME
+    </source>
+
+#### apikey
+Your Treasure Data API key. You can find from [here](https://console.treasuredata.com/users/current).
+
+#### instance_id
+Specify unique instance id across nodes. If not specified, use configuration file path instead.
+
+### 2) `td_counter` Configuration
+
+Next, please inject `td_counter` to your Treasure Data output plugin.
+
+    :::text
+    # Treasure Data Output
+    <match td.*.*>
+      type td_counter
+      <store>
+        type tdlog
+        apikey YOUR_API_KEY
+        auto_create_table
+        buffer_type file
+        buffer_path /var/log/td-agent/buffer/td
+        use_ssl true
+      </store>
+    </match>
+
+After changing these configurations, please restart the daemon.
+
+    :::term
+    $ sudo /etc/init.d/td-agent restart
+
+## Confirm
+
+Now it's ready! Your Treasure Agent started reporting the metrics to our server every minute. Please access to [Monitoring Page](https://console.treasuredata.com/monitoring) at Treasure Data's Web console, to check all the metrics from your Treasure Agent instances.
