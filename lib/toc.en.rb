@@ -77,6 +77,7 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-from-mysql', 'Bulk Import from MySQL'
     article 'bulk-import-from-postgres', 'Bulk Import from PostgreSQL'
     article 'bulk-import-from-mongodb', 'Bulk Import from MongoDB'
+    article 'bulk-import-tips-and-tricks', 'Bulk Import Tips and Tricks'
   end
   category 'one-time-import', 'One-Time Import' do
     article 'one-time-import', 'One-Time Import'
