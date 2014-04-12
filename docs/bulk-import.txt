@@ -30,6 +30,7 @@ Because bulk import is a complex mechanism to achieve performance reliability, y
 - [Bulk Import from PostgreSQL](bulk-import-from-postgresql)
 - [Bulk Import from MongoDB](bulk-import-from-mongodb)
 
-To understand the bulk import internals, please refer the documents below.
+To understand the bulk import internals or tips and tricks, please refer the documents below.
 
 - [Bulk Import Internals](bulk-import-internal)
+- [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

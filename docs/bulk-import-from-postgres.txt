@@ -19,4 +19,7 @@ For more information, please see the [PostgreSQL documentation](http://www.postg
 
 Please refer [Bulk Import from CSV](bulk-import-from-csv) about how to import CSV files.
 
-For further details, check the [Bulk Import Internals](bulk-import-internal).
+For further details, check the following documentations.
+
+- [Bulk Import Internals](bulk-import-internal).
+- [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

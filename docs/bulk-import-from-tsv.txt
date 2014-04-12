@@ -44,4 +44,7 @@ In the above command, we assumed that:
 * The time field is called "date_time"
 * The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
 
-For further details, check the [Bulk Import Internals](bulk-import-internal).
+For further details, check the following documentations.
+
+- [Bulk Import Internals](bulk-import-internal).
+- [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

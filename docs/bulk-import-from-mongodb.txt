@@ -21,4 +21,7 @@ For more information, please see the [MongoDB documentation](http://docs.mongodb
 
 Please refer [Bulk Import from JSON](bulk-import-from-json) about how to import CSV files.
 
-For further details, check the [Bulk Import Internals](bulk-import-internal).
+For further details, check the following documentations.
+
+- [Bulk Import Internals](bulk-import-internal).
+- [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)
