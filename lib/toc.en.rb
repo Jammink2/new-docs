@@ -69,7 +69,6 @@ section 'import-data', 'Data Import' do
   end
   category 'bulk-import-category', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import Overview'
-    article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-from-csv', 'Bulk Import from CSV file'
     article 'bulk-import-from-tsv', 'Bulk Import from TSV file'
     article 'bulk-import-from-json', 'Bulk Import from JSON file'
@@ -77,6 +76,7 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-from-mysql', 'Bulk Import from MySQL'
     article 'bulk-import-from-postgres', 'Bulk Import from PostgreSQL'
     article 'bulk-import-from-mongodb', 'Bulk Import from MongoDB'
+    article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-tips-and-tricks', 'Bulk Import Tips and Tricks'
   end
   category 'one-time-import', 'One-Time Import' do

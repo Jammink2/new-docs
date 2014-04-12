@@ -23,7 +23,11 @@ You can run
 In the section below, we will show you how to use Bulk Import step by step. While it is important to understand each step, it is often unwieldy to perform all these steps one by one. Thus we provide several command line options to automate (and pipeline) the prepare-upload-perform-commit workflow. Specifically, you want to run `td import:upload` like this:
 
     :::term
-    $ td import:upload --auto-create my_db.my_table --auto-perform --auto-commit --column-header -o prepared_parts data_*.csv
+    $ td import:upload \
+      --auto-create my_db.my_table \
+      --auto-perform --auto-commit --column-header \
+      -o prepared_parts \
+      data_*.csv
 
 For example, if
     
@@ -34,7 +38,11 @@ For example, if
 you can run
 
     :::term
-    $ td import:upload --auto-create my_db.my_table --auto-perform --auto-commit --column-header -o prepared_parts data_*.csv
+    $ td import:upload \
+      --auto-create my_db.my_table \
+      --auto-perform --auto-commit --column-header \
+      -o prepared_parts \
+      data_*.csv
 
 A couple of assumptions for the example above:
 
