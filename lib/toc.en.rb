@@ -127,14 +127,14 @@ section 'Data Analysis', 'Data Analysis & Integration' do
     article 'schedule', 'Scheduled Job'
   end
   category 'result', 'Job Result Output' do
-    article 'result-into-td', 'Writing Job Result into Treasure Data'
-    article 'result-into-mysql', 'Writing Job Result into MySQL'
-    article 'result-into-postgresql', 'Writing Job Result into PostgreSQL'
-    article 'result-into-google-spreadsheet', 'Writing Job Result into Google SpreadSheet'
-    article 'result-into-web', 'Sending Job Result to Web Server'
-    article 'result-into-ftp', 'Sending Job Result to FTP Server'
-    article 'result-into-s3', 'Writing Job Result to S3'
-    article 'result-into-leftronic', 'Sending Job Result to Leftronic'
+    article 'result-into-td', 'Job Result Output to Treasure Data'
+    article 'result-into-mysql', 'Job Result Output  to MySQL'
+    article 'result-into-postgresql', 'Job Result Output  to PostgreSQL'
+    article 'result-into-google-spreadsheet', 'Job Result Output  to Google SpreadSheet'
+    article 'result-into-web', 'Job Result Output to Web Server (REST)'
+    article 'result-into-ftp', 'Job Result Output to FTP Server'
+    article 'result-into-s3', 'Job Result Output  to Amazon S3'
+    article 'result-into-leftronic', 'Job Result Output to Leftronic Dashboard'
   end
   category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
     article 'tools', 'Overview'
