@@ -9,6 +9,8 @@ This article explains how to write job results directly to Amazon S3.
 
 ## Usage
 
+<center><img src="/images/result_xyz.png" width="100%" /></center><br /><br />
+
 For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written to the S3 bucket with the given name and path.
 
     :::term

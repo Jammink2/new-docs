@@ -9,6 +9,8 @@ This article explains how to write job results directly to your Google SpreadShe
 
 ## Basic Usage
 
+<center><img src="/images/result_xyz.png" width="100%" /></center><br /><br />
+
 ### For On-demand Jobs
 
 For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written into the worksheet `sample_worksheet` within the spreadsheet `sample_spreadsheet`.

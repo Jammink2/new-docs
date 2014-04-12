@@ -10,9 +10,9 @@ This article explains how to write job results to your existing PostgreSQL insta
 
 ## Architecture
 
-A front-end application first posts data to Treasure Data. Treasure Data runs MapReduce jobs on the data, then writes the job results to your PostgreSQL tables.
+A front-end application streamingly collects data to Treasure Data via [Treasure Agent](td-agent). Treasure Data periodically runs jobs on the data, then writes the job results to your MySQL tables.
 
-<center><img src="/images/result_rdbms.png" width="90%" /></center><br /><br />
+<center><img src="/images/result_rdbms.png" width="100%" /></center><br /><br />
 
 NOTE: The results are written from the AWS US-East region. If you want better security control, please message support@treasure-data.com and ask for its account ID and security group name.
 

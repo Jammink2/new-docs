@@ -8,6 +8,8 @@ This article explains how to write job results to your Treasure Data (TD) table.
 
 ## Basic Usage
 
+<center><img src="/images/result_td.png" height="300px" /></center><br /><br />
+
 ### For On-demand Jobs
 
 For on-demand jobs, just add the `--result` option to the `td query` command. Once the job is finished, the results are written into `output_table` within the `testdb` database.
