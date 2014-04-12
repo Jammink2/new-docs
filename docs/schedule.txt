@@ -36,12 +36,15 @@ A common pattern is to periodically summarize data from a main table into anothe
 
     :::sql
     SELECT
-        user, code, method, path, agent, host, avg(size)
-    FROM www_access
+      user, code, method, path, agent, host, avg(size)
+    FROM
+      www_access
     GROUP BY
-        user, code, method, path, agent, host
+      user, code, method, path, agent, host
     WHERE
-        TD_TIME_RANGE(time, TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h') , TD_SCHEDULED_TIME())
+      TD_TIME_RANGE(time,
+        TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h'),
+        TD_SCHEDULED_TIME())
 
 The example above aggregates web request results from an access log on an hourly basis. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation.
 
