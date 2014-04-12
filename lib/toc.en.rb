@@ -47,9 +47,6 @@ section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
   end
-  category 'one-time-import', 'One-Time Import' do
-    article 'one-time-import', 'One-Time Import'
-  end
   category 'td-agent-language', 'Streaming Import' do
     article 'td-agent', 'Streaming Import Overview', ['fluentd', 'td-agent']
     article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
@@ -80,6 +77,9 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-from-mysql', 'Bulk Import from MySQL'
     article 'bulk-import-from-postgres', 'Bulk Import from PostgreSQL'
     article 'bulk-import-from-mongodb', 'Bulk Import from MongoDB'
+  end
+  category 'one-time-import', 'One-Time Import' do
+    article 'one-time-import', 'One-Time Import'
   end
   category 'iphone-sdk', 'iPhone SDK' do
     article 'iphone-mobile-sdk', 'Treasure Data iPhone SDK'
