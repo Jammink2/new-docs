@@ -14,11 +14,11 @@ Treasure Data allows users to issue jobs (see [Job Management](job)) to process 
 
 #### 1) Heavy Lifting SQL (Hive)
 
-[Hive](/categories/Hive%20QL%20Reference) is a MapReduce-based SQL engine. This engine is really powerful when you do large data processing and heavy JOINs. Often used for ETL or sessionization.
+[Hive](/categories/hive) is a MapReduce-based SQL engine. This engine is really powerful when you do large data processing and heavy JOINs. Often used for ETL or sessionization.
 
 #### 2) Scripted Processing (Pig)
 
-[Pig](/categories/Pig%20Latin%20Reference) is a relational data-flow language built on top of the Hadoop platform. If you need the complex data processing which requires multiple phases of data transformation, Pig would be recommended.
+[Pig](/categories/pig) is a relational data-flow language built on top of the Hadoop platform. If you need the complex data processing which requires multiple phases of data transformation, Pig would be recommended.
 
 #### 3) Interactive SQL (TQA)
 

@@ -50,27 +50,27 @@ This is Treasure Data's architecture.
 
 Key features include:
 
-### 1) Built-in Data Collector
+#### 1) Built-in Data Collector
 
 Treasure Data provides a data collection daemon, *[td-agent](/articles/td-agent)*, which is installed in your existing infrastructure. td-agent collects records from various data sources and continuously uploads the data to Treasure Data's cloud storage.
 
-### 2) Cloud Columnar Storage
+#### 2) Cloud Columnar Storage
 
 All your data is stored in the cloud as a columnar data. This format achieves far better performance and compression compared to existing RDBMSs. We also believe that *your data is yours*: you can bulk-export your data at any time.
 
-### 3) SQL-Style Query with Parallel Execution
+#### 3) SQL-Style Query with Parallel Execution
 
 Treasure Data lets you analyze your data using a SQL-style language. The query is automatically executed in parallel at the cloud-hosted Hadoop cluster, so the users are able to handle large datasets without having to learn anything new. Also, our engine is schema-free. You can modify your data schema at any time.
 
-### 4) Export to RDBMS/Traditional Warehouse
+#### 4) Export to RDBMS/Traditional Warehouse
 
 [A built-in export capability](/categories/result) is provided for writing summarized data from the Treasure Data store to a traditional RDBMs or Data Warehouse. This enables efficient processing of large data volumes with Treasure Data both as a primary analytics engine as well as a preprocessing platform.
 
-### 5) JDBC interface to BI tools
+#### 5) JDBC interface to BI tools
 
 Treasure Data also provides a standard [JDBC interface](jdbc-driver) for data transfer to existing (or future) BI tools. Custom coding and maintenance to link these environments with the primary data store is eliminated.
 
-### 6) Curation and Support
+#### 6) Curation and Support
 
 We actively curate each piece of technology we use. We ensure that you have the latest in software (e.g. Apache Hadoop) and best practices, and that it's all stable and integrated smoothly. Our support team is dedicated to helping our users.
 

@@ -111,7 +111,7 @@ section 'Data Analysis', 'Data Analysis & Integration' do
   category 'job-management', 'Job Management' do
     article 'job', 'Job Management'
   end
-  category 'Hive QL Reference', 'Hive QL Reference' do
+  category 'hive', 'Hive QL Reference' do
     article 'hive', 'Hive Query Language (HiveQL) Overview'
     article 'hive-operators', 'Hive Built-in Operators'
     article 'hive-functions', 'Hive Built-in Functions'
@@ -119,13 +119,13 @@ section 'Data Analysis', 'Data Analysis & Integration' do
     article 'udfs', 'Hive Treasure Data UDFs'
     article 'performance-tuning', 'Hive Performance Tuning'
   end
-  category 'Pig Latin Reference', 'Pig Latin Reference' do
+  category 'pig', 'Pig Latin Reference' do
     article 'pig', 'Pig Latin Language'
   end
   category 'scheduled-job', 'Scheduled Job' do
     article 'schedule', 'Scheduled Job'
   end
-  category 'Job Result Output', 'Job Result Output' do
+  category 'result', 'Job Result Output' do
     article 'result-into-td', 'Writing Job Result into Treasure Data'
     article 'result-into-mysql', 'Writing Job Result into MySQL'
     article 'result-into-postgresql', 'Writing Job Result into PostgreSQL'
