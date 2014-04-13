@@ -126,15 +126,16 @@ section 'Data Analysis', 'Data Analysis & Integration' do
   category 'scheduled-job', 'Scheduled Job' do
     article 'schedule', 'Scheduled Job'
   end
-  category 'result', 'Job Result Output' do
-    article 'result-into-td', 'Job Result Output to Treasure Data'
-    article 'result-into-mysql', 'Job Result Output  to MySQL'
-    article 'result-into-postgresql', 'Job Result Output  to PostgreSQL'
-    article 'result-into-google-spreadsheet', 'Job Result Output  to Google SpreadSheet'
-    article 'result-into-web', 'Job Result Output to Web Server (REST)'
-    article 'result-into-ftp', 'Job Result Output to FTP Server'
-    article 'result-into-s3', 'Job Result Output  to Amazon S3'
-    article 'result-into-leftronic', 'Job Result Output to Leftronic Dashboard'
+  category 'result', 'Query Result Output' do
+    article 'result-into-td', 'Query Result Output to Treasure Data'
+    article 'result-into-mysql', 'Query Result Output to MySQL'
+    article 'result-into-postgresql', 'Query Result Output to PostgreSQL'
+    article 'result-into-s3', 'Query Result Output to AWS S3'
+    article 'result-into-redshift', 'Query Result Output to AWS Redshift'
+    article 'result-into-google-spreadsheet', 'Query Result Output to Google SpreadSheet'
+    article 'result-into-web', 'Query Result Output to Web Server (REST)'
+    article 'result-into-ftp', 'Query Result Output to FTP Server'
+    article 'result-into-leftronic', 'Query Result Output to Leftronic Dashboard'
   end
   category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
     article 'tools', 'Overview'
