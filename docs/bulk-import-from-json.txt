@@ -4,7 +4,7 @@ This article explains how to import data from JSON files to Treasure Data.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [Bulk Import](bulk-import)
 
 ## Update Bulk Import

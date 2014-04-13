@@ -18,7 +18,7 @@ A *Database* is a collection of tables, which is similar to other database syste
 
 ## Management from Command Line Interface (CLI)
 
-By using [the toolbelt](http://toolbelt.treasuredata.com), you can manage databases and tables from the command line.
+By using the [toolbelt](http://toolbelt.treasuredata.com), you can manage databases and tables from the command line.
 
 #### Creating a Database
 

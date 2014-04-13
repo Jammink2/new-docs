@@ -4,7 +4,7 @@ This article explains how to send job results directly to your ftp server.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * An ftp server
 
 ## Basic Usage

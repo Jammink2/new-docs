@@ -4,7 +4,7 @@ td-agent can "tail" log files like the UNIX *tail* command, then import the resu
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [td-agent](/articles/td-agent).
 
 ## Tailing JSON-based Logs

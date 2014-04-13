@@ -4,7 +4,7 @@ This article explains how to dump data from MongoDB and import them into Treasur
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [Bulk Import](bulk-import)
 
 ## Dump

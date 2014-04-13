@@ -6,7 +6,7 @@ Unlike traditional warehousing platforms, Treasure Data allows users to store-fi
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * A table with some data. You can find an example in the [Getting Started](quickstart) guide.
 
 ## Schema Changes Are Painful

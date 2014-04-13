@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [the Hive query language](hive).
 
 ## Leveraging Time-based Partitioning

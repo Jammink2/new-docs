@@ -4,7 +4,7 @@ td-agent understands the Scribe protocol (Thrift-based). It can also co-exist or
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [td-agent](/articles/td-agent).
 
 ## Using Scribe input

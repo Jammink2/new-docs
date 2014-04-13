@@ -12,7 +12,7 @@ These application processes generate terabytes of user behavior data every day: 
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of td-agent.
   * Ruby 1.8 or higher (for local testing).
 

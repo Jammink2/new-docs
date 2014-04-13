@@ -7,7 +7,7 @@ This article explains how to use the td-logger-ruby library.
 ## Prerequisites
 
   * Basic knowledge of Ruby, Rails, Gems, and Bundler.
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Ruby 1.8 or higher (for local testing).
 
 NOTE: The <a href="/articles/heroku-rails">Rails Apps on Heroku</a> and <a href="/articles/engine-yard-rails">Rails Apps on EngineYard</a> documents explain how to use Rails applications on Heroku and EngineYard, respectively.

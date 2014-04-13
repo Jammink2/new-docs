@@ -8,7 +8,7 @@ As many of you know, Hurricane Sandy wreaked havoc in Haiti and the East Coast o
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of td-agent.
 
 ##Step 1: Installing td-agent

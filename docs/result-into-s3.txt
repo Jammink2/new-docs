@@ -4,7 +4,7 @@ This article explains how to write job results directly to Amazon S3.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * An Amazon S3 bucket with write permission.
 
 ## Usage

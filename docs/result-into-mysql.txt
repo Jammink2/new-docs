@@ -4,7 +4,7 @@ This article explains how to write job results to your existing MySQL instance.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including [the toolbelt](http://toolbelt.treasuredata.com).
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * **A MySQL instance**. 
   * Treasure Data must have SELECT, INSERT, DELETE, CREATE, DROP and ALTER privileges.
 
