@@ -43,7 +43,102 @@ cluster and they are different from the S3 public/private access keys;
 
 ### Options
 
-Since interacting with a Redshift instance is done through either a JDBC or ODBC Postgres driver, result output to redshift supports the same options [result output to Postgres](result-into-postgresql#result-ouput-url) does.
+Result output to Redshift supports various options that can be specified as optional URL parameters. The options are compatible with each other and can be combined.
+Where applicable, the default behavior is indicated.
+
+#### Update `mode` option
+
+Controls the various ways of modifying the database data. The 4 modes are:
+
+* Append
+* Replace
+* Truncate
+* Update
+
+##### `mode=append` (default)
+<br/>
+The **append** mode is the **default** which is used when no mode option is provided in the URL.
+In this mode the query results are appended to the table. If the table does not exist, it will be created.
+
+The append mode is **not atomic** because it does not use a temporary table to store the incoming data but rather adds the records directly to the destination table. This is done for efficiency purpose (speed mostly) but poses a risk of finding the destination table in an intermediate state if the write fails during the result output process.
+
+Append mode also does modify the schema of existing tables: if the source table columns' schema mismatches (either column names, types, or both) that of the destination table in Redshift, the mismatching columns are dropped from the result output write. When the destination table does not exists instead, the table will be created with matching schema to the source table.
+
+Because `mode=append` is the default behavior, these two URLs are equivalent:
+
+    :::term
+    redshift://user:password@host/database/table
+    redshift://user:password@host/database/table?mode=append
+
+##### `mode=replace`
+<br/>
+The **replace** method consists of replacing the entire content of an existing table with the result output of the query. If the table does not exist yet, a new table will be created.
+
+The replace mode achieves **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**:
+
+1. Create a temporary table;
+2. Write to the temporary table;
+3. Replace the existing table with the temporary table using ALTER TABLE RENAME.
+
+Example:
+
+    :::term
+    redshift://user:password@host/database/table?mode=replace
+
+##### `mode=truncate`
+<br/>
+With the **truncate** mode the system first truncates the existing table to remove all records, then inserts the query results into the existing table without modifying the table's schema.
+
+If the event the result output table contains columns whose name or type (or both) mismatches from the schema of the destination table, the columns will be dropped, the will not get written into the destination table. This is not a problem when the destination table does not exist: a new table will be created with schema matching that of the result output table.
+
+The truncate mode uses a temporary table, hence achieves **atomicity** of write.
+
+Example:
+
+    :::term
+    redshift://user:password@host/database/table?mode=truncate
+
+NOTE: Unlike replace, the truncate mode retains the indexes of the table.
+
+##### `mode=update`
+<br/>
+In the **update** mode a row is inserted unless it would cause a duplicate value in the columns specified in the "unique" parameter: in such case an update is performed instead. Please note that the "unique" parameter is required when using the update mode.
+
+This mode is **atomic** because it uses a temporary table to store the incoming date before attempting to insert the data in the actual destination table.
+
+Example:
+
+    :::term
+    redshift://...?mode=update&unique=col1        # single unique column
+    redshift://...?mode=update&unique=[col1,col2] # multiple unique columns
+
+
+#### Write `method` option
+
+The **method** option controls how the data is written into the Postgres destination table.
+
+Unlike Postgres result output, the default method is **copy**: this is done for efficient purpose since the data is transferred from Treasure Data to Redshift between AWS S3 buckets.
+
+##### `method=copy`
+<br/>
+The **copy** method is the default behavior for Redshift result output writes.
+When the **copy** method is used the data is first stored in a temporary file on the server, then written to Redshift using a [COPY](http://www.postgresql.org/docs/8.1/static/sql-copy.html) transaction.
+This method is faster than INSERT and that's why it is preferred to it as the default behavior.
+
+Because `method=copy` is the default behavior, these two URLs are equivalent:
+
+    :::term
+    redshift://user:password@host/database/table
+    redshift://user:password@host/database/table?method=copy
+
+##### `method=insert` (default)
+<br/>
+With the **insert** method, data is written to Postgres using 'INSERT' statements. This is the most reliable method but it is slower than COPY.
+
+Example:
+
+    :::term
+    redshift://user:password@host/database/table?method=insert
 
 ## Usage
 
@@ -55,13 +150,13 @@ To output the result of a single query to Amazon Redshift add the `--result` opt
 
     :::term
     $ td query -w -d testdb \
-      --result 'redshift://username:password@host.redshift.amazonaws.com:5439/database/table' \
+      --result 'redshift://username:password@host.redshift.amazonaws.com:5439/database/table?mode=replace' \
       "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
 
 To create a scheduled query whose output is systematically written to Redshift add the `--result` option when creating the schedule using the `td sched:create` command:
 
     :::term
     $ td sched:create hourly_count_example "0 * * * *" -d testdb \
-      --result 'redshift://username:password@host.redshift.amazonaws.com:5439/database/table' \
+      --result 'redshift://username:password@host.redshift.amazonaws.com:5439/database/table?mode=replace' \
       "SELECT COUNT(*) FROM www_access"
 

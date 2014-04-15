@@ -46,12 +46,12 @@ where:
 
 ### Options
 
-Result output to Postgres supports various options that can be specified as optional URL parameters. The options can compatible with each other and can be combined.
+Result output to Postgres supports various options that can be specified as optional URL parameters. The options are compatible with each other and can be combined.
 Where applicable, the default behavior is indicated.
 
 #### Update `mode` option
 
-Controls the various ways of modifying the database data. The 4 supported modes, all of them **atomic**, are:
+Controls the various ways of modifying the database data. All 4 supported modes are **atomic** because they use a temporary table to store the incoming data before attempting to modify the destination table:
 
 * Append
 * Replace
@@ -60,7 +60,7 @@ Controls the various ways of modifying the database data. The 4 supported modes,
 
 ##### `mode=append` (default)
 <br/>
-The **append** mode is the default, it is used when no optional parameter is specified in the URL.
+The **append** mode is the **default** which is used when no mode option is provided in the URL.
 In this mode the query results are appended to the table. If the table does not exist, it will be created.
 
 Because `mode=append` is the default behavior, these two URLs are equivalent:
@@ -71,7 +71,7 @@ Because `mode=append` is the default behavior, these two URLs are equivalent:
 
 ##### `mode=replace`
 <br/>
-The **replace** method consist of replacing the entire content of an existing table with the result output of the query. If the table does not exist yet, a new table will be created. The replace mode achieves **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**:
+The **replace** method consists of replacing the entire content of an existing table with the result output of the query. If the table does not exist yet, a new table will be created. The replace mode achieves **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**:
 
 1. Create a temporary table;
 2. Write to the temporary table;
@@ -95,12 +95,13 @@ NOTE: Unlike replace, the truncate mode retains the indexes of the table.
 
 ##### `mode=update`
 <br/>
-The **update** mode a row is inserted unless it would cause a duplicate value in the columns specified in the "unique" parameter: in such case an update is performed instead. Please note that the "unique" parameter is required when using the update mode.
+In the **update** mode a row is inserted unless it would cause a duplicate value in the columns specified in the "unique" parameter: in such case an update is performed instead. Please note that the "unique" parameter is required when using the update mode.
 
 Example:
 
     :::term
-    postgresql://user:password@host/database/table?mode=update&unique=[col1,col2]
+    postgresql://...?mode=update&unique=col1        # single unique column
+    postgresql://...?mode=update&unique=[col1,col2] # multiple unique columns
 
 
 #### Write `method` option
