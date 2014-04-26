@@ -96,30 +96,30 @@ Here are some basic examples. The underlying table consists of three fields: `ip
     :::sql
     # Number of Records
     SELECT COUNT(1) FROM www_access;
-    
+
     # Number of Unique IPs
     SELECT COUNT(1) FROM ( \
       SELECT DISTINCT v['ip'] FROM www_access \
     ) t;
-    
+
     # Number of Unique IPs that Accessed the Top Page
     SELECT COUNT(distinct v['ip']) FROM www_access \
       WHERE v['url']='/';
-    
+
     # Number of Accesses per Unique IP
     SELECT v['ip'], COUNT(1) FROM www_access \
       GROUP BY v['ip'] LIMIT 30;
-    
+
     # Unique IPs Sorted by Number of Accesses
     SELECT v['ip'], COUNT(1) AS cnt FROM www_access \
       GROUP BY v['ip']
       ORDER BY cnt DESC LIMIT 30;
-    
+
     # Number of Accesses After a Certain Time
     :::sql
     SELECT COUNT(1) FROM www_access \
       WHERE TD_TIME_RANGE(time, "2011-08-19", NULL, "PDT")
-    
+
     # Number of Accesses Each Day
     :::sql
     SELECT \
@@ -140,7 +140,7 @@ Here is a list of documents regarding the HiveQL.
 * [Hive Built-in Operators](hive-operators)
 * [Hive Built-in Functions](hive-functions)
 * [Hive Built-in Aggregate Functions](hive-aggregate-functions)
-* [Hive Treasuer Data UDFs](udfs)
+* [Hive Treasure Data UDFs](udfs)
 
 Here are the official Hive tutorial and language manual.
 
