@@ -75,6 +75,7 @@ Specifying columns explicitly improves the performance of the query significantl
 
 If you don't have a schema on the table, you need to write the query as follows:
 
+    :::term
     OUT = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT($1) AS cnt;
 
 But this query isn't optimized without schema. Please see [Set Custom Schema](http://docs.treasuredata.com/articles/performance-tuning#set-custom-schema).
