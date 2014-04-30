@@ -21,8 +21,9 @@ You can submit queries by using the `td query` command. Below is an example comm
 
 You can write the query result as local CSV file (csv, tsv, and json are supported).
 
-    $ td query -w -d testdb 'SELECT COUNT(1) FROM www_access'
-      "--format csv -o ./test.csv"
+    $ td query -w -d testdb \
+      --format csv -o ./test.csv \
+      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
 
 ## SELECT Statement Syntax
 
