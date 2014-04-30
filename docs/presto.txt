@@ -28,11 +28,11 @@ Using the [CLI](/articles/command-line), specify `-T presto` in the `td query` c
     $ td query -w -T presto -d testdb \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
+Alternatively, from the [web console](https://console.treasuredata.com), on the New Query page select "Presto" as the query type.
+
+<center><img src="/images/console-query-presto.png" width="75%" /></center><br />
+
 For REST API, the endpoint is `/v3/job/issue/presto/:database`.
-
-From the [web console](https://console.treasuredata.com), select "Presto" option from the New Query page as shown below.
-
-<center><img src="/images/console-query-presto.png" width="75%" /></center>
 
 ## Presto SQL Language Reference
   * [Presto Function and Operators](http://prestodb.io/docs/current/functions.html)
