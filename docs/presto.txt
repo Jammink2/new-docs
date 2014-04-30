@@ -6,7 +6,7 @@
 
 [Presto](https://github.com/facebook/presto) is an open-source parallel SQL execution engine. Unlike Hive, Presto doesn't use the map reduce framework for its execution. Instead, Presto directly accesses the data through a specialized distributed query engine that is very similar to those found in commercial parallel RDBMSs.
 
-<center><img src="https://scontent-a-sjc.xx.fbcdn.net/hphotos-prn2/t1.0-9/s720x720/1467246_10151935581722200_1107575290_n.png" width="80%" /></center>
+<center><img src="https://scontent-a-sjc.xx.fbcdn.net/hphotos-prn2/t1.0-9/s720x720/1467246_10151935581722200_1107575290_n.png" width="80%" /></center><br />
 
 Treasure Data has customized Presto to talk directly with our distributed columnar storage layer. As a result, the end user experience is nearly identical to querying Hive.
 
@@ -32,7 +32,7 @@ For REST API, the endpoint is `/v3/job/issue/presto/:database`.
 
 From the [web console](https://console.treasuredata.com), select "Presto" option from the New Query page as shown below.
 
-<center><img src="/images/console-query-presto.png" width="100%" /></center>
+<center><img src="/images/console-query-presto.png" width="75%" /></center>
 
 ## Presto SQL Language Reference
   * [Presto Function and Operators](http://prestodb.io/docs/current/functions.html)
