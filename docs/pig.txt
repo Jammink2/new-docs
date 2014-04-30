@@ -62,18 +62,29 @@ Here are some basic examples. We will assume that the underlying table consists 
 #### Number of records
 
     :::term
-    OUT = FOREACH (GROUP www_access ALL) GENERATE COUNT(www_access);
+    A = FOREACH www_access GENERATE $0;
+    OUT = FOREACH (GROUP A ALL) GENERATE COUNT($1);
+
+Specifying columns explicitly improves the performance of the query significantly.
 
 #### Number of records per unique host
 
     :::term
-    OUT = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT(www_access) AS cnt;
+    A = FOREACH www_access GENERATE host;
+    OUT = FOREACH (GROUP A BY host) GENERATE group AS host, COUNT($1) AS cnt;
+
+If you don't have a schema on the table, you need to write the query as follows:
+
+    OUT = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT($1) AS cnt;
+
+But this query isn't optimized without schema. Please see [Set Custom Schema](http://docs.treasuredata.com/articles/performance-tuning#set-custom-schema).
 
 #### Unique hosts sorted by number of accesses
 
     :::term
-    A = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT(www_access) AS cnt;
-    OUT = ORDER A BY cnt DESC;
+    A = FOREACH www_access GENERATE host;
+    B = FOREACH (GROUP A BY host) GENERATE group AS host, COUNT($1) AS cnt;
+    OUT = ORDER B BY cnt DESC;
 
 ## Parameter Substitution
 Parameters are values that are passed in at runtime as substitutes for some variables. We provide some default variables for the scheduled query feature:
