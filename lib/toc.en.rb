@@ -18,9 +18,10 @@ section 'overview', 'Overview' do
     # NOTE: the releasenotes article is just a placeholder to give the page
     #       a title and heading. The actual content of the page is specified
     #       in the erb template 'view/releasenotes_redirect.erb.
-    #       The 'get '/articles/:article' do' route redirect to the releasenotes
+    #       The "get '/articles/:article' do" route redirect to the releasenotes
     #       article that uses the :releasenotes_redirect template.
-    article 'releasenotes', 'Release Notes'
+    article 'legacy-releasenotes', 'Legacy Release Notes'
+    article 'releasenote-20140429', 'Release Note 20140429'
   end
 end
 
