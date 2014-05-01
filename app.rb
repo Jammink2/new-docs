@@ -139,10 +139,9 @@ get '/articles/:article' do
   if m
     redirect "http://www.treasuredata.com/en/case-studies/#{m[1]}.php"
   else
-    m = /^releasenotes$/.match(params[:article])
+    m = /^legacy-releasenotes$/.match(params[:article])
     if m
       render_template params[:article], false, :releasenotes_redirect
-      #erb :releasenotes_redirect
     else
       cache_long
       render_template params[:article], params[:congrats], :article

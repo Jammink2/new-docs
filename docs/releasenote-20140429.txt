@@ -1,0 +1,49 @@
+# Release Note 20140429
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Pig Engine Improvements
+
+1. Suppress deprecation warnings in the engine logs;
+2. Show metrics in the engine logs;
+3. Improved speed (up to 14x faster).
+
+### Backend: Workers
+* Import worker checks the connectivity to the *metadata* store before uploading a file to improve reliability.
+
+### Released Ruby Client Library v0.8.60
+* Fixed `show_job` API implementation.
+
+### Released Ruby CLI v0.11.1
+1. Fix Treasure Data query result output database and table validation regular expression;
+2. Fixed auto updater which threw a warning due to a constant being reinitialized;
+3. Interpret the CPU time as number of milliseconds as opposed to number of seconds in the `td job:show` output;
+4. when outputting the query result to file, flush the data every 100 records.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Backend
+
+* _[Problem]_<br/>
+  PerfectSched v0.8.6 gets 'RuntimeError: Unknown task key' errors.<br/>
+  _[Solution]_<br/>
+  The new version deployed prevented schedules from executing jobs in production last Tuesday, April 22nd.<br/>
+  The version was reverted and SSL improvement applies on the original version.<br/>
+  As the fix was deployed in production, all functionalities recovered to full normality.<br/>
+
+### Toolbelt
+
+* _[Problem]_<br/>
+  Windows installer fails on Windows 7 and 8 because the    package is corrupted.<br/>
+  _[Solution]_<br/>
+  A new version of the CLI v0.11.1 was released and the v0.11.0 version was deprecated.<br/>
+
+
