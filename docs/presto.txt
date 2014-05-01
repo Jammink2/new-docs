@@ -61,7 +61,7 @@ A subset of TD UDFs are available in Presto. The following is a list of supporte
 
 ### JOIN Order
 
-Presto does not currently support cost-based JOIN optimizations or disk-based JOINs. Please be careful when executing JOINs: for the time being, the right-hand side of the table must fit in memory. Otherwise the query will fail.
+Presto does not currently support cost-based JOIN optimizations, meaning JOINs are not automatically reordered based on table size. Please make sure that smaller tables are on the right hand size of JOIN, and they must fit in memory. Otherwise out of memory exceptions will cause the query to fail.
 
     :::sql
     SELECT
