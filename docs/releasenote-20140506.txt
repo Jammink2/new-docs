@@ -4,7 +4,7 @@
 
 This is a summary of the new features and improvements introduced in this release:
 
-### APIs: Pig Engine Improvements
+### APIs: Account
 
 Removed the limits on the number of users per account.<br/>
 All price plans, including the free tiers, can now add unlimited users under their accounts.
