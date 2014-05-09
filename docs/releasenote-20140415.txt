@@ -1,0 +1,52 @@
+# Release Note 20140415
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Invite Users after the Tutorial
+
+Users are encouraged to invite other team members at the end of the tutorial.
+
+![Console: Invite Users after the Tutorial](/images/release-notes/140415-1-tutorial_end.png)
+
+### Console: Result Downloading
+
+Made downloading the query results more reliable from the browser increasing the server's transfer timeout settings to its maximum. The option to download the result output through the CLI is still shown.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Backend: Treasure Query Accelerator™
+
+* _**[Problem]**_<br/>
+  The engine uses unsigned integers. Negative integers are stored and handled as their 2's complement.<br/>
+  _**[Solution]**_<br/>
+  Converting integers to their signed counterpart when the values are deserialized.<br/>
+
+* _**[Problem]**_<br/>
+  Time-index pushdown doesn't work if the timezone is set to NULL in the <tt>TD_TIME_RANGE</tt> UDF.<br/>
+  _**[Solution]**_<br/>
+  The UDF expects either a valid timezone or omit the parameter altogether.<br/>
+  We are now handling this special case as we already do for Hive beginning in [Release 20140408](releasenote-20140408)<br/>
+
+### Backend: CPU Time
+
+* _**[Problem]**_<br/>
+  Jobs CPU cumulative time counts only the last MapReduce phase even if the Hive query is composed by multiple MapReduce phases.<br/>
+  _**[Solution]**_<br/>
+  Now accounting for all MapReduce jobs and cumulating the CPU time accordingly.<br/>
+
+### Backend: JDBC based Query Result Outputs
+
+* _**[Problem]**_<br/>
+  JDBC based Result Outputs (MySQL, Postgres, Redshift) retries up to 12 x 12 = 144 times on failure.<br/>
+  _**[Solution]**_<br/>
+  This is due to calling the retry function from two different locations in the code.<br/>
+  Now the number of retries is limited to the intended 12 which, along with exponential backoff, leads to a maximum length of 60 minutes for the retry window.<br/>
+

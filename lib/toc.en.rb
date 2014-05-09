@@ -23,6 +23,7 @@ section 'overview', 'Overview' do
     article 'releasenote-20140506', 'Release Note 20140506'
     article 'releasenote-20140429', 'Release Note 20140429'
     article 'releasenote-20140422', 'Release Note 20140422'
+    article 'releasenote-20140415', 'Release Note 20140415'
     article 'legacy-releasenotes', 'Legacy Release Notes'
   end
 end
