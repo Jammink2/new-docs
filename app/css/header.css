@@ -9,8 +9,8 @@ div#header li {
   list-style:none;
 }
 
-#td-header-inner { width: 1070px; margin: 0 auto;}
-#td-logo { float: left; }
+#td-header-inner { width: 1175px; margin: 0 auto;}
+#td-logo { float: left; margin: auto -15px}
 #td-logo a {
   display: block;
   margin: auto;
@@ -28,7 +28,7 @@ div#header li {
 }
 
 #td-nav li a {
-  color: rgb(187, 187, 187);  
+  color: rgb(187, 187, 187);
 }
 
 #td-nav {
