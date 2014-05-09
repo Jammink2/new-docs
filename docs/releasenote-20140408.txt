@@ -1,0 +1,101 @@
+# Release Note 20140408
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Job's CPU Time
+
+The Job details pages show the cumulative estimated 'CPU Time Taken' for the query after it has completed. This provides indication of how many computation resources have been required to complete the jobs.
+
+![Console: Job's CPU Time](/images/release-notes/140408-1-job_cpu_time.png)
+
+### Console: Database and Table Description
+
+Users can add their own notes/description to any of the Databases and Tables they own and/or have access to.
+
+![Console: Database and Table Description](/images/release-notes/140408-2-db_tbl_metadata.png)
+
+### Console: Utilization Limits Indication
+
+The utilization page shows indication of the guaranteed and maximum number of cores allocated for the account.
+
+![Console: Database and Table Description](/images/release-notes/140408-3-utilization.png)
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Backend: Query Result Outputs
+
+* _**[Problem]**_<br/>
+  Query Result Output to Treasure Data fails with 'Entity Too Large' errors.<br/>
+  _**[Solution]**_<br/>
+  This happens when the size of the file being uploaded to S3 exceed the maximum supported limit by AWS.<br/>
+  The Bulk Import perform worker is modified to split the data into parts and use multipart upload to upload the said parts.<br/>
+
+* _**[Problem]**_<br/>
+  Query Result Output to MySQL sets the second argument (precision) of types (e.g DECIMAL(n, m)) to 0 if not explicitly specified. This violates the MySQL specification on typing and the corresponding default precision defined there.<br/>
+  _**[Solution]**_<br/>
+  A problem in the JDBC driver used to write the query result to MySQL was identified which set the precision argument to 0 when not indicated.<br/>
+  The driver was modified to honor the default value for the precision argument in accordance with the MySQL standard.<br/>
+
+* _**[Problem]**_<br/>
+  Result output to S3 in <tt>CSV</tt>/<tt>TSV</tt> formats ignores the 'newline' option if the value is composed of just whitespace characters (space, newline/linefeed, carriage return, ...).<br/>
+  _**[Solution]**_<br/>
+  This was due to the API stripping optional parameters whose value is 'blank'. Such are values entirely composed of white space characters.<br/>
+  The validation on the optional parameter's value now checking whether the value is 'empty' instead.<br/>
+
+### Console: Job Limits Per Account
+
+* _**[Problem]**_<br/>
+  If the account reached the limit number of queued jobs and a user attempts to create a new query, the attempts fails without any indication.<br/>
+  _**[Solution]**_<br/>
+  Now showing an error message indicating the maximum number of queued jobs for the account has been reached.<br/>
+
+* _**[Problem]**_<br/>
+  If the account reached the limit number of queued jobs and a user attempts to manually run a scheduled query, the query is queued ignoring the limit.<br/>
+  _**[Solution]**_<br/>
+  Rendering an error indicating that the maximum number of queued jobs has been reached and the manual schedule run request cannot be queued.<br/>
+
+### Console: Page Loading
+
+* _**[Problem]**_<br/>
+  Table preview can take very long to load and sometime may slow down or even crash the browser.<br/>
+  _**[Solution]**_<br/>
+  This is due to the Javascript attempting to cache the table's tail in the browser's cache. When the table tail size exceeds the browser's cache size, the browser may behave unexpectedly.<br/>
+  Modified the implementation to cache everything but the table tail. The table tail is also loaded asynchronously now and a spinner is shown until the page is fully loaded.<br/>
+
+* _**[Problem]**_<br/>
+  Job details pages can fail to load if the length of the text in the query field is too long.<br/>
+  _**[Solution]**_<br/>
+  This is due to the dynamic code formatter taking too long to format the query on-the-fly.<br/>
+  Disabled dynamic formatting for queries whose length is greater than 10000 characters.<br/>
+
+
+### Console: User Permission Visualization
+
+* _**[Problem]**_<br/>
+  The Users' permissions screen for restricted users shows 'no access' for all databases in the account, irrespective of the actual settings.<br/>
+  _**[Solution]**_<br/>
+  Caused by using the wrong attribute to determine the user's permission for each database.<br/>
+  The correct parameter is used now and the permissions are correctly visualized.<br/>
+
+### Console: User Browser Sessions Duration
+
+* _**[Problem]**_<br/>
+  Users are logged out at the end of a browser session.<br/>
+  _**[Solution]**_<br/>
+  The Rails session cookie was discarded at the end of the browser session. This caused the user to log out.<br/>
+  We now configure the session cookie to last 30 days after the end of the session.<br/>
+
+
+
+
+
+
+
