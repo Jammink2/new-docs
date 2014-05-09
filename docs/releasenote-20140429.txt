@@ -32,18 +32,18 @@ These are the most important Bug Fixes made in this release:
 
 ### Backend
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   PerfectSched v0.8.6 gets 'RuntimeError: Unknown task key' errors.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   The new version deployed prevented schedules from executing jobs in production last Tuesday, April 22nd.<br/>
   The version was reverted and SSL improvement applies on the original version.<br/>
   As the fix was deployed in production, all functionalities recovered to full normality.<br/>
 
 ### Toolbelt
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   Windows installer fails on Windows 7 and 8 because the    package is corrupted.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   A new version of the CLI v0.11.1 was released and the v0.11.0 version was deprecated.<br/>
 
 

@@ -61,34 +61,34 @@ These are the most important Bug Fixes made in this release:
 
 ### Backend: Pig Engine and Manual Schema
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   Pig query scripts return 0 records when executed on certain tables with Manual schema.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   The mechanism to combine the splits in the data storage was found to be the root cause.<br/>
   This mechanism was disabled to revert the behavior and match the standard Pig implementation.<br/>
 
 ### Backend: Redshift Output in _Truncate_ and _Append_ Mode
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   Query Result Output to Redshift in _Truncate_ or _Append_ modes stops inserting columns in the destination table after encountering the first mismatching column name/type.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   This was due a problem in the Postgres JDBC driver.<br/>
   Columns in the source table matching name and type with the destination table are now handled correctly.<br/>
 
 ### Bulk Import
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   Bulk Import from MySQL can run into Out Of Memory issues when reading from a large MySQL table.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   Optimized the connection to only fetch a limited amount of data from a MySQL table at a time.<br/>
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   Importing from an Apache web log rejects all records where the content size is 0.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   This is caused by content size 0 being represented by a dash character '-' as expected for the Apache weblog common format.<br/>
   The updated Bulk Import library can handle this case.<br/>
 
-* _[Problem]_<br/>
+* _**[Problem]**_<br/>
   The tool always returns 0, even when the command has failed.<br/>
-  _[Solution]_<br/>
+  _**[Solution]**_<br/>
   Now handling exceptions and returning a non-zero error code when one occurred.<br/>
