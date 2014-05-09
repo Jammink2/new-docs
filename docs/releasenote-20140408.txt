@@ -20,7 +20,7 @@ Users can add their own notes/description to any of the Databases and Tables the
 
 The utilization page shows indication of the guaranteed and maximum number of cores allocated for the account.
 
-![Console: Database and Table Description](/images/release-notes/140408-3-utilization.png)
+![Console: Utilization Limits Indication](/images/release-notes/140408-3-utilization.png)
 
 <br/>
 <br/>
