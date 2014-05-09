@@ -1,0 +1,94 @@
+# Release Note 20140422
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Query Result Output
+
+JDBC based Query Result Output (PostgresQL, MySQL, Redshift) filters out deterministic errors to avoid retrying in those cases.
+
+### Backend: Pig Engine Improvements
+
+Pig engine's in-mapper combine which reduces the map's output is now enabled by default.
+
+### Console: Database statistics
+
+Show the number of records, data size, and last import timestamp in the Database list page.
+
+![Database statistics](/images/release-notes/140422-1-db_stats.png)
+
+### Console: Jobs page Pagination and Advanced Filtering
+
+Added Pagination and Improved the Filtering for the Jobs page to be server side. The filtering capabilities are:
+
+* All vs User's own jobs filter
+* Filter jobs by database
+* Filter jobs by status
+
+![Console: Jobs page Pagination and Advanced Filtering](/images/release-notes/140422-2-job_pagination_n_filtering.png.png)
+
+### Java Bulk Import Library v0.4.12
+
+See [Bug fixes](/articles/releasenote-20140422#bug-fixes) section below.
+
+### Java Client Library v0.4.0
+
+* Enabled SSL communication by default.
+
+### Ruby Client Library v0.8.59
+
+* Improved the validation methods for database, table, column, and result set's names.
+
+### Ruby TD CLI v0.11.0
+
+1. Show cumulative CPU time in the `td job:list` and `td job:show` outputs;
+2. The error message when the specified schema has columns containing upper case alphanumeric characters is improved to be more representative of the problem;
+3. `td query` commands with result output to Treasure Data (`--result td://xxxx`) validate the database and table naming convention before running the query for efficiency;
+4. The Java bulk import JAR file is now auto-updated. Checking for an updated version is performed hourly;
+5. `td query` commands with result output specification invite the user to use the `-x / --exclude` option to avoid outputting the query result to stdout as well;
+6. The 'Destination' field in the summary for the Bulk import perform output from the `td jobs:show` command contains the destination table name in the form of a LOAD DATA SESSION query;
+7. Returning the correct non-zero error codes in the occurrence of an exception;
+8. Declare the `td query --sampling` option obsolete. A warning indicating the option is obsolete and has no effect will be printed to warn the user.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Backend: Pig Engine and Manual Schema
+
+* _[Problem]_<br/>
+  Pig query scripts return 0 records when executed on certain tables with Manual schema.<br/>
+  _[Solution]_<br/>
+  The mechanism to combine the splits in the data storage was found to be the root cause.<br/>
+  This mechanism was disabled to revert the behavior and match the standard Pig implementation.<br/>
+
+### Backend: Redshift Output in _Truncate_ and _Append_ Mode
+
+* _[Problem]_<br/>
+  Query Result Output to Redshift in _Truncate_ or _Append_ modes stops inserting columns in the destination table after encountering the first mismatching column name/type.<br/>
+  _[Solution]_<br/>
+  This was due a problem in the Postgres JDBC driver.<br/>
+  Columns in the source table matching name and type with the destination table are now handled correctly.<br/>
+
+### Bulk Import
+
+* _[Problem]_<br/>
+  Bulk Import from MySQL can run into Out Of Memory issues when reading from a large MySQL table.<br/>
+  _[Solution]_<br/>
+  Optimized the connection to only fetch a limited amount of data from a MySQL table at a time.<br/>
+
+* _[Problem]_<br/>
+  Importing from an Apache web log rejects all records where the content size is 0.<br/>
+  _[Solution]_<br/>
+  This is caused by content size 0 being represented by a dash character '-' as expected for the Apache weblog common format.<br/>
+  The updated Bulk Import library can handle this case.<br/>
+
+* _[Problem]_<br/>
+  The tool always returns 0, even when the command has failed.<br/>
+  _[Solution]_<br/>
+  Now handling exceptions and returning a non-zero error code when one occurred.<br/>

@@ -22,6 +22,7 @@ section 'overview', 'Overview' do
     #       article that uses the :releasenotes_redirect template.
     article 'releasenote-20140506', 'Release Note 20140506'
     article 'releasenote-20140429', 'Release Note 20140429'
+    article 'releasenote-20140422', 'Release Note 20140422'
     article 'legacy-releasenotes', 'Legacy Release Notes'
   end
 end
