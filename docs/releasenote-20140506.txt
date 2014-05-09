@@ -9,17 +9,17 @@ This is a summary of the new features and improvements introduced in this releas
 Removed the limits on the number of users per account.<br/>
 All price plans, including the free tiers, can now add unlimited users under their accounts.
 
-### Console: Storage Size History Graph
-
-Added the Storage Size History graph below the CPU Core History graph in the [utilization page](https://console.treasuredata.com/utilization) and improved the graphs' look-and-feel.
-
-![Storage Size History in the Utilization page](/images/release-notes/140506-1-utilization.png)
-
 ### Console: Slow Jobs
 
 Added the Slow Jobs page to summarize and quickly identify the slowest queries in terms of duration or CPU time.
 
-![Slow Jobs page](/images/release-notes/140506-2-slow_jobs.png)
+![Slow Jobs page](/images/release-notes/140506-1-slow_jobs.png)
+
+### Console: Storage Size History Graph
+
+Added the Storage Size History graph below the CPU Core History graph in the [utilization page](https://console.treasuredata.com/utilization) and improved the graphs' look-and-feel.
+
+![Storage Size History in the Utilization page](/images/release-notes/140506-2-utilization.png)
 
 ### Console: Query Output Download Size
 
