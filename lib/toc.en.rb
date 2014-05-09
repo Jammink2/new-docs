@@ -15,16 +15,17 @@ section 'overview', 'Overview' do
     article 'faq', 'Frequently Asked Questions'
   end
   category 'releasenotes', 'Release Notes' do
-    # NOTE: the releasenotes article is just a placeholder to give the page
-    #       a title and heading. The actual content of the page is specified
-    #       in the erb template 'view/releasenotes_redirect.erb.
-    #       The "get '/articles/:article' do" route redirect to the releasenotes
-    #       article that uses the :releasenotes_redirect template.
     article 'releasenote-20140506', 'Release Note 20140506'
     article 'releasenote-20140429', 'Release Note 20140429'
     article 'releasenote-20140422', 'Release Note 20140422'
     article 'releasenote-20140415', 'Release Note 20140415'
     article 'releasenote-20140408', 'Release Note 20140408'
+    article 'releasenote-20140401', 'Release Note 20140401'
+    # NOTE: the releasenotes article is just a placeholder to give the page
+    #       a title and heading. The actual content of the page is specified
+    #       in the erb template 'view/releasenotes_redirect.erb.
+    #       The "get '/articles/:article' do" route redirect to the releasenotes
+    #       article that uses the :releasenotes_redirect template.
     article 'legacy-releasenotes', 'Legacy Release Notes'
   end
 end

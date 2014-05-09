@@ -1,0 +1,73 @@
+# Release Note 20140401
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Query Result Output to Redshift
+
+1. Disabled unnecessary Redshift protocol calls;
+2. Improved handling of the retry limit and timeouts.
+
+### Console: User Page
+
+The user page of the currently logged in is accessible via the [<tt>/users/current</tt>](https://console.treasuredata.com/users/current) endpoint as well as the usual <tt>/users/:user_id</tt>;
+
+![Console: User Page](/images/release-notes/140401-1-user_page.png)
+
+### Console: Date/Time Format
+
+Indicate the year in Schedules list, Jobs list, Database view, and Table view.
+
+![Console: Date/Time Format](/images/release-notes/140401-2-date_time_format.png)
+
+### JDBC v0.2.8
+
+Upgraded Java Client Library dependency to v0.3.6.
+
+### Java Bulk Import Library v0.4.11
+
+1. Log Java Client Library and Java Bulk Import Library's version in the bulk import log file;
+2. Log the time each import step takes to execute in the td-bulk-import.log log file.
+
+### Treasure Agent v1.1.19
+
+1. Use the new treasuredata.com API endpoint in place of treasure-data.com;
+2. Update msgpack-ruby to v0.5.8;
+3. Integrated various pull requests.
+
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Backend: <tt>TD_TIME_RANGE</tt> and Time-Index Pushdown
+
+* _**[Problem]**_<br/>
+  The <tt>TD_TIME_RANGE</tt> UDF behaved in an inconsistent manner relative to its documentation. When the end time and Timezone were set to null, it read the full time range.<br/>
+  _**[Solution]**_<br/>
+  This was due to the Timezone parameter being set to null when normally it is either not null or omitted.<br/>
+  Now the behavior is consistent with the documentation and it uses the default UTC timezone if the timezone is <tt>NULL</tt>.<br/>
+
+### APIs: CPU Cores Utilization Resolution
+
+* _**[Problem]**_<br/>
+  Core utilization history cannot display non-integer values, causing hourly utilization that cumulates to less than 1 unit to be rounded down to 0.<br/>
+  _**[Solution]**_<br/>
+  Core utilization is now using floating point numbers.<br/>
+
+### Console: Support Portal
+
+* _**[Problem]**_<br/>
+  The integration between the Support Portal based off Salesforce's Desk.com and the Console does not cover all possible workflows and use cases required.<br/>
+  _**[Solution]**_<br/>
+  Added the <tt>/auth/td</tt> integration endpoint and made it redirect to the signup page if the user is not logged in into the Console.<br/>
+  _**[Known Limitation]**_<br/>
+  Redirection back to Desk.com upon successful login into the Console is not implemented. The user will need to click on the Support button after logging in to visit the support page and create cases.<br/>
+
+![Console: Support Portal](/images/release-notes/140401-3-support.png)
+
