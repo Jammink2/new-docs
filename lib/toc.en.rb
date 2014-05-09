@@ -20,8 +20,9 @@ section 'overview', 'Overview' do
     #       in the erb template 'view/releasenotes_redirect.erb.
     #       The "get '/articles/:article' do" route redirect to the releasenotes
     #       article that uses the :releasenotes_redirect template.
-    article 'legacy-releasenotes', 'Legacy Release Notes'
+    article 'releasenote-20140506', 'Release Note 20140506'
     article 'releasenote-20140429', 'Release Note 20140429'
+    article 'legacy-releasenotes', 'Legacy Release Notes'
   end
 end
 

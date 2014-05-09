@@ -1,0 +1,47 @@
+# Release Note 20140506
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Pig Engine Improvements
+
+Removed the limits on the number of users per account.<br/>
+All price plans, including the free tiers, can now add unlimited users under their accounts.
+
+### Console: Storage Size History Graph
+
+Added the Storage Size History graph below the CPU Core History graph in the [utilization page](https://console.treasuredata.com/utilization) and improved the graphs' look-and-feel.
+
+![Storage Size History in the Utilization page](/images/release-notes/140506-1-utilization.png)
+
+### Console: Slow Jobs
+
+Added the Slow Jobs page to summarize and quickly identify the slowest queries in terms of duration or CPU time.
+
+![Slow Jobs page](/images/release-notes/140506-2-slow_jobs.png)
+
+### Console: Query Output Download Size
+
+Show the size of the compressed result output data from a query.
+
+![Result Download Size](/images/release-notes/140506-3-result_size.png)
+
+### Console: Named Query Result Output Targets
+
+Query Result Output Targets can now be saved with an identifier for later use and re-edited later.
+
+![Named Result Outputs](/images/release-notes/140506-4-nro.png)
+
+### Released Java Client Library v0.4.1
+* The `showSession()` API does not retry if the session is not found to avoid the call to take a long time to complete.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+None.
+
+
