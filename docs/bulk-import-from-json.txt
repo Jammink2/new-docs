@@ -28,7 +28,7 @@ Next, please execute the following commands to upload the JSON file.
     $ td db:create sampledb
     $ td table:create sampledb sampletbl
     $ td import:auto \
-      --format json --column-header \
+      --format json \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
       --auto-create sampledb.sampletbl \
