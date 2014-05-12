@@ -9,7 +9,7 @@ td-agent can "tail" log files like the UNIX *tail* command, then import the resu
 
 ## Tailing JSON-based Logs
 
-We are using the [tail input plugin](http://fluentd.org/doc/plugin.html#tail) with the following configuration file. **We assume that each line of the log corresponds to a well-formed JSON (should not span multiple lines).**
+We are using the [tail input plugin](http://docs.fluentd.org/articles/in_tail) with the following configuration file. **We assume that each line of the log corresponds to a well-formed JSON (should not span multiple lines).**
 
 NOTE: This feature is supported in td-agent v1.1.5.1 and higher.
 
