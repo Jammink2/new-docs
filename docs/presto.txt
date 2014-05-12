@@ -1,6 +1,8 @@
 # Presto Query
 
-[Treasure Data](http://treasuredata.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Presto as a low-latency query engine. This feature is currently in beta.
+[Treasure Data](http://treasuredata.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Presto as a low-latency query engine.
+
+This feature is currently in **beta** and it is only available to certain accounts at this time - please contact your account representative if you would like to join the beta.
 
 ## What is Presto?
 
@@ -14,7 +16,7 @@ Treasure Data has customized Presto to talk directly with our distributed column
 
 **No**. Hive is designed for batch processing, while Presto is designed for short interactive queries useful for data exploration.
 
-Presto currently has limited fault tolerance capabilities when querying. If a process fails while processing, the whole query must be re-run. On the other hand, it executes queries 10-30x faster than Hive. Thus, even if there is a process failure and a query must be restarted, the total runtime will often still beat Hive's significantly. 
+Presto currently has limited fault tolerance capabilities when querying. If a process fails while processing, the whole query must be re-run. On the other hand, it executes queries 10-30x faster than Hive. Thus, even if there is a process failure and a query must be restarted, the total runtime will often still beat Hive's significantly.
 
 Another caveat is that Presto has an in-memory only architecture. So if there is a particularly large data set which exceeds the total memory capacity available to Presto, query execution will fail.
 
