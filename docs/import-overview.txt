@@ -18,45 +18,7 @@ Importing records directly from Web or Mobile applications, using Treasure Data'
 
 ## Data Import Suggestions
 
-<table>
-  <tr>
-    <th>Data Source</th>
-    <th>Requires<br/> td-agent</th>
-    <th>Requires<br/> td-toolbelt</th>
-    <th>See</th>
-    <th>Pros</th>
-    <th>Cons</th>
-  </tr>
-  <tr>
-    <td>Web Log</td>
-    <td>Y</td>
-    <td>N</td>
-    <td><a href="apache">td-agent</a></td>
-    <td>Robustness</td>
-    <td>Needs an extra process</td>
-  </tr>
-  <tr>
-    <td>App Log</td>
-    <td>Y</td>
-    <td>N</td>
-    <td><a href="/categories/streaming-import">td-agent (w/ logger)</a></td>
-    <td>Robustness</td>
-    <td>Needs extra process</td>
-  </tr>
-  <tr>
-    <td>Database</td>
-    <td>N</td>
-    <td>Y</td>
-    <td><a href="/categories/bulk-import">Bulk Import</a></td>
-    <td>Robustness</td>
-    <td>Needs an extra steps</td>
-  </tr>
-  <tr>
-    <td>CSV/TSV File</td>
-    <td>N</td>
-    <td>Y</td>
-    <td><a href="/categories/bulk-import">Bulk Import</a></td>
-    <td>Robustness</td>
-    <td>Needs extra steps</td>
-  </tr>
-</table>
+Here's a guideline to decide which import mechanism to use.
+
+![Data Import Decision Tree](/images/import-decision-tree.png)
+
