@@ -9,7 +9,13 @@ This article explains how to import data from TSV files to Treasure Data.
 
 ## Update Bulk Import
 
-First, please make sure you have an up-to-date version of our bulk import program.
+First, please make sure you have installed the [toolbelt](http://toolbelt.treasuredata.com) on your computer.
+
+    :::term
+    $ td
+    usage: td [options] COMMAND [args]
+
+Next, please download the up-to-date version of our bulk import program.
 
     :::term
     $ td import:jar_update
