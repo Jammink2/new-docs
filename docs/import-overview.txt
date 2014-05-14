@@ -2,23 +2,20 @@
 
 This article explains the different options for importing data into Treasure Data and which choice is approprite for your use case.
 
-## Three Types of Data Import
-
-#### 1) Streaming Import
-
-Importing continuously generated data from running servers. [Treasure Agent](td-agent) is necessary to be installed on the servers, to streamingly collect and upload the data to the cloud.
-
-#### 2) Bulk Import
-
-Importing a large amount of existing data (CSV, TSV, etc) in a reliable way from your servers or PCs. [Bulk Import Tool](bulk-import) needs to be installed on your machine. This method takes into account possible network transfer failure between your side and the cloud, and it has sophisticated retrying mechanism.
-
-#### 3) App / Mobile SDKs
-
-Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed [our SDKs](/categories/sdks).
-
-## Data Import Suggestions
+### Three Types of Data Import
 
 Here's a guideline to decide which import mechanism to use.
 
 ![Data Import Decision Tree](/images/import-decision-tree.png)
 
+#### 1) Streaming Import
+
+Importing continuously generated data from running servers. [Treasure Agent](td-agent) is necessary to be installed on the servers, to streamingly collect and upload the data to the cloud.
+
+#### 2) App / Mobile SDKs
+
+Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed [our SDKs](/categories/sdks).
+
+#### 3) Bulk Import
+
+Importing a large amount of existing data (CSV, TSV, etc) in a reliable way from your servers or PCs. [Bulk Import Tool](bulk-import) needs to be installed on your machine. This method takes into account possible network transfer failure between your side and the cloud, and it has sophisticated retrying mechanism.
