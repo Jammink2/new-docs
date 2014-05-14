@@ -6,15 +6,15 @@ This article explains the different options for importing data into Treasure Dat
 
 #### 1) Streaming Import
 
-Importing continuously generated data. In this case, the [td-agent](td-agent) article is appropriate.
+Importing continuously generated data from running servers. [Treasure Agent](td-agent) is necessary to be installed on the servers, to streamingly collect and upload the data to the cloud.
 
 #### 2) Bulk Import
 
-Importing a large amount of existing data in a reliable way. This method takes into account possible network transfer failure between your side and Treasure Data and has appropriate methods for retrying. Supported file formats include CSV, TSV and JSON. See the [Bulk Import](bulk-import) article for details.
+Importing a large amount of existing data (CSV, TSV, etc) in a reliable way from your servers or PCs. [Bulk Import Tool](bulk-import) needs to be installed on your machine. This method takes into account possible network transfer failure between your side and the cloud, and it has sophisticated retrying mechanism.
 
-#### 3) One-Time Import
+#### 3) App / Mobile SDKs
 
-If your data size is small (ex: the data fits in a single file), you can do an [One-Time-Import](one-time-import). This method is simple but sacrifices reliability checks and file compression during the transfer.
+Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed [our SDKs](/categories/sdks).
 
 ## Data Import Suggestions
 
@@ -39,7 +39,7 @@ If your data size is small (ex: the data fits in a single file), you can do an [
     <td>App Log</td>
     <td>Y</td>
     <td>N</td>
-    <td><a href="/categories/td-agent-language">td-agent (w/ logger)</a></td>
+    <td><a href="/categories/streaming-import">td-agent (w/ logger)</a></td>
     <td>Robustness</td>
     <td>Needs extra process</td>
   </tr>
@@ -47,32 +47,16 @@ If your data size is small (ex: the data fits in a single file), you can do an [
     <td>Database</td>
     <td>N</td>
     <td>Y</td>
-    <td><a href="/categories/bulk-import-category">Bulk Import</a></td>
+    <td><a href="/categories/bulk-import">Bulk Import</a></td>
     <td>Robustness</td>
     <td>Needs an extra steps</td>
   </tr>
   <tr>
-    <td>Database</td>
-    <td>N</td>
-    <td>Y</td>
-    <td><a href="one-time-import">One Time Import</a></td>
-    <td>Ease of use</td>
-    <td>No retry mechanism</td>
-  </tr>
-  <tr>
     <td>CSV/TSV File</td>
     <td>N</td>
     <td>Y</td>
-    <td><a href="/categories/bulk-import-category">Bulk Import</a></td>
+    <td><a href="/categories/bulk-import">Bulk Import</a></td>
     <td>Robustness</td>
     <td>Needs extra steps</td>
-  </tr>
-  <tr>
-    <td>CSV/TSV File</td>
-    <td>N</td>
-    <td>Y</td>
-    <td><a href="one-time-import">One Time Import</a></td>
-    <td>Ease of use</td>
-    <td>No retry mechanism</td>
   </tr>
 </table>

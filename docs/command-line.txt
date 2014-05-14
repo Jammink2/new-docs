@@ -1,6 +1,6 @@
 # Command-line Interface
 
-The Treasure Data CLI allows you to create databases and tables, [import](one-time-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
+The Treasure Data CLI allows you to create databases and tables, [import](bulk-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
 
 
 ## Step 1: Installation

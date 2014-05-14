@@ -53,7 +53,7 @@ section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
   end
-  category 'td-agent-language', 'Streaming Import' do
+  category 'streaming-import', 'Streaming Import' do
     article 'td-agent', 'Streaming Import Overview', ['fluentd', 'td-agent']
     article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
     article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
@@ -73,7 +73,7 @@ section 'import-data', 'Data Import' do
     article 'td-agent-upgrade', 'Ops: Upgrading td-agent',                                  ['fluentd', 'td-agent']
     article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                             ['fluentd', 'td-agent']
   end
-  category 'bulk-import-category', 'Bulk Import' do
+  category 'bulk-import', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import Overview'
     article 'bulk-import-from-csv', 'Bulk Import from CSV file'
     article 'bulk-import-from-tsv', 'Bulk Import from TSV file'
@@ -85,14 +85,16 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-tips-and-tricks', 'Bulk Import Tips and Tricks'
   end
-  category 'one-time-import', 'One-Time Import' do
-    article 'one-time-import', 'One-Time Import'
-  end
-  category 'iphone-sdk', 'iPhone SDK' do
-    article 'iphone-mobile-sdk', 'Treasure Data iPhone SDK'
-  end
-  category 'android-sdk', 'Android SDK' do
-    article 'android-mobile-sdk', 'Treasure Data Android SDK'
+  # 2014/05/13 Kazuki Ohta <k@treasure-data.com>
+  # Removed, because it confused the people by the distinction between one-time
+  # and bulk import.
+  # category 'one-time-import', 'One-Time Import' do
+  #   article 'one-time-import', 'One-Time Import'
+  # end
+  category 'sdks', 'App / Mobile SDKs' do
+    article 'javascript-sdk', 'JavaScript SDK'
+    article 'ios-sdk', 'iOS SDK'
+    article 'android-sdk', 'Android SDK'
   end
 end
 
