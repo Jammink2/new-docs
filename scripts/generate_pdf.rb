@@ -115,7 +115,7 @@ EOS
 end
 
 def fix_internal_link(line)
-  line.gsub(/\[(.*?)\]\((.*?)\)/) { |match| 
+  line.gsub(/\[(.*?)\]\((.*?)\)/) { |match|
     if $2.start_with?('http:') or $2.start_with?('https:')
       match
     else
@@ -140,6 +140,7 @@ def parse_include(df, f)
     if match = /^.*\<img.*src="(.*?)" .*\>/.match(block)
       # User logos are different size, so we should resize these images.
       path = generate_image(match[1], name == 'users')
+      puts "match:", match[1]
       df.puts("![](#{path})")
       next
     elsif block.start_with?(':::')
@@ -176,11 +177,10 @@ excludes = ['heroku-data-import', 'td-agent-changelog']
 # Pandoc's internal link can't link to arbitary section in another file.
 # So, merge all files into one file.
 File.open(ALL_TXT, 'w+') { |df|
-  # Asuume treasure-icon-red.png is in under TMP_DIR
   # Pandoc's cover notation
   df.puts(<<HEADER
 % **Treasure Data User Manual**
-% ![](#{TMP_DIR}/treasure-icon-red.png)
+% ![](./public/images/treasure-icon-red.png)
 % \\newpage
 
 \\newpage
@@ -206,14 +206,20 @@ HEADER
             line = "#{block} {##{name}}"
             if name.start_with?('hive-') # Can't convert long table into pandoc markdown, so temporary forward to web page
               df.puts('')
-              df.puts("#{name.split('-').join(' ')} documents are available on the [web page](http://docs.treasuredata.com/articles/#{name})")
+              df.puts("'#{name.split('-').map{|chunk| chunk.capitalize}.join(' ')}' documents are available at [docs.treasuredata.com/article/#{name}](http://docs.treasuredata.com/articles/#{name}) page")
               df.puts('')
               break
             end
+          # from images included with <img> HTML tags
           elsif match = /^.*\<img.*src="(.*?)" .*\>/.match(block)
             # User logos are different size, so we should resize these images.
             path = generate_image(match[1], name == 'users')
             df.puts("![](#{path})")
+            next
+          # from images include with actual markup
+          elsif match = /!\[(.+)\]\((.+)\)/.match(block)
+            path = generate_image(match[2], name == 'users')
+            df.puts("![#{match[1]}](#{path})")
             next
           elsif block.start_with?(':::')
             # Wrap source code with '```' for Pandoc highlight.
@@ -250,6 +256,12 @@ HEADER
           end
           line = fix_internal_link(line)
 
+          # sanitize a few things that pandoc does not like
+          # escape \N to \\N
+          line = line.gsub(/\N/, "\\N") if line =~ /\\N/
+          # escape \n to \\n
+          line = line.gsub(/\\n/, "\\\\\\\\n") if line =~ /\\n/
+
           # 4 space is not needed when use code highlight
           df.puts(in_block ? line[4..-1] : line)
         }
@@ -260,4 +272,5 @@ HEADER
   }
 }
 
+puts "Writing output to '#{DOC_HOME}/td-docs.pdf'"
 `pandoc -f markdown #{ALL_TXT} --latex-engine=xelatex -V geometry:margin=1in --toc -s -o #{DOC_HOME}/td-docs.pdf`
