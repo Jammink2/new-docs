@@ -1,0 +1,55 @@
+# Release Note 20140513
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Query Result Output to Treasure Data
+
+Query Result Output to Treasure Data now supports writing the results into a different account and using different API endpoints (e.g. to bypass firewalls) by specifying the API key and API host name.
+
+The full URL format is updated to:
+
+    td://<apikey>@<hostname>/testdb/output_table?mode=<mode>
+
+where `apikey` is the API key of the destination account and `hostname` is the alternate API endpoint to use. The remainder of the options are unchanged and are described in the [Writing the Query Results into your TD Table](result-into-td) page. The `apikey` and `hostname` parameters are optional to preserve **full backward compatibility**.
+
+<br/>
+### Backend: Query Result Output to the Web
+
+Extended the Read timeout for the Web (HTTP / HTTPS POST) Query Result Output from 30 seconds to 180. The connection timeout, now independent from the former, remains 30 seconds long.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Schema Auto-detection
+
+* _**[Problem]**_<br/>
+  Schema auto detection during imports of JSON data fails and retries indefinitely if the imported records contains a field whose values are systematically an empty array.<br/>
+  _**[Solution]**_<br/>
+  This issue was caused by the parser being unable to assess the type to associate to an empty array.<br/>
+  Empty arrays are now treated supported as generic arrays of strings (<tt>array\<string\></tt>).
+
+<br/>
+### Console: CPU time representation
+
+* _**[Problem]**_<br/>
+  For _Slow jobs_, the CPU time shown in the a job details page does not match the CPU time shown in the Slow Jobs list page.<br/>
+  _**[Solution]**_<br/>
+  It was found to be a problem with the formatting of the CPU time (internally represented as milliseconds) in human readable format.<br/>
+  The conversion methods are now one and the same for both views.<br/>
+
+<br/>
+### Console: Utilization graphs X-axis tick marks
+
+* _**[Problem]**_<br/>
+  The Cores and Storage utilization graphs display inconsistent tick marks on the X-axis (representing dates). Some dates may be appearing twice.<br/>
+  _**[Solution]**_<br/>
+  The tick marks on the X-axis were tuned to make sure only one per day will appear.<br/>
+
+
