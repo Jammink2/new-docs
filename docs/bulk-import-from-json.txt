@@ -7,6 +7,7 @@ This article explains how to import data from JSON files to Treasure Data.
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Basic knowledge of [Bulk Import](bulk-import)
 
+<br/>
 ## Update Bulk Import
 
 First, please make sure you have installed the [toolbelt](http://toolbelt.treasuredata.com) on your computer.
@@ -21,6 +22,7 @@ Next, please download the up-to-date version of our bulk import program.
     $ td import:jar_update
     Installed td-import.jar 0.x.xx into /path/to/.td/java
 
+<br/>
 ## Importing data from a JSON
 
 Suppose you have a file called `data.json` and its content is like this:
@@ -47,9 +49,17 @@ In the above command, we assumed that:
 * The data file is called `data.json` and is located in the current directory (hence `./data.json`)
 * The first line indicates column names
 * The time field is called "date_time"
-* The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
+* The time format is <tt>%Y-%m-%d %H:%M:%S</tt> (You can specify your own with `--time-format`)
 
 For further details, check the following documentations.
 
-- [Bulk Import Internals](bulk-import-internal).
+- [Bulk Import Internals](bulk-import-internal)
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)
+
+<br/>
+## Known Limitations
+
+### Boolean values `true` and `false` are not supported and break the parser
+
+This is done for the content validation to be consistency with the Backend which does not support boolean values either: see the [Schema Management](schema) page for a list of supported data types.<br/>
+Please convert the values to strings <tt>"true"</tt> and <tt>"false"</tt> or integers <tt>0</tt> and <tt>1</tt>. Once the values are uploaded to Treasure Data, they can be queried and casted to boolean with the Query Language of choice.
