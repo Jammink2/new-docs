@@ -13,7 +13,7 @@ gem 'rack-codehighlighter'
 gem 'sanitize'
 gem 'jemalloc', '~> 0.1.7'
 gem 'rack-canonical-host', '~> 0.0.8'
-gem 'td'
+gem 'td', '=0.11.1'
 
 # Webserver
 gem 'unicorn', '~> 4.2.1'
