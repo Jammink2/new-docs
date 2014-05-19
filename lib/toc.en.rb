@@ -81,7 +81,7 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-from-json', 'Bulk Import from JSON file'
     article 'bulk-import-from-s3', 'Bulk Import from Amazon S3'
     article 'bulk-import-from-mysql', 'Bulk Import from MySQL'
-    article 'bulk-import-from-postgres', 'Bulk Import from PostgreSQL'
+    article 'bulk-import-from-postgresql', 'Bulk Import from PostgreSQL'
     article 'bulk-import-from-mongodb', 'Bulk Import from MongoDB'
     article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-tips-and-tricks', 'Bulk Import Tips and Tricks'
