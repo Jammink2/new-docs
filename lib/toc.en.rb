@@ -64,6 +64,7 @@ section 'import-data', 'Data Import' do
     article 'perl', 'Streaming Import from Perl Applications',           ['fluentd', 'td-agent']
     article 'nodejs', 'Streaming Import from Node.js Applications',      ['fluentd', 'td-agent']
     article 'scala', 'Streaming Import from Scala Applications',         ['fluentd', 'td-agent']
+    article 'dotnet', 'Streaming Import from .NET Applications',         ['fluentd', 'td-agent']
     article 'td-agent-tail-apache', 'Tailing Apache Access Logs'
     article 'td-agent-tail-nginx', 'Tailing Nginx Access Logs'
     article 'td-agent-tail-ctltsv', 'Tailing CSV/TSV/LTSV Formatted Logs'

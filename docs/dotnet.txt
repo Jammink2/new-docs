@@ -1,0 +1,3 @@
+# Streaming Import from .NET Apps
+
+Unfortunatelly Treasure Data currently doesn't have native .NET logger library. Please refer [here](td-agent) to learn how to import the data via HTTP protocol.
