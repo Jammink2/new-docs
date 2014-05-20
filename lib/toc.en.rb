@@ -71,7 +71,6 @@ section 'import-data', 'Data Import' do
     article 'td-agent-tail-json', 'Tailing from JSON Formatted Logs'
     article 'td-agent-tail-custom', 'Tailing from Custom Formatted Logs'
     article 'td-agent-high-availability', 'Config: High-Availability td-agent Configurations', ['fluentd', 'td-agent']
-    article 'td-agent-tail', 'Config: Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Config: Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
     article 'td-agent-http', 'Config: Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
     article 'td-agent-scribe', 'Config: Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
