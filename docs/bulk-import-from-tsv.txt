@@ -2,22 +2,22 @@
 
 This article explains how to import data from TSV files to Treasure Data.
 
-## Prerequisites
+## Install Bulk Loader
 
-  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
-  * Basic knowledge of [Bulk Import](bulk-import)
+First, please install the [toolbelt](command-line), which includes bulk loader program, on your computer.
 
-## Update Bulk Import
+#### Downloads
+- [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
+- [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
+- [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-First, please make sure you have installed the [toolbelt](http://toolbelt.treasuredata.com) on your computer.
+After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader.
 
     :::term
     $ td
     usage: td [options] COMMAND [args]
-
-Next, please download the up-to-date version of our bulk import program.
-
-    :::term
+    $ java
+    Usage: java [-options] class [args...]
     $ td import:jar_update
     Installed td-import.jar 0.x.xx into /path/to/.td/java
 
