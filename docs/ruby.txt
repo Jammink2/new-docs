@@ -1,24 +1,20 @@
 # Streaming Import from Ruby Apps
 
-'[td-logger-ruby](http://github.com/treasure-data/td-logger-ruby)' is used to import data from Ruby applications to Treasure Data. 
-
-This article explains how to use the td-logger-ruby library.
+This article explains **4 steps** to streamingly import the data from Ruby applications, through Treasure Agent.
 
 ## Prerequisites
 
   * Basic knowledge of Ruby, Gems, and Bundler.
-  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
-  * Ruby 1.8 or higher (for local testing).
+  * Basic knowledge of Treasure Data.
+  * Ruby 1.9 or higher (for local testing).
 
-NOTE: The <a href="/articles/heroku-ruby">Ruby Apps on Heroku</a> document explains how to use Ruby applications on Heroku.
+## Step 1: Installing Treasure Agent
 
-## Installing td-agent
-
-td-logger-ruby requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data. td-agent is developed and maintained by Treasure Data, Inc.
+First of all, Treasure Agent (`td-agent`) to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data.
 
 <center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
 
-The [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library enables Ruby applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library enables Ruby applications to post records to their local td-agent. td-agent in turn receives the records, buffers them, and uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
 To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
@@ -49,20 +45,20 @@ To set up td-agent, please refer to the following articles; we provide deb/rpm p
   </tr>
 </table>
 
-NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
-
 ## Modifying /etc/td-agent/td-agent.conf
 
-Next, please specify your authentication key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current). Next, please set the `apikey` option in your td-agent.conf file. 
+Next, please specify your authentication key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file.
 
-Note: *YOUR_API_KEY* should be your actual apikey string.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. 
 
     :::text
-    # Treasure Data Input and Output
+    # Input from Logging Libraries
     <source>
       type forward
       port 24224
     </source>
+
+    # Treasure Data Output
     <match td.*.*>
       type tdlog
       apikey YOUR_API_KEY
@@ -79,7 +75,7 @@ Please restart your agent once these lines are in place.
 
 td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
-## Using td-logger-ruby
+## Step 3: Using td-logger-ruby
 
 First, add the ‘td’ gem to your Gemfile.
 
@@ -104,15 +100,23 @@ Next, please initialize and post the records as shown below.
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-## Confirming Data Import
+## Step 4: Confirming Data Import
 
 Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
+    # Post a record
     $ ruby test.rb
+    
+    # Force flushing the buffer
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
-To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
+#### From Web Console
+
+To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](https://console.treasuredata.com/databases).
+
+#### From CLI
+Or, please issue the *td tables* command if you have a CLI client.
 
     :::term
     $ td tables
@@ -141,6 +145,8 @@ For high-traffic websites (more than 5 application nodes), we recommend using a 
 Monitoring td-agent itself is also important. Please refer to this document for general monitoring methods for td-agent.
 
 * [Monitoring td-agent](td-agent-monitoring)
+
+NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>.
 
 ## Next Steps
 
