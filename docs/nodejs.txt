@@ -10,7 +10,7 @@ This article explains how to use the fluent-logger-node library.
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Node.js 0.6 or higher (for local testing).
 
-NOTE: The fluent-logger-node library does not work in Heroku (<a href="/articles/heroku-notes">here's why</a>) or EngineYard.
+NOTE: The fluent-logger-node library does not work in Heroku (<a href="/articles/heroku-notes">here's why</a>)..
 
 ## Installing td-agent
 
