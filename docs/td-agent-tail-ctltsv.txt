@@ -1,6 +1,6 @@
-# Tailing Nginx Access Logs
+# Tailing CSV/TSV/LTSV Logs
 
-This article explains how to tail Nginx access logs from td-agent, to continuously import the access logs into the cloud.
+This article explains how to tail CSV/TSV/LTSV formatted logs from td-agent, to continuously import the access logs into the cloud.
 
 ## Installing td-agent
 
@@ -46,13 +46,39 @@ Next, please specify your authentication key by setting the `apikey` option. You
 Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::text
-    # Tailing the Apache Log
+    # Tailing the CSV formatted Logs
     <source>
       type tail
-      path /var/log/nginx/access.log
-      pos_file /var/log/td-agent/nginx-access.pos
-      tag td.production.access
-      format nginx
+      format csv
+      path /path/to/log/foo.csv
+      pos_file /var/log/td-agent/foo.pos
+      tag td.production.foo
+      
+      keys key1, key2, key3
+      time_key key3
+    </source>
+
+    # Tailing the TSV formatted Logs
+    <source>
+      type tail
+      format tsv
+      path /path/to/log/bar.tsv
+      pos_file /var/log/td-agent/bar.pos
+      tag td.production.bar
+      
+      keys key1, key2, key3
+      time_key key3
+    </source>
+
+    # Tailing the LTSV formatted Logs
+    <source>
+      type tail
+      format ltsv
+      path /path/to/log/buz.ltsv
+      pos_file /var/log/td-agent/buz.pos
+      tag td.production.buz
+
+      time_key time_field_name
     </source>
     
     # Treasure Data Input and Output
@@ -70,15 +96,15 @@ Please restart your agent once these lines are in place.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-td-agent will now keep tailing the log, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
+td-agent will now tail the file, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
 ## Confirming Data Import
 
 Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
     :::term
-    # generate access logs
-    $ curl http://host:port/
+    # append new records to the logs
+    $ ...
     
     # flush the buffer
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
@@ -90,10 +116,12 @@ To confirm that your data has been uploaded successfully, issue the `td tables` 
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
     +------------+------------+------+-----------+
-    | production | access     | log  | 1         |
+    | production | foo        | log  | 1         |
+    | production | bar        | log  | 3         |
+    | production | buz        | log  | 5         |
     +------------+------------+------+-----------+
 
-Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to access the logs.
+Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to read the logs.
 
 NOTE: <b>td-agent handles log-rotation</b>. td-agent keeps a record of the last position of the log, ensuring that each line is read exactly once even if the td-agent process goes down. However, since the information is kept in a file, the "exactly once" guarantee breaks down if the file becomes corrupted. 
 

@@ -1,6 +1,6 @@
-# Tailing Nginx Access Logs
+# Tailing JSON Formatted Logs
 
-This article explains how to tail Nginx access logs from td-agent, to continuously import the access logs into the cloud.
+This article explains how to tail JSON formatted logs from td-agent, to continuously import the access logs into the cloud.
 
 ## Installing td-agent
 
@@ -46,13 +46,13 @@ Next, please specify your authentication key by setting the `apikey` option. You
 Note: *YOUR_API_KEY* should be your actual apikey string.
 
     :::text
-    # Tailing the Apache Log
+    # Tailing the JSON formatted Logs
     <source>
       type tail
-      path /var/log/nginx/access.log
-      pos_file /var/log/td-agent/nginx-access.pos
-      tag td.production.access
-      format nginx
+      format json
+      tag td.production.foo
+      path /path/to/the/file/foo.json
+      pos_file /var/log/td-agent/foo.pos
     </source>
     
     # Treasure Data Input and Output
@@ -70,18 +70,31 @@ Please restart your agent once these lines are in place.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-td-agent will now keep tailing the log, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
+td-agent will now tail the file, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
 ## Confirming Data Import
 
-Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+Here is a sample log file. Every time a new line is appended to the log file, td-agent parses the line and adds it to its buffer. td-agent uploads the data into the cloud every 5 minutes; to upload the data immediately, please send a SIGUSR1 signal.
+
+    :::js
+    $ tail -n 5 /path/to/the/file/foo.json
+    {"a"=>"b", "c"=>"d"}
+    {"a"=>"b", "c"=>"d", "e"=>1}
+    {"a"=>"b", "c"=>"d", "e"=>1, "f"=>2.0}
+    {"a"=>"b", "c"=>"d"}
+    {"a"=>"b", "c"=>"d", "e"=>1}
+
+Issue the commands below to confirm that everything is configured correctly.
 
     :::term
-    # generate access logs
-    $ curl http://host:port/
+    # append new entries
+    $ tail -n 3 /path/to/the/file/foo.json > sample.txt # take the last three lines of the log...
+    $ cat sample.txt >>/path/to/the/file/foo.json       # and append them to the buffer file to trigger the tail plugin.
     
     # flush the buffer
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+
+NOTE: <b>td-agent handles log-rotation</b>. td-agent keeps a record of the last position of the log, ensuring that each line is read exactly once even if the td-agent process goes down. However, since the information is kept in a file, the "exactly once" guarantee breaks down if the file becomes corrupted. 
 
 To confirm that your data has been uploaded successfully, issue the `td tables` command as shown below.
 
@@ -90,12 +103,10 @@ To confirm that your data has been uploaded successfully, issue the `td tables` 
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
     +------------+------------+------+-----------+
-    | production | access     | log  | 1         |
+    | production | foo        | log  | 3         |
     +------------+------------+------+-----------+
 
-Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to access the logs.
-
-NOTE: <b>td-agent handles log-rotation</b>. td-agent keeps a record of the last position of the log, ensuring that each line is read exactly once even if the td-agent process goes down. However, since the information is kept in a file, the "exactly once" guarantee breaks down if the file becomes corrupted. 
+Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to read the logs.
 
 ## Next Steps
 

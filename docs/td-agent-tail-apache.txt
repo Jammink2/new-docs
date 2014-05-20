@@ -1,4 +1,4 @@
-# Streaming Import from Apache Access Logs
+# Tailing Apache Access Logs
 
 This article explains how to tail Apache logs from td-agent, to continuously import the access logs into the cloud.
 
@@ -51,7 +51,7 @@ Note: *YOUR_API_KEY* should be your actual apikey string.
       type tail
       path /var/log/httpd-access.log
       pos_file /var/log/td-agent/httpd-access.pos
-      tag production.access
+      tag td.production.access
       format apache2
     </source>
     
@@ -70,7 +70,7 @@ Please restart your agent once these lines are in place.
     :::term
     $ sudo /etc/init.d/td-agent restart
 
-td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
+td-agent will now keep tailing the log, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
 ## Confirming Data Import
 
@@ -93,7 +93,9 @@ To confirm that your data has been uploaded successfully, issue the `td tables` 
     | production | access     | log  | 1         |
     +------------+------------+------+-----------+
 
-Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to access the logs.
+Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to read the logs.
+
+NOTE: <b>td-agent handles log-rotation</b>. td-agent keeps a record of the last position of the log, ensuring that each line is read exactly once even if the td-agent process goes down. However, since the information is kept in a file, the "exactly once" guarantee breaks down if the file becomes corrupted. 
 
 ## Next Steps
 

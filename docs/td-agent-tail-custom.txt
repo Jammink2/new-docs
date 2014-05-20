@@ -1,63 +1,6 @@
-# Tailing Existing Log Files
+# Tailing Custom-Formatted Logs
 
-td-agent can "tail" log files like the UNIX *tail* command, then import the results into the cloud.
-
-## Prerequisites
-
-  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
-  * Basic knowledge of [td-agent](/articles/td-agent).
-
-## Tailing JSON-based Logs
-
-We are using the [tail input plugin](http://docs.fluentd.org/articles/in_tail) with the following configuration file. **We assume that each line of the log corresponds to a well-formed JSON (should not span multiple lines).**
-
-NOTE: This feature is supported in td-agent v1.1.5.1 and higher.
-
-    :::text
-    <source>
-      type tail
-      path /path/to/the/file
-      tag td.test_db.test_table
-      format json
-      pos_file /var/log/td-agent/test_db_test_table.pos
-    </source>
-    
-    <match td.*.*>
-      type tdlog
-      apikey ...
-      auto_create_table
-      buffer_type file
-      buffer_path /var/log/td-agent/buffer/td
-      use_ssl true
-    </match>
-
-Here is a sample log file. Every time a new line is appended to the log file, td-agent parses the line and adds it to its buffer. td-agent uploads the data into the cloud every 5 minutes; to upload the data immediately, please send a SIGUSR1 signal.
-
-    :::js
-    {"a"=>"b", "c"=>"d"}
-    {"a"=>"b", "c"=>"d", "e"=>1}
-    {"a"=>"b", "c"=>"d", "e"=>1, "f"=>2.0}
-    {"a"=>"b", "c"=>"d"}
-    {"a"=>"b", "c"=>"d", "e"=>1}
-
-Issue the commands below to confirm that everything is configured correctly.
-
-    :::term
-    # append new entries
-    $ tail -n 3 /path/to/log/file > sample.txt # take the last three lines of the log...
-    $ cat sample.txt >>/path/to/buffer/file    # and append them to the buffer file to trigger the tail plugin.
-    
-    # flush the buffer
-    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
-    
-    # confirm the upload
-    $ td tables test_db
-
-NOTE: <b>td-agent handles log-rotation</b>. td-agent keeps a record of the last position of the log, ensuring that each line is read exactly once even if the td-agent process goes down. However, since the information is kept in a file, the "exactly once" guarantee breaks down if the file becomes corrupted. 
-
-## Tailing Custom-Formatted Logs
-
-If your logs are in a custom format, you will need to write a custom parser [(instructions)](http://fluentd.org/doc/devel.html#custom-parser-for-tail-input-plugin). Once you have written the parser, please put the file into your */etc/td-agent/plugins/* directory.
+If your logs are in a custom format, you will need to write a custom parser [(instructions)](http://docs.fluentd.org/articles/plugin-development#customizing-the-tail-input-plugin-parser). Once you have written the parser, please put the file into your */etc/td-agent/plugins/* directory.
 
 We provide two example parsers: "URL-param style key-value pairs" and "ascii character delimited format". Both formats are fairly common among our users.
 
