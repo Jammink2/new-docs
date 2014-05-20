@@ -1,0 +1,108 @@
+# Streaming Import from Nginx Access Logs
+
+This article explains how to tail Nginx access logs from td-agent, to continuously import the access logs into the cloud.
+
+## Installing td-agent
+
+'td-agent' needs to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data. td-agent is developed and maintained by Treasure Data, Inc.
+
+<center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
+
+To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please refer to...</th>
+  </tr>
+  <tr>
+    <td>MacOS X</td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-homebrew">Installing td-agent on MacOS X</a></td>
+  </tr>
+  <tr>
+    <td>Ubuntu System</td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-deb">Installing td-agent for Debian and Ubuntu</a></td>
+  </tr>
+  <tr>
+    <td>RHEL / CentOS System</td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-rpm">Installing td-agent for Redhat and CentOS</a></td>
+  </tr>
+  <tr>
+    <td>Joyent SmartOS</td>
+    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
+  </tr>
+  <tr>
+    <td>AWS Elastic Beanstalk</td>
+    <td><a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">Installing td-agent on AWS Elastic Beanstalk</a></td>
+  </tr>
+</table>
+
+NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
+
+## Modifying /etc/td-agent/td-agent.conf
+
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current). Next, please set the `apikey` option in your td-agent.conf file. 
+
+Note: *YOUR_API_KEY* should be your actual apikey string.
+
+    :::text
+    # Tailing the Apache Log
+    <source>
+      type tail
+      path /var/log/nginx/access.log
+      pos_file /var/log/td-agent/nginx-access.pos
+      tag production.access
+      format nginx
+    </source>
+    
+    # Treasure Data Input and Output
+    <match td.*.*>
+      type tdlog
+      apikey YOUR_API_KEY
+      auto_create_table
+      buffer_type file
+      buffer_path /var/log/td-agent/buffer/td
+      use_ssl true
+    </match>
+
+Please restart your agent once these lines are in place.
+
+    :::term
+    $ sudo /etc/init.d/td-agent restart
+
+td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
+
+## Confirming Data Import
+
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+
+    :::term
+    # generate access logs
+    $ curl http://host:port/
+    
+    # flush the buffer
+    $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+
+To confirm that your data has been uploaded successfully, issue the `td tables` command as shown below.
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | production | access     | log  | 1         |
+    +------------+------------+------+-----------+
+
+Please check `/var/log/td-agent.log` if it's not working correctly. `td-agent:td-agent` needs to have a permission to access the logs.
+
+## Next Steps
+
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
+
+* [Schema Management](schema)
+* [Hive Query Language](hive)
+* [Programatic Access with REST API and its Bindings](/categories/api)
+
+For more specific assistance, please visit our support center:
+
+* [Treasure Data Support Center](http://help.treasuredata.com/)

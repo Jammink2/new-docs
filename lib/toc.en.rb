@@ -64,6 +64,8 @@ section 'import-data', 'Data Import' do
     article 'perl', 'Streaming Import from Perl Applications',           ['fluentd', 'td-agent']
     article 'nodejs', 'Streaming Import from Node.js Applications',      ['fluentd', 'td-agent']
     article 'scala', 'Streaming Import from Scala Applications',         ['fluentd', 'td-agent']
+    article 'td-agent-tail-apache', 'Streaming Import from Apache Access Logs'
+    article 'td-agent-tail-nginx', 'Streaming Import from Nginx Access Logs'
     article 'td-agent-high-availability', 'Config: High-Availability td-agent Configurations', ['fluentd', 'td-agent']
     article 'td-agent-tail', 'Config: Tailing the Existing Log Files',                         ['fluentd', 'td-agent']
     article 'td-agent-copy', 'Config: Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
