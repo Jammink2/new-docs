@@ -6,7 +6,7 @@ This article explains how to tail Nginx access logs from td-agent, to continuous
 
 'td-agent' needs to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data. td-agent is developed and maintained by Treasure Data, Inc.
 
-<center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
+<center><img src="/images/td-agent-tail.png" width="100%" /></center><br /><br />
 
 To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
 
