@@ -10,13 +10,13 @@ This article explains **4 steps** to streamingly import the data from Ruby appli
 
 ## Step 1: Installing Treasure Agent
 
-First of all, Treasure Agent (`td-agent`) to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data.
+First of all, Treasure Agent (`td-agent`) needs to be installed on your application servers. Treasure Agent is an agent program sits within your application servers, focusing on uploading application logs to the cloud.
 
 <center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
 
-The [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library enables Ruby applications to post records to their local td-agent. td-agent in turn receives the records, buffers them, and uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+The [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library enables Ruby applications to post records to their local Treasure Agent. Treasure Agent in turn receives the records, buffers them, and uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
+To set up Treasure Agent (`td-agent`), please refer to the following articles:
 
 <table>
   <tr>
