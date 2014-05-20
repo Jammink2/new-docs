@@ -108,7 +108,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
     # Post a record
     $ ruby test.rb
     
-    # Force flushing the buffer
+    # Flush the buffer
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 #### From Web Console
