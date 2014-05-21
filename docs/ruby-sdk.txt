@@ -1,4 +1,6 @@
-# Data Import from Treasure Data Ruby SDK
+# Ruby SDK Data Import
+
+This article describes how to import the data from your Ruby applications, using Treasure Data's Ruby SDK,
 
 ## Prerequisites
 
@@ -76,6 +78,4 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 * [Hive Query Language](hive)
 * [Programatic Access with REST API and its Bindings](/categories/api)
 
-For more specific assistance, please visit our support center:
-
-* [Treasure Data Support Center](http://help.treasuredata.com/)
+If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.

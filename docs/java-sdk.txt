@@ -1,0 +1,102 @@
+# Java SDK Data Import
+
+This article describes how to import the data from your Java applications, using Treasure Data's Java SDK,
+
+## Prerequisites
+
+  * Basic knowledge of Java.
+  * Basic knowledge of Maven2.
+  * Basic knowledge of Treasure Data.
+  * Java 6 or higher (for local testing).
+
+## Step 1: Install 'td-logger-java' Library
+
+First, please add the following lines to your **pom.xml**. Replace **myVersion** with your version. The logger library's version information can be found in [CHANGES.txt](https://github.com/treasure-data/td-logger-java/blob/master/CHANGES.txt).
+
+    :::xml
+    <dependencies>
+      ...
+      <dependency>
+        <groupId>com.treasure_data</groupId>
+        <artifactId>td-logger</artifactId>
+        <version>myVersion</version>
+      </dependency>
+      ...
+    </dependencies>
+    
+    <repositories>
+      <repository>
+        <id>treasure-data.com</id>
+        <name>Treasure Data's Maven2 Repository</name>
+        <url>http://maven.treasure-data.com/</url>
+      </repository>
+      <repository>
+        <id>fluentd.org</id>
+        <name>Fluentd's Maven2 Repository</name>
+        <url>http://fluentd.org/maven2</url>
+      </repository>
+    </repositories>
+
+NOTE: If you need a all-in-one jar file, we provide one at <a href="http://maven.treasure-data.com/">http://maven.treasure-data.com/</a>.
+
+## Step 2: Modify Your App
+
+The `td-logger-java` library comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-java).
+
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. 
+
+    :::java
+    import com.treasure_data.logger.TreasureDataLogger;
+    public class Main {
+      private static TreasureDataLogger LOG;
+      static {
+        try {
+          Properties props = System.getProperties();
+          props.load(Main.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
+          LOG = TreasureDataLogger.getLogger("production");
+        } catch (IOException e) {
+          // do something
+        }
+      }
+      public void doApp() {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("from", "userA");
+        data.put("to", "userB");
+        LOG.log("follow", data);
+      }
+    }
+
+Your event-logging code should be placed near its corresponding event-generating code. 
+
+When using the `td-logger-java` library, the posted records are buffered in the memory locally at first, and the data is uploaded every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect your application's response time.
+
+The local buffer also has a size limit. If the local data exceeds this limit, the records will be uploaded immediately.
+
+## Step 3: Confirming Data Import
+
+The data gets uploaded in every 5 minutes. You can confirm the data import either from Web Console or CLI.
+
+#### From Web Console
+
+To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](https://console.treasuredata.com/databases).
+
+#### From CLI
+Or, please issue the *td tables* command if you have a [CLI client](command-line).
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | production | follow     | log  | 1         |
+    +------------+------------+------+-----------+
+
+## Next Steps
+
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
+
+* [Schema Management](schema)
+* [Hive Query Language](hive)
+* [Programatic Access with REST API and its Bindings](/categories/api)
+
+If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
