@@ -1,0 +1,81 @@
+# Data Import from Treasure Data Ruby SDK
+
+## Prerequisites
+
+  * Basic knowledge of Ruby, Gems, and Bundler.
+  * Basic knowledge of Treasure Data.
+  * Ruby 1.9 or higher (for local testing).
+
+## Step 1: Install 'td' Gem
+
+First, please add the `td` (‘T’reasure ‘D’ata) gem to your `Gemfile`.
+
+    :::ruby
+    gem 'td', "~> 0.11.1"
+
+Next, install the gem locally via bundler.
+
+    :::term
+    $ bundle install
+
+## Step 2: Modify Your App
+
+The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
+
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. 
+
+    :::ruby
+    # Initialization
+    TreasureData::Logger.open('production',
+                              :apikey=>"YOUR_API_KEY",
+                              :auto_create_table=>true)
+    
+    # Example1: login event
+    TD.event.post('login', {:uid=>123})
+    
+    # Example2: follow event
+    TD.event.post('follow', {:uid=>123, :from=>'TreasureData', :to=>'kzk_mover'})
+    
+    # Example3: pay event
+    TD.event.post('pay',
+                  {:uid=>123, :item_name=>'Stone of Jordan',
+                   :category=>'ring', :price=>100, :count=>1})
+
+Your event-logging code should be placed near its corresponding event-generating code. 
+
+When using the `td` gem, the posted records are buffered in the memory locally at first, and the data is uploaded every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect your application's response time.
+
+The local buffer also has a size limit. If the local data exceeds this limit, the records will be uploaded immediately.
+
+## Step 3: Confirming Data Import
+
+The data gets uploaded in every 5 minutes. You can confirm the data import either from Web Console or CLI.
+
+#### From Web Console
+
+To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](https://console.treasuredata.com/databases).
+
+#### From CLI
+Or, please issue the *td tables* command if you have a [CLI client](command-line).
+
+    :::term
+    $ td tables
+    +------------+------------+------+-----------+
+    | Database   | Table      | Type | Count     |
+    +------------+------------+------+-----------+
+    | production | login      | log  | 1         |
+    | production | follow     | log  | 1         |
+    | production | pay        | log  | 1         |
+    +------------+------------+------+-----------+
+
+## Next Steps
+
+We offer a schema mechanism that is more flexible than that of traditional RDBMSs. For queries, we leverage the Hive Query Language.
+
+* [Schema Management](schema)
+* [Hive Query Language](hive)
+* [Programatic Access with REST API and its Bindings](/categories/api)
+
+For more specific assistance, please visit our support center:
+
+* [Treasure Data Support Center](http://help.treasuredata.com/)

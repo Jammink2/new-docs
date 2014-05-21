@@ -116,7 +116,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](https://console.treasuredata.com/databases).
 
 #### From CLI
-Or, please issue the *td tables* command if you have a CLI client.
+Or, please issue the *td tables* command if you have a [CLI client](command-line).
 
     :::term
     $ td tables
