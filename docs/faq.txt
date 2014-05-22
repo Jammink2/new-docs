@@ -93,10 +93,9 @@ If you have any questions, please feel free to [contact us](http://www.treasured
 
 You see the following message in the td-agent log.
 
-```sh
-tdlog plugin will change the API endpoint from api.treasure-data.com to api.treasuredata.com
-If want to keep api.treasure-data.com, please set 'endpoint api.treasure-data.com' in tdlog configuration
-```
+    :::term
+    tdlog plugin will change the API endpoint from api.treasure-data.com to api.treasuredata.com
+    If want to keep api.treasure-data.com, please set 'endpoint api.treasure-data.com' in tdlog configuration
 
 This is for some users who change the control of network access to api.treasure-data.com.
 If you don't set the access restriction for our API endpoint, please ignore it.
