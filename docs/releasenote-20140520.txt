@@ -1,0 +1,62 @@
+# Release Note 20140520
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+<br/>
+### Console & APIs: Email Notifications
+
+Improved the user invitation and password reset email formats to be closer to the company's branding.
+This equally applies to Console and APIs.
+
+![Console & APIs: Email Notifications](/images/release-notes/140520-01-emails.png)
+
+<br/>
+### Console: Import Data
+
+We added an Import Data page to the Console. It summarizes the various methods customers can use to import data
+into the Treasure Data Service: **Streaming**, **SDKs**, **Bulk Import**, **SaaS**, and **File Upload**.
+
+![Console: Import Data - Unselected](/images/release-notes/140520-02-import_data-unselected.png)
+![Console: Import Data - Selected](/images/release-notes/140520-03-import_data-summary.png)
+
+Each import method has a landing page containing additional details.
+
+![Console: Import Data - SDKs](/images/release-notes/140520-04-import_data-sdks.png)
+
+The **File Upload** is a new Console feature that allows importing a CSV / TSV file straight out from the browser using a simple 3-steps wizard.
+
+![Console: Import Data - Web Uploads - Start](/images/release-notes/140520-05-import_data-web_upload-select.png)
+![Console: Import Data - Web Uploads - Start](/images/release-notes/140520-06-import_data-web_upload-begin_landing.png)
+![Console: Import Data - Web Uploads - Step 1](/images/release-notes/140520-08-import_data-web_upload-step1.png)
+![Console: Import Data - Web Uploads - Step 2](/images/release-notes/140520-09-import_data-web_upload-step2.png)
+![Console: Import Data - Web Uploads - Step 3](/images/release-notes/140520-10-import_data-web_upload-step3.png)
+
+After the CSV / TSV files are successfully uploaded to the Treasure Data Cloud, the imported data is summarized in the Import list page.
+
+![Console: Import Data - Web Uploads - End](/images/release-notes/140520-11-import_data-web_upload-end_landing.png)
+
+<br/>
+### APIs: Job Duration
+
+Improved the handling of the job 'duration' value - the value is calculated on the
+fly the first time the job is viewed in either the Jobs List, Job Details, or Slow Jobs List pages
+and stored in the database for later use and faster loading of the pages.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+This the only important Bug Fix made in this release:
+
+### Backend: Bulk Import conflict
+
+* _**[Problem]**_<br/>
+  The Bulk Import fails due to a conflict where the '/v3/bulk_import/commit_finished/:id' API is wrongly called by the Bulk Import session while in 'Committing' status.<br/>
+  _**[Solution]**_<br/>
+  Reputed to be a problem of timing, the issue is worked around by having the Bulk Import Commit worker retry when it receives error code <tt>409</tt> (Conflict) from the API server.<br/>
+
+<br/>
