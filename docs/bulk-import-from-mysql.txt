@@ -39,10 +39,7 @@ NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid 
 
 In the above command, we assumed that:
 
-* The data file is called `data.csv` and is located in the current directory (hence `./data.csv`)
-* The first line indicates column names
 * The time field is called "date_time"
-* The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
 
 For further details, check the following documentations.
 
