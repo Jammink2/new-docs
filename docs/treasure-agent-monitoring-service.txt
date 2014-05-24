@@ -1,30 +1,28 @@
-# Treasure Agent Monitoring Service
-
-This article covers how to use Treasure Agent Monitoring Service (TAMS), to monitor all the streaming import capabilities.
-
-## Prerequisites
-
-  * Treasure Data account (Please [sign up](https://console.treasuredata.com/users/sign_up) if you don't have it).
-  * Basic knowledge of Treasure Data (an understanding of the [Getting Started](quickstart) guide).
-  * Basic knowledge of [td-agent](td-agent).
+# Treasure Agent Monitoring Service: Quickstart
 
 ## Overview
 
-Treasure Agent Monitoring Service (TAMS) is a service offerred by Treasure Data. This service allows you to monitor Treasure Agent metrics instantly, and have alerts on these metrics.
+This article shows how to set up the monitoring service for Treasure Agent. The monitoring service provides the ability to
 
-## Configuration
+1. visualize and monitor Treasure Agent's resource usage with a per-plugin level granularity in real time.
+2. set up email notifications when Treasure Agent instances go down.
 
-To enable TAMS, you need to change 8 lines within `/etc/td-agent/td-agent.conf`.
+## Prerequisites
 
-### 1) `td_monitor_agent` Configuration
+* Familiarity with [Treasure Agent](td-agent) and [Fluentd](http://docs.fluentd.org). In the rest of this article, it is assumed that Treasure Agent is running on Ubuntu Precise (Treasure Agent has [deb](http://docs.fluentd.org/articles/install-by-deb) and [rpm](http://docs.fluentd.org/articles/install-by-rpm) packages). With some modifications, one should be able to set it up for Fluentd as well.
+* Treasure Data API key: You can sign up [here]() and [this article] shows how to retrieve the API key.
 
-Please add the following configuration to your `/etc/td-agent/td-agent.conf`. You can find Treasure Data API key from [here](https://console.treasuredata.com/users/current).
+## Step 1: Configure the monitoring plugin
+
+SSH into the server that is running a Treasure Agent instance to be monitored. Open its configuration file and make the following edits.
+
+First, configure the td_monitor_agent to send monitoring data to Treasure Data periodically:
 
     :::text
     <source>
-      type td_monitor_agent
-      apikey YOUR_TREASURE_DATA_APIKEY
-      instance_id YOUR_INSTANCE_NAME
+        type td_monitor_agent
+        apikey YOUR_TREASURE_DATA_APIKEY
+        instance_id monitored_instance_1
     </source>
 
 #### apikey
@@ -33,29 +31,62 @@ Your Treasure Data API key. You can find from [here](https://console.treasuredat
 #### instance_id
 Specify unique instance id across nodes. If not specified, use configuration file path instead.
 
-### 2) `td_counter` Configuration
-
-Next, please inject `td_counter` to your Treasure Data output plugin.
+Next, configure per-plugin monitoring for each output plugin you wish to monitor. To do so, one needs to "wrap" a current output plugin with the td_counter output plugin. For example, suppose you had your Treasure Data output plugin set up as follows.
 
     :::text
-    # Treasure Data Output
+    # BEFORE MONITORING
     <match td.*.*>
-      type td_counter
-      <store>
         type tdlog
         apikey YOUR_API_KEY
         auto_create_table
         buffer_type file
         buffer_path /var/log/td-agent/buffer/td
-        use_ssl true
-      </store>
     </match>
 
-After changing these configurations, please restart the daemon.
+Then, in order to monitor this output, configure it as follows.
 
-    :::term
-    $ sudo /etc/init.d/td-agent restart
+    :::text
+    # AFTER MONITORING
+    <match td.*.*>
+        type td_counter
+        <store>
+            type tdlog
+            apikey YOUR_API_KEY
+            auto_create_table
+            buffer_type file
+            buffer_path /var/log/td-agent/buffer/td
+        </store>
+    </match>
 
-## Confirm
+## Step 2: Restart Treasure Agent
 
-Now it's ready! Your Treasure Agent started reporting the metrics to our server every minute. Please access to [Monitoring Page](https://console.treasuredata.com/monitoring) at Treasure Data's Web console, to check all the metrics from your Treasure Agent instances.
+Restart td-agent to enable the new configuration.
+
+    :::text
+    $ sudo service td-agent restart
+
+You should see in Treasure Agent's log that the two plugins are registered successfully:
+
+    :::text
+    # sudo egrep type=\"td_ --color /var/log/td-agent/td-agent.log
+    2014-05-24 08:47:54 +0000 [info]: adding source type="td_monitor_agent"
+    2014-05-24 08:47:55 +0000 [info]: adding match pattern="td.*.*" type="td_counter"
+
+## Step 3: Send Data and Visualize
+
+We are ready to see the monitoring service in action. Go to [the monitoring section](https://console.treasuredata.com/monitoring)  of the Treasure Data Console (please log in if you have not done so), and you should see the instance named "monitored_instance_1" (boxed in red). Metrics data is updated **every minute**.
+
+<img alt="Treasure Agent monitoring screenshot" src="/images/monitoring-screenshot-1.png"/>
+
+One can use the drop-down menus (boxed in green) to view both system-wide metrics as well as per-plugin statistics.
+
+<img alt="Treasure Agent monitoring screenshot" src="/images/monitoring-screenshot-2.png"/>
+
+Finally, one can set up email notifications for Treasure Agent availability. If the email notification checkbox is checked, Treasure Data notifies the user via email if one or more instances have not pinged the monitoring service for more than five minutes.
+
+<img alt="Treasure Agent monitoring screenshot" src="/images/monitoring-screenshot-3.png"/>
+
+## Resources
+
+* [GitHub repo for the monitoring plugin](https://github.com/treasure-data/fluent-plugin-td-monitoring)
+* [Treasure Agent download](td-agent)
