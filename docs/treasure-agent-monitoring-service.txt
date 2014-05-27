@@ -2,16 +2,18 @@
 
 ## Overview
 
-This article shows how to set up the monitoring service for Treasure Agent. The monitoring service provides the ability to
+This article shows how to set up the monitoring service for Treasure Agent. The monitoring service provides the ability to:
 
 1. visualize and monitor Treasure Agent's resource usage with a per-plugin level granularity in real time.
 2. set up email notifications when Treasure Agent instances go down.
 
+<br/>
 ## Prerequisites
 
 * Familiarity with [Treasure Agent](td-agent) and [Fluentd](http://docs.fluentd.org). In the rest of this article, it is assumed that Treasure Agent is running on Ubuntu Precise (Treasure Agent has [deb](http://docs.fluentd.org/articles/install-by-deb) and [rpm](http://docs.fluentd.org/articles/install-by-rpm) packages). With some modifications, one should be able to set it up for Fluentd as well.
 * Treasure Data account: If you do not have a Treasure Data account, you can sign up [here](https://console.treasuredata.com/users/sign_up)
 
+<br/>
 ## Step 1: Configure the monitoring plugin
 
 SSH into the server that is running a Treasure Agent instance to be monitored. Open its configuration file and make the following edits.
@@ -25,13 +27,14 @@ First, configure the td_monitor_agent to send monitoring data to Treasure Data p
         instance_id monitored_instance_1
     </source>
 
-#### apikey
-Your Treasure Data API key. You can find it [here](https://console.treasuredata.com/users/current).
+where:
 
-#### instance_id
-Specify unique instance id across nodes. If not specified, use configuration file path instead.
+* **apikey**<br/>
+  Your Treasure Data API key. You can find it [here](https://console.treasuredata.com/users/current).
+* **instance_id**<br/>
+  Specify unique instance id across nodes. If not specified, use configuration file path instead.
 
-Next, configure per-plugin monitoring for each output plugin you wish to monitor. To do so, one needs to "wrap" a current output plugin with the td_counter output plugin. For example, suppose you had your Treasure Data output plugin set up as follows.
+Next, configure per-plugin monitoring for each output plugin you wish to monitor. To do so, one needs to "wrap" a current output plugin with the td_counter output plugin. For example, suppose you had your Treasure Data output plugin set up as follows:
 
     :::text
     # BEFORE MONITORING
@@ -43,7 +46,7 @@ Next, configure per-plugin monitoring for each output plugin you wish to monitor
         buffer_path /var/log/td-agent/buffer/td
     </match>
 
-Then, in order to monitor this output, configure it as follows.
+Then, in order to monitor this output, configure it as follows:
 
     :::text
     # AFTER MONITORING
@@ -58,6 +61,7 @@ Then, in order to monitor this output, configure it as follows.
         </store>
     </match>
 
+<br/>
 ## Step 2: Restart Treasure Agent
 
 Restart td-agent to enable the new configuration.
@@ -72,19 +76,20 @@ You should see in Treasure Agent's log that the two plugins are registered succe
     2014-05-24 08:47:54 +0000 [info]: adding source type="td_monitor_agent"
     2014-05-24 08:47:55 +0000 [info]: adding match pattern="td.*.*" type="td_counter"
 
+<br/>
 ## Step 3: Send Data and Visualize
 
-We are ready to see the monitoring service in action. Go to [the monitoring section](https://console.treasuredata.com/monitoring)  of the Treasure Data Console (please log in if you have not done so), and you should see the instance named "monitored_instance_1" (boxed in red). Metrics data is updated **every minute**.
+We are ready to see the monitoring service in action. Go to the [monitoring section](https://console.treasuredata.com/monitoring)  of the Treasure Data Console (please log in if you have not done so), and you should see the instance named "monitored_instance_1" (boxed in red). Metrics data is updated **every minute**.
 
-<img alt="Treasure Agent monitoring screenshot" src="/images/monitoring-screenshot-1.png"/>
+![Treasure Agent monitoring screenshot, Instances list](/images/monitoring-screenshot-1.png)
 
 One can use the drop-down menus (boxed in green) to view both system-wide metrics as well as per-plugin statistics.
 
-<img alt="Treasure Agent monitoring screenshot" src="/images/monitoring-screenshot-2.png"/>
+![Treasure Agent monitoring screenshot, Options](/images/monitoring-screenshot-2.png)
 
-Finally, one can set up email notifications for Treasure Agent availability. If the email notification checkbox is checked, Treasure Data notifies the user via email if one or more instances have not pinged the monitoring service for more than five minutes.
+Finally, one can set up email notifications for Treasure Agent availability (boxed in orange). If the email notification checkbox is checked, Treasure Data notifies the user via email if one or more instances have not pinged the monitoring service for more than five minutes.
 
-<img alt="Treasure Agent monitoring screenshot" src="/images/monitoring-screenshot-3.png"/>
+![Treasure Agent monitoring screenshot, Notifications](/images/monitoring-screenshot-3.png)
 
 ## Resources
 
