@@ -23,7 +23,7 @@ After the installation, `td` command will be installed on your computer. Please 
 
 ## Importing data from MySQL
 
-Please execute the following commands to upload the CSV file.
+Please execute the following commands to upload data from MySQL.
 
     $ td db:create sampledb
     $ td table:create sampledb sampletbl
