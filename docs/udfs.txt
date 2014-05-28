@@ -73,7 +73,8 @@ The formats above can be combined. For example, "1h30m" means "after 1 hour and 
 
 If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
 
-NOTE: "year" and "month" durations are NOT supported.
+NOTE: "year" and "month" durations are <b>NOT</b> supported, because these have complicated implications. A month can be 28, 29, 30, or 31 days, and a year could be 365 or 366 days. To implement these, this function will become a lot heavier and impact performance.
+
 
 ## TD_TIME_FORMAT()
 
