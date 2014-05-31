@@ -1,0 +1,5 @@
+# File Import via Browser
+
+From the console, you can import CSV/TSF file to Treasure Data via the browser. Please access [here](https://console.treasuredata.com/import).
+
+![Console: Import Data - Web Uploads - Start](/images/release-notes/140520-05-import_data-web_upload-select.png)

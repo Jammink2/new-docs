@@ -106,6 +106,9 @@ section 'import-data', 'Data Import' do
     article 'ios-sdk', 'iOS SDK'
     article 'android-sdk', 'Android SDK'
   end
+  category 'file-import', 'File Import via Browser' do
+    article 'file-import', 'File Import via Browser'
+  end
 end
 
 section 'query-data', 'Data Set Management' do
@@ -155,16 +158,36 @@ section 'Data Analysis', 'Data Analysis & Integration' do
     article 'result-into-ftp', 'Query Result Output to FTP Server'
     article 'result-into-leftronic', 'Query Result Output to Leftronic Dashboard'
   end
-  category '3rd-party-tools-overview', 'Third Party BI/ETL Tools' do
+end
+section 'bi-etl-tools', '3rd Party BI/ETL Tools' do
+  category 'overview', 'Overview' do
     article 'tools', 'Overview'
+  end
+  category 'tableau', 'Tableau' do
     article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
+  end
+  category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights',        ['Metric Insights']
+  end
+  category 'jaspersoft-ireport', 'JasperSoft iReport' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
+  end
+  category 'jaspersoft-server', 'JasperSoft Server' do
     article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
+  end
+  category 'pentaho-reportdesigner', 'Pentaho Report Designer' do
     article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
+  end
+  category 'pentaho-dataintegration', 'Pentaho Data Integration' do
     article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
+  end
+  category 'r-language', 'R Language' do
     article 'r-language', 'R Language',                 ['R Language']
+  end
+  category 'talend', 'Talend' do
     article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
+  end
+  category 'indicee', 'Indicee' do
     article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   end
 end
