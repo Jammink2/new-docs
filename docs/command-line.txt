@@ -1,19 +1,15 @@
-# Command-line Interface
+# Treasure Data Toolbelt: Command-line Interface
 
-The Treasure Data CLI allows you to create databases and tables, [import](bulk-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
+The Treasure Data CLI (or Toolbelt) allows you to create databases and tables, [import](bulk-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
 
 
 ## Step 1: Installation
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
-If you are familiar with Ruby, you can install `td` from the command line using `gem`.
-
-    :::term
-    $ gem install td
-
-Alternative installation options, including a Mac OSX installer, a Windows installer, or installing `td` as part of `td-agent` on Linux can be found on the [Treasure Data Toolbelt page](http://toolbelt.treasuredata.com/).
-
+- [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
+- [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
+- [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
 ## Step 2: Authorize
 
