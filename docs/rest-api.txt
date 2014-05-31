@@ -20,11 +20,7 @@ Every request to Treasure Data must contain *authentication information*, provid
     :::term
     "AUTHORIZATION: TD1 " + YourApiKeyHere
 
-The API key is your authentication key. The API key can be found in your ~/.td/td.conf file.
-
-    :::term
-    $ grep apikey ~/.td/td.conf
-    apikey = 1be3de7d01be3de7d01be3de7d01be3de7d01be3
+The API key is your authentication key. Please refer [here](get-apikey) to retrieve your API key.
 
 The request looks like this when using the curl command. (The -H option adds the AUTHORIZATION HTTP header to the request)
 

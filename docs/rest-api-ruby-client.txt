@@ -19,7 +19,7 @@ The source code is [available at github](https://github.com/treasure-data/td-cli
 
 ## List Databases and Tables
 
-The example below lists the databases and tables.
+The example below lists the databases and tables. The API key is your authentication key. Please refer [here](get-apikey) to retrieve your API key.
 
     :::ruby
     require 'td'

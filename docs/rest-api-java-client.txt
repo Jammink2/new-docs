@@ -3,3 +3,6 @@
 The [td-client-java](https://github.com/treasure-data/td-client-java) library wraps Treasure Data's REST API.
 
 Please refer to the README file on how to install and use the bindings.
+
+Also, please refer [here](get-apikey) to retrieve your API key.
+

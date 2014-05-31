@@ -1,0 +1,13 @@
+# Get the API Key
+
+## From Web Console
+
+Please access this <a href="https://console.treasuredata.com/users/current">URL</a>. At the right most column, you can retrieve the API key.
+
+## From CLI
+
+From [CLI](command-line), please execute the following command.
+
+    :::term
+    $ td apikey:show
+    YOUR_API_KEY_WILL_BE_HERE

@@ -126,7 +126,7 @@ section 'query-data', 'Data Set Management' do
   end
 end
 
-section 'job-management', 'Job Management' do
+section 'data-analysis-and-integrations', 'Data Analysis & Integration' do
   category 'data-analysis-overview', 'Overview' do
     article 'data-analysis-overview', 'Overview'
   end
@@ -147,8 +147,6 @@ section 'job-management', 'Job Management' do
     article 'result-into-ftp', 'Job Result Output to FTP Server'
     article 'result-into-leftronic', 'Job Result Output to Leftronic Dashboard'
   end
-end
-section 'query-references', 'Query References' do
   category 'hive', 'Hive QL Reference' do
     article 'hive', 'Hive Query Language (HiveQL) Overview'
     article 'hive-operators', 'Hive Built-in Operators'
@@ -219,17 +217,18 @@ section 'tools-and-apis', 'Tools & APIs' do
 end
 
 section 'support-and-billing', 'Support & Status' do
+  category 'accounts', 'Accounts' do
+    article 'get-apikey', 'Get API Key'
+    article 'change-password', 'Changing the Password'
+    article 'access-control', 'Access Control'
+    article 'change-email-address', 'Changing your Email Address'
+  #   article 'delete-account', 'Deleting the account'
+  end
   category 'support', 'Support' do
     article 'support-channels', 'Support Channels'
   end
   category 'service-status', 'Service Status' do
     article 'service-status', 'Service Status'
-  end
-  category 'accounts', 'Accounts' do
-    article 'change-password', 'Changing the Password'
-    article 'access-control', 'Access Control'
-    article 'change-email-address', 'Changing your Email Address'
-  #   article 'delete-account', 'Deleting the account'
   end
   category 'setup-consultation', 'Setup Consultation' do
     article 'setup-consultation', "Setup Consultation by Treasure Data Engineers"
