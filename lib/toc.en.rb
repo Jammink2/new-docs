@@ -126,13 +126,29 @@ section 'query-data', 'Data Set Management' do
   end
 end
 
-section 'Data Analysis', 'Data Analysis & Integration' do
+section 'job-management', 'Job Management' do
   category 'data-analysis-overview', 'Overview' do
     article 'data-analysis-overview', 'Overview'
   end
   category 'job-management', 'Job Management' do
     article 'job', 'Job Management'
   end
+  category 'scheduled-job', 'Scheduled Job' do
+    article 'schedule', 'Scheduled Job'
+  end
+  category 'result', 'Job Result Output' do
+    article 'result-into-td', 'Job Result Output to Treasure Data'
+    article 'result-into-mysql', 'Job Result Output to MySQL'
+    article 'result-into-postgresql', 'Job Result Output to PostgreSQL'
+    article 'result-into-s3', 'Job Result Output to AWS S3'
+    article 'result-into-redshift', 'Job Result Output to AWS Redshift'
+    article 'result-into-google-spreadsheet', 'Job Result Output to Google SpreadSheet'
+    article 'result-into-web', 'Job Result Output to Web Server (REST)'
+    article 'result-into-ftp', 'Job Result Output to FTP Server'
+    article 'result-into-leftronic', 'Job Result Output to Leftronic Dashboard'
+  end
+end
+section 'query-references', 'Query References' do
   category 'hive', 'Hive QL Reference' do
     article 'hive', 'Hive Query Language (HiveQL) Overview'
     article 'hive-operators', 'Hive Built-in Operators'
@@ -143,20 +159,6 @@ section 'Data Analysis', 'Data Analysis & Integration' do
   end
   category 'pig', 'Pig Latin Reference' do
     article 'pig', 'Pig Latin Language'
-  end
-  category 'scheduled-job', 'Scheduled Job' do
-    article 'schedule', 'Scheduled Job'
-  end
-  category 'result', 'Query Result Output' do
-    article 'result-into-td', 'Query Result Output to Treasure Data'
-    article 'result-into-mysql', 'Query Result Output to MySQL'
-    article 'result-into-postgresql', 'Query Result Output to PostgreSQL'
-    article 'result-into-s3', 'Query Result Output to AWS S3'
-    article 'result-into-redshift', 'Query Result Output to AWS Redshift'
-    article 'result-into-google-spreadsheet', 'Query Result Output to Google SpreadSheet'
-    article 'result-into-web', 'Query Result Output to Web Server (REST)'
-    article 'result-into-ftp', 'Query Result Output to FTP Server'
-    article 'result-into-leftronic', 'Query Result Output to Leftronic Dashboard'
   end
 end
 section 'bi-etl-tools', '3rd Party BI/ETL Tools' do
@@ -229,6 +231,12 @@ section 'support-and-billing', 'Support & Status' do
     article 'change-email-address', 'Changing your Email Address'
   #   article 'delete-account', 'Deleting the account'
   end
+  category 'setup-consultation', 'Setup Consultation' do
+    article 'setup-consultation', "Setup Consultation by Treasure Data Engineers"
+  end
+  category 'scalability-consultation', 'Scalability Consultation' do
+    article 'scalability-consultation', 'Scalability Consultation by Treasure Data Engineers'
+  end
 end
 
 section 'paas', 'PaaS' do
@@ -246,13 +254,3 @@ section 'paas', 'PaaS' do
     article 'beanstalk', 'Apps on Amazon Beanstalk'
   end
 end
-
-section 'consulting', 'Consulting' do
-  category 'setup-consultation', 'Setup Consultation' do
-    article 'setup-consultation', "Setup Consultation by Treasure Data Engineers"
-  end
-  category 'scalability-consultation', 'Scalability Consultation' do
-    article 'scalability-consultation', 'Scalability Consultation by Treasure Data Engineers'
-  end
-end
-
