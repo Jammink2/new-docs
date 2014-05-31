@@ -1,4 +1,4 @@
-# Sending Query Results to Leftronic.
+# Writing Job Results into Leftronic.
 
 [Leftronic](https://www.leftronic.com) is an online dashboard service. This article explains how to output query results as data points for dashboard graphs.
 

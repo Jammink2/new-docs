@@ -1,4 +1,4 @@
-# Writing the Query Results into your TD Table.
+# Writing Job Results into your TD Table.
 
 This article explains how to write job results to your Treasure Data (TD) table.
 

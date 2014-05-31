@@ -1,4 +1,4 @@
-# Sending Query Results to a Web Server
+# Writing Job Results to a Web Server
 
 This article explains how to send job results directly to your web server.
 

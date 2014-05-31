@@ -1,4 +1,4 @@
-# Writing Query Results into Google SpreadSheet
+# Writing Job Results into Google SpreadSheet
 
 This article explains how to write job results directly to your Google SpreadSheet.
 

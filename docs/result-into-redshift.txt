@@ -1,4 +1,4 @@
-# Writing Query Results into AWS Redshift
+# Writing Job Results into AWS Redshift
 
 This article explains how to write job results to your existing Amazon Redshift cluster.
 

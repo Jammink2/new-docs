@@ -1,4 +1,4 @@
-# Writing Query Results into AWS S3
+# Writing Job Results into AWS S3
 
 This article explains how to write job results directly to Amazon S3.
 

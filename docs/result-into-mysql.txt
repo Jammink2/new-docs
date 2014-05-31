@@ -1,4 +1,4 @@
-# Writing the Query Results into your MySQL Tables.
+# Writing Job Results into your MySQL Tables.
 
 This article explains how to write job results to your existing MySQL instance.
 

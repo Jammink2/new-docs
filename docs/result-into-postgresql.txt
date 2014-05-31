@@ -1,4 +1,4 @@
-# Writing Query Results into PostgreSQL
+# Writing Job Results into PostgreSQL
 
 This article explains how to write job results to your existing PostgreSQL instance.
 

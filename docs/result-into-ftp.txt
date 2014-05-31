@@ -1,4 +1,4 @@
-# Sending Query Results to a FTP Server
+# Writing Job Results to a FTP Server
 
 This article explains how to send job results directly to your ftp server.
 
