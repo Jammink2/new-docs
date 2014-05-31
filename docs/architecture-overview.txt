@@ -3,12 +3,7 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is a **Big Data as-a-Service**, based on *Apache Hadoop*. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud.
-
-<p><center><img src="/images/td_high_level_overview.png" width="100%" /></center></p>
-<br />
-
-Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
+Treasure Data is a **Cloud Data Service**. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
 
 ## Why We Started Our Business?
 
@@ -52,9 +47,9 @@ Key features include:
 
 #### 1) Built-in Data Collector
 
-Treasure Data provides a data collection daemon, *[td-agent](/articles/td-agent)*, which is installed in your existing infrastructure. td-agent collects records from various data sources and continuously uploads the data to Treasure Data's cloud storage.
+Treasure Data provides a data collection daemon, *[Treasure Agent](/articles/td-agent)*, which is installed in your existing infrastructure. td-agent collects records from various data sources and continuously uploads the data to Treasure Data's cloud storage.
 
-#### 2) Cloud Columnar Storage
+#### 2) Distributed Columnar Storage
 
 All your data is stored in the cloud as a columnar data. This format achieves far better performance and compression compared to existing RDBMSs. We also believe that *your data is yours*: you can bulk-export your data at any time.
 
@@ -66,7 +61,7 @@ Treasure Data lets you analyze your data using a SQL-style language. The query i
 
 [A built-in export capability](/categories/result) is provided for writing summarized data from the Treasure Data store to a traditional RDBMs or Data Warehouse. This enables efficient processing of large data volumes with Treasure Data both as a primary analytics engine as well as a preprocessing platform.
 
-#### 5) JDBC interface to BI tools
+#### 5) 3rd Party BI/ETL Tools Connectivity
 
 Treasure Data also provides a standard [JDBC interface](jdbc-driver) for data transfer to existing (or future) BI tools. Custom coding and maintenance to link these environments with the primary data store is eliminated.
 
