@@ -124,6 +124,9 @@ section 'query-data', 'Data Set Management' do
   category 'data-export', 'Data Export' do
     article 'bulk-export', 'Data Export'
   end
+  category 'data-merging', 'Merging Data' do
+    article 'merging', 'Merging Data'
+  end
 end
 
 section 'data-analysis-and-integrations', 'Data Analysis & Integration' do
