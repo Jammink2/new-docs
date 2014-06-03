@@ -1,6 +1,75 @@
 # Treasure Data iOS SDK
 
-We are currently in the process of building an iOS SDK (Software Development Kit). If you'd be interested in beta-testing our SDK, please let us know using the form below.
+This article will help you start sending the data from your iOS app to Treasure Data, using our iOS SDK library.
 
-<span></span>
-<iframe src="https://go.pardot.com/l/24122/2013-05-28/77i" width="100%" height="215" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
+## Prerequisites
+
+  * Basic knowledge of iOS Development (Xcode, [CocoaPods](http://cocoapods.org/))
+  * Basic knowledge of Treasure Data.
+
+## Step 1: Install the Library
+
+[CocoaPods](http://cocoapods.org/) is a recommended way to install Treasure Data iOS SDK. First, please install CocoaPods to your PC.
+
+    :::term
+    $ gem install cocoapods
+
+Add the following line to your Podfile:
+
+    :::ruby
+    pod 'TreasureData-iOS-SDK'
+
+Finally, please run `pod install`.
+
+    :::term
+    $ pod install
+
+## Step 2: Initialize the Library
+
+Once you’ve installed the framework, just import the header file like following:
+
+    :::c
+    #import "TreasureData-iOS-SDK/TreasureData.h"
+
+Next, please initialize the library in your app delegate’s `application:applicationDidBecomeActive:` method:
+
+    :::c
+    - (void)applicationDidBecomeActive:(UIApplication *)application {
+      [TreasureData initializeWithSecret:@"your_api_key"];
+    }
+
+<a href="mailto:support@treasure-data.com">Let us know</a> if you’re having any build issues.
+
+## Step 3: Send Events to the Cloud
+
+Next, please call event() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
+
+    :::c
+    - (IBAction)clickButton:(id)sender {
+      [[TreasureData sharedInstance] event:@{
+        @"name": @"foo bar",
+        @"age": @42,
+        @"comment": @"hello world"
+      }
+      database:@"database_a"
+      table:@"table_b"];
+    }
+
+By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
+
+The folowing code uploads the event when the application goes to the background, which is a fairly common pattern across our customers.
+
+    :::c
+    - (void)applicationDidEnterBackground:(UIApplication *)application {
+      [[TreasureData sharedInstance] uploadWithBlock:^(void) {
+        NSLog(@"Uploaded.");
+      }];
+    }
+
+## Next Steps
+
+For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
+
+* [https://github.com/treasure-data/td-ios-sdk](https://github.com/treasure-data/td-ios-sdk)
+
+If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
