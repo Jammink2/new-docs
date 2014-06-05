@@ -15,12 +15,12 @@ NOTE: This driver only works with Treasure Data. It does not run on other enviro
 Use the following JDBC URL format with your Java application or JDBC-compliant SQL/BI tool.
 
     :::text
-    jdbc:td://api.treasuredata.com/<db_name>
+    jdbc:td://api.treasuredata.com/<db_name>;useSSL=true
 
 For example, to access a database named "sample_db" in your account, your JDBC URL would be:
 
     :::text
-    jdbc:td://api.treasuredata.com/sample_db
+    jdbc:td://api.treasuredata.com/sample_db;useSSL=true
 
 ## Query Execution Internals
 
