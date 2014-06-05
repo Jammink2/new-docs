@@ -65,7 +65,7 @@ Here's a sample Java program that executes a SELECT statement. This program coun
         }
 
         Connection conn = DriverManager.getConnection(
-          "jdbc:td://api.treasuredata.com/testdb",
+          "jdbc:td://api.treasuredata.com/testdb;useSSL=true",
           "YOUR_MAIL_ADDRESS_HERE",
           "YOUR_PASSWORD_HERE");
         Statement stmt = conn.createStatement();
