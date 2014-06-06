@@ -44,11 +44,11 @@ Next, please initialize the library in your app delegate’s `application:applic
 
 ## Step 3: Send Events to the Cloud
 
-Next, please call event() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
+Next, please call addEvent() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
 
     :::c
     - (IBAction)clickButton:(id)sender {
-      [[TreasureData sharedInstance] event:@{
+      [[TreasureData sharedInstance] addEvent:@{
         @"name": @"foo bar",
         @"age": @42,
         @"comment": @"hello world"
@@ -63,7 +63,7 @@ The folowing code uploads the event when the application goes to the background,
 
     :::c
     - (void)applicationDidEnterBackground:(UIApplication *)application {
-      [[TreasureData sharedInstance] uploadWithBlock:^(void) {
+      [[TreasureData sharedInstance] uploadEventsWithBlock:^(void) {
         NSLog(@"Uploaded.");
       }];
     }
