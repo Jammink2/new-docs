@@ -57,16 +57,16 @@ section 'import-data', 'Data Import' do
     article 'import-overview', 'Overview'
   end
   category 'streaming-import', 'Streaming Import' do
-    article 'td-agent', 'Streaming Import Overview', ['fluentd', 'td-agent']
-    article 'java', 'Streaming Import from Java Applications',           ['fluentd', 'td-agent']
-    article 'ruby', 'Streaming Import from Ruby Applications',           ['fluentd', 'td-agent']
-    article 'rails', 'Streaming Import from Ruby on Rails Applications', ['fluentd', 'td-agent']
-    article 'python', 'Streaming Import from Python Applications',       ['fluentd', 'td-agent']
-    article 'php', 'Streaming Import from PHP Applications',             ['fluentd', 'td-agent']
-    article 'perl', 'Streaming Import from Perl Applications',           ['fluentd', 'td-agent']
-    article 'nodejs', 'Streaming Import from Node.js Applications',      ['fluentd', 'td-agent']
-    article 'scala', 'Streaming Import from Scala Applications',         ['fluentd', 'td-agent']
-    article 'dotnet', 'Streaming Import from .NET Applications',         ['fluentd', 'td-agent']
+    article 'td-agent', 'Streaming Import Overview',                                           ['fluentd', 'td-agent']
+    article 'java', 'Streaming Import from Java Applications',                                 ['fluentd', 'td-agent']
+    article 'ruby', 'Streaming Import from Ruby Applications',                                 ['fluentd', 'td-agent']
+    article 'rails', 'Streaming Import from Ruby on Rails Applications',                       ['fluentd', 'td-agent']
+    article 'python', 'Streaming Import from Python Applications',                             ['fluentd', 'td-agent']
+    article 'php', 'Streaming Import from PHP Applications',                                   ['fluentd', 'td-agent']
+    article 'perl', 'Streaming Import from Perl Applications',                                 ['fluentd', 'td-agent']
+    article 'nodejs', 'Streaming Import from Node.js Applications',                            ['fluentd', 'td-agent']
+    article 'scala', 'Streaming Import from Scala Applications',                               ['fluentd', 'td-agent']
+    article 'dotnet', 'Streaming Import from .NET Applications',                               ['fluentd', 'td-agent']
     article 'td-agent-tail-apache', 'Tailing Apache Access Logs'
     article 'td-agent-tail-nginx', 'Tailing Nginx Access Logs'
     article 'td-agent-tail-ctltsv', 'Tailing CSV/TSV/LTSV Formatted Logs'
@@ -76,10 +76,11 @@ section 'import-data', 'Data Import' do
     article 'td-agent-copy', 'Config: Storing Logs Locally and Remotely',                      ['fluentd', 'td-agent']
     article 'td-agent-http', 'Config: Storing Logs via HTTP protocol',                         ['fluentd', 'td-agent']
     article 'td-agent-scribe', 'Config: Storing Logs via Scribe protocol',                     ['fluentd', 'td-agent']
-    article 'fluentd-to-treasure-data', 'Ops: Using Fluentd Ruby gem',                      ['fluentd']
-    article 'td-agent-monitoring', 'Ops: Monitoring td-agent',                              ['fluentd', 'td-agent', 'monitoring']
-    article 'td-agent-upgrade', 'Ops: Upgrading td-agent',                                  ['fluentd', 'td-agent']
-    article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                             ['fluentd', 'td-agent']
+    article 'fluentd-to-treasure-data', 'Ops: Using Fluentd Ruby gem',                         ['fluentd']
+    article 'td-agent-monitoring', 'Ops: Monitoring td-agent',                                 ['fluentd', 'td-agent', 'monitoring']
+    article 'td-agent-upgrade', 'Ops: Upgrading td-agent',                                     ['fluentd', 'td-agent']
+    article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                               ['fluentd', 'td-agent']
+    article 'treasure-agent-monitoring-service', 'Ops: Monitoring td-agent from the Console',  ['fluentd', 'td-agent', 'monitoring', 'console']
   end
   category 'bulk-import', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import Overview'
