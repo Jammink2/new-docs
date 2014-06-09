@@ -96,11 +96,23 @@
 		<aside id="sidebar">
 		  <section class="pie-clearfix pie-clearfix-ie" id="search">
 			<div id="search">
-			  <form action="http://go.treasuredata.com/s/24122/wqy8Mn4Pl2aJw7pvoztbnKrj9VoDEZRy" method="GET">
+			  <form>
 				<p>
-				  <input id="q" name="q" placeholder="Search" required="required" type="text" value="<%=h params[:q] || '' %>" />
+				  <input id="st-search-input" name="q" placeholder="Search" required="required" type="text" value="<%=h params[:q] || '' %>" />
 				</p>
 			  </form>
+        <script type="text/javascript">
+          var Swiftype = window.Swiftype || {};
+          (function() {
+            Swiftype.key = '_xaEYeFzAGRCessg5xDF';
+
+            /** DO NOT EDIT BELOW THIS LINE **/
+            var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+            script.src = "//s.swiftypecdn.com/embed.js";
+            var entry = document.getElementsByTagName('script')[0];
+            entry.parentNode.insertBefore(script, entry);
+          }());
+        </script>
 			</div>
 		  </section>
 		  <select id="quicknav">
