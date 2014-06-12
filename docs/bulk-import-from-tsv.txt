@@ -11,7 +11,7 @@ First, please install the [toolbelt](command-line), which includes bulk loader p
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader.
+After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -23,34 +23,48 @@ After the installation, `td` command will be installed on your computer. Please 
 
 ## Importing data from a TSV
 
-Suppose you have a file called `data.tsv` and its content is like this:
+Suppose you have a file called <tt>data.tsv</tt> and its content looks like this:
 
     :::term
     $ head -n 2 data.tsv
     host   log_name     date_time       method  url     res_code        bytes   referer user_agent
-    64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846      
+    64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846
 
 Next, please execute the following commands to upload the TSV file.
 
-    $ td db:create sampledb
-    $ td table:create sampledb sampletbl
+    $ td db:create my_db
+    $ td table:create my_db my_tbl
     $ td import:auto \
+      --auto-create my_db.my_tbl \
       --format tsv --column-header \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
-      --auto-create sampledb.sampletbl \
       ./data.tsv
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 
-* The data file is called `data.tsv` and is located in the current directory (hence `./data.tsv`)
-* The first line indicates column names
-* The time field is called "date_time"
-* The time format is %Y-%m-%d %H:%M:%S (You can specify your own with `--time-format`)
+* The data file is called <tt>data.tsv</tt> and is located in the current directory (hence <tt>./data.tsv</tt>)
+* The first line in the file indicates the column names, hence we specify the <tt>\-\-column-header</tt> option.
+  If the file does not have the column names in the first row, you will have to specify the column names with the
+  <tt>\-\-columns</tt> option (and optionally the column types with <tt>\-\-column-types</tt> option), or use the
+  <tt>\-\-column-types</tt> for each column in the file.
+* The time field is called "date_time" and it's specified with the <tt>\-\-time-column</tt> option
+* The time format is <tt>%Y-%m-%d %H:%M:%S</tt> and it's specified with the <tt>\-\-time-format</tt> option
 
-For further details, check the following documentations.
+These options are specific to bulk import from CSV/TSV files and they can be used to tailor the behavior of the parser
+to non standard CSV/TSV file formats:
+
+    :::term
+    CSV/TSV specific options:
+    --column-header                  first line includes column names
+    --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+    --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
+    --quote CHAR                     quote [DOUBLE, SINGLE, NONE];
+                                     if csv format, default=DOUBLE. if tsv format, default=NONE
+
+For further details, check the following pages:
 
 - [Bulk Import Internals](bulk-import-internal).
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

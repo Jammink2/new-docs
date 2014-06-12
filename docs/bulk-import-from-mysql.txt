@@ -11,7 +11,7 @@ First, please install the [toolbelt](command-line), which includes bulk loader p
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader.
+After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -25,24 +25,39 @@ After the installation, `td` command will be installed on your computer. Please 
 
 Please execute the following commands to upload data from MySQL.
 
-    $ td db:create sampledb
-    $ td table:create sampledb sampletbl
+    $ td db:create my_db
+    $ td table:create my_db my_tbl
     $ td import:auto \
+      --auto-create my_db.my_tbl \
       --format mysql \
+      --db-url jdbc:mysql://my_sql_host/my_sql_db \
+      --db-user my_user \
+      --db-password my_pass \
       --time-column date_time \
-      --db-url jdbc:mysql://localhost/mydb \
-      --db-user myuser \
-      --db-password mypass \
-      --auto-create sampledb.sampletbl \
-      mytable
+      my_sql_tbl
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
-In the above command, we assumed that:
+In this example we assumed that:
 
-* The time field is called "date_time"
+* the bulk import will read the input data from the <tt>my_sql_tbl</tt> on the MySQL database specified by the
+  '<tt>\-\-db\-</tt>' prefixed options
+* the bulk import session is created automatically by our request using the <tt>\-\-auto\-create</tt> option.<br/>
+  When using the <tt>\-\-auto\-create</tt> option we are required to provide the database and table name in in the
+  format indicated. The session name will be '<tt>my_db.my_tbl</tt>'.<br/>
+  Alternatively one can create the bulk import session with a name of choice, using the `td import:create` command
+  (for details see [Bulk Import Internals, Import Step-by-Step](bulk-import-internal#importing-large-data-reliably-with-bulk-import-step-by-step)).
+* the time field is called "date_time" and is provided with the <tt>\-\-time\-column</tt> option
 
-For further details, check the following documentations.
+These options can be used to specify the access to the MySQL database:
+
+    :::term
+    MySQL specific options:
+    --db-url URL                     JDBC connection URL
+    --db-user NAME                   user name for MySQL account
+    --db-password PASSWORD           password for MySQL account
+
+For further details, check the following pages:
 
 - [Bulk Import Internals](bulk-import-internal).
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

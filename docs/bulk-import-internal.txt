@@ -10,10 +10,11 @@
 * Perform: the uploaded data is then transformed into our column-oriented data format using MapReduce.
 * Commit: After the perform step, the data is now compatible with Plazma (Treasure Data's columnar, distributed storage system). So, the commit step copies the data over into Plazma.
 
+<br/>
 ## Updating only Bulk Import
 
 In the section below, we will show you how to update Bulk Import. We suggest that you use the newest version of Bulk Import.
-You can run 
+You can run
 
     :::term
     $ td import:jar_update
@@ -24,33 +25,40 @@ In the section below, we will show you how to use Bulk Import step by step. Whil
 
     :::term
     $ td import:upload \
-      --auto-create my_db.my_table \
-      --auto-perform --auto-commit --column-header \
-      -o prepared_parts \
+      --auto-create my_db.my_tbl \
+      --auto-perform --auto-commit \
+      --column-header \
+      --output prepared_parts \
       data_*.csv
 
-For example, if
-    
-* the original files are data_*.csv
-* the prepared data is stored in the directory "prepared_parts"
-* the data is uploaded in my_db.my_table
+For example, if:
 
-you can run
+* the original files are data_*.csv
+* the prepared data is stored in the directory "prepared_parts" (specified with the <tt>\-\-output / \-o</tt> option)
+* the data is uploaded in the Treasure Data database <tt>my_db</tt> and table <tt>my_tbl</tt> using the bulk import session
+  <tt>my_db.my_tbl</tt> (specified with the <tt>\-\-auto\-create</tt> option)
+
+you can run:
 
     :::term
     $ td import:upload \
-      --auto-create my_db.my_table \
-      --auto-perform --auto-commit --column-header \
-      -o prepared_parts \
+      --auto-create my_db.my_tbl \
+      --auto-perform --auto-commit \
+      --column-header \
+      --output prepared_parts \
       data_*.csv
 
 A couple of assumptions for the example above:
 
-1. We assume that the data is in CSV format.
-2. We assume that the first row of each input file contains column names (This is done with the `--column-header` option. You can also treat all rows as data and specify column names with `--columns c1,c2,c3...` as well.)
+1. We assume that the data is in CSV format unless a different format is specified with the <tt>--format</tt> option
+2. We indicated that the first row of each input file contains column names.<br/>
+   This is specified with the <tt>\-\-column-header</tt> option.
+   Alternatively you can also treat all rows as data and specify column names with <tt>\-\-columns c1,c2,c3..</tt>
+   as well.
 
 NOTE: Regular expressions can't be used on Windows. Please rewrite your filenames from data_*.csv to (YOUR_TARGET_FILENAME)
 
+<br/>
 ## Importing Large Data Reliably with Bulk Import (Step by Step)
 
 ### 1) Create a Session
@@ -58,7 +66,7 @@ NOTE: Regular expressions can't be used on Windows. Please rewrite your filename
 First create a `session` (a single instance containing multiple parts). One session is associated with one table.
 
     :::term
-    $ td import:create bulk_2012 mydb mytable
+    $ td import:create my_session my_db my_tbl
 
 ### 2) Convert Your Data into Parts Files
 
@@ -72,7 +80,7 @@ NOTE: Splitting the data into separate directories by month is recommended. You 
         --columns time,uid,price,count --time-column 'time' \
         -o ./parts_201208/
 
-If your files include column names in the first line, please use the --column-header option.
+If your files include column names in the first line, please use the <tt>\-\-column-header</tt> option.
 
     :::term
     $ td import:prepare ./logs_201208/*.csv \
@@ -81,7 +89,7 @@ If your files include column names in the first line, please use the --column-he
         --time-column 'time' \
         -o ./parts_201208/
 
-We support csv, tsv, and json formats for the --format option. Here are the remaining examples.
+We support csv, tsv, and json formats for the <tt>\-\-format option</tt>. Here are the remaining examples.
 
     :::term
     # TSV
@@ -90,7 +98,7 @@ We support csv, tsv, and json formats for the --format option. Here are the rema
         --column-header \
         --time-column 'time' \
         -o ./parts_201208/
-    
+
     # JSON
     $ td import:prepare ./logs_201208/*.json \
         --format json \
@@ -102,52 +110,77 @@ We support csv, tsv, and json formats for the --format option. Here are the rema
 You can now upload the `parts` directory into the session.
 
     :::term
-    $ td import:upload bulk_2012 ./parts_201208/*
+    $ td import:upload my_session ./parts_201208/*
 
 If the upload fails, you can retry any time. No data duplication occurs.
 
-    $ td import:upload bulk_2012 ./parts_201208/*
+    :::term
+    $ td import:upload my_session ./parts_201208/*
 
 You can import multiple parts within a single session.
 
-    $ td import:upload bulk_2012 ./parts_201207/*
-    $ td import:upload bulk_2012 ./parts_201206/*
-    $ td import:upload bulk_2012 ./parts_201205/*
+    :::term
+    $ td import:upload my_session ./parts_201207/*
+    $ td import:upload my_session ./parts_201206/*
+    $ td import:upload my_session ./parts_201205/*
     ...
 
 The uploaded parts can be viewed using `import:show`.
 
     :::term
-    $ td import:show bulk_2012
+    $ td import:show my_session
 
 ### 4) Perform
 
-The `import:perform` command converts the uploaded files into a more efficient format on the cloud (This is why it takes a bit of time!). The files are converted in parallel by executing MapReduce jobs.
+The `import:perform` command converts the uploaded files into a more efficient format on the cloud (this is why it takes a bit of time!).
+The files are converted in parallel by executing MapReduce jobs.
 
     :::term
-    $ td import:freeze bulk_2012
-    $ td import:perform bulk_2012 -w
+    $ td import:freeze my_session
+    $ td import:perform my_session --wait
     $ td import:list
-    +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
-    | Name | Table     | Status | Frozen | JobID | Valid Parts | Error Parts | Valid Records | Error Records |
-    +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
-    | t01  | sfdb.bi02 | Ready  |        | 70220 | 2           | 1           | 100           | 10            |
-    +------+-----------+--------+--------+-------+-------------+-------------+---------------+---------------+
+    +-------------+--------------+--------+--------+-------+-------------+-------------+---------------+---------------+
+    | Name        | Table        | Status | Frozen | JobID | Valid Parts | Error Parts | Valid Records | Error Records |
+    +-------------+--------------+--------+--------+-------+-------------+-------------+---------------+---------------+
+    | my_session  | my_db.my_tbl | Ready  |        | 70220 | 2           | 1           | 100           | 10            |
+    +-------------+--------------+--------+--------+-------+-------------+-------------+---------------+---------------+
 
-### 5) Check Error Records
+In this example we invoke the `import:freeze` prior to issueing the `import:perform` command to prevent other scripts
+from uploading additional data into the session while the data is being converted.
 
-After running the `perform` command, some records could become invalid. You can list these invalid records with the `import:error_records` command.
+The `import:perform` command takes an optional <tt>\-\-wait</tt> option to make command busy-wait until the perform
+job has completed. In alternative one can leave the <tt>\-\-wait</tt> option and the `import:perform` command will
+return to control to the user/script as soon as the perform job has been submitted.
+
+Afterward, to upload additional data the user needs to unfreeze the session by means of the `import:unfreeze` command.
+
+### 5) Optional: Check Error Records
+
+After running the `import:perform` command, some records could be flagged as invalid. You can list these invalid records
+with the `import:error_records` command.
 
     :::term
-    $ td import:error_records bulk_2012
+    $ td import:error_records my_session
 
 ### 6) Commit
 
-Once you have confirmed that the uploaded data is correct, use the `import:commit` command to transactionally import the data into the table.
+Once you have confirmed that the uploaded data is correct, use the `import:commit` command to transactionally import
+the data into the destination database <tt>my_db</tt> and table <tt>my_tbl</tt>.
 
     :::term
-    $ td import:commit bulk_2012
-    $ td import:delete bulk_2012
+    $ td import:commit my_session --wait
+
+### 7) Delete Session or Import Additional Data
+
+Once the data made it to the destination Treasure Data table, there are two options: either import mode data or close
+the session and delete it.
+
+In the former case, please go back to Step 2) and repeat the process.
+
+In the latter case, use the `import:delete` command to close and delete the import session:
+
+    :::term
+    $ td import:delete my_session
 
 ## Does Bulk Import support X?
 
@@ -173,43 +206,76 @@ For subcommands, you can do `td help import:<subcommand name>`, e.g., `td help i
 
     :::term
     $ td help import:upload
-    java version "1.6.0_51"
-    Java(TM) SE Runtime Environment (build 1.6.0_51-b11-457-11M4509)
-    Java HotSpot(TM) 64-Bit Server VM (build 20.51-b01-457, mixed mode)
-    command: false
     usage:
-      $ td bulk_import:upload_parts <name> <files...>
+      $ td import:upload <session name> <files...>
 
     example:
-      $ td bulk_import:upload_parts parts/* --parallel 4
+      $ td import:upload mysess parts/* --parallel 4
+      $ td import:upload mysess parts/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
+      $ td import:upload parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
+      $ td import:upload mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
 
     description:
       Upload or re-upload files into a bulk import session
-
     options:
-        -C, --compress TYPE              compressed type [gzip, none]; default=auto detect
-        -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
-        --auto-commit                    commit bulk import job automatically
-        --auto-create DATABASE.TABLE     create automatically bulk import session by specified
-                                           database and table names
-        --auto-delete                    delete bulk import session automatically
+        --retry-count NUM                upload process will automatically retry at specified time; default: 10
+        --auto-create DATABASE.TABLE     create automatically bulk import session by specified database and table names
+                                         If you use 'auto-create' option, you MUST not specify any session name as first argument.
         --auto-perform                   perform bulk import job automatically
-        --column-header                  first line includes column names
-        --column-types TYPE,TYPE,...     column types [string, int, long]
-        --columns NAME,NAME,...          column names (use --column-header instead if the first line
-                                           has column names)
-        --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
-        -e, --encoding TYPE              encoding type [utf-8]
-        --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
-        --exclude-columns NAME,NAME,...
-                                         exclude columns
-        -f, --format FORMAT              source file format [csv, tsv, json, msgpack]; default=csv
-        --newline TYPE                   newline [CRLR, LR, CR];  default=CRLF
-        -o, --output DIR                 output directory
-        --only-columns NAME,NAME,...     only columns
+        --auto-commit                    commit bulk import job automatically
+        --auto-delete                    delete bulk import session automatically
         --parallel NUM                   upload in parallel (default: 2; max 8)
-        --prepare-parallel NUM           prepare in parallel (default: 2; max 8)
-        --quote CHAR                     quote [DOUBLE, SINGLE]; default=DOUBLE
+
+        -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
+        -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
+        -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+        -e, --encoding TYPE              encoding type [utf-8]
+        -o, --output DIR                 output directory. default directory is 'out'.
         -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
         -t, --time-column NAME           name of the time column
-        --time-value TIME                long value of the time column
+        --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
+                                         users can auto-generate the time column's value in 2 ways:
+                                          * Fixed time value with --time-value TIME:
+                                            where TIME is a Unix time in seconds since Epoch. The time
+                                            column value is constant and equal to TIME seconds.
+                                            E.g. '--time-value 1394409600' assigns the equivalent of
+                                            timestamp 2014-03-10T00:00:00 to all records imported.
+                                          * Incremental time value with --time-value TIME,HOURS:
+                                            where TIME is the Unix time in seconds since Epoch and
+                                            HOURS is the maximum range of the timestamps in hours.
+                                            This mode can be used to assign incremental timestamps to
+                                            subsequent records. Timestmaps will be incremented by 1 second
+                                            each record. If the number of records causes the timestamp to
+                                            overflow the range (timestamp >= TIME + HOURS * 3600), the
+                                            next timestamp will restart at TIME and continue from there.
+                                            E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
+                                            to the first record, timestamp 1394409601 to the second, 1394409602
+                                            to the third, and so on until the 36000th record which will have
+                                            timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                            to the 36001th record will be 1394409600 again and the timestamp
+                                            will restart from there.
+        --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
+        --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
+        --only-columns NAME,NAME,...     only columns
+        --exclude-columns NAME,NAME,...  exclude columns
+        --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+        --error-records-output DIR       write error records; default directory is 'error-records'.
+        --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
+        --column-types TYPE,TYPE,...     column types [string, int, long, double]
+        --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
+        -S, --all-string                 disable automatic type conversion
+
+        CSV/TSV specific options:
+        --column-header                  first line includes column names
+        --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+        --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
+        --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
+
+        MySQL specific options:
+        --db-url URL                     JDBC connection URL
+        --db-user NAME                   user name for MySQL account
+        --db-password PASSWORD           password for MySQL account
+
+        REGEX specific options:
+        --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
+

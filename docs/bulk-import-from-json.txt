@@ -11,7 +11,7 @@ First, please install the [toolbelt](command-line), which includes bulk loader p
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader.
+After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -23,33 +23,35 @@ After the installation, `td` command will be installed on your computer. Please 
 
 ## Importing data from a JSON
 
-Suppose you have a file called `data.json` and its content is like this:
+Suppose you have a file called <tt>data.json</tt> and its content is like this:
 
     :::term
     $ head -n 1 data.json
     {"host":"224.225.147.72","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":43,"agent":"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)","date_time":"2004-03-07 16:05:49"}
 
-Next, please execute the following commands to upload the JSON file.
+Next, please execute the following command to upload the JSON file:
 
-    $ td db:create sampledb
-    $ td table:create sampledb sampletbl
+    $ td db:create my_db
+    $ td table:create my_db my_tbl
     $ td import:auto \
       --format json \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
-      --auto-create sampledb.sampletbl \
+      --auto-create my_db.my_tbl \
       ./data.json
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 
-* The data file is called `data.json` and is located in the current directory (hence `./data.json`)
-* The first line indicates column names
-* The time field is called "date_time"
-* The time format is <tt>%Y-%m-%d %H:%M:%S</tt> (You can specify your own with `--time-format`)
+* The data file is called `data.json` and is located in the current directory (hence <tt>./data.json</tt>)
+* The JSON format typically specifies the column names. If it does not, you will have to specify the column names with the
+  <tt>\-\-columns</tt> options (and optionally the column types with <tt>\-\-column-types</tt> option), or use the <tt>\-\-column-types</tt> for each column
+  in the file.
+* The time field is called "date_time" and it's specified with the <tt>\-\-time-column</tt> option
+* The time format is <tt>%Y-%m-%d %H:%M:%S</tt> and it's specified with the <tt>\-\-time-format</tt> option
 
-For further details, check the following documentations.
+For further details, check the following pages:
 
 - [Bulk Import Internals](bulk-import-internal)
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

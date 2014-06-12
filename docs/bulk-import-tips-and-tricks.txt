@@ -4,28 +4,26 @@ This article describes some tips and tricks around the bulk improt.
 
 ## Using the proxy server
 
-If you cannot upload, please first check if your network is using proxy. You can set proxy by setting the environment variables.
+If you cannot upload, please first check if your network is using proxy. You can set proxy by setting the environment variables:
 
     :::term
-    e.g.
-    Windows:
+    # Windows:
     $ set HTTP_PROXY=http://proxy_host:8080
-    Other:
+    # Other:
     $ export HTTP_PROXY="proxy_host:8080"
-
 
 ## Perforamnce increase by more parallelism
 
-`td import:auto` supports two options to tune the parallelism: `--parallel` and `--prepare-parallel`.
+`td import:auto` supports two options to tune the parallelism: <tt>\-\-parallel</tt> and <tt>\-\-prepare-parallel</tt>.
 
     :::term
     --parallel NUM                   upload in parallel (default: 2; max 8)
     --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
 
-`--parallel` option specifies how many threads to be used for uploading the data. If you observe bulk import tool is not saturating your network, please consider having `--parallel` option with higher numbers.
+<tt>\-\-parallel</tt> option specifies how many threads to be used for uploading the data. If you observe bulk import tool is not saturating your network, please consider having <tt>\-\-parallel</tt> option with higher numbers.
 
-`--prepare-parallel` option specifies the number of threads to be used to compress the data locally. Normally this number should match your number of CPU cores or more.
+<tt>\-\-prepare-parallel</tt> option specifies the number of threads to be used to compress the data locally. Normally this number should match your number of CPU cores or more.
 
 ## Specify time column for maximum query performance
 
-Please don't specify `0` if you don't have time column. Treasure Data is partitioning the data by time by default (See [Data Partitioning](data-partitioning)). It's recommended to always specify the time column, or specify the current time.
+Please don't specify '<tt>0</tt>' if you don't have time column. Treasure Data is partitioning the data by time by default (See [Data Partitioning](data-partitioning)). It's recommended to always specify the time column, or specify the current time.
