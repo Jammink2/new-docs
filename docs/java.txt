@@ -78,9 +78,11 @@ td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffe
 
 ## Step 3: Using td-logger-java
 
-If you are using Maven, please add the following lines to pom.xml in your Maven project. Below, specify the latest version of td-logger-java found at <a href="http://maven.treasure-data.com/com/treasure_data/td-logger/">http://maven.treasure-data.com/</a>.
+NOTE: If you need an all-in-one jar file, we provide one at <a href="http://maven.treasure-data.com/com/treasure_data/td-logger/">http://maven.treasure-data.com/</a>. Be sure to download the latest version of the td-logger-{version_number}-jar-with-dependencies.jar file.
 
-NOTE: If you need a all-in-one jar file, we provide one at <a href="http://maven.treasure-data.com/com/treasure_data/td-logger/">http://maven.treasure-data.com/</a>.
+
+Conversely, if you are using Maven, please add the following lines to pom.xml in your Maven project:
+
 
     :::xml
     <dependencies>
@@ -113,6 +115,8 @@ Next, please configure your *treasure-data.properties* file using the commands s
     td.logger.agent.host=localhost
     td.logger.agent.port=24224
     td.logger.agent.tag=td
+
+You must ensure that the *treasure-data.properties* file is referenced by your java classpath.
 
 Finally, please insert the following lines into your application. Further information regarding the API can be found [here](https://github.com/treasure-data/td-logger-java).
 
