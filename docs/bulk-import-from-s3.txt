@@ -40,7 +40,7 @@ Next, please execute the following commands to upload the CSV file.
       --format csv --column-header \
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
-      --auto-create sampledb.sampletbl
+      --auto-create sampledb.sampletbl \
       "s3://<access_key_id>:<secret_key>@/mybucket/path/to/*.csv"
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
