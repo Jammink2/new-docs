@@ -33,6 +33,7 @@ Please execute the following commands to upload data from MySQL.
       --db-url jdbc:mysql://localhost/mydb \
       --db-user myuser \
       --db-password mypass
+      --auto-create sampledb.sampletbl
       mytable
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
