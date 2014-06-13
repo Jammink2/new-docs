@@ -12,17 +12,17 @@ If you cannot upload, please first check if your network is using proxy. You can
     # Other:
     $ export HTTP_PROXY="proxy_host:8080"
 
-## Perforamnce increase by more parallelism
+## Increase performance through parallelism
 
-`td import:auto` supports two options to tune the parallelism: <tt>\-\-parallel</tt> and <tt>\-\-prepare-parallel</tt>.
+`td import:auto` supports two options to tune parallelism: <tt>\-\-parallel</tt> and <tt>\-\-prepare-parallel</tt>.
 
     :::term
     --parallel NUM                   upload in parallel (default: 2; max 8)
     --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
 
-<tt>\-\-parallel</tt> option specifies how many threads to be used for uploading the data. If you observe bulk import tool is not saturating your network, please consider having <tt>\-\-parallel</tt> option with higher numbers.
+<tt>\-\-parallel</tt> option specifies how many threads to be used for uploading the data. If you observe bulk import tool is not saturating your network, please consider increasing the value of the <tt>\-\-parallel</tt> option.
 
-<tt>\-\-prepare-parallel</tt> option specifies the number of threads to be used to compress the data locally. Normally this number should match your number of CPU cores or more.
+<tt>\-\-prepare-parallel</tt> option specifies the number of threads to be used to compress the data locally. Normally this number should match the number of CPU cores on your machine.
 
 ## Specify time column for maximum query performance
 
