@@ -1,0 +1,69 @@
+# Release Note 20140610
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+<br/>
+### APIs: Support Single Character Column Name
+
+Added support for single character column names and improved the schema auto-detection mechanism and manual schema settings to handle them.
+
+<br/>
+### APIs: Write-Only API Key
+
+Added support for _write-only_ API keys to support the newly added [SDKs (iOS, Ruby, Java)](https://console.treasuredata.com/import/sdk).<br/>
+The original API keys are now referred to as _master_ API keys.
+
+<br/>
+### Console: iOS SDK
+
+Added the [iOS SDK](https://console.treasuredata.com/import/sdk) to the Import Data, SDKs landing page.
+
+
+![Console: iOS SDK](/images/release-notes/140610-01-ios_sdk.png)
+
+<br/>
+### Security: OpenSSL Vulnerability
+
+On June 6th, a new vulnerability in OpenSSL was uncovered.
+
+We updated all Ubuntu distributions with the version of the <tt>libssl</tt> that fixed those vulnerabilities. A notice was sent out and published on our [status page](http://status.treasuredata.com/incidents/0pf7cyt158y6).
+
+<br/>
+### Bulk Import: Released v0.4.13
+
+Added support for Date, Timestamp, and Datetime MySQL column types when reading data from the database.
+
+<br/>
+### JDBC: Released v0.2.10
+
+Provide Proxy configuration settings for the Java Client library as optional URL parameters: _httpproxyhost_, _httpproxyport_, _httpproxyuser_, _httpproxypassword_.
+
+This allows setting up a proxy for use within IDEs and other frontend tools that use the driver.
+
+<br/>
+<br/>
+<br/>
+
+## Bug Fixes
+
+This the only important Bug Fix made in this release:
+
+### Console: Link To Schedule From Job Pages
+
+* _**[Problem]**_<br/>
+  The hyperlink to the scheduled query on a job page is not working.<br/>
+  _**[Solution]**_<br/>
+  Fixed the hyperlink to link back to the scheduled query page of the schedule the job originated from.<br/>
+
+<br/>
+### Backend: TD_PARSE_USER_AGENT UDF
+
+* _**[Problem]**_<br/>
+  The <tt>TD_PARSE_USER_AGENT</tt> UDF wasn't parsing the device field correctly.<br/>
+  _**[Solution]**_<br/>
+  This problem was due to a typo in the parser implementation.<br/>
+  Fixed the typo which was causing the problem.<br/>
+
+<br/>
