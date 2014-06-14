@@ -7,7 +7,7 @@ This article will help you start sending the data from your iOS app to Treasure 
   * Basic knowledge of iOS Development (Xcode, [CocoaPods](http://cocoapods.org/))
   * Basic knowledge of Treasure Data.
 
-NOTE: iOS SDK is now under the Beta phase. Any feedbacks or bug reports are welcomed.
+NOTE: iOS SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports are welcomed.
 
 ## Step 1: Install the Library
 
