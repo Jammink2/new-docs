@@ -35,7 +35,7 @@ You must first set up `td-agent` on your application servers. Please refer to th
   </tr>
   <tr>
     <td>MacOS X</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-homebrew">Installing td-agent on MacOS X</a></td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-dmg">Installing td-agent on MacOS X</a></td>
   </tr>
   <tr>
     <td>Ubuntu System</td>
