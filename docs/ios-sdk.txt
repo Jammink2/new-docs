@@ -59,7 +59,7 @@ Next, please call addEvent() function at the appropriate timing within your appl
 
 By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
 
-The folowing code uploads the event when the application goes to the background, which is a fairly common pattern across our customers.
+The following code uploads the event when the application goes to the background, which is a fairly common pattern across our customers. You can do this whenever you like. The uploader doesn't block the main UI thread.
 
     :::c
     - (void)applicationDidEnterBackground:(UIApplication *)application {

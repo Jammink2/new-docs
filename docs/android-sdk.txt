@@ -73,13 +73,13 @@ Next, please call addEvent() function at the appropriate timing within your appl
 
 By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
 
-The folowing code uploads the event when the application got resumed, which is a fairly common pattern across our customers.
+The following code uploads the event when your application goes to the background. You can do this whenever you like. The uploader doesn't block the main UI thread.
 
     :::java
     @Override
-    protected void onResume() {
-      super.onResume();
+    protected void onPause() {
       td.uploadEvents();
+      super.onPause();
     }
 
 You can handle errors of addEvent() or uploadEvents() by the callback function.
