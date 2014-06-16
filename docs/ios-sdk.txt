@@ -1,6 +1,6 @@
 # Treasure Data iOS SDK
 
-This article will help you start sending the data from your iOS app to Treasure Data, using our iOS SDK library.
+This article will help you start sending the data from your iOS app to Treasure Data, using our iOS SDK library. In this way, you don't have to install anything on your server-side to track the mobile app activities.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Next, please initialize the library in your app delegate’s `application:applic
       [TreasureData initializeWithApiKey:@"your_api_key"];
     }
 
-<a href="mailto:support@treasure-data.com">Let us know</a> if you’re having any build issues.
+The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. <a href="mailto:support@treasure-data.com">Let us know</a> if you’re having any build issues.
 
 ## Step 3: Send Events to the Cloud
 

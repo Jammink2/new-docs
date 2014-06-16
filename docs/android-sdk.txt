@@ -1,6 +1,108 @@
 # Treasure Data Android SDK
 
-We are currently in the process of building an Android SDK (Software Development Kit). If you'd be interested in beta-testing our SDK, please let us know using the form below.
+This article will help you start sending the data from your Android app to Treasure Data, using our Android SDK library. In this way, you don't have to install anything on your server-side to track the mobile app activities.
 
-<span></span>
-<iframe src="https://go.pardot.com/l/24122/2013-05-28/77i" width="100%" height="215" type="text/html" frameborder="0" allowTransparency="true" style="border: 0"></iframe>
+## Prerequisites
+
+  * Basic knowledge of Android Development
+  * Basic knowledge of Treasure Data.
+
+NOTE: Android SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports are welcomed.
+
+## Step 1: Install the Library
+
+#### Maven
+
+If you use maven, add the following directives to your `pom.xml` under `<dependencies>`. `pom.xml` in [an example Android application project](https://github.com/treasure-data/td-android-sdk/blob/master/example/td-android-sdk-demo/pom.xml) could be a good reference.
+
+    :::xml
+    <dependency>
+      <groupId>com.treasuredata</groupId>
+      <artifactId>td-android-sdk</artifactId>
+      <version>0.1.0</version>
+    </dependency>
+
+#### Jar File
+
+If you don't use Maven, please put [td-android-sdk-x.x.x.jar](http://search.maven.org/#browse%7C606603944) into (YOUR_ANDROID_PROJECT)/libs.
+
+## Step 2: Initialize the Library
+
+### Enable Required Android Permissions
+
+If it’s not already present, add the INTERNET permission to your AndroidManifest.xml file. The entry below should appear between the `<manifest> .. </manifest>` tags. The example is [here](https://github.com/treasure-data/td-android-sdk/blob/master/example/td-android-sdk-demo/AndroidManifest.xml#L10).
+
+    :::xml
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+### Create Client
+
+Create the `TreasureData` object with your API key. The recommended place to do this is in the `onCreate()` method of your main activity. Here’s some example code:
+
+    :::java
+    public class ExampleActivity extends Activity {
+      private TreasureData td;
+
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        td = new TreasureData(this, "your_api_key");
+        ...
+      }
+    }
+
+The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs.
+
+## Step 3: Send Events to the Cloud
+
+Next, please call addEvent() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
+
+    :::java
+    View v = findViewById(R.id.button);
+    v.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        final Map event = new HashMap<String, Object>();
+        event.put("name", "foo bar");
+        event.put("age", 42);
+        event.put("comment", "hello world");
+        td.addEvent("database_a", "table_b", event);
+      }
+    });
+
+By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
+
+The folowing code uploads the event when the application got resumed, which is a fairly common pattern across our customers.
+
+    :::java
+    @Override
+    protected void onResume() {
+      super.onResume();
+      td.uploadEvents();
+    }
+
+You can handle errors of addEvent() or uploadEvents() by the callback function.
+
+    :::java
+    td.setUploadEventsCallBack(new TDCallback() {
+      @Override
+      public void onSuccess() {
+        Log.i("Example", "success!");
+      }
+
+      @Override
+      public void onError(Exception e) {
+        Log.w("Example", "error: " + e.toString());
+      }
+    });
+
+## Next Steps
+
+For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
+
+* [https://github.com/treasure-data/td-android-sdk](https://github.com/treasure-data/td-android-sdk)
+* [https://github.com/treasure-data/td-android-sdk/tree/master/example](https://github.com/treasure-data/td-android-sdk/tree/master/example)
+
+If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
+
