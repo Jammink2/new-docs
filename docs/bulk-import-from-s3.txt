@@ -1,7 +1,8 @@
 # Bulk Import from Amazon S3
 
-This article explains how to import data from Amazon S3 to Treasure Data.
+This article explains how to import data directly from Amazon S3 to Treasure Data.
 
+<br/>
 ## Install Bulk Loader
 
 First, please install the [toolbelt](command-line), which includes bulk loader program, on your computer.
@@ -23,6 +24,12 @@ After the installation, `td` command will be installed on your computer. Please 
 
 ## Importing data from Amazon S3
 
+The bulk loader can read data from files stored in Amazon S3 in all the three main supported file formats:
+
+* CSV (default)
+* JSON
+* TSV
+
 Suppose you have a file called <tt>data.csv</tt> on Amazon S3 and its content is like this:
 
     :::term
@@ -41,7 +48,9 @@ Next, please execute the following commands to upload the CSV file:
       --time-column date_time \
       --time-format "%Y-%m-%d %H:%M:%S" \
       --auto-create my_db.my_tbl \
-      "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv"
+      "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/data.csv"
+
+where the location of the file is expressed as an S3 path with the AWS public and private access keys embedded in it.
 
 NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
@@ -54,6 +63,25 @@ In the above command, we assumed that:
   <tt>\-\-column-types</tt> for each column in the file.
 * The time field is called "date_time" and it's specified with the <tt>\-\-time-column</tt> option
 * The time format is <tt>%Y-%m-%d %H:%M:%S</tt> and it's specified with the <tt>\-\-time-format</tt> option
+
+<br/>
+### Wildcards
+
+The source files to be imported by the bulk loader can be specified as full Amazon S3 paths or using wildcards.
+Here are some examples:
+
+* <tt>s3://my_bucket/path/to/data*</tt><br/>
+  All files under <tt>my_bucket/path/to/</tt> with prefix <tt>data</tt>;
+* <tt>s3://my_bucket/path/to/data*.csv</tt><br/>
+  All files under <tt>my_bucket/path/to/</tt> with prefix <tt>data</tt> and extension <tt>.csv</tt>;
+* <tt>s3://my_bucket/path/to/*.csv</tt><br/>
+  All files under <tt>my_bucket/path/to/</tt> with extension <tt>.csv</tt>;
+* <tt>s3://my_bucket/path/to/*</tt><br/>
+  All files under <tt>my_bucket/path/to/</tt>;
+* <tt>s3://my_bucket/path/to/\*/*.csv</tt><br/>
+  All files in the direct subfolders of <tt>my_bucket/path/</tt> with extension <tt>.csv</tt>;
+* <tt>s3://my_bucket/\*\*/*.csv</tt><br/>
+  All files in all subfolders of <tt>my_bucket/path/</tt> with extension <tt>.csv</tt>;
 
 For further details, check the following pages:
 
