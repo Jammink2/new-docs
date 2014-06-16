@@ -47,7 +47,7 @@ Create the `TreasureData` object with your API key. The recommended place to do 
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        td = new TreasureData(this, "your_api_key");
+        td = new TreasureData(this, "YOUR_API_KEY");
         ...
       }
     }
