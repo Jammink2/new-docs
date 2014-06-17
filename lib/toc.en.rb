@@ -140,7 +140,8 @@ section 'data-analysis-and-integrations', 'Data Analysis & Integration' do
     article 'job', 'Job Management'
   end
   category 'scheduled-job', 'Scheduled Job' do
-    article 'schedule', 'Scheduled Job'
+    article 'schedule', 'Scheduled Job (Web Console)'
+    article 'schedule', 'Scheduled Job (CLI)'
   end
   category 'result', 'Job Result Output' do
     article 'result-into-td', 'Job Result Output to Treasure Data'

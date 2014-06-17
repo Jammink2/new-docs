@@ -1,0 +1,123 @@
+# Scheduled Jobs (CLI)
+
+Treasure Data has a scheduler feature that supports periodic query execution. We take great care in distributing and operating our scheduler in order to achieve high availability. By using this feature, you no longer need a `cron` daemon on your local datacenter.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including [CLI](command-line)
+  * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
+
+## Create the Schedule (CLI)
+
+NOTE: You can create the scheduled jobs from <a href="schedule">Web Console</a> as well.
+
+A new schedule can be created using the `td sched:create` command. The name of the schedule, cron-style schedule, query, and the database name are required.
+
+    :::term
+    $ td sched:create \
+      hourly_count \
+      "0 * * * *" \
+      "select count(1) from www_access" \
+      -d testdb
+
+NOTE: The `cron` parameter also accepts two special options: `@daily` and `@hourly`.
+
+Scheduled jobs must sometimes be set as high priority items. The `-P` option is used to specify the priority. The priority is between -2 (VERY LOW) and 2 (VERY HIGH), where 0 is the default. The priority can be changed later using `td sched:update -P`.
+
+    :::term
+    # VERY HIGH
+    $ td sched:create -P  2 ...
+    # NORMAL (Default)
+    $ td sched:create -P  0 ...
+    # VERY LOW
+    $ td sched:create -P -2 ...
+
+### Example: Periodic Aggregation
+
+A common pattern is to periodically summarize data from a main table into another table.
+
+    :::sql
+    SELECT
+      user, code, method, path, agent, host, avg(size)
+    FROM
+      www_access
+    GROUP BY
+      user, code, method, path, agent, host
+    WHERE
+      TD_TIME_RANGE(time,
+        TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h'),
+        TD_SCHEDULED_TIME())
+
+The example above aggregates web request results from an access log on an hourly basis. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation.
+
+To finish setting up the query to run on an hourly basis, we create a scheduled query as demonstrated earlier.
+
+    :::term
+    $ td sched:create \
+      hourly_agg \
+      "@hourly" \
+      -d testdb \
+      -D 1800 \
+      "...[sql query above]..."
+
+Here, `@hourly` is the same as the cron `0 * * * *`. The `-D` parameter allows you specify a delay time in seconds. In the example above, we set the delay to 1800 seconds or 30 minutes. The job will execute 30 minutes after each hour.
+
+
+### List the Schedules
+
+You can see the list of currently scheduled entries by `td sched:list`.
+
+    :::term
+    $ td sched:list
+    +--------------+-----------+----------+---------------------------+-------+--------+----------+---------------------------------+
+    | Name         | Cron      | Timezone | Next schedule             | Delay | Result | Database | Query                           |
+    +--------------+-----------+----------+---------------------------+-------+--------+----------+---------------------------------+
+    | hourly_count | 0 * * * * | UTC      | 2012-06-12 12:00:00 -0700 | 0     |        | testdb   | select count(1) from www_access |
+    +--------------+-----------+----------+---------------------------+-------+--------+----------+---------------------------------+
+
+### Show the History of Schedules
+
+`td sched:history` shows the job history of a schedule entry. To investigate the results of each individual job, please use `td job <jobid>`.
+
+    :::term
+    $ td sched:history hourly_count
+    Name         : hourly_count
+    Cron         : 0 * * * *
+    Timezone     : UTC
+    Delay        : 0 sec
+    Next         : 2012-06-12 19:00:00 UTC
+    Result       : 
+    Database     : testdb
+    Query        : select count(1) from www_access
+    +--------+---------------------------+---------+--------+
+    | JobID  | Time                      | Status  | Result |
+    +--------+---------------------------+---------+--------+
+    | 371336 | 2012-06-12 11:00:00 -0700 | success |        |
+    | 371242 | 2012-06-12 10:00:00 -0700 | success |        |
+    | 371147 | 2012-06-12 09:00:00 -0700 | success |        |
+    | 371048 | 2012-06-12 08:00:00 -0700 | success |        |
+    | 370973 | 2012-06-12 07:00:00 -0700 | success |        |
+    | 370900 | 2012-06-12 06:00:00 -0700 | success |        |
+    | 370823 | 2012-06-12 05:00:00 -0700 | success |        |
+    | 370718 | 2012-06-12 04:00:00 -0700 | success |        |
+    | 370610 | 2012-06-12 03:00:00 -0700 | success |        |
+    | 370515 | 2012-06-12 02:00:00 -0700 | success |        |
+    | 370333 | 2012-06-12 01:00:00 -0700 | success |        |
+    | 370162 | 2012-06-12 00:00:00 -0700 | success |        |
+    | 370077 | 2012-06-11 23:00:00 -0700 | success |        |
+    | 369954 | 2012-06-11 22:00:00 -0700 | success |        |
+    | 369790 | 2012-06-11 21:00:00 -0700 | success |        |
+    | 369651 | 2012-06-11 20:00:00 -0700 | success |        |
+    | 369526 | 2012-06-11 19:00:00 -0700 | success |        |
+    | 369449 | 2012-06-11 18:00:00 -0700 | success |        |
+    | 369329 | 2012-06-11 17:00:00 -0700 | success |        |
+    | 369284 | 2012-06-11 16:00:00 -0700 | success |        |
+    +--------+---------------------------+---------+--------+
+    20 rows in set
+
+### Delete the Schedule
+
+`td sched:delete` will remove the schedule.
+
+    :::term
+    $ td sched:delete hourly_count
