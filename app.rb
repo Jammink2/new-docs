@@ -34,6 +34,7 @@ end
 
 set :app_file, __FILE__
 set :static_cache_control, [:public, :max_age => 3600*24]
+disable :protection
 
 # In-Mem Cache
 $IO_CACHE ||= {}
