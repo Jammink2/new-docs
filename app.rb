@@ -212,7 +212,7 @@ helpers do
   end
 
   def cache_long
-    response['Cache-Control'] = "public, max-age=#{60 * 60 * 6}" unless development?
+    response['Cache-Control'] = "public, max-age=#{60 * 60 * 6}" unless settings.development?
   end
 
   def slugify(title)

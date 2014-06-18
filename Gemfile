@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 # https://devcenter.heroku.com/articles/ruby-versions
 ruby '2.1.2'
 
-gem 'sinatra', '1.3.3'
-gem 'sinatra-assetpack', '0.2.8', :require => 'sinatra/assetpack'
+gem 'sinatra', '1.4.5'
+gem 'sinatra-assetpack', '0.3.3', :require => 'sinatra/assetpack'
 gem 'rdiscount', '1.6.8'
 gem 'rest-client', '1.2.0'
 gem 'haml', '2.2.17'
@@ -16,7 +16,7 @@ gem 'rack-canonical-host', '~> 0.0.8'
 gem 'td', '=0.11.1'
 
 # Webserver
-gem 'unicorn', '~> 4.2.1'
+gem 'unicorn', '~> 4.8.3'
 gem 'unicorn-worker-killer', '~> 0.2.0'
 
 # Addons
