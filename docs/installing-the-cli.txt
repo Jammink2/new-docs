@@ -1,0 +1,51 @@
+Installing the Treasure Data CLI
+================================
+
+Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
+
+## Install
+
+###Windows
+You can download the installer from here.
+
+- [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
+
+###Mac
+You can download the installer from here.
+
+- [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
+
+###Ubuntu (Precise or Lucid)
+####Precise
+
+Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
+
+####Lucid
+
+Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
+
+NOTE: This command installs Treasure Agent, our streaming log collector. However it also contains td toolbelt as well within a same package.
+
+###RedHat/CentOS
+
+Please add the Treasure Data rpm packages repository to your sources list. This command will set it up for you:
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+
+NOTE: This command installs Treasure Agent, our streaming log collector. However it also contains td toolbelt as well within a same package.
+
+## Confirm Installation
+
+Please open your terminal, and make sure you have `td` command.
+
+    :::term
+    $ td
+    usage: td [options] COMMAND [args]
+    ...

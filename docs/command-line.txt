@@ -9,7 +9,7 @@ Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set u
 
 - [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
-- [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
+- [Toolbelt Installer for Linux](installing-the-cli)
 
 ## Step 2: Authorize
 
