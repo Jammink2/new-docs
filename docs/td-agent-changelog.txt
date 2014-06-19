@@ -2,6 +2,16 @@
 
 This article lists the changelog of [td-agent](td-agent).
 
+## 2014/06/19: version v1.1.20
+- fluentd [v0.10.50](https://github.com/fluent/fluentd/blob/master/ChangeLog)
+- td-client [v0.8.61](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.4.0](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-td [v0.10.20](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-td-monitoring [v0.1.2](https://github.com/treasure-data/fluent-plugin-td-monitoring/blob/master/ChangeLog)
+- rspec v3.0.0
+- Improve stop routine of init script in RPM
+- Set 'ulimit -n 65536' at start
+
 ## 2014/04/01: version v1.1.19
 - fluentd [v0.10.45](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.58](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
