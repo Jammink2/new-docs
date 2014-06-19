@@ -394,7 +394,7 @@ This page documents most of `td` subcommands.
 
 ## td import:jar_version
 
-  td-import-java 0.4.11 via import:jar_update
+  td-import-java 0.4.14 via import:jar_update
 
 
 ## td import:jar_update
@@ -415,6 +415,7 @@ This page documents most of `td` subcommands.
     $ td import:prepare logs/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:prepare logs/*.csv --format csv --columns date_code,uid,price,count --time-value 1394409600,10 -o parts/
     $ td import:prepare mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
+    $ td import:prepare "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
   
 ###description:
 
@@ -428,7 +429,7 @@ This page documents most of `td` subcommands.
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
       -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
       -e, --encoding TYPE              encoding type [utf-8]
-      -o, --output DIR                 output directory
+      -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
       -t, --time-column NAME           name of the time column
       --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
@@ -457,7 +458,7 @@ This page documents most of `td` subcommands.
       --only-columns NAME,NAME,...     only columns
       --exclude-columns NAME,NAME,...  exclude columns
       --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
-      --error-records-output DIR       write error records; default directory is directory specified as 'output' option
+      --error-records-output DIR       write error records; default directory is 'error-records'.
       --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
@@ -492,6 +493,7 @@ This page documents most of `td` subcommands.
     $ td import:upload mysess parts/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:upload parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:upload mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
+    $ td import:upload "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
   
 ###description:
 
@@ -512,7 +514,7 @@ This page documents most of `td` subcommands.
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
       -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
       -e, --encoding TYPE              encoding type [utf-8]
-      -o, --output DIR                 output directory
+      -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
       -t, --time-column NAME           name of the time column
       --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
@@ -541,7 +543,7 @@ This page documents most of `td` subcommands.
       --only-columns NAME,NAME,...     only columns
       --exclude-columns NAME,NAME,...  exclude columns
       --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
-      --error-records-output DIR       write error records; default directory is directory specified as 'output' option
+      --error-records-output DIR       write error records; default directory is 'error-records'.
       --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
@@ -576,6 +578,7 @@ This page documents most of `td` subcommands.
     $ td import:auto mysess parts/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:auto parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:auto mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
+    $ td import:auto "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
   
 ###description:
 
@@ -594,7 +597,7 @@ This page documents most of `td` subcommands.
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
       -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
       -e, --encoding TYPE              encoding type [utf-8]
-      -o, --output DIR                 output directory
+      -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
       -t, --time-column NAME           name of the time column
       --time-value TIME,HOURS          time column's value. If the data doesn't have a time column,
@@ -623,7 +626,7 @@ This page documents most of `td` subcommands.
       --only-columns NAME,NAME,...     only columns
       --exclude-columns NAME,NAME,...  exclude columns
       --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
-      --error-records-output DIR       write error records; default directory is directory specified as 'output' option
+      --error-records-output DIR       write error records; default directory is 'error-records'.
       --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
@@ -1023,7 +1026,7 @@ This page documents most of `td` subcommands.
     -s, --schedule CRON              change the schedule
     -q, --query SQL                  change the query
     -d, --database DB_NAME           change the database
-    -r, --result RESULT_TABLE        change the result table
+    -r, --result RESULT_URL          change the result target (see also result:create subcommand)
     -t, --timezone TZ                name of the timezone.
                                        Only extended timezones like 'Asia/Tokyo', 'America/Los_Angeles' are supported,
                                        (no 'PST', 'PDT', etc...).
@@ -1113,13 +1116,15 @@ This page documents most of `td` subcommands.
     -o, --output PATH                write result to the file
     -f, --format FORMAT              format of the result to write to the file (tsv, csv, json or msgpack)
     -r, --result RESULT_URL          write result to the URL (see also result:create subcommand)
+                                      It is suggested for this option to be used with the -x / --exclude option to suppress printing
+                                      of the query result to stdout or -o / --output to dump the query result into a file.
     -u, --user NAME                  set user name for the result URL
     -p, --password                   ask password for the result URL
     -P, --priority PRIORITY          set priority
     -R, --retry COUNT                automatic retrying count
     -q, --query PATH                 use file instead of inline query
     -T, --type TYPE                  set query type (hive, pig, impala, presto)
-        --sampling DENOMINATOR       enable random sampling to reduce records 1/DENOMINATOR
+        --sampling DENOMINATOR       OBSOLETE - enable random sampling to reduce records 1/DENOMINATOR
     -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
     -c, --column-header              output of the columns' header when the schema is available for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
@@ -1246,6 +1251,24 @@ This page documents most of `td` subcommands.
 
 
     Show status of the Treasure Data server
+
+
+## td server:endpoint
+
+###usage:
+
+
+    $ td server:endpoint <api_endpoint>
+  
+###example:
+
+
+    $ td td server:endpoint 'https://api.treasuredata.com'
+  
+###description:
+
+
+    Set the Treasure Data API server's endpoint (must be a valid URI)
 
 
 ## td sample:apache
