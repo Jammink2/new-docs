@@ -82,8 +82,8 @@ section 'import-data', 'Data Import' do
     article 'fluentd-to-treasure-data', 'Ops: Using Fluentd Ruby gem',                         ['fluentd']
     article 'td-agent-monitoring', 'Ops: Monitoring td-agent',                                 ['fluentd', 'td-agent', 'monitoring']
     article 'td-agent-upgrade', 'Ops: Upgrading td-agent',                                     ['fluentd', 'td-agent']
-    article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                               ['fluentd', 'td-agent']
     article 'treasure-agent-monitoring-service', 'Ops: Monitoring td-agent from the Console',  ['fluentd', 'td-agent', 'monitoring', 'console']
+    article 'td-agent-changelog', 'Info: ChangeLog of td-agent',                               ['fluentd', 'td-agent']
   end
   category 'bulk-import', 'Bulk Import' do
     article 'bulk-import', 'Bulk Import Overview'
