@@ -28,9 +28,9 @@ Added the ability to delete a previously saved Named Query Result Output Target.
 ![Console: Delete Saved Query Result Output Target](/images/release-notes/140617-03-delete_nro.png)
 
 <br/>
-### Backend: Hivemall Library v2.0
+### Backend: Hivemall Library v0.2
 
-Upgraded the [Hivemall Library](https://github.com/myui/hivemall) to version v2.0. Its capabilities are immediately available to all users querying using the Hive engine.
+Upgraded the [Hivemall Library](https://github.com/myui/hivemall) to version v0.2. Its capabilities are immediately available to all users querying using the Hive engine.
 
 <br/>
 ### SDKs: Released Android SDK v0.1.0
