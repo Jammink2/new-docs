@@ -165,6 +165,12 @@ section 'data-analysis-and-integrations', 'Data Analysis & Integration' do
   category 'pig', 'Pig Latin Reference' do
     article 'pig', 'Pig Latin Language'
   end
+  category 'presto', 'Presto Query Reference' do
+    article 'presto', 'Presto Query Engine'
+    article 'presto-udfs', 'Presto UDFs'
+    article 'presto-postgresql-gateway', 'Presto PostgreSQL Gateway'
+    article 'presto-known-limitations', 'Presto Known Limitations'
+  end
 end
 section 'bi-etl-tools', '3rd Party BI/ETL Tools' do
   category 'overview', 'Overview' do

@@ -1,0 +1,23 @@
+# Known Limitations
+
+Presto query engine has some limitations compared to Hive at this point. We welcome your feedback and will make improvements based on these.
+
+## Table Schemas are Required
+
+When querying via Presto, you must set a [Schema](schema) for the table(s); the `v` syntax doesn't work since Presto doesn't support the `map` type yet.
+
+## Lack of Complex Types
+
+Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map`, `array`, and `struct` are currently not available.
+
+## JOIN Order
+
+Presto does not currently support cost-based JOIN optimizations, meaning JOINs are not automatically reordered based on table size. Please make sure that smaller tables are on the right hand size of JOIN, and they must fit in memory. Otherwise out of memory exceptions will cause the query to fail.
+
+    :::sql
+    SELECT
+      ...
+    FROM
+      large_table
+    JOIN
+      small_table

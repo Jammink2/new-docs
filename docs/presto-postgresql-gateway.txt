@@ -1,0 +1,58 @@
+# Presto PostgreSQL Gateway
+
+Presto query engine provides the gateway, who can talk PostgreSQL protocol. That means you can connect and issue queries to Presto, ad if it's a PostgreSQL.
+
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please contact info@treasure-data.com if you're interested in.
+
+## Connect to the Gateway
+
+Please use the following information to connect Presto PostgreSQL gateway.
+
+- Host: **pggw.treasuredata.com**
+- Port: **5439**
+- Protocol Version: **2**
+- SSL: **Disabled**
+
+Also there're two ways to authenticate your self: by email + password, or apikey.
+
+### Authentication 1: Email+Password Authentication
+- User: **YOUR_EMAIL**
+- Pass: **YOUR_PASSWORD**
+
+### Authentication 2: API Key Authentication
+- User: **TD1** (Fixed String)
+- Password: **YOUR_API_KEY**
+
+## Example: Connect with psql Command
+
+Here's an example command to connect with `psql` command.
+
+    :::term
+    $ psql -h pggw.treasuredata.com -p 5439 -U "YOUR_EMAIL_IS_HERE" -W -d testdb
+    Password for user XXX: YOUR_PASSWORD_IS_HERE
+
+    testdb=# \t
+    www_access
+
+    testdb=# SELECT COUNT(1) FROM testdb.www_access;
+    5000
+
+## Example: Connect from Ruby Program
+
+Here's an example Ruby program to connect with Presto PostgreSQL gateway.
+
+    :::ruby
+    #!/usr/bin/env ruby
+    require 'pg'
+    require 'benchmark'
+    q = ARGV[0]
+    puts Benchmark.measure {
+      conn = PGconn.connect(
+        :host=>"pggw.treasuredata.com",
+        :port=>5439,
+        :dbname=>"testdb",
+        :user=>"YOUR_EMAIL_IS_HERE",
+        :password=>'YOUR_PASSWORD_IS_HERE')
+      res = conn.exec(q)
+      res.each{ |row| p row }
+    }

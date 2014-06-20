@@ -1,4 +1,4 @@
-# Impala Query
+# Impala Query Engine
 
 [Treasure Data](http://treasuredata.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Impala, which enables low-latency queries to the data. This feature is currently an alpha release.
 

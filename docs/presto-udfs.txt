@@ -1,0 +1,158 @@
+# Supported Presto UDFs (User Defined Functions)
+
+This article lists all the UDFs supported with Presto engine on Treasure Data. Treasure Data supports two types of UDFs: (1) native UDFs supported by Presto and (2) Treasure Data specific functions whose names start with **TD_**.
+
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please contact info@treasure-data.com if you're interested in.
+
+## Presto Native UDFs
+
+All native UDFs on Presto can also be used on Treasure Data. The complete list of UDFs can be found on the [Presto Language Manual's UDF Page](http://prestodb.io/docs/current/functions.html).
+
+## TD_TIME_RANGE()
+
+### Signature
+
+    :::term
+    boolean TD_TIME_RANGE(int/long unix_timestamp,
+                          int/long/string start_time,
+                          int/long/string end_time
+                          [, string default_timezone = 'UTC'])
+
+### Example
+
+This example selects records with timestamps "2013-01-01 00:00:00 PDT" or later.
+
+    :::sql
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
+
+NOTE: Notice that the time of day ("00:00:00") can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
+
+### Description
+
+NOTE: We strongly recommend that you take advantage of time-based partitioning. Please refer to the <a href="performance-tuning">Performance Tuning</a> article for more information.
+
+This UDF returns true if *unix_timestamp* is equal to or later than *start_time* and older than *end_time* (start_time <= time && time < end_time). If *end_time* is omitted or NULL, the UDF assumes it's infinite. If *start_time* is NULL, the UDF assumes it's 0.
+
+*start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or a UNIX timestamp (e.g. 1325343600). If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
+
+*default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
+
+## TD_TIME_ADD()
+
+### Signature
+
+    :::term
+    long TD_TIME_ADD(int/long/string time,
+                     string duration
+                     [, string default_timezone = 'UTC'])
+
+### Example
+
+This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later but older than "2013-01-02 00:00:00 UTC".
+
+    :::sql
+    SELECT ... WHERE TD_TIME_RANGE(time,
+                                   "2013-01-01",
+                                   TD_TIME_ADD("2013-01-01", "1d"))
+
+### Description
+
+This UDF returns a timestamp equal to *time* offset by *duration*. The UDF supports the following formats for the *duration*:
+
+* "Nd": after N days (e.g. "1d", "2d", "30d")
+* "-Nd": before N days (e.g. "-1d", "-2d", "-30d")
+* "Nh": after N hours (e.g. "1h", "2h", "48h")
+* "-Nh": before N hours (e.g. "-1h", "-2h", "-48h")
+* "Nm": after N minutes (e.g. "1m", "2m", "90m")
+* "-Nm": before N minutes (e.g. "-1m", "-2m", "-90m")
+* "Ns": after N seconds (e.g. "1s", "2s", "90s")
+* "-Ns": before N seconds (e.g. "-1s", "-2s", "-90s")
+
+The formats above can be combined. For example, "1h30m" means "after 1 hour and 30 minutes".
+
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
+
+If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
+
+NOTE: "year" and "month" durations are <b>NOT</b> supported, because these have complicated implications. A month can be 28, 29, 30, or 31 days, and a year could be 365 or 366 days. To implement these, this function will become a lot heavier and impact performance.
+
+
+## TD_TIME_FORMAT()
+
+### Signature
+
+    :::term
+    string TD_TIME_FORMAT(long unix_timestamp,
+                          string format
+                          [, string timezone = 'UTC'])
+
+### Example
+
+This example formats a UNIX timestamp into a date formatted string
+
+    :::sql
+    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") ... FROM ...
+
+### Description
+
+This UDF converts a UNIX timestamp to a string with the specified format (see [here](http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) for available formats). For example, "yyyy-MM-dd HH:mm:ss z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
+
+## TD_TIME_PARSE()
+
+### Signature
+
+    :::term
+    long TD_TIME_PARSE(string time
+                       [, string default_timezone = 'UTC'])
+
+### Description
+
+This UDF converts a time string into a UNIX timestamp.
+
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
+
+If the format of the *time* string is invalid, the UDF returns NULL.
+
+## TD_SCHEDULED_TIME()
+
+### Signature
+
+    :::term
+    long TD_SCHEDULED_TIME()
+
+### Description
+
+This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from NOW() because the actual query start time may be delayed.
+
+If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with TD_TIME_ADD for incremental aggregation.
+
+## TD_SESSIONIZE()
+
+### Signature
+
+    :::term
+    string TD_SESSIONIZE(int/long unix_timestamp, int timeout, string sessionize_by)
+
+### Description
+
+This UDF takes three arguments:
+
+1. The time field specified in [unix epoch](http://en.wikipedia.org/wiki/Unix_time)
+2. A timeout window in seconds (when this amount of time elapses, it indicates the start of a new session)
+3. The field name to sessionize by
+
+It returns a UUID for the session of the request.
+
+### Example
+
+Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessionize_by* field, and sort by the *unix_timestamp* field. The query below sessionizes based on user_id and the timestamp. You may want to use user_id or cookie_id instead of ip_address for non-anonymous logs.
+
+    :::sql
+    SELECT TD_SESSIONIZE(time, 3600, ip_address) as session_id, time, ip_address, path
+    FROM (
+      SELECT time, v['ip_address'] as ip_address, v['path'] as path
+      from web_logs
+      distribute by ip_address
+      sort by ip_address,time
+    ) t

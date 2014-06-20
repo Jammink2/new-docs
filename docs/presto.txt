@@ -1,8 +1,10 @@
-# Presto Query
+# Presto Query Engine
 
 [Treasure Data](http://treasuredata.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Presto as a low-latency query engine.
 
 This feature is currently in **beta** and it is only available to certain accounts at this time - please contact your account representative if you would like to join the beta.
+
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please contact info@treasure-data.com if you're interested in.
 
 ## What is Presto?
 
@@ -12,7 +14,7 @@ This feature is currently in **beta** and it is only available to certain accoun
 
 Treasure Data has customized Presto to talk directly with our distributed columnar storage layer. As a result, the end user experience is nearly identical to querying Hive.
 
-## Does Presto Replace Hive?
+### Does Presto Replace Hive?
 
 **No**. Hive is designed for batch processing, while Presto is designed for short interactive queries useful for data exploration.
 
@@ -24,56 +26,50 @@ Even with Presto as part of our ecosystem, MapReduce and Hive will continue to h
 
 ## How to Use Presto?
 
+### Web Console
+
+From the [web console](https://console.treasuredata.com), on the New Query page select "Presto" as the query type.
+
+<center><img src="/images/console-query-presto.png" width="75%" /></center><br />
+
+### PostgreSQL Protocol Gateway
+
+Presto also provides PostgreSQL gateway, which talks PostgreSQL protocol. You can issue the query to Treasure Data, as if it's running PostgreSQL.
+
+- [Presto PostgreSQL Gateway](presto-postgresql-gateway)
+<br/>
+
+### CLI
+
 Using the [CLI](/articles/command-line), specify `-T presto` in the `td query` command. A v0.10.99 or newer client is required.
 
     :::term
     $ td query -w -T presto -d testdb \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
-Alternatively, from the [web console](https://console.treasuredata.com), on the New Query page select "Presto" as the query type.
-
-<center><img src="/images/console-query-presto.png" width="75%" /></center><br />
+### REST API
 
 For REST API, the endpoint is `/v3/job/issue/presto/:database`.
 
-## Presto SQL Language Reference
-  * [Presto Function and Operators](http://prestodb.io/docs/current/functions.html)
-  * [Presto SQL Syntax](http://prestodb.io/docs/current/sql/select.html)
+## Presto Query Language Reference
+
+Presto supports industry-standard SQL-92 syntax.
+
+* [Presto SQL Syntax](http://prestodb.io/docs/current/sql/select.html)
+* [Presto Function and Operators](http://prestodb.io/docs/current/functions.html)
+<br/>
+
+## Supported UDFs
+
+* [List of UDFs in Presto](presto-udfs)
+<br/>
 
 ## Known Limitations
 
-We're currently in the beta phase of Presto development. Naturally, there are some limitations compared to Hive at this point. We welcome your feedback and will make improvements based on these.
-
-### Table Schemas Are Required
-
-When querying via Presto, you must set a [Schema](schema) for the table(s); the `v` syntax doesn't work since Presto doesn't support the `map` type yet.
-
-### Lack of Complex Types
-
-Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map`, `array`, and `struct` are currently not available.
-
-### Limited Number of UDFs
-
-A subset of TD UDFs are available in Presto. The following is a list of supported UDFs:
-
-* [TD_TIME_RANGE](http://docs.treasuredata.com/articles/udfs#tdtimerange)
-* [TD_TIME_ADD](http://docs.treasuredata.com/articles/udfs#tdtimeadd)
-* [TD_TIME_FORMAT](http://docs.treasuredata.com/articles/udfs#tdtimeformat)
-* [TD_TIME_PARSE](http://docs.treasuredata.com/articles/udfs#tdtimeparse)
-
-### JOIN Order
-
-Presto does not currently support cost-based JOIN optimizations, meaning JOINs are not automatically reordered based on table size. Please make sure that smaller tables are on the right hand size of JOIN, and they must fit in memory. Otherwise out of memory exceptions will cause the query to fail.
-
-    :::sql
-    SELECT
-      ...
-    FROM
-      large_table
-    JOIN
-      small_table
-
+* [Presto Known Limitations](presto-known-limitations)
+<br/>
 
 ## See Also
+
 * [Presto Documentation](http://prestodb.io/docs/current/)
 * [Presto: Interacting with petabytes of data at Facebook](https://www.facebook.com/notes/facebook-engineering/presto-interacting-with-petabytes-of-data-at-facebook/10151786197628920)
