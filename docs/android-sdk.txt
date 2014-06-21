@@ -19,12 +19,12 @@ If you use maven, add the following directives to your `pom.xml` under `<depende
     <dependency>
       <groupId>com.treasuredata</groupId>
       <artifactId>td-android-sdk</artifactId>
-      <version>0.1.0</version>
+      <version>0.1.1</version>
     </dependency>
 
 #### Jar File
 
-If you don't use Maven, please put [td-android-sdk-x.x.x.jar](http://search.maven.org/#browse%7C606603944) into (YOUR_ANDROID_PROJECT)/libs.
+If you don't use Maven, please put td-android-sdk-x.x.x-shaded.jar (get the latest [here](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.treasuredata%22%20AND%20a%3A%22td-android-sdk%22)) into (YOUR_ANDROID_PROJECT)/libs.
 
 ## Step 2: Initialize the Library
 
