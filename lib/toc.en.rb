@@ -104,9 +104,9 @@ section 'import-data', 'Data Import' do
   #   article 'one-time-import', 'One-Time Import'
   # end
   category 'sdks', 'App/Mobile SDKs' do
+    article 'javascript-sdk', 'JavaScript SDK'
     article 'ios-sdk', 'iOS SDK'
     article 'android-sdk', 'Android SDK'
-    article 'javascript-sdk', 'JavaScript SDK'
     article 'java-sdk', 'Java SDK'
     article 'ruby-sdk', 'Ruby SDK'
   end

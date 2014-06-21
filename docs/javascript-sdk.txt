@@ -1,7 +1,52 @@
 # Treasure Data JavaScript SDK
 
-We are currently in the process of building a JavaScript SDK (Software Development Kit). If you'd be interested in beta-testing our SDK, please let us know using the form below.
+This article will help you start sending the data from website to Treasure Data, using our JavaScript SDK library. In this way, you don't have to install anything on your server-side to track the website activities.
 
-<script src="//app-ab04.marketo.com/js/forms2/js/forms2.js"></script>
-<form id="mktoForm_1058"></form>
-<script>MktoForms2.loadForm("//app-ab04.marketo.com", "714-XIJ-402", 1058);</script>
+## Prerequisites
+
+  * Basic knowledge of JavaScript / HTML.
+  * Basic knowledge of Treasure Data.
+
+NOTE: JavaScript SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports are welcomed.
+
+### Step1: Install the Library
+
+Install the td-js-sdk on your page by copying the JavaScript snippet below and pasting it into your page's `<head>` tag:
+
+    :::html
+    <!-- Treasure Data -->
+    <script type="text/javascript">
+      !function(t,e){if(void 0===e[t]){e["_"+t]={},e[t]=function(n){e["_"+t].clients=e["_"+t].clients||{},e["_"+t].clients[n.database]=this,this._config=n},e[t].ready=function(n){e["_"+t].ready=e["_"+t].ready||[],e["_"+t].ready.push(n)};for(var n=["addEvent","setGlobalProperties","on"],r=0;r<n.length;r++){var s=n[r],i=function(t){return function(){return this["_"+t]=this["_"+t]||[],this["_"+t].push(arguments),this}};e[t].prototype[s]=i(s)}var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//dyu0x0wekfgrg.cloudfront.net/sdk/td-0.1.1.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(a,o)}}("Treasure",this);
+    </script>
+
+
+### Step2: Initialize & Send Events to the Cloud
+
+You need to create the `Treasure` client object per database, and send the events by calling `addEvent()` function like below.
+
+    :::html
+    <script type="text/javascript">
+      // Configure an instance for your database
+      var cln = new Treasure({
+        writeKey: 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
+        database: 'DATABASE_NAME'
+      });
+      // Create a data object with the properties you want to send
+      var sale = {
+        itemId: 101,
+        saleId: 10
+        userId: 1,
+      };
+      // Send it to the 'sales' table
+      company.addEvent('sales', sale);
+    </script>
+
+The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Eash event will fire off asynchronously.
+
+## Next Steps
+
+For the transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API.
+
+* [https://github.com/treasure-data/td-js-sdk](https://github.com/treasure-data/td-js-sdk)
+
+If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
