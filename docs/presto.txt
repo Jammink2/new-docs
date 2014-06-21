@@ -37,7 +37,6 @@ From the [web console](https://console.treasuredata.com), on the New Query page 
 Presto also provides PostgreSQL gateway, which talks PostgreSQL protocol. You can issue the query to Treasure Data, as if it's running PostgreSQL.
 
 - [Presto PostgreSQL Gateway](presto-postgresql-gateway)
-<br/>
 
 ### CLI
 
@@ -57,17 +56,14 @@ Presto supports industry-standard SQL-92 syntax.
 
 * [Presto SQL Syntax](http://prestodb.io/docs/current/sql/select.html)
 * [Presto Function and Operators](http://prestodb.io/docs/current/functions.html)
-<br/>
 
 ## Supported UDFs
 
 * [List of UDFs in Presto](presto-udfs)
-<br/>
 
 ## Known Limitations
 
 * [Presto Known Limitations](presto-known-limitations)
-<br/>
 
 ## See Also
 
