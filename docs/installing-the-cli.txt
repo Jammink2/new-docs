@@ -1,51 +1,128 @@
-Installing the Treasure Data CLI
-================================
+# Installing and Updating the Treasure Data CLI
+
+## Installing
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
-## Install
+The CLI is distributed in different ways to suit the target environment best:
 
-###Windows
-You can download the installer from here.
+1. Windows and Mac OSX as a prepackaged installer called the **Toolbelt**;
+2. Linux (Ubuntu Precise and Lucid, RedHat, CentOS) as part of the **td-agent** package;
+3. A Ruby 'gem' on any system.
+<br/>
 
-- [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
+Please use option 3 if are already familiar with Ruby and already have it installed in your system.
 
-###Mac
-You can download the installer from here.
+### Windows (64 bits only)
 
-- [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
+You can download the CLI as a **Toolbelt installer** from here: [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
 
-###Ubuntu (Precise or Lucid)
-####Precise
+Double click it to begin the installation. This package contains all the necessary dependencies to
+allow the CLI to run on a Windows system and therefore includes a v1.9.3 version of the Ruby environment which will be installed on the system as part of the process.
 
-Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
+### Mac OSX (v10.8.5 - Mountain Lion - or later)
+
+You can download the CLI as a **Toolbelt installer** from here: [Toolbelt Installer for Mac OSX](http://toolbelt.treasuredata.com/mac).
+
+Double click it to begin the installation. This package contains all the necessary dependencies to
+allow the CLI to run on a Windows system and therefore includes a v2.0 version of the Ruby environment which will be installed on the system as part of the process.
+
+### Ubuntu Precise
+
+The CLI is distributed on Linux as part of the `td-agent` package. For more information about <tt>td-agent</tt>, our streaming log collector, refer to the [Streaming Import Overview](td-agent) page.
+
+To begin the installation, please add the Treasure Data <tt>apt</tt> packages repository to your sources list. This command will set it up for you:
 
     :::term
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
 
-####Lucid
+This package contains all the necessary dependencies to allow the `td-agent` and `td CLI` to run on a Linux system, including the version of Ruby these tools are guaranteed to work with.
 
-Please add the Treasure Data apt packages repository to your sources list. This command will set it up for you:
+### Ubuntu Lucid
+
+The CLI is distributed on Linux as part of the `td-agent` package. For more information about <tt>td-agent</tt>, our streaming log collector, refer to the [Streaming Import Overview](td-agent) page.
+
+To begin the installation, please add the Treasure Data <tt>apt</tt> packages repository to your sources list. This command will set it up for you:
 
     :::term
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
 
-NOTE: This command installs Treasure Agent, our streaming log collector. However it also contains td toolbelt as well within a same package.
+This package contains all the necessary dependencies to allow the `td-agent` and `td CLI` to run on a Linux system, including the version of Ruby these tools are guaranteed to work with.
 
-###RedHat/CentOS
+### RedHat / CentOS
 
-Please add the Treasure Data rpm packages repository to your sources list. This command will set it up for you:
+The CLI is distributed on Linux as part of the `td-agent` package. For more information about <tt>td-agent</tt>, our streaming log collector, refer to the [Streaming Import Overview](td-agent) page.
+
+To begin the installation, please add the Treasure Data rpm packages repository to your sources list. This command will set it up for you:
 
     :::term
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
 
-NOTE: This command installs Treasure Agent, our streaming log collector. However it also contains td toolbelt as well within a same package.
+This package contains all the necessary dependencies to allow the `td-agent` and `td CLI` to run on a Linux system, including the version of Ruby these tools are guaranteed to work with.
 
-## Confirm Installation
+### Ruby Gem
 
-Please open your terminal, and make sure you have `td` command.
+If you are familiar with Ruby, you can opt to install and maintain the `td CLI` as a gem.
+To install the CLI and its dependencies, simply run this command:
 
     :::term
+    $ gem install td
+
+If are using a Ruby environment manager such as <tt>rbevn</tt> or <tt>rvm</tt>, different versions of the td CLI may be confined within each project / environment / ruby version in use and you may have to install the td gem multiple times. Please refer to the Upgrading, Ruby Gem section below for more information.
+
+### Confirm Installation
+
+Please open your terminal, and make sure you have the `td` command available.
+
+    :::term
+    $ td --version
+    0.11.X
+
     $ td
     usage: td [options] COMMAND [args]
     ...
+
+## Upgrading
+
+Depending on how the CLI was originally installed on your machine, there are different ways it can be updated.
+
+### Mac OSX or Windows
+
+If you downloaded the CLI as a Toolbelt installer package (.pkg file) for Mac OSX or as a Toolbelt installer executable for Windows (64 bit support only) from the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) website, the Toolbelt CLI is enabled with ability to auto update itself.
+
+Whenever a command is invoked from the CLI, the program will check whether a more updated version exists: if so it will download the updated version and install it in the background. The CLI will check for an updated version every hour. The user can at any time trigger an auto update with the following command:
+
+    :::term
+    $ td update
+
+The auto update feature is available as of v0.10.77. If you are running an earlier version (please check the version with the `td --version` command) please upgrade as soon as possible by installing a more recent package from [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+
+The `td update` command is just a placeholder for the following other installation methods.
+
+### Linux
+
+The easier way of installing the td CLI in a Linux environment beside using a gem (see above) is to install td as part of the `td-agent` distribution package. Several Linux environments are supported, see [Installing the Treasure Data CLI](installing-the-cli) documentation page.
+
+The Treasure Agent environment provisions its own gem environment and the corresponding gem command is accessible in this location <tt>/usr/lib*/fluent/ruby/bin/fluent-gem</tt>. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
+
+    :::term
+    $ /usr/lib*/fluent/ruby/bin/fluent-gem update td
+
+### Ruby Gem
+
+If you installed the CLI as a gem you will need to periodically check whether a newer version exists. It is always recommended to update to the latest version since we strive to maintain 100% backwards compatibility. To update using the gem command run:
+
+    :::term
+    $ gem update td
+
+If are using a Ruby environment manager such as <tt>rbevn</tt> or <tt>rvm</tt>, different versions of the td CLI may be confined within each project / environment / ruby version.
+
+Also if <tt>gem install</tt> was invoked with a customized <tt>GEM_HOME</tt> environment variable or bundler's <tt>bundle install</tt> was called with the <tt>--path</tt> option, the installed gems are local to the project (and typically installed within the project's folder structure itself), not globally installed and available everywhere in the system.<br/>
+
+One can always double check the version of td gem in use by running:
+
+    :::term
+    $ gem list | grep -E '^td '
+    td (0.11.2, 0.10.99, 0.10.97)
+
+Depending on the situation the <tt>gem</tt> may have to replaced by a wrapper: e.g. <tt>/usr/bin/ruby/toolbelt/bin/gem</tt> or <tt>/usr/lib/fluent/ruby/bin/fluent-gem</tt>.

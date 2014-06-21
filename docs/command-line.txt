@@ -3,13 +3,11 @@
 The Treasure Data CLI (or Toolbelt) allows you to create databases and tables, [import](bulk-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
 
 
-## Step 1: Installation
+## Step 1: Installation & Update
 
-Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
+Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client. Please refer to the [Installing the Treasure Data CLI](installing-the-cli) documentation page for information on how to install the CLI in various environments.
 
-- [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
-- [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
-- [Toolbelt Installer for Linux](installing-the-cli)
+The page also contains important information about [Updating](installing-the-cli#upgrading) the `td CLI`.
 
 ## Step 2: Authorize
 
@@ -18,7 +16,7 @@ Once you have installed the toolbelt, you will have access to the `td` command f
     :::term
     $ td account -f
     Enter your Treasure Data credentials.
-    Email: k@treasure-data.com
+    Email: user@domain.com
     Password (typing will be hidden):
     Authenticated successfully.
 
@@ -85,48 +83,6 @@ This example shows how to use the CLI to generate a sample apache log in json fo
 ### Middleware
 * [Apache Logs](analyzing-apache-logs)
 * [Tailing Existing CSV or TSV Logs](td-agent-tail)
-
-
-## Upgrading
-
-Depending on how the CLI was originally installed on your machine, there are different way it gets updated or can be updated.
-
-
-### Installed as Toolbelt on MACOSX or Windows
-
-Whether you downloaded the CLI as a Toolbelt installer package (.pkg file) for Mac OSX or as a Toolbelt installer executable for Windows (64 bit support only) from the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) website and installed it on a MACOSX machine, the Toolbelt CLI is enabled with ability to self update itself.
-
-Whenever a command is invoked from the CLI, the program will check whether a more updated version exists: if so it will download the updated version and install it in the background. The CLI will check for an updated version every hour. The user can at any time trigger an auto update with the following command:
-
-    :::term
-    $ td update
-
-The auto update feature is available as of v0.10.77. If you are running an earlier version (please check the version with the `td --version` command) please upgrade as soon as possbile by installing a more recent package from [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
-
-### Installed as a Gem
-
-If you installed the CLI as a gem (whether on Linux, Windows, or Mac OSX) through:
-
-    :::term
-    $ gem install td
-
-you will need to periodically check whether a newer version exists. It is always reccomended to update to the latest version since we strive to maintain 100% backwards compatibilty. To update using the gem command run:
-
-    :::term
-    $ gem update td
-
-NOTE: If are using a ruby environment manager such as `rbevn` or `rvm`, different versions of the td CLI may be confined within each environment/ruby version in use.<br/>
-You will need to ensure each version and environment is updated independently.
-
-### Installed with td-agent
-
-The easier way of installing the td CLI in a Linux environment beside using a gem (see above) is to install td as part of the `td-agent` distribution package. Several Linux environments are supported, see [Installing the Treasure Data CLI](installing-the-cli) documentation page.
-
-The Treasure Agent environment provisions its own gem environemnt and the corresponding gem command is accessible in this location `/usr/lib*/fluent/ruby/bin/fluent-gem`. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
-
-    :::term
-    $ /usr/lib*/fluent/ruby/bin/fluent-gem update td
-
 
 ## Additional Help
 
