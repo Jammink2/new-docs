@@ -52,8 +52,6 @@ See [Bug fixes](/articles/releasenote-20140422#bug-fixes) section below.
 8. Declare the `td query --sampling` option obsolete. A warning indicating the option is obsolete and has no effect will be printed to warn the user.
 
 <br/>
-<br/>
-<br/>
 
 ## Bug Fixes
 

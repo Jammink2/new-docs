@@ -23,8 +23,6 @@ This is a summary of the new features and improvements introduced in this releas
 4. when outputting the query result to file, flush the data every 100 records.
 
 <br/>
-<br/>
-<br/>
 
 ## Bug Fixes
 

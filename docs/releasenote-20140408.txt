@@ -23,8 +23,6 @@ The utilization page shows indication of the guaranteed and maximum number of co
 ![Console: Utilization Limits Indication](/images/release-notes/140408-3-utilization.png)
 
 <br/>
-<br/>
-<br/>
 
 ## Bug Fixes
 

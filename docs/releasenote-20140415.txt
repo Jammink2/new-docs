@@ -15,8 +15,6 @@ Users are encouraged to invite other team members at the end of the tutorial.
 Made downloading the query results more reliable from the browser increasing the server's transfer timeout settings to its maximum. The option to download the result output through the CLI is still shown.
 
 <br/>
-<br/>
-<br/>
 
 ## Bug Fixes
 

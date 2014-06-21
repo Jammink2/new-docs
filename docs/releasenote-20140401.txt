@@ -36,9 +36,6 @@ Upgraded Java Client Library dependency to v0.3.6.
 2. Update msgpack-ruby to v0.5.8;
 3. Integrated various pull requests.
 
-
-<br/>
-<br/>
 <br/>
 
 ## Bug Fixes

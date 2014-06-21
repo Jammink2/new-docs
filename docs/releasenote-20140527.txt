@@ -4,36 +4,30 @@
 
 This is a summary of the new features and improvements introduced in this release:
 
-<br/>
 ### Console: Import Data Design Improvements
 
 Improved the Design of both the landing pages for SDK and SaaS import methods: the existing SDKs are highlighted while the other options are transformed to more intuitive checkboxes instead of a multi-selection list.
 
 ![Console: Import Data Design](/images/release-notes/140527-01-import_land.png)
 
-<br/>
 ### Console: Import Data after the Tutorial
 
 At the end of the tutorial offered when creating a new account or voluntarily executed by an existing user from the [Quickstart](https://console.treasuredata.com/start) page, the user is solicited to try and import his/her own data into the Service.
 
 ![Console: Import Data After Tutorial](/images/release-notes/140527-02-import_after_tutorial.png)
 
-<br/>
 ### Console: Access Control Documentation
 
 We added a link to the Access Control documentation in the User edit page to aid account Owners and Administrators in assigning database permissions to restricted users.
 
 ![Console: Access Control](/images/release-notes/140527-03-acl_docs.png)
 
-<br/>
 ### Console: Schedule page Pagination
 
 Added pagination for the Jobs index in each Schedule' details page.
 
 ![Console: Schedules Pagination](/images/release-notes/140527-04-schedules_pagination.png)
 
-<br/>
-<br/>
 <br/>
 
 ## Bug Fixes

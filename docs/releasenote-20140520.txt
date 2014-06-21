@@ -4,7 +4,6 @@
 
 This is a summary of the new features and improvements introduced in this release:
 
-<br/>
 ### Console: Import Data
 
 We added an Import Data page to the Console. It summarizes the various methods customers can use to import data
@@ -29,7 +28,6 @@ After the CSV / TSV files are successfully uploaded to the Treasure Data Cloud, 
 
 ![Console: Import Data - Web Uploads - End](/images/release-notes/140520-11-import_data-web_upload-end_landing.png)
 
-<br/>
 ### Console & APIs: Email Notifications
 
 Improved the user invitation and password reset email formats to be closer to the company's branding.
@@ -37,16 +35,12 @@ This equally applies to Console and APIs.
 
 ![Console & APIs: Email Notifications](/images/release-notes/140520-01-emails.png)
 
-<br/>
-
 ### APIs: Job Duration
 
 Improved the handling of the job 'duration' value - the value is calculated on the
 fly the first time the job is viewed in either the Jobs List, Job Details, or Slow Jobs List pages
 and stored in the database for later use and faster loading of the pages.
 
-<br/>
-<br/>
 <br/>
 
 ## Bug Fixes

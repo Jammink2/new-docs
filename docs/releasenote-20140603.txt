@@ -4,7 +4,6 @@
 
 This is a summary of the new features and improvements introduced in this release:
 
-<br/>
 ### Console: Redesigned Top Bar
 
 Completely redesigned the Console Top Bar and reorganized the content in 3 categories: Feedback, Help, and Profile (User name).
@@ -22,7 +21,6 @@ The User menu has shortcuts for the User Profile and Logout.
 
 ![Console: Redesigned Top Bar](/images/release-notes/140603-01-top_bar.png)
 
-<br/>
 ### Console: Treasure Agent Monitoring Service (Public Beta)
 
 We are excited to announce the Public release of the Treasure Agent Monitoring Service. By adding a simple to deploy plugin, users can track the status of their `td-agent` (Treasure Agent daemon) on the Console and monitor its performance.
@@ -34,36 +32,30 @@ For more information, please visit the [Treasure Agent Monitoring Service (TAMS)
 ![Console: Treasure Agent Monitoring Service (Public Beta)](/images/release-notes/140603-02-monitoring_1.png)
 ![Console: Treasure Agent Monitoring Service (Public Beta) 2](/images/release-notes/140603-03-monitoring_2.png)
 
-<br/>
 ### Console: Formatted/Raw Query for Schedules
 
 The 'Query' field view for Scheduled query can also be visualized in Raw or Formatted format as already supported by on-off Jobs.
 
 ![Console: Formatted/Raw Query for Schedules](/images/release-notes/140603-04-schedule_query_text.png)
 
-<br/>
 ### SDKs: Released iOS v0.0.3
 
 This is the first beta release of the iOS SDK.
 
 For more information, please visit the [Treasure Data iOS SDK](ios-sdk) documentation page.
 
-<br/>
 ### Client Libraries: Released Java Client Library v0.4.2
 
 The new release of the Java client library mainly adds support for SSL communication with the default <tt>treasuredata.com</tt> API domain.
 
 Please refer to the [Github Changelog](https://github.com/treasure-data/td-client-java/blob/d816766db6c9fde58e2af199d4d3b033a4ba5fc6/CHANGES.txt).
 
-<br/>
 ### JDBC Driver: Released JDBC v0.2.9
 
 This new version of the driver builds on top of the newly released Java Client Library (see above) adding supports for SSL communication with the Treasure Data APIs.
 
 Please refer to the [Github Changelog](https://github.com/treasure-data/td-jdbc/blob/ff06decb3c77d886cf96b197d55e1a3cbba29664/CHANGES.txt).
 
-<br/>
-<br/>
 <br/>
 
 ## Bug Fixes
@@ -77,7 +69,6 @@ This the only important Bug Fix made in this release:
   _**[Solution]**_<br/>
   When saving to a Schedule the original job unnamed output target's password was not retrieved from the database.<br/>
 
-<br/>
 ### Console: Manual Schedule Runs
 
 * _**[Problem]**_<br/>
@@ -86,7 +77,6 @@ This the only important Bug Fix made in this release:
   The problem was due to the date-time picker in the Schedule view.<br/>
   The date-time picker has been changed to a stock AngularJS-bootstrapped one and fixed.<br/>
 
-<br/>
 ### Console: CPU Core Utilization
 
 * _**[Problem]**_<br/>
@@ -95,7 +85,6 @@ This the only important Bug Fix made in this release:
   Since 0 CPU utilization data points are not logged, non-zero utilization points were connected by a line inducing the observer into thinking the utilization was non-zero during the times in between the non-zero data points.<br/>
   Fixed the visualization by inserting zeros for all points where the CPU utilization is expected to be 0.<br/>
 
-<br/>
 ### APIs: Schema Auto-Detection on Import
 
 * _**[Problem]**_<br/>
@@ -104,7 +93,6 @@ This the only important Bug Fix made in this release:
   Schema auto-detection is performed only on the records stored in the tail but only a small portion (40) of the records imported is stored in the tail. The tail may happen to contain none of the records with elements from the sparse columns.<br/>
   Schema auto-detection is extended to be performed on **all** records imported.<br/>
 
-<br/>
 ### APIs: Manual Schedule Runs and Timezone Changes
 
 * _**[Problem]**_<br/>
@@ -113,7 +101,6 @@ This the only important Bug Fix made in this release:
   This was caused by a mishandling of long-form (Tokyo, Los Angeles, etc...) timezone specifiers.<br/>
   Now all timezones are referred back to their unique numeric identifier for handling consistency.<br/>
 
-<br/>
 ### Backend: Handling of Hive's Semantic Error
 
 * _**[Problem]**_<br/>
@@ -122,7 +109,6 @@ This the only important Bug Fix made in this release:
   Semantic error exceptions are not included in the list of unrecoverable error codes for Hive.<br/>
   Unrecoverable errors are those deterministic errors, errors whose result won't change if retried.<br/>
 
-<br/>
 ### Worker: Data Exporting
 
 * _**[Problem]**_<br/>
