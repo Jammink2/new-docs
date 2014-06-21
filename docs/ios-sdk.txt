@@ -19,7 +19,7 @@ NOTE: iOS SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports a
 Add the following line to your Podfile:
 
     :::ruby
-    pod 'TreasureData-iOS-SDK'
+    pod 'TreasureData-iOS-SDK', '= 0.1.0'
 
 Finally, please run `pod install`.
 
