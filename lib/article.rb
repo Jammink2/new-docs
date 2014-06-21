@@ -8,20 +8,20 @@ class Article
     @body = @body.gsub(/\<[^\<]+\>/,'')
     self
   end
-  
+
   def self.load(topic, source)
     topic = new(topic, source)
     topic.parse
     return topic
   end
-  
+
   attr_reader :topic, :title, :desc, :content, :toc, :intro, :body
-  
+
   def initialize(name, source)
     @topic = name
     @source = source
   end
-  
+
   def parse
     @topic = topic
     @content = markdown(source)
@@ -29,32 +29,34 @@ class Article
     @desc = _desc(@content)
     @toc, @content = _toc(@content)
     if @toc.any?
+      # split at the first occurrence of the <h2> marking the division between
+      #   the paragraph and the beginning of the article
       @intro, @body = @content.split('<h2>', 2)
-      @body = "<h2>#{@body}"
+      @body = "<h2>#{@body}" # add the <h2> tag back
     else
       @intro, @body = '', @content
     end
   end
-  
+
   protected
-  
+
   def source
     @source
   end
-  
+
   def notes(source)
     source.gsub(
                 /NOTE: (.*?)\n\n/m,
                 "<table class='note'>\n<td class='icon'></td><td class='content'>\\1</td>\n</table>\n\n"
-		)
+    )
   end
-  
+
   def markdown(source)
     html = RDiscount.new(notes(source), :smart).to_html
     # parse custom {lang} definitions to support syntax highlighting
     html.gsub(/<pre><code>\{(\w+)\}/, '<pre><code class="brush: \1;">')
   end
-  
+
   def topic_file(topic)
     if topic.include?('/')
       topic
@@ -79,8 +81,13 @@ class Article
   end
 
   def _toc(content)
-    toc = content.scan(/<h2>([^<]+)<\/h2>/m).to_a.map { |m| m.first }
-    content_with_anchors = content.gsub(/(<h2>[^<]+<\/h2>)/m) do |m|
+    # toc = content.scan(/<h[23]>([^<]+)<\/h[23]>/m).to_a.map { |m| m.first }
+    # content_with_anchors = content.gsub(/(<h2>[^<]+<\/h2>)/m) do |m|
+    #   "<a name=\"#{slugify(m.gsub(/<[^>]+>/, ''))}\"></a>#{m}"
+    # end
+    toc = content.scan(/<(h[23])>([^<]+)<\/h[23]>/m).to_a.map { |m| [m[0][1], m[1]] }
+    p toc
+    content_with_anchors = content.gsub(/(<h[23]>[^<]+<\/h[23]>)/m) do |m|
       "<a name=\"#{slugify(m.gsub(/<[^>]+>/, ''))}\"></a>#{m}"
     end
     return toc, content_with_anchors
