@@ -6,13 +6,15 @@ We have partnered with many companies to meet your data analytics needs. Most of
 
 Our [JDBC driver](jdbc-driver) provides a simple interface for 3rd party tools. The current list of supported tools is shown below.
 
+* [Chartio](chartio)
+* [Tableau](tableau)
+* [Metric Insights](metricinsights)
 * [JasperSoft iReport](jaspersoft-ireport)
 * [JasperReports Server](jasperreports-server)
 * [Pentaho Report Designer](pentaho-reportdesigner)
 * [Pentaho Data Integration](pentaho-dataintegration)
 * [R Language](r-language)
 * [Talend Open Studio](talend)
-* [Metric Insights](metricinsights)
 * [Indicee Cloud BI Platform](indicee)
 
 If you have specific data visualization needs, please [let us know](http://treasuredata.com/contact/).

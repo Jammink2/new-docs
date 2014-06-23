@@ -177,6 +177,9 @@ section 'bi-etl-tools', '3rd Party BI/ETL Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
+  category 'chartio', 'Chartio' do
+    article 'chartio', 'Chartio with Treasure Data', ['Tableau', 'Tableau Software']
+  end
   category 'tableau', 'Tableau' do
     article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
   end
