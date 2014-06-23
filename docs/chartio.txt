@@ -1,0 +1,78 @@
+# Chartio with Treasure Data
+
+[Chartio](http://chartio.com/) provides easy-to-use cloud-based data visualization / exploration service. Chartio users can directly query against Treasure Data, to quickly create the reports and dashboards.
+<table>
+<tr>
+<td width="48%"><a href="http://chartio.com/" target="_blank"><img src="/images/chartio.png" width="100%" /></a></td>
+<td width="52%"><a href="http://chartio.com/" target="_blank"><img src="/images/chartio-dashboard.png" width="100%" /></a></td>
+</tr>
+</table>
+
+This documentation describes how to connect to Treasure Data from Chartio.
+
+## Prerequisites
+
+* [Chartio](http://chartio.com/) account
+* Basic knowledge of Treasure Data and its account
+
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please contact info@treasure-data.com if you're interested in.
+
+## Step 1: Set up Data Source
+
+Please access to the URLs below. Please replace `ORGANIZATION_NAME` to your organization name on Chartio.
+
+* `https://chartio.com/ORGANIZATION_NAME/settings/datasources/new/postgresql/?show_protocol=1`
+
+You'll see the screen like this. Please fill in the following information to the forms.
+
+<table>
+<tr>
+<td width="48%">
+  <a href="/images/chartio-datasource.png"><img src="/images/chartio-datasource.png" height="400px" target="_blank" /></a>
+</td>
+<td width="52%">
+<ul>
+<li> Database Alias: Your data source name
+<li> Hostname: pggw.treasuredata.com
+<li> Port: 5439
+<li> Database: YOUR_DATABASE_NAME
+<li> Schema: YOUR_DATABASE_NAME
+<li> Two Authentication Mechanisms
+ <ul>
+   <li>Username: TD1<br/>Password: YOUR_APIKEY
+   <li>Username: YOUR_EMAIL<br/>Password:YOUR_PASSWORD
+ </ul>
+<li> SSL: disable (cannot handle this now)
+<li> Protocol version: 2
+</ul>
+</td>
+</tr>
+</table>
+
+Please press the `Connect` button, that let's you create the new data sources. This will take a minute or two. If you have any problems, please contact `support@treasure-data.com`.
+
+## Step 2: Create Chart
+
+Select your dashboard (please create if necessary), and click `Add Element` button at the right top of the dashboard screen. Then please select the `Data Source` created above. A list of tables and fields will be shown at the left column. In this case, we're using sample dataset containing 5,000 apache weblogs.
+
+<a target="_blank" href="/images/chartio-chartcreator.png"><img src="/images/chartio-chartcreator.png" width="100%" target="_blank" /></a>
+
+Let's create the report of distribution of HTTP response code to ensure the website doesn't return any errors. First, please drag `Code` field to `Measures`. Then, please select aggregation as `Count of all Www Access.Code`, and choose `descending` as Sort order.
+
+<a target="_blank" href="/images/chartio-chartcreator-step1.png"><img src="/images/chartio-chartcreator-step1.png" width="100%" target="_blank" /></a>
+
+Then, please drag `Code` field to `Dimentions`.
+
+<a target="_blank" href="/images/chartio-chartcreator-step2.png"><img src="/images/chartio-chartcreator-step2.png" width="100%" target="_blank" /></a>
+
+After that, please press `Select Data` button to fetch the result.
+
+<a target="_blank" href="/images/chartio-chartcreator-step3.png"><img src="/images/chartio-chartcreator-step3.png" width="100%" target="_blank" /></a>
+
+And if you choose the diagram type, you can see the result as a pie chart for example.
+
+<a target="_blank" href="/images/chartio-chartcreator-step4.png"><img src="/images/chartio-chartcreator-step4.png" width="100%" target="_blank" /></a>
+
+## Next Steps
+
+* [Chartio Documentation](https://chartio.com/docs/)
