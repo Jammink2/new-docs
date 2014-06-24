@@ -41,7 +41,7 @@ You need to create the `Treasure` client object per database, and send the event
       company.addEvent('sales', sale);
     </script>
 
-The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Eash event will fire off asynchronously.
+The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
 
 ## Next Steps
 
