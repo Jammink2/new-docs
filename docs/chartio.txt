@@ -69,9 +69,15 @@ After that, please press `Select Data` button to fetch the result.
 
 <a target="_blank" href="/images/chartio-chartcreator-step3.png"><img src="/images/chartio-chartcreator-step3.png" width="100%" target="_blank" /></a>
 
-And if you choose the diagram type, you can see the result as a pie chart for example.
+And if you choose the diagram type, you can see the result as a pie chart for example. Press `Save` to put this to dashboard.
 
 <a target="_blank" href="/images/chartio-chartcreator-step4.png"><img src="/images/chartio-chartcreator-step4.png" width="100%" target="_blank" /></a>
+
+## Step 3: Design Dashboard
+
+You can add as many charts you want on your dashboard, and arrange them via drag & drop. There're couple of advanced features like scheduled dashboard delivery with email, exporting with PDF, etc. are available. Please refer the Chartio documentation for further information.
+
+<a target="_blank" href="/images/chartio-chartcreator-step4.png"><img src="/images/chartio-save.png" width="100%" target="_blank" /></a>
 
 ## Next Steps
 
