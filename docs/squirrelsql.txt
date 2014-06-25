@@ -1,6 +1,6 @@
 # SQuirreL SQL with Treasure Data
 
-[SQuirreL SQL](http://squirrel-sql.sourceforge.net/) is an open-source Java SQL Client program for any JDBC compliant database. You can use SQuirrelSQL for SQL authoring tool to interactively develop SQL queries with Treasure Data.
+[SQuirreL SQL](http://squirrel-sql.sourceforge.net/) is an open-source Java SQL Client program for any JDBC compliant database. You can use SQuirrelSQL as SQL authoring tool to interactively develop SQL queries with Treasure Data.
 
 NOTE: This article is using Mac OS 10.9.3 as an environment. So the screenshot may be a little bit different on Windows and Linux, but it works on both OSs as well.
 
@@ -32,6 +32,8 @@ Then please put this driver to SQuirreL SQL's driver directory.
 
     :::term
     $ mv td-jdbc-0.2.10-jar-with-dependencies.jar /Applications/SQuirreLSQL.app/Contents/Resources/Java/lib/
+
+NOTE: The target directory would be different on Windows and Linux.
 
 ## Step 2: Add Treasure Data JDBC Driver to SQuirreL SQL
 
