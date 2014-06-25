@@ -1,0 +1,77 @@
+# SQuirreL SQL with Treasure Data
+
+[SQuirreL SQL](http://squirrel-sql.sourceforge.net/) is an open-source Java SQL Client program for any JDBC compliant database. You can use SQuirrelSQL for SQL authoring tool to interactively develop SQL queries with Treasure Data.
+
+NOTE: This article is using Mac OS 10.9.3 as an environment. So the screenshot may be a little bit different on Windows and Linux, but it works on both OSs as well.
+
+## Step 1: Install
+
+Please download the latest SQuirreL SQL installer as jar file below.
+
+- [SQuirrel SQL: Download and Installation](http://squirrel-sql.sourceforge.net/)
+
+After you execute the jar file, the installer should start. Please proceed by clicking `Next` buttons.
+
+<center><img src="/images/squirrelsql-installer.png" width="60%" /></center><br/>
+
+Only `Standard` pack is required for Treasure Data.
+
+<center><img src="/images/squirrelsql-installer-packs.png" width="60%" /></center><br/>
+
+Once the installation is done, please launch SQuirreL SQL.
+
+<center><img src="/images/squirrelsql-installer-done.png" width="60%" /></center><br/>
+
+## Step 2: Download Treasure Data JDBC Driver
+
+Please download Treasure Data's JDBC Driver from below.
+
+- [JDBC Driver Download](jdbc-driver)
+
+Then please put this driver to SQuirreL SQL's driver directory.
+
+    :::term
+    $ mv td-jdbc-0.2.10-jar-with-dependencies.jar /Applications/SQuirreLSQL.app/Contents/Resources/Java/lib/
+
+## Step 2: Add Treasure Data JDBC Driver to SQuirreL SQL
+
+Please click `Drivers` at the left pane, and hit plus button to add a new driver.
+
+<center><img src="/images/squirrelsql-driver.png" width="60%" /></center>
+
+Please fill the information like below.
+
+<center><img src="/images/squirrelsql-driver-info.png" width="100%" /></center><br/>
+
+- Name: Treasure Data
+- Example URL: jdbc:td://api.treasuredata.com/<database>;useSSL=true
+- Java Class Path: td-jdbc-xxx.jar
+- Class Name: com.treasure_data.jdbc.TreasureDataDriver
+
+## Step 3: Connect to Treasure Data
+
+Finally, please click `Aliases` tab at the left pane and click plus button to add the Alias.
+
+<center><img src="/images/squirrelsql-connect.png" width="60%" /></center><br/>
+
+- Name: Whatever you like
+- Driver: Treasure Data
+- URL: jdbc:td://api.treasuredata.com/<YOUR_DATABASE_NAME>;useSSL=true
+- User Name: Your account email
+- Password: Your account password
+
+Please click `Test` once the forms get filled. If the information is correct, it will say `Connection successful`.
+
+<center><img src="/images/squirrelsql-connect-test.png" width="60%" /></center><br/>
+
+Please click `OK` once it's ready.
+
+## Step 4: Issue the Query
+
+You'll see a list of tables and its columns by GUI.
+
+<center><img src="/images/squirrelsql-tables.png" width="60%" /></center><br/>
+
+Move to the `SQL` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results.
+
+<center><img src="/images/squirrelsql-result.png" width="60%" /></center><br/>

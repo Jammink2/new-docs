@@ -173,12 +173,15 @@ section 'data-analysis-and-integrations', 'Data Analysis & Integration' do
     article 'presto-known-limitations', 'Presto Known Limitations'
   end
 end
-section 'bi-etl-tools', '3rd Party BI/ETL Tools' do
+section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
+  category 'squirrelsql', 'SQuirreL SQL' do
+    article 'squirrelsql', 'SQuirrel SQL with Treasure Data', ['SQuirrelSQL', 'SQuirrel SQL']
+  end
   category 'chartio', 'Chartio' do
-    article 'chartio', 'Chartio with Treasure Data', ['Tableau', 'Tableau Software']
+    article 'chartio', 'Chartio with Treasure Data', ['Chartio']
   end
   category 'tableau', 'Tableau' do
     article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
