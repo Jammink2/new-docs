@@ -189,17 +189,13 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights',        ['Metric Insights']
   end
-  category 'jaspersoft-ireport', 'JasperSoft iReport' do
+  category 'jaspersoft', 'JasperSoft' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
-  end
-  category 'jaspersoft-server', 'JasperSoft Server' do
     article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']
   end
-  category 'pentaho-reportdesigner', 'Pentaho Report Designer' do
-    article 'pentaho-reportdesigner', 'Pentaho Report Designer',    ['Pentaho Report Designer']
-  end
-  category 'pentaho-dataintegration', 'Pentaho Data Integration' do
-    article 'pentaho-dataintegration', 'Pentaho Data Integration'    ['Pentaho Data Integration']
+  category 'pentaho', 'Pentaho' do
+    article 'pentaho-reportdesigner', 'Pentaho Report Designer', ['Pentaho Report Designer']
+    article 'pentaho-dataintegration', 'Pentaho Data Integration', ['Pentaho Data Integration']
   end
   category 'r-language', 'R Language' do
     article 'r-language', 'R Language',                 ['R Language']
