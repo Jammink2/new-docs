@@ -42,7 +42,7 @@ You'll see the screen like this. Please fill in the following information to the
    <li>Username: TD1<br/>Password: YOUR_APIKEY
    <li>Username: YOUR_EMAIL<br/>Password:YOUR_PASSWORD
  </ul>
-<li> SSL: disable (cannot handle this now)
+<li> SSL: Enable
 <li> Protocol version: 2
 </ul>
 </td>
