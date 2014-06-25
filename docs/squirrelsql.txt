@@ -33,7 +33,7 @@ Then please put this driver to SQuirreL SQL's driver directory.
     :::term
     $ mv td-jdbc-0.2.10-jar-with-dependencies.jar /Applications/SQuirreLSQL.app/Contents/Resources/Java/lib/
 
-NOTE: The target directory would be different on Windows and Linux.
+NOTE: The target directory is <b>$SQUIRREL_SQL_INSTALL_PATH/lib/</b> on Windows and Linux.
 
 ## Step 2: Add Treasure Data JDBC Driver to SQuirreL SQL
 
