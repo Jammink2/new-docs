@@ -17,7 +17,7 @@ def format_cmd_detail(cmd_str)
   cmd_lines = []
   cmd_str.split("\n").each { |line|
     if /^\w+:/.match(line)
-      cmd_lines << "###" + line
+      cmd_lines << "#### " + line
       cmd_lines << "\n"
     elsif
       cmd_lines << ("  "+line)

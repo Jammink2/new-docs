@@ -8,23 +8,23 @@ This page documents most of `td` subcommands.
 
 ## td db:list
 
-###usage:
+#### usage:
 
 
     $ td db:list
   
-###example:
+#### example:
 
 
     $ td db:list
     $ td dbs
   
-###description:
+#### description:
 
 
     Show list of tables in a database
   
-###options:
+#### options:
 
 
     -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
@@ -32,22 +32,22 @@ This page documents most of `td` subcommands.
 
 ## td db:show
 
-###usage:
+#### usage:
 
 
     $ td db:show <db>
   
-###example:
+#### example:
 
 
     $ td db example_db
   
-###description:
+#### description:
 
 
     Describe information of a database
   
-###options:
+#### options:
 
 
     -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
@@ -55,17 +55,17 @@ This page documents most of `td` subcommands.
 
 ## td db:create
 
-###usage:
+#### usage:
 
 
     $ td db:create <db>
   
-###example:
+#### example:
 
 
     $ td db:create example_db
   
-###description:
+#### description:
 
 
     Create a database
@@ -73,22 +73,22 @@ This page documents most of `td` subcommands.
 
 ## td db:delete
 
-###usage:
+#### usage:
 
 
     $ td db:delete <db>
   
-###example:
+#### example:
 
 
     $ td db:delete example_db
   
-###description:
+#### description:
 
 
     Delete a database
   
-###options:
+#### options:
 
 
     -f, --force                      clear tables and delete the database
@@ -96,24 +96,24 @@ This page documents most of `td` subcommands.
 
 ## td table:list
 
-###usage:
+#### usage:
 
 
     $ td table:list [db]
   
-###example:
+#### example:
 
 
     $ td table:list
     $ td table:list example_db
     $ td tables
   
-###description:
+#### description:
 
 
     Show list of tables
   
-###options:
+#### options:
 
 
     -n, --num_threads VAL            number of threads to get list in parallel
@@ -123,17 +123,17 @@ This page documents most of `td` subcommands.
 
 ## td table:show
 
-###usage:
+#### usage:
 
 
     $ td table:show <db> <table>
   
-###example:
+#### example:
 
 
     $ td table example_db table1
   
-###description:
+#### description:
 
 
     Describe information of a table
@@ -141,22 +141,22 @@ This page documents most of `td` subcommands.
 
 ## td table:create
 
-###usage:
+#### usage:
 
 
     $ td table:create <db> <table>
   
-###example:
+#### example:
 
 
     $ td table:create example_db table1
   
-###description:
+#### description:
 
 
     Create a table
   
-###options:
+#### options:
 
 
     -T, --type TYPE                  set table type (log or item)
@@ -166,22 +166,22 @@ This page documents most of `td` subcommands.
 
 ## td table:delete
 
-###usage:
+#### usage:
 
 
     $ td table:delete <db> <table>
   
-###example:
+#### example:
 
 
     $ td table:delete example_db table1
   
-###description:
+#### description:
 
 
     Delete a table
   
-###options:
+#### options:
 
 
     -f, --force                      never prompt
@@ -189,23 +189,23 @@ This page documents most of `td` subcommands.
 
 ## td table:import
 
-###usage:
+#### usage:
 
 
     $ td table:import <db> <table> <files...>
   
-###example:
+#### example:
 
 
     $ td table:import example_db table1 --apache access.log
     $ td table:import example_db table1 --json -t time - < test.json
   
-###description:
+#### description:
 
 
     Parse and import files to a table
   
-###options:
+#### options:
 
 
         --format FORMAT              file format (default: apache)
@@ -219,22 +219,22 @@ This page documents most of `td` subcommands.
 
 ## td table:export
 
-###usage:
+#### usage:
 
 
     $ td table:export <db> <table>
   
-###example:
+#### example:
 
 
     $ td table:export example_db table1 --s3-bucket mybucket -k KEY_ID -s SECRET_KEY
   
-###description:
+#### description:
 
 
     Dump logs in a table to the specified storage
   
-###options:
+#### options:
 
 
     -f, --from TIME                  export data which is newer than or same with the TIME
@@ -247,17 +247,17 @@ This page documents most of `td` subcommands.
 
 ## td table:swap
 
-###usage:
+#### usage:
 
 
     $ td table:swap <db> <table1> <table2>
   
-###example:
+#### example:
 
 
     $ td table:swap example_db table1 table2
   
-###description:
+#### description:
 
 
     Swap names of two tables
@@ -265,23 +265,23 @@ This page documents most of `td` subcommands.
 
 ## td table:tail
 
-###usage:
+#### usage:
 
 
     $ td table:tail <db> <table>
   
-###example:
+#### example:
 
 
     $ td table:tail example_db table1
     $ td table:tail example_db table1 -t "2011-01-02 03:04:05" -n 30
   
-###description:
+#### description:
 
 
     Get recently imported logs
   
-###options:
+#### options:
 
 
     -t, --to TIME                    end time of logs to get
@@ -292,22 +292,22 @@ This page documents most of `td` subcommands.
 
 ## td table:partial_delete
 
-###usage:
+#### usage:
 
 
     $ td table:partial_delete <db> <table>
   
-###example:
+#### example:
 
 
     $ td table:partial_delete example_db table1 --from 1341000000 --to 1341003600
   
-###description:
+#### description:
 
 
     Delete logs from the table within the specified time range
   
-###options:
+#### options:
 
 
     -t, --to TIME                    end time of logs to delete in Unix time multiple of 3600 (1 hour)
@@ -317,17 +317,17 @@ This page documents most of `td` subcommands.
 
 ## td table:expire
 
-###usage:
+#### usage:
 
 
     $ td table:expire <db> <table> <expire_days>
   
-###example:
+#### example:
 
 
     $ td table:expire example_db table1 30
   
-###description:
+#### description:
 
 
     Expire data in table after specified number of days
@@ -335,22 +335,22 @@ This page documents most of `td` subcommands.
 
 ## td import:list
 
-###usage:
+#### usage:
 
 
     $ td import:list
   
-###example:
+#### example:
 
 
     $ td import:list
   
-###description:
+#### description:
 
 
     List bulk import sessions
   
-###options:
+#### options:
 
 
     -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
@@ -358,17 +358,17 @@ This page documents most of `td` subcommands.
 
 ## td import:show
 
-###usage:
+#### usage:
 
 
     $ td import:show <name>
   
-###example:
+#### example:
 
 
     $ td import:show
   
-###description:
+#### description:
 
 
     Show list of uploaded parts
@@ -376,17 +376,17 @@ This page documents most of `td` subcommands.
 
 ## td import:create
 
-###usage:
+#### usage:
 
 
     $ td import:create <name> <db> <table>
   
-###example:
+#### example:
 
 
     $ td import:create logs_201201 example_db event_logs
   
-###description:
+#### description:
 
 
     Create a new bulk import session to the the table
@@ -394,7 +394,7 @@ This page documents most of `td` subcommands.
 
 ## td import:jar_version
 
-  td-import-java 0.4.14 via import:jar_update
+  td-import-java 0.4.15-SNAPSHOT via 'mvn package' on ee48c4ca4c2e5fe03d6615a5798653ec0221584b
 
 
 ## td import:jar_update
@@ -404,12 +404,12 @@ This page documents most of `td` subcommands.
 
 ## td import:prepare
 
-###usage:
+#### usage:
 
 
     $ td import:prepare <files...>
   
-###example:
+#### example:
 
 
     $ td import:prepare logs/*.csv --format csv --columns time,uid,price,count --time-column time -o parts/
@@ -417,12 +417,12 @@ This page documents most of `td` subcommands.
     $ td import:prepare mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
     $ td import:prepare "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
   
-###description:
+#### description:
 
 
     Convert files into part file format
   
-###options:
+#### options:
 
 
       -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
@@ -481,12 +481,12 @@ This page documents most of `td` subcommands.
 
 ## td import:upload
 
-###usage:
+#### usage:
 
 
     $ td import:upload <session name> <files...>
   
-###example:
+#### example:
 
 
     $ td import:upload mysess parts/* --parallel 4
@@ -495,11 +495,11 @@ This page documents most of `td` subcommands.
     $ td import:upload mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
     $ td import:upload "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
   
-###description:
+#### description:
 
 
     Upload or re-upload files into a bulk import session
-###options:
+#### options:
 
 
       --retry-count NUM                upload process will automatically retry at specified time; default: 10
@@ -566,12 +566,12 @@ This page documents most of `td` subcommands.
 
 ## td import:auto
 
-###usage:
+#### usage:
 
 
     $ td import:auto <session name> <files...>
   
-###example:
+#### example:
 
 
     $ td import:auto mysess parts/* --parallel 4
@@ -580,12 +580,12 @@ This page documents most of `td` subcommands.
     $ td import:auto mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
     $ td import:auto "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
   
-###description:
+#### description:
 
 
     Automatically upload or re-upload files into a bulk import session. It's functional equivalent of 'upload' command with 'auto-perform', 'auto-commit' and 'auto-delete' options. But it, by default, doesn't provide 'auto-create' option. If you want 'auto-create' option, you explicitly must declare it as command options.
   
-###options:
+#### options:
 
 
       --retry-count NUM                upload process will automatically retry at specified time; default: 10
@@ -649,22 +649,22 @@ This page documents most of `td` subcommands.
 
 ## td import:perform
 
-###usage:
+#### usage:
 
 
     $ td import:perform <name>
   
-###example:
+#### example:
 
 
     $ td import:perform logs_201201
   
-###description:
+#### description:
 
 
     Start to validate and convert uploaded files
   
-###options:
+#### options:
 
 
     -w, --wait                       wait for finishing the job
@@ -673,17 +673,17 @@ This page documents most of `td` subcommands.
 
 ## td import:error_records
 
-###usage:
+#### usage:
 
 
     $ td import:error_records <name>
   
-###example:
+#### example:
 
 
     $ td import:error_records logs_201201
   
-###description:
+#### description:
 
 
     Show records which did not pass validations
@@ -691,22 +691,22 @@ This page documents most of `td` subcommands.
 
 ## td import:commit
 
-###usage:
+#### usage:
 
 
     $ td import:commit <name>
   
-###example:
+#### example:
 
 
     $ td import:commit logs_201201
   
-###description:
+#### description:
 
 
     Start to commit a performed bulk import session
   
-###options:
+#### options:
 
 
     -w, --wait                       wait for finishing the commit
@@ -714,17 +714,17 @@ This page documents most of `td` subcommands.
 
 ## td import:delete
 
-###usage:
+#### usage:
 
 
     $ td import:delete <name>
   
-###example:
+#### example:
 
 
     $ td import:delete logs_201201
   
-###description:
+#### description:
 
 
     Delete a bulk import session
@@ -732,17 +732,17 @@ This page documents most of `td` subcommands.
 
 ## td import:freeze
 
-###usage:
+#### usage:
 
 
     $ td import:freeze <name>
   
-###example:
+#### example:
 
 
     $ td import:freeze logs_201201
   
-###description:
+#### description:
 
 
     Reject succeeding uploadings to a bulk import session
@@ -750,17 +750,17 @@ This page documents most of `td` subcommands.
 
 ## td import:unfreeze
 
-###usage:
+#### usage:
 
 
     $ td import:unfreeze <name>
   
-###example:
+#### example:
 
 
     $ td import:unfreeze logs_201201
   
-###description:
+#### description:
 
 
     Unfreeze a frozen bulk import session
@@ -768,23 +768,23 @@ This page documents most of `td` subcommands.
 
 ## td result:list
 
-###usage:
+#### usage:
 
 
     $ td result:list
   
-###example:
+#### example:
 
 
     $ td result:list
     $ td results
   
-###description:
+#### description:
 
 
     Show list of result URLs
   
-###options:
+#### options:
 
 
     -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
@@ -792,17 +792,17 @@ This page documents most of `td` subcommands.
 
 ## td result:show
 
-###usage:
+#### usage:
 
 
     $ td result:show <name>
   
-###example:
+#### example:
 
 
     $ td result name
   
-###description:
+#### description:
 
 
     Describe information of a result URL
@@ -810,22 +810,22 @@ This page documents most of `td` subcommands.
 
 ## td result:create
 
-###usage:
+#### usage:
 
 
     $ td result:create <name> <URL>
   
-###example:
+#### example:
 
 
     $ td result:create name mysql://my-server/mydb
   
-###description:
+#### description:
 
 
     Create a result URL
   
-###options:
+#### options:
 
 
     -u, --user NAME                  set user name for authentication
@@ -834,17 +834,17 @@ This page documents most of `td` subcommands.
 
 ## td result:delete
 
-###usage:
+#### usage:
 
 
     $ td result:delete <name>
   
-###example:
+#### example:
 
 
     $ td result:delete name
   
-###description:
+#### description:
 
 
     Delete a result URL
@@ -852,17 +852,17 @@ This page documents most of `td` subcommands.
 
 ## td schema:show
 
-###usage:
+#### usage:
 
 
     $ td schema:show <db> <table>
   
-###example:
+#### example:
 
 
     $ td schema example_db table1
   
-###description:
+#### description:
 
 
     Show schema of a table
@@ -870,17 +870,17 @@ This page documents most of `td` subcommands.
 
 ## td schema:set
 
-###usage:
+#### usage:
 
 
     $ td schema:set <db> <table> [columns...]
   
-###example:
+#### example:
 
 
     $ td schema:set example_db table1 user:string size:int
   
-###description:
+#### description:
 
 
     Set new schema on a table
@@ -888,17 +888,17 @@ This page documents most of `td` subcommands.
 
 ## td schema:add
 
-###usage:
+#### usage:
 
 
     $ td schema:add <db> <table> <columns...>
   
-###example:
+#### example:
 
 
     $ td schema:add example_db table1 user:string size:int
   
-###description:
+#### description:
 
 
     Add new columns to a table
@@ -906,17 +906,17 @@ This page documents most of `td` subcommands.
 
 ## td schema:remove
 
-###usage:
+#### usage:
 
 
     $ td schema:remove <db> <table> <columns...>
   
-###example:
+#### example:
 
 
     $ td schema:remove example_db table1 user size
   
-###description:
+#### description:
 
 
     Remove columns from a table
@@ -924,23 +924,23 @@ This page documents most of `td` subcommands.
 
 ## td sched:list
 
-###usage:
+#### usage:
 
 
     $ td sched:list
   
-###example:
+#### example:
 
 
     $ td sched:list
     $ td scheds
   
-###description:
+#### description:
 
 
     Show list of schedules
   
-###options:
+#### options:
 
 
     -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
@@ -948,23 +948,23 @@ This page documents most of `td` subcommands.
 
 ## td sched:create
 
-###usage:
+#### usage:
 
 
     $ td sched:create <name> <cron> [sql]
   
-###example:
+#### example:
 
 
     $ td sched:create sched1 "0 * * * *" -d example_db "select count(*) from table1" -r rset1
     $ td sched:create sched1 "0 * * * *" -d example_db -q query.txt -r rset2
   
-###description:
+#### description:
 
 
     Create a schedule
   
-###options:
+#### options:
 
 
     -d, --database DB_NAME           use the database (required)
@@ -987,17 +987,17 @@ This page documents most of `td` subcommands.
 
 ## td sched:delete
 
-###usage:
+#### usage:
 
 
     $ td sched:delete <name>
   
-###example:
+#### example:
 
 
     $ td sched:delete sched1
   
-###description:
+#### description:
 
 
     Delete a schedule
@@ -1005,22 +1005,22 @@ This page documents most of `td` subcommands.
 
 ## td sched:update
 
-###usage:
+#### usage:
 
 
     $ td sched:update <name>
   
-###example:
+#### example:
 
 
     $ td sched:update sched1 -s "0 */2 * * *" -d my_db -t "Asia/Tokyo" -D 3600
   
-###description:
+#### description:
 
 
     Modify a schedule
   
-###options:
+#### options:
 
 
     -s, --schedule CRON              change the schedule
@@ -1042,22 +1042,22 @@ This page documents most of `td` subcommands.
 
 ## td sched:history
 
-###usage:
+#### usage:
 
 
     $ td sched:history <name> [max]
   
-###example:
+#### example:
 
 
     $ td sched sched1 --page 1
   
-###description:
+#### description:
 
 
     Show history of scheduled queries
   
-###options:
+#### options:
 
 
     -p, --page PAGE                  skip N pages
@@ -1067,22 +1067,22 @@ This page documents most of `td` subcommands.
 
 ## td sched:run
 
-###usage:
+#### usage:
 
 
     $ td sched:run <name> <time>
   
-###example:
+#### example:
 
 
     $ td sched:run sched1 "2013-01-01 00:00:00" -n 6
   
-###description:
+#### description:
 
 
     Run scheduled queries for the specified time
   
-###options:
+#### options:
 
 
     -n, --num N                      number of jobs to run
@@ -1091,23 +1091,23 @@ This page documents most of `td` subcommands.
 
 ## td query
 
-###usage:
+#### usage:
 
 
     $ td query [sql]
   
-###example:
+#### example:
 
 
     $ td query -d example_db -w -r rset1 "select count(*) from table1"
     $ td query -d example_db -w -r rset1 -q query.txt
   
-###description:
+#### description:
 
 
     Issue a query
   
-###options:
+#### options:
 
 
     -d, --database DB_NAME           use the database (required)
@@ -1132,22 +1132,22 @@ This page documents most of `td` subcommands.
 
 ## td job:show
 
-###usage:
+#### usage:
 
 
     $ td job:show <job_id>
   
-###example:
+#### example:
 
 
     $ td job:show 1461
   
-###description:
+#### description:
 
 
     Show status and result of a job
   
-###options:
+#### options:
 
 
     -v, --verbose                    show logs
@@ -1163,17 +1163,17 @@ This page documents most of `td` subcommands.
 
 ## td job:status
 
-###usage:
+#### usage:
 
 
     $ td job:status <job_id>
   
-###example:
+#### example:
 
 
     $ td job:status 1461
   
-###description:
+#### description:
 
 
     Show status progress of a job
@@ -1181,23 +1181,23 @@ This page documents most of `td` subcommands.
 
 ## td job:list
 
-###usage:
+#### usage:
 
 
     $ td job:list [max]
   
-###example:
+#### example:
 
 
     $ td jobs
     $ td jobs --page 1
   
-###description:
+#### description:
 
 
     Show list of jobs
   
-###options:
+#### options:
 
 
     -p, --page PAGE                  skip N pages
@@ -1211,17 +1211,17 @@ This page documents most of `td` subcommands.
 
 ## td job:kill
 
-###usage:
+#### usage:
 
 
     $ td job:kill <job_id>
   
-###example:
+#### example:
 
 
     $ td job:kill 1461
   
-###description:
+#### description:
 
 
     Kill or cancel a job
@@ -1229,12 +1229,12 @@ This page documents most of `td` subcommands.
 
 ## td password:change
 
-###usage:
+#### usage:
 
 
     $ td password:change
   
-###description:
+#### description:
 
 
     Change password
@@ -1242,12 +1242,12 @@ This page documents most of `td` subcommands.
 
 ## td server:status
 
-###usage:
+#### usage:
 
 
     $ td server:status
   
-###description:
+#### description:
 
 
     Show status of the Treasure Data server
@@ -1255,17 +1255,17 @@ This page documents most of `td` subcommands.
 
 ## td server:endpoint
 
-###usage:
+#### usage:
 
 
     $ td server:endpoint <api_endpoint>
   
-###example:
+#### example:
 
 
     $ td td server:endpoint 'https://api.treasuredata.com'
   
-###description:
+#### description:
 
 
     Set the Treasure Data API server's endpoint (must be a valid URI)
@@ -1273,12 +1273,12 @@ This page documents most of `td` subcommands.
 
 ## td sample:apache
 
-###usage:
+#### usage:
 
 
     $ td sample:apache <path.json>
   
-###description:
+#### description:
 
 
     Create a sample log file
