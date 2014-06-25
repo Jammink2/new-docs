@@ -1,14 +1,14 @@
-# Data Analysis and Integrations
+# Data Processing
 
-This article explains the different options for processing and analyzing the data within Treasure Data.
+This article explains the different options for processing the data within Treasure Data.
 
-## Data Analysis and Integration Options
+## Data Processing Options
 
-Once the data is in, Treasure Data provides a wide range of data analysis and data integration options.
+Once the data is in, Treasure Data provides a wide range of data processing options.
 
 <center><img src="/images/analysis.png" width="100%" /></center><br /><br />
 
-## Basic Jobs with Multiple Engines
+## Data Processing with Multiple Engines
 
 Treasure Data allows users to issue jobs (see [Job Management](job)) to process the data. When you issue the jobs, you can specify which data processing engine to use. Currently we're supporting three types of the engine.
 
@@ -30,18 +30,8 @@ Treasure Data has a scheduler feature called [Scheduled Jobs](schedule) that sup
 
 We take great care in distributing and operating our scheduler in order to achieve high availability. You can use any engines mentioned above for scheduled jobs.
 
-## BI / Data Integrations
-
-#### 1) Result Output
+## Result Output
 
 [Result Output](/categories/result) is a feature to push Treasure Data's query result into other systems, such as RDBMS (MySQL, PostgreSQL, RedShift), Google Spread Sheet, FTP, etc. By using this feature, you can integrate Treasure Data with your existing system instantly.
 
 You can use [Scheduled Jobs](schedule) with Result Output, so that you can periodically launch Treasure Data jobs and write the result into somewhere else.
-
-#### 2) JDBC Driver
-
-Our [JDBC Driver](jdbc-driver) allows you to query from your custom Java applications & Java-based BI tools.
-
-#### 3) ODBC Driver
-
-TQA supports direct connection to Tableau via ODBC driver.

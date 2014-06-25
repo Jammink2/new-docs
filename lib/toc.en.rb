@@ -133,9 +133,9 @@ section 'query-data', 'Data Set Management' do
   end
 end
 
-section 'data-analysis-and-integrations', 'Data Analysis & Integration' do
-  category 'data-analysis-overview', 'Overview' do
-    article 'data-analysis-overview', 'Overview'
+section 'data-processing', 'Data Processing' do
+  category 'data-processing-overview', 'Overview' do
+    article 'data-processing-overview', 'Overview'
   end
   category 'job-management', 'Job Management' do
     article 'job', 'Job Management'
