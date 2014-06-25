@@ -34,11 +34,11 @@ You need to create the `Treasure` client object per database, and send the event
       // Create a data object with the properties you want to send
       var sale = {
         itemId: 101,
-        saleId: 10
-        userId: 1,
+        saleId: 10,
+        userId: 1
       };
       // Send it to the 'sales' table
-      company.addEvent('sales', sale);
+      cln.addEvent('sales', sale);
     </script>
 
 The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
