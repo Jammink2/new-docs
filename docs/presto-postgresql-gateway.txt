@@ -11,7 +11,7 @@ Please use the following information to connect Presto PostgreSQL gateway.
 - Host: **pggw.treasuredata.com**
 - Port: **5439**
 - Protocol Version: **2**
-- SSL: **Disabled**
+- SSL: **Enabled**
 
 Also there're two ways to authenticate your self: by email + password, or apikey.
 
