@@ -52,6 +52,6 @@ You'll see a list of tables and its columns by GUI.
 
 <center><img src="/images/sqlworkbench-columns.png" width="100%" /></center><br/>
 
-Move to the `Statement` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results.
+Move to the `Statement` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results. You can check the progress of the query from [Web console](https://console.treasuredata.com/jobs).
 
 <center><img src="/images/sqlworkbench-query.png" width="100%" /></center><br/>

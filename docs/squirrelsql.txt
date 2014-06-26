@@ -74,6 +74,6 @@ You'll see a list of tables and its columns by GUI.
 
 <center><img src="/images/squirrelsql-tables.png" width="60%" /></center><br/>
 
-Move to the `SQL` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results.
+Move to the `SQL` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results. You can check the progress of the query from [Web console](https://console.treasuredata.com/jobs).
 
 <center><img src="/images/squirrelsql-result.png" width="60%" /></center><br/>
