@@ -4,26 +4,13 @@
 
 ## About Apache Hive
 
-The Hive query language (HiveQL) is the primary data processing method for Treasure Data. HiveQL is powered by [Apache Hive](http://hive.apache.org/).
+The Hive query language (HiveQL) is the primary data processing method for Treasure Data. HiveQL is powered by [Apache Hive](http://hive.apache.org/). [Treasure Data](http://www.treasuredata.com/) is a cloud data platform that allows users to collect, store, and analyze their data on the cloud. Treasure Data manages its own Hadoop cluster, which accepts queries from users and executes them using the Hadoop MapReduce framework. HiveQL is one of the languages it supports.
 
-NOTE: Users can only issue "SELECT" statements. All other types of statements (ex: Data Definition Statements, Data Manipulation Statements, etc.) are currently unavailable.
+## Hive Query Templates: 12 Common Hive Queries
 
-## What is Treasure Data?
+If you're looking for Hive query template, which you can reuse quickly, please visit the page below.
 
-[Treasure Data](http://www.treasuredata.com/) is a cloud data platform that allows users to collect, store, and analyze their data on the cloud. Treasure Data manages its own Hadoop cluster, which accepts queries from users and executes them using the Hadoop MapReduce framework. HiveQL is one of the languages it supports.
-
-## CLI Usage
-
-You can submit queries by using the `td query` command. Below is an example command.
-
-    $ td query -w -d testdb \
-      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
-
-You can write the query result as local CSV file (csv, tsv, and json are supported).
-
-    $ td query -w -d testdb \
-      --format csv -o ./test.csv \
-      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
+- [Hive Query Templates](hive-query-templates) (12 Common Hive Queries)
 
 ## SELECT Statement Syntax
 

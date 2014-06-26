@@ -158,6 +158,7 @@ section 'data-processing', 'Data Processing' do
   end
   category 'hive', 'Hive QL Reference' do
     article 'hive', 'Hive Query Language (HiveQL) Overview'
+    article 'hive-query-templates', 'Hive Query Templates'
     article 'hive-operators', 'Hive Built-in Operators'
     article 'hive-functions', 'Hive Built-in Functions'
     article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
