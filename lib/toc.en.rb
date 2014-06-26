@@ -181,6 +181,9 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'squirrelsql', 'SQuirreL SQL' do
     article 'squirrelsql', 'SQuirrel SQL with Treasure Data', ['SQuirrelSQL', 'SQuirrel SQL']
   end
+  category 'sqlworkbench', 'SQL Workbench/J' do
+    article 'sqlworkbench', 'SQL Workbench/J with Treasure Data', ['SQL Workbench/J']
+  end
   category 'chartio', 'Chartio' do
     article 'chartio', 'Chartio with Treasure Data', ['Chartio']
   end

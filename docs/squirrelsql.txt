@@ -35,7 +35,7 @@ Then please put this driver to SQuirreL SQL's driver directory.
 
 NOTE: The target directory is <b>$SQUIRREL_SQL_INSTALL_PATH/lib/</b> on Windows and Linux.
 
-## Step 2: Add Treasure Data JDBC Driver to SQuirreL SQL
+## Step 3: Add Treasure Data JDBC Driver
 
 Please click `Drivers` at the left pane, and hit plus button to add a new driver.
 
@@ -50,7 +50,7 @@ Please fill the information like below.
 - Java Class Path: td-jdbc-xxx.jar
 - Class Name: com.treasure_data.jdbc.TreasureDataDriver
 
-## Step 3: Connect to Treasure Data
+## Step 4: Connect to Treasure Data
 
 Finally, please click `Aliases` tab at the left pane and click plus button to add the Alias.
 
@@ -68,7 +68,7 @@ Please click `Test` once the forms get filled. If the information is correct, it
 
 Please click `OK` once it's ready.
 
-## Step 4: Issue the Query
+## Step 5: Issue the Query
 
 You'll see a list of tables and its columns by GUI.
 

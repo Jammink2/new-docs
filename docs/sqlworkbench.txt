@@ -1,0 +1,57 @@
+# SQL Workbench/J with Treasure Data
+
+[SQL Workbench/J](http://www.sql-workbench.net/) is a free, DBMS-independent, cross-platform SQL query tool. You can use SQL Workbench/J as SQL authoring tool to interactively develop SQL queries with Treasure Data.
+
+NOTE: This article is using Mac OS 10.9.3 as an environment. So the screenshot may be a little bit different on Windows and Linux, but it works on both OSs as well.
+
+## Step 1: Install
+
+Please download the latest SQL Workbench/J installer from below, and install the application.
+
+- [SQL Workbench/J: Download](http://www.sql-workbench.net/downloads.html)
+
+Please follow the instruction described in [Installing and starting SQL Workbench/J](http://www.sql-workbench.net/manual/install.html) page.
+
+NOTE: SQL Workbench/J requires Java 7 or higher.
+
+## Step 2: Download Treasure Data JDBC Driver
+
+Please download Treasure Data's JDBC Driver from below.
+
+- [JDBC Driver Download](jdbc-driver)
+
+## Step 3: Add Treasure Data ODBC Driver
+
+Select `File` at the top menu, and click `Manage Drivers`. Plese fill the forms like below.
+
+<center><img src="/images/sqlworkbench-add-driver.png" width="100%" /></center><br/>
+
+- Name: Treasure Data
+- Library: JDBC driver file path
+- Classname: com.treasure_data.jdbc.TreasureDataDriver
+- Sample URL: jdbc:td://api.treasuredata.com/name_of_database;useSSL=true
+
+## Step 4: Connect to Treasure Data
+
+Select `File` at the top menu, and click `Connect window`. Please fill the forms like below.
+
+<center><img src="/images/sqlworkbench-connect.png" width="100%" /></center><br/>
+
+- Name: Whatever you like
+- Driver: Treasure Data
+- URL: jdbc:td://api.treasuredata.com/sample_db;useSSL=true
+- Username: Your account email
+- Password: Your account password
+- Read only: True
+
+Then, please click `OK` to add the connection.
+
+## Step 5: Issue the Query
+
+You'll see a list of tables and its columns by GUI.
+
+<center><img src="/images/sqlworkbench-columns.png" width="100%" /></center><br/>
+
+Move to the `Statement` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results.
+
+<center><img src="/images/sqlworkbench-query.png" width="100%" /></center><br/>
