@@ -88,3 +88,11 @@ We cover the query above in the [JasperSoft iReport with JDBC Driver](/articles/
 To confirm the behavior of the Table input, write out your data on Treasure Data to JSON output as shown below.
 
 <a href="/images/pentaho-di-transformation-select-jsonoutput.png"><img src="/images/pentaho-di-transformation-select-jsonoutput.png" width="100%"></a>
+
+## Tips: How can I use Pentaho through a proxy?
+
+Check 'start-pentaho.bat' or 'start-pentaho.sh', and add the following parameters to CATALINA_OPTS option:
+
+```
+CATALINA_OPTS="-Dhttp.proxyHost=<proxy address> -Dhttp.proxyPort=<proxy port>"
+```
