@@ -12,7 +12,7 @@ ww, w        | Week in year           | Number              |  06
 DDD, DDD, D  | Day in year            | Number              |  189
 dd, d        | Day in month           | Number              |  10
 EEEE         | Day in week            | Text                |  Tuesday
-EEE          | Day in week            | Text (short form)   |  Tue
+E, EEE       | Day in week            | Text (short form)   |  Tue
 a            | Am/pm marker           | Text                |  PM
 HH, H        | Hour in day (0-23)     | Number              |  00
 kk, k        | Hour in day (1-24)     | Number              |  24
@@ -21,7 +21,7 @@ hh, h        | Hour in am/pm (1-12)   | Number              |  12
 mm, m        | Minute in hour         | Number              |  30
 ss, s        | Second in minute       | Number              |  55
 SSS, SS, S   | Millisecond            | Number              |  978
-zzzz         | Time zone              | Zone long name      |  Pacific Standard Time
-z            | Time zone              | Zone short name     |  PST; GMT-08:00
+zzzz         | Time zone              | Zone long name      |  Pacific Standard Time, or GMT+01:00
+z            | Time zone              | Zone short name     |  PST, or GMT+01:00
 Z            | Time zone              | Zone offset         |  -0800
 
