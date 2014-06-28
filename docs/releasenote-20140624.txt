@@ -1,0 +1,146 @@
+# Release Note 20140624
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### SDKs: Released Javascript SDK v0.1.1
+
+We released our first version of the new Javascript SDK (v0.1.1).
+
+The pre-built SDK is available in both compressed or uncompressed format.
+
+### SDKs: Android SDK All-In-One JAR
+
+The Android SDK v0.1.1 was released.
+
+We created an all-in-one JAR build (<tt>td-android-sdk-0.1.1-shaded.jar</tt>) which contains all the dependencies: this greatly facilitates including the SDK in an Android project when not using Maven.
+
+### Console: Javascript SDK
+
+Added the Javascript SDK link to the [Import Data, SDKs](https://console.treasuredata.com/import/sdk) landing page.
+
+![Console: Javascript SDK](/images/release-notes/140624-01-js_sdk.png)
+
+### Console: New Query and Schedules Page Links
+
+We added convenience links in the:
+
+* Schedules list page:
+  * Added a description which is displayed when the schedules list is empty: the description invites the user to create a new schedule through the New Query page:
+* New Query page:
+  * Added links to the 'schedules' and 'result output' documentation pages in the respective sections of the New Query page:
+  * Added links to the selected Query engine's reference documentation page.
+
+![Console: New Query and Schedules Page Links - 1](/images/release-notes/140624-02-schedules_page.png)
+![Console: New Query and Schedules Page Links - 2](/images/release-notes/140624-03-new_query_page_schedules_n_results.png)
+![Console: New Query and Schedules Page Links - 3](/images/release-notes/140624-04-new_query_engines.png)
+
+### Console: Top Bar Menus
+
+Made the Top Bar's menus open 'on click' instead of 'on hover'.
+
+### Console: Scrolling When Navigating Across Pages
+
+In pages implementing pagination (Jobs and Schedule pages), loading the next or previous page scrolls the page up to the top when the size of the page does not fit on the screen.
+
+### APIs: Create Table with Write-Only API Key
+
+Made write-only API keys able to create tables in databases whose user has import-only permissions for.
+
+### Workers: Schema Mismatch Warnings
+
+When executing a [Query Result Output to MySQL](result-into-mysql#four-modes-to-modify-data-appendreplacetruncateupdate) in _append_ or _update_ modes, columns that are in the result schema but not in the destination table schema are dropped.
+An information message is printed in the Job's log for each column in the result that is dropped:
+    Skipping result column "<column_name>" (the column name does not match any of the columns in the destination table)
+
+### Workers: Avoid Retry On Semantic Exceptions
+
+The Hive worker does not retry on Semantic exceptions.
+
+
+<br/>
+
+
+## Bug Fixes
+
+This the only important Bug Fix made in this release:
+
+### Console: Jobs Validation Errors On Deleted Saved Query Result Outputs
+
+* _**[Problem]**_<br/>
+  Jobs cannot be killed if they are run using a saved Query Result Output that is subsequently deleted.<br/>
+  _**[Solution]**_<br/>
+  This problem is caused by a race condition which is not handled: if the user runs a job with a query result output set to a saved target and the saved target is deleted while the job executes, the attempt to update the job status to 'killed' fails because of a validation error.<br/>
+  Validation of the named output target is skipped if an output target URL is already set for the job (as it happens for jobs that already began running). This avoids the race condition.<br/>
+
+### Console: Web Uploader Problems In IE10
+
+* _**[Problem]**_<br/>
+  CSV parsing for the Web uploader doesn't work on Internet Explorer 10.<br/>
+  _**[Solution]**_<br/>
+  The Javascript portion of the CSV parser was not compatible with IE10's Javascript core.<br/>
+  A new version of the parser was compiled to resolve the compatibility issue.<br/>
+
+### Console: Storage Graph Includes Deleted Databases
+
+* _**[Problem]**_<br/>
+  The Storage graph in the Utilization page includes databases that have been deleted.<br/>
+  _**[Solution]**_<br/>
+  The query used to calculate the total storage for the account ignores the databases' 'deleted_at' field. Databases whose 'deleted_at' field is _NOT NULL_, have been deleted.<br/>
+  The query is updated to filter out databases that have been deleted by checking the 'deleted_at' value for each record.<br/>
+
+### Console: Tutorial Problem
+
+* _**[Problem]**_<br/>
+  The links required to progress through the tutorial may not be accessible: if this happens, the user is becomes stuck in the tutorial and cannot complete it.<br/>
+  _**[Solution]**_<br/>
+  This problem occurs when the screen width is too small. In this situation the tutorial overlay fails to be placed over the correct links.<br/>
+  The layout of the page was changed to make only the content (Side bar and Top bar excluded) of the page scrollable.<br/>
+
+### APIs: Bulk Import Record Count Overflow
+
+* _**[Problem]**_<br/>
+  Bulk import's count of valid and error records saturates at 2^31.<br/>
+  _**[Solution]**_<br/>
+  The type of the fields in the Bulk Import session API table were set to integers.<br/>
+  The fields have been changed to long to represents numbers up to 2^63.<br/>
+
+### APIs: Bulk Import Auto Schema Detection
+
+* _**[Problem]**_<br/>
+  Auto-schema detection for Bulk Import records fails occasionally.<br/>
+  _**[Solution]**_<br/>
+  This problem is due to the APIs being unable to download a sample of the imported data from AWS S3 after the Bulk Import perform action has completed: this is caused by the well known S3's '[eventual consistency](http://en.wikipedia.org/wiki/Eventual_consistency)' problem.<br/>
+  The eventual consistency problem is worked around by having the API retry to fetch a sample of the Bulk imported data when a failure occurs.<br/>
+
+### APIs: Bulk Import Perform Restrictions
+
+* _**[Problem]**_<br/>
+  The Bulk Import perform step can be executed multiple times, leading to duplicated data.<br/>
+  _**[Solution]**_<br/>
+  When a Perform job is already running for a Bulk Import session, the status of the session is set to 'Performing' but the API does not check the status of a session before accepting a new Perform job request.<br/>
+  Added validation on the status of the Bulk Import session to make sure only one Bulk Import perform job can be run at any time.<br/>
+
+### APIs: Scheduled Queries Next Run Time
+
+* _**[Problem]**_<br/>
+  The 'Next run' time field for a Scheduled query is not updated when the periodicity is modified for the query to run less frequently.<br/>
+  _**[Solution]**_<br/>
+  This is due to an inconsistent handling of the next run time between the APIs database and Job Scheduling database.<br/>
+  We made the handling consistent by passing the next run time calculated by one to the other, avoiding inconsistent calculations.<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
