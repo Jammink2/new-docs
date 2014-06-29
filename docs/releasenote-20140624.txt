@@ -6,13 +6,13 @@ This is a summary of the new features and improvements introduced in this releas
 
 ### SDKs: Released Javascript SDK v0.1.1
 
-We released our first version of the new Javascript SDK (v0.1.1).
+We released our first version of the new [Javascript SDK](javascript-sdk) (v0.1.1).
 
 The pre-built SDK is available in both compressed or uncompressed format.
 
 ### SDKs: Android SDK All-In-One JAR
 
-The Android SDK v0.1.1 was released.
+The [Android SDK](android-sdk) v0.1.1 was released.
 
 We created an all-in-one JAR build (<tt>td-android-sdk-0.1.1-shaded.jar</tt>) which contains all the dependencies: this greatly facilitates including the SDK in an Android project when not using Maven.
 
