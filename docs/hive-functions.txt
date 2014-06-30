@@ -16,17 +16,17 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
     <td>Returns the rounded BIGINT value of the double</td>
   </tr>
   <tr>
-    <td>DOUBLE</td>
+    <td>double</td>
     <td>round(double a, int d)</td>
     <td>Returns the double rounded to d decimal places</td>
   </tr>
   <tr>
-    <td>BIGINT</td>
+    <td>bigint</td>
     <td>floor(double a)</td>
     <td>Returns the maximum BIGINT value that is equal or less than the double</td>
   </tr>
   <tr>
-    <td>BIGINT</td>
+    <td>bigint</td>
     <td>ceil(double a), ceiling(double a)</td>
     <td>Returns the minimum BIGINT value that is equal or greater than the double</td>
   </tr>
@@ -72,12 +72,12 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
   </tr>
   <tr>
     <td>string</td>
-    <td>bin(BIGINT a)</td>
+    <td>bin(bigint a)</td>
     <td>Returns the number in binary format (see <A href="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_bin" class="external-link" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_bin</A>)</td>
   </tr>
   <tr>
     <td>string</td>
-    <td>hex(BIGINT a) hex(string a)</td>
+    <td>hex(bigint a) hex(string a)</td>
     <td>If the argument is an int, hex returns the number as a string in hex format. Otherwise if the number is a string, it converts each character into its hex representation and returns the resulting string.  (see <A href="http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_hex" class="external-link" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/string-functions.html#function_hex</A>)</td>
   </tr>
   <tr>
@@ -87,7 +87,7 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
   </tr>
   <tr>
     <td>string</td>
-    <td>conv(BIGINT num, int from_base, int to_base), conv(STRING num, int from_base, int to_base)</td>
+    <td>conv(bigint num, int from_base, int to_base), conv(STRING num, int from_base, int to_base)</td>
     <td>Converts a number from a given base to another (see <A href="http://dev.mysql.com/doc/refman/5.0/en/mathematical-functions.html#function_conv" class="external-link" rel="nofollow">http://dev.mysql.com/doc/refman/5.0/en/mathematical-functions.html#function_conv</A>)</td>
   </tr>
   <tr>
