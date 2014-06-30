@@ -11,7 +11,7 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
     <th>Description</th>
   </tr>
   <tr>
-    <td>BIGINT</td>
+    <td>double</td>
     <td>round(double a)</td>
     <td>Returns the rounded BIGINT value of the double</td>
   </tr>
