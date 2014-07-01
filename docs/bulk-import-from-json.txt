@@ -57,9 +57,3 @@ For further details, check the following pages:
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)
 
 <br/>
-## Known Limitations
-
-### Boolean values `true` and `false` are not supported and break the parser
-
-This is done for the content validation to be consistency with the Backend which does not support boolean values either: see the [Schema Management](schema) page for a list of supported data types.<br/>
-Please convert the values to strings <tt>"true"</tt> and <tt>"false"</tt> or integers <tt>0</tt> and <tt>1</tt>. Once the values are uploaded to Treasure Data, they can be queried and casted to boolean with the Query Language of choice.
