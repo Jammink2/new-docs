@@ -43,6 +43,8 @@ You need to create the `Treasure` client object per database, and send the event
 
 The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
 
+NOTE: IP whitelist won't be applied to any import from JavaScript SDK. Also we've seen a lot of cases where a lot of browsers have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
+
 ## Next Steps
 
 For the transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API.
