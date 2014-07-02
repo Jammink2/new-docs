@@ -1,0 +1,54 @@
+# Presto Performance Tuning
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data.
+  * Basic knowledge of [Presto query engine](presto).
+
+## Leveraging Time-based Partitioning
+
+All imported data is automatically partitioned into hourly buckets, based on the **'time'** field within each data record. **By specifying the time range to query, you avoid reading unnecessary data and can thus speed up your query significantly.**
+
+### 1) WHERE time <=> Integer
+
+**When the 'time' field within the WHERE clause is specified**, the query parser will automatically detect which partition(s) should be processed. Please note that this auto detection will not work *if you specify the time with `float` instead of `int`.*
+
+    :::sql
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 + 3600
+    [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 - 3600
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 13493930200 / 10 
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time BETWEEN 1349392000 AND 1349394000
+
+### 2) TD_TIME_RANGE
+
+**An easier way to slice the data is to use [TD_TIME_RANGE UDF](presto-udfs#tdtimerange)**.
+
+    :::sql
+    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
+    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
+    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01",
+                                           TD_TIME_ADD("2013-01-01", "1day", "PDT"))
+
+However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partition opimization doesn't work. For instance, the following conditions disable optimization.
+
+    :::sql
+    [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, TD_TIME_FORMAT(TD_SCHEDULED_TIME(), 'yyyy-MM-dd'))
+    [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, TD_TIME_FORMAT(1356998401, 'yyyy-MM-dd'))
+    [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, TD_SCHEDULED_TIME() / 86400 * 86400))
+    [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, 1356998401 / 86400 * 86400))
+
+## Use Approximate Aggregate Functions
+
+Presto has a couple of [approximate aggregation functions](http://prestodb.io/docs/current/functions/aggregate.html), which will give you significant performance improvements with some errors. For example by using `approx_distinct()` function, you can get an approximation of `COUNT(DISTINCT x)` with standard error of 2.3%. The example below calculates the approximate unique users of the previous day.
+
+    :::sql
+    SELECT
+      approx_distinct(user_id)
+    FROM
+      access
+    WHERE
+      TD_TIME_RANGE(
+        TD_TIME_ADD(TD_SCHEDULED_TIME(), "-1d", "PDT"),
+        TD_SCHEDULED_TIME())

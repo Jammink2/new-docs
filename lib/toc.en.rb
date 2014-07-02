@@ -173,6 +173,7 @@ section 'data-processing', 'Data Processing' do
     article 'presto', 'Presto Query Engine'
     article 'presto-udfs', 'Presto UDFs'
     article 'presto-postgresql-gateway', 'Presto PostgreSQL Gateway'
+    article 'presto-performance-tuning', 'Presto Performance Tuning'
     article 'presto-known-limitations', 'Presto Known Limitations'
   end
 end
