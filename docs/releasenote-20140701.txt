@@ -1,0 +1,43 @@
+# Release Note 20140701
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Bulk Import: Released Java Bulk Import CLI v0.4.16
+
+* Improved the error messages when the CSV / TSV column type auto-detection recognizes an inconsistent type: the column number is shown in the error message for quicker consultation and troubleshooting
+* Added support for boolean values in the JSON format
+
+See also [Bug Fixes, Bulk Import](releasenote-20140701#bulk-import-empty-or-nil-time-column-in-csv--tsv) section.
+
+### Client Libraries: Released Java Client Library v0.4.3
+
+* Authentication attempts with username and password are not retried
+* Attempts to create a Bulk Import session are not retried if the database or table don't exist
+
+
+<br/>
+
+
+## Bug Fixes
+
+This the only important Bug Fix made in this release:
+
+### Backend: Single Line Comments in Pig
+
+* _**[Problem]**_<br/>
+  [Single line comments](http://pig.apache.org/docs/r0.7.0/piglatin_ref1.html#Using+Comments+in+Scripts) cause the Pig script to return all records from the wrong table.<br/>
+  _**[Solution]**_<br/>
+  Pig queries are preprocessed before execution and transformed into a sequence of commands in a single line. These commands are automatically prepended by as many LOAD statements as the number of tables in the database and appended with a STORE statement to store the result contained in the last referenced variable. Single line comments (those starting with --) caused the whole user inputted portion of the Pig script following the comment to be ignored: the result of the query appeared as to contain records from a table different from the one expected. Particularly if the single line comment was in the first line of the script, the whole script was ignored and the result corresponded to the content of the last table in the databases, according to the last LOAD executed in the preamble of the script.<br/>
+  Comments are now preprocessed and stripped from the query before execution to avoid this problem.<br/>
+
+### Bulk Import: Empty or Nil Time Column in CSV / TSV
+
+* _**[Problem]**_<br/>
+  A Null Pointer Exception (NPE) occurs while parsing a CSV / TSV file when the time column contains nil or empty values and the --time-format options is used.<br/>
+  _**[Solution]**_<br/>
+  The exception is caused by the improper handling of empty and nil strings, which can sometime appear in the time column.<br/>
+  Improved the parsing to avoid this pitfall and report a symbolic time=0 when either nil value or an empty string is encountered.<br/>
+
+<br/>
