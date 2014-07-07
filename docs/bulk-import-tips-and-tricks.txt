@@ -27,3 +27,26 @@ If you cannot upload, please first check if your network is using proxy. You can
 ## Specify time column for maximum query performance
 
 Please don't specify '<tt>0</tt>' if you don't have time column. Treasure Data is partitioning the data by time by default (See [Data Partitioning](data-partitioning)). It's recommended to always specify the time column, or specify the current time.
+
+
+## Select Enable/Disable auto jar_update
+
+The option to select Enable/Disable auto jar_update can be included in td v0.11.2 and later versions
+
+An environment variable hook: TD_TOOLBELT_JAR_UPDATE.
+  
+- JAR auto-update is enabled by default or enabled if the variable is 1:
+
+```
+$ td import:prepare
+$ TD_TOOLBELT_JAR_UPDATE=1 td import:prepare
+```
+
+- JAR auto-update is disabled then variable is set to 0:
+
+```
+$ TD_TOOLBELT_JAR_UPDATE=0 td import:prepare
+```
+
+but this setting does not affect td import:jar_update, which always updates the JAR file.
+
