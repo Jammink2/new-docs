@@ -40,4 +40,12 @@ This the only important Bug Fix made in this release:
   The exception is caused by the improper handling of empty and nil strings, which can sometime appear in the time column.<br/>
   Improved the parsing to avoid this pitfall and report a symbolic time=0 when either nil value or an empty string is encountered.<br/>
 
+### Bulk Import: Import-Only Permissions
+
+* _**[Problem]**_<br/>
+  Users with import only access to a database or using import-only API keys cannot import using Bulk Import.<br/>
+  _**[Solution]**_<br/>
+  This was due to the attempt to list the tables in the database when creating a session to verify the destination table actually existed. The table list operation is forbidden when the user has import only permissions to a database.<br/>
+  Client side validation is removed since the check is performed by the APIs.<br/>
+
 <br/>
