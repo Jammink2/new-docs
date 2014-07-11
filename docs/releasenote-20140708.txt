@@ -1,0 +1,84 @@
+# Release Note 20140708
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Metadata for Columns
+
+This new feature provides the ability to add a brief description (a.k.a. metadata) for all the columns in the schema of any table.
+The description is editable right from the table preview page by clicking on the icon on the right hand side of every column name.
+When a column contains metadata, the icon turns darker.
+
+![Console: Metadata for Columns](/images/release-notes/140708-01-column_metadata.png)
+
+### Console: Bulk Import Sessions List
+
+Changed the Bulk Import card to show the list of [Bulk Import sessions](https://console.treasuredata.com/import/bulk?page=1) for the user, if any.
+The page contains a link to view the Bulk Import illustration originally contained in the page. If no Bulk Import session is available, the page redirects immediately to the Bulk Import illustration.
+
+NOTE: The formatting of all list views has been improved and unified across the application
+
+![Console: Bulk Import Sessions List](/images/release-notes/140708-02-bulk_import_list.png)
+
+### Console: Schedules' Owner
+
+Added the owner User column to the Schedules list. The new field shows the name of the user in the account whom first created the scheduled query.
+
+![Console: Schedules' Owner](/images/release-notes/140708-03-schedules_owner.png)
+
+### Console: Log and Item Tables Explained
+
+Added tooltips to describe the meaning and purpose of the two types of table available (log and item tables) when creating a New Table.
+
+![Console: Log and Item Tables Explained](/images/release-notes/140708-04-table_log_item.png)
+
+### Console: Quickstart and Tutorial
+
+Moved the "Quickstart" button from the Left navigation pane to under the Top Bar's Help menu.
+
+![Console: Quickstart and Tutorial](/images/release-notes/140708-05-quickstart.png)
+
+### Console: File Uploader Robustness
+
+Improved the File Uploader's robustness to handle more character encodings.
+
+### APIs: Schedule Update API
+
+Added support for the POST method to the schedule update API endpoint '/v3/schedule/update/:name' to allow the API to update the query for the schedule even when the query text is very long, thus avoiding [414 (Request URI too long)](http://www.checkupdown.com/status/E414.html) errors.
+
+The original GET method is kept for backwards compatibility with the client libraries while those are migrated to the new format.
+
+### APIs: Write Only API Key Restriction
+
+Changed Write-only API keys to not be allowed to list the databases in the account.
+
+### Backend: Reducer Task Optimizations
+
+The number of Reducer tasks is calculated based on the size of the result rather than being fixed to four.
+
+### Workers: Retry On MySQL System Errors
+
+Workers retry on recoverable MySQL system errors.
+
+### Query Result Output: Retry Output to S3
+
+Implemented the retry mechanism for Query result output to S3.
+
+
+<br/>
+
+
+## Bug Fixes
+
+This is the only important Bug Fix made in this release:
+
+### Console: Jobs with Empty Database
+
+* _**[Problem]**_<br/>
+  Sometimes jobs in the job list table have the database column value empty.<br/>
+  _**[Solution]**_<br/>
+  This occurs when the database the job refers to is deleted after the job is submitted. The missing database field is by construction in the jobs list page but the job details page still shows a link to the database, although the database does not exist.<br/>
+  Made the job details page hide the database information if the database was deleted to be consistent with the job list page.<br/>
+
+<br/>
