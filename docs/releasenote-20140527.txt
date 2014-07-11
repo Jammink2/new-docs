@@ -32,7 +32,7 @@ Added pagination for the Jobs index in each Schedule' details page.
 
 ## Bug Fixes
 
-This the only important Bug Fix made in this release:
+This is the only important Bug Fix made in this release:
 
 ### Backend: Bulk Import conflict
 

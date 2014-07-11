@@ -45,7 +45,7 @@ and stored in the database for later use and faster loading of the pages.
 
 ## Bug Fixes
 
-This the only important Bug Fix made in this release:
+This is the only important Bug Fix made in this release:
 
 ### Backend: Bulk Import conflict
 

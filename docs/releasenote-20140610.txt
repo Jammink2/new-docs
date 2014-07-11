@@ -40,7 +40,7 @@ This allows setting up a proxy for use within IDEs and other frontend tools that
 
 ## Bug Fixes
 
-This the only important Bug Fix made in this release:
+These are the most important Bug Fixes made in this release:
 
 ### Console: Link To Schedule From Job Pages
 

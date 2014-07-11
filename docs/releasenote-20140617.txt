@@ -61,7 +61,7 @@ See also the Bug Fixes, Toolbelt section.
 
 ## Bug Fixes
 
-This the only important Bug Fix made in this release:
+These are the most important Bug Fixes made in this release:
 
 ### APIs: User Creation Endpoint
 

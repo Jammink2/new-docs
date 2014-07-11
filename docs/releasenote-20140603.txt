@@ -60,7 +60,7 @@ Please refer to the [Github Changelog](https://github.com/treasure-data/td-jdbc/
 
 ## Bug Fixes
 
-This the only important Bug Fix made in this release:
+These are the most important Bug Fixes made in this release:
 
 ### Console: Edit as New Query
 

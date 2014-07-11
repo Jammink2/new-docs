@@ -22,7 +22,7 @@ See also [Bug Fixes, Bulk Import](releasenote-20140701#bulk-import-empty-or-nil-
 
 ## Bug Fixes
 
-This the only important Bug Fix made in this release:
+These are the most important Bug Fixes made in this release:
 
 ### Backend: Single Line Comments in Pig
 
