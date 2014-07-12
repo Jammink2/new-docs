@@ -86,6 +86,7 @@ class Article
     #   "<a name=\"#{slugify(m.gsub(/<[^>]+>/, ''))}\"></a>#{m}"
     # end
     toc = content.scan(/<(h[23])>([^<]+)<\/h[23]>/m).to_a.map { |m| [m[0][1], m[1]] }
+    p toc
     content_with_anchors = content.gsub(/(<h[23]>[^<]+<\/h[23]>)/m) do |m|
       "<a name=\"#{slugify(m.gsub(/<[^>]+>/, ''))}\"></a>#{m}"
     end
