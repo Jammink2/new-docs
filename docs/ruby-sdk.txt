@@ -24,26 +24,26 @@ Next, install the gem locally via bundler.
 
 The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-ruby).
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. 
 
     :::ruby
     # Initialization
-    TreasureData::Logger.open('productiondb',
+    TreasureData::Logger.open('production',
                               :apikey=>"YOUR_API_KEY",
                               :auto_create_table=>true)
-
+    
     # Example1: login event
     TD.event.post('login', {:uid=>123})
-
+    
     # Example2: follow event
     TD.event.post('follow', {:uid=>123, :from=>'TreasureData', :to=>'kzk_mover'})
-
+    
     # Example3: pay event
     TD.event.post('pay',
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-Your event-logging code should be placed near its corresponding event-generating code.
+Your event-logging code should be placed near its corresponding event-generating code. 
 
 When using the `td` gem, the posted records are buffered in the memory locally at first, and the data is uploaded every 5 minutes. Because a dedicated thread uploads the data into the cloud, it doesn't affect your application's response time.
 
