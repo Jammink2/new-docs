@@ -1,5 +1,7 @@
 # Supported time formats in TD_TIME_FORMAT UDF
 
+This is a summary of the time formats supported by the [<tt>TD_TIME_FORMAT_UDF</tt> udf](udfs#tdtimeformat).
+
 Syntax       | Date or Time Component | Presentation        | Examples               |
 :------:     | :--------------------: | :-----------------: | :--------------------: |
 G            | Era designator         | Text                |  AD
