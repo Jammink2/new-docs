@@ -1,0 +1,7 @@
+# Data De-duplication for Treasure Agent
+
+Treasure Data supports data de-duplication via the following mechanism.
+
+1. [Treasure Agent](td-agent) assigns a universally unique identifier (UUID) to each chunk of data.
+2. Treasure Agent retries whenever it detects network failure. However, this can sometimes result in the same chunk of data being sent more that once.
+3. When a chunk arrives, Treasure Data's API endpoint inspects the chunk's ID and discards it if it's been processed in the last 10 minutes to avoid data duplication.

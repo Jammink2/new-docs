@@ -9,6 +9,7 @@ section 'overview', 'Overview' do
     article 'no-spof', 'No Single-Point-Of-Failure (SPOF)'
     article 'constraints', 'Constraints'
     article 'status', 'Platform Status'
+    article 'data-deduplication', 'Data De-duplication'
     article 'open-source', 'Open Source'
   end
   category 'faq', 'FAQs' do
