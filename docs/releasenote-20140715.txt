@@ -1,0 +1,53 @@
+# Release Note 20140715
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: File Uploader Improvements
+
+The design and implementation of the [File Uploader](https://console.treasuredata.com/import/file) were greatly improved:
+
+* Simplified the upload procedure from a multi-page wizard to single-page
+* Improved the handling of non-UTF8 character encodings
+
+![Console: File Uploader Improvements](/images/release-notes/140715-01-file_upload_1.png)
+![Console: File Uploader Improvements](/images/release-notes/140715-02-file_upload_2.png)
+![Console: File Uploader Improvements](/images/release-notes/140715-03-file_upload_3.png)
+
+### Console: Collect Data
+
+Changed the 'Import Data' sidebar link and pages to 'Collect Data'.
+
+![Console: Collect Data](/images/release-notes/140715-04-collect_data.png)
+
+### Console: Bulk Import and Streaming Landing Pages
+
+Updated the layout of the [Bulk Import](https://console.treasuredata.com/import/bulk/info) and [Streaming](https://console.treasuredata.com/import/streaming) landing pages to move the available resources at the top of the illustrations.
+
+![Console: Bulk Import and Streaming Landing Pages](/images/release-notes/140715-05-resources.png)
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Manual Schedule Runs
+
+* _**[Problem]**_<br/>
+  Running a schedule manually allows the creation of multiple job at the same time.<br/>
+  _**[Solution]**_<br/>
+  There is no limitations on how many times the 'Run Manually' Submit button can be pressed. Each button press spawns a new job with the schedule time specified.<br/>
+  The Submit button is de-bounced, only one form submission is allowed until a job is completely submitted.<br/>
+
+### Console: Top Bar Menu Hovering In/Out
+
+* _**[Problem]**_<br/>
+  On the Safari web browser, the Top Bar Help menu renders a flash-like visual affect when hovering in/out. Furthermore the mouse pointer changes unexpectedly when transitioning.<br/>
+  _**[Solution]**_<br/>
+  This is due to the aliasing effects on Safari and to not controlling the mouse pointer style when hovering in/out.<br/>
+  Forced the mouse pointer style to 'cursor' and fixed the aliasing of the fonts.<br/>
+
+<br/>
