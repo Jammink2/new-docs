@@ -16,29 +16,22 @@ Install the td-js-sdk on your page by copying the JavaScript snippet below and p
     :::html
     <!-- Treasure Data -->
     <script type="text/javascript">
-      !function(t,e){if(void 0===e[t]){e["_"+t]={},e[t]=function(n){e["_"+t].clients=e["_"+t].clients||{},e["_"+t].clients[n.database]=this,this._config=n},e[t].ready=function(n){e["_"+t].ready=e["_"+t].ready||[],e["_"+t].ready.push(n)};for(var n=["addEvent","setGlobalProperties","on"],r=0;r<n.length;r++){var s=n[r],i=function(t){return function(){return this["_"+t]=this["_"+t]||[],this["_"+t].push(arguments),this}};e[t].prototype[s]=i(s)}var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//dyu0x0wekfgrg.cloudfront.net/sdk/td-0.1.1.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(a,o)}}("Treasure",this);
+    !function(t,e){if(void 0===e[t]){e[t]=function(){e[t].clients.push(this),this._init=[Array.prototype.slice.call(arguments)]},e[t].clients=[];for(var r=function(t){return function(){return this["_"+t]=this["_"+t]||[],this["_"+t].push(Array.prototype.slice.call(arguments)),this}},s=["addRecord","set","trackEvent","trackPageview","ready"],n=0;n<s.length;n++){var i=s[n];e[t].prototype[i]=r(i)}var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//s3.amazonaws.com/td-cdn/sdk/td-1.0.0.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(a,c)}}("Treasure",this);
     </script>
-
 
 ### Step2: Initialize & Send Events to the Cloud
 
-You need to create the `Treasure` client object per database, and send the events by calling `addEvent()` function like below.
+You need to create the `Treasure` client object per database, and track the pageview information by calling `trackPageview()` function.
 
     :::html
     <script type="text/javascript">
       // Configure an instance for your database
-      var cln = new Treasure({
+      var td = new Treasure({
         writeKey: 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
         database: 'DATABASE_NAME'
       });
-      // Create a data object with the properties you want to send
-      var sale = {
-        itemId: 101,
-        saleId: 10,
-        userId: 1
-      };
-      // Send it to the 'sales' table
-      cln.addEvent('sales', sale);
+      // track pageview winformation to 'pageviews' table
+      td.trackPageview('pageviews');
     </script>
 
 The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
@@ -47,7 +40,7 @@ NOTE: IP whitelist won't be applied to any import from JavaScript SDK. Also we'v
 
 ## Next Steps
 
-For the transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API.
+For the transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API. There're some additional APIs to track custom events etc.
 
 * [https://github.com/treasure-data/td-js-sdk](https://github.com/treasure-data/td-js-sdk)
 
