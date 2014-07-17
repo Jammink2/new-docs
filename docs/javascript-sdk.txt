@@ -30,7 +30,7 @@ You need to create the `Treasure` client object per database, and track the page
         writeKey: 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
         database: 'DATABASE_NAME'
       });
-      // track pageview winformation to 'pageviews' table
+      // track pageview information to 'pageviews' table
       td.trackPageview('pageviews');
     </script>
 
