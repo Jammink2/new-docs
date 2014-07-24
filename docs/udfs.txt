@@ -8,7 +8,7 @@ All native UDFs on Hive can also be used on Treasure Data. The complete list of 
 
 ## TD_TIME_RANGE()
 
-### Signature
+#### Signature
 
     :::term
     boolean TD_TIME_RANGE(int/long unix_timestamp,
@@ -16,7 +16,7 @@ All native UDFs on Hive can also be used on Treasure Data. The complete list of 
                           int/long/string end_time
                           [, string default_timezone = 'UTC'])
 
-### Example
+#### Example
 
 This example selects records with timestamps "2013-01-01 00:00:00 PDT" or later.
 
@@ -26,7 +26,7 @@ This example selects records with timestamps "2013-01-01 00:00:00 PDT" or later.
 
 NOTE: Notice that the time of day ("00:00:00") can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
 
-### Description
+#### Description
 
 NOTE: We strongly recommend that you take advantage of time-based partitioning. Please refer to the <a href="performance-tuning">Performance Tuning</a> article for more information.
 
@@ -38,14 +38,14 @@ This UDF returns true if *unix_timestamp* is equal to or later than *start_time*
 
 ## TD_TIME_ADD()
 
-### Signature
+#### Signature
 
     :::term
     long TD_TIME_ADD(int/long/string time,
                      string duration
                      [, string default_timezone = 'UTC'])
 
-### Example
+#### Example
 
 This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later but older than "2013-01-02 00:00:00 UTC".
 
@@ -54,7 +54,7 @@ This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later 
                                    "2013-01-01",
                                    TD_TIME_ADD("2013-01-01", "1d"))
 
-### Description
+#### Description
 
 This UDF returns a timestamp equal to *time* offset by *duration*. The UDF supports the following formats for the *duration*:
 
@@ -78,33 +78,33 @@ NOTE: "year" and "month" durations are <b>NOT</b> supported, because these have 
 
 ## TD_TIME_FORMAT()
 
-### Signature
+#### Signature
 
     :::term
     string TD_TIME_FORMAT(long unix_timestamp,
                           string format
                           [, string timezone = 'UTC'])
 
-### Example
+#### Example
 
 This example formats a UNIX timestamp into a date formatted string
 
     :::sql
     SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") ... FROM ...
 
-### Description
+#### Description
 
 This UDF converts a UNIX timestamp to a string with the specified format (see [here](udf-time-formats) for available formats). For example, "yyyy-MM-dd HH:mm:ss z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
 
 ## TD_TIME_PARSE()
 
-### Signature
+#### Signature
 
     :::term
     long TD_TIME_PARSE(string time
                        [, string default_timezone = 'UTC'])
 
-### Description
+#### Description
 
 This UDF converts a time string into a UNIX timestamp.
 
@@ -114,12 +114,12 @@ If the format of the *time* string is invalid, the UDF returns NULL.
 
 ## TD_SCHEDULED_TIME()
 
-### Signature
+#### Signature
 
     :::term
     long TD_SCHEDULED_TIME()
 
-### Description
+#### Description
 
 This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from NOW() because the actual query start time may be delayed.
 
@@ -127,16 +127,16 @@ If the query is not a scheduled query, the UDF returns the time when the job was
 
 ## TD_LAST()
 
-### Signature
+#### Signature
 
     :::term
     TD_LAST(ret_col, cmp_col1, cmp_col2, ...)
 
-### Description
+#### Description
 
 This aggregate UDF finds the row with the largest value in the 'comparison column' (cmp_col1) and returns that row's 'retrieve column' (ret_col) value. Additional comparison columns (cmp_col2, cmp_col3, etc.) are used as tiebreakers when the preceding comparison column has more than one row with the largest value.
 
-### Example
+#### Example
 
 This example selects the URL of the most recent access log (the row with the largest time) for each user.
 
@@ -145,16 +145,16 @@ This example selects the URL of the most recent access log (the row with the lar
 
 ## TD_FIRST()
 
-### Signature
+#### Signature
 
     :::term
     TD_FIRST(ret_col, cmp_col1, cmp_col2, ...)
 
-### Description
+#### Description
 
 This aggregate UDF finds the row with the smallest value in the 'comparison column' (cmp_col1) and returns that row's 'retrieve column' (ret_col) value. Additional comparison columns (cmp_col2, cmp_col3, etc.) are used as tiebreakers when the preceding comparison column has more than one row with the smallest value.
 
-### Example
+#### Example
 
 This example selects the referer URL of the earliest access log (the row with the smallest time) for each page_id.
 
@@ -163,12 +163,12 @@ This example selects the referer URL of the earliest access log (the row with th
 
 ## TD_X_RANK()
 
-### Signature
+#### Signature
 
     :::term
     long TD_X_RANK(keys)
 
-### Example
+#### Example
 
 You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. 'CLUSTER BY' is more scalable than 'ORDER BY' because it doesn't require total order across multiple nodes, thus allowing us to process the query in parallel.
 
@@ -181,19 +181,19 @@ You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. '
       (select v['country'] AS c, v['location1'] AS lc1, v['user_id'] AS u
        FROM users CLUSTER BY c, lc1) t
 
-### Description
+#### Description
 
 Returns the rank of each row within the partition of the result set. The rank of a row is one plus the number of ranks that come before the row.
 
 
 ## TD_SESSIONIZE()
 
-### Signature
+#### Signature
 
     :::term
     string TD_SESSIONIZE(int/long unix_timestamp, int timeout, string sessionize_by)
 
-### Description
+#### Description
 
 This UDF takes three arguments:
 
@@ -203,7 +203,7 @@ This UDF takes three arguments:
 
 It returns a UUID for the session of the request.
 
-### Example
+#### Example
 
 Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessionize_by* field, and sort by the *unix_timestamp* field. The query below sessionizes based on user_id and the timestamp. You may want to use user_id or cookie_id instead of ip_address for non-anonymous logs.
 
@@ -219,12 +219,12 @@ Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessioni
 
 ## TD_PARSE_USER_AGENT()
 
-### Signature
+#### Signature
 
     :::term
     string TD_PARSE_USER_AGENT(user_agent string [, options string])
 
-### Description
+#### Description
 
 This UDF returns the result of parsing a user agent string. The user agent is parsed by the basis of [rules](https://raw.github.com/tobie/ua-parser/master/regexes.yaml).
 Accepts the following options as a string, as user options:
@@ -234,7 +234,7 @@ Accepts the following options as a string, as user options:
 
 os and ua return json. With \_family, \_major and \_minor return a string. The device option also returns a string.
 
-### Example
+#### Example
 
 The example shows the result of parsing user agent from access log.
 
