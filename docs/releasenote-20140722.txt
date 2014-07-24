@@ -4,6 +4,12 @@
 
 This is a summary of the new features and improvements introduced in this release:
 
+### SDKs: Released Javascript SDK v1.0.0
+
+The first public release of the [Javascript SDK](javascript-sdk) is now available.
+
+Included in this first public release is the '<tt>trackPageview()</tt>' method which initializes and and automates page view tracking for the entire application.
+
 ### APIs: Bulk Import Sessions Deletion
 
 When a table, or database in which the table resides, is deleted, the corresponding Bulk Import sessions are not deleted.
@@ -16,12 +22,6 @@ Following up from [last week's improvements](releasenote-20140715#console-file-u
 This is also the approach suggested automatically by the tool if encoding auto-detection failed.
 
 ![Console: File Uploader Improvements](/images/release-notes/140722-01-file_upload_encoding.png)
-
-### SDKs: Released Javascript SDK v1.0.0
-
-The first public release of the [Javascript SDK](javascript-sdk) is now available.
-
-Included in this first public release is the '<tt>trackPageview()</tt>' method which initializes and and automates page view tracking for the entire application.
 
 ### Backend: Hadoop Stability Improvements
 
