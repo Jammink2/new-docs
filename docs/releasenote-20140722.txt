@@ -1,0 +1,69 @@
+# Release Note 20140722
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Bulk Import Sessions Deletion
+
+When a table, or database in which the table resides, is deleted, the corresponding Bulk Import sessions are not deleted.
+
+After the table is deleted, the Bulk Import sessions are flagged as invalid -  beside deletion, any further use of the sessions is rejected.
+
+### Console: File Uploader Encoding
+
+Following up from [last week's improvements](releasenote-20140715#console-file-uploader-improvements) to the File Uploader in handling file encodings other than UTF-8, we added the ability for the user to declare the encoding before hand.<br/>
+This is also the approach suggested automatically by the tool if encoding auto-detection failed.
+
+![Console: File Uploader Improvements](/images/release-notes/140722-01-file_upload_encoding.png)
+
+### SDKs: Released Javascript SDK v1.0.0
+
+The first public release of the [Javascript SDK](javascript-sdk) is now available.
+
+Included in this first public release is the '<tt>trackPageview()</tt>' method which initializes and and automates page view tracking for the entire application.
+
+### Backend: Hadoop Stability Improvements
+
+Fixed deadlock and race condition problems in the current Hadoop distribution:
+
+1. Applied a patch to Hadoop to solve a deadlock issue whose underlying cause is a bug in the JVM for Java 6 and 7;
+2. The library responsible of the connection between Hadoop and the PlazmaDB database (<tt>c3p0</tt>) has a thread safety bug which was prevented with an ad-hoc fix.
+
+### Client Libraries: Released Java Client Library v0.5.1
+
+1. Moved the repository to Sonatype to allow distribution through [Maven Central](http://central.maven.org/maven2/com/treasuredata/td-client/0.5.1/);
+2. Implemented ConflictException (corresponds to [HTTP error code 409](http://restpatterns.org/HTTP_Status_Codes/409_-_Conflict)) and NotFoundException (corresponds to [HTTP error code 404](http://restpatterns.org/HTTP_Status_Codes/404_-_Not_Found)) classes.
+Use of these new exception classes will be gradually added in the future releases.
+3. Suppressed retrying on 'Unprocessable Entity' ([HTTP error code 422](http://restpatterns.org/HTTP_Status_Codes/422_-_Unprocessable_Entity)) errors from the API during Bulk Import Upload, Perform, or Commit requests.
+The HTTP error 422 is returned by the API if the database or table the Bulk Import session is created against were deleted afterwards.
+
+### Bulk Import: Released Java Bulk Import CLI v0.5.1
+
+1. Moved the repository to Sonatype to allow distribution through [Maven Central](ttp://central.maven.org/maven2/com/treasuredata/td-import/0.5.1/);
+2. Based off the newly released Java Client Library v0.5.1.
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Output to Google Spreadsheet in Append Mode
+
+* _**[Problem]**_<br/>
+  Query Result Output to Google Spreadsheet's 'append' mode is ignored.<br/>
+  _**[Solution]**_<br/>
+  The logic for the selection of 'append' vs 'replace' mode was inverted and assuming 'append' mode is the default whereas it's the opposite. As such all request URLs to write the Query Result Output to Google Spreadsheet where stripped off the 'mode=append' option, therefore always defaulted to 'replace' mode.<br/>
+  Fixed the API logic to handle the default 'replace' and optional 'append' modes.<br/>
+
+### Backend: Hadoop TD_TIME_RANGE UDF
+
+* _**[Problem]**_<br/>
+  The <tt>TD_TIME_RANGE</tt> UDF allows empty or invalid time intervals.<br/>
+  _**[Solution]**_<br/>
+  The time range filter was not validated to make sure the time range was not negligible.<br/>
+  An error is shown in the query log if an anomalous range is detected.<br/>
+
+<br/>
