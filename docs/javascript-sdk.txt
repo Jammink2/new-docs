@@ -1,17 +1,17 @@
 # Treasure Data JavaScript SDK
 
-This article will help you start sending the data from website to Treasure Data, using our JavaScript SDK library. In this way, you don't have to install anything on your server-side to track the website activities.
+This article will help you start sending the data from website to Treasure Data, using our JavaScript SDK library. This way, you don't have to install anything server-side to track website activities.
 
 ## Prerequisites
 
   * Basic knowledge of JavaScript / HTML.
   * Basic knowledge of Treasure Data.
 
-NOTE: JavaScript SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports are welcomed.
+NOTE: JavaScript SDK is now under the <b>Beta</b> phase. Any feedback or bug report is welcomed.
 
 ### Step1: Install the Library
 
-Install the td-js-sdk on your page by copying the JavaScript snippet below and pasting it into your page's `<head>` tag:
+Install the td-js-sdk on your page by copying-pasting the JavaScript snippet below into your page's `<head>` tag:
 
     :::html
     <!-- Treasure Data -->
@@ -21,7 +21,7 @@ Install the td-js-sdk on your page by copying the JavaScript snippet below and p
 
 ### Step2: Initialize & Send Events to the Cloud
 
-You need to create the `Treasure` client object per database, and track the pageview information by calling `trackPageview()` function.
+You need to create one `Treasure` client object per database, and initialize pageview tracking by calling the `trackPageview()` function:
 
     :::html
     <script type="text/javascript">
@@ -34,13 +34,15 @@ You need to create the `Treasure` client object per database, and track the page
       td.trackPageview('pageviews');
     </script>
 
-The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
+The APIKEY can be retrieved from the [Console's profile page](https://console.treasuredata.com/users/current). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
 
-NOTE: IP whitelist won't be applied to any import from JavaScript SDK. Also we've seen a lot of cases where a lot of browsers have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
+NOTE: IP whitelist won't be applied to any import from JavaScript SDK.
+
+NOTE: We have also seen a lot of cases where browsers specify invalid timestamps (like 1970/01/01), so we're currently ignoring records which have a timestamp older than 7 days, and newer than 3 days ahead.
 
 ## Next Steps
 
-For the transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API. There're some additional APIs to track custom events etc.
+For transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API. There're some additional APIs to track custom events etc.
 
 * [https://github.com/treasure-data/td-js-sdk](https://github.com/treasure-data/td-js-sdk)
 
