@@ -78,7 +78,7 @@ td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffe
 
 ## Step 3: Using td-logger-java
 
-NOTE: If you need an all-in-one jar file, we provide one at <a href="http://maven.treasure-data.com/com/treasure_data/td-logger/">http://maven.treasure-data.com/</a>. Be sure to download the latest version of the td-logger-{version_number}-jar-with-dependencies.jar file.
+NOTE: If you need an all-in-one jar file, we provide one at <a href="http://central.maven.org/maven2/com/treasuredata/">http://central.maven.org/maven2/com/treasuredata/</a>. Be sure to download the latest version of the td-logger-{version_number}-jar-with-dependencies.jar file.
 
 
 Conversely, if you are using Maven, please add the following lines to pom.xml in your Maven project:
@@ -88,26 +88,13 @@ Conversely, if you are using Maven, please add the following lines to pom.xml in
     <dependencies>
       ...
       <dependency>
-        <groupId>com.treasure_data</groupId>
+        <groupId>com.treasuredata</groupId>
         <artifactId>td-logger</artifactId>
         <version>${logger.version}</version>
       </dependency>
       ...
     </dependencies>
     
-    <repositories>
-      <repository>
-        <id>treasure-data.com</id>
-        <name>Treasure Data's Maven2 Repository</name>
-        <url>http://maven.treasure-data.com/</url>
-      </repository>
-      <repository>
-        <id>fluentd.org</id>
-        <name>Fluentd's Maven2 Repository</name>
-        <url>http://fluentd.org/maven2</url>
-      </repository>
-    </repositories>
-
 Next, please configure your *treasure-data.properties* file using the commands shown below:
 
     :::text
