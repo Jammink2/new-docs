@@ -23,11 +23,11 @@ This is also the approach suggested automatically by the tool if encoding auto-d
 
 ![Console: File Uploader Improvements](/images/release-notes/140722-01-file_upload_encoding.png)
 
-### Backend: Hadoop Stability Improvements
+### Backend: Hive / Pig Stability Improvements
 
 Fixed deadlock and race condition problems in the current Hadoop distribution:
 
-1. Applied a patch to Hadoop to solve a deadlock issue whose underlying cause is a bug in the JVM for Java 6 and 7;
+1. Applied a patch to Hive & Pig engines to solve a deadlock issue whose underlying cause is a bug in the JVM for Java 6 and 7;
 2. The library responsible of the connection between Hadoop and the PlazmaDB database (<tt>c3p0</tt>) has a thread safety bug which was prevented with an ad-hoc fix.
 
 ### Client Libraries: Released Java Client Library v0.5.1
@@ -58,7 +58,7 @@ These are the most important Bug Fixes made in this release:
   The logic for the selection of 'append' vs 'replace' mode was inverted and assuming 'append' mode is the default whereas it's the opposite. As such all request URLs to write the Query Result Output to Google Spreadsheet where stripped off the 'mode=append' option, therefore always defaulted to 'replace' mode.<br/>
   Fixed the API logic to handle the default 'replace' and optional 'append' modes.<br/>
 
-### Backend: Hadoop TD_TIME_RANGE UDF
+### Backend: Hive TD_TIME_RANGE UDF
 
 * _**[Problem]**_<br/>
   The <tt>TD_TIME_RANGE</tt> UDF allows empty or invalid time intervals.<br/>
