@@ -28,7 +28,7 @@ Please set the HTTP_PROXY variable. This is supported starting in td v0.10.41.
 ## I cannot import my data to Treasure Data. Can you help?
 
 Sorry to hear that. Here are a couple of scenarios that we can think of.
-    
+
     1. Make sure your network is alive and allow you to access external networks.
     2. Does your data have numbers greater than 2e64? If so, please upgrade your td command/td-agent to the latest version. If you are using fluentd instead, please upgrade fluent-plugin-td to version 0.10.15 or above.
 
@@ -67,7 +67,7 @@ The following are the reserved keywords in Hive:
     TRUE, FALSE, ALL, AND, OR, NOT, LIKE, ASC, DESC, ORDER, BY, GROUP, WHERE,
     FROM, AS, SELECT, DISTINCT, INSERT, OVERWRITE, OUTER, JOIN, LEFT, RIGHT,
     FULL, ON, PARTITION, PARTITIONS, TABLE, TABLES, TBLPROPERTIES, SHOW, MSCK,
-    DIRECTORY, LOCAL, TRANSFORM, USING, CLUSTER, DISTRIBUTE, SORT, UNION, LOAD,
+    DIRECTORY, LOCAL, LOCKS, TRANSFORM, USING, CLUSTER, DISTRIBUTE, SORT, UNION, LOAD,
     DATA, INPATH, IS, NULL, CREATE, EXTERNAL, ALTER, DESCRIBE, DROP, REANME, TO,
     COMMENT, BOOLEAN, TINYINT, SMALLINT, INT, BIGINT, FLOAT, DOUBLE, DATE,
     DATETIME, TIMESTAMP, STRING, BINARY, ARRAY, MAP, REDUCE, PARTITIONED,
