@@ -20,13 +20,13 @@ All native UDFs on Presto can also be used on Treasure Data. The complete list o
 
 ### Example
 
-This example selects records with timestamps "2013-01-01 00:00:00 PDT" or later.
+This example selects records with timestamps '2013-01-01 00:00:00 PDT' or later.
 
     :::sql
-    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
-    SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
+    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01 PDT')
+    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01', NULL, 'PDT')
 
-NOTE: Notice that the time of day ("00:00:00") can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
+NOTE: Notice that the time of day ('00:00:00') can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either 'YYYY-MM-DD' or 'YYYY-MM-DD hh:mm:ss', e.g., '2013-01-01' or '1999-01-01 07:00:00'.
 
 ### Description
 
@@ -34,7 +34,7 @@ NOTE: We strongly recommend that you take advantage of time-based partitioning. 
 
 This UDF returns true if *unix_timestamp* is equal to or later than *start_time* and older than *end_time* (start_time <= time && time < end_time). If *end_time* is omitted or NULL, the UDF assumes it's infinite. If *start_time* is NULL, the UDF assumes it's 0.
 
-*start_time* and *end_time* could be a string which represents a time (e.g. "2012-01-01 00:00:00 +0900") or a UNIX timestamp (e.g. 1325343600). If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
+*start_time* and *end_time* could be a string which represents a time (e.g. '2012-01-01 00:00:00 +0900') or a UNIX timestamp (e.g. 1325343600). If the format of *start_time* or *end_time* strings is invalid, the UDF returns NULL.
 
 *default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
 
@@ -49,29 +49,29 @@ This UDF returns true if *unix_timestamp* is equal to or later than *start_time*
 
 ### Example
 
-This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later but older than "2013-01-02 00:00:00 UTC".
+This example selects records with timestamps '2013-01-01 00:00:00 UTC' or later but older than '2013-01-02 00:00:00 UTC'.
 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time,
-                                   "2013-01-01",
-                                   TD_TIME_ADD("2013-01-01", "1d"))
+                                   '2013-01-01',
+                                   TD_TIME_ADD('2013-01-01', '1d'))
 
 ### Description
 
 This UDF returns a timestamp equal to *time* offset by *duration*. The UDF supports the following formats for the *duration*:
 
-* "Nd": after N days (e.g. "1d", "2d", "30d")
-* "-Nd": before N days (e.g. "-1d", "-2d", "-30d")
-* "Nh": after N hours (e.g. "1h", "2h", "48h")
-* "-Nh": before N hours (e.g. "-1h", "-2h", "-48h")
-* "Nm": after N minutes (e.g. "1m", "2m", "90m")
-* "-Nm": before N minutes (e.g. "-1m", "-2m", "-90m")
-* "Ns": after N seconds (e.g. "1s", "2s", "90s")
-* "-Ns": before N seconds (e.g. "-1s", "-2s", "-90s")
+* "Nd": after N days (e.g. '1d', '2d', '30d')
+* "-Nd": before N days (e.g. '-1d', '-2d', '-30d')
+* "Nh": after N hours (e.g. '1h', '2h', '48h')
+* "-Nh": before N hours (e.g. '-1h', '-2h', '-48h')
+* "Nm": after N minutes (e.g. '1m', '2m', '90m')
+* "-Nm": before N minutes (e.g. '-1m', '-2m', '-90m')
+* "Ns": after N seconds (e.g. '1s', '2s', '90s')
+* "-Ns": before N seconds (e.g. '-1s', '-2s', '-90s')
 
-The formats above can be combined. For example, "1h30m" means "after 1 hour and 30 minutes".
+The formats above can be combined. For example, '1h30m' means "after 1 hour and 30 minutes".
 
-*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. "2012-01-01 +0700"), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
+*default_timezone* is used to interpret *time*. If *time* itself has timezone (e.g. '2012-01-01 +0700'), then *default_timezone* is ignored. If *default_timezone* is not specified while *time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
 
 If the formats of the *time* or *duration* strings are invalid, the UDF returns NULL.
 
@@ -92,11 +92,11 @@ NOTE: "year" and "month" durations are <b>NOT</b> supported, because these have 
 This example formats a UNIX timestamp into a date formatted string
 
     :::sql
-    SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") ... FROM ...
+    SELECT TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:mm:ss z') ... FROM ...
 
 ### Description
 
-This UDF converts a UNIX timestamp to a string with the specified format (see [here](udf-time-formats) for available formats). For example, "yyyy-MM-dd HH:mm:ss z" converts 1325376000 to "2012-01-01 00:00:00 UTC". If no timezone is specified, the UDF uses UTC.
+This UDF converts a UNIX timestamp to a string with the specified format (see [here](udf-time-formats) for available formats). For example, 'yyyy-MM-dd HH:mm:ss z' converts 1325376000 to '2012-01-01 00:00:00 UTC'. If no timezone is specified, the UDF uses UTC.
 
 ## TD_TIME_PARSE()
 
@@ -151,7 +151,7 @@ Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessioni
     :::sql
     SELECT TD_SESSIONIZE(time, 3600, ip_address) as session_id, time, ip_address, path
     FROM (
-      SELECT time, v['ip_address'] as ip_address, v['path'] as path
+      SELECT time, ip_address, path
       from web_logs
       distribute by ip_address
       sort by ip_address,time
