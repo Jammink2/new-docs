@@ -1,0 +1,69 @@
+# Release Note 20140729
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Collapsible Sidebar
+
+A new collapsible sidebar is implemented in the Console which allows the user to gain more screen real estate if they choose.
+
+This redesign includes new redesigned icons and fonts as well.
+
+![Console: Collapsible Sidebar](/images/release-notes/140729-01-sidebar.png)
+
+### SDKs: Released Java SDK v0.2.0
+
+1. Changed the default API endpoint to [*api.treasuredata.com*](https://api.treasuredata.com)
+2. Moved the repository from the Treasure Data Maven Repository to the [Central Maven Repository](http://central.maven.org/maven2/com/treasuredata/td-logger/0.2.0/)
+
+### Client Tools: Released Java Bulk Import CLI v0.5.2
+
+1. Added an option to the prepare step to specify how columns with invalid names are handled: one can request to simply be warned (default behavior) or have the prepare process automatically fix the column names by changing them to lower case and substituting all the invalid characters with an underscore ('<tt>_</tt>')
+2. Fixed the Character Set decoder objects retrieval by making it ThreadLocal: the PrepareProcessors sometimes hits IllegalState exceptions because of inconsistent states of the shared object across threads
+
+### Client Tools: Released Ruby Client Library v0.8.63
+
+1. Added the 'permission' field to Database and Table models to expose the user's 'administrator', 'full-access', 'import-only', 'query-only' [access permissions](access-control) for the databases (and tables within them) as set by the account Owner and/or Administrators
+2. Expose the total incremental compressed size of the job result downloaded from the REST APIs trough the '<tt>job_result</tt>' and similarly name methods.
+3. Use the HTTP POST method instead of the GET method to call the Schedule update API
+
+### Client Tools: Released Ruby Toolbelt CLI v0.11.3
+
+1. Added the ability for restricted users to upload data on import-only databases with both the master and write-only API keys. Importing can be done both via the <tt>table:import</tt> command or the <tt>import</tt> commands through the Bulk Import CLI
+2. Provide better feedback on the download process for the job results by showing the total incremental compressed size and percentage of completion
+3. Fixed the ability to specify an alternative API endpoint that does not end in '[*treasuredata.com*](http://treasuredata.com/)' and added endpoint validation: this is done to support endpoint with different domains
+4. Added the ability to read the Java Bulk Import logging property file (<tt>logging.properties</tt>) from the <tt>~/.td/java</tt> (or <tt>%USERPROFILE%\\.td\java</tt> on Windows) in addition to the default one inside the package/gem repository. This allows the user to customize the Java Bulk Import CLI's logging settings
+5. Limit the number of columns that can be uploaded per import to 512 to comply with the backend's requirements
+6. Changed the JAR update to fetch from the [Central Maven Repository](http://central.maven.org/maven2/com/treasuredata/td-import/) rather than Treasure Data's own Maven repository
+7. Deprecated usage of the td gem with versions of Ruby prior to v1.9
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Write-Only API Key
+
+* _**[Problem]**_<br/>
+  A write-only API key belonging to restricted (not admin) user with import-only or full-access permissions to a database receives 403 (HTTP Forbidden) errors when attempting to create a table.<br/>
+  _**[Solution]**_<br/>
+  The permissions settings did not cover this case.<br/>
+  Write-only keys can now create a table in any database the restricted user has import-only or full-access permissions for.<br/>
+* _**[Problem]**_<br/>
+  A write-only API key belonging to restricted (not admin) user with import-only or full-access permission to a database receives 403 (HTTP Forbidden) errors when attempting to create a Bulk Import session.<br/>
+  _**[Solution]**_<br/>
+  The permissions settings did not cover this case.<br/>
+  Bulk import session can be created by write-only API keys on any database the restricted user has import-only or full-access permissions for.<br/>
+
+### Backend: Query Result Output to PostgreSQL
+
+* _**[Problem]**_<br/>
+  Result Output to PostgreSQL does not work with "<tt>method=copy</tt>". No output is written to the PostgreSQL target.<br/>
+  _**[Solution]**_<br/>
+  The COPY method implementation was broken by other recent changes.<br/>
+  This behavior is fixed so the output into PostgreSQL works as specified by the [documentation](result-into-postgresql).<br/>
+
+<br/>
