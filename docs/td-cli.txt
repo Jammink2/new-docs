@@ -394,7 +394,7 @@ This page documents most of `td` subcommands.
 
 ## td import:jar_version
 
-  td-import-java 0.4.15-SNAPSHOT via 'mvn package' on ee48c4ca4c2e5fe03d6615a5798653ec0221584b
+  td-import-java 0.5.2 via hourly jar auto-update
 
 
 ## td import:jar_update
@@ -427,7 +427,9 @@ This page documents most of `td` subcommands.
 
       -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
-      -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+      -T, --time-format FORMAT         specifies the strftime format of the time column
+                                        The format slightly differs from Ruby's Time#strftime format in that the
+                                        '%:z' and '%::z' timezone options are not supported.
       -e, --encoding TYPE              encoding type [utf-8]
       -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
@@ -443,14 +445,14 @@ This page documents most of `td` subcommands.
                                           where TIME is the Unix time in seconds since Epoch and
                                           HOURS is the maximum range of the timestamps in hours.
                                           This mode can be used to assign incremental timestamps to
-                                          subsequent records. Timestmaps will be incremented by 1 second
+                                          subsequent records. Timestamps will be incremented by 1 second
                                           each record. If the number of records causes the timestamp to
                                           overflow the range (timestamp >= TIME + HOURS * 3600), the
                                           next timestamp will restart at TIME and continue from there.
                                           E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
                                           to the first record, timestamp 1394409601 to the second, 1394409602
                                           to the third, and so on until the 36000th record which will have
-                                          timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                          timestamp 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
                                           to the 36001th record will be 1394409600 again and the timestamp
                                           will restart from there.
       --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
@@ -458,6 +460,7 @@ This page documents most of `td` subcommands.
       --only-columns NAME,NAME,...     only columns
       --exclude-columns NAME,NAME,...  exclude columns
       --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+      --invalid-columns-handling MODE  invalid columns handling mode [autofix, warn]; default=warn
       --error-records-output DIR       write error records; default directory is 'error-records'.
       --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
@@ -512,7 +515,9 @@ This page documents most of `td` subcommands.
   
       -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
-      -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+      -T, --time-format FORMAT         specifies the strftime format of the time column
+                                        The format slightly differs from Ruby's Time#strftime format in that the
+                                        '%:z' and '%::z' timezone options are not supported.
       -e, --encoding TYPE              encoding type [utf-8]
       -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
@@ -528,14 +533,14 @@ This page documents most of `td` subcommands.
                                           where TIME is the Unix time in seconds since Epoch and
                                           HOURS is the maximum range of the timestamps in hours.
                                           This mode can be used to assign incremental timestamps to
-                                          subsequent records. Timestmaps will be incremented by 1 second
+                                          subsequent records. Timestamps will be incremented by 1 second
                                           each record. If the number of records causes the timestamp to
                                           overflow the range (timestamp >= TIME + HOURS * 3600), the
                                           next timestamp will restart at TIME and continue from there.
                                           E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
                                           to the first record, timestamp 1394409601 to the second, 1394409602
                                           to the third, and so on until the 36000th record which will have
-                                          timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                          timestamp 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
                                           to the 36001th record will be 1394409600 again and the timestamp
                                           will restart from there.
       --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
@@ -543,6 +548,7 @@ This page documents most of `td` subcommands.
       --only-columns NAME,NAME,...     only columns
       --exclude-columns NAME,NAME,...  exclude columns
       --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+      --invalid-columns-handling MODE  invalid columns handling mode [autofix, warn]; default=warn
       --error-records-output DIR       write error records; default directory is 'error-records'.
       --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
@@ -595,7 +601,9 @@ This page documents most of `td` subcommands.
   
       -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
-      -T, --time-format FORMAT         STRF_FORMAT; strftime(3) format of the time column
+      -T, --time-format FORMAT         specifies the strftime format of the time column
+                                        The format slightly differs from Ruby's Time#strftime format in that the
+                                        '%:z' and '%::z' timezone options are not supported.
       -e, --encoding TYPE              encoding type [utf-8]
       -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
@@ -611,14 +619,14 @@ This page documents most of `td` subcommands.
                                           where TIME is the Unix time in seconds since Epoch and
                                           HOURS is the maximum range of the timestamps in hours.
                                           This mode can be used to assign incremental timestamps to
-                                          subsequent records. Timestmaps will be incremented by 1 second
+                                          subsequent records. Timestamps will be incremented by 1 second
                                           each record. If the number of records causes the timestamp to
                                           overflow the range (timestamp >= TIME + HOURS * 3600), the
                                           next timestamp will restart at TIME and continue from there.
                                           E.g. '--time-value 1394409600,10' will assign timestamp 1394409600
                                           to the first record, timestamp 1394409601 to the second, 1394409602
                                           to the third, and so on until the 36000th record which will have
-                                          timestmap 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
+                                          timestamp 1394445600 (1394409600 + 10 * 3600). The timestamp assigned
                                           to the 36001th record will be 1394409600 again and the timestamp
                                           will restart from there.
       --primary-key NAME:TYPE          pair of name and type of primary key declared in your item table
@@ -626,6 +634,7 @@ This page documents most of `td` subcommands.
       --only-columns NAME,NAME,...     only columns
       --exclude-columns NAME,NAME,...  exclude columns
       --error-records-handling MODE    error records handling mode [skip, abort]; default=skip
+      --invalid-columns-handling MODE  invalid columns handling mode [autofix, warn]; default=warn
       --error-records-output DIR       write error records; default directory is 'error-records'.
       --columns NAME,NAME,...          column names (use --column-header instead if the first line has column names)
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
@@ -1023,6 +1032,7 @@ This page documents most of `td` subcommands.
 #### options:
 
 
+    -n, --newname NAME               change the schedule's name
     -s, --schedule CRON              change the schedule
     -q, --query SQL                  change the query
     -d, --database DB_NAME           change the database
