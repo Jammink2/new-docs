@@ -1,6 +1,39 @@
 # Known Limitations
 
-Presto query engine has some limitations compared to Hive at this point. We welcome your feedback and will make improvements based on these.
+Presto query engine has some limitations compared to Hive at this stage. We welcome your feedback and will make improvements based on these.
+
+## Column Name Escaping
+
+When a column name matches the name of a reserved keyword, the name of the columns needs to be
+quoted. While in Hive, as most the SQL-based query languages, the quotation character is the back tick character <tt>`</tt>, in Presto quoting of a column name is accomplished with the double quote character instead <tt>"</tt>. See the comparison below:
+
+    :::sql
+    SELECT `join` FROM mytbl      # Hive
+    SELECT "join" FROM mytbl      # Presto
+
+Please be aware that quoting a column name in single quotes <tt>'</tt> will make the query parser
+interpret the content as a simple string producing a perhaps unexpected result:
+
+    :::sql
+    SELECT "join" FROM mytbl LIMIT 10
+
+    result:
+    value1
+    value2
+    value3
+    value4
+    ...
+    value10
+
+    SELECT 'join' FROM mytbl
+
+    result:
+    join
+    join
+    join
+    join
+    ...
+    join
 
 ## Table Schemas are Required
 
