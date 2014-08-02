@@ -1,20 +1,35 @@
-# Bulk Import Internal
+# Bulk Import Internals
+
 ## Phases: Prepare, Upload, Perform and Commit
 
 <center><img style="display:block" src="/images/bulk-import-mechanism.png" width="90%" /></center>
 
 [Bulk Import](bulk-import) consists of four key steps: prepare, upload, perform and commit.
 
-* Prepare: first, your data is transformed into the highly space-efficient gzipped MessagePack format. This step does not require network connection.
+* Prepare: first, your data is transformed into the highly space-efficient compressed (gzip) MessagePack format. This step does not require network connection.
 * Upload: then, the prepared data is uploaded into Treasure Data's (row-based) bulk upload storage system. The upload is done over a secure Internet connection.
 * Perform: the uploaded data is then transformed into our column-oriented data format using MapReduce.
 * Commit: After the perform step, the data is now compatible with Plazma (Treasure Data's columnar, distributed storage system). So, the commit step copies the data over into Plazma.
 
-<br/>
-## Updating only Bulk Import
+## Deletion and Session Invalidation
+
+Bulk Import sessions created by the users are only deleted if the user request to:
+
+    :::term
+    $ td import:delete <session_name>
+
+Since Bulk Import sessions are created with a database and table of reference and they can import
+data to that database and table only, when the table or the database is deleted,
+the Bulk Import session is **not** automatically deleted but it becomes **invalid**.
+Any attempt to Upload, Perform, or Commit using a Session whose reference table or database (or both) have been deleted, will return an error; the Session has been invalidated. The only interactions allowed with an invalidated Session are:
+
+* showing the status (<tt>import:show</tt>)
+* deleting it (<tt>import:delete</tt>)
+
+## Updating Bulk Import only
 
 In the section below, we will show you how to update Bulk Import. We suggest that you use the newest version of Bulk Import.
-You can run
+You can run:
 
     :::term
     $ td import:jar_update
@@ -58,7 +73,6 @@ A couple of assumptions for the example above:
 
 NOTE: Regular expressions can't be used on Windows. Please rewrite your filenames from data_*.csv to (YOUR_TARGET_FILENAME)
 
-<br/>
 ## Importing Large Data Reliably with Bulk Import (Step by Step)
 
 ### 1) Create a Session
