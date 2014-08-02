@@ -1,25 +1,37 @@
 # Access Control
 
-The [users page](https://console.treasuredata.com/users) displays the users associated with an account. The [users page](https://console.treasuredata.com/users) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access. Various other roles are designed below administrator. See the table below for a summary of the permissions associated with each role.
+The [Team page](https://console.treasuredata.com/users) displays the users associated with an account. The [Team page](https://console.treasuredata.com/users) is **visible only the Account Owners** and any of the Administrators**. Three other roles are designed below administrator. See the table below for a summary of the permissions associated with each role:
 
 Action                            | Admin | Full Access | Query only | Import only
 :-------------------------------: | :---: | :---------: | :--------: | :---------:
 Add User                          | OK    |             |            |
 Delete User                       | OK    |             |            |
+List Databases                    | OK    | OK          | OK         |
 Create Database                   | OK    |             |            |
 Delete Database                   | OK    |             |            |
+List Tables                       | OK    | OK          | OK         |
 Create Table                      | OK    | OK          |            |
 Delete Table                      | OK    | OK          |            |
-List Tables                       | OK    | OK          | OK         |
 Data Import (td-agent)            | OK    | OK          |            | OK
 Data Import (Result Output to TD) | OK    | OK          |            | OK
-Data Import (Bulk Import)         | OK    | OK          |            |
+Data Import (Bulk Import)         | OK    | OK          |            | OK
 Delete Data                       | OK    | OK          |            |
 Issue Query                       | OK    | OK          | OK         |
+Kill Own Query                    | OK    | OK          | OK         |
+Kill Query from Others (1.)       | OK    | OK          |            |
 
-Provided the user has adequate permission to access the [users page](https://console.treasuredata.com/users), clicking on any of the users will allow doing one of the following:
 
-* grand/deny administrator permissions;
-* grand/deny full/query/import access to any of the databases.
 
-The logged in [user account page](https://console.treasuredata.com/users/current) is accessible provided information about the user as well as allowing changing the password and other basic information.
+Provided the user has adequate permission to access the [Team page](https://console.treasuredata.com/users), clicking on any of the users will allow doing one of the following:
+
+* Grant / Deny Administrator permissions;
+* Grant / Deny full-access / query-only / import-only access to any of the databases.
+* Delete an user
+
+The logged in user's [profile page](https://console.treasuredata.com/users/current) is accessible and provides information about the user as well as allowing to change the password and other basic information.
+
+#### Notes
+
+1. Users with 'Query only' permission to a database can see all the jobs running
+   on that database but will not be able to kill those jobs unless they are
+   their own.
