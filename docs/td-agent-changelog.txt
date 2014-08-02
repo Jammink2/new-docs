@@ -5,7 +5,7 @@ This article lists the changelog of [td-agent](td-agent).
 ## 2014/06/19: version v1.1.20
 - fluentd [v0.10.50](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.61](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
-- fluent-plugin-s3 [v0.4.0](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.4.0](https://github.com/fluent/fluent-plugin-s3/blob/master/ChangeLog)
 - fluent-plugin-td [v0.10.20](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
 - fluent-plugin-td-monitoring [v0.1.2](https://github.com/treasure-data/fluent-plugin-td-monitoring/blob/master/ChangeLog)
 - rspec v3.0.0
@@ -16,7 +16,7 @@ This article lists the changelog of [td-agent](td-agent).
 - fluentd [v0.10.45](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.58](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
 - td [v0.10.99](https://github.com/treasure-data/td/blob/master/ChangeLog)
-- fluent-plugin-s3 [v0.3.7](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.3.7](https://github.com/fluent/fluent-plugin-s3/blob/master/ChangeLog)
 - fluent-plugin-td [v0.10.18](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
 - fluent-plugin-rewrite-tag-filter [v1.4.1](https://github.com/fluent/fluent-plugin-rewrite-tag-filter)
 - fluent-plugin-mongo [v0.7.3](https://github.com/fluent/fluent-plugin-mongo/blob/master/ChangeLog)
@@ -30,7 +30,7 @@ This article lists the changelog of [td-agent](td-agent).
 - fluentd [v0.10.41](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - td-client [v0.8.56](https://github.com/treasure-data/td-client-ruby/blob/master/ChangeLog)
 - td [v0.10.96](https://github.com/treasure-data/td/blob/master/ChangeLog)
-- fluent-plugin-s3 [v0.3.5](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.3.5](https://github.com/fluent/fluent-plugin-s3/blob/master/ChangeLog)
 - fluent-plugin-td [v0.10.17](https://github.com/treasure-data/fluent-plugin-td/blob/master/ChangeLog)
 - fluent-plugin-rewrite-tag-filter [v1.3.1](https://github.com/fluent/fluent-plugin-rewrite-tag-filter)
 
