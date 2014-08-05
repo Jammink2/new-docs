@@ -49,6 +49,11 @@ Create the `TreasureData` object with your API key. The recommended place to do 
         setContentView(R.layout.activity_main);
         td = new TreasureData(this, "YOUR_API_KEY");
         ...
+        
+        // NOTE: This is optional, but you can encrypt the buffered data on
+        // mobile devices. You can prevent people from checking the buffered
+        // events on the disk.
+        // TreasureData.initializeEncryptionKey("RANDOM_STRING_TO_ENCRYPT_DATA");
       }
     }
 
