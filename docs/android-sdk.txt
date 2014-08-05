@@ -19,7 +19,7 @@ If you use maven, add the following directives to your `pom.xml` under `<depende
     <dependency>
       <groupId>com.treasuredata</groupId>
       <artifactId>td-android-sdk</artifactId>
-      <version>0.1.1</version>
+      <version>0.1.3</version>
     </dependency>
 
 #### Jar File
@@ -110,6 +110,7 @@ For the transparency, we're open sourcing our iOS SDK on Github. Please check th
 
 * [https://github.com/treasure-data/td-android-sdk](https://github.com/treasure-data/td-android-sdk)
 * [https://github.com/treasure-data/td-android-sdk/tree/master/example](https://github.com/treasure-data/td-android-sdk/tree/master/example)
+* [ChangeLog](https://github.com/treasure-data/td-android-sdk/blob/master/ChangeLog)
 
 If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
 

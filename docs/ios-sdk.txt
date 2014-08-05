@@ -19,7 +19,7 @@ NOTE: iOS SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports a
 Add the following line to your Podfile:
 
     :::ruby
-    pod 'TreasureData-iOS-SDK', '= 0.1.0'
+    pod 'TreasureData-iOS-SDK', '= 0.1.1'
 
 Finally, please run `pod install`.
 
@@ -80,5 +80,6 @@ NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen 
 For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
 
 * [https://github.com/treasure-data/td-ios-sdk](https://github.com/treasure-data/td-ios-sdk)
+* [ChangeLog](https://github.com/treasure-data/td-ios-sdk/blob/master/ChangeLog)
 
 If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
