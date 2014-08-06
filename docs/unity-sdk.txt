@@ -1,6 +1,9 @@
 # Treasure Data Unity SDK
 
+<center><img src="/images/unity.png" width="30%" /></center><br/>
+
 This article will help you start sending the data from your [Unity](http://unity3d.com/) app to Treasure Data, using our Unity SDK library. In this way, you don't have to install anything on your server-side to track the mobile app activities.
+
 
 ## Prerequisites
 
