@@ -1,3 +1,73 @@
 # Treasure Data Unity SDK
 
-We're in a process of developing Unity SDK. If you want an early access, [please contact us](http://www.treasuredata.com/en/about/contact-us.php).
+This article will help you start sending the data from your [Unity](http://unity3d.com/) app to Treasure Data, using our Unity SDK library. In this way, you don't have to install anything on your server-side to track the mobile app activities.
+
+## Prerequisites
+
+  * Basic knowledge of Unity Development
+  * Basic knowledge of Treasure Data.
+
+NOTE: Unity SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports are welcomed.
+
+## Step 1: Install the Library
+
+Download the most recent version of our [Unity package](https://github.com/treasure-data/td-unity-sdk-package) and import it into your Unity project using `Assets` -> `Import Package` -> `Custom Package`.
+
+Then for iOS environment, please add `Security.framework` to `Link Binary With Librarys` on the `Build Phases tab`.
+
+
+## Step 2: Initialize the Library
+
+Next, please initialize the library in your app like followings.
+
+    :::java
+    public class MyTreasureDataPlugin : MonoBehaviour {
+    #if UNITY_IPHONE || UNITY_ANDROID
+      void Start() {
+        td = new TreasureData("YOUR_API_KEY");
+        ...
+        /*
+         * This is optional, but you can encrypt the buffered data on mobile devices.
+         * You can prevent people from checking the buffered events on the disk.
+         */
+        // TreasureData.InitializeEncryptionKey("RANDOM_STRING_TO_ENCRYPT_DATA");
+      }
+      
+      void OnApplicationPause(bool pauseStatus) {
+        // Make an open request whenever app is resumed
+        if (!pauseStatus) {
+          td.UploadEvents(
+            delegate() { Debug.LogWarning ("UploadEvents Success!!! "); },
+            delegate(string errorCode, string errorMsg) { Debug.LogWarning ("UploadEvents Error!!! errorCode=" + errorCode + ", errorMsg=" + errorMsg); }
+          );
+        }
+      }
+    #endif
+    }
+
+The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs. <a href="mailto:support@treasure-data.com">Let us know</a> if you’re having any build issues.
+
+## Step 3: Send Events to the Cloud
+
+Next, please call `AddEvent()` function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`.
+
+    :::java
+    Dictionary<string, object> ev = new Dictionary<string, object>();
+    ev["str"] = "strstr";
+    ev["int"] = 12345;
+    ev["long"] = 12345678912345678;
+    ev["float"] = 12.345;
+    ev["double"] = 12.3459832987654;
+    ev["bool"] = true;
+    td.AddEvent("database_a", "table_b", ev);
+
+NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen a lot of cases where a lot of iOS devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
+
+## Next Steps
+
+For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
+
+* [https://github.com/treasure-data/td-unity-sdk-package](https://github.com/treasure-data/td-unity-sdk-package)
+* [ChangeLog](https://github.com/treasure-data/td-unity-sdk-package/blob/master/ChangeLog)
+
+If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
