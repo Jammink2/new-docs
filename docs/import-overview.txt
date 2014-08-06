@@ -2,7 +2,7 @@
 
 This article explains the different options for importing data into Treasure Data and which choice is approprite for your use case.
 
-### Three Types of Data Import
+## Three Types of Data Import
 
 Here's a guideline to decide which import mechanism to use.
 
@@ -14,7 +14,7 @@ Importing continuously generated data from running servers. [Treasure Agent](td-
 
 #### 2) App / Mobile SDKs
 
-Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed [our SDKs](/categories/sdks).
+Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed our SDKs ([JavaScript](/categories/javascript-sdks), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
 
 #### 3) Bulk Import
 

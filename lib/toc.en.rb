@@ -66,8 +66,8 @@ section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
   end
-  category 'file-import', 'File Import via Browser' do
-    article 'file-import', 'File Import via Browser'
+  category 'file-import', 'Browser File Import' do
+    article 'file-import', 'Browser File Import'
   end
   # 2014/05/13 Kazuki Ohta <k@treasure-data.com>
   # Removed, because it confused the people by the distinction between one-time
@@ -75,11 +75,15 @@ section 'import-data', 'Data Import' do
   # category 'one-time-import', 'One-Time Import' do
   #   article 'one-time-import', 'One-Time Import'
   # end
-  category 'sdks', 'App/Mobile SDKs' do
+  category 'javascript-sdk', 'JavaScript SDK' do
     article 'javascript-sdk', 'JavaScript SDK'
+  end
+  category 'mobile-sdks', 'Mobile SDKs' do
     article 'ios-sdk', 'iOS SDK'
     article 'android-sdk', 'Android SDK'
     article 'unity-sdk', 'Unity SDK'
+  end
+  category 'app-sdks', 'App SDKs' do
     article 'java-sdk', 'Java SDK'
     article 'ruby-sdk', 'Ruby SDK'
   end
