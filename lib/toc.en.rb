@@ -66,6 +66,23 @@ section 'import-data', 'Data Import' do
   category 'import-overview', 'Overview' do
     article 'import-overview', 'Overview'
   end
+  category 'file-import', 'File Import via Browser' do
+    article 'file-import', 'File Import via Browser'
+  end
+  # 2014/05/13 Kazuki Ohta <k@treasure-data.com>
+  # Removed, because it confused the people by the distinction between one-time
+  # and bulk import.
+  # category 'one-time-import', 'One-Time Import' do
+  #   article 'one-time-import', 'One-Time Import'
+  # end
+  category 'sdks', 'App/Mobile SDKs' do
+    article 'javascript-sdk', 'JavaScript SDK'
+    article 'ios-sdk', 'iOS SDK'
+    article 'android-sdk', 'Android SDK'
+    article 'unity-sdk', 'Unity SDK'
+    article 'java-sdk', 'Java SDK'
+    article 'ruby-sdk', 'Ruby SDK'
+  end
   category 'streaming-import', 'Streaming Import' do
     article 'td-agent', 'Streaming Import Overview',                                           ['fluentd', 'td-agent']
     article 'java', 'Streaming Import from Java Applications',                                 ['fluentd', 'td-agent']
@@ -103,23 +120,6 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-from-mongodb', 'Bulk Import from MongoDB'
     article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-tips-and-tricks', 'Bulk Import Tips and Tricks'
-  end
-  # 2014/05/13 Kazuki Ohta <k@treasure-data.com>
-  # Removed, because it confused the people by the distinction between one-time
-  # and bulk import.
-  # category 'one-time-import', 'One-Time Import' do
-  #   article 'one-time-import', 'One-Time Import'
-  # end
-  category 'sdks', 'App/Mobile SDKs' do
-    article 'javascript-sdk', 'JavaScript SDK'
-    article 'ios-sdk', 'iOS SDK'
-    article 'android-sdk', 'Android SDK'
-    article 'unity-sdk', 'Unity SDK'
-    article 'java-sdk', 'Java SDK'
-    article 'ruby-sdk', 'Ruby SDK'
-  end
-  category 'file-import', 'File Import via Browser' do
-    article 'file-import', 'File Import via Browser'
   end
 end
 
