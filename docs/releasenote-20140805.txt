@@ -1,0 +1,85 @@
+# Release Note 20140805
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### SDKs: Released Unity SDK v0.1.0
+
+**First release** of the Unity SDK based off the existing Android and iOS SDKs.
+
+1. Integrated with the iOS or Android SDKs depending on the target platform
+2. Added configuration APIs to control Android's logging
+3. Implemented <tt>AddEvent(Hashtable)</tt> method for Android
+4. Created the documentation
+5. Created an example Unity project
+
+### SDKs: Released Android SDK v0.1.3
+
+1. Support encryption of persistent data: when the data is buffered within the application before being imported, it's encrypted on disk to prevent compromised (rooted) devices from allowing access to the data from 3rd parties
+2. Updated the <tt>initializeApiEndpoint</tt> method to require just the host, not the actual endpoint as a parameter
+3. Unified the error codes with the Unity and iOS SDKs
+
+### SDKs: Released iOS SDK v0.1.1
+
+1. Support encryption of persistent data: when the data is buffered within the application before being imported, it's encrypted on disk to prevent compromised (Jailbreak) devices from allowing access to the data from 3rd parties
+2. Propagating the errors to the user
+3. Updated the <tt>setApiEndpoint</tt> method to require just the host, not the actual endpoint as a parameter
+4. Unified the error codes with the Android and Unity SDKs
+
+### Console: File Uploader's Alternate Field Separator
+
+Added the ability to automatically detect and parse files with custom field delimiters different from '<tt>,</tt>' (as in CSV files) and '<tt>\t</tt>' (as in TSV files).
+
+![Console: File Uploader's Alternate Field Separator](/images/release-notes/140805-01-file_uploader.png)
+
+### Console: Sorting / Filtering / Pagination for Tabular Views
+
+Added sorting, filtering, and pagination to all the tabular views in the Console.
+
+![Console: Sorting / Filtering / Pagination for Tabular Views](/images/release-notes/140805-02-tables.png)
+
+### Console: Utilization Graphs Improvements
+
+Storage utilization graph:
+
+* Extended the time range from 7 to 30 days
+* Centered the Y axis to be centered around the data range
+
+![Console: Utilization Graphs Improvements - Storage](/images/release-notes/140805-03-storage_utilization.png)
+
+CPU Core utilization graph:
+
+* Added zooming capability to the graph
+
+![Console: Utilization Graphs Improvements - CPU Cores](/images/release-notes/140805-04-core_utilization.png)
+
+### APIs: Creation Time in Schedules List
+
+Exposed the '<tt>created_at</tt>' field in the response for the GET '<tt>/v3/schedules/list</tt>' REST API call.
+
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Artifact in the Storage Utilization Graph
+
+* _**[Problem]**_<br/>
+  The Storage utilization graph shows a 0 storage size artifact at both ends of the time range.<br/>
+  _**[Solution]**_<br/>
+  This is due to the unnecessarily filtering of the storage utilization data series.<br/>
+  Removed the filtering to maintain the storage data series unmodified and remove the unwanted artifact.<br/>
+
+### APIs: Bulk Import Session's Upload Parts Permissions
+
+* _**[Problem]**_<br/>
+  Users who create a Bulk Import session on a certain database (and table) and are later restricted access to the database (query-only or no access), can continue to upload data using the same session.<br/>
+  _**[Solution]**_<br/>
+  The checking on the permissions for a Bulk Import session was only performed at the moment the session was created. Users whom were once able to import into the database can continue to use the session to upload data because the permission validation is not performed at every API call.<br/>
+  Enforced checking of the database permissions (hence session permissions) for every attempt to upload using a Bulk Import session. If the user is not allowed (or not longer allowed) to import using a certain session, an HTTP 403 error code will be returned.<br/>
+
+<br/>
