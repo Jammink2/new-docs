@@ -6,7 +6,7 @@ This is a summary of the new features and improvements introduced in this releas
 
 ### SDKs: Released Unity SDK v0.1.1
 
-**First release** of the Unity SDK based off the existing Android and iOS SDKs.
+**First release** of the [Unity SDK](unity-sdk) based off the existing Android and iOS SDKs.
 
 1. Integrated with the iOS or Android SDKs depending on the target platform
 2. Added configuration APIs to control iOS or Android's logging
@@ -16,11 +16,15 @@ This is a summary of the new features and improvements introduced in this releas
 
 ### SDKs: Released Android SDK v0.1.4
 
+The new version of [Android SDK](android-sdk) was released.
+
 1. Support encryption of persistent data: when the data is buffered within the application before being imported, it's encrypted on disk to prevent compromised (rooted) devices from allowing access to the data from 3rd parties
 2. Updated the <tt>initializeApiEndpoint</tt> method to require just the host, not the actual endpoint as a parameter
 3. Unified the error codes with the Unity and iOS SDKs
 
 ### SDKs: Released iOS SDK v0.1.2
+
+The new version of [iOS SDK](ios-sdk) was released.
 
 1. Support encryption of persistent data: when the data is buffered within the application before being imported, it's encrypted on disk to prevent compromised (Jailbreak) devices from allowing access to the data from 3rd parties
 2. Propagating the errors to the user
