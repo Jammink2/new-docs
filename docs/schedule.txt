@@ -11,6 +11,55 @@ Treasure Data has a scheduler feature that supports periodic query execution. We
 
 A new schedule can be created on [Web Console](https://console.treasuredata.com/schedules). Please hit "New Query" button, and set the schedule for the query.
 
+### Cron Schedule
+
+There are two predefined Cron schedules:
+
+Type | Description | Cron Equivalent
+:--: | :---------: | :-------------:
+@daily   | Run once a day at midnight | `0 0 * * *`
+@monthly | Run once a month at midnight on the morning of the first day of the month | `0 0 1 * *`
+
+For any other scheduling definition, please select the 'Other cron...' option.
+The Cron format is composed by 5 fields:
+
+    * * * * *  command to execute
+    ┬ ┬ ┬ ┬ ┬
+    │ │ │ │ │
+    │ │ │ │ │
+    │ │ │ │ └───── day of week (0 - 6) (0 to 6 are Sunday through Saturday)
+    │ │ │ └────────── month (1 - 12)
+    │ │ └─────────────── day of month (1 - 31)
+    │ └──────────────────── hour (0 - 23)
+    └───────────────────────── min (0 - 59)
+
+NOTE: Generally speaking there is an additional <tt>year</tt> field for the Cron format but the format expected by the Treasure Data platform expects that field to be left out.
+
+The values for each of the field can composed by:
+
+* a single value, within the limits displayed above for each field.
+* a <tt>'\*'</tt> to indicate no restriction based on the field.
+  E.g. <tt>'0 0 1 \* \*'</tt> configures the schedule to run at midnight (00:00) on the first day of each month.
+* a range like <tt>'2-5'</tt>, indicating the range of accepted values for the field.
+  E.g. <tt>'0 0 1-10 \* \*'</tt> configures the schedule to run at midnight (00:00) on the first 10 days of each month.
+* a list of comma-separated values like <tt>'2,3,4,5'</tt>, indicating the list of accepted values for the field.
+  E.g. <tt>'0 0 1,11,21 \* \*'</tt> configures the schedule to run at midnight (00:00) every 1st, 11th, and 21st day of each month.
+
+Additionally a repetition increment can be specified with the <tt>'\*'</tt> (any) and <tt>'1-10'</tt> (range) specifications using this format <tt>'specification/increment'</tt>. For example:
+
+* with the <tt>'\*'</tt> specification as <tt>'\*/5'</tt>.
+  E.g. <tt>'0 0 */5 \* \*'</tt> configures the schedule to run at midnight (00:00) every 5 days.
+* with the range <tt>'1-21'</tt> specification as <tt>'1-21/2'</tt>.
+  E.g. <tt>'0 0 1-21/5 \* \*'</tt> configures the schedule to run at midnight (00:00) on the 1st, 6th, 11th, 16th, and 21st day of each month.
+
+The <tt>'\*'</tt> (any) with increment specification <tt>'\*/2'</tt> is equivalent to the range with increment <tt>'first-last/2'</tt> specification where <tt>'first'</tt> and <tt>'last'</tt> are the lower and upper limit of the field they are specified in.
+
+NOTE: The repetition increment is ignored when specified with list specification. For example, <tt>'2,5,10/2'</tt> is equivalent to  <tt>'2,5,10'</tt>.
+
+When the specifications for each field are evaluated as OR. When two specification mismatch, the specification requesting the schedule to execute more often is honored and the other ignored. For example, in the cron schedule is <tt>'0 0 0 \* 1'</tt>, the 'day of month' specification and 'day of week' are discordant because the former requires to run every 1st day of each month at midnight (00:00) while the latter requires to run every Monday at midnight (00:00): in case the latter wins. The same concept applies to all other fields.
+
+For more information, please refer to this the [Wikipedia page on Cron](http://en.wikipedia.org/wiki/Cron#CRON_expression) and the Crontab Linux 'man' page](http://linux.die.net/man/5/crontab).
+
 ## Example: Daily KPI
 
 A common pattern is to periodically calculate the fixed KPIs or metrics in a certain interval.
