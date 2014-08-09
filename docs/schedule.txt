@@ -21,7 +21,8 @@ Type | Description | Cron Equivalent
 @monthly | Run once a month at midnight on the morning of the first day of the month | `0 0 1 * *`
 
 For any other scheduling definition, please select the 'Other cron...' option.
-The Cron format is composed by 5 fields:
+
+The Cron format user by the Treasure Data schedules composed by five fields:
 
     * * * * *  command to execute
     | | | | |
@@ -33,9 +34,7 @@ The Cron format is composed by 5 fields:
     | \-------------------- hour (0 - 23)
     \------------------------- min (0 - 59)
 
-NOTE: Generally speaking there is an additional <tt>year</tt> field for the Cron format but the format expected by the Treasure Data platform expects that field to be left out.
-
-The values for each of the field can composed by:
+The values for each of the field can be composed of:
 
 * a single value, within the limits displayed above for each field.
 * a <tt>'\*'</tt> to indicate no restriction based on the field.
