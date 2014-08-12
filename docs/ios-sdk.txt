@@ -39,9 +39,9 @@ Next, please initialize the library in your app delegate’s `application:applic
     - (void)applicationDidBecomeActive:(UIApplication *)application {
       [TreasureData initializeWithApiKey:@"YOUR_API_KEY"];
 
-      // NOTE: This is optional, but you can encrypt the buffered data on
-      // mobile devices. You can prevent people from checking the buffered
-      // events on the disk.
+      // This is optional, but you can encrypt the buffered data on mobile
+      // devices. You can prevent people from checking the buffered events
+      // on the disk.
       // [TreasureData initializeEncryptionKey:@"RANDOM_STRING_TO_ENCRYPT_DATA"];
     }
 
