@@ -7,8 +7,6 @@ This article will help you start sending the data from your Android app to Treas
   * Basic knowledge of Android Development
   * Basic knowledge of Treasure Data.
 
-NOTE: Android SDK is now under the <b>Beta</b> phase. Any feedbacks or bug reports are welcomed.
-
 ## Step 1: Install the Library
 
 #### Maven
