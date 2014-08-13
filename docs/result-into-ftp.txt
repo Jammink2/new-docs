@@ -11,6 +11,8 @@ This article explains how to send job results directly to your ftp server.
 
 <center><img src="/images/result_xyz.png" width="100%" /></center><br /><br />
 
+NOTE: The results are written from the AWS US-East region. If you want better security control, please message <a href="mailto:support@treasure-data.com">support@treasure-data.com</a> and ask for its account ID and security group name.<br/><br/> Otherwise our <b>Premium</b> plan includes advanced security features, which includes a list of static IPs Treasure Data is using. You can limit the access to your endpoint by using these IPs. Please contact <a href="mailto:support@treasure-data.com">support@treasure-data.com</a> if you need it too.
+
 ### For On-demand Jobs
 
 For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are sent to the specified FTP server.

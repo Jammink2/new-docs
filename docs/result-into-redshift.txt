@@ -14,9 +14,9 @@ A front-end application streams data to be collected in Treasure Data via [Treas
 
 <center><img src="/images/result_xyz.png" width="100%" /></center><br /><br />
 
-NOTE: The results are written from the AWS US-East region. If you want better security control, please message support@treasure-data.com and ask for its account ID and security group name.
-
 The one depicted above is a fairly common architecture which then enables data analysts well versed in using Redshift to focus on their queries and visualizations without having to worry about how the data gets uploaded there.
+
+NOTE: The results are written from the AWS US-East region. If you want better security control, please message <a href="mailto:support@treasure-data.com">support@treasure-data.com</a> and ask for its account ID and security group name.<br/><br/> Otherwise our <b>Premium</b> plan includes advanced security features, which includes a list of static IPs Treasure Data is using. You can limit the access to your database by using these IPs. Please contact <a href="mailto:support@treasure-data.com">support@treasure-data.com</a> if you need it too.
 
 ## Amazon Redshift configuration
 
