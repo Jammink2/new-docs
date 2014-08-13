@@ -17,8 +17,8 @@ There are two predefined Cron schedules:
 
 Type | Description | Cron Equivalent
 :--: | :---------: | :-------------:
-@daily   | Run once a day at midnight | `0 0 * * *`
-@monthly | Run once a month at midnight on the morning of the first day of the month | `0 0 1 * *`
+@daily   | Run once a day at midnight | <tt>0 0 \* \* \*</tt>
+@monthly | Run once a month at midnight on the morning of the first day of the month | <tt>0 0 1 \* \*</tt>
 
 For any other scheduling definition, please select the 'Other cron...' option.
 
