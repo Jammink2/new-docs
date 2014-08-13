@@ -1,14 +1,14 @@
-# Treasure Agent 2 (td-agent 2)
+# Treasure Agent 2 (td-agent2)
 
-This article will explain the differences between `td-agent` and `td-agent 2`.
+`td-agent2` is an experimental package of `td-agent`, having more newer versions of software. This article will explain the differences between `td-agent` and `td-agent2`.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Agent. The [Overview of Streaming Import by Treasure Agent (td-agent)](td-agent) is a good place to start.
 
-## About td-agent 2
+## About td-agent2
 
-`td-agent 2` is a successor to `td-agent`. It updates Ruby and bundle libraries. Currently, `td-agent 2` is experimental but some users are now trying `td-agent 2` on new systems.
+`td-agent2` is a successor to `td-agent`. It updates Ruby and bundle libraries. Currently, `td-agent2` is experimental but some users are now trying `td-agent2` on new systems.
 
 Here are major changes:
 
@@ -20,10 +20,9 @@ Here are major changes:
 - Use Fluentd v1 configuration by default
   - See: http://docs.fluentd.org/articles/config-file#v1-format
 
-## Install td-agent 2
+## Install td-agent2
 
-There is no install script for now. So please setup repository setting manually.
-After td-agent 2 becomes stable, we will make `td-agent 2` default.
+There is no install script for now. So please setup repository setting manually. After td-agent2 becomes stable, we will make `td-agent2` default.
 
 <table>
   <tr>
