@@ -1,0 +1,114 @@
+# Treasure Agent 2 (td-agent 2)
+
+This article will explain the differences between `td-agent` and `td-agent 2`.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Agent. The [Overview of Streaming Import by Treasure Agent (td-agent)](td-agent) is a good place to start.
+
+## About td-agent 2
+
+`td-agent 2` is a successor to `td-agent`. It updates Ruby and bundle libraries. Currently, `td-agent 2` is experimental but some users are now trying `td-agent 2` on new systems.
+
+Here are major changes:
+
+- Ruby 2.1
+- Update core libraries to latest stable version: jemalloc, msgpack, Cool.io and etc.
+- Change installation directory from /usr/{lib,lib64} to /opt/td-agent
+  - If you want to install the plugin, use /opt/td-agent/embedded/bin/fluent-gem instead
+  - You should replace command prefix with /opt/td-agent in docs.fluentd.org
+- Use Fluentd v1 configuration by default
+  - See: http://docs.fluentd.org/articles/config-file#v1-format
+
+## Install td-agent 2
+
+There is no install script for now. So please setup repository setting manually.
+After td-agent 2 becomes stable, we will make `td-agent 2` default.
+
+<table>
+  <tr>
+    <th>If you have...</th>
+    <th>Please use following setting...</th>
+  </tr>
+  <tr>
+    <td>Ubuntu System</td>
+    <td>Ubuntu:<br />
+deb [arch=amd64] http://packages.treasuredata.com/2/ubuntu/trusty/ trusty contrib<br />
+deb http://packages.treasuredata.com/2/ubuntu/precise/ precise contrib<br />
+deb http://packages.treasuredata.com/2/ubuntu/lucid/ lucid contrib<br /><br />
+
+Debian:<br />
+deb http://packages.treasuredata.com/2/debian/squeeze/ squeeze contrib<br />
+deb http://packages.treasuredata.com/2/debian/wheezy/ wheezy contrib<br /><br/>
+
+Use <code>curl http://packages.treasuredata.com/GPG-KEY-td-agent | apt-key add -</code> to import GPG key
+</td>
+  </tr>
+  <tr>
+    <td>RHEL / CentOS System</td>
+    <td>[treasuredata]<br />
+name=TreasureData<br />
+baseurl=http://packages.treasuredata.com/2/redhat/$releasever/$basearch<br />
+gpgcheck=1<br />
+gpgkey=http://packages.treasuredata.com/GPG-KEY-td-agent
+</td>
+  </tr>
+  <tr>
+    <td>MacOS X</td>
+    <td><a href="http://docs.fluentd.org/articles/install-by-dmg">Installing td-agent on MacOS X</a></td>
+  </tr>
+</table>
+
+NOTE: We test Ubuntu Precise / Lucid packages and CentOS 5 / 6 but we don't test Debian and Ubuntu Trusty yet. So if you use these packages on your environment, please check the behaviour first.
+
+## Files Installed by the Packages
+
+The files shown below are installed by the rpm or debian packages.
+
+<table>
+  <tr>
+    <th>Resource</th>
+    <th>Location</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>Config Directory</td>
+    <td>/etc/td-agent/</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Config File</td>
+    <td>/etc/td-agent/td-agent.conf</td>
+    <td>This config will be picked-up by the startup script</td>
+  </tr>
+  <tr>
+    <td>Startup Script</td>
+    <td>/etc/init.d/td-agent</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Log Directory</td>
+    <td>/var/log/td-agent/</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Plugin Directory</td>
+    <td>/etc/td-agent/plugin/</td>
+    <td>Your custom plugins go here.</td>
+  </tr>
+  <tr>
+    <td>Ruby Interpreter</td>
+    <td>/opt/td-agent/embedded/bin/ruby</td>
+    <td>Ruby v2.1 is bundled with the package.</td>
+  </tr>
+  <tr>
+    <td>Rubygems</td>
+    <td>/opt/td-agent/embedded/bin/fluent-gem</td>
+    <td>Bundled rubygems to install fluentd plugins. For example: `/opt/td-agent/embedded/bin/fluent-gem install fluent-plugin-mongo`
+  </tr>
+  <tr>
+    <td>jemalloc</td>
+    <td>/opt/td-agent/embedded/lib/libjemalloc.so</td>
+    <td><a href="http://www.canonware.com/jemalloc/">jemalloc</a> is bundled together to avoid memory fragmentation. It is loaded by default in the startup script.</td>
+  </tr>
+</table>
