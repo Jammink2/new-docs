@@ -1,0 +1,70 @@
+# Release Note 20140812
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Password Quality
+
+Added a Password quality indicator to the Sign up, Account confirmation, and Profile pages when editing the password.<br/>
+Vulnerable, easy to guess passwords are flagged as the user inputs them, thus prompting the use of more secure character combinations.
+
+![Console: Password Quality](/images/release-notes/140812-01-password.png)
+
+### Console: Schedules' History Pagination
+
+Added pagination to the Job History table on each Schedule's details page.
+
+![CConsole: Schedules History Pagination](/images/release-notes/140812-02-schedule_pagination.png)
+
+### Console: Schedules' Last Job Status
+
+Added each Schedule's Last Job's status and ID in the Schedules list page.
+
+![Console: Schedules Last Job Status](/images/release-notes/140812-03-schedule_last_job.png)
+
+### Console: Schedules' Cron Helper
+
+Added a helper shortcut <img src="/images/release-notes/140812-05-info.png" alt="Helper Icon" style="display:inline; border:0pt; background:none; padding: 0 0 0 0;"/> to the Schedule's 'Cron Schedule' form field of the New Query page.
+The helper links to the [Cron Schedule reference](schedule#cron-schedule) page here on docs.treasuredata.com for quick reference.
+
+
+![Console: Schedules' Cron Helper](/images/release-notes/140812-03-schedule_last_job.png)
+
+
+### SDKs: Released the Javascript SDK v1.1.0
+
+A new updated version of the Javascript SDK was released this week.
+
+The main change concerned the way cookies are handled: the change allows tracking of users moving across different subdomains.
+
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Query Result Output
+
+* _**[Problem]**_<br/>
+  Query Result output to Treasure Data in '<tt>replace</tt>' mode sets the destination table's schema to 'Manual'.<br/>
+  _**[Solution]**_<br/>
+  The APIs was validating the presence of the request's 'detect_schema' parameter expecting the option to be a boolean represented as string (<tt>"true"</tt> or <tt>"false"</tt>). The check failed if the parameter as set by the Worker was in different format: e.g. integer <tt>0</tt> / <tt>1</tt>, actual boolean <tt>false</tt> / <tt>true</tt>, integer as string <tt>"0"</tt> / <tt>"1"</tt>, etc...<br/>
+  Changed the validation of the 'detect_schema' REST API parameter to be more solid and cover all possible representations that can be interpreted as boolean <tt>true</tt> or <tt>false</tt>.<br/>
+* _**[Problem]**_<br/>
+  Query Result Output to Google Spreadsheets throws a '<tt>java.io.IOIException</tt>' exception although the final Job status is 'Success'.<br/>
+  _**[Solution]**_<br/>
+  This error occurs when the size of the import into Google Spreadsheets, which was partitioned in 1024 records chunks, exceeded certain limits found to be governing in the API in use. Those limits were not publicly exposed.<br/>
+  Once the number of records and size limits for the API library was determined, the implementation was modified to limit the partitioning based on the recording number and size.<br/>
+
+### Console: TSV File Uploader
+
+* _**[Problem]**_<br/>
+  TSV file upload through the File Uploader is not working.<br/>
+  _**[Solution]**_<br/>
+  This was due to the use of the wrong method when checking which field delimiter the user had provided for the file - the Rails String's <tt>present?</tt> method returns false if the variable contains only whitespace characters, such as a tab '<tt>\t</tt>' character as for the TSV file format.<br/>
+  Changed the method to check whether or not the delimiter is provided at all, irrespectively of the delimiter's the value.<br/>
+
+<br/>
