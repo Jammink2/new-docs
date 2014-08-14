@@ -22,8 +22,13 @@ For example, to access a database named "sample_db" in your account, your JDBC U
     :::text
     jdbc:td://api.treasuredata.com/sample_db;useSSL=true
 
-If you are trying to connect from behind a proxy, you can specify the proxy
-settings using the following properties:
+You can choose the query engine ([Hive](hive) or [Presto](presto)) by the parameter.
+
+    :::text
+    jdbc:td://api.treasuredata.com/sample_db;useSSL=true;type=hive
+    jdbc:td://api.treasuredata.com/sample_db;useSSL=true;type=presto
+
+If you are trying to connect from behind a proxy, you can specify the proxy settings using the following properties:
 
 * httpproxyhost
 * httpproxyport
