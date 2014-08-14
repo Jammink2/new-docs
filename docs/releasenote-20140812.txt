@@ -28,7 +28,7 @@ Added each Schedule's Last Job's status and ID in the Schedules list page.
 Added a helper shortcut <img src="/images/release-notes/140812-05-info.png" alt="Helper Icon" style="display:inline; border:0pt; background:none; padding: 0 0 0 0;"/> to the Schedule's 'Cron Schedule' form field of the New Query page.
 The helper links to the [Cron Schedule reference](schedule#cron-schedule) page here on docs.treasuredata.com for quick reference.
 
-![Console: Schedules' Cron Helper](/images/release-notes/140812-03-schedule_last_job.png)
+![Console: Schedules' Cron Helper](/images/release-notes/140812-04-schedule_cron_helper.png)
 
 ### SDKs: Released the JavaScript SDK v1.1.0
 
@@ -36,7 +36,9 @@ A new updated version of the [JavaScript SDK](javascript-sdk) was released this 
 
 The main change concerned the way cookies are handled: the change allows tracking of users moving across different subdomains.
 
+
 <br/>
+
 
 ## Bug Fixes
 
