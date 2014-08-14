@@ -40,6 +40,18 @@ NOTE: IP whitelist won't be applied to any import from JavaScript SDK.
 
 NOTE: We have also seen a lot of cases where browsers specify invalid timestamps (like 1970/01/01), so we're currently ignoring records which have a timestamp older than 7 days, and newer than 3 days ahead.
 
+## Step 3: Track Custom Events
+
+You can also track your custom events in addition to page views by using `trackEvent()` function. In the example below, `button` will be the name of table where events get logged. You can pass additional information/context to the event as an argument.
+
+    :::html
+    var buttonEvent2 = function () {
+      td.trackEvent('button', {
+        number: 1
+      });
+      // doButtonEvent(1);
+    };
+
 ## Next Steps
 
 For transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API. There're some additional APIs to track custom events etc.
