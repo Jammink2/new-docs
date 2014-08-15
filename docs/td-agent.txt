@@ -81,7 +81,12 @@ You will need to set the `apikey` option, which is a secret key to authenticate 
 Now restart the td-agent service.
 
     :::term
-    $ /etc/init.d/td-agent restart
+    # Linux
+    $ sudo /etc/init.d/td-agent restart
+    
+    # MacOS X
+    $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
+    $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
 
 ### Confirm Data Upload
 
@@ -94,7 +99,11 @@ You can add logs in JSON format using HTTP.
 `td-agent` continuously uploads logs every 5 minutes. You can force `td-agent` to flush the buffered logs into the cloud by sending a SIGUSR1 signal.
 
     :::term
+    # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+    
+    # MacOS X
+    $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 
 You can confirm that your data was imported successfully by issuing the `td tables` command:
 
