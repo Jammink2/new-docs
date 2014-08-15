@@ -48,9 +48,7 @@ To set up Treasure Agent (`td-agent`), please refer to the following articles:
 
 ## Step 2: Modifying /etc/td-agent/td-agent.conf
 
-Next, please specify your authentication key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file. 
-
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. 
+Next, please specify your API key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file. 
 
     :::text
     # Input from Logger Libraries
@@ -69,10 +67,17 @@ NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve 
       use_ssl true
     </match>
 
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. Using the write-only key is recommended.
+
 Please restart your agent once these lines are in place.
 
     :::term
+    # Linux
     $ sudo /etc/init.d/td-agent restart
+    
+    # MacOS X
+    $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
+    $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
 
 td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
@@ -130,14 +135,20 @@ Finally, please insert the following lines into your application. Further inform
 
 ## Step 4: Confirming Data Import
 
-Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+First, please execute the program above.
 
     :::term
     # Post a record
     $ java -jar test.jar
-    
-    # Flush the buffer
+
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+
+    :::term
+    # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+    
+    # MacOS X
+    $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 
 #### From Web Console
 

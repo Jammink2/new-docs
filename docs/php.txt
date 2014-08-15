@@ -53,9 +53,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">flu
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-Next, please specify your authentication key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current).
-
-Note: *YOUR_API_KEY* should be your actual apikey string.
+Next, please specify your API key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current).
 
     :::text
     # Unix Domain Socket Input
@@ -74,10 +72,17 @@ Note: *YOUR_API_KEY* should be your actual apikey string.
       use_ssl true
     </match>
 
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. Using the write-only key is recommended.
+
 Please restart your agent once these lines are in place.
 
     :::term
+    # Linux
     $ sudo /etc/init.d/td-agent restart
+    
+    # MacOS X
+    $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
+    $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
 
 td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
@@ -102,11 +107,19 @@ Next, initialize and post the records as follows.
 
 ## Confirming Data Import
 
-Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+First, please execute the program above.
 
     :::term
     $ php test.php
+
+Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
+
+    :::term
+    # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
+    
+    # MacOS X
+    $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 
 To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
