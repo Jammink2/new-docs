@@ -16,34 +16,28 @@ First of all, Treasure Agent (`td-agent`) needs to be installed on your applicat
 
 The [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library enables Rails applications to post records to their local Treasure Agent. Treasure Agent in turn receives the records, buffers them, and uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-To set up Treasure Agent (`td-agent`), please refer to the following articles:
+To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
-<table>
-  <tr>
-    <th>If you have...</th>
-    <th>Please refer to...</th>
-  </tr>
-  <tr>
-    <td>MacOS X</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-dmg">Installing td-agent on MacOS X</a></td>
-  </tr>
-  <tr>
-    <td>Ubuntu System</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-deb">Installing td-agent for Debian and Ubuntu</a></td>
-  </tr>
-  <tr>
-    <td>RHEL / CentOS System</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-rpm">Installing td-agent for Redhat and CentOS</a></td>
-  </tr>
-  <tr>
-    <td>Joyent SmartOS</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
-  </tr>
-  <tr>
-    <td>AWS Elastic Beanstalk</td>
-    <td><a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">Installing td-agent on AWS Elastic Beanstalk</a></td>
-  </tr>
-</table>
+#### MacOS X 10.8,10.9 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-dmg">documentation</a>)
+
+    :::term
+    $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.0.3-0.dmg'
+
+#### RHEL/CentOS 5,6 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-rpm">documentation</a>)
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+
+#### Ubuntu 10.04,12.04 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-deb">documentation</a>)
+
+    :::term
+    # 10.04 Lucid
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
+    
+    # 12.04 Precise
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
+
+[Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
 
 ## Step 2: Modifying /etc/td-agent/td-agent.conf
 

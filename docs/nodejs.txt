@@ -18,36 +18,28 @@ fluent-logger-node requires `td-agent` to be installed on your application serve
 
 The [fluent-logger-node](https://github.com/fluent/fluent-logger-node) library enables Node.js applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
 
-To set up td-agent, please refer to the following articles; we provide deb/rpm packages for Linux systems.
+To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
-<table>
-  <tr>
-    <th>If you have...</th>
-    <th>Please refer to...</th>
-  </tr>
-  <tr>
-    <td>MacOS X</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-dmg">Installing td-agent on MacOS X</a></td>
-  </tr>
-  <tr>
-    <td>Ubuntu System</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-deb">Installing td-agent for Debian and Ubuntu</a></td>
-  </tr>
-  <tr>
-    <td>RHEL / CentOS System</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-rpm">Installing td-agent for Redhat and CentOS</a></td>
-  </tr>
-  <tr>
-    <td>Joyent SmartOS</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
-  </tr>
-  <tr>
-    <td>AWS Elastic Beanstalk</td>
-    <td><a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">Installing td-agent on AWS Elastic Beanstalk</a></td>
-  </tr>
-</table>
+#### MacOS X 10.8,10.9 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-dmg">documentation</a>)
 
-NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>. td-agent extends fluentd with custom plugins for Treasure Data.
+    :::term
+    $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.0.3-0.dmg'
+
+#### RHEL/CentOS 5,6 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-rpm">documentation</a>)
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+
+#### Ubuntu 10.04,12.04 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-deb">documentation</a>)
+
+    :::term
+    # 10.04 Lucid
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
+    
+    # 12.04 Precise
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
+
+[Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
 
 ## Modifying /etc/td-agent/td-agent.conf
 
@@ -176,6 +168,8 @@ For high-traffic websites (more than 5 application nodes), we recommend using a 
 Monitoring td-agent itself is also important. Please refer to this document for general monitoring methods for td-agent.
 
 * [Monitoring td-agent](td-agent-monitoring)
+
+NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>.
 
 ## Next Steps
 

@@ -20,44 +20,36 @@ td-agent is a data collection daemon. It collects logs from various data sources
 
 <center><img src="/images/td-agent.png" width="90%"></center>
 
-NOTE: `td-agent` is fully open-sourced as <a href="http://fluentd.org/">the fluentd project</a>. `td-agent` is a package that contains fluentd along with some plugins for Treasure Data. You can learn more about the differences between `td-agent` and `fluentd` <a href="http://www.fluentd.org/faqs#collapse-0-3">here</a>.
-
 ## Install td-agent
 
-Please consult the following articles to set up `td-agent`.
+To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
-<table>
-  <tr>
-    <th>If you have...</th>
-    <th>Please refer to...</th>
-  </tr>
-  <tr>
-    <td>MacOS X</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-dmg">Installing td-agent on MacOS X</a></td>
-  </tr>
-  <tr>
-    <td>Ubuntu System</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-deb">Installing td-agent for Debian and Ubuntu</a></td>
-  </tr>
-  <tr>
-    <td>RHEL / CentOS System</td>
-    <td><a href="http://docs.fluentd.org/articles/install-by-rpm">Installing td-agent for Redhat and CentOS</a></td>
-  </tr>
-  <tr>
-    <td>Joyent SmartOS</td>
-    <td><a href="http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos">Installing fluentd + td plugin on Joyent SmartOS</a></td>
-  </tr>
-  <tr>
-    <td>AWS Elastic Beanstalk</td>
-    <td><a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">Installing td-agent on AWS Elastic Beanstalk</a></td>
-  </tr>
-</table>
+#### MacOS X 10.8,10.9 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-dmg">documentation</a>)
+
+    :::term
+    $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.0.3-0.dmg'
+
+#### RHEL/CentOS 5,6 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-rpm">documentation</a>)
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+
+#### Ubuntu 10.04,12.04 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-deb">documentation</a>)
+
+    :::term
+    # 10.04 Lucid
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
+    
+    # 12.04 Precise
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
+
+[Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
 
 ## Set up td-agent
 
 After installing `td-agent`, you can modify your config file. The file can be found in /etc/td-agent/td-agent.conf.
 
-The config file comes with some sample settings. You will find the following lines in your config.
+The config file comes with some sample settings. You will find the following lines in your config. Please specify your API key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current).
 
     :::text
     # HTTP input
@@ -69,16 +61,16 @@ The config file comes with some sample settings. You will find the following lin
     # Treasure Data output
     <match td.*.*>
       type tdlog
-      apikey ...
+      apikey YOUR_API_KEY
       auto_create_table
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
       use_ssl true
     </match>
 
-You will need to set the `apikey` option, which is a secret key to authenticate your account. You can get your apikey from the [console](https://console.treasuredata.com/users/current).
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. Using the write-only key is recommended.
 
-Now restart the td-agent service.
+Now please restart the td-agent service.
 
     :::term
     # Linux
@@ -105,7 +97,7 @@ You can add logs in JSON format using HTTP.
     # MacOS X
     $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 
-You can confirm that your data was imported successfully by issuing the `td tables` command:
+Finally, please visit the [Databases](https://console.treasuredata.com/databases) page at Web console, to check if the data got imported successfully. From CLI, you can check by issuing the `td tables` command:
 
     :::term
     $ td tables
@@ -212,3 +204,5 @@ For high-traffic websites, we recommend using a high availability configuration 
 
   * [High-Availability Configurations with td-agent](td-agent-high-availability)
   * [Monitoring td-agent](td-agent-monitoring)
+
+NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">fluentd project</a>.
