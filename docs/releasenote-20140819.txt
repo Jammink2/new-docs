@@ -1,0 +1,45 @@
+# Release Note 20140819
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Improved Treasure Agent Monitoring Service Scalability
+
+Improved the Treasure Agent Monitoring Service (TAMS) to scale better even with a very high number of td-agent instances reporting metrics.
+
+The changes included:
+
+1. Automatically removing instances inactive for more than 1 week
+2. Remove instances inactive for more than 1 hour on request (<img src="/images/release-notes/140819-01-tams_delete_button.png" alt="Delete Old Instances Button" height=15px style="display:inline; border:0pt; background:none; padding: 0 0 0 0; margin: 0px 0px -3px 0px;"/> button)
+3. Only update and display monitoring data for instances in <img src="/images/release-notes/140819-02-tams_up_label.png" alt="Up Label" height=15px style="display:inline; border:0pt; background:none; padding: 0 0 0 0; margin: 0px 0px -3px 0px;"/> state
+4. Paginate the list of instances
+
+![Console: Improved Treasure Agent Monitoring Service Scalability](/images/release-notes/140819-03-tams_overlay.png)
+
+### Console: Timezone Selection in File Uploader
+
+Added the ability to select the timezone for the time column. This is important when the time column format does not express the timezone in any way, such Unix time format (e.g. 1408588817 which corresponds to 2014-08-21 02:40:17 UTC) or a date, time, or date-time without timezone (e.g. 2014-08-21 02:40:17).
+
+Previously all values in the time column where interpreted in UTC timezone.
+
+![Console: Timezone Selection in File Uploader](/images/release-notes/140819-04-file_uploader_timezone.png)
+
+### SDKs: Released the JavaScript SDK v1.1.1
+
+An incremental update of the JavaScript SDK which addresses an issue with the '<tt>td_referrer</tt>' method found to not return the referrer of a request correctly.
+
+<br/>
+
+
+## Bug Fix
+
+This is the only important Bug Fix made in this release:
+
+### Console: Schedule's Execution With Large Delay Values
+
+* _**[Problem]**_<br/>
+  Schedules that are setup with a delay greater than their periodicity stopped executing.<br/>
+  _**[Solution]**_<br/>
+  Updating the Schedule's 'Last Job ID' field causes the reevaluation of the next run time based on the schedule's periodicity. This causes the schedules to never execute again beginning with the first 'Last Job ID' update because the delay requirement is lax. Only a handful of schedules were affected; schedules whose delay was equal or below the schedule's periodicity are not affected instead.<br/>
+  Changed the Schedule model to reevaluate the next run time only if any attribute but 'Last Job ID' was been updated.<br/>
