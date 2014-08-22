@@ -19,6 +19,7 @@ Delete Data                       | OK    | OK          |            |
 Issue Query                       | OK    | OK          | OK         |
 Kill Own Query                    | OK    | OK          | OK         |
 Kill Query from Others (1.)       | OK    | OK          |            |
+Export Table                      | OK    | OK          | OK         |
 
 
 
