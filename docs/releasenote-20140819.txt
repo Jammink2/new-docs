@@ -19,15 +19,15 @@ The changes included:
 
 ### Console: Timezone Selection in File Uploader
 
-Added the ability to select the timezone for the time column. This is important when the time column format does not express the timezone in any way, such Unix time format (e.g. 1408588817 which corresponds to 2014-08-21 02:40:17 UTC) or a date, time, or date-time without timezone (e.g. 2014-08-21 02:40:17).
+Added the ability to select the timezone for the time column. This is important when the time column format does not express the timezone in any way, such as Unix time format (e.g. 1408588817 which corresponds to 2014-08-21 02:40:17 UTC) or as a date-time without timezone (e.g. 2014-08-21 02:40:17).
 
-Previously all values in the time column where interpreted in UTC timezone.
+Previously all values in the time column where interpreted in UTC / GMT timezone.
 
 ![Console: Timezone Selection in File Uploader](/images/release-notes/140819-04-file_uploader_timezone.png)
 
 ### SDKs: Released the JavaScript SDK v1.1.1
 
-An incremental update of the JavaScript SDK which addresses an issue with the '<tt>td_referrer</tt>' method found to not return the referrer of a request correctly.
+This release is an incremental update of the JavaScript SDK which addresses an issue with the '<tt>td_referrer</tt>' method found to not return the referrer of a request correctly.
 
 <br/>
 
@@ -42,4 +42,6 @@ This is the only important Bug Fix made in this release:
   Schedules that are setup with a delay greater than their periodicity stopped executing.<br/>
   _**[Solution]**_<br/>
   Updating the Schedule's 'Last Job ID' field causes the reevaluation of the next run time based on the schedule's periodicity. This causes the schedules to never execute again beginning with the first 'Last Job ID' update because the delay requirement is lax. Only a handful of schedules were affected; schedules whose delay was equal or below the schedule's periodicity are not affected instead.<br/>
-  Changed the Schedule model to reevaluate the next run time only if any attribute but 'Last Job ID' was been updated.<br/>
+  Changed the Schedule model to reevaluate the next run time only if any attribute but 'Last Job ID' was updated.<br/>
+
+
