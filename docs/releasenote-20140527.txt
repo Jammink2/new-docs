@@ -12,7 +12,7 @@ Improved the Design of both the landing pages for SDK and SaaS import methods: t
 
 ### Console: Import Data after the Tutorial
 
-At the end of the tutorial offered when creating a new account or voluntarily executed by an existing user from the [Quickstart](https://console.treasuredata.com/start) page, the user is solicited to try and import his/her own data into the Service.
+At the end of the tutorial offered when creating a new account or voluntarily executed by selecting 'Help' => 'Tutorial' in the top-right menu, the user is solicited to try and import his/her own data into the Service.
 
 ![Console: Import Data After Tutorial](/images/release-notes/140527-02-import_after_tutorial.png)
 

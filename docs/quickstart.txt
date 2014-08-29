@@ -38,6 +38,6 @@ Let's query the sample table!
 
 ##What's next?
 
-If you haven't signed up already, [get started for free here](https://console.treasuredata.com/users/sign_up)! If you already have an account with us, you will have [a more detailed quickstart inside the Management Console.](https://console.treasuredata.com/start)
+If you haven't signed up already, [get started for free here](https://console.treasuredata.com/users/sign_up)! If you already have an account with us, log on into the Console at [console.treasuredata.com](https://console.treasuredata.com) and click on 'Help' => 'Tutorial' in the top-right corner.
 
 Also, if you prefer CLI to GUI, you can learn more about our command line tool [here](command-line).
