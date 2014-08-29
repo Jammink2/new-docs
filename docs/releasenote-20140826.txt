@@ -14,6 +14,9 @@ The priority associated to a Job using Query Result Output to Treasure Data is p
 
 Added the '<tt>v3/table/merge_schema/:table_id</tt>' POST REST API to merge the provided schema with that of the destination table. Columns can only added to the table schema, never modified; if the new schema contains a column that is already in the destination table schema, that column is ignored.
 
+### Console: Icon, Logo, and Favicon
+
+We updated the Console icon, logo to be Retina display friendly and changed favicon from red to black for better visibility.
 
 <br/>
 
