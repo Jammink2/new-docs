@@ -81,15 +81,35 @@ class Article
   end
 
   def _toc(content)
-    # toc = content.scan(/<h[23]>([^<]+)<\/h[23]>/m).to_a.map { |m| m.first }
-    # content_with_anchors = content.gsub(/(<h2>[^<]+<\/h2>)/m) do |m|
-    #   "<a name=\"#{slugify(m.gsub(/<[^>]+>/, ''))}\"></a>#{m}"
-    # end
-    toc = content.scan(/<(h[23])>([^<]+)<\/h[23]>/m).to_a.map { |m| [m[0][1], m[1]] }
-    p toc
-    content_with_anchors = content.gsub(/(<h[23]>[^<]+<\/h[23]>)/m) do |m|
-      "<a name=\"#{slugify(m.gsub(/<[^>]+>/, ''))}\"></a>#{m}"
+    toc2 = content.scan(/<h2>(.+?)<\/h2>/m).to_a.map { |m| m[0] }
+    content_with_anchors = content.gsub(/(<h2>(.+?)<\/h2>)/m) do |m|
+      "<a name=\"#{slugify(m.gsub(/<.+?>/, ''))}\"></a>#{m}"
     end
-    return toc, content_with_anchors
+    # puts "toc2 #{toc2}"
+    # puts "content_with_anchors #{content_with_anchors}"
+
+    toc3 = content.scan(/<h3>(.+?)<\/h3>/m).to_a.map { |m| m[0] }
+    content_with_anchors = content_with_anchors.gsub(/(<h3>(.+?)<\/h3>)/m) do |m|
+      "<a name=\"#{slugify(m.gsub(/<.+?>/, ''))}\"></a>#{m}"
+    end
+    # puts "toc3 #{toc3}"
+    # puts "content_with_anchors #{content_with_anchors}"
+
+    toc_with_levels = []
+    content_with_anchors.split(/\n/).each_with_index {|line, ln|
+      # puts "looking at '#{line}', #{ln}"
+      toc2.each {|title|
+        if line =~ /<h2>#{title}<\/h2>/
+          toc_with_levels << ["2", title]
+        end
+      }
+      toc3.each {|title|
+        if line =~ /<h3>#{title}<\/h3>/
+          toc_with_levels << ["3", title]
+        end
+      }
+    }
+    # puts "toc_with_levels #{toc_with_levels}"
+    return toc_with_levels, content_with_anchors
   end
 end
