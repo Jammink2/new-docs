@@ -17,4 +17,4 @@ Our [JDBC driver](jdbc-driver) provides a simple interface for 3rd party tools. 
 * [Talend Open Studio](talend)
 * [Indicee Cloud BI Platform](indicee)
 
-If you have specific data visualization needs, please [let us know](http://treasuredata.com/contact/).
+If you have specific data visualization needs, please [let us know](http://www.treasuredata.com/contact.php).
