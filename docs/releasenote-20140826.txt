@@ -1,0 +1,33 @@
+# Release Note 20140826
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Bulk Import Perform Job's Priority
+
+Added a priority option to the Bulk Import Perform Jobs.
+
+The priority associated to a Job using Query Result Output to Treasure Data is passed on to the Bulk Import Perform Job as well. This is done to prevent Higher priority jobs from getting delayed waiting for a chance to write the result back into Treasure Data when an account is executing the maximum number of allowed queries in parallel.
+
+### APIs: Schema Merging for Tables
+
+Added the '<tt>v3/table/merge_schema/:table_id</tt>' POST REST API to merge the provided schema with that of the destination table. Columns can only added to the table schema, never modified; if the new schema contains a column that is already in the destination table schema, that column is ignored.
+
+
+<br/>
+
+
+## Bug Fix
+
+This is the only important Bug Fix made in this release:
+
+### Hive: <tt>TD_LAST</tt> UDF with NULL Argument
+
+* _**[Problem]**_<br/>
+  The <tt>TD_LAST</tt> UDF returns an incorrect result if the argument is NULL.<br/>
+  _**[Solution]**_<br/>
+  In this specific corner case, the function can return unexpected results if the argument is NULL.<br/>
+  Added handling of NULL input values which deterministically cause the UDF to return NULL.<br/>
+
+
