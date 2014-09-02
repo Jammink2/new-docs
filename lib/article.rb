@@ -99,12 +99,13 @@ class Article
     content_with_anchors.split(/\n/).each_with_index {|line, ln|
       # puts "looking at '#{line}', #{ln}"
       toc2.each {|title|
-        if line =~ /<h2>#{title}<\/h2>/
+        title = title.gsub("(", "\(").gsub(")", "\)")
+        if line =~ /<h2>#{Regexp.escape(title)}<\/h2>/
           toc_with_levels << ["2", title]
         end
       }
       toc3.each {|title|
-        if line =~ /<h3>#{title}<\/h3>/
+        if line =~ /<h3>#{Regexp.escape(title)}<\/h3>/
           toc_with_levels << ["3", title]
         end
       }
