@@ -1,0 +1,58 @@
+# Writing Job Results into Tableau Server / Online
+
+Using [Tableau Server](http://www.tableausoftware.com/products/server) or [Tableau Online](http://www.tableausoftware.com/products/online) with Treasure Data allows users to interactively explore huge amounts of data, and also share the knowledge across multiple people.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data
+  * An license and its installation of Tableau Server or Tableau Online
+
+## One Time Query
+
+Please visit the [query editor](http://console.treasuredata.com/query_forms/new) on the web console, and type in the following example query. This query calculates the number of records per day for the specific table. Please select appropriate database and table which matches your dataset.
+
+    :::sql
+    # HiveQL
+    SELECT
+      CAST(TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00") AS TIMESTAMP) AS `Datetime`,
+      COUNT(1) AS `Cnt`
+    FROM
+      aaaaa
+    GROUP BY
+      TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00")
+
+Next, please select `Tableau Server` from `Result Export` section. Then the dialog like below will pop up.
+
+<center><img src="/images/tableau-server-console-1.png" width="80%" /></center><br/><br/>
+
+Finally, please fill in name of `Datasource`, `Project`, `Site`, and `Mode`. Let's use `replace` mode for now. After filling in all the fields, please execute the query. The system will execute the query, create the TDE (Tableau Data Extract) file, and finally upload TDE to Tableau Server.
+
+<center><img src="/images/tableau-server-console-2.png" width="40%" /></center><br/><br/>
+
+Please visit your Tableau Server or Online, and click `Data Sources` section at the top left bar. This will show the list of data sources, and your TDE file should exist there.
+
+<center><img src="/images/tableau-server-list-of-datasources.png" width="100%" /></center><br/><br/>
+
+By clicking `New Workbook`, you can create the charts and dashboard from the browser too.
+
+<center><img src="/images/tableau-server-new-workbook.png" width="80%" /></center>
+
+## Scheduled Query
+
+It's common to periodically execute the query on Treasure Data, and update TDE file on Tableau Server / Online in a periodic basis. You can specify the schedule from the query editor too. One thing it's useful is to use [TD_SCHEDULED_TIME()](udfs#tdscheduledtime) UDF like below, with `append` mode.
+
+The query below will calculate the # of records within last 24 hours, from the time where the query gets executed. By continuously running this scheduled query, you can avoid processing the entire data set every day.
+
+    :::sql
+    # HiveQL
+    SELECT
+      CAST(TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00") AS TIMESTAMP) AS `Datetime`,
+      COUNT(1) AS `Cnt`
+    FROM
+      aaaaa
+    GROUP BY
+      TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00")
+    WHERE
+      TD_TIME_RANGE(time,
+        TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1d'),
+        TD_SCHEDULED_TIME())
