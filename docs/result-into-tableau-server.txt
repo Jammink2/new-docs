@@ -57,12 +57,14 @@ The query below will calculate the # of records within last 24 hours, from the t
     # HiveQL
     SELECT
       CAST(TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00") AS TIMESTAMP) AS `Datetime`,
-      COUNT(1) AS `Cnt`
+      method AS `Method`,
+      COUNT(1) AS `Count`
     FROM
-      aaaaa
-    GROUP BY
-      TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00")
+      www_access
     WHERE
       TD_TIME_RANGE(time,
         TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1d'),
         TD_SCHEDULED_TIME())
+    GROUP BY
+      TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00"),
+      method
