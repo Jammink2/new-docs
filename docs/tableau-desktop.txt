@@ -1,13 +1,12 @@
-# Tableau with Treasure Data
+# Tableau Desktop with Treasure Data
 
-Using [Tableau](http://www.tableausoftware.com/) with Treasure Data allows users to interactively explore huge amounts of data.
+Using [Tableau Desktop](http://www.tableausoftware.com/) with Treasure Data allows users to interactively explore huge amounts of data.
 
 <center><img src="/images/tableau.png" width="80%" /></center><br />
 
 <br />
-As of now, the Tableau connector is only provided for enterprise customers. Please send us a request using the form below.
+As of now, the Tableau Desktop connector is only provided for premium plan customers. Please send us a request using the form below.
 
 <script src="//app-ab04.marketo.com/js/forms2/js/forms2.js"></script>
 <form id="mktoForm_1051"></form>
 <script>MktoForms2.loadForm("//app-ab04.marketo.com", "714-XIJ-402", 1051);</script>
-

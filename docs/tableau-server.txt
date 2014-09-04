@@ -1,0 +1,7 @@
+# Tableau Server with Treasure Data
+
+Using [Tableau Server](http://www.tableausoftware.com/products/server) with Treasure Data allows users to interactively explore huge amounts of data, and also share the knowledge across multiple people.
+
+<p><center><a href="result-into-tableau-server"><img src="/images/tableau-server.png" width="60%"/></a></center></p><br/>
+
+Currently, Treasure Data supports [Result Output to Tableau Server](result-into-tableau-server). By using this, you can push the query result to Tableau Server as a [TDE](http://kb.tableausoftware.com/articles/knowledgebase/working-with-tableau-data-extracts) (Tableau Data Extract). You can store huge amount of data into Treasure Data, then aggregate it, and publish to Tableau Server.

@@ -195,20 +195,26 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
+  category 'tableau-server', 'Tableau Server' do
+    article 'tableau-server', 'Tableau Server', ['Tableau', 'Tableau Server']
+  end
+  category 'tableau-online', 'Tableau Online' do
+    article 'tableau-online', 'Tableau Online', ['Tableau', 'Tableau Online']
+  end
+  category 'tableau-desktop', 'Tableau Desktop' do
+    article 'tableau-desktop', 'Tableau Desktop', ['Tableau', 'Tableau Desktop']
+  end
+  category 'metricinsights', 'Metric Insights' do
+    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
+  end
+  category 'chartio', 'Chartio' do
+    article 'chartio', 'Chartio with Treasure Data', ['Chartio']
+  end
   category 'squirrelsql', 'SQuirreL SQL' do
     article 'squirrelsql', 'SQuirrel SQL with Treasure Data', ['SQuirrelSQL', 'SQuirrel SQL']
   end
   category 'sqlworkbench', 'SQL Workbench/J' do
     article 'sqlworkbench', 'SQL Workbench/J with Treasure Data', ['SQL Workbench/J']
-  end
-  category 'chartio', 'Chartio' do
-    article 'chartio', 'Chartio with Treasure Data', ['Chartio']
-  end
-  category 'tableau', 'Tableau' do
-    article 'tableau', 'Tableau Software', ['Tableau', 'Tableau Software']
-  end
-  category 'metricinsights', 'Metric Insights' do
-    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
   end
   category 'jaspersoft', 'JasperSoft' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
