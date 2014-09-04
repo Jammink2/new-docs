@@ -26,6 +26,8 @@ Next, please initialize the library in your app like followings.
     :::java
     public class MyTreasureDataPlugin : MonoBehaviour {
     #if UNITY_IPHONE || UNITY_ANDROID
+      private TreasureData td = null;
+      
       void Start() {
         td = new TreasureData("YOUR_API_KEY");
         ...
