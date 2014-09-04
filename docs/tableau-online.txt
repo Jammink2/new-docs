@@ -1,0 +1,7 @@
+# Tableau Online with Treasure Data
+
+Using [Tableau Online](http://www.tableausoftware.com/products/online) with Treasure Data allows users to interactively explore the data, and also share the knowledge across multiple people.
+
+<p><center><a href="http://www.tableausoftware.com/products/online"><img src="/images/tableau-server.png" width="60%"/></a></center></p><br/>
+ 
+Currently, Treasure Data supports [Result Output to Tableau Online](result-into-tableau-server). By using this, you can push the query result to Tableau Server as a [TDE](http://kb.tableausoftware.com/articles/knowledgebase/working-with-tableau-data-extracts) (Tableau Data Extract). You can store huge amount of data into Treasure Data, then aggregate it, and publish to Tableau Server.
