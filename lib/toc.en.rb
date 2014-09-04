@@ -169,6 +169,8 @@ section 'data-processing', 'Data Processing' do
     article 'result-into-google-spreadsheet', 'Job Result Output to Google SpreadSheet'
     article 'result-into-web', 'Job Result Output to Web Server (REST)'
     article 'result-into-ftp', 'Job Result Output to FTP Server'
+    article 'result-into-tableau-server', 'Job Result Output to Tableau Server'
+    article 'result-into-tableau-online', 'Job Result Output to Tableau Online'
     article 'result-into-leftronic', 'Job Result Output to Leftronic Dashboard'
   end
   category 'hive', 'Hive QL Reference' do
