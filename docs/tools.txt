@@ -2,13 +2,26 @@
 
 We have partnered with many companies to meet your data analytics needs. Most of our partners are visualization, ETL, and BI tool companies. By combining Treasure Data with these 3rd party tools, you can deliver insights from huge amounts of data.
 
-<center><img src="/images/tools_overview.png" width="80%" /></center><br />
 
-Our [JDBC driver](jdbc-driver) provides a simple interface for 3rd party tools. The current list of supported tools is shown below.
+<table>
+<tr>
+<td width="43%"><img src="/images/tableau-server.png" width="100%" /></td>
+<td width="57%"><img src="/images/tools_overview.png" width="100%" /></td>
+</tr>
+</table>
 
-* [Chartio](chartio)
-* [Tableau](tableau)
+<center><img src="" width="80%" /></center><br />
+
+The current list of supported tools is shown below.
+
+* Tableau
+  * [Tableau Server](tableau-server)
+  * [Tableau Online](tableau-online)
+  * [Tableau Desktop](tableau-desktop)
 * [Metric Insights](metricinsights)
+* [Chartio](chartio)
+* [SQuirreL SQL](squirrelsql)
+* [SQL Workbench/J](sqlworkbench)
 * [JasperSoft iReport](jaspersoft-ireport)
 * [JasperReports Server](jasperreports-server)
 * [Pentaho Report Designer](pentaho-reportdesigner)
