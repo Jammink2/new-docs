@@ -72,7 +72,7 @@ A common pattern is to periodically calculate the fixed KPIs or metrics in a cer
         TD_SCHEDULED_TIME())
 
 
-Just as an example, we could schedule the above query to run on a daily basis by setting the following parameters: 
+We can schedule the above query to run on a daily basis by setting the following parameters: 
 
 - Recurring?: @daily
 - Delay (seconds): 3600
@@ -87,7 +87,7 @@ You can write the result into another system, to track the KPIs.
 
 ## Example: List of Daily Active Users
 
-Another common pattern is to periodically calculate the another Treasure Data table, which is used by another jobs.
+Another common pattern is to periodically export results to a Treasure Data table, which in turn can be used by other jobs.
 
     :::sql
     SELECT
@@ -101,21 +101,25 @@ Another common pattern is to periodically calculate the another Treasure Data ta
         TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1d'),
         TD_SCHEDULED_TIME())
 
-The example above aggregates the list of daily active users from an access log on a daily basic. Please set the following parameter to create the scheduled jobs.
+Like the previous example, we can schedule the above query to run on a daily basis by setting the following parameters:
 
 - Recurring?: @daily
 - Delay (seconds): 3600
 
-You can [write this list to another Treasure Data table](result-into-td) by setting these parameters. Because writing the result into another table is atomic, you can use this table from other queries anytime.
+The example above aggregates the list of daily active users from an access log. 
+
+You can [write this list to another Treasure Data table](result-into-td) by setting the following parameters:
 
 - Export Result To: Treasure Data
 - Database: YOUR_DATABASE
 - Table: YOUR_TABLE
 - Mode: Replace
 
+Since writing the result into another table is atomic, you can reference this table from other queries at any time.
+
 ## Example: Data Mart Generation
 
-A common pattern is to periodically summarize data from logs, and create the datamart within RDBMS etc.
+One more common pattern is to periodically summarize data from logs, and build a datamart by pushing results to an RDBMS.
 
     :::sql
     SELECT
@@ -129,13 +133,15 @@ A common pattern is to periodically summarize data from logs, and create the dat
         TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h'),
         TD_SCHEDULED_TIME())
 
-The example above aggregates web request results per user, code, path, agent, host, and average size from an access log on an hourly basis.
-
-Please set the following parameter to create the scheduled jobs. Especially by setting the delay, you can wait for a certain amount of time to wait the data import.
+To schedule this job, we set the following parameters:
 
 - Recurring?: @hourly
 - Delay (seconds): 600
 
-You can write the result into another RDBMSs, to slice-and-dice the data from BI tools etc.
+The example above aggregates web request results by user, code, path, agent, host, and average size from an access log on an hourly basis.
+
+See link below on how to write the result into another RDBMS:
 
 - [Job Result Output](/categories/result)
+
+Once you have pushed the query results to an external RDBMS, you can slice and dice the results using the BI tool(s) of your choice.
