@@ -81,7 +81,7 @@ The example above aggregates the daily page views from an access log. It makes u
 
 By setting the delay parameter to an hour (3600 seconds), we launch the job at 1 AM each day - thus allowing some additional time (an hour in this case) for data to be imported before we run the job.
 
-You can write the result into another system, to track the KPIs.
+See link below on how to write the result to an end-system of your choice to track KPIs:
 
 - [Job Result Output](/categories/result)
 
