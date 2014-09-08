@@ -1,0 +1,74 @@
+# Release Note 20140902
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Query Result Output to Tableau Server / Online
+
+We added support for Query Result Output to Tableau Server and Tableau Online. When this Query Result Output target is chosen, the output of the query is converted to [Tableau TDE](http://kb.tableausoftware.com/articles/knowledgebase/working-with-tableau-data-extracts) format behind the curtains and uploaded to either the customer's on-premises Tableau deployment or Tableau's Online (onDemand) instance for the customer.
+
+Customers are now enabled to slice and dice using a SQL query through their entire logs and build their graphic view on Tableau without extra complicated steps. Please refer to the [server](result-into-tableau-server) and [online](result-into-tableau-online) for more details.
+
+### APIs: Deprecated User's Password Change REST APIs
+
+For enhanced security, we decided to deprecate the following user's password change REST APIs:
+
+* Change Password for self REST API:<br/>
+<tt>POST /v3/user/password/change</tt>
+* Change Password for another user REST API (Administrator users only):<br/>
+<tt>POST /v3/user/password/change/:username</tt>
+
+### Client Libraries: Released Java Client Library v0.5.2
+
+Extended <tt>HttpClientException</tt> for the most common error codes returned by the Treasure Data REST APIs.
+
+### Client Libraries: Released JDBC Driver v0.2.12
+
+Improved the '<tt>Connection#getMetadata#getTables</tt>' and '<tt>Connection#getMetadata#getCatalogs</tt>' APIs to return NULL instead of a empty result set when the search criteria return no results.
+
+### SDKs: JavaScript SDK v1.2.0
+
+Although this is a minor upgrade for the JavaScript SDK from v1.1 to v.1.2, it includes a very important fix for the session tracking logic: the expiration date of the <tt>td-client-id</tt>, the reference client ID stored in the cookies, has been extended. We strongly suggest everybody to upgrade to this version.
+
+Additionally this version resolves a conflict with embedding the tracking script for applications using Node's [Architect](https://github.com/c9/architect) plugin system.
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Permission Issue
+
+* _**[Problem]**_<br/>
+  Some users experienced issues executing their typical operations on the Treasure Data Platform due to a permission problems on Thursday 9/4.<br/>
+  _**[Solution]**_<br/>
+  The problem was due to an issue occurred during the migration of the user permissions to the a new scheme that is introduced to support much finer granularity permissions in the future. During the migrations, if more than one user had a given type of permission for any database, only one of those permissions was kept, leaving the other users deprived of any access permission for the same database. As a consequence either job execution, or imports / bulk imports, or both could fail for those users for the whole duration of the problem.<br/>
+  The problem was resolved by filling in the missing permissions and inspecting our access logs to instruct the few affected customers on how to proceed to solve their problems.<br/>
+
+### APIs: Inaccessible Imported Data
+
+* _**[Problem]**_<br/>
+  An account have reported that data imported past a certain time on 8/30 was not accessible and/or query-able.<br/>
+  _**[Solution]**_<br/>
+  The reference account ID used for the import did not correspond to the account ID used as reference for the storage. Consequently the Storage metadata mismatched as well.<br/>
+  The APIs were updated to utilize the correct account ID and the missing imported data's metadata was updated to refer to the new account ID.<br/>
+
+### APIs: Heroku Addon Accounts' Emails
+
+* _**[Problem]**_<br/>
+  The email address used as reference for the accounts created through the Treasure Data Heroku Addon could be the Heroku Application ID instead of the actual email address.<br/>
+  _**[Solution]**_<br/>
+  This problem was caused by our APIs being setup to fetch the actual Heroku user's email address only during Treasure Data Addon provisioning step from Heroku but not at every Single Sign On (SSO) attempt. This caused existing users to never get their actual email address populated into our system.<br/>
+  The APIs were updated to fetch the Heroku user's email address also at every Single Sign On attempt. Furthermore we backfilled the user email for all existing Heroku Addon account holders.<br/>
+
+### Backend: Redshift Access Problems
+
+* _**[Problem]**_<br/>
+  A customer utilizing Query Result Output to Redshift reported a problem in getting the results written to his Redshift Cluster.<br/>
+  _**[Solution]**_<br/>
+  The issue was caused by having the Worker nodes setup to use the large Maximum Transfer Unit (MTU, the maximum size of a packet transferred over the network) when transferring data over the network. An MTU size of 1500 B is required when accessing a Redshift Cluster from an EC2 instance.<br/>
+  After updating the MTU size to 1500 B, the Query Result Output writes to Redshift began to work seamlessly again. Additionally, the error logs for the Worker process writing the results to Redshift have been improved to give better insight of what error is occurring.<br/>
+
