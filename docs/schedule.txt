@@ -79,7 +79,7 @@ Just as an example, we could schedule the above query to run on a daily basis by
 
 The example above aggregates the daily page views from an access log. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation. TD_SCHEDULED_TIME() returns the time when the job gets scheduled to be run. In this case, TD_SCHEDULED_TIME() returns 12 am.
 
-By setting the delay parameter to an hour (3600 seconds), we launch the job at 1 AM each day - thus allowing some additional time (an hour in this case) for the data to be imported before we run the job.
+By setting the delay parameter to an hour (3600 seconds), we launch the job at 1 AM each day - thus allowing some additional time (an hour in this case) for data to be imported before we run the job.
 
 You can write the result into another system, to track the KPIs.
 
