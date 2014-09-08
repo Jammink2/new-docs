@@ -1,6 +1,6 @@
 # Scheduled Jobs (Web Console)
 
-Treasure Data has a scheduler feature that supports periodic query execution. We take great care in distributing and operating our scheduler in order to achieve high availability. By using this feature, you no longer need a `cron` daemon on your local datacenter.
+Treasure Data has a scheduler feature that supports periodic query execution. We take great care in distributing and operating our scheduler in order to achieve high availability. By using this feature, you no longer need a `cron` daemon within your local datacenter.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ Treasure Data has a scheduler feature that supports periodic query execution. We
 
 ## Create the Schedule (Web Console)
 
-A new schedule can be created on [Web Console](https://console.treasuredata.com/schedules). Please hit "New Query" button, and set the schedule for the query.
+A new schedule can be created using the [Web Console](https://console.treasuredata.com/schedules). You can do so by selecting the "New Query" pane, and setting a schedule for the query.
 
 ### Cron Schedule
 
