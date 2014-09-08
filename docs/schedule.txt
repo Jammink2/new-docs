@@ -54,7 +54,7 @@ When two specification provide conflicting schedule specifications, the specific
 
 For more information, please refer to this the [Wikipedia page on Cron](http://en.wikipedia.org/wiki/Cron#CRON_expression) and the Crontab Linux 'man' page](http://linux.die.net/man/5/crontab).
 
-## Example: Daily KPI
+## Example: Daily KPIs
 
 A common pattern is to periodically calculate the fixed KPIs or metrics in a certain interval.
 
