@@ -71,12 +71,15 @@ A common pattern is to periodically calculate the fixed KPIs or metrics in a cer
         TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1d'),
         TD_SCHEDULED_TIME())
 
-The example above aggregates the daily page views from an access log on a daily basis. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation. TD_SCHEDULED_TIME() returns the time when the job gets scheduled to be run.
 
-Please set the following parameter to create the scheduled jobs. Especially by setting the delay, you can wait for a certain amount of time to wait the data import. In this case, the job will be launched at 1AM (3600 seconds delay), but `TD_SCHEDULED_TIME()` returns 12am.
+Just as an example, we could schedule the above query to run on a daily basis by setting the following parameters: 
 
 - Recurring?: @daily
 - Delay (seconds): 3600
+
+The example above aggregates the daily page views from an access log. It makes use of several common [UDFs](/articles/udfs) to set the proper time range for the aggregation. TD_SCHEDULED_TIME() returns the time when the job gets scheduled to be run. In this case, TD_SCHEDULED_TIME() returns 12 am.
+
+By setting the delay parameter to an hour (3600 seconds), we launch the job at 1 AM each day - thus allowing some additional time (an hour in this case) for the data to be imported before we run the job.
 
 You can write the result into another system, to track the KPIs.
 
