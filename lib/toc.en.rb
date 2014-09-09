@@ -159,7 +159,7 @@ section 'data-processing', 'Data Processing' do
   end
   category 'scheduled-job', 'Scheduled Job' do
     article 'schedule', 'Scheduled Job (Web Console)'
-    article 'schedule', 'Scheduled Job (CLI)'
+    article 'schedule-cli', 'Scheduled Job (CLI)'
   end
   category 'result', 'Job Result Output' do
     article 'result-into-td', 'Job Result Output to Treasure Data'
