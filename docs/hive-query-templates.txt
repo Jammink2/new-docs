@@ -14,16 +14,58 @@ Here, we expect to have the simple `access` logs which only have `uid` and `time
 
 ## PV (Page Views)
 
-This query calculates the daily PV.
+This query calculates the hourly PV for the entire dataset.
 
     :::sql
+    # Hourly PV
+    SELECT
+      TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT') AS d,
+      COUNT(1) AS pv
+    FROM access
+    GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT')
+    ORDER BY d ASC
+
+This query calculates the daily PV for the entire dataset.
+
+    :::sql
+    # Daily PV
     SELECT
       TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS d,
       COUNT(1) AS pv
     FROM access
-    GROUP BY
-      TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')
+    GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')
     ORDER BY d ASC
+
+This query calculates the daily PV for last 7 days.
+
+    :::sql
+    # Daily PV (Last 7 Days)
+    SELECT
+      TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS d,
+      COUNT(1) AS pv
+    FROM access
+    WHERE
+      TD_TIME_RANGE(time,
+        TD_TIME_ADD(TD_SCHEDULED_TIME(), '-7d'),
+        TD_SCHEDULED_TIME())
+    GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')
+    ORDER BY d ASC
+
+This query calculates the daily PV for the spscific time range.
+
+    :::sql
+    # Daily PV (From 2014/08/01 to 2014/08/30)
+    SELECT
+      TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS d,
+      COUNT(1) AS pv
+    FROM access
+    WHERE
+      TD_TIME_RANGE(time,
+        "2014-08-01 PDT",
+        "2014-08-30 PDT"))
+    GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')
+    ORDER BY d ASC
+
 
 ## UU (Unique Users)
 
