@@ -138,7 +138,7 @@ end
 get '/articles/:article' do
   m = /^success-at-(.*)/.match(params[:article])
   if m
-    redirect "http://www.treasuredata.com/en/case-studies/#{m[1]}.php"
+    redirect "http://www.treasuredata.com/#{m[1]}.php"
   else
     m = /^legacy-releasenotes$/.match(params[:article])
     if m

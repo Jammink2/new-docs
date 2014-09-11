@@ -36,7 +36,7 @@ While Treasure Data provides a cost-effective, schema-less and scalable infrastr
 
 ### Success Stories
 
-Please check these success stories for this pattern.
+Please check these success stories for this pattern:
 
 * [MobFox - Europe's Largest Mobile Network](success-at-mobfox)
 * [Viki - Global Online Video Service](success-at-viki)
