@@ -1,4 +1,4 @@
-Encoding.default_external = Encoding.default_internal = 'utf-8'
+  Encoding.default_external = Encoding.default_internal = 'utf-8'
 
 require 'rdiscount'
 require 'sanitize'
@@ -99,18 +99,17 @@ class Article
     content_with_anchors.split(/\n/).each_with_index {|line, ln|
       # puts "looking at '#{line}', #{ln}"
       toc2.each {|title|
-        title = title.gsub("(", "\(").gsub(")", "\)")
         if line =~ /<h2>#{Regexp.escape(title)}<\/h2>/
-          toc_with_levels << ["2", title]
+          toc_with_levels << ["2", title.gsub(/<.+?>/, '')]
         end
       }
       toc3.each {|title|
         if line =~ /<h3>#{Regexp.escape(title)}<\/h3>/
-          toc_with_levels << ["3", title]
+          toc_with_levels << ["3", title.gsub(/<.+?>/, '')]
         end
       }
     }
-    # puts "toc_with_levels #{toc_with_levels}"
+    puts "toc_with_levels #{toc_with_levels}"
     return toc_with_levels, content_with_anchors
   end
 end
