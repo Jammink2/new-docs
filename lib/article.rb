@@ -96,8 +96,8 @@ class Article
     # puts "content_with_anchors #{content_with_anchors}"
 
     toc_with_levels = []
-    content_with_anchors.split(/\n/).each_with_index {|line, ln|
-      # puts "looking at '#{line}', #{ln}"
+    content_with_anchors.split(/\n/).each {|line|
+      # puts "looking at '#{line}"
       toc2.each {|title|
         if line =~ /<h2>#{Regexp.escape(title)}<\/h2>/
           toc_with_levels << ["2", title.gsub(/<.+?>/, '')]
@@ -109,7 +109,7 @@ class Article
         end
       }
     }
-    puts "toc_with_levels #{toc_with_levels}"
+    # puts "toc_with_levels #{toc_with_levels}"
     return toc_with_levels, content_with_anchors
   end
 end
