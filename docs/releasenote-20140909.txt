@@ -1,0 +1,64 @@
+# Release Note 20140909
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Treasure Data Result Output and API Key
+
+We recently added the ability to write the result of a query to a different Treasure Data account by specifying the destination account's API key in the Query Result Output target's URL. This capability is currently only available through our <tt>td CLI</tt> and not from the Web Console.
+Since typical Treasure Data API keys contains a forward slash ('<tt>/</tt>'), user willing to take advantage of this feature had to [URL encode](http://en.wikipedia.org/wiki/Percent-encoding) their API key (those making the '<tt>/</tt>' a '<tt>%2F</tt>') prior to adding it to the Query Result Output target's URL.
+
+For example if the API key of the destination account is '<tt>1234/1234567890ABCDEF</tt>':
+
+    td://1234%2F1234567890ABCDEF@/db1/tbl1?mode=append
+
+We now improved this feature to allow the API key to be used **as-is** in the Result Output target's URL:
+
+    td://1234/1234567890ABCDEF@/db1/tbl1?mode=append
+
+### Console: Unity SDK
+
+We added the Unity SDK's to the list of available SDKs in the '[Collect Data: Client SDKs](http://console.treasuredata.com/import/sdk)' page:
+
+![Console: Unity SDK](/images/release-notes/140909-01-unity_sdk.png)
+
+### Backend: Query Consistency Improvements
+
+We improved the querying consistency of our backend to skip data imported very recently. This is done to get around the AWS S3 [eventual-consistency](http://en.wikipedia.org/wiki/Eventual_consistency) problems.
+
+When new data is just imported in the Treasure Data cloud, AWS S3 disseminates the files across its various datacenters to support their S3 file consistency requirements. During this time, a request for the imported file may actually fail because the request may be routed to a datacenter that is expected to contain a copy of the file but is yet to fully received one.
+
+By skipping the data imported up to 5 minutes before the query executes, the result of the consistency of the results returned by the query will only minimally affected or not affected at all by AWS S3's eventually-consistent mechanism.
+
+### Backend: Handling of Duplicated <tt>time</tt> Fields
+
+We improved our Import worker to handle cases in which the imported record contains more than one time field/column. Such type of records can cause unexpected behaviors when querying the data; records containing more than one time field are now rejected by the Import worker.
+
+### Bulk Import: Released Java Bulk Import CLI v0.5.3
+
+This is a minor version upgrade which solves a Null Pointer Exception occurring when reading the import data from a MySQL database in the prepare phase.
+
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Scheduled Queries List Doesn't Show All History
+
+* _**[Problem]**_<br/>
+  Some customers found their schedules to be missing some of the jobs from the history.<br/>
+  _**[Solution]**_<br/>
+  The problem was caused by having merged the schedules' job history from the specialized History model into the Jobs model. The procedure used to copy the records over failed to copy all of them, hence the missing jobs from some schedule's histories.<br/>
+  Since the original schedules' History model table had been kept for reference, the procedure was corrected and repeated to ensure all records were reflected in the destination Jobs model table.<br/>
+
+### APIs: Scheduled Queries Halted Execution
+
+* _**[Problem]**_<br/>
+  Some scheduled queries had stopped execution of their jobs although the scheduling configuration was correctly set.<br/>
+  _**[Solution]**_<br/>
+  This problem was caused by issuing an unnecessary call to the Scheduling module while updating the Schedule. This caused the 'Next Run Time' to be updated in such a way that the Schedule would stop executing jobs indefinitely.<br/>
+  We modified the API implementation to avoid calling the Scheduling module unless at least one of the scheduling parameters has explicitly been changed making a call to the Scheduling module necessary.<br/>
