@@ -2,6 +2,8 @@
 
 Using [Tableau Server](http://www.tableausoftware.com/products/server) with Treasure Data allows users to interactively explore huge amounts of data, and also share the knowledge across multiple people.
 
+<center><img src="/images/tableau-treasure-data-architecture.png" width="100%" /></center><br/><br/>
+
 ## Prerequisites
 
   * Basic knowledge of Treasure Data
