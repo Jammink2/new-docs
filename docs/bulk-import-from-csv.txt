@@ -56,8 +56,17 @@ In the above command, we assumed that:
 * The time field is called "date_time" and it's specified with the <tt>\-\-time-column</tt> option
 * The time format is <tt>%Y-%m-%d %H:%M:%S</tt> and it's specified with the <tt>\-\-time-format</tt> option
 
-These options are specific to bulk import from CSV/TSV files and they can be used to tailor the behavior of the parser
-to non standard CSV/TSV file formats:
+If you don't have a header at the first line, you need specify the column names manually by `--columns` option.
+
+    :::term
+    $ td import:auto \
+      --format csv --columns host,log_name,date_time,method,url,res_code,bytes,referer,user_agent \
+      --time-column date_time \
+      --time-format "%Y-%m-%d %H:%M:%S" \
+      --auto-create my_db.my_tbl \
+      ./data.csv
+
+These options are specific to bulk import from CSV/TSV files and they can be used to tailor the behavior of the parser to non standard CSV/TSV file formats:
 
     :::term
     CSV/TSV specific options:
