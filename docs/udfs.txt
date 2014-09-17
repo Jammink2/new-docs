@@ -245,3 +245,7 @@ The example shows the result of parsing user agent from access log.
     > {family: "Windows 7", major: null, minor: null, patch: null, patch_minor: null}
     SELECT TD_PARSE_USER_AGENT(agent, 'os_family') AS agent_os_family FROM www_access
     > Windows 7
+
+## Hivemall
+
+Treasure Data bundles [Hivemall](https://github.com/myui/hivemall) v0.2-alpha4, the scalable machine learning library for Hive.
