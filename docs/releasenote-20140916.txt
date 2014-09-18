@@ -1,0 +1,79 @@
+# Release Note 20140916
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: In-App Notifications
+
+We added in-app notifications capabilities to the Console. The notifications are accessible from the Console Top Bar menu.
+
+The notifications icon will highlight the number of unread notifications when there are any: clicking on one of the notifications will both open the embedded link into a new page or tab and mark the notification as read.
+
+We will be delivering important updates through this channel as well going forward.
+
+![Console: In-App Notifications](/images/release-notes/140916-01-notifications.png)
+
+### Console: Import Histories
+
+Added a new chart to the utilization page showing the monthly import history for the account, including the contributions from Streaming (Treasure Agent), SDKs, and Bulk Import, as well as Web Uploader imports.
+
+### Backend: PostgreSQL and Redshift Result Output Additional Options
+
+Added an option for PostgreSQL and Redshift Query Result Outputs to support secure communication through SSL:
+
+    redshift://username:password@host:5439/database/table?ssl=true
+    postgresql://username:password@host/database/table?ssl=true
+
+Additionally, added another Redshift option to specify the AWS hosting region when the host location is expressed as a static IP address instead of a (DNS) hostname (in which case the region is extrapolated from the hostname itself):
+
+    redshift://username:password@static_ip:5439/database/table?region=ap-northeast-1&ssl=true
+
+### JDBC: Released JDBC v0.2.14
+
+Released a new version of the JDBC driver v0.2.14.
+
+* Added support for 'varchar' data types for Presto
+* Improved validation in the following contexts and raising an SQLException when failed:
+  * user or password is incorrect
+  * database doesn't exist
+  * user or password is null
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Utilization Graph Issues in Firefox
+
+* _**[Problem]**_<br/>
+  The utilization chart causes stalling and performance issues in Firefox.<br/>
+  _**[Solution]**_<br/>
+  We utilize [Highcharts](http://www.highcharts.com/products/highcharts) to plot the utilization graph and all other graphs in the page. Highchart seems to suffer from some performance issues in Firefox while it's perfectly working on other modern browsers.<br/>
+  Migrating the core utilization chart from Highcharts to [Highstocks](http://www.highcharts.com/products/highstock), a more advanced charting library from the same company, solved the Firefox performance problem.<br/>
+
+### Backend: Tableau Result Output
+
+* _**[Problem]**_<br/>
+  Tableau Query Result Output cannot retry the upload of the TDE (Tableau Data Extract) file if the Tableau instance language is one whose character encoding is not UTF-8.<br/>
+  _**[Solution]**_<br/>
+  This is due to the logic not being able to infer the exception type occurred on Tableau if the text is not English. In such cases, the retrying mechanism fails.<br/>
+  Improved the logic to handle this case and retry the upload as and when necessary.<br/>
+
+* _**[Problem]**_<br/>
+  Tableau Query Result Output cannot display error messages in the Console or command-line if the Tableau instance is setup with a language whose character encoding is not UTF-8.<br/>
+  _**[Solution]**_<br/>
+  The text that Tableau outputs when the Language is not UTF-8 cannot be displayed as simple text.<br/>
+  Converting the text with the proper encoding before it's outputted to the Console or command-line.<br/>
+
+### Backend: Table Export to S3
+
+* _**[Problem]**_<br/>
+  The Table Export REST API runs and completes with 'success' status although the actual export to the chosen S3 destination does not occur.<br/>
+  _**[Solution]**_<br/>
+  The Table Export process was referring to the incorrect table source.<br/>
+  The source table to export the data from was corrected.<br/>
+
+
