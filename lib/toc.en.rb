@@ -189,6 +189,7 @@ section 'data-processing', 'Data Processing' do
   end
   category 'presto', 'Presto Query Reference' do
     article 'presto', 'Presto Query Engine'
+    article 'presto-query-templates', 'Presto Query Templates'
     article 'presto-udfs', 'Presto UDFs'
     article 'presto-postgresql-gateway', 'Presto PostgreSQL Gateway'
     article 'presto-performance-tuning', 'Presto Performance Tuning'
