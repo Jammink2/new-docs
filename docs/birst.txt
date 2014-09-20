@@ -1,0 +1,66 @@
+# Birst with Treasure Data
+
+## Prerequisites
+
+* [Birst](http://www.birst.com/) account
+* Basic knowledge of Treaure Data and its account
+
+## Step 1: Download BirstConnect Artifacts
+
+First, please visit the `Navigation Page` under `Manage Space`, and select `Use Birst Connect`.
+
+<img src="/images/birst-manage-space.png" width="100%" />
+
+Then, download your .jnlp file by clicking `Launch` for one of your configurations. Also, please download your `BirstConnect.zip` too.
+
+<center><img src="/images/birst-connect-download.png" width="60%" /></center><br/><br/>
+
+Finally, let's put two files under the same directory. In this article, we'll reference the directory as `$BIRST_CONNECT_DIRECTORY`. We need to unzip `BirstConnect.zip`.
+
+    :::term
+    $ cd $BIRST_CONNECT_HOME
+    $ unzip BirstConnect.zip
+
+## Step 2: Download Treasure Data JDBC Driver
+
+Please download [Treasure Data's JDBC driver](jdbc-driver) from [here](http://toolbelt.treasuredata.com/jdbc), and put the file to `$BIRST_CONNECT_HOME/dist/lib`.
+
+    :::term
+    $ cd $BIRST_CONNECT_HOME
+    $ mv /PATH/TO/td-jdbc-xxx-jar-with-dependencies.jar dist/lib/
+
+## Step 3: Launch Birst Connect
+
+Next, let's launch Birst Connect. Please specify `.jnlp` file you've donwloaded to the `dnlp.file` parameter.
+
+    :::term
+    $ java -Djnlp.file=/PATH/TO/xxx.jnlp -Xmx1024m -cp "dist/*:dist/lib/*" com.birst.dataconductor.DataConductorApp
+
+## Step 4: Set up Task
+
+Now you have successfully launched Birst Connect, with Treasure Data JDBC driver built in. Please click `Add Task` to set up the task to extract data from Treasure Data into Birst.
+
+<center><img src="/images/birst-connect.png" width="50%" /></center><br/><br/>
+
+Please specify the `Task Name` first. Then, please click `Sources` tab and `Add Query`.
+
+<center><img src="/images/birst-new-task.png" width="80%" /></center><br/><br/>
+
+You'll see the fields to specify JDBC connection. Please fill the information properly.
+
+<center><img src="/images/birst-add-query.png" width="80%" /></center><br/><br/>
+
+- Database Type: Generic JDBC Connection
+- Driver Name: com.treasure_data.jdbc.TreasureDataDriver
+- Connection String: jdbc:td://api.treasuredata.com/testdb;useSSL=true
+- Username: YOUR_TREASURE_DATA_EMAIL_ADDRESS
+- Password: YOUR_TREASURE_DATA_PASSWORD
+- Query: Your Query
+
+NOTE: You can switch query engines by using type parameter like jdbc:td://api.treasuredata.com/testdb;useSSL=true;type=presto. Please refer Treasure Data <a href="jdbc-driver">JDBC Driver</a> documentation for more information.
+
+Finally click `Update`, and `Save` to save the task.
+
+## Step 5: Run the Task
+
+Please go back to Birst Connect main dialog and click `Run Tasks Now`. The query will be executed on Treasure Data, and insert into Birst.
