@@ -44,11 +44,11 @@ Now you have successfully launched Birst Connect, with Treasure Data JDBC driver
 
 Please specify the `Task Name` first. Then, please click `Sources` tab and `Add Query`.
 
-<center><img src="/images/birst-new-task.png" width="80%" /></center><br/><br/>
+<center><img src="/images/birst-new-task.png" width="90%" /></center><br/><br/>
 
 You'll see the fields to specify JDBC connection. Please fill the information properly.
 
-<center><img src="/images/birst-add-query.png" width="80%" /></center><br/><br/>
+<center><img src="/images/birst-add-query.png" width="90%" /></center><br/><br/>
 
 - Database Type: Generic JDBC Connection
 - Driver Name: com.treasure_data.jdbc.TreasureDataDriver
