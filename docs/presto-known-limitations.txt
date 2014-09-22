@@ -2,6 +2,10 @@
 
 Presto query engine has some limitations compared to Hive at this stage. We welcome your feedback and will make improvements based on these.
 
+## No Graceful Restart
+
+Currently we don't have a good mechanism to gracefully restart Presto cluster. When we deploy the new changes, the cluster will be restarted and the **queries** running at that time **will be interuppted**. Usually it will be restarted automatically, but sometimes fails. We're working hard to solve this problem, but please use Hive for critical scheduled batch jobs for now.
+
 ## Column Name Escaping
 
 When a column name matches the name of a reserved keyword, the name of the columns needs to be
@@ -41,7 +45,7 @@ When querying via Presto, you must set a [Schema](schema) for the table(s); the 
 
 ## Lack of Complex Types
 
-Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map`, `array`, and `struct` are currently not available.
+Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map`, `array`, and `struct` are currently not available. We'll expect to have at least `array` type in 2014 Q4.
 
 ## JOIN Order
 
