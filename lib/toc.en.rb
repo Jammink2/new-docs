@@ -211,7 +211,10 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
     article 'tableau-desktop-odbc', 'Tableau Desktop with Tableau Server', ['Tableau', 'Tableau Desktop']
   end
   category 'metricinsights', 'Metric Insights' do
-    article 'metricinsights', 'Metric Insights',        ['Metric Insights']
+    article 'metricinsights', 'Metric Insights', ['Metric Insights']
+  end
+  category 'birst', 'Birst' do
+    article 'birst', 'Birst with Treasure Data', ['Birst']
   end
   category 'chartio', 'Chartio' do
     article 'chartio', 'Chartio with Treasure Data', ['Chartio']
