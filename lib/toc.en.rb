@@ -201,14 +201,10 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
-  category 'tableau-server', 'Tableau Server' do
+  category 'tableau', 'Tableau' do
     article 'tableau-server', 'Tableau Server', ['Tableau', 'Tableau Server']
-  end
-  category 'tableau-online', 'Tableau Online' do
     article 'tableau-online', 'Tableau Online', ['Tableau', 'Tableau Online']
-  end
-  category 'tableau-desktop', 'Tableau Desktop' do
-    article 'tableau-desktop-odbc', 'Tableau Desktop with Tableau Server', ['Tableau', 'Tableau Desktop']
+    article 'tableau-desktop-odbc', 'Tableau Desktop', ['Tableau', 'Tableau Desktop']
   end
   category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights', ['Metric Insights']
