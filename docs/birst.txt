@@ -1,5 +1,9 @@
 # Birst with Treasure Data
 
+[Birst](http://www.birst.com/) provides easy-to-use cloud-based enterprise BI service. By combining Birst and Treasure Data, users can quickly explore both operational data and big data.
+
+<center><a href="http://www.birst.com/"><img src="/images/birst-screen.png" width="60%"/></a></center>
+
 ## Prerequisites
 
 * [Birst](http://www.birst.com/) account
