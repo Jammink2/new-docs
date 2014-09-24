@@ -23,6 +23,14 @@ If you issue a query *WITHOUT* the -w option, the command will exit immediately 
     Job 704 is started.
     Use 'td job 704' to show the status.
 
+You can output the job results into local disk as CSV format, instead of STDOUT.
+
+    :::term
+    $ td query -o test.csv --format csv -w -T presto -d testdb 'SELECT COUNT(1) FROM www_access'
+    Status     : success
+    Result     :
+    written to test.csv in csv format
+
 We currently support the [Hive](hive) and [Pig](pig) query languages. The example above uses Hive.
 
 ## Show Jobs
