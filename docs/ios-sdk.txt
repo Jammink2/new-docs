@@ -73,6 +73,31 @@ The following code uploads the event when the application goes to the background
 
 NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen a lot of cases where a lot of iOS devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
 
+## Step 4: Track the App Installation
+
+You can collect the first run event of your application, which can be used to track app `installation` event.
+
+    :::c
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    {
+      [TreasureData initializeWithApiKey:@"your_api_key"];
+
+      if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+        [[TreasureData sharedInstance] addEventWithCallback:@{ @"event": @"installed" }
+           database:@"database_a"
+              table:@"install"
+          onSuccess:^(){
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [[TreasureData sharedInstance] uploadEvents];
+          }
+            onError:^(NSString* errorCode, NSString* message) {
+              NSLog(@"addEvent: error. errorCode=%@, message=%@", errorCode, message);
+            }];
+      }
+      return YES;
+    }
+
 ## Next Steps
 
 For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.

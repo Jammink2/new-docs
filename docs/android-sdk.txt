@@ -102,6 +102,53 @@ You can handle errors of addEvent() or uploadEvents() by the callback function.
 
 NOTE: IP whitelist won't be applied to any import from Android SDK. Also we've seen a lot of cases where a lot of Android devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
 
+## Step 4: Track the App Installation
+
+You can collect the first run event of your application, which can be used to track app `installation` event. First, please put these lines into `AndroidManifest.xml`.
+
+    :::xml
+    <manifest>
+      <application>
+        <receiver android:name=".InstallationReceiver" android:exported="true">
+          <intent-filter>
+            <action android:name="com.android.vending.INSTALL_REFERRER" />
+          </intent-filter>
+        </receiver>
+      </application>
+    </manifest>
+
+Then, please create `InstallationReceiver` class to receive installation events with Google Play's referer information. In this way, you can know what kind of traffic or ads leads to the actual installation.
+
+    :::java
+    /*
+     * For installation event test.
+     * $ adb shell
+     * # am broadcast -a com.android.vending.INSTALL_REFERRER \
+     *       -n com.treasuredata.android.demo/.InstallationReceiver \
+     *       --es "referrer" "utm_source=test_source&utm_medium=test_medium&…"
+     */
+    public class InstallationReceiver extends BroadcastReceiver {
+    @Override
+      public void onReceive(Context context, Intent intent) {
+        try {
+          TreasureData.enableLogging();
+          final TreasureData td = new TreasureData(context, "your_default_api_key");
+          HashMap<String, Object> referrer = new HashMap<String, Object>();
+          referrer.put("type", "install_referrer");
+          for (String kv : intent.getStringExtra("referrer").split("&")) {
+            String[] kAndV = kv.split("=", 2);
+            if (kAndV.length >= 2) {
+              referrer.put(kAndV[0], kAndV[1]);
+            }
+          }
+          td.addEvent("database_a", "install", referrer);
+          td.uploadEvents();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
 ## Next Steps
 
 For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
