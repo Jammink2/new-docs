@@ -26,7 +26,7 @@ If you issue a query *WITHOUT* the -w option, the command will exit immediately 
 You can output the job results into local disk as CSV format, instead of STDOUT.
 
     :::term
-    $ td query -o test.csv --format csv -w -T presto -d testdb 'SELECT COUNT(1) FROM www_access'
+    $ td query -o test.csv --format csv -w -d testdb 'SELECT COUNT(1) FROM www_access'
     Status     : success
     Result     :
     written to test.csv in csv format
