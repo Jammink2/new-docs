@@ -1,0 +1,113 @@
+# Release Note 20140923
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Saved Queries
+
+We greatly improved the querying workflow on the Console by adding the ability to save and name a query, just like it was possible for Scheduled queries. This feature supports a more well rounded iterative trial and error process in coming up with a query that answers a certain predetermined question about the user's data.
+
+*Queries and Schedules are now considered one and the same concept* and are only distinguished from one another by whether they have an execution schedule associated to it or not.
+
+The UI and UX is also greatly improved by adding advanced filtering capabilities in the Queries list page and allowing the queries to be assigned an user-friendly name (not constrained to lowercase alphanumeric characters and underscores '<tt>_</tt>') and an arbitrarily long description.
+
+The sidebar's 'Schedules' page link is substituted by the more general 'Queries' link:
+
+![Console: Saved Queries - Link](/images/release-notes/140923-01-saved_queries.png)
+
+The Queries list page is designed from scratch. A side panel is added on the left hand side to filter the list based on any of these criteria:
+
+* text search for any of the columns in the list
+* assigned schedule (empty for unscheduled, Saved Queries)
+* creating user (Full name)
+* reference database
+* querying engine type
+
+![Console: Saved Queries - List Page](/images/release-notes/140923-02-saved_queries.png)
+
+Text search filtering example. In this case the substring '#4' matched both a query name and an user name:
+
+![Console: Saved Queries - Text Search](/images/release-notes/140923-03-saved_queries.png)
+
+Example of filtering by creating user's full name. In this example 'User #3' is chosen, which will narrow down the list of queries to only those created by 'User #3':
+
+![Console: Saved Queries - Filtering](/images/release-notes/140923-04-saved_queries.png)
+
+Every filter box can be collapsed to make room for any of the others; this allows them to expand and fit more entries from the full list of values:
+
+![Console: Saved Queries - Collapsible Search Boxes](/images/release-notes/140923-05-saved_queries.png)
+
+### Console: Import History
+
+We improved the Y axis labeling for the Import History chart that was added last week on the Console Utilization page to use metric unit scaling (k, Million, Billing, Trillion, ...) instead of scientific suffixes (k, M, G, T, P, ...):
+
+    100               -> 100
+    1,000             -> 1.0 k
+    1,000,000         -> 1.0 Million
+    1,000,000,000     -> 1.0 Billion
+    1,500,000,000     -> 1.5 Billion
+    1,000,000,000,000 -> 1.0 Trillion
+
+![Console: Import History](/images/release-notes/140923-06-import_chart.png)
+
+### Console: Jobs Duration Live Update
+
+We improved both the Jobs list and Jobs details pages to display the job duration and update it in real time.
+
+Previously the duration field was only updated and displayed when the job had completed.
+
+### Backend: Presto Engine Public Release
+
+We have been hard at work to strengthened our Treasure Query Accelerator premium service with the [Presto](http://prestodb.io/) Query Engine.
+
+The newly added engine is capable of unparalleled scanning and aggregation speeds and takes full advantage of our table's Metadata for faster storage data lookup and increased reliability.
+
+### Backend: Reject Records with Strings Too Long
+
+Records that contain a string column value that's too long can end up causing Out Of Memory (OOM) errors in the Import Worker. To prevent this problem, records containing string column values whose size exceeds 32 kB are rejected.
+
+### SDKs: Released Unity SDK v0.1.2
+
+We released a new version of the Unity SDK, v0.1.2, in which we resolved a silent crash in '<tt>TreasureData.updateEvent()</tt>'. The more typical '<tt>TreasureData.updateEvent(OnSuccess, OnError)</tt>' API worked fine instead.
+
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Table Uniqueness
+
+* _**[Problem]**_<br/>
+  The '<tt>/v3/table/create/:database/:table/:type</tt>' REST API allows creating two tables with the same name if they are created simultaneously.<br/>
+  _**[Solution]**_<br/>
+  We allow creating tables with the same name as previously created tables that were deleted, enforcing the uniqueness of the table within the account based on the database the table belongs to, the table name, and the 'deleted_at' field. However our underlying DBMS does not consider NULL 'deleted_at' fields to enforce record uniqueness, thus allowing the creation of more than one table in the same database with the same name if the creation timing is just right.<br/>
+  We resolved this problem by adding a new boolean 'active' field for the Tables model to make sure our DBMS can enforce table uniqueness at all times as expected to all along.<br/>
+
+### Console: Logging In With IP Whitelisting
+
+* _**[Problem]**_<br/>
+  If the user attempts to login into a Console account from an IP address that is not included in the account's IP Whitelisting, an error is continuously thrown, causing the browser's tab to become unresponsive.<br/>
+  _**[Solution]**_<br/>
+  The error returned by the APIs when the user attempts to login but its IP address is not recognized is not properly handled by the Console.<br/>
+  Changed the logic to handle the error code returned by the APIs and redirect the user back to the sign in page with the error message '<tt>IP whitelists are enabled for this user. Your IP does not match the whitelist. [10.20.30.40]</tt>'<br/>
+
+### Console: Import Histories on Firefox and Safari Browsers
+
+* _**[Problem]**_<br/>
+  The import history chart that was added last week on the [Console Utilization](https://console.treasuredata.com/utilization) page is improperly displayed by Firefox and Safari browsers.<br/>
+  _**[Solution]**_<br/>
+  This is due to the Chrome, Safari, and Firefox browsers having different restrictions on how a string expressing a date-time can be parsed by the '<tt>Date.parse()</tt>' method.<br/>
+  Double checked all three browsers' specifications for the string format accepted by the '<tt>Date.parse()</tt>' method and adjusted it to be compatible across browsers.<br/>
+
+### Backend: Table Export with INSERT INTO
+
+* _**[Problem]**_<br/>
+  The table export procedure to save the content of a Treasure Data table to any AWS S3 bucket does not work for tables created through the new INSERT INTO statement supported by Hive.<br/>
+  _**[Solution]**_<br/>
+  At the moment INSERT INTO statements don't partition the data written into the destination table across hours as it happens for other import methods. Since the export logic expects to find the table data organized in these partitions, it was not able to process tables created through INSERT INTO.<br/>
+  We modified the export logic to receive a descriptor of the destination table instead of inferring it from the settings, thus being able to process tables created by INSERT INTO.<br/>
+
