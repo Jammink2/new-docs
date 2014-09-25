@@ -19,7 +19,7 @@ Install the td-js-sdk on your page by copying-pasting the JavaScript snippet bel
 
 ### Step2: Initialize & Send Events to the Cloud
 
-You need to create one `Treasure` client object per database, and initialize pageview tracking by calling the `trackPageview()` function:
+You need to create one `Treasure` client object per database, and initialize pageview tracking by calling the `trackPageview()` function. The APIKEY can be retrieved from the [Console's profile page](https://console.treasuredata.com/users/current). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
 
     :::html
     <script type="text/javascript">
@@ -32,11 +32,34 @@ You need to create one `Treasure` client object per database, and initialize pag
       td.trackPageview('pageviews');
     </script>
 
-The APIKEY can be retrieved from the [Console's profile page](https://console.treasuredata.com/users/current). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
+NOTE: IP whitelist won't be applied to any import from JavaScript SDK. We have also seen a lot of cases where browsers specify invalid timestamps (like 1970/01/01), so we're currently ignoring records which have a timestamp older than 7 days, and newer than 3 days ahead.
 
-NOTE: IP whitelist won't be applied to any import from JavaScript SDK.
+By calling `trackPageview()` function, these parameters will automatically gets logged.
 
-NOTE: We have also seen a lot of cases where browsers specify invalid timestamps (like 1970/01/01), so we're currently ignoring records which have a timestamp older than 7 days, and newer than 3 days ahead.
+- td_version - td-js-sdk's version
+- td_client_id - client's uuid
+- td_charset - character set
+- td_language - browser language
+- td_color - screen color depth
+- td_screen - screen resolution
+- td_viewport - viewport size
+- td_title - document title
+- td_url - document url
+- td_host - document host
+- td_path - document pathname
+- td_referrer - document referrer
+- td_ip - request IP (server)
+- td_browser - client browser (server)
+- td_browser_version - client browser version (server)
+- td_os - client operating system (server)
+- td_os_version - client operating system version (server)
+
+If you want to set the custom parameters, please use `td.set()` function.
+
+    :::html
+    // track pageview information to 'pageviews' table
+    td.set('pageviews', {foo: 'foo', bar: 'bar'});
+    td.trackPageview('pageviews');
 
 ## Step 3: Track Custom Events
 
