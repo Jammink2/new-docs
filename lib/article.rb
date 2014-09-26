@@ -31,8 +31,10 @@ class Article
     if @toc.any?
       # split at the first occurrence of the <h2> marking the division between
       #   the paragraph and the beginning of the article
-      @intro, @body = @content.split('<h2>', 2)
-      @body = "<h2>#{@body}" # add the <h2> tag back
+      @content.sub!(/(<a name=".+"><\/a><h2>)/, '<REMOVEME>\1')
+      @intro, @body = @content.split('<REMOVEME>', 2)
+      puts
+      @body = "#{@body}" # add the <h2> tag back
     else
       @intro, @body = '', @content
     end
