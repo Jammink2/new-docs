@@ -12,28 +12,34 @@
   <% if @toc.size > 0 %>
     <section id="table-of-contents"><h3>Table of Contents</h3>
       <ul id="toc">
-        <% last_level = "2" %>
-        <% last_section = "" %>
-        <% @toc.each do |level, section| %>
+        <%
+          last_level = '2'
+          last_section = ''
+          last_anchor = ''
+        %>
+        <% @toc.each do |level, section, anchor| %>
         <% if level > last_level %>
-        <li><a href="#<%= slugify(last_section) %>"><%= last_section %></a>
+        <li><a href="#<%= last_anchor %>"><%= last_section %></a>
           <ul id="toc_nested">
         <% elsif level < last_level %>
-            <li><a href="#<%= slugify(last_section) %>"><%= last_section %></a></li>
+            <li><a href="#<%= last_anchor %>"><%= last_section %></a></li>
           </ul>
         </li>
         <% elsif level == last_level && level == "2" %>
         <%# skips the first where last_section == "" %>
         <% if last_section != "" %>
-        <li><a href="#<%= slugify(last_section) %>"><%= last_section %></a></li>
+        <li><a href="#<%= last_anchor %>"><%= last_section %></a></li>
         <% end %>
         <% elsif level == last_level && last_level == "3" %>
-            <li><a href="#<%= slugify(last_section) %>"><%= last_section %></a></li>
+            <li><a href="#<%= last_anchor %>"><%= last_section %></a></li>
         <% end %>
-        <% last_level = level %>
-        <% last_section = section %>
+        <%
+          last_level = level
+          last_section = section
+          last_anchor = anchor
+        %>
         <% end %>
-        <li><a href="#<%= slugify(last_section) %>"><%= last_section %></a></li>
+        <li><a href="#<%= last_anchor %>"><%= last_section %></a></li>
       </ul>
     </section>
   <% end %>

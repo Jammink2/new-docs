@@ -99,7 +99,7 @@ The auto update feature is available as of v0.10.77. If you are running an earli
 
 The `td update` command is just a placeholder for the following other installation methods.
 
-### Linux
+### Linux (Ubuntu Precise, Ubuntu Lucid, RedHat, CentOS)
 
 The easier way of installing the td CLI in a Linux environment beside using a gem (see above) is to install td as part of the `td-agent` distribution package. Several Linux environments are supported, see [Installing the Treasure Data CLI](installing-the-cli) documentation page.
 

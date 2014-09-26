@@ -81,18 +81,46 @@ class Article
   end
 
   def _toc(content)
-    toc2 = content.scan(/<h2>(.+?)<\/h2>/m).to_a.map { |m| m[0] }
-    content_with_anchors = content.gsub(/(<h2>(.+?)<\/h2>)/m) do |m|
-      "<a name=\"#{slugify(m.gsub(/<.+?>/, ''))}\"></a>#{m}"
+    toc = content.scan(/<h([23])>(.+?)<\/h\1>/m).to_a.map.with_index do |(l, hx), i|
+      [l, hx, slugify(hx.gsub(/<(.+?)>/, '')) + "_#{i}"]
     end
-    # puts "toc2 #{toc2}"
+    puts content.gsub(/<h([23])>(.+?)<\/h\1>/m).class
+    i = 0
+    content_with_anchors = content.gsub(/<h([23])>(.+?)<\/h\1>/m) do |hx|
+      content = "<a name=\"#{slugify(hx.gsub(/<(.+?)>/, '')) + "_#{i}"}\"></a>#{hx}"
+      i += 1
+      content
+    end
+    puts "toc:                  #{toc}"
+    puts "content_with_anchors: #{content_with_anchors}"
+    return toc, content_with_anchors
+  end
+
+  def _toc2(content)
+    index = 0
+
+    toc2 = content.scan(/<h2>(.+?)<\/h2>/m).to_a.map { |m| m[0] }
+    toc2_anchors = []
+    content_with_anchors = content.gsub(/(<h2>(.+?)<\/h2>)/m) do |h2|
+      index += 1
+      anchor = slugify(h2.gsub(/<.+?>/, '')) + "_#{index}"
+      toc2_anchors << anchor
+      "<a name=\"#{anchor}\"></a>#{h2}"
+    end
+    puts "toc2         #{toc2}"
+    puts "toc2_anchors #{toc2_anchors}"
     # puts "content_with_anchors #{content_with_anchors}"
 
     toc3 = content.scan(/<h3>(.+?)<\/h3>/m).to_a.map { |m| m[0] }
-    content_with_anchors = content_with_anchors.gsub(/(<h3>(.+?)<\/h3>)/m) do |m|
-      "<a name=\"#{slugify(m.gsub(/<.+?>/, ''))}\"></a>#{m}"
+    toc3_anchors = []
+    content_with_anchors = content_with_anchors.gsub(/(<h3>(.+?)<\/h3>)/m) do |h3|
+      index += 1
+      anchor = slugify(h3.gsub(/<.+?>/, '')) + "_#{index}"
+      toc3_anchors << anchor
+      "<a name=\"#{anchor}\"></a>#{h3}"
     end
-    # puts "toc3 #{toc3}"
+    puts "toc3         #{toc3}"
+    puts "toc3_anchors #{toc3_anchors}"
     # puts "content_with_anchors #{content_with_anchors}"
 
     toc_with_levels = []
