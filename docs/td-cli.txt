@@ -311,7 +311,11 @@ This page documents most of `td` subcommands.
 
 
     -t, --to TIME                    end time of logs to delete in Unix time multiple of 3600 (1 hour)
+                                       or Ruby time string format (e.g. '2014-07-01 14:00:00 JST') where
+                                       the minutes and seconds are required to be 0.
     -f, --from TIME                  start time of logs to delete in Unix time multiple of 3600 (1 hour)
+                                       or Ruby time string format (e.g. '2014-07-01 13:00:00 JST') where
+                                       the minutes and seconds are required to be 0.
     -w, --wait                       wait for the job to finish
 
 
@@ -394,12 +398,13 @@ This page documents most of `td` subcommands.
 
 ## td import:jar_version
 
-  td-import-java 0.5.2 via hourly jar auto-update
+  td-import-java 0.5.2 via import:jar_update command
 
 
 ## td import:jar_update
 
-  Installed td-import.jar is already at the latest version.
+  Updating td-import.jar                                                       Updating td-import.jar: 2s elapsed                                             Updating td-import.jar: 4s elapsed                                             Updating td-import.jar: 6s elapsed                                             Updating td-import.jar: 8s elapsed                                              Updating td-import.jar: 10s elapsed                                              Updating td-import.jar: 12s elapsed                                              Updating td-import.jar: 14s elapsed                                              Updating td-import.jar: 16s elapsed                                              Updating td-import.jar: 18s elapsed                                              Updating td-import.jar: 20s elapsed                                              Updating td-import.jar: 22s elapsed                                              Updating td-import.jar: 24s elapsed                                              Updating td-import.jar: 26s elapsed                                              Updating td-import.jar: 28s elapsed                                              Updating td-import.jar: 30s elapsed                                              Updating td-import.jar: 32s elapsed                                              Updating td-import.jar: 34s elapsed                                              Updating td-import.jar: 36s elapsed                                              Updating td-import.jar: 38s elapsed                                              Updating td-import.jar: 40s elapsed                                              Updating td-import.jar: 42s elapsed                                              Updating td-import.jar: 44s elapsed                                              Updating td-import.jar: 46s elapsed                                              Updating td-import.jar: 48s elapsedUpdating td-import.jar...done                    
+  Installed td-import.jar v0.5.3 in '/Users/mcaramello/.td/java'.
 
 
 ## td import:prepare
