@@ -25,10 +25,10 @@ You can issue queries using the `td query` command.
     :::term
     usage:
       $ td query -t pig <pig scripts>
-    
+
     example:
       $ td query -d example_db -t pig "OUT = FOREACH (GROUP table1 ALL) GENERATE COUNT(table1);"
-    
+
     options:
       -t, --type TYPE specify the type of query (requires specifying 'pig' in order to issue queries in Pig Latin)
       -q, --query PATH read query from a file instead of inline
@@ -91,11 +91,12 @@ But this query isn't optimized without schema. Please see [Set Custom Schema](ht
 Parameters are values that are passed in at runtime as substitutes for some variables. We provide some default variables for the scheduled query feature:
 
 `$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage:
-  
+
     :::term
     FILTER www_access BY time > $TD_SCHEDULED_TIME;
 
 ## UDFs
+
 The [DataFu](https://github.com/linkedin/datafu) package of Pig UDFs are included in our platform. Please refer to its documentation for usage instructions. (current version: 0.0.4)
 
 The [Piggybank](http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/src/main/java/org/apache/pig/piggybank/) set of UDFs are also included.
@@ -109,3 +110,21 @@ Alternatively, a `define` statement can be used to create an alias for the UDF, 
     :::term
     define IsInt org.apache.pig.piggybank.evaluation.IsInt();
     FILTER www_access BY IsInt(v#'code');
+
+## Known Issues
+
+#### SUM of Integer Fields
+
+Currently SUM aggregation of values of integer type is not properly working. The related Apache.org Pig Issue is
+[PIG-2718](https://issues.apache.org/jira/browse/PIG-2718). In order to work around this limitation users are invited
+to cast their integer fields to float and convert the result of the SUM to integer:
+
+    # from
+    B = FOREACH (GROUP A BY host) GENERATE group AS host, SUM($1) AS sum;
+
+    # to
+    B = FOREACH (GROUP A BY host) GENERATE group AS host, (int)SUM((float)$1) AS sum;
+
+
+
+
