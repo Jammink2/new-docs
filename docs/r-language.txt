@@ -2,6 +2,14 @@
 
 This article shows how to use Treasure Data with the [R language](http://www.r-project.org/) by using the [RJDBC](http://www.rforge.net/RJDBC/) package.
 
+## Tutorial Video
+
+Here's a video to show you how to connect to Treasure Data from R.
+
+<center>
+<iframe width="630" height="450" src="//www.youtube-nocookie.com/embed/qSDDVOO2e30?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+</center>
+
 ## Download
 
 You can download the Treasure Data JDBC driver from the link below:
