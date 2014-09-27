@@ -83,63 +83,23 @@ class Article
   end
 
   def _toc(content)
+    anchors = []
     toc = content.scan(/<h([23])>(.+?)<\/h\1>/m).to_a.map.with_index do |(l, hx), i|
-      [l, hx, slugify(hx.gsub(/<(.+?)>/, '')) + "_#{i}"]
+      anchor = slugify(hx.gsub(/<(.+?)>/, ''))
+      if anchors.include?(anchor)
+        anchor += "_#{i}"
+      end
+      anchors << anchor
+      [l, hx, anchor]
     end
-    puts content.gsub(/<h([23])>(.+?)<\/h\1>/m).class
     i = 0
     content_with_anchors = content.gsub(/<h([23])>(.+?)<\/h\1>/m) do |hx|
-      content = "<a name=\"#{slugify(hx.gsub(/<(.+?)>/, '')) + "_#{i}"}\"></a>#{hx}"
+      content = "<a name=\"#{anchors[i]}\"></a>#{hx}"
       i += 1
       content
     end
-    puts "toc:                  #{toc}"
-    puts "content_with_anchors: #{content_with_anchors}"
+    # puts "toc:                  #{toc}"
+    # puts "contentntent_with_anchors: #{content_with_anchors}"
     return toc, content_with_anchors
-  end
-
-  def _toc2(content)
-    index = 0
-
-    toc2 = content.scan(/<h2>(.+?)<\/h2>/m).to_a.map { |m| m[0] }
-    toc2_anchors = []
-    content_with_anchors = content.gsub(/(<h2>(.+?)<\/h2>)/m) do |h2|
-      index += 1
-      anchor = slugify(h2.gsub(/<.+?>/, '')) + "_#{index}"
-      toc2_anchors << anchor
-      "<a name=\"#{anchor}\"></a>#{h2}"
-    end
-    puts "toc2         #{toc2}"
-    puts "toc2_anchors #{toc2_anchors}"
-    # puts "content_with_anchors #{content_with_anchors}"
-
-    toc3 = content.scan(/<h3>(.+?)<\/h3>/m).to_a.map { |m| m[0] }
-    toc3_anchors = []
-    content_with_anchors = content_with_anchors.gsub(/(<h3>(.+?)<\/h3>)/m) do |h3|
-      index += 1
-      anchor = slugify(h3.gsub(/<.+?>/, '')) + "_#{index}"
-      toc3_anchors << anchor
-      "<a name=\"#{anchor}\"></a>#{h3}"
-    end
-    puts "toc3         #{toc3}"
-    puts "toc3_anchors #{toc3_anchors}"
-    # puts "content_with_anchors #{content_with_anchors}"
-
-    toc_with_levels = []
-    content_with_anchors.split(/\n/).each {|line|
-      # puts "looking at '#{line}"
-      toc2.each {|title|
-        if line =~ /<h2>#{Regexp.escape(title)}<\/h2>/
-          toc_with_levels << ["2", title.gsub(/<.+?>/, '')]
-        end
-      }
-      toc3.each {|title|
-        if line =~ /<h3>#{Regexp.escape(title)}<\/h3>/
-          toc_with_levels << ["3", title.gsub(/<.+?>/, '')]
-        end
-      }
-    }
-    # puts "toc_with_levels #{toc_with_levels}"
-    return toc_with_levels, content_with_anchors
   end
 end
