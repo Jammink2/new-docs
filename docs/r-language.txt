@@ -4,11 +4,11 @@ This article shows how to use Treasure Data with the [R language](http://www.r-p
 
 ## Download
 
-You can download the Treasure Data RJDB driver from the link below. The driver is still in beta, so any feedback is appreciated.
+You can download the Treasure Data JDBC driver from the link below:
 
 * [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc)
 
-NOTE: This driver only works with Treasure Data. It does not work in other environments such as your local Hadoop/Hive cluster.
+NOTE: This driver only works with Treasure Data. It does not work in other environments such as your local Hadoop / Hive cluster.
 
 ## Installing the RJDBC Package
 
@@ -33,3 +33,10 @@ To issue queries, please use the RJDBC package together with the Treasure Data J
                       "YOUR_PASSWORD_HERE")
     dbListTables(conn)
     dbGetQuery(conn, "SELECT COUNT(1) AS cnt FROM www_access")
+
+## Step-By-Step Tutorial
+
+If you want to get a more in-depth overview on how to setup R to interact with
+Treasure Data, consider watching our step-by-step tutorial with examples:
+
+<iframe width="778" height="516" src="//www.youtube-nocookie.com/embed/qSDDVOO2e30?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>

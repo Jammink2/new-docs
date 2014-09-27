@@ -3,13 +3,18 @@ Quickstart Guide
 
 Let's get started with Treasure Data! Treasure Data is the first cloud service for the entire data pipeline, including acquisition, storage, and analysis. We manage and support the entire infrastructure so you can focus on analyzing data, rather than managing it.
 
-Step 1: Sign Up
----------------
+## Overview & Concepts
+
+If you want to get a short technical introduction to the Treasure Data Service, please take a look at our 8 minute introduction
+video:
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/lFxJgTD5eqw?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
+## Step 1: Sign Up
 
 [Sign up](https://console.treasuredata.com/users/sign_up) for Treasure Data if you haven't yet.
 
-Step 2: Query the Sample Table
-------------------------------
+## Step 2: Query the Sample Table
 
 Let's query the sample table!
 
@@ -36,7 +41,7 @@ Let's query the sample table!
 
     <img style="margin:auto" src="/images/quickstart-query-result.png" alt="view and download your query results"/>
 
-##What's next?
+## What's next?
 
 If you haven't signed up already, [get started for free here](https://console.treasuredata.com/users/sign_up)! If you already have an account with us, log on into the Console at [console.treasuredata.com](https://console.treasuredata.com) and click on 'Help' => 'Tutorial' in the top-right corner.
 
