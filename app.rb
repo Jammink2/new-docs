@@ -120,13 +120,8 @@ get '/sitemap.xml' do
   erb :sitemap, :layout => false
 end
 
-get '/search' do
-  page = params[:page].to_i
-  search, prev_page, next_page = search_for(params[:q], page)
-  erb :search, :locals => {:search => search, :query => params[:q], :prev_page => prev_page, :next_page => next_page}
-end
-
 get '/categories/:category' do
+  @wordings = gen_wordings_map(request)
   if params[:category] == 'success-stories'
     redirect "http://www.treasuredata.com/en/learn/customer-stories.php"
   else
@@ -136,6 +131,7 @@ get '/categories/:category' do
 end
 
 get '/articles/:article' do
+  @wordings = gen_wordings_map(request)
   m = /^success-at-(.*)/.match(params[:article])
   if m
     redirect "http://www.treasuredata.com/#{m[1]}.php"
@@ -156,7 +152,6 @@ end
 
 require 'toc'
 $TOC = TOC.new("en")
-
 
 helpers do
   def render_category(category)
@@ -269,5 +264,17 @@ helpers do
   end
 
   alias_method :h, :escape_html
+
+  def gen_wordings_map(request)
+    env = (request.host == 'http://ybi-docs.idcfcloud.com/') ? :idcf : :aws
+    {
+      :aws => {
+        :about => 'http://www.treasuredata.com/about.php',
+      },
+      :idcf => {
+        :about => 'http://www.idcf.jp/company/'
+      }
+    }[env]
+  end
 end
 
