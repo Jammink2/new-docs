@@ -203,6 +203,7 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
     article 'tools', 'Overview'
   end
   category 'tableau', 'Tableau' do
+    article 'tableau', 'Tableau + Treasure Data Reference Architecture', ['Tableau', 'Treasure Data']
     article 'tableau-server', 'Tableau Server', ['Tableau', 'Tableau Server']
     article 'tableau-online', 'Tableau Online', ['Tableau', 'Tableau Online']
     article 'tableau-desktop-odbc', 'Tableau Desktop', ['Tableau', 'Tableau Desktop']

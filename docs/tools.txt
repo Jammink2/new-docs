@@ -14,7 +14,7 @@ We have partnered with many companies to meet your data analytics needs. Most of
 
 The current list of supported tools is shown below.
 
-* Tableau
+* [Tableau](tableau)
   * [Tableau Server](tableau-server)
   * [Tableau Online](tableau-online)
   * [Tableau Desktop](tableau-desktop)
