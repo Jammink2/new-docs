@@ -21,7 +21,7 @@ Then, please install ODBC Driver provided by Treasure Data. Please download `pre
 
 NOTE: This driver only works with Treasure Data's premium plan. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
-## Step2: Launch ODBC Data Source Administrator
+## Step3: Launch ODBC Data Source Administrator
 
 Next, we'll register Treasure Data's ODBC driver to your system. You need to launch ODBC Data Source Administrator for this.
 
@@ -36,7 +36,7 @@ Please execute odbcad32.exe from your command prompt.
     :::bash
     C:\Windows\SysWOW64\odbcad32.exe
 
-## Step3: Register DSN (Data Source Name)
+## Step4: Register DSN (Data Source Name)
 
 Please select `User DSN` tab, click `Add` button, select `Prestogres Unicode`, and click `Complete` button. Then you'll see the dialog below.
 
