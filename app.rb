@@ -266,7 +266,8 @@ helpers do
   alias_method :h, :escape_html
 
   def gen_wordings_map(request)
-    env = (request.host == 'http://ybi-docs.idcfcloud.com/') ? :idcf : :aws
+    puts "request.host #{request.host}"
+    env = (request.host == 'http://docs.treasuredata.com/') ? :aws : :idcf
     {
       :aws => {
         :about => 'http://www.treasuredata.com/about.php',
