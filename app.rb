@@ -267,7 +267,7 @@ helpers do
 
   def gen_wordings_map(request)
     puts "request.host #{request.host}"
-    env = (request.host == 'http://docs.treasuredata.com/') ? :aws : :idcf
+    env = (request.host =~ /docs\.treasuredata\.com/) ? :aws : :idcf
     {
       :aws => {
         :about => 'http://www.treasuredata.com/about.php',
