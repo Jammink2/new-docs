@@ -28,7 +28,7 @@ Please visit the [query editor](http://console.treasuredata.com/query_forms/new)
 NOTE: We're casting Datetime column to TIMESTAMP type from String type, for the convenience in the later stages.
 
 
-Next, please select `Tableau Server` from `Result Export` section. Then the dialog like below will pop up.
+Next, please select `Tableau Server` from `Result Export` section. Then the dialog like below will pop up. Please fill with your Tableau Server's username, password, and hostname. Then, please click `Save` button.
 
 <center><img src="/images/tableau-server-console-1.png" width="80%" /></center><br/><br/>
 

@@ -28,9 +28,11 @@ Please visit the [query editor](http://console.treasuredata.com/query_forms/new)
 NOTE: We're casting Datetime column to TIMESTAMP type from String type, for the convenience in the later stages.
 
 
-Next, please select `Tableau Server` from `Result Export` section. Then the dialog like below will pop up.
+Next, please select `Tableau Server` from `Result Export` section. Then the dialog like below will pop up. Please fill with your Tableau Server's username, password, and hostname. Then, please click `Save` button.
 
 <center><img src="/images/tableau-server-console-1.png" width="80%" /></center><br/><br/>
+
+NOTE: Currently, you <b>MUST</b> setup https (SSL). Please check <a href="http://onlinehelp.tableausoftware.com/v8.2/server/en-us/ssl_config.htm">here</a> about how to set up SSL on your Tableau Server.
 
 Finally, please fill in name of `Datasource` (TDE filename), `Site`, `Project`, and `Mode`. Please visit these URLs to get a list of projects and sites. Let's use `replace` mode for now.
 
