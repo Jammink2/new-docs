@@ -254,10 +254,9 @@ section 'tools-and-apis', 'Tools & APIs' do
   category 'jdbc', 'JDBC Driver' do
     article 'jdbc-driver', 'JDBC Driver'
   end
-  # TODO: coming soon!
-  # category 'odbc', 'ODBC Driver' do
-  #   article 'odbc-deiver', 'ODBC Driver'
-  # end
+  category 'odbc', 'ODBC Driver' do
+    article 'odbc-deiver', 'ODBC Driver'
+  end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'
     article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
