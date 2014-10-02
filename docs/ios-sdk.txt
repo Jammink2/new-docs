@@ -17,7 +17,7 @@ This article will help you start sending the data from your iOS app to Treasure 
 Add the following line to your Podfile:
 
     :::ruby
-    pod 'TreasureData-iOS-SDK', '= 0.1.2'
+    pod 'TreasureData-iOS-SDK', '= 0.1.4'
 
 Finally, please run `pod install`.
 
