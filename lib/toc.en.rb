@@ -16,6 +16,7 @@ section 'overview', 'Overview' do
     article 'faq', 'Frequently Asked Questions'
   end
   category 'releasenotes', 'Release Notes' do
+    article 'releasenote-20140930', 'Release Note 20140930'
     article 'releasenote-20140923', 'Release Note 20140923'
     article 'releasenote-20140916', 'Release Note 20140916'
     article 'releasenote-20140909', 'Release Note 20140909'

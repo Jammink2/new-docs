@@ -1,0 +1,101 @@
+# Release Note 20140930
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Columns Schema Aliasing
+
+We added a new feature that allow assigning user friendly names to columns in the table schema. This relaxes the previously strict column naming format requirement, by which column names had to be limited to lowercase alphanumeric and underscores '<tt>_</tt>' characters.
+
+Newly imported data whose field / column names don't obey to this requirement are no longer rejected (and prevented from being added to the table schema) but are allowed to be displayed in the Table's detail page (also referred to as 'Table's tail' since it contains a sample of the most recent records imported). In order for such columns to be used within a query the Table Setting page automatically creates a column name alias that is SQL friendly and is expected to be used in place of the user friendly name when referring to the column within the query. The user can also customize the 'SQL Column Alias' name manually as long as it obeys to the 'lowercase alphanumeric characters and underscores' limitation.
+
+![Console: Columns Schema Aliasing](/images/release-notes/140930-02-schema_alias.png)
+
+### APIs: Cloning a Query
+
+After rolling out Saved Queries last week, we added the ability to clone an existing query into a brand new one. This allow users to build a new query starting from the settings of an existing one.
+
+![APIs: Cloning a Query](/images/release-notes/140930-01-query_clone.png)
+
+### APIs: Manual Query Runs Executing User
+
+Saved Query runs and Scheduled Query manual runs record and display the user that actually trigged the run as opposed to the Query owner and creator.
+
+### Presto: Retrying On Query Errors
+
+The Presto worker's implementation has been improved to handle sporadic errors and retry the queries when the errors are judged temporary.
+
+### Presto: Added Support for Aliased Column Names
+
+To support the API change adding support for user friendly column names, Presto was also changed to allow referencing those columns.
+
+### Backend: Retrying With Query Result to S3
+
+We implemented a retrying mechanism for Query Result Output to AWS S3. In case of temporary failures while writing the result of a query to AWS S3, the retrying mechanism repeats the write for up to 10 minutes with exponentially increasing wait time between attempts.
+
+### Client Libraries: Release Ruby Client v0.8.64
+
+* Implemented retrying mechanism for GET requests for up to 10 minutes with exponential backoff
+* Similarly added retrying mechanism for POST requests; this is enabled through the initialization option <tt>:retry_post_requests</tt>.
+
+### Toolbelt: Released Ruby CLI v0.11.4
+
+* Added an option to enable retrying on POST request to take advantage of the Ruby Client Library feature mentioned above
+* Implemented retrying when fetching a job results. Retrying attempts will be made only when the server side HTTP error code is 500 or more or a communication exception occurred
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: <tt>/schedules</tt> Endpoints For Queries
+
+* _**[Problem]**_<br/>
+  Users whom have been referring to and documenting their Scheduled Queries using the <tt>/schedules/:id</tt> endpoints are left with dead links after the endpoint was switched to <tt>/queries/:id</tt>.<br/>
+  _**[Solution]**_<br/>
+  Although we had provisioned for the old <tt>/schedules/:id</tt> endpoint to automatically redirect to the <tt>/queries/:id</tt> endpoint this was not working as expected.<br/>
+  Resolved the routing problem on the Frontend side so that accessing a previously created schedule through the <tt>/schedules/:id</tt> endpoint redirects to the <tt>/queries/:id</tt> endpoint.<br/>
+
+### Console: Table Creation Page Doesn't Redirect to New Table Page On Save
+
+* _**[Problem]**_<br/>
+  The Table Creation view does not automatically redirect to the newly created table upon pressing save.<br/>
+  _**[Solution]**_<br/>
+  The table creation logic was not redirecting upon receipt of the successful response to the request of creating the table in the backend.<br/>
+  A new callback was added to redirect to the newly created table upon receiving the successful response from the backend.<br/>
+
+### Console: Safari / Webkit Memory Leak
+
+* _**[Problem]**_<br/>
+  The Console can lead up to 200% CPU utilization when used within the Safari 6 or 7 browsers due to a Webkit memory issue. The problem can occur even when no tab is open within Safari if the Treasure Data Console had been visited recently. <br/>
+  _**[Solution]**_<br/>
+  This was found to be caused by Safari's feature called '[Topsites](http://cdn.cultofmac.com/wp-content/uploads/2014/02/6-Top-Sites-640x455.jpg)'. This dashboard is visible by default when there is no tab open and displays a snapshot of the webpage; to maintain the snapshots current, Safari periodically refreshes the website snapshots allowing them to run briefly. In this context, the Console, which is entirely developed with the AngularJS framework, continues to update using Javascript and this can trigger the Webkit memory issue causing the CPU utilization to reach 200%.<br/>
+  Safari Topsites allow to specify an alternate snapshot view for when a site is docked within the Topsites view: providing this capability for the Console worked around this issue.<br/>
+
+### Console: New Query From 'Edit As New Query' A Job Does Not Redirect
+
+* _**[Problem]**_<br/>
+  When the user clicks the 'Edit As New Query' button from within a Job view, it's sent to the new query editor where the configuration of the original job had been copied from. The user can than make the modifications it wishes, name the query, and save it. Upon saving the query, the page does not redirect automatically to the newly created Query and does not provide any indication the query was actually successfully saved.<br/>
+  _**[Solution]**_<br/>
+  This is due to a mishandling of the new query submission when it's created from a Job and saved as a new Query.<br/>
+  Modified the logic to redirect to the newly created Query as soon as the form is successfully submitted.<br/>
+
+### Console: User's API Key Password Mishandling
+
+* _**[Problem]**_<br/>
+  If the user's password contains a URL special character (e.g. '<tt>#</tt>') the password is sent to the API server truncated. This prevents the user from being able to retrieve its API key.<br/>
+  _**[Solution]**_<br/>
+  While indeed special URL characters were not properly escaped in building the request URL, this problem is prevalently due to sending the password in a GET request rather than in the body of a POST request.<br/>
+  Modified the endpoint and Frontend form handling to use a POST request and send the password as part of the POST request's body, which avoids the problem altogether.<br/>
+
+### Console: File Uploader Hangs When Parsing Fails
+
+* _**[Problem]**_<br/>
+  If pre-parsing of the CSV / TSV file fails in the Frontend, the File Uploader never completes.<br/>
+  _**[Solution]**_<br/>
+  This was found to be due to the file encoding auto-detection logic returning nothing instead of the default 'utf-8' file format when the parsing failed.<br/>
+  The logic was corrected to return file encoding 'utf-8' if the encoding auto-detection logic failed.<br/>
+
