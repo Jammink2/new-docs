@@ -12,8 +12,8 @@ section 'overview', 'Overview' do
     article 'data-deduplication', 'Data De-duplication'
     article 'open-source', 'Open Source'
   end
-  category 'faq', 'FAQs' do
-    article 'faq', 'Frequently Asked Questions'
+  category 'videos', 'Education Videos' do
+    article 'videos', 'Education Videos'
   end
   category 'releasenotes', 'Release Notes' do
     article 'releasenote-20140930', 'Release Note 20140930'
@@ -49,6 +49,9 @@ section 'overview', 'Overview' do
     #       The "get '/articles/:article' do" route redirect to the releasenotes
     #       article that uses the :releasenotes_redirect template.
     article 'legacy-releasenotes', 'Legacy Release Notes'
+  end
+  category 'faq', 'FAQs' do
+    article 'faq', 'Frequently Asked Questions'
   end
 end
 

@@ -10,13 +10,21 @@ This article explains how to use the fluent-logger-python library.
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * Python 2.6 or higher (for local testing).
 
-## Installing td-agent
+## What is Treasure Agent?
 
-fluent-logger-python requires 'td-agent' to be installed on your application servers. td-agent is a daemon program dedicated to the streaming upload of any kind of the time-series data. td-agent is developed and maintained by Treasure Data, Inc.
+First of all, Treasure Agent (`td-agent`) needs to be installed on your application servers. Treasure Agent is an agent program sits within your application servers, focusing on uploading application logs to the cloud.
 
 <center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
 
 The [fluent-logger-python](http://github.com/fluent/fluent-logger-python) library enables Python applications to post records to their local td-agent. td-agent in turn uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+
+## How to install Treasure Agent?
+
+This video demonstrates how to install Treasure Agent in 3 minutes.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
+### Step 1: Installing Treasure Agent
 
 To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
@@ -41,7 +49,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 [Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
 
-## Modifying /etc/td-agent/td-agent.conf
+### Step 2: Modifying /etc/td-agent/td-agent.conf
 
 Next, please specify your API key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current). Note: *YOUR_API_KEY* should be your actual apikey string.
 
@@ -74,7 +82,7 @@ Please restart your agent once these lines are in place.
 
 td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
-## Using fluent-logger-python
+### Step 3: Using fluent-logger-python
 
 First, install the fluent-logger library via pip.
 
@@ -93,7 +101,7 @@ Next, initialize and post the records as follows.
       'to':   'userB'
     })
 
-## Confirm the Import
+### Step 4: Confirm the Import
 
 First, please execute the program above.
 

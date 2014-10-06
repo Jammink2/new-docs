@@ -9,13 +9,21 @@ This article explains **4 steps** to streamingly import the data from Java appli
   * Basic knowledge of Treasure Data.
   * Java 6 or higher (for local testing).
 
-## Step 1: Installing Treasure Agent
+## What is Treasure Agent?
 
 First of all, Treasure Agent (`td-agent`) needs to be installed on your application servers. Treasure Agent is an agent program sits within your application servers, focusing on uploading application logs to the cloud.
 
 <center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
 
 The [td-logger-java](http://github.com/treasure-data/td-logger-java) library enables Java applications to post records to their local Treasuge Agent. Treasure Agent in turn receives the records, buffers them, and uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+
+## How to install Treasure Agent?
+
+This video demonstrates how to install Treasure Agent in 3 minutes.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
+### Step 1: Installing Treasure Agent
 
 To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
@@ -40,7 +48,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 [Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
 
-## Step 2: Modifying /etc/td-agent/td-agent.conf
+### Step 2: Modifying /etc/td-agent/td-agent.conf
 
 Next, please specify your API key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file. 
 
@@ -75,10 +83,9 @@ Please restart your agent once these lines are in place.
 
 td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
-## Step 3: Using td-logger-java
+### Step 3: Using td-logger-java
 
 NOTE: If you need an all-in-one jar file, we provide one at <a href="http://central.maven.org/maven2/com/treasuredata/">http://central.maven.org/maven2/com/treasuredata/</a>. Be sure to download the latest version of the td-logger-{version_number}-jar-with-dependencies.jar file.
-
 
 Conversely, if you are using Maven, please add the following lines to pom.xml in your Maven project:
 
@@ -127,7 +134,7 @@ Finally, please insert the following lines into your application. Further inform
       }
     }
 
-## Step 4: Confirming Data Import
+### Step 4: Confirming Data Import
 
 First, please execute the program above.
 

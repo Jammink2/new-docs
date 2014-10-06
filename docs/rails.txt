@@ -8,13 +8,21 @@ This article explains **4 steps** to streamingly import the data from Ruby on Ra
   * Basic knowledge of Treasure Data.
   * Ruby 1.9 or higher (for local testing).
 
-## Step 1: Installing Treasure Agent
+## What is Treasure Agent?
 
 First of all, Treasure Agent (`td-agent`) needs to be installed on your application servers. Treasure Agent is an agent program sits within your application servers, focusing on uploading application logs to the cloud.
 
-<center><img src="/images/td-agent-app.png" width="100%"></center><br/>
+<center><img src="/images/td-agent-app.png" width="100%" /></center><br /><br />
 
 The [td-logger-ruby](http://github.com/treasure-data/td-logger-ruby) library enables Rails applications to post records to their local Treasure Agent. Treasure Agent in turn receives the records, buffers them, and uploads the data to the cloud every 5 minutes. Because the daemon runs on a local node, the logging latency is negligible.
+
+## How to install Treasure Agent?
+
+This video demonstrates how to install Treasure Agent in 3 minutes.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
+### Step 1: Installing Treasure Agent
 
 To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
@@ -39,7 +47,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 [Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
 
-## Step 2: Modifying /etc/td-agent/td-agent.conf
+### Step 2: Modifying /etc/td-agent/td-agent.conf
 
 Next, please specify your API key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file.
 
@@ -74,7 +82,7 @@ Please restart your agent once these lines are in place.
 
 td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
 
-## Step 3: Using td-logger-ruby
+### Step 3: Using td-logger-ruby
 
 First, add the ‘td’ gem to your Gemfile.
 
@@ -110,7 +118,7 @@ Finally, insert the appropriate logging code into your application.
                   {:uid=>123, :item_name=>'Stone of Jordan',
                    :category=>'ring', :price=>100, :count=>1})
 
-## Step 4: Confirming Data Import
+### Step 4: Confirming Data Import
 
 First, please execute the program above.
 
