@@ -146,13 +146,12 @@ It returns a UUID for the session of the request.
 
 #### Example
 
-Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessionize_by* field, and sort by the *unix_timestamp* field. The query below sessionizes based on user_id and the timestamp. You may want to use user_id or cookie_id instead of ip_address for non-anonymous logs.
+Similiar to TD_X_RANK, you need 'ORDER BY' the *sessionize_by* field. The query below sessionizes based on user_id and the timestamp. You may want to use user_id or cookie_id instead of ip_address for non-anonymous logs.
 
     :::sql
     SELECT TD_SESSIONIZE(time, 3600, ip_address) as session_id, time, ip_address, path
     FROM (
       SELECT time, ip_address, path
       from web_logs
-      distribute by ip_address
-      sort by ip_address,time
+      order by ip_address,time
     ) t
