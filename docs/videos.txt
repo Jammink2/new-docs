@@ -14,3 +14,9 @@ This video describes how to install and configure [Treasure Agent](td-agent) in 
 
 <center><iframe width="480" height="345" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/><br/>
 
+#### Querying Large Datasets in Treasure Data from R
+
+This video describes how to query agianst big data stored in Treasure Data, from [R language](r-language).
+
+<center><iframe width="480" height="345" src="//www.youtube-nocookie.com/embed/qSDDVOO2e30?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/><br/>
+
