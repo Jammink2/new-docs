@@ -97,3 +97,11 @@ So please rewrite the query like below to leverage multiple reducers.
     FROM (
       SELECT DISTINCT field FROM tbl
     ) t
+
+## Considering the Cardinality within GROUP BY
+
+There's a probability where GROUP BY becomes a little bit faster, by carefully ordering a list of fields within GROUP BY in an order of high cardinality.
+
+    :::sql
+    good: SELECT GROUP BY uid, gender
+    bad:  SELECT GROUP BY gender, uid

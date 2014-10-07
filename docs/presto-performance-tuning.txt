@@ -39,6 +39,14 @@ However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partit
     [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, TD_SCHEDULED_TIME() / 86400 * 86400))
     [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, 1356998401 / 86400 * 86400))
 
+## Considering the Cardinality within GROUP BY
+
+There's a probability where GROUP BY becomes a little bit faster, by carefully ordering a list of fields within GROUP BY in an order of high cardinality.
+
+    :::sql
+    good: SELECT GROUP BY uid, gender
+    bad:  SELECT GROUP BY gender, uid
+
 ## Use Approximate Aggregate Functions
 
 Presto has a couple of [approximate aggregation functions](http://prestodb.io/docs/current/functions/aggregate.html), which will give you significant performance improvements with some errors. For example by using `approx_distinct()` function, you can get an approximation of `COUNT(DISTINCT x)` with standard error of 2.3%. The example below calculates the approximate unique users of the previous day.
