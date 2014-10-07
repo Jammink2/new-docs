@@ -6,12 +6,6 @@ This article will explain how to continuously import data using the `td-agent` d
 
   * Basic knowledge of Treasure Data. The [Quickstart Guide](quickstart) is a good place to start.
 
-## Video
-
-This video demonstrates how to install td-agent in 3 minutes.
-
-<center><iframe width="480" height="345" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
-
 ## Logs Are Streams, Not Files
 
 Logs are usually rotated on an hourly or daily basis based on time or size. This system quickly produces many large log files that need to be batch imported for further analysis. This is an outdated approach. Logs are better treated as continuously generated *STREAMS* as opposed to files.
@@ -20,13 +14,17 @@ NOTE: "Server daemons (such as PostgreSQL or Nginx) and applications (such as a 
 
 `td-agent`, a data collection daemon, is used to import data continuously to Treasure Data. Although bulk-import is supported, we recommend importing your data continuously via `td-agent`.
 
-## About td-agent
+## What is Treasure Agent?
 
 td-agent is a data collection daemon. It collects logs from various data sources and uploads them to Treasure Data.
 
 <center><img src="/images/td-agent.png" width="90%"></center>
 
-## Install td-agent
+## How to install Treasure Agent?
+
+This video demonstrates how to install td-agent in 3 minutes.
+
+<center><iframe width="480" height="345" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
 To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
@@ -86,7 +84,7 @@ Now please restart the td-agent service.
     $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
     $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
 
-### Confirm Data Upload
+## Confirm Data Upload
 
 You can add logs in JSON format using HTTP.
 
