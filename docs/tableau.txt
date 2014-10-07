@@ -91,6 +91,7 @@ Now everything is set. Analysts can publish workbooks to the server, then the da
 
 Tableau + Treasure Data empowers data-driven companies to rapidly explore data and get insights. By combining these two solutions, people can focus on insights, not infrastructure, with an industry-leading visual analytics tool. If you have any questions, please [contact to us](http://www.treasuredata.com/contact.php). For the next steps, please follow these links to learn how to connect to Treasure Data from each Tableau products.
 
+- [Treasure Data and Tableau: A complete big data analytics solution in days](http://get.treasuredata.com/rs/treasuredata/images/DataSheet_Tableau_Treasure.pdf) (White Paper)
 - [Treasure Data: Writing Job Results into Tableau Server](result-into-tableau-server)
 - [Treasure Data: Writing Job Results into Tableau Online](result-into-tableau-online)
 - [Treasure Data: Tableau Desktop ODBC connector](http://docs.treasuredata.com/articles/tableau-desktop-odbc)
