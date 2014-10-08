@@ -4,8 +4,81 @@ Using [Tableau Desktop](http://www.tableausoftware.com/) with Treasure Data allo
 
 <center><img src="/images/tableau.png" width="80%" /></center><br />
 
-<br />
-As of now, the Tableau Desktop connector is only provided for premium plan customers. Please send us a request using the form below.
+## Prerequisites
+
+Please setup ODBC driver and Tableau before trying the following steps.
+
+- Windows 7, 8.1, or later
+- Tableau Desktop 8.2
+
+## Install ODBC Driver
+
+Please install Treasure Data [ODBC Driver](odbc-driver), and register to your machine. We'll assume you have DSN (Data Source Name) as `Treasure Data` in the following sections.
+
+## Establish ODBC Connection
+
+### Start Tableau and Select Driver
+
+Please launch Tableau, and select `Connect to Data` first.
+
+![StartTableau](/images/tableau-desktop-1.png "StartTableau") 
+
+Please select `Other Databases (ODBC)` from the left menu, and select `Treasure Data (or your own DSNNAME)` in `Connect Using` section.
+
+![OtherDatabases](/images/tableau-desktop-2.png "OtherDatabases") 
+
+Please fill in `Connection Attributes` as well like followings, and click `OK`.
+
+![EditConnection](/images/tableau-desktop-3.png "EditConnection") 
+
+- DSN: Treasure Data (Your DSN name)
+- Server: pggw.treasuredata.com
+- Port: 5439
+- Database: public
+- Username: **YOUR_EMAIL**
+- Password: **YOUR_PASSWORD**
+
+### Select table and database on TreasureData
+
+Please remain Database as `Public`, and select the database name in Treasure Data at `Schema` section. We know it's a bit confusing :(
+
+![Set database](/images/tableau-desktop-4.png "Set database") 
+
+Next, please select the table name in Treasure Data, and click `Go to Worksheet`.
+
+![Set Table](/images/tableau-desktop-5.png "Set Table") 
+
+Finally, you can directly connect to Treasure Data via Tableau.
+
+![TableauWindow](/images/tableau-desktop-6.png "TableauWindow") 
+
+## Tips and Tricks
+
+### Convert time Field as Datetime Type
+
+Treasure Data treats `time` column as unix timestamp by default, howevery it's really convenient to handle timestamp with `Datetime` type on Tableau. To make the things easy, this section describes how to create the calculated Datetime field for "time" column.
+
+![select time](/images/tableau-desktop-7.png "select time")
+
+Select `Creat Calculated Field...`
+
+![select calc field](/images/tableau-desktop-8.png "select calc field")
+
+Then, please put the name, put the following function within `Formula` section.
+
+```sql
+RAWSQL_DATETIME("from_unixtime(%1)", [time])
+```
+
+![set calc field](/images/tableau-desktop-9.png "set calc field")
+
+After that, the calculated field appiers in a list of Dimensions, with Datetime type.
+
+![Set t](/images/tableau-desktop-10.png "Set t")
+
+## Contact Us
+
+Are you interested in using Treasure Data with Tableau? Please fill in the form to consult our technical staffs.
 
 <script src="//app-ab04.marketo.com/js/forms2/js/forms2.js"></script>
 <form id="mktoForm_1051"></form>
