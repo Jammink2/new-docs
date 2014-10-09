@@ -160,3 +160,9 @@ To create a scheduled query whose output is systematically written to Redshift a
       --result 'redshift://username:password@host.redshift.amazonaws.com:5439/database/table?mode=replace' \
       "SELECT COUNT(*) FROM www_access"
 
+## Tips
+
+### When your Redshift didn't get any data even job of Result Output to Redshift was success
+
+Result Output to Redshift try to convert column type if the destination table already exists.
+If conversion failed, column becomes NULL, and all records will be rejected if the column on Redshift is NOT NULL field.
