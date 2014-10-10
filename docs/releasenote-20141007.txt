@@ -1,0 +1,77 @@
+# Release Note 20141007
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Free 14 Days Trial For All New Account Signups
+
+We implemented a free 14 days trial for every new account signup. The free trial includes:
+
+* Treasure Query Accelerator (Powered by Treasure Data's Modified)
+* High grade feature-full plan for the Hive and Pig query engines
+* Unlimited user invites
+* Receive support via chat
+* Free consultation
+
+In the process, we have also restricted signups to only business email accounts.
+
+![Console: Free 14 Days Trial Fo All New Account Signups - 1](/images/release-notes/141007-01-signup.png)
+![Console: Free 14 Days Trial Fo All New Account Signups - 2](/images/release-notes/141007-02-countdown_n_presto.png)
+![Console: Free 14 Days Trial Fo All New Account Signups - 3](/images/release-notes/141007-03-contact_sales.png)
+
+### Console: Default Engine to TQA If Available
+
+To better support customers signing up for our Premium TQA service or customers enjoying our newly added Free 14 Days Trial, we modified the Console's New Query page to default the selection to the Presto engine if the engine is available.
+
+### Backend: Hivemall v0.2 alpha 4
+
+We upgraded our Hivemall reference library we expose for our Hive engine to v0.2, which is in alpha 4 at the moment.
+
+### Backend: Retry Failed Reads to S3 During Queries
+
+When an attempt to read a file, table, or column from S3 fails with a cause that is considered transitory, the read attempt is retried.
+
+### Presto: Fine Tuned Request 'Chunking'
+
+We fine tuned the mechanism used to subdivide requests into smaller ones (chunking): as a consequence stability and memory footprint has improved.
+
+### Worker: Bulk Import Perform Job Progress
+
+We increased the logging for the Bulk Import Perform jobs to show more progress while it executes. Previously no log was displayed during the job execution thus leaving the user wondering if the job was progressing or stalling.
+
+### Worker: Import Worker Time Field Normalization
+
+Modified the Import Worker to normalize the time field if multiple time values are submitted in the same record rather than rejecting the record altogether.
+
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Table Sorting By Storage Size
+
+* _**[Problem]**_<br/>
+  Sorting the list of tables in a database by Storage Size does not produce the expected result when there are tables whose Storage size is not set.<br/>
+  _**[Solution]**_<br/>
+  This is due to the value for tables without Storage size being 'null'. Since the Storage size values of the table entries are sorted literally, 'null' values were treated as the highest storage value possible, thus making tables without Storage size float at the top of the list.<br/>
+  We modified the server response for tables whose Storage size was 'null' to show 0. This allow the tables to be sorted consistently with the empty ones.<br/>
+
+### Console: Storage Utilization Date Tooltips
+
+* _**[Problem]**_<br/>
+  The tooltip appearing when hovering over any data point in the Storage Utilization chart shows the incorrect date comparing with the X axis' indication.<br/>
+  _**[Solution]**_<br/>
+  This is due to configuring the data points' labeling incorrectly with [Highcharts](http://www.highcharts.com/).<br/>
+  Corrected the data points labeling to match the X axis date-time information.<br/>
+
+### Console: File Uploader Time String Formatting with Timezone
+
+* _**[Problem]**_<br/>
+  The File Uploader's processing of time values expressed using a format string without timezone specifier results in hours and minutes getting dropped.<br/>
+  _**[Solution]**_<br/>
+  When the timezone is not explicitly indicated in the time format string, the Browser's default timezone is assumed. Doing so causes the hours and minutes values in the time string to be dropped. This is due to the Browser's timezone being different from the server's.<br/>
+  Modified the time string parsing to honor the timezone corresponding to the Browser's as if it was provided in the time string itself.<br/>
