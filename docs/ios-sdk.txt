@@ -35,6 +35,7 @@ Next, please initialize the library in your app delegate’s `application:applic
 
     :::c
     - (void)applicationDidBecomeActive:(UIApplication *)application {
+      [TreasureData initializeApiEndpoint@"https://<%= @env[:sdk_endpoint]  %>"];
       [TreasureData initializeWithApiKey:@"YOUR_API_KEY"];
 
       // This is optional, but you can encrypt the buffered data on mobile
@@ -80,6 +81,7 @@ You can collect the first run event of your application, which can be used to tr
     :::c
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     {
+      [TreasureData initializeApiEndpoint@"https://<%= @env[:sdk_endpoint]  %>"];
       [TreasureData initializeWithApiKey:@"your_api_key"];
 
       if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {

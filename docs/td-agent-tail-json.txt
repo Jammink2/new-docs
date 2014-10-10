@@ -58,6 +58,7 @@ Note: *YOUR_API_KEY* should be your actual apikey string.
     # Treasure Data Input and Output
     <match td.*.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey YOUR_API_KEY
       auto_create_table
       buffer_type file

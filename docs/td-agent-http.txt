@@ -20,6 +20,7 @@ Please add the following lines to your */etc/td-agent/td-agent.conf* file.
     # Treasure Data output
     <match td.*.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey ...
       auto_create_table
       buffer_type file

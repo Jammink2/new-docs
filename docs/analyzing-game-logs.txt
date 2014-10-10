@@ -65,6 +65,7 @@ You need to specify your authentication key in `/etc/td-agent/td-agent.conf`. Yo
     # Treasure Data Input and Output
     <match td.*.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey YOUR_API_KEY
       auto_create_table
       buffer_type file

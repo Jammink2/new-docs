@@ -43,6 +43,7 @@ Here's an example configuration.
     
     <match td.*.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey ...
       auto_create_table
       buffer_type file

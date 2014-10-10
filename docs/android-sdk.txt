@@ -45,6 +45,8 @@ Create the `TreasureData` object with your API key. The recommended place to do 
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TreasureData.initializeApiEndpoint("https://<%= @env[:sdk_endpoint] %>");
         td = new TreasureData(this, "YOUR_API_KEY");
         ...
 
@@ -132,6 +134,7 @@ Then, please create `InstallationReceiver` class to receive installation events 
       public void onReceive(Context context, Intent intent) {
         try {
           TreasureData.enableLogging();
+          TreasureData.initializeApiEndpoint("https://<%= @env[:sdk_endpoint] %>");
           final TreasureData td = new TreasureData(context, "your_default_api_key");
           HashMap<String, Object> referrer = new HashMap<String, Object>();
           referrer.put("type", "install_referrer");

@@ -1,7 +1,8 @@
-  Encoding.default_external = Encoding.default_internal = 'utf-8'
+Encoding.default_external = Encoding.default_internal = 'utf-8'
 
 require 'rdiscount'
 require 'sanitize'
+require 'erb'
 
 class Article
   def text_only
@@ -9,22 +10,23 @@ class Article
     self
   end
 
-  def self.load(topic, source)
-    topic = new(topic, source)
+  def self.load(topic, source, env)
+    topic = new(topic, source, env)
     topic.parse
-    return topic
+    topic
   end
 
-  attr_reader :topic, :title, :desc, :content, :toc, :intro, :body
+  attr_reader :topic, :title, :desc, :content, :toc, :env, :intro, :body
 
-  def initialize(name, source)
+  def initialize(name, source, env)
     @topic = name
     @source = source
+    @env = env
   end
 
   def parse
     @topic = topic
-    @content = markdown(source)
+    @content = markdown(ERB.new(source).result(binding))
     @title, @content = _title(@content)
     @desc = _desc(@content)
     @toc, @content = _toc(@content)

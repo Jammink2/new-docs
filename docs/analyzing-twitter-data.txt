@@ -69,6 +69,7 @@ Here is our td-agent configuration file.
     
     <match twitterstream.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey YOUR_TD_API_KEY_HERE
       auto_create_table
       buffer_type file

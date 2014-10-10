@@ -25,6 +25,7 @@ You need to create one `Treasure` client object per database, and initialize pag
     <script type="text/javascript">
       // Configure an instance for your database
       var td = new Treasure({
+        host: '<%= @env[:sdk_endpoint]  %>',
         writeKey: 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
         database: 'DATABASE_NAME'
       });

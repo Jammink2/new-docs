@@ -121,7 +121,7 @@ get '/sitemap.xml' do
 end
 
 get '/categories/:category' do
-  @wordings = gen_wordings_map(request)
+  @env = get_environment(request)
   if params[:category] == 'success-stories'
     redirect "http://www.treasuredata.com/en/learn/customer-stories.php"
   else
@@ -131,17 +131,17 @@ get '/categories/:category' do
 end
 
 get '/articles/:article' do
-  @wordings = gen_wordings_map(request)
+  @env = get_environment(request)
   m = /^success-at-(.*)/.match(params[:article])
   if m
     redirect "http://www.treasuredata.com/#{m[1]}.php"
   else
     m = /^legacy-releasenotes$/.match(params[:article])
     if m
-      render_template params[:article], false, :releasenotes_redirect
+      render_template params[:article], :releasenotes_redirect, @env
     else
       cache_long
-      render_template params[:article], params[:congrats], :article
+      render_template params[:article], :article, @env
     end
   end
 end
@@ -179,20 +179,19 @@ helpers do
     status 404
   end
 
-  def render_template(article, congrats, template)
+  def render_template(article, template, env)
     @filepath = article_file(article)
     unless $IO_CACHE.has_key? @filepath
       $IO_CACHE[@filepath] = File.read(@filepath)
     end
-    @article = Article.load(article, $IO_CACHE[@filepath])
 
+    @article = Article.load(article, $IO_CACHE[@filepath], env)
     @title   = @article.title
     @desc    = @article.desc
     @content = @article.content
     @intro   = @article.intro
     @toc     = @article.toc
     @body    = @article.body
-    @congrats = congrats ? true : false
 
     erb template
   rescue Errno::ENOENT
@@ -265,14 +264,24 @@ helpers do
 
   alias_method :h, :escape_html
 
-  def gen_wordings_map(request)
+  def get_environment(request)
     env = (request.host =~ /ybi-docs\.idcfcloud\.com/) ? :idcf : :aws
     {
       :aws => {
+        :name => 'Treasure Data',
+        :region => :aws,
         :about => 'http://www.treasuredata.com/about.php',
+        :logo => '/images/treasure-logo-white.png',
+        :api_endpoint => 'api.treasuredata.com',
+        :sdk_endpoint => 'in.treasuredata.com',
       },
       :idcf => {
-        :about => 'http://www.idcf.jp/company/'
+        :name => 'Yahoo! Big Data Insight',
+        :region => :idcf,
+        :about => 'http://www.idcf.jp/company/',
+        :logo => '/images/ybi-logo.png',
+        :api_endpoint => 'ybi.jp-east.idcfcloud.com',
+        :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com'
       }
     }[env]
   end

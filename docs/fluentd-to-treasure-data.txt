@@ -38,6 +38,7 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
     # Treasure Data output
     <match td.*.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey ...
       auto_create_table
       buffer_type file

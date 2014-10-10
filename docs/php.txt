@@ -65,6 +65,7 @@ Next, please specify your API key by setting the `apikey` option. You can view y
     # Treasure Data Output
     <match td.*.*>
       type tdlog
+      endpoint <%= @env[:api_endpoint] %>
       apikey YOUR_API_KEY
       auto_create_table
       buffer_type file

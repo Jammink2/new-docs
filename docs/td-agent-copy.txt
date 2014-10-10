@@ -21,6 +21,7 @@ The configuration below will store logs in your local disk (*/mnt/archive/logs*)
       </store>
       <store>
         type tdlog
+        endpoint <%= @env[:api_endpoint] %>
         apikey YOUR_API_KEY_HERE
         auto_create_table
         buffer_type file
@@ -46,6 +47,7 @@ The configuration below will store logs in your local MongoDB ReplicaSet and in 
       </store>
       <store>
         type tdlog
+        endpoint <%= @env[:api_endpoint] %>
         apikey YOUR_API_KEY_HERE
         auto_create_table
         buffer_type file
@@ -78,6 +80,7 @@ The configuration below will store logs in both your Amazon S3 bucket and in Tre
       </store>
       <store>
         type tdlog
+        endpoint <%= @env[:api_endpoint] %>
         apikey YOUR_API_KEY_HERE
         auto_create_table
         buffer_type file

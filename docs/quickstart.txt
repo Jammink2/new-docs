@@ -1,5 +1,4 @@
-Quickstart Guide
-================
+# Quickstart Guide
 
 Let's get started with Treasure Data! Treasure Data is the first cloud service for the entire data pipeline, including acquisition, storage, and analysis. We manage and support the entire infrastructure so you can focus on analyzing data, rather than managing it.
 
