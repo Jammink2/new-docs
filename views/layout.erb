@@ -9,8 +9,8 @@
   <meta name="keywords" content="<%= find_keywords(params[:article], params[:category]).join(',') %>">
   <meta name="description" content="<%= @desc %>">
   <link rel="canonical" href="http://docs.treasuredata.com<%= request.fullpath %>" />
-  <link href="/favicon.ico" rel="icon" type="image/x-icon">
-  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link href="<%= @env[:favicon] %>" rel="icon" type="image/x-icon">
+  <link href="<%= @env[:favicon] %>" rel="shortcut icon" type="image/x-icon">
   <%= css :application, :media => 'screen' %>
   <%= js  :app %>
 
@@ -51,27 +51,27 @@
     <div class="firefox-please-dont-remove-me">
     <ul id="td-nav">
       <li style="width:90px">
-        <a href="http://www.treasuredata.com/product.php">Product</a>
+        <a href="<%= @env[:url_product] %>">Product</a>
       </li>
       <li style="width:100px">
-        <a href="http://www.treasuredata.com/developers.php">Developers</a>
+        <a href="<%= @env[:url_developers] %>">Developers</a>
       </li>
       <li style="width:90px">
-        <a href="http://www.treasuredata.com/solutions.php">Solutions</a>
+        <a href="<%= @env[:url_solutions] %>">Solutions</a>
       </li>
       <li style="width:100px">
-        <a href="http://www.treasuredata.com/resources.php">Resources</a>
+        <a href="<%= @env[:url_resources] %>">Resources</a>
       </li>
       <li style="width:90px">
-        <a href="<%= @env[:about] %>">About</a>
+        <a href="<%= @env[:url_about] %>">About</a>
       </li>
       <li style="width:90px">
-        <a href="https://console.treasuredata.com/users/sign_in">Log In</a>
+        <a href="<%= @env[:url_login] %>">Log In</a>
       </li>
     </ul>
     <ul style="float:right; margin-right:58px; margin-top:13px">
       <li>
-        <a style="color:#FFF" class="td-signup" href="https://console.treasuredata.com/users/sign_up">
+        <a style="color:#FFF" class="td-signup" href="<%= @env[:url_signup] %>">
           Sign Up!
         </a>
       </li>
