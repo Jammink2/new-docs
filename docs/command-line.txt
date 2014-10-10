@@ -14,9 +14,7 @@ The page also contains important information about [Updating](installing-the-cli
 Once you have installed the toolbelt, you will have access to the `td` command from your command line. Authorize your account with the `td account` command. Please use the user name and password you used when signing up when prompted.
 
     :::term
-    <% @env[:region] = 
-    $ td account -f
-    Enter your Treasure Data credentials.
+    $ td -e https://<%= @env[:api_endpoint] %> account -f
     Email: user@domain.com
     Password (typing will be hidden):
     Authenticated successfully.
