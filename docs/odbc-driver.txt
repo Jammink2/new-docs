@@ -6,14 +6,19 @@ This article will explain how to use Treasure Data's [ODBC](http://en.wikipedia.
 
 * Windows 7 or 8.1 (We don't support other versions)
 
-## Step1: Install Required Dependency Packages
+## Step1: Install 2010 Redistributable Package (x86)
 
-First, please install the following two packages provided by Microsoft. Both packages need to be installed.
+First, please install the following package provided by Microsoft.
 
 - [Microsoft Visual C++ 2010 Redistributable Package (x86)](http://www.microsoft.com/en-us/download/details.aspx?id=5555)
+
+## Step2: Install Microsoft Visual C++ 2013 Redistributable Package
+
+Please install the followig package as well.
+
 - [Microsoft Visual C++ 2013 Redistributable Package](http://www.microsoft.com/en-us/download/details.aspx?id=40784) ("Download" link will ask you to choose a file out of 3 files. What you need is **vcredist_x86.exe**)
 
-## Step2: Install Treasure Data ODBC Driver
+## Step3: Install Treasure Data ODBC Driver
 
 Then, please install ODBC Driver provided by Treasure Data. Please download `prestogres-odbc-*.gzip`, and install the driver.
 
@@ -21,7 +26,7 @@ Then, please install ODBC Driver provided by Treasure Data. Please download `pre
 
 NOTE: This driver only works with Treasure Data's premium plan. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
-## Step3: Launch ODBC Data Source Administrator
+## Step4: Launch ODBC Data Source Administrator
 
 Next, we'll register Treasure Data's ODBC driver to your system. You need to launch ODBC Data Source Administrator for this.
 
@@ -36,7 +41,7 @@ Please execute odbcad32.exe from your command prompt.
     :::bash
     C:\Windows\SysWOW64\odbcad32.exe
 
-## Step4: Register DSN (Data Source Name)
+## Step5: Register DSN (Data Source Name)
 
 Please select `User DSN` tab, click `Add` button, select `Prestogres Unicode`, and click `Complete` button. Then you'll see the dialog below.
 
