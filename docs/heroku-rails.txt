@@ -11,8 +11,8 @@
 The Treasure Data addon can be attached to a Heroku application via the CLI:
 
     :::term
-    $ heroku addons:add treasure-data:nano
-    Adding treasure-data:nano on <your_app_name>... done, v3 (free)
+    $ heroku addons:add treasure-data:free
+    Addint treasure-data:free to <your_app_name>... done (free)
 
 ## Treasure Data Toolbelt setup
 
