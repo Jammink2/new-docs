@@ -181,6 +181,7 @@ helpers do
 
   def render_template(article, template, env)
     @filepath = article_file(article)
+    p "article=#{article}, filepath=#{@filepath}"
     unless $IO_CACHE.has_key? @filepath
       $IO_CACHE[@filepath] = File.read(@filepath)
     end
