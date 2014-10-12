@@ -195,6 +195,7 @@ helpers do
 
     erb template
   rescue Errno::ENOENT
+    p $!
     status 404
   end
 
