@@ -181,7 +181,6 @@ helpers do
 
   def render_template(article, template, env)
     @filepath = article_file(article)
-    p "article=#{article}, filepath=#{@filepath}"
     unless $IO_CACHE.has_key? @filepath
       $IO_CACHE[@filepath] = File.read(@filepath)
     end
@@ -197,7 +196,6 @@ helpers do
     erb template
   rescue Errno::ENOENT
     p $!
-    puts $!.backtrace
     status 404
   end
 

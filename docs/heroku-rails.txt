@@ -267,6 +267,6 @@ In order to use Treasure Data on a development environment, please modify `confi
 
     :::text
     development:
-      apikey: "<%= `heroku td apikey:show`.strip %>"
+      apikey: "<%%= `heroku td apikey:show`.strip %>"
       database: rails_development
       debug_mode: true
