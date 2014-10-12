@@ -197,6 +197,7 @@ helpers do
     erb template
   rescue Errno::ENOENT
     p $!
+    puts $!.backtrace
     status 404
   end
 
