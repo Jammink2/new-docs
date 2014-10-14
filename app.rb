@@ -286,6 +286,7 @@ helpers do
         :url_signup => 'https://console.treasuredata.com/users/sign_up',
         :api_endpoint => 'api.treasuredata.com',
         :sdk_endpoint => 'in.treasuredata.com',
+        :pggw_endpoint => 'pggw.treasuredata.com'
       },
       :idcf => {
         :name => 'Yahoo! Big Data Insight',
@@ -304,7 +305,8 @@ helpers do
         :url_login => 'https://console-ybi.idcfcloud.com/users/sign_in?cid=ybidoc',
         :url_signup => 'https://console-ybi.idcfcloud.com/users/sign_up?cid=ybidoc',
         :api_endpoint => 'ybi.jp-east.idcfcloud.com',
-        :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com'
+        :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com',
+        :pggw_endpoint => '210.140.157.101'
       }
     }[env]
   end

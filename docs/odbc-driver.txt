@@ -53,7 +53,7 @@ Please fill in the information like below. After that, please click `Test` to se
 - Description: Anything
 - Database: Name of Default Database at Treasure Data
 - SSL Mode: require
-- Server: pggw.treasuredata.com
+- Server: <%= @env[:pggw_endpoint] %>
 - Port: 5439
 - User Name: Email address of Treasure Data Account
 - Password: Password

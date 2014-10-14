@@ -32,7 +32,7 @@ Please fill in `Connection Attributes` as well like followings, and click `OK`.
 ![EditConnection](/images/tableau-desktop-3.png "EditConnection") 
 
 - DSN: Treasure Data (Your DSN name)
-- Server: pggw.treasuredata.com
+- Server: <%= @env[:pggw_endpoint] %>
 - Port: 5439
 - Database: public
 - Username: **YOUR_EMAIL**

@@ -33,7 +33,7 @@ You'll see the screen like this. Please fill in the following information to the
 <td width="52%">
 <ul>
 <li> Database Alias: Your data source name
-<li> Hostname: pggw.treasuredata.com
+<li> Hostname: <%= @env[:pggw_endpoint] %>
 <li> Port: 5439
 <li> Database: YOUR_DATABASE_NAME
 <li> Schema: YOUR_DATABASE_NAME

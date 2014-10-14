@@ -8,7 +8,7 @@ NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please 
 
 Please use the following information to connect Presto PostgreSQL gateway.
 
-- Host: **pggw.treasuredata.com**
+- Host: **<%= @env[:pggw_endpoint] %>**
 - Port: **5439**
 - Protocol Version: **2**
 - SSL: **Enabled**
@@ -28,7 +28,7 @@ Also there're two ways to authenticate your self: by email + password, or apikey
 Here's an example command to connect with `psql` command.
 
     :::term
-    $ psql -h pggw.treasuredata.com -p 5439 -U "YOUR_EMAIL_IS_HERE" -W -d testdb
+    $ psql -h <%= @env[:pggw_endpoint] %> -p 5439 -U "YOUR_EMAIL_IS_HERE" -W -d testdb
     Password for user XXX: YOUR_PASSWORD_IS_HERE
 
     testdb=# \t
@@ -48,7 +48,7 @@ Here's an example Ruby program to connect with Presto PostgreSQL gateway.
     q = ARGV[0]
     puts Benchmark.measure {
       conn = PGconn.connect(
-        :host=>"pggw.treasuredata.com",
+        :host=>"<%= @env[:pggw_endpoint] %>",
         :port=>5439,
         :dbname=>"testdb",
         :user=>"YOUR_EMAIL_IS_HERE",
