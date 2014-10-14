@@ -2,6 +2,12 @@
 
 This article explains the different options for importing data into Treasure Data and which choice is approprite for your use case.
 
+## Video
+
+This video introduces various ways to import data into Treasure Data Service, to help you decide the best data collection methods for your data sets.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/vCBplWs19Q4?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
 ## Three Types of Data Import
 
 Here's a guideline to decide which import mechanism to use.
