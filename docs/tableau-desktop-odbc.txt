@@ -9,11 +9,11 @@ Using [Tableau Desktop](http://www.tableausoftware.com/) with Treasure Data allo
 Please setup ODBC driver and Tableau before trying the following steps.
 
 - Windows 7, 8.1, or later
-- Tableau Desktop 8.2
+- Tableau Desktop 8.2 (32-bit application)
 
 ## Install ODBC Driver
 
-Please install Treasure Data [ODBC Driver](odbc-driver), and register to your machine. We'll assume you have DSN (Data Source Name) as `Treasure Data` in the following sections.
+Please install Treasure Data [ODBC Driver](odbc-driver-32bit), and register to your machine. We'll assume you have DSN (Data Source Name) as `Treasure Data` in the following sections.
 
 ## Establish ODBC Connection
 

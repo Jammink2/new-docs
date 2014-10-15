@@ -260,7 +260,7 @@ section 'tools-and-apis', 'Tools & APIs' do
     article 'jdbc-driver', 'JDBC Driver'
   end
   category 'odbc', 'ODBC Driver' do
-    article 'odbc-driver', 'ODBC Driver'
+    article 'odbc-driver-32bit', 'ODBC Driver for 32bit Application)'
   end
   category 'api', 'REST API' do
     article 'rest-api', 'REST API Specification'

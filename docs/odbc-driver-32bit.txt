@@ -1,6 +1,6 @@
-# Treasure Data ODBC Driver
+# Treasure Data ODBC Driver for 32-bit Applications
 
-This article will explain how to use Treasure Data's [ODBC](http://en.wikipedia.org/wiki/Open_Database_Connectivity) (Open Database Connectivity) driver. This driver enables you to use Treasure Data with a standard ODBC interface.
+This article will explain how to use Treasure Data's [ODBC](http://en.wikipedia.org/wiki/Open_Database_Connectivity) (Open Database Connectivity) driver for 32-bit applications. This driver enables you to use Treasure Data with a standard ODBC interface.
 
 ## Prerequisites
 
