@@ -6,8 +6,6 @@ Using [Tableau Desktop](http://www.tableausoftware.com/) with Treasure Data allo
 
 ## Prerequisites
 
-Please setup ODBC driver and Tableau before trying the following steps.
-
 - Windows 7, 8.1, or later
 - Tableau Desktop 8.2 (32-bit application)
 

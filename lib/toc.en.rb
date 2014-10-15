@@ -216,6 +216,9 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights', ['Metric Insights']
   end
+  category 'qlikview', 'QlikView' do
+    article 'qlikview', 'QlikView', ['QlikView']
+  end
   category 'birst', 'Birst' do
     article 'birst', 'Birst with Treasure Data', ['Birst']
   end

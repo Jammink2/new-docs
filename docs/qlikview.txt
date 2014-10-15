@@ -1,0 +1,46 @@
+# QlikView with Treasure Data
+
+Using QlikView with Treasure Data allows users to interactively explore huge amounts of data, and also share the knowledge across multiple people.
+
+## Prerequisites
+
+- Windows 7, 8.1, or later
+- QlikView v11
+
+## Install ODBC Driver
+
+Please install Treasure Data [ODBC Driver](odbc-driver-32bit), and register to your machine. We'll assume you have DSN (Data Source Name) as `Treasure Data` in the following sections.
+
+## Establish ODBC Connection
+
+Please launch QlikView, goto `File` and select `Edit Script`.
+
+<center><img src="/images/qlikview-step1.png"></center><br/><br/>
+
+Select `Data` tab, and select `ODBC` and click `Connect`.
+
+<center><img src="/images/qlikview-step2.png" width="80%"></center><br/><br/>
+
+First, please fill in `User ID` and `Password`, then please check `Show User DNSs`, and select appropriate `Data Source` you have setted up. Please click `OK`, and make sure it shows `Connection Test Succeeded`.
+
+- User ID: YOUR_EMAIL_ADDRESS
+- Password: YOUR_PASSWORD
+
+<center><img src="/images/qlikview-step3.png"></center><br/><br/>
+
+<center><img src="/images/qlikview-step4.png"></center><br/><br/>
+
+Please go to the previous screen, and check if ODBC connection string exists in the script. Also please check `Force 32 Bit` checkbox, and lick `Select`.
+
+<center><img src="/images/qlikview-step5.png" width="100%"></center><br/><br/>
+
+Please select `Database` and `Owner`, and choose the name of database on Treasure Data. Please make sure to select the same names for both Database and Owner. Then, please select the name of table you want to load. Finally, please select `Preceding Load` and click `Add`.
+
+<center><img src="/images/qlikview-step6.png" width="100%"></center><br/><br/>
+
+Please go to the previous screen, and edit after `FROM` clause. By default QlikView populates `Database`.`Owner`.`Table`, but please change to `Database`.`Table`.
+
+<center><img src="/images/qlikview-step7.png" width="100%"></center><br/><br/>
+<center><img src="/images/qlikview-step8.png" width="100%"></center><br/><br/>
+
+Finally, please click `Reload` icon. Then the data will get populated.
