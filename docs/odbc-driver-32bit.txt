@@ -28,7 +28,7 @@ NOTE: This driver only works with Treasure Data's premium plan. It does not run 
 
 ## Step4: Launch ODBC Data Source Administrator
 
-Next, we'll register Treasure Data's ODBC driver to your system. You need to launch ODBC Data Source Administrator for this.
+Next, we'll register Treasure Data's ODBC driver to your system. You need to launch ODBC Data Source Administrator for this. Please check [here](http://windows.microsoft.com/en-us/windows7/find-out-32-or-64-bit) to know if you're running 32bit OS or 64bit OS.
 
 #### For 32bit Windows Users
 
