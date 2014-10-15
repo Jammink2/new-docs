@@ -7,6 +7,12 @@ This article will help you start sending the data from website to Treasure Data,
   * Basic knowledge of JavaScript / HTML.
   * Basic knowledge of Treasure Data.
 
+## How to install JavaScript SDK?
+
+This video demonstrates how to install JavaScript SDK in 3 minutes.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/0bbxUzPKH3E?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
 ### Step1: Install the Library
 
 Install the td-js-sdk on your page by copying-pasting the JavaScript snippet below into your page's `<head>` tag:
