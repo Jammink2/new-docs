@@ -32,14 +32,20 @@ Next, please select `Tableau Server` from `Result Export` section. Then the dial
 
 <center><img src="/images/tableau-server-console-1.png" width="80%" /></center><br/><br/>
 
-Finally, please fill in name of `Datasource` (TDE filename), `Site` (use EMPTY string for Tableau Online), `Project`, and `Mode`. Please visit these URLs to get a list of projects and sites. Let's use `replace` mode for now.
+- Username: Your Tableau Online Username
+- Password: Your Tableau Online Password
+- Host: online.tableausoftware.com
 
-* Site: `EMPTY String` for Tableau Online
-* List of Projects: `https://online.tableausoftware.com/t/<YOUR_SITE_NAME>/projects`
-
-After filling in all the fields, please `Submit` the query. The system will execute the query, create the TDE (Tableau Data Extract) file, and finally upload TDE to Tableau Online.
+Finally, please fill in name of `Datasource` (TDE filename), `Site` (use EMPTY string for Tableau Online), `Project`, and `Mode`.
 
 <center><img src="/images/tableau-online-console-2.png" width="40%" /></center><br/><br/>
+
+* Datasource: The name of TDE file on Tableau Online
+* Site: `EMPTY String` for Tableau Online
+* Project: Please visit the URL `https://online.tableausoftware.com/t/<YOUR_SITE_NAME>/projects` to get a list of projects
+* Mode: `replace` to replace TDE each time, `append` to append to existing TDE
+
+After filling in all the fields, please `Submit` the query. The system will execute the query, create the TDE (Tableau Data Extract) file, and finally upload TDE to Tableau Online.
 
 Please visit your Tableau Online, and click `Data Sources` section at the top left bar. This will show the list of data sources, and your TDE file should exist there.
 

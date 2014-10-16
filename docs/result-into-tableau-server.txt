@@ -32,16 +32,22 @@ Next, please select `Tableau Server` from `Result Export` section. Then the dial
 
 <center><img src="/images/tableau-server-console-1.png" width="80%" /></center><br/><br/>
 
+- Username: Your Tableau Server Username
+- Password: Your Tableau Server Password
+- Host: Your Tableau Server Hostname
+
 NOTE: Currently, you <b>MUST</b> setup https (SSL). Please check <a href="http://onlinehelp.tableausoftware.com/v8.2/server/en-us/ssl_config.htm">here</a> about how to set up SSL on your Tableau Server.
 
 Finally, please fill in name of `Datasource` (TDE filename), `Site`, `Project`, and `Mode`. Please visit these URLs to get a list of projects and sites. Let's use `replace` mode for now.
 
-* List of Sites: `https://<TABLEAU_SERVER_URL>/sites`
-* List of Projects: `https://<TABLEAU_SERVER_URL>/t/<YOUR_SITE_NAME>/projects`
+<center><img src="/images/tableau-server-console-2.png" width="40%" /></center><br/><br/>
+
+* Datasource: The name of TDE file on Tableau Online
+* Site: Please visit the URL `https://<TABLEAU_SERVER_URL>/sites` to get a list of Sites
+* Project: Please visit the URL `https://<TABLEAU_SERVER_URL>/t/<YOUR_SITE_NAME>/projects` to get a list of Projects
+* Mode: `replace` to replace TDE each time, `append` to append to existing TDE
 
 After filling in all the fields, please `Submit` the query. The system will execute the query, create the TDE (Tableau Data Extract) file, and finally upload TDE to Tableau Server.
-
-<center><img src="/images/tableau-server-console-2.png" width="40%" /></center><br/><br/>
 
 Please visit your Tableau Server, and click `Data Sources` section at the top left bar. This will show the list of data sources, and your TDE file should exist there.
 
