@@ -1,0 +1,44 @@
+# Release Note 20141014
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Table Schema Editor
+
+Optimized the implementation of the schema editor to have scalable performance when the number of columns in the schema grows beyond 100 and schema aliases are edited.
+
+Also improved the layout of the table schema editor and resized the column name boxes to provide more room for their names.
+
+![Console: Table Schema Editor](/images/release-notes/141014-01-table_schema.png)
+
+
+### Bulk Import: Released Java Bulk Import CLI v0.5.4
+
+* Fixed a problem with the <tt>--time-value</tt> option not force-overwriting the time field value in each record, if present
+* Fixed the elapsed time computation during the upload step
+* Improved the error message when the Bulk Import encounters a destination table that does not exist
+
+### Client Libraries: Released Java Client Library v0.5.3
+
+Improved the error message when the Bulk Import encounters a destination table that does not exist.
+
+### JDBC: Released JDBC Driver v0.2.15
+
+Further improved the <tt>Connection#getMetaData#getTables</tt> method (following up the changes made in v0.2.12 in [Release 140902](releasenote-20140902#client-libraries-released-jdbc-driver-v0212)) to return the appropriate value based on the filtering parameters.
+
+
+<br/>
+
+
+## Bug Fixes
+
+This is the only important Bug Fix made in this release:
+
+### APIs: Access To sample_datasets Shared Database
+
+* _**[Problem]**_<br/>
+  Attempting to list the tables in the '<tt>sample_datasets</tt>' shared database fails using the td CLI.<br/>
+  _**[Solution]**_<br/>
+  This is due to the REST API listing the tables accessible to each account based solely on the account number rather that the accessibility property.<br/>
+  We modified the logic to use the accessibility property so that also the shared databases (currently only <tt>sample_datasets</tt> is) are included in the list of accessible databases, and their tables can be listed.<br/>
