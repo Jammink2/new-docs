@@ -40,6 +40,7 @@ intro
 
 out_file.write(intro)
 
+`td import:jar_update`
 list_all_commands.each { |cmd|
   cmd_detail = format_cmd_detail(`td help #{cmd}`)
 
