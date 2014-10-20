@@ -15,18 +15,18 @@ NOTE: This driver only works with Treasure Data. It does not run on other enviro
 Use the following JDBC URL format with your Java application or JDBC-compliant SQL/BI tool.
 
     :::text
-    jdbc:td://<%= @env[:pggw_endpoint] %>/<db_name>;useSSL=true
+    jdbc:td://<%= @env[:api_endpoint] %>/<db_name>;useSSL=true
 
 For example, to access a database named "sample_db" in your account, your JDBC URL would be:
 
     :::text
-    jdbc:td://<%= @env[:pggw_endpoint] %>/sample_db;useSSL=true
+    jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true
 
 You can choose the query engine ([Hive](hive) or [Presto](presto)) by the parameter.
 
     :::text
-    jdbc:td://<%= @env[:pggw_endpoint] %>/sample_db;useSSL=true;type=hive
-    jdbc:td://<%= @env[:pggw_endpoint] %>/sample_db;useSSL=true;type=presto
+    jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true;type=hive
+    jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true;type=presto
 
 If you are trying to connect from behind a proxy, you can specify the proxy settings using the following properties:
 
@@ -38,7 +38,7 @@ If you are trying to connect from behind a proxy, you can specify the proxy sett
 For example:
 
     :::text
-    jdbc:td://<%= @env[:pggw_endpoint] %>/testdb;httpproxyhost=myproxy.com;httpproxyport=myport;httpproxyuser=myusername;httpproxypassword=mypassword
+    jdbc:td://<%= @env[:api_endpoint] %>/testdb;httpproxyhost=myproxy.com;httpproxyport=myport;httpproxyuser=myusername;httpproxypassword=mypassword
 
 ## Query Execution Internals
 
@@ -83,7 +83,7 @@ Here's a sample Java program that executes a SELECT statement. This program coun
         }
 
         Connection conn = DriverManager.getConnection(
-          "jdbc:td://<%= @env[:pggw_endpoint] %>/testdb;useSSL=true",
+          "jdbc:td://<%= @env[:api_endpoint] %>/testdb;useSSL=true",
           "YOUR_MAIL_ADDRESS_HERE",
           "YOUR_PASSWORD_HERE");
         Statement stmt = conn.createStatement();
