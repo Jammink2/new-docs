@@ -306,7 +306,7 @@ helpers do
         :url_signup => 'https://console-ybi.idcfcloud.com/users/sign_up?cid=ybidoc',
         :api_endpoint => 'ybi.jp-east.idcfcloud.com',
         :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com',
-        :pggw_endpoint => '210.140.157.101'
+        :pggw_endpoint => 'pggw-ybi.jp-east.idcfcloud.com'
       }
     }[env]
   end
