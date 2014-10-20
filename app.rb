@@ -284,6 +284,8 @@ helpers do
         :url_contact => 'http://www.treasuredata.com/contact.php',
         :url_login => 'https://console.treasuredata.com/users/sign_in',
         :url_signup => 'https://console.treasuredata.com/users/sign_up',
+        :url_users => 'https://console.treasuredata.com/users',
+        :url_profile => 'https://console.treasuredata.com/users/current',
         :api_endpoint => 'api.treasuredata.com',
         :sdk_endpoint => 'in.treasuredata.com',
         :pggw_endpoint => 'pggw.treasuredata.com'
@@ -304,6 +306,8 @@ helpers do
         :url_contact => 'https://www.idcf.jp/inquiry/?cid=ybidoc01',
         :url_login => 'https://console-ybi.idcfcloud.com/users/sign_in?cid=ybidoc',
         :url_signup => 'https://console-ybi.idcfcloud.com/users/sign_up?cid=ybidoc',
+        :url_users => 'https://console-ybi.idcfcloud.com/users',
+        :url_profile => 'https://console-ybi.idcfcloud.com/users/current',
         :api_endpoint => 'ybi.jp-east.idcfcloud.com',
         :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com',
         :pggw_endpoint => 'pggw-ybi.jp-east.idcfcloud.com'

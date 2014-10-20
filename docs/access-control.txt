@@ -1,6 +1,6 @@
 # Access Control
 
-The [Team page](https://console.treasuredata.com/users) displays the users associated with an account. The [Team page](https://console.treasuredata.com/users) is **visible only the Account Owners** and any of the Administrators**. Three other roles are designed below administrator. See the table below for a summary of the permissions associated with each role:
+The [Team page](<%= @env[:url_users] %>) displays the users associated with an account. The [Team page](<%= @env[:url_users] %>) is **visible only the Account Owners** and any of the Administrators**. Three other roles are designed below administrator. See the table below for a summary of the permissions associated with each role:
 
 Action                            | Admin | Full Access | Query only | Import only
 :-------------------------------: | :---: | :---------: | :--------: | :---------:
@@ -29,7 +29,7 @@ Provided the user has adequate permission to access the [Team page](https://cons
 * Grant / Deny full-access / query-only / import-only access to any of the databases.
 * Delete an user
 
-The logged in user's [profile page](https://console.treasuredata.com/users/current) is accessible and provides information about the user as well as allowing to change the password and other basic information.
+The logged in user's [profile page](<%= @env[:url_profile] %>) is accessible and provides information about the user as well as allowing to change the password and other basic information.
 
 #### Notes
 

@@ -1,6 +1,6 @@
 # Analyzing Apache Logs on the Cloud
 
-With [Treasure Data](http://www.treasuredata.com/), you can analyze apache logs on the cloud. You can forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
+With [Treasure Data](<%= @env[:url_top] %>), you can analyze apache logs on the cloud. You can forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
 
 This article explains how to import Apache logs using `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
@@ -14,7 +14,7 @@ This article explains how to import Apache logs using `td-agent`. The basic idea
 
 <center><img src="/images/apache_log_with_td-agent.png" width="90%" /></center>
 
-`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasuredata.com).
+`td-agent` is a versatile daemon program that can process various kinds of streamed log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](<%= @env[:url_top] %>).
 
 When a user accesses an Apache web server, the web server appends a corresponding entry to the access log file (typically located at */var/log/apache2/access_log*). `td-agent` continuously "tails" the access log, identifying the newly created entries.
 
@@ -60,7 +60,7 @@ NOTE: On Redhat based systems, you might need to change the directory permission
 
 For example, if you set ‘td.testdb.apache_logs’ as the tag, the logs are sent to the `apache_logs` table within the `testdb` database.
     
-Next, specify your authentication key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current). Next, set the `apikey` option in your `td-agent.conf` file. 
+Next, specify your authentication key by setting the `apikey` option. You can view your api key from the [console](<%= @env[:url_profile] %>). Next, set the `apikey` option in your `td-agent.conf` file. 
 
 NOTE: *YOUR_API_KEY* should be your actual API key string.
 
@@ -109,7 +109,7 @@ Here are a few sample queries that calculate some interesting results.
 
     :::term
     $ td query -w -d testdb \
-      "SELECT v['agent'] AS agent, COUNT(1) AS cnt \
+      "SELECT agent AS agent, COUNT(1) AS cnt \
        FROM www_access \
        GROUP BY v['agent'] ORDER BY cnt DESC LIMIT 3"
     ...
