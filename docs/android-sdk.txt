@@ -7,7 +7,7 @@ This article will help you start sending the data from your Android app to Treas
   * Basic knowledge of Android Development
   * Basic knowledge of Treasure Data.
 
-## How to install JavaScript SDK?
+## How to install Android SDK?
 
 This video demonstrates how to install Android SDK in 5 minutes.
 
