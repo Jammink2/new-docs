@@ -7,7 +7,13 @@ This article will help you start sending the data from your Android app to Treas
   * Basic knowledge of Android Development
   * Basic knowledge of Treasure Data.
 
-## Step 1: Install the Library
+## How to install JavaScript SDK?
+
+This video demonstrates how to install Android SDK in 5 minutes.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/nVwTMABEouI?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
+### Step 1: Install the Library
 
 #### Maven
 
@@ -24,16 +30,16 @@ If you use maven, add the following directives to your `pom.xml` under `<depende
 
 If you don't use Maven, please put td-android-sdk-x.x.x-shaded.jar (get the latest [here](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.treasuredata%22%20AND%20a%3A%22td-android-sdk%22)) into (YOUR_ANDROID_PROJECT)/libs.
 
-## Step 2: Initialize the Library
+### Step 2: Initialize the Library
 
-### Enable Required Android Permissions
+#### Enable Required Android Permissions
 
 If it’s not already present, add the INTERNET permission to your AndroidManifest.xml file. The entry below should appear between the `<manifest> .. </manifest>` tags. The example is [here](https://github.com/treasure-data/td-android-sdk/blob/master/example/td-android-sdk-demo/AndroidManifest.xml#L10).
 
     :::xml
     <uses-permission android:name="android.permission.INTERNET"/>
 
-### Create Client
+#### Create Client
 
 Create the `TreasureData` object with your API key. The recommended place to do this is in the `onCreate()` method of your main activity. Here’s some example code:
 
@@ -59,7 +65,7 @@ Create the `TreasureData` object with your API key. The recommended place to do 
 
 The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs.
 
-## Step 3: Send Events to the Cloud
+### Step 3: Send Events to the Cloud
 
 Next, please call addEvent() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
 
@@ -104,7 +110,7 @@ You can handle errors of addEvent() or uploadEvents() by the callback function.
 
 NOTE: IP whitelist won't be applied to any import from Android SDK. Also we've seen a lot of cases where a lot of Android devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
 
-## Step 4: Track the App Installation
+### Step 4: Track the App Installation
 
 You can collect the first run event of your application, which can be used to track app `installation` event. First, please put these lines into `AndroidManifest.xml`.
 
