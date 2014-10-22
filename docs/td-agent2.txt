@@ -1,6 +1,6 @@
 # Treasure Agent 2 (td-agent2)
 
-`td-agent2` is an experimental package of `td-agent`, having more newer versions of software. This article will explain the differences between `td-agent` and `td-agent2`.
+`td-agent2` is a next generation of `td-agent`, having more newer versions of software. This article will explain the differences between `td-agent` and `td-agent2`.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@
 
 ## About td-agent2
 
-`td-agent2` is a successor to `td-agent`. It updates Ruby and bundle libraries. Currently, `td-agent2` is experimental but some users are now trying `td-agent2` on new systems.
+`td-agent2` is a successor to `td-agent`. It updates Ruby and bundle libraries. In addition, `td-agent2` supports more platforms, e.g. Ubuntu 14.04 and Debian.
 
 Here are major changes:
 
@@ -17,12 +17,11 @@ Here are major changes:
 - Change installation directory from /usr/{lib,lib64} to /opt/td-agent
   - If you want to install the plugin, use /opt/td-agent/embedded/bin/fluent-gem instead
   - You should replace command prefix with /opt/td-agent in docs.fluentd.org
+- Use `/usr/sbin/td-agent-gem` to install 3rd party plugins
 - Use Fluentd v1 configuration by default
   - See: http://docs.fluentd.org/articles/config-file#v1-format
 
 ## Install td-agent2
-
-There is no install script for now. So please setup repository setting manually. After td-agent2 becomes stable, we will make `td-agent2` default.
 
 <table>
   <tr>
@@ -31,25 +30,24 @@ There is no install script for now. So please setup repository setting manually.
   </tr>
   <tr>
     <td>Ubuntu System</td>
-    <td>Ubuntu:<br />
-deb [arch=amd64] http://packages.treasuredata.com/2/ubuntu/trusty/ trusty contrib<br />
-deb http://packages.treasuredata.com/2/ubuntu/precise/ precise contrib<br />
-deb http://packages.treasuredata.com/2/ubuntu/lucid/ lucid contrib<br /><br />
+    <td>Ubuntu:<br /><br />
+<code>curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh</code><br /><br />
+<code>curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh</code><br /><br />
+<code>curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh</code><br /><br />
 
-Debian:<br />
-deb http://packages.treasuredata.com/2/debian/squeeze/ squeeze contrib<br />
-deb http://packages.treasuredata.com/2/debian/wheezy/ wheezy contrib<br /><br/>
+Debian:<br /><br />
+<code>curl -L http://toolbelt.treasuredata.com/sh/install-debian-wheezy-td-agent2.sh | sh</code><br /><br />
+<code>curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh</code><br/><br />
 
-Use <code>curl http://packages.treasuredata.com/GPG-KEY-td-agent | apt-key add -</code> to import GPG key
+Use <code>curl http://packages.treasuredata.com/GPG-KEY-td-agent | apt-key add -</code> to import GPG key<br />
+
+NOTE: Trusty and Debian packages are only 64bit.
+
 </td>
   </tr>
   <tr>
     <td>RHEL / CentOS System</td>
-    <td>[treasuredata]<br />
-name=TreasureData<br />
-baseurl=http://packages.treasuredata.com/2/redhat/$releasever/$basearch<br />
-gpgcheck=1<br />
-gpgkey=http://packages.treasuredata.com/GPG-KEY-td-agent
+    <td><code>curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh</code>
 </td>
   </tr>
   <tr>
