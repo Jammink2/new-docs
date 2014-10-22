@@ -49,7 +49,7 @@ If continue to get same error and exceeds the retry limit, it is non-network pro
 Is your integer greater than or equal to 2e64? If it is, then you need to cast it as `decimal` like this:
 
     :::bash
-    SELECT CAST(v['my_huge_number'] AS DECIMAL) FROM tbl...
+    SELECT CAST(my_huge_number AS DECIMAL) FROM tbl...
 
 
 ## Hive's reserved keywords (Why do I get a warning about reserved keywords?)

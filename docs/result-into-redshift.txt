@@ -151,7 +151,7 @@ To output the result of a single query to Amazon Redshift add the `--result` opt
     :::term
     $ td query -w -d testdb \
       --result 'redshift://username:password@host.redshift.amazonaws.com:5439/database/table?mode=replace' \
-      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
+      "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
 To create a scheduled query whose output is systematically written to Redshift add the `--result` option when creating the schedule using the `td sched:create` command:
 

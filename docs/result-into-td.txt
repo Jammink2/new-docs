@@ -17,7 +17,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. On
     :::sql
     $ td query --result 'td://@/testdb/output_table' \
       -w -d testdb \
-      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"      
+      "SELECT code, COUNT(1) FROM www_access GROUP BY code"      
 
 ### For Scheduled Jobs
 

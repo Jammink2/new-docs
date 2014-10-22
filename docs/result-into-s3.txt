@@ -17,7 +17,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
     $ td query \
       --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv' \
       -w -d testdb \
-      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+      "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
 NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoded</a>.
 
@@ -49,7 +49,7 @@ When the format=tsv, delimiter=", and null=NULL options are specified:
     $ td query \
       --result 's3://accesskey:secretkey@/bucket_name/path/to/file.tsv?format=tsv&delimiter=%22&null=empty' \
       -w -d testdb \
-      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+      "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
 the output will change to:
 

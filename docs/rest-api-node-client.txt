@@ -50,7 +50,7 @@ The example below issues a query from Node.js. After issuing the query, a job_id
     var TD = require('td');
     var client = new TD('TREASURE_DATA_API_KEY');
 
-    client.hiveQuery('testdb', "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']", function(err, results) {
+    client.hiveQuery('testdb', "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code", function(err, results) {
       console.log(results);
     });
 

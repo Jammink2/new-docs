@@ -156,7 +156,7 @@ The example query below counts the number of "follow" actions that were generate
 
     :::term
     $ heroku td query -w -d development \
-      "SELECT COUNT(1) FROM follow WHERE v['uid'] = 123"
+      "SELECT COUNT(1) FROM follow WHERE uid = 123"
     ...
     (some MapReduce messages)
     ...

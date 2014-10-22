@@ -83,14 +83,14 @@ Then, create result output and scheduled jobs using the heroku td command. You c
       --result heroku_db:payment_history \
       "SELECT \
          TD_SCHEDULED_TIME() AS time, \
-         v['item_category'] AS category, \
-         SUM(CAST(v['price'] AS price)) AS sum \
+         item_category AS category, \
+         SUM(CAST(price)) AS sum \
        FROM \
          www_access \
        WHERE \
          TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1h'), TD_SCHEDULED_TIME()) \
        GROUP BY \
-         TD_SCHEDULED_TIME(), v['item_category']"
+         TD_SCHEDULED_TIME(), item_category"
 
 Payment data will now be inserted in the `payment_history` table on an hourly basis as shown below.
 

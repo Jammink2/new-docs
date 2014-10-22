@@ -174,11 +174,11 @@ You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. '
 
     :::sql
     SELECT TD_X_RANK(c), c, u FROM
-      (SELECT v['country'] AS c, v['user_id'] AS u
+      (SELECT country AS c, user_id AS u
        FROM users CLUSTER BY c) t
 
     SELECT TD_X_RANK(c, lc1), c, lc1, u FROM
-      (select v['country'] AS c, v['location1'] AS lc1, v['user_id'] AS u
+      (select country AS c, location1 AS lc1, user_id AS u
        FROM users CLUSTER BY c, lc1) t
 
 #### Description
@@ -210,7 +210,7 @@ Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessioni
     :::sql
     SELECT TD_SESSIONIZE(time, 3600, ip_address) as session_id, time, ip_address, path
     FROM (
-      SELECT time, v['ip_address'] as ip_address, v['path'] as path
+      SELECT time, ip_address, path
       from web_logs
       distribute by ip_address
       sort by ip_address,time

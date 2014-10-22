@@ -153,7 +153,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
-         COUNT(DISTINCT v['uid']) AS cnt
+         COUNT(DISTINCT uid) AS cnt
        FROM access
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
@@ -164,7 +164,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
-         COUNT(DISTINCT v['uid']) AS cnt
+         COUNT(DISTINCT uid) AS cnt
        FROM access
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT')"
@@ -175,7 +175,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
-         COUNT(DISTINCT v['uid']) AS cnt
+         COUNT(DISTINCT uid) AS cnt
        FROM pay
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
@@ -186,7 +186,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
-         SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
+         SUM(CAST(price AS INT) * CAST(count AS INT))
        FROM pay
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
        GROUP BY TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
@@ -197,11 +197,11 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
-         v['item_name'] AS item_name,
-         SUM(CAST(v['price'] AS INT) * CAST(v['count'] AS INT))
+         item_name,
+         SUM(CAST(price AS INT) * CAST(count AS INT))
        FROM pay
        WHERE TD_TIME_RANGE(time, '2013-01-01 PDT', NULL, 'PDT')
-       GROUP BY v['item_name'], TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
+       GROUP BY item_name, TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT')"
 
 ### ARPU (Average Revenue per User)
 

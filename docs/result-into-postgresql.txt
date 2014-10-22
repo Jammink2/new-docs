@@ -139,7 +139,7 @@ To output the result of a single query to a Postgres server add the `--result` o
     :::term
     $ td query -w -d testdb \
       --result 'postgresql://user:password@host/database/table' \
-      "SELECT v['code'], COUNT(1) FROM www_access GROUP BY v['code']"
+      "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
 To create a scheduled query whose output is systematically written to Postgres add the `--result` option when creating the schedule through `td sched:create` command:
 

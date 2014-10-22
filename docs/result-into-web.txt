@@ -21,7 +21,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
     $ td query \
       --result 'web://domain.com/path' \
       -w -d testdb \
-      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+      "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
 Here is another example URL. [Basic HTTP authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) and port specification are supported.
 
@@ -53,5 +53,5 @@ For scheduled jobs, just add the `--result` option when scheduling a job. After 
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       --result myweb:path \
-      "SELECT v['code'] AS code, COUNT(1) AS cnt FROM www_access GROUP BY v['code']"
+      "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 

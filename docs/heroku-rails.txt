@@ -148,7 +148,7 @@ The example query below counts the number of "follow" actions that were generate
 
     :::term
     $ heroku td query -w -d development \
-      "SELECT COUNT(1) FROM follow WHERE v['uid'] = 123"
+      "SELECT COUNT(1) FROM follow WHERE uid = 123"
     ...
     (some MapReduce messages)
     ...
@@ -174,7 +174,7 @@ The following example query counts the total number of logged actions for each d
     +------------+-----+
     1 row in set
 
-The `heroku td query –format csv` command outputs the results in csv.
+The `heroku td query -format csv` command outputs the results in csv.
 
 ## Issue Queries from Ruby API
 
@@ -237,7 +237,7 @@ Next, install the gem locally via `bundler`.
 
 ### Step 3: Insert Logging Code
 
-The ‘td’ gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
+The 'td' gem comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app:
 
     :::ruby
     class FooController
