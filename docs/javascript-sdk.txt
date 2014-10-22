@@ -68,7 +68,7 @@ If you want to set the custom parameters, please use `td.set()` function.
     td.set('pageviews', {foo: 'foo', bar: 'bar'});
     td.trackPageview('pageviews');
 
-## Step 3: Track Custom Events
+### Step 3: Track Custom Events
 
 You can also track your custom events in addition to page views by using `trackEvent()` function. In the example below, `button` will be the name of table where events get logged. You can pass additional information/context to the event as an argument.
 
