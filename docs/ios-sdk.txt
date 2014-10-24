@@ -14,6 +14,11 @@ This article will help you start sending the data from your iOS app to Treasure 
     :::term
     $ gem install cocoapods
 
+Add Treasure Data's Pods:
+
+    :::term
+    $ pod repo add td https://github.com/treasure-data/PodSpecs.git
+
 Add the following line to your Podfile:
 
     :::ruby
