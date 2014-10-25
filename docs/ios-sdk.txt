@@ -40,7 +40,7 @@ Next, please initialize the library in your app delegate’s `application:applic
 
     :::c
     - (void)applicationDidBecomeActive:(UIApplication *)application {
-      [TreasureData initializeApiEndpoint@"https://<%= @env[:sdk_endpoint]  %>"];
+      [TreasureData initializeApiEndpoint:@"https://<%= @env[:sdk_endpoint]  %>"];
       [TreasureData initializeWithApiKey:@"YOUR_API_KEY"];
 
       // This is optional, but you can encrypt the buffered data on mobile
