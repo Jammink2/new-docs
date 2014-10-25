@@ -1,0 +1,65 @@
+# Release Note 20141021
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: File Uploader Handling of Invalid Characters and Quoting
+
+We improved the File Uploader's CSV/TSV handling of:
+
+* *characters with invalid encoding*<br/>
+If a character with encoding not matching the selected one are encountered, the file uploader does no longer error out and exits but simply substitutes the character with a unicode replacement character (�).
+* *invalid quoting*<br/>
+often times the format of CSV/TSV files uploaded don't adhere to the file format specifications, hence they are flagged as invalid. If quoting is not specified as expected, it's now treated as regular character instead of causing the parsing to error out and exit.
+
+### Infrastructure: Disabled SSLv3 To Avoid POODLE Vulnerability
+
+We updated all our client libraries, client tools, and Treasure Agent to forcibly disable the SSLv3 protocol when accessing the Treasure Data servers. This is done to avoid the recently uncovered [SSLv3 protocol POODLE vulnerability](http://en.wikipedia.org/wiki/POODLE).
+Additionally, all our instances and databases systems where upgraded to prevent use of SSLv3 protocol.
+
+NOTE: SSLv3 was not disabled server side for backwards compatibility reasons.
+
+### Backend: Retrying for Result Output to S3
+
+We implemented automatic retrying in case of failures occurring while outputting the result of a query to the specified S3 target.
+
+
+<br/>
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Equally Named Tables Mishandling
+
+* _**[Problem]**_<br/>
+  We identified a problem in the changes deployed in last week's release (141014) that caused some table operations to be performed on the wrong table, if more than one table existed with the indentical name (in the another database since there cannot be two equally named tables in the same database). This problem did not affect the Console but only the REST API - hence only those users using the td CLI, Ruby and Java client libraries, etc...<br/>
+  _**[Solution]**_<br/>
+  The problem was caused by mistakenly not requiring that a table matching the required name be part of the requested database. Hence if more than one table with the same name existed, the table belonging to the database with oldest creation date was returned instead.<br/>
+  We fixed the table lookup method to require the table to belong to the correct database. Analysis of the access logs showed us that the few users affected by this problem already worked around it, remedied by performing the operation via the Console or they were only negligibly affected.<br/>
+
+### Console: Accepting An Invitation Doesn't Log the User In
+
+* _**[Problem]**_<br/>
+  When a newly invited user confirms its email address by clicking on the Invitation email's link, it's not automatically logged in into the Console.<br/>
+  _**[Solution]**_<br/>
+  This a trivial issue with the application's routing that did not redirect the user to the Console's home (the <tt>/jobs</tt> page) after the confirmation link was visited.<br/>
+  We made the confirmation endpoint redirect to the home page.<br/>
+
+### Console: Browser's localStorage Size Limitation
+
+* _**[Problem]**_<br/>
+  When the Browser's localStorage (<tt>window.localStorage</tt>) quota is exceeded for a certain view, the page starts misbehaving and eventually prevents the page from loading.<br/>
+  _**[Solution]**_<br/>
+  The problem is occurring when the amount of storage necessary to store one or more copies of the view/page data exceeds the allotted quota. In that situation, the Console was not handling the quota exception and simply exiting with an error, hence the tab in which the page was loaded could not be shown.<br/>
+  We added handling of the localStorage quota exception to ensure that when the quota is exceeded the previously stored copies for the view are purged from localStorage to recover storage space for the current view.<br/>
+
+### Backend: Datetime Inconsistencies for Result Output to MySQL
+
+* _**[Problem]**_<br/>
+  Integer time values in the result of a query are converted to Datetime type improperly when the result is written to MySQL.<br/>
+  _**[Solution]**_<br/>
+  This is due to some of the Worker instances using a reference timezone different from UTC. When the integer time values are converted to Datetime types in MySQL, the worker's instance timezone is assumed by default, which leads to the the Datetime value being incorrect when interpreted in UTC timezone.<br/>
+  We modified all the Worker instances to make sure the reference timezone is always UTC, thus preventing this issue from occurring.<br/>
