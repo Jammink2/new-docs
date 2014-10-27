@@ -5,6 +5,7 @@ This article will help you start sending the data from your Android app to Treas
 ## Prerequisites
 
   * Basic knowledge of Android Development
+  * Android 2.3 , or later
   * Basic knowledge of Treasure Data.
 
 ## How to install Android SDK?
