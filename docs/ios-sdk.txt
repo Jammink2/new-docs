@@ -80,6 +80,21 @@ The following code uploads the event when the application goes to the background
 
 NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen a lot of cases where a lot of iOS devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
 
+You can upload buffered events like this when finishing the application.
+
+    :::c
+    - (void)applicationDidEnterBackground:(UIApplication *)application
+    {
+        UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{}];
+        [[TreasureData sharedInstance] uploadEventsWithCallback:^() {
+                [application endBackgroundTask:bgTask];
+            }
+            onError:^(NSString *code, NSString *msg) {
+                [application endBackgroundTask:bgTask];
+            }
+         ];
+    }
+
 ## Step 4: Track the App Installation
 
 You can collect the first run event of your application, which can be used to track app `installation` event.
