@@ -5,6 +5,7 @@ This article will help you start sending the data from your iOS app to Treasure 
 ## Prerequisites
 
   * Basic knowledge of iOS Development (Xcode, [CocoaPods](http://cocoapods.org/))
+  * iOS 5(unstable), 6, or later
   * Basic knowledge of Treasure Data.
 
 ## Step 1: Install the Library
