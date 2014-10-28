@@ -272,6 +272,7 @@ section 'tools-and-apis', 'Tools & APIs' do
     article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
     article 'rest-api-java-client', 'Using Java Binding of REST API'
     article 'rest-api-node-client', 'Using Node.js Binding of REST API'
+    article 'rest-api-go-client', 'Using Go Binding of REST API'
   end
 end
 
