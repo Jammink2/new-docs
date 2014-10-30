@@ -1,0 +1,70 @@
+# Release Note 20141028
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Query Syntax Checker
+
+We implemented an inline query syntax checker in the Console query editor for Hive and Presto queries.
+
+The inline syntax checkers performs on-the-fly validation of the syntax as the query string is inputted in the editor.
+Lines containing errors are indicated by a red marker on the left hand side margin of the editor; hovering over the marker unveils the error message for the query checker.
+
+NOTE: In the example animation below, the query is initially written in Hive and passes the Hive syntax validation. Afterwards, the engine is switched to Presto; the query is no longer valid and the 3rd line is marked is red. Hovering over the marker displays the Presto Syntax Checker error which explains that backquotes (<tt>`</tt>) are not support in Presto syntax.<br/>
+After the mistake is corrected, the error marked is removed and that indicates the syntax is now valid.
+
+![Console: Table Schema Editor](/images/release-notes/141028-01-linter.gif)
+
+### Console: Breadcrumbs Navigation
+
+We added breadcrumb navigation to the console pages.
+
+This aids in navigating backwards in the page hierarchy without the need to use the browser's back button.
+
+![Console: Breadcrumbs Navigation](/images/release-notes/141028-02-breadcrumbs.png)
+
+### Backend: INSERT OVERWRITE Support for Hive
+
+Along with INSERT INTO the Hive engine now supports the INSERT OVERWRITE statement as well. The INSERT OVERWRITE statement allows replacing data into a table with the result from a SELECT query as opposed to appending as it happens for INSERT INTO.
+
+Please note that the CREATE TABLE AS SELECT statement and 1-hour partitioning are currently not supported as they require more Reducer resources to execute. 
+
+### Backend: 'Schema' Parameter for Result Output to PostgreSQL and Redshift
+
+Query Result Output to PostgreSQL and Redshift now support alternate 'schemas'. PostgreSQL and Redshift support multiple schemas for the same database.
+
+The alternate schema can be provided through a URL parameter. When no schema is specified the default 'public' schema is assumed.
+
+### Client Tools: Released Java Client Library v0.5.4
+
+Changes:
+
+* Fixed a Null Pointer Exception when the query string is empty or the user doesn't provide the query parameter
+
+### Bulk Import: Released Java CLI v0.5.5
+
+Changes:
+
+* Halt waiting for Bulk Import Perform jobs to finish if the job gets killed
+
+### JDBC: Released JDBC Driver v0.2.16
+
+Changes:
+
+* Support for <tt>date</tt> and <tt>timestamp</tt> for Presto
+
+<br/>
+
+
+## Bug Fixes
+
+This is the only important Bug Fix made in this release:
+
+### Console: Scheduled vs Unsaved Query and Cron Settings
+
+* _**[Problem]**_<br/>
+  In creating a new query, if the user initially opts to save the query and specifies a custom cron schedule for it, then switches back the query to one-off, the job cannot be run.<br/>
+  _**[Solution]**_<br/>
+  This is due to the server form validation that still takes into account the cron schedule even if the job is unsaved / one off. This causes the form validation to fail and prevents the user from running the query.<br/>
+  We modified the server form validation to discount the cron schedule if the job is one-off.<br/>
