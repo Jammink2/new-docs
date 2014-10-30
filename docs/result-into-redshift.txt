@@ -29,7 +29,8 @@ Amazon Redshift can be configured in single node mode or multi node/cluster mode
 The result output target is represented by URL with the following format:
 
     :::term
-    redshift://<username>:<password>@<hostname>:<port>/<database>/<table>
+    redshift://<username>:<password>@<hostname>:<port>/<database>/<table>                 # use default schema
+    redshift://<username>:<password>@<hostname>:<port>/<database>/<table>?schema=<schema> # with schema specified
 
 where:
 
@@ -40,6 +41,7 @@ cluster and they are different from the S3 public/private access keys;
 * the **port** number is fixed to 5439 for single node clusters. It may vary for multi node cluster configuration and the actual value can be retrieved from the Redshift cluster detail page;
 * **database** is the name of the database specified at the creation of the Redshift cluster. It can be retrieved from the Redshift cluster detail page;
 * **table** is the name of a table within the above mentioned database. It may not exist at the moment the query output is execute, in which case a table with the specified name will be created for the user.
+* **schema** is the name of a schema the table is located. It's optional and if not specified default schema is to be used. The default schema is usually "public".
 
 ### Options
 
@@ -72,7 +74,7 @@ Because `mode=append` is the default behavior, these two URLs are equivalent:
 
 ##### `mode=replace`
 <br/>
-The **replace** method consists of replacing the entire content of an existing table with the result output of the query. If the table does not exist yet, a new table will be created.
+The **replace** mode consists of replacing the entire content of an existing table with the result output of the query. If the table does not exist yet, a new table will be created.
 
 The replace mode achieves **atomicity** (so that a consumer of the table always has consistent data) by performing the following three steps in a **single transaction**:
 
@@ -112,33 +114,6 @@ Example:
     redshift://...?mode=update&unique=col1        # single unique column
     redshift://...?mode=update&unique=[col1,col2] # multiple unique columns
 
-
-#### Write `method` option
-
-The **method** option controls how the data is written into the Postgres destination table.
-
-Unlike Postgres result output, the default method is **copy**: this is done for efficient purpose since the data is transferred from Treasure Data to Redshift between AWS S3 buckets.
-
-##### `method=copy`
-<br/>
-The **copy** method is the default behavior for Redshift result output writes.
-When the **copy** method is used the data is first stored in a temporary file on the server, then written to Redshift using a [COPY](http://www.postgresql.org/docs/8.1/static/sql-copy.html) transaction.
-This method is faster than INSERT and that's why it is preferred to it as the default behavior.
-
-Because `method=copy` is the default behavior, these two URLs are equivalent:
-
-    :::term
-    redshift://user:password@host/database/table
-    redshift://user:password@host/database/table?method=copy
-
-##### `method=insert` (default)
-<br/>
-With the **insert** method, data is written to Postgres using 'INSERT' statements. This is the most reliable method but it is slower than COPY.
-
-Example:
-
-    :::term
-    redshift://user:password@host/database/table?method=insert
 
 ## Usage
 
