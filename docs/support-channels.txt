@@ -12,7 +12,7 @@ However, we understand that no documentation can cover everything our users need
 
 ## Email
 
-This is the most common way of submitting the support inquiry. Please send us an email at `support@treasure-data.com`.
+This is the most common way of submitting the support inquiry. Please send us an email at `<%= @env[:mail_support] %>`.
 
 ## Support Desk
 

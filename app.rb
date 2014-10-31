@@ -288,7 +288,8 @@ helpers do
         :url_profile => 'https://console.treasuredata.com/users/current',
         :api_endpoint => 'api.treasuredata.com',
         :sdk_endpoint => 'in.treasuredata.com',
-        :pggw_endpoint => 'pggw.treasuredata.com'
+        :pggw_endpoint => 'pggw.treasuredata.com',
+        :mail_support => 'support@treasure-data.com'
       },
       :idcf => {
         :name => 'Yahoo! Big Data Insight',
@@ -310,7 +311,8 @@ helpers do
         :url_profile => 'https://console-ybi.idcfcloud.com/users/current',
         :api_endpoint => 'ybi.jp-east.idcfcloud.com',
         :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com',
-        :pggw_endpoint => 'pggw-ybi.jp-east.idcfcloud.com'
+        :pggw_endpoint => 'pggw-ybi.jp-east.idcfcloud.com',
+        :mail_support => 'support@ybi.idc.jp'
       }
     }[env]
   end
