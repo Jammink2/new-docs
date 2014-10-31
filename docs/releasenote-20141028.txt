@@ -28,13 +28,15 @@ This aids in navigating backwards in the page hierarchy without the need to use 
 
 Along with INSERT INTO the Hive engine now supports the INSERT OVERWRITE statement as well. The INSERT OVERWRITE statement allows replacing data into a table with the result from a SELECT query as opposed to appending as it happens for INSERT INTO.
 
-Please note that the CREATE TABLE AS SELECT statement and 1-hour partitioning are currently not supported as they require more Reducer resources to execute. 
+Please note that the CREATE TABLE AS SELECT statement and 1-hour partitioning are currently not supported as they require more Reducer resources to execute.
 
 ### Backend: 'Schema' Parameter for Result Output to PostgreSQL and Redshift
 
 Query Result Output to PostgreSQL and Redshift now support alternate 'schemas'. PostgreSQL and Redshift support multiple schemas for the same database.
 
 The alternate schema can be provided through a URL parameter. When no schema is specified the default 'public' schema is assumed.
+
+Please refer to the [Result Output to PostgreSQL](result-into-postgresql#result-output-url-format) or to [Redshift](result-into-redshift#result-output-url) for more information and details.
 
 ### Client Tools: Released Java Client Library v0.5.4
 
