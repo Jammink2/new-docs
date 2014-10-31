@@ -23,10 +23,15 @@ All native UDFs on Presto can also be used on Treasure Data. The complete list o
 This example selects records with timestamps '2013-01-01 00:00:00 PDT' or later.
 
     :::sql
-    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01 PDT')
-    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01', NULL, 'PDT')
+    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01 PDT')                 # OK
+    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01', 'PDT')              # OK
+    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01', '2013-01-02','PDT') # OK
+    SELECT ... WHERE TD_TIME_RANGE(time, NULL, '2013-01-01', 'PDT')        # NG
+    SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01', NULL, 'PDT')        # NG
 
 NOTE: Notice that the time of day ('00:00:00') can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either 'YYYY-MM-DD' or 'YYYY-MM-DD hh:mm:ss', e.g., '2013-01-01' or '1999-01-01 07:00:00'.
+
+NOTE: Currently we cannot use 'NULL' in TD_TIME_RANGE.
 
 #### Description
 
