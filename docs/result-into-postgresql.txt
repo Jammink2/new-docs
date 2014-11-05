@@ -34,23 +34,27 @@ NOTE: The results are written from the AWS US-East region. If you want better se
 The result output target is represented by URL with the following format:
 
     :::term
-    postgresql://<username>:<password>@<hostname>:<port>/<database>/<table>                 # use default schema
-    postgresql://<username>:<password>@<hostname>:<port>/<database>/<table>?schema=<schema> # with schema specified
+    postgresql://<username>:<password>@<hostname>:<port>/<database>/<table>
 
 where:
 
 * **postgresql** is identified for result output to Postgres;
 * **username** and **password** are the credential to the Postgres server;
 * **hostname** is the host name of the Postgres server;
-* **port** is the port number through which the Postgres server is accessible;
+* **port** is the port number through which the Postgres server is accessible. ":<port>" is optional and assumed to be 5432 by default;
 * **database** is the name of the database specified at the creation of the Redshift cluster. It can be retrieved from the Redshift cluster detail page;
 * **table** is the name of a table within the above mentioned database. It may not exist at the moment the query output is execute, in which case a table with the specified name will be created for the user.
-* **schema** is the name of a schema the table is located. It's optional and if not specified default schema is to be used. The default schema is usually "public".
 
 ### Options
 
 Result output to Postgres supports various options that can be specified as optional URL parameters. The options are compatible with each other and can be combined.
 Where applicable, the default behavior is indicated.
+
+#### `schema` option
+
+Controls the schema the target table is located.
+If not specified default schema is to be used.
+The default schema depends on user's "search_path" setting but it is usually "public".
 
 #### Update `mode` option
 
