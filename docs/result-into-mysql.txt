@@ -89,6 +89,28 @@ The system first truncates the existing table, then inserts the query results. I
 
 This mode uses MySQL's "INSERT ... ON DUPLICATE KEY UPDATE" syntax (see [MySQL's documentation](http://dev.mysql.com/doc/refman/5.1/en/insert-on-duplicate.html)). In short, a row is inserted unless it would cause a duplicate value in the unique index or primary key, in which case an update is performed.
 
+## Options
+
+Writing Job Results to the MySQL server supports following options that can be specified as optional URL parameters.
+
+### `ssl` option
+
+**ssl** option determines whether to use SSL or not for connecting to the MySQL server.
+
+#### `ssl=true`
+
+Use SSL from Treasure Data to the MySQL server connection.  The MySQL server must be configured to accept SSL connection.
+
+    :::term
+    mysql://user:password@host/database/table?ssl=true
+
+#### `ssl=false` (default)
+
+Do not use SSL from Treasure Data to the MySQL server.
+
+    :::term
+    mysql://user:password@host/database/table?ssl=false
+
 # Database Setting
 
 ### Character Encoding

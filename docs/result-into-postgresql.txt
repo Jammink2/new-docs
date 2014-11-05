@@ -50,11 +50,32 @@ where:
 Result output to Postgres supports various options that can be specified as optional URL parameters. The options are compatible with each other and can be combined.
 Where applicable, the default behavior is indicated.
 
+#### `ssl` option
+
+**ssl** option determines whether to use SSL or not for connecting to the Postgres server.
+
+##### `ssl=true`
+
+Use SSL from Treasure Data to the Postgres server connection. The Postgres server must be [configured to accept SSL connection](http://www.postgresql.org/docs/current/static/ssl-tcp.html).
+
+    :::term
+    postgresql://user:password@host/database/table?ssl=true
+
+##### `ssl=false` (default)
+
+Do not use SSL from Treasure Data to the Postgres server connection.
+
+    :::term
+    postgresql://user:password@host/database/table?ssl=false
+
 #### `schema` option
 
 Controls the schema the target table is located.
 If not specified default schema is to be used.
 The default schema depends on user's "search_path" setting but it is usually "public".
+
+    :::term
+    postgresql://user:password@host/database/table?schema=target_schema
 
 #### Update `mode` option
 
