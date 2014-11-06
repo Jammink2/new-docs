@@ -4,7 +4,7 @@
 
 This feature is currently in **beta** and it is only available to certain accounts at this time - please contact your account representative if you would like to join the beta.
 
-NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact </a> if you're interested in.
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact to us </a>. if you're interested in.
 
 ## What is Presto?
 

@@ -30,4 +30,4 @@ The current list of supported tools is shown below.
 * [Talend Open Studio](talend)
 * [Indicee Cloud BI Platform](indicee)
 
-If you have specific data visualization needs, please [let us know](http://www.treasuredata.com/contact.php).
+If you have specific data visualization needs, please [let us know](<%= @env[:url_contact] %>).

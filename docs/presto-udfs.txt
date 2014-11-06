@@ -2,7 +2,7 @@
 
 This article lists all the UDFs supported with Presto engine on Treasure Data. Treasure Data supports two types of UDFs: (1) native UDFs supported by Presto and (2) Treasure Data specific functions whose names start with **TD_**.
 
-NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact </a> if you're interested in.
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact to us</a>. if you're interested in.
 
 ## Presto Native UDFs
 
