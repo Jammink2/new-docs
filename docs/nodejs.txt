@@ -87,7 +87,7 @@ td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffe
 
 #### Obtaining the Most Recent Version
 
-The most recent version of fluent-logger-node can be found from [here](http://search.npmjs.org/#/fluent-logger).
+The most recent version of fluent-logger-node can be found from [here](https://github.com/fluent/fluent-logger-node).
 
 #### A Sample Application
 
