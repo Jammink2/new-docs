@@ -1,4 +1,4 @@
-<%= @env[:url_job] %># SQuirreL SQL with Treasure Data
+# SQuirreL SQL with Treasure Data
 
 [SQuirreL SQL](http://squirrel-sql.sourceforge.net/) is an open-source Java SQL Client program for any JDBC compliant database. You can use SQuirrelSQL as SQL authoring tool to interactively develop SQL queries with Treasure Data.
 
