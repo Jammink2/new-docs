@@ -74,7 +74,7 @@ You can create the dashboard using TDE files on Tableau Server too. Every time y
 
 Third, Treasure Data provides an ODBC driver for Tableau Desktop so that data analyst can have raw data access.
 
-- [Tableau Desktop: Treasure Data ODBC connector](http://docs.treasuredata.com/articles/tableau-desktop-odbc)
+- [Tableau Desktop: Treasure Data ODBC connector](<%= @env[:url_doc] %>articles/tableau-desktop-odbc)
 
 Analysts can choose one of three methods depending on the needs. You can also join across these data sources. For example, you can join between Salesforce.com data and a TDE file, or even join between TDE multiple files. Once the workbook is created, Tableau Desktop can publish it to Tableau Server.
 
@@ -94,5 +94,5 @@ Tableau + Treasure Data empowers data-driven companies to rapidly explore data a
 - [Treasure Data and Tableau: A complete big data analytics solution in days](http://get.treasuredata.com/rs/treasuredata/images/DataSheet_Tableau_Treasure.pdf) (White Paper)
 - [Treasure Data: Writing Job Results into Tableau Server](result-into-tableau-server)
 - [Treasure Data: Writing Job Results into Tableau Online](result-into-tableau-online)
-- [Treasure Data: Tableau Desktop ODBC connector](http://docs.treasuredata.com/articles/tableau-desktop-odbc)
+- [Treasure Data: Tableau Desktop ODBC connector](<%= @env[:url_doc] %>articles/tableau-desktop-odbc)
 

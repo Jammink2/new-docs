@@ -53,7 +53,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 After installing `td-agent`, you can modify your config file. The file can be found in /etc/td-agent/td-agent.conf.
 
-The config file comes with some sample settings. You will find the following lines in your config. Please specify your API key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current).
+The config file comes with some sample settings. You will find the following lines in your config. Please specify your API key by setting the `apikey` option. You can view your api key from the [console](<%= @env[:url_profile] %>).
 
     :::text
     # HTTP input
@@ -73,7 +73,7 @@ The config file comes with some sample settings. You will find the following lin
       use_ssl true
     </match>
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. Using the write-only key is recommended.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the write-only key is recommended.
 
 Now please restart the td-agent service.
 
@@ -102,7 +102,7 @@ You can add logs in JSON format using HTTP.
     # MacOS X
     $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 
-Finally, please visit the [Databases](https://console.treasuredata.com/databases) page at Web console, to check if the data got imported successfully. From CLI, you can check by issuing the `td tables` command:
+Finally, please visit the [Databases](<%= @env[:url_databases] %>) page at Web console, to check if the data got imported successfully. From CLI, you can check by issuing the `td tables` command:
 
     :::term
     $ td tables

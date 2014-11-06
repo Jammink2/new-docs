@@ -6,7 +6,7 @@ This is a summary of the new features and improvements introduced in this releas
 
 ### Console: File Uploader Improvements
 
-The design and implementation of the [File Uploader](https://console.treasuredata.com/import/file) were greatly improved:
+The design and implementation of the [File Uploader](<%= @env[:url_import] %>/file) were greatly improved:
 
 * Simplified the upload procedure from a multi-page wizard to single-page
 * Improved the handling of non-UTF8 character encodings
@@ -23,7 +23,7 @@ Changed the 'Import Data' sidebar link and pages to 'Collect Data'.
 
 ### Console: Bulk Import and Streaming Landing Pages
 
-Updated the layout of the [Bulk Import](https://console.treasuredata.com/import/bulk/info) and [Streaming](https://console.treasuredata.com/import/streaming) landing pages to move the available resources at the top of the illustrations.
+Updated the layout of the [Bulk Import](<%= @env[:url_import] %>/bulk/info) and [Streaming](<%= @env[:url_import] %>/streaming) landing pages to move the available resources at the top of the illustrations.
 
 ![Console: Bulk Import and Streaming Landing Pages](/images/release-notes/140715-05-resources.png)
 

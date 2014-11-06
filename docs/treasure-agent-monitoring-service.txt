@@ -11,7 +11,7 @@ This article shows how to set up the monitoring service for Treasure Agent. The 
 ## Prerequisites
 
 * Familiarity with [Treasure Agent](td-agent) and [Fluentd](http://docs.fluentd.org). In the rest of this article, it is assumed that Treasure Agent is running on Ubuntu Precise (Treasure Agent has [deb](http://docs.fluentd.org/articles/install-by-deb) and [rpm](http://docs.fluentd.org/articles/install-by-rpm) packages). With some modifications, one should be able to set it up for Fluentd as well.
-* Treasure Data account: If you do not have a Treasure Data account, you can sign up [here](https://console.treasuredata.com/users/sign_up)
+* Treasure Data account: If you do not have a Treasure Data account, you can sign up [here](<%= @env[:url_signup] %>)
 
 <br/>
 ## Step 1: Configure the monitoring plugin
@@ -30,7 +30,7 @@ First, configure the td_monitor_agent to send monitoring data to Treasure Data p
 where:
 
 * **apikey**<br/>
-  Your Treasure Data API key. You can find it [here](https://console.treasuredata.com/users/current).
+  Your Treasure Data API key. You can find it [here](<%= @env[:url_profile] %>).
 * **instance_id**<br/>
   Specify unique instance id across nodes. If not specified, use configuration file path instead.
 
@@ -79,7 +79,7 @@ You should see in Treasure Agent's log that the two plugins are registered succe
 <br/>
 ## Step 3: Send Data and Visualize
 
-We are ready to see the monitoring service in action. Go to the [monitoring section](https://console.treasuredata.com/monitoring)  of the Treasure Data Console (please log in if you have not done so), and you should see the instance named "monitored_instance_1" (boxed in red). Metrics data is updated **every minute**.
+We are ready to see the monitoring service in action. Go to the [monitoring section](<%= @env[:url_console] %>/monitoring)  of the Treasure Data Console (please log in if you have not done so), and you should see the instance named "monitored_instance_1" (boxed in red). Metrics data is updated **every minute**.
 
 ![Treasure Agent monitoring screenshot, Instances list](/images/monitoring-screenshot-1.png)
 

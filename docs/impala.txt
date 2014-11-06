@@ -50,9 +50,9 @@ A lot of Hive UDFs are currently NOT available for Impala. This will be resolved
 
 The available UDFs are as follows:
 
-* [TD_TIME_FORMAT](http://docs.treasuredata.com/articles/udfs#tdtimeformat)
-* [TD_TIME_RANGE](http://docs.treasuredata.com/articles/udfs#tdtimerange)
-* [TD_TIME_PARSE](http://docs.treasuredata.com/articles/udfs#tdtimeparse)
+* [TD_TIME_FORMAT](<%= @env[:url_doc] %>articles/udfs#tdtimeformat)
+* [TD_TIME_RANGE](<%= @env[:url_doc] %>articles/udfs#tdtimerange)
+* [TD_TIME_PARSE](<%= @env[:url_doc] %>articles/udfs#tdtimeparse)
 
 ### Lack of Complex Types
 

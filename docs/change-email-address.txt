@@ -2,5 +2,5 @@
 
 You can change the email from the Web console.
 
-Please access to [user's page](https://console.treasuredata.com/users/current), and change the email.
+Please access to [user's page](<%= @env[:url_profile] %>), and change the email.
 

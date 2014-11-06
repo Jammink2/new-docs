@@ -11,7 +11,7 @@ This is a summary of the new features and improvements introduced in this releas
 
 ### Console: User Page
 
-The user page of the currently logged in is accessible via the [<tt>/users/current</tt>](https://console.treasuredata.com/users/current) endpoint as well as the usual <tt>/users/:user_id</tt>;
+The user page of the currently logged in is accessible via the [<tt>/users/current</tt>](<%= @env[:url_profile] %>) endpoint as well as the usual <tt>/users/:user_id</tt>;
 
 ![Console: User Page](/images/release-notes/140401-1-user_page.png)
 

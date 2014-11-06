@@ -10,12 +10,12 @@ Added support for single character column names and improved the schema auto-det
 
 ### APIs: Write-Only API Key
 
-Added support for _write-only_ API keys to support the newly added [SDKs (iOS, Ruby, Java)](https://console.treasuredata.com/import/sdk).<br/>
+Added support for _write-only_ API keys to support the newly added [SDKs (iOS, Ruby, Java)](<%= @env[:url_import] %>/sdk).<br/>
 The original API keys are now referred to as _master_ API keys.
 
 ### Console: iOS SDK
 
-Added the [iOS SDK](https://console.treasuredata.com/import/sdk) to the Import Data, SDKs landing page.
+Added the [iOS SDK](<%= @env[:url_import] %>/sdk) to the Import Data, SDKs landing page.
 
 
 ![Console: iOS SDK](/images/release-notes/140610-01-ios_sdk.png)

@@ -9,7 +9,7 @@ Treasure Data has a scheduler feature that supports periodic query execution. We
 
 ## Create the Schedule (Web Console)
 
-A new schedule can be created using the [Web Console](https://console.treasuredata.com/schedules). You can do so by selecting the "New Query" pane, and setting a schedule for the query.
+A new schedule can be created using the [Web Console](<%= @env[:url_console] %>/schedules). You can do so by selecting the "New Query" pane, and setting a schedule for the query.
 
 ### Cron Schedule
 

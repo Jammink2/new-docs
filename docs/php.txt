@@ -1,4 +1,4 @@
-# Streaming Import from PHP Apps
+<%= @env[:url_profile] %># Streaming Import from PHP Apps
 
 '[fluent-logger-php](http://github.com/fluent/fluent-logger-php)' is used to import data from PHP applications to Treasure Data. 
 
@@ -53,7 +53,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 ### Step 2: Modifying /etc/td-agent/td-agent.conf
 
-Next, please specify your API key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current).
+Next, please specify your API key by setting the `apikey` option. You can view your api key from the [console](<%= @env[:url_profile] %>).
 
     :::text
     # Unix Domain Socket Input
@@ -73,7 +73,7 @@ Next, please specify your API key by setting the `apikey` option. You can view y
       use_ssl true
     </match>
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. Using the write-only key is recommended.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the write-only key is recommended.
 
 Please restart your agent once these lines are in place.
 

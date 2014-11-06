@@ -8,7 +8,7 @@ NOTE: We have <a href="nodejs">another article</a> that covers using Treasure Da
 
 ##Prerequisites
 
-* [Sign up](https://console.treasuredata.com/users/sign_up) for Treasure Data and go through the [Quickstart Guide](quickstart).
+* [Sign up](<%= @env[:url_signup] %>) for Treasure Data and go through the [Quickstart Guide](quickstart).
 * Install `node` and `npm` on your machine.
 * Install td-agent, the packaged version of [fluentd](http://fluentd.org) ([td-agent installation and usage guide](td-agent)).
 
@@ -26,7 +26,7 @@ We will now configure td-agent to listen to port 24224 (This port number is arbi
 	  port 24224
 	  ...
 
-You can look up `YOUR_API_KEY` from the [console](https://console.treasuredata.com/users/current).
+You can look up `YOUR_API_KEY` from the [console](<%= @env[:url_profile] %>).
 
 ##Getting ntwitter + fluent-logger-node
 
@@ -80,7 +80,7 @@ The code shown below searches for the keyword `javascript` on Twitter, grabs the
 
 For consumer_key/consumer_secret/access_token_key/access_token_secret, please use your own values.
 
-**That's it!** You'll start seeing data populated on Treasure Data soon. You can view the data via the command-line (ex: `td tables`) or a [browser console](https://console.treasuredata.com).
+**That's it!** You'll start seeing data populated on Treasure Data soon. You can view the data via the command-line (ex: `td tables`) or a [browser console](<%= @env[:url_console] %>).
 
 The example query below returns the top 20 most retweeted Tweets:
 

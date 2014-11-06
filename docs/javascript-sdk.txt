@@ -25,7 +25,7 @@ Install the td-js-sdk on your page by copying-pasting the JavaScript snippet bel
 
 ### Step 2: Initialize & Send Events to the Cloud
 
-You need to create one `Treasure` client object per database, and initialize pageview tracking by calling the `trackPageview()` function. The APIKEY can be retrieved from the [Console's profile page](https://console.treasuredata.com/users/current). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
+You need to create one `Treasure` client object per database, and initialize pageview tracking by calling the `trackPageview()` function. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>). It's recommended to use **write-only API key** for SDKs. Each event will fire off asynchronously.
 
     :::html
     <script type="text/javascript">

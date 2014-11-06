@@ -11,7 +11,7 @@ video:
 
 ## Step 1: Sign Up
 
-[Sign up](https://console.treasuredata.com/users/sign_up) for Treasure Data if you haven't yet.
+[Sign up](<%= @env[:url_signup] %>) for Treasure Data if you haven't yet.
 
 ## Step 2: Query the Sample Table
 
@@ -42,6 +42,6 @@ Let's query the sample table!
 
 ## What's next?
 
-If you haven't signed up already, [get started for free here](https://console.treasuredata.com/users/sign_up)! If you already have an account with us, log on into the Console at [console.treasuredata.com](https://console.treasuredata.com) and click on 'Help' => 'Tutorial' in the top-right corner.
+If you haven't signed up already, [get started for free here](<%= @env[:url_signup] %>)! If you already have an account with us, log on into the Console at [console.treasuredata.com](<%= @env[:url_console] %>) and click on 'Help' => 'Tutorial' in the top-right corner.
 
 Also, if you prefer CLI to GUI, you can learn more about our command line tool [here](command-line).

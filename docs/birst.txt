@@ -56,12 +56,12 @@ You'll see the fields to specify JDBC connection. Please fill the information pr
 
 - Database Type: Generic JDBC Connection
 - Driver Name: com.treasure_data.jdbc.TreasureDataDriver
-- Connection String: jdbc:td://api.treasuredata.com/testdb;useSSL=true
+- Connection String: jdbc:td://<%= @env[:api_endpoint] %>/testdb;useSSL=true
 - Username: YOUR_TREASURE_DATA_EMAIL_ADDRESS
 - Password: YOUR_TREASURE_DATA_PASSWORD
 - Query: Your Query
 
-NOTE: You can switch query engines by using type parameter like jdbc:td://api.treasuredata.com/testdb;useSSL=true;type=presto. Please refer Treasure Data <a href="jdbc-driver">JDBC Driver</a> documentation for more information.
+NOTE: You can switch query engines by using type parameter like jdbc:td://<%= @env[:api_endpoint] %>/testdb;useSSL=true;type=presto. Please refer Treasure Data <a href="jdbc-driver">JDBC Driver</a> documentation for more information.
 
 Finally click `Update`, and `Save` to save the task.
 

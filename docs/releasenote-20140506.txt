@@ -17,7 +17,7 @@ Added the Slow Jobs page to summarize and quickly identify the slowest queries i
 
 ### Console: Storage Size History Graph
 
-Added the Storage Size History graph below the CPU Core History graph in the [utilization page](https://console.treasuredata.com/utilization) and improved the graphs' look-and-feel.
+Added the Storage Size History graph below the CPU Core History graph in the [utilization page](<%= @env[:url_console] %>/utilization) and improved the graphs' look-and-feel.
 
 ![Storage Size History in the Utilization page](/images/release-notes/140506-2-utilization.png)
 

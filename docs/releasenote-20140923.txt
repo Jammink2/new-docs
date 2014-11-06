@@ -98,7 +98,7 @@ These are the most important Bug Fixes made in this release:
 ### Console: Import Histories on Firefox and Safari Browsers
 
 * _**[Problem]**_<br/>
-  The import history chart that was added last week on the [Console Utilization](https://console.treasuredata.com/utilization) page is improperly displayed by Firefox and Safari browsers.<br/>
+  The import history chart that was added last week on the [Console Utilization](<%= @env[:url_console] %>/utilization) page is improperly displayed by Firefox and Safari browsers.<br/>
   _**[Solution]**_<br/>
   This is due to the Chrome, Safari, and Firefox browsers having different restrictions on how a string expressing a date-time can be parsed by the '<tt>Date.parse()</tt>' method.<br/>
   Double checked all three browsers' specifications for the string format accepted by the '<tt>Date.parse()</tt>' method and adjusted it to be compatible across browsers.<br/>

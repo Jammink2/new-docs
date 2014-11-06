@@ -69,7 +69,7 @@ Next, please specify your API key by setting the `apikey` option in your `/etc/t
       use_ssl true
     </match>
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. Using the write-only key is recommended.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the write-only key is recommended.
 
 Please restart your agent once these lines are in place.
 
@@ -126,7 +126,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 
 #### From Web Console
 
-To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](https://console.treasuredata.com/databases).
+To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](<%= @env[:url_databases] %>).
 
 #### From CLI
 Or, please issue the *td tables* command if you have a [CLI client](command-line).

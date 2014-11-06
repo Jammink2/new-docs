@@ -2,7 +2,7 @@
 
 ## From Web Console
 
-Please access this <a href="https://console.treasuredata.com/users/current">URL</a>. At the right most column, you can retrieve the API key.
+Please access this <a href="<%= @env[:url_profile] %>">URL</a>. At the right most column, you can retrieve the API key.
 
 There're two types of keys: Normal and Write-Only. The write-only key can only invoke actions with [import only](access-control) permission. This is useful for embedding APIs with SDKs (e.g. [JavaScript](/categories/javascript-sdks), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
 

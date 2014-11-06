@@ -46,7 +46,7 @@ Next, please add the following lines to your configuration file. `fluent-plugin-
       use_ssl true
     </match>
 
-The `apikey` is a secret key to authenticate your account. You can get your apikey from the [console](https://console.treasuredata.com/users/current).
+The `apikey` is a secret key to authenticate your account. You can get your apikey from the [console](<%= @env[:url_profile] %>).
 
 ## Confirm Data Upload
 

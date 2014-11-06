@@ -14,7 +14,7 @@ This redesign includes new redesigned icons and fonts as well.
 
 ### SDKs: Released Java SDK v0.2.0
 
-1. Changed the default API endpoint to [*api.treasuredata.com*](https://api.treasuredata.com)
+1. Changed the default API endpoint to [*<%= @env[:api_endpoint] %>*](https://<%= @env[:api_endpoint] %>)
 2. Moved the repository from the Treasure Data Maven Repository to the [Central Maven Repository](http://central.maven.org/maven2/com/treasuredata/td-logger/0.2.0/)
 
 ### Client Tools: Released Java Bulk Import CLI v0.5.2

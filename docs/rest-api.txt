@@ -11,7 +11,7 @@ This article will explain how to use the public REST API.
 
 ## Endpoint
 
-All API requests should be sent to *api.treasuredata.com*.
+All API requests should be sent to *<%= @env[:api_endpoint] %>*.
 
 ## Authorization
 
@@ -26,7 +26,7 @@ The request looks like this when using the curl command. (The -H option adds the
 
     :::term
     $ curl -H "AUTHORIZATION: TD1 YourApiKeyHere" \
-      "http://api.treasuredata.com/v3/job/result/2162"
+      "http://<%= @env[:api_endpoint] %>/v3/job/result/2162"
 
 ## Limitation
 
@@ -277,7 +277,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 #### Example Result
 
     :::term
-    # URL: http://api.treasuredata.com/v3/job/result/2162?format=tsv
+    # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=tsv
     aaaa    bbbb    cccc
     aaaa    bbbb    cccc
     aaaa    bbbb    cccc
@@ -287,7 +287,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 &nbsp;
 
     :::term
-    # URL: http://api.treasuredata.com/v3/job/result/2162?format=csv
+    # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=csv
     aaaa,bbbb,cccc
     aaaa,bbbb,cccc
     aaaa,bbbb,cccc
@@ -297,7 +297,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 &nbsp;
 
     :::term
-    # URL: http://api.treasuredata.com/v3/job/result/2162?format=json
+    # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=json
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
@@ -307,7 +307,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 &nbsp;
 
     :::term
-    # URL: http://api.treasuredata.com/v3/job/result/2162?format=msgpack
+    # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=msgpack
     MessagePack format of above result
 
 ## Libraries

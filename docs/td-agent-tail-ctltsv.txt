@@ -41,7 +41,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">flu
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-Next, please specify your authentication key by setting the `apikey` option. You can view your api key from the [console](https://console.treasuredata.com/users/current). Next, please set the `apikey` option in your td-agent.conf file. 
+Next, please specify your authentication key by setting the `apikey` option. You can view your api key from the [console](<%= @env[:url_profile] %>). Next, please set the `apikey` option in your td-agent.conf file. 
 
 Note: *YOUR_API_KEY* should be your actual apikey string.
 

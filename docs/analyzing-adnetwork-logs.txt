@@ -104,7 +104,7 @@ Here's the actual code to log important events. The time is automatically added 
     TD.event.post('impressions', {
       :device=>'iPhone',
       :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
-      :url=>'http://www.treasuredata.com/',
+      :url=>'<%= @env[:url_top] %>',
       :publisher_id=>12345,
       :advertiser_id=>7691,
       :campaign_id=>456,
@@ -117,7 +117,7 @@ Here's the actual code to log important events. The time is automatically added 
     TD.event.post('clicks', {
       :device=>'iPhone',
       :useragent=>'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile',
-      :url=>'http://www.treasuredata.com/',
+      :url=>'<%= @env[:url_top] %>',
       :publisher_id=>12345,
       :advertiser_id=>7691,
       :campaign_id=>456,

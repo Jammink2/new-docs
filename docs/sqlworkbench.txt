@@ -29,7 +29,7 @@ Select `File` at the top menu, and click `Manage Drivers`. Plese fill the forms 
 - Name: Treasure Data
 - Library: JDBC driver file path
 - Classname: com.treasure_data.jdbc.TreasureDataDriver
-- Sample URL: jdbc:td://api.treasuredata.com/name_of_database;useSSL=true
+- Sample URL: jdbc:td://<%= @env[:api_endpoint] %>/name_of_database;useSSL=true
 
 ## Step 4: Connect to Treasure Data
 
@@ -39,7 +39,7 @@ Select `File` at the top menu, and click `Connect window`. Please fill the forms
 
 - Name: Whatever you like
 - Driver: Treasure Data
-- URL: jdbc:td://api.treasuredata.com/sample_db;useSSL=true
+- URL: jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true
 - Username: Your account email
 - Password: Your account password
 - Read only: True
@@ -52,6 +52,6 @@ You'll see a list of tables and its columns by GUI.
 
 <center><img src="/images/sqlworkbench-columns.png" width="100%" /></center><br/>
 
-Move to the `Statement` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results. You can check the progress of the query from [Web console](https://console.treasuredata.com/jobs).
+Move to the `Statement` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results. You can check the progress of the query from [Web console](<%= @env[:url_job] %>).
 
 <center><img src="/images/sqlworkbench-query.png" width="100%" /></center><br/>

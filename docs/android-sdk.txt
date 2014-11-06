@@ -64,7 +64,7 @@ Create the `TreasureData` object with your API key. The recommended place to do 
       }
     }
 
-The apikey can be retrieved from the console ([click here](https://console.treasuredata.com/users/current)). It's recommended to use **write-only API key** for SDKs.
+The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use **write-only API key** for SDKs.
 
 ### Step 3: Send Events to the Cloud
 

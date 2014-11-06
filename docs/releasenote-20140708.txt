@@ -14,7 +14,7 @@ When a column contains metadata, the icon turns darker.
 
 ### Console: Bulk Import Sessions List
 
-Changed the Bulk Import card to show the list of [Bulk Import sessions](https://console.treasuredata.com/import/bulk?page=1) for the user, if any.
+Changed the Bulk Import card to show the list of [Bulk Import sessions](<%= @env[:url_import] %>/bulk?page=1) for the user, if any.
 The page contains a link to view the Bulk Import illustration originally contained in the page. If no Bulk Import session is available, the page redirects immediately to the Bulk Import illustration.
 
 NOTE: The formatting of all list views has been improved and unified across the application

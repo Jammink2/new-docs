@@ -6,7 +6,7 @@ This is a summary of the new features and improvements introduced in this releas
 
 ### Console: Android SDK
 
-Added the Android SDK icon to the [Import Data, SDKs landing page](https://console.treasuredata.com/import/sdk) to introduce the first release (v0.1.0) of the SDK.
+Added the Android SDK icon to the [Import Data, SDKs landing page](<%= @env[:url_import] %>/sdk) to introduce the first release (v0.1.0) of the SDK.
 
 ![Console: Android SDK](/images/release-notes/140617-01-android_sdk.png)
 
@@ -33,7 +33,7 @@ Upgraded the [Hivemall Library](https://github.com/myui/hivemall) to version v0.
 The first official version of the Android SDK has been released this week as v0.1.0.<br/>
 The release was also published in the Central Maven repository on [Sonatype](https://search.maven.org/#artifactdetails%7Ccom.treasuredata%7Ctd-android-sdk%7C0.1.0%7Cjar).
 
-For more information please visit the [Android SDK documentation page](http://docs.treasuredata.com/articles/android-sdk).
+For more information please visit the [Android SDK documentation page](<%= @env[:url_doc] %>articles/android-sdk).
 
 ### SDKs: Released iOS SDK v0.0.6
 
@@ -75,7 +75,7 @@ These are the most important Bug Fixes made in this release:
 ### Console: File Uploader Support for Firefox and IE
 
 * _**[Problem]**_<br/>
-  The [Import Data, File uploader](https://console.treasuredata.com/import/file) does not work reliably on Firefox and Internet Explorer. When the finalized import is submitted for processing, an error concerning the imported file's name and size is displayed.<br/>
+  The [Import Data, File uploader](<%= @env[:url_import] %>/file) does not work reliably on Firefox and Internet Explorer. When the finalized import is submitted for processing, an error concerning the imported file's name and size is displayed.<br/>
   _**[Solution]**_<br/>
   This is caused by submitting the import request without file name and size information.<br/>
   File name and size is now submitted along with the rest of the information. The uploader was tested on both Internet Explorer (IE11 on Windows 8.1) and Firefox (v30 on MacOSX 10.8.5).<br/>

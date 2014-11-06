@@ -12,9 +12,9 @@ A *Database* is a collection of tables, which is similar to other database syste
 
 ## Management from Web Console
 
-[Databases](https://console.treasuredata.com/databases) page allows you to navigate/create/delete databases and tables from the browser. This is the most preferred way to interact with dbs and tables.
+[Databases](<%= @env[:url_databases] %>) page allows you to navigate/create/delete databases and tables from the browser. This is the most preferred way to interact with dbs and tables.
 
-<center><a href="https://console.treasuredata.com/databases" target="_blank"><img src="/images/screenshot-databases.png" width="90%" /></a><br/>^ Click Here</center><br/><br/>
+<center><a href="<%= @env[:url_databases] %>" target="_blank"><img src="/images/screenshot-databases.png" width="90%" /></a><br/>^ Click Here</center><br/><br/>
 
 ## Management from Command Line Interface (CLI)
 

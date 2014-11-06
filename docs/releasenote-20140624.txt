@@ -18,7 +18,7 @@ We created an all-in-one JAR build (<tt>td-android-sdk-0.1.1-shaded.jar</tt>) wh
 
 ### Console: Javascript SDK
 
-Added the Javascript SDK link to the [Import Data, SDKs](https://console.treasuredata.com/import/sdk) landing page.
+Added the Javascript SDK link to the [Import Data, SDKs](<%= @env[:url_import] %>/sdk) landing page.
 
 ![Console: Javascript SDK](/images/release-notes/140624-01-js_sdk.png)
 

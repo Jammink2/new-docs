@@ -28,7 +28,7 @@ Even with Presto as part of our ecosystem, MapReduce and Hive will continue to h
 
 ### Web Console
 
-From the [web console](https://console.treasuredata.com), on the New Query page select "Presto" as the query type.
+From the [web console](<%= @env[:url_console] %>), on the New Query page select "Presto" as the query type.
 
 <center><img src="/images/console-query-presto.png" width="75%" /></center><br />
 

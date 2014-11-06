@@ -30,7 +30,7 @@ NOTE: If you need a all-in-one jar file, we provide one at <a href="http://centr
 
 The `td-logger-java` library comes with a built-in library for recording in-app events. Insert code as shown below to record events from your app. Further details regarding the event logger API can be found [here](https://github.com/treasure-data/td-logger-java).
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="https://console.treasuredata.com/users/current" target="_blank">HERE</a>. 
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. 
 
     :::java
     import com.treasure_data.logger.TreasureDataLogger;
@@ -65,7 +65,7 @@ The data gets uploaded in every 5 minutes. You can confirm the data import eithe
 
 #### From Web Console
 
-To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](https://console.treasuredata.com/databases).
+To confirm that your data has been uploaded successfully, check your dataset from the web browser [HERE](<%= @env[:url_databases] %>).
 
 #### From CLI
 Or, please issue the *td tables* command if you have a [CLI client](command-line).
