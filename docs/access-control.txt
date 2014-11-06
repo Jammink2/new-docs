@@ -23,7 +23,7 @@ Export Table                      | OK    | OK          | OK         |
 
 
 
-Provided the user has adequate permission to access the [Team page](<%= @env[: url_users] %>), clicking on any of the users will allow doing one of the following:
+Provided the user has adequate permission to access the [Team page](<%= @env[:url_users] %>), clicking on any of the users will allow doing one of the following:
 
 * Grant / Deny Administrator permissions;
 * Grant / Deny full-access / query-only / import-only access to any of the databases.
