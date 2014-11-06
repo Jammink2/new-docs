@@ -38,7 +38,7 @@ By combining Treasure Data and Tableau, you can get the insights from any data s
 First, let’s start collecting data into Treasure Data. Treasure Data provides a various ways to collect data in near-real-time into the cloud. The data sources depicted here are ‘time-series’ data, which means there is historical data, produced in real time, and growing rapidly as your business scales. Here are the four main data collection capabilities provided by Treasure Data:
 
 - [JavaScript SDK](javascript-sdk) for website tracking
-- [Mobile SDK](mobile-sdk) (Android, iOS, Unity) for mobile application tracking
+- [Mobile SDK](/categories/mobile-sdks) (Android, iOS, Unity) for mobile application tracking
 - [Treasure Agent](/categories/streaming-import) for streaming data collection
 - [Bulk Loader](/categories/bulk-import) for parallel bulk loading
 
