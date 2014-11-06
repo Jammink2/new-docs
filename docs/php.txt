@@ -1,4 +1,4 @@
-<%= @env[:url_profile] %># Streaming Import from PHP Apps
+# Streaming Import from PHP Apps
 
 '[fluent-logger-php](http://github.com/fluent/fluent-logger-php)' is used to import data from PHP applications to Treasure Data. 
 
