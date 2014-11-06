@@ -126,6 +126,11 @@ Here are some basic examples. The underlying table consists of three fields: `ip
 
 NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
 
+## Hive Syntax Checker
+
+If you would like to experiment with the Hive SQL syntax, we made our
+Hive Syntax linter publicly available [here](https://sql.treasuredata.com).
+
 ## See Other Documents
 
 Here is a list of documents regarding the HiveQL.
