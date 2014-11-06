@@ -87,7 +87,7 @@ If you encounter a reserved keyword issue in your query, please wrap the infring
 Treasure Agent and td command use HTTPS by default so that we ensure security.
 
 
-If you have any questions, please feel free to [contact us](http://www.treasuredata.com/en/about/contact-us.php), or chat with us live using the window at the bottom right.
+If you have any questions, please feel free to [contact us](<%= @env[:url_contact] %>), or chat with us live using the window at the bottom right.
 
 ## Why tdlog plugin warn the endpoint change message?
 
