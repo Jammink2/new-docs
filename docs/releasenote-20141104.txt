@@ -1,0 +1,57 @@
+# Release Note 20141104
+
+## Features & Improvements
+
+This is the only public facing feature we introduced in this release:
+
+### Backend: SSL Support for Result Output to MySQL
+
+Now Query results can be written into an external MySQL RDMS using an SSL encrypted connection.
+
+This ensures usernames and passwords for the destination RDMS are sent through an encrypted connection and to ensure a minimum level of security for the data exchange.
+In order to enable SSL communication, please specify the '<tt>ssl=true</tt>' parameter. SSL is disabled by default:
+
+    mysql://username:password@host/database/table?ssl=true
+
+For reference, please refer to the [Writing Job Results into your MySQL Tables](result-into-mysql#ssl-option) documentation page.
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Aggregation Jobs
+
+* _**[Problem]**_<br/>
+  The status of legacy Aggregation job types could not be retrieved via neither the REST and Console APIs. Doing so returned a response with error code 500.<br/>
+  _**[Solution]**_<br/>
+  Aggregation jobs have been deprecated more than two years ago. Since then, the APIs changed to take advantage of single-table inheritance but the model for Aggregation jobs was not maintained.<br/>
+  The Aggregation jobs' model was added to make sure details about these types of legacy jobs can be still retrieved.<br/>
+
+### APIs: Unsupported Job Result Formats
+
+* _**[Problem]**_<br/>
+  Retrieving the result of a job with a format that does not belong to the list of supported formats (e.g. <tt>/v3/job/result/<job_id>?format=unsupported</tt>, with <tt>csv</tt>, <tt>tsv</tt>, <tt>json</tt>, <tt>msgpack</tt>, <tt>msgpack.gz</tt> formats currently supported) caused a 500 response error code.<br/>
+  _**[Solution]**_<br/>
+  This is due to calling Rails' redirect method twice in the same controller method when the format requested doesn't match any of the supported ones, which Rails does not allow. This caused the request to return a 500 error code.<br/>
+  We modified the logic to return a Rails standard 406 HTTP error code for any format that is not supported.<br/>
+
+### APIs: Auto Schema Detection Issue With Long Schema
+
+* _**[Problem]**_<br/>
+  When the length of the schema exceeds the maximum limit, new columns cannot be added to the schema and import callbacks fail, causing the table count to stop getting updated.<br/>
+  _**[Solution]**_<br/>
+  The schema of a table is stored in string as JSON format and the maximum size limit is 65536 characters. When this limit is reached, attempts to add new columns to the schema will fail validation during the import complete callback, thus terminating execution of the callback before the table's record count is updated.<br/>
+  We modified the logic to prevent the schema length to ever exceed 65536 by skipping all the new columns until the updated schema fit the maximum size requirements. This makes sure the callback is successful and the table's record count can be maintained current. When this limit his encountered, users are invited to switch the table to 'Manual schema' mode in order to more precisely manage which columns should be part of the table's schema.<br/>
+
+### Presto: MessageUnpacker Improvements
+
+* _**[Problem]**_<br/>
+  Some queries can occasionally fail with no particular failure pattern.<br/>
+  _**[Solution]**_<br/>
+  We found that root cause to be a problem with decoding a (Msgpack) result that contained non-unicode (Japanese) characters.<br/>
+  We improved the '<tt>MessageUnpacker.unpackString</tt>' method to handle this type of boundary decoding errors to make sure the execution of Presto queries can be maintained deterministic.<br/>
+
+
+
+
