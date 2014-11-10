@@ -29,7 +29,7 @@ Next, please initialize the library in your app like followings.
       private TreasureData td = null;
       
       void Start() {
-        TreasureData.initializeApiEndpoint("https://<%= @env[:sdk_endpoint] %>");
+        TreasureData.InitializeApiEndpoint("https://<%= @env[:sdk_endpoint] %>");
         td = new TreasureData("YOUR_API_KEY");
         ...
         /*
