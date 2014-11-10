@@ -8,7 +8,13 @@ This article will help you start sending the data from your iOS app to Treasure 
   * iOS 5(experimental), 6, or later
   * Basic knowledge of Treasure Data.
 
-## Step 1: Install the Library
+## How to install iOS SDK?
+
+This video demonstrates how to install iOS SDK in 5 minutes.
+
+<iframe width="780" height="525" src="//www.youtube-nocookie.com/embed/sgcDNeb1O74?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe>
+
+### Step 1: Install the Library
 
 [CocoaPods](http://cocoapods.org/) is a recommended way to install Treasure Data iOS SDK. First, please install CocoaPods to your PC.
 
@@ -30,7 +36,7 @@ Finally, please run `pod install`.
     :::term
     $ pod install
 
-## Step 2: Initialize the Library
+### Step 2: Initialize the Library
 
 Once you’ve installed the framework, just import the header file like following:
 
@@ -52,7 +58,7 @@ Next, please initialize the library in your app delegate’s `application:applic
 
 The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use **write-only API key** for SDKs. <a href="mailto:<%= @env[:mail_support] %>">Let us know</a> if you’re having any build issues.
 
-## Step 3: Send Events to the Cloud
+### Step 3: Send Events to the Cloud
 
 Next, please call addEvent() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
 
@@ -95,7 +101,7 @@ You can upload buffered events like this when finishing the application.
          ];
     }
 
-## Step 4: Track the App Installation
+### Step 4: Track the App Installation
 
 You can collect the first run event of your application, which can be used to track app `installation` event.
 

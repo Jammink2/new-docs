@@ -22,6 +22,10 @@ This video describes how to install and configure [Treasure Agent](td-agent) in 
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
+## How to set up iOS SDK
+
+<center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/sgcDNeb1O74?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
+
 ## How to set up Android SDK
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/nVwTMABEouI?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
