@@ -81,7 +81,7 @@ This example shows how to use the CLI to generate a sample apache log in json fo
 
 ### Middleware
 * [Apache Logs](analyzing-apache-logs)
-* [Tailing Existing CSV or TSV Logs](td-agent-tail)
+* [Tailing Existing CSV or TSV Logs](td-agent-tail-ctltsv)
 
 ## Additional Help
 
