@@ -9,7 +9,21 @@ Using [Tableau Online](http://www.tableausoftware.com/products/online) with Trea
   * Basic knowledge of Treasure Data
   * An license and its installation of Tableau Online
 
-## One Time Query
+## Usage
+### CLI: One Time Query
+
+Please add the Tableau result output destination with the <tt>-r</tt> / <tt>--result</tt> option for the `td query` command:
+
+    :::term
+    $ td query -d mydb -r 'tableau://username:password@online.tableausoftware.com/?mode=replace' 'SELECT * FROM access'
+
+where:
+
+- username: Your Tableau Online Username
+- password: Your Tableau Online Password
+- Host: online.tableausoftware.com
+
+### Console: One Time Query
 
 Please visit the [query editor](http://console.treasuredata.com/query_forms/new) on the web console, and type in the query. The example query below uses the access log example data set, and calculates the distribution of HTTP method per day.
 
@@ -55,7 +69,7 @@ By clicking `New Workbook`, you can create the charts and dashboard from the bro
 
 <center><img src="/images/tableau-server-new-workbook.png" width="80%" /></center>
 
-## Scheduled Query
+### Console: Scheduled Query
 
 In the previous section, you have learned how to create the charts by one job. The next action is to periodically refresh the dataset by [Scheduled Jobs](schedule) feature. By using this feature, you can periodically execute the query on Treasure Data, and update TDE file on Tableau Server. The schedules can be specified from the query editor. One thing it's useful is to use [TD_SCHEDULED_TIME()](udfs#tdscheduledtime) UDF, with `append` mode.
 
@@ -76,3 +90,32 @@ The query below will calculate the # of records within last 24 hours, from the t
     GROUP BY
       TD_TIME_FORMAT(time, "yyyy-MM-dd 00:00:00"),
       method
+
+## Options
+
+Result output to Tableau supports various options. The options can be specified
+as URL parameters on the CLI or with the REST APIs or the Console where supported.
+The options are normally compatible with each other and can be combined.
+Where applicable, the default behavior is indicated.
+
+### <tt>ssl</tt>
+
+The **ssl** option determines whether to use SSL or not for connecting to the Tableau server.
+When 'true', SSL is used. <tt>ssl=true</tt> is the default when this option is not
+specified.
+
+    :::term
+    tableau://username:password@online.tableausoftware.com/?ssl=true
+
+### <tt>ssl_verify</tt>
+
+The **ssl_verify** option determines whether to require certifcate verification
+for the SSL communication or not.
+When 'true', the certificate verification is required. <tt>ssl_verify=true</tt>
+is the default when this option is not specified.
+
+    :::term
+    tableau://username:password@online.tableausoftware.com/?ssl=true&ssl_verify=true
+
+Disabling certificate verification is particularly useful when the Tableau server's SSL certificate
+is **self-signed**.
