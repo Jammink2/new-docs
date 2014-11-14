@@ -32,9 +32,9 @@ Code is released under the MIT License: http://www.opensource.org/licenses/mit-l
 All rights reserved on the content (text files in the docs subdirectory), although you're welcome to modify these for the purpose of suggesting edits.
 
 # For IDCF
-This document is used by [TD document](http://docs.treasuredata.com/) and by [IDCF document](http://ybi-docs.idcfcloud.com/).Therefore, it should not use the specific information.
+This document is used by [TD document](http://docs.treasuredata.com/) and by [IDCF document](http://ybi-docs.idcfcloud.com/). Therefore, it should not use the specific information.
 
-Use this tag . You have to write XXXXX from 'app.rb'.If there is not necessary information,plsease add it to 'app.rb'.
+Use this tag. You have to write XXXXX from 'app.rb'. If there is not necessary information,plsease add it to 'app.rb'.
 
 <%= @env[:XXXXX] %>
 
@@ -42,4 +42,5 @@ e.g.
 <%= @env[:url_top] %>
 
 TD page : http://www.treasuredata.com/
+
 IDCF page : http://www.idcf.jp/bigdata/
