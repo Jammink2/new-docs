@@ -15,7 +15,7 @@ Pig Latin Language
 
 * [The official Pig documentation](http://pig.apache.org/docs/r0.10.0/) provides an overview of Pig.
 * The [Pig Latin Basics](http://pig.apache.org/docs/r0.10.0/basic.html) document covers the basics of Pig syntax and queries.
-* The [Comparing Pig and Hive](http://developer.yahoo.com/blogs/hadoop/posts/2010/01/comparing_pig_latin_and_sql_fo/) blog article gives a high level comparison of Hive and Pig.
+* The [Comparing Pig and Hive](https://developer.yahoo.com/blogs/hadoop/comparing-pig-latin-sql-constructing-data-processing-pipelines-444.html) blog article gives a high level comparison of Hive and Pig.
 * The [DataFu](https://github.com/linkedin/datafu) package contains useful UDFs for Pig.
 
 ## CLI Usage
