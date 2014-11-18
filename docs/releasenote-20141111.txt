@@ -1,0 +1,58 @@
+# Release Note 20141111
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Data Collection Introduction Video
+
+We embedded the "Choosing the Right Method to Collect Data" tutorial video in the Collect Data landing page.
+
+![Console: Data Collection Introduction Video](/images/release-notes/141111-01-collect_data_video.png)
+
+### Console: Storage Utilization In # of Records
+
+We switched the storage utilization chart in the Console utilization page to display the metric in number of records instead compressed size.
+
+![Console: Storage Utilization In # of Records](/images/release-notes/141111-02-storage_util.png)
+
+### Console: Free User's Global Notifications
+
+We added the Notifications back for Free users whose account life-span has gone beyond the 14-days trial period. It was previously not visible for them.
+
+### Backend: Time Filtering Support for UNION ALL and Self JOINs
+
+By default Hive processes and 'optimizes' UNION ALL and Self JOIN (a JOIN where both sizes come from the same table) into a flat SELECT query internally. This makes the time filtering clauses on both sides of the union or join ineffective, causing the query to have to scan the whole table rather than a time-delimited smaller portion of it.
+
+We modified and optimized Hive to resolve this problem and allow queries composed by a UNION ALL or a Self JOIN to scan the required data optimally based on the time range requirement specified.
+
+### Client Libraries: Released Java Client Library v0.5.5
+
+* Resolved an issue with using the Java client library and attempting to communicate with a different SSL endpoint. The Java client library was overwriting the default javax.net.ssl.trustStore value.
+
+### SDKs: Released Java SDK v0.2.2
+
+This new version bundles the above mentioned Java Client Library v0.5.5.
+
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: New Accounts Can't Query The Sample Database
+
+* _**[Problem]**_<br/>
+  A freshly signed up user cannot query the shared 'sample_datasets' database using the REST APIs and/or CLI.<br/>
+  _**[Solution]**_<br/>
+  This is due to the lookup method that determines whether the database the user intends to query exists or not. The method only looked up those databases that belonged to the account but not any shared one.<br/>
+  We modified the lookup method to list all the databases that can be queried by the account to allow the user to issue queries against shared databases.<br/>
+
+### APIs: Time Filtering Ineffective
+
+* _**[Problem]**_<br/>
+  On Tuesday 11/11 all customer's Hive queries slowed down significantly.<br/>
+  _**[Solution]**_<br/>
+  An operation problem in deploying the newly patched version of Hive caused the Time index filtering to become ineffective thus causing normally fast queries to scan the entire table they targeted instead of only the required portion. Because of the execution slowdown, all customers' jobs between ~2:30 PM and ~5:00 PM PST got queued up because the previously run jobs ran much slower than usual.<br/>
+  The Hive fix was initially reverted, then applied properly. To aid with consuming the backlog, all Treasure Data's Hadoop computation resources were doubled and all customers' computation plans were granted twice the amount of maximum mapper and reducer cores temporarily. As of ~2:00 AM on Wednesday 11/12 all the customers' job queues were back to normal.<br/>
+
