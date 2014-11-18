@@ -20,12 +20,6 @@ We switched the storage utilization chart in the Console utilization page to dis
 
 We added the Notifications back for Free users whose account life-span has gone beyond the 14-days trial period. It was previously not visible for them.
 
-### Backend: Time Filtering Support for UNION ALL and Self JOINs
-
-By default Hive processes and 'optimizes' UNION ALL and Self JOIN (a JOIN where both sizes come from the same table) into a flat SELECT query internally. This makes the time filtering clauses on both sides of the union or join ineffective, causing the query to have to scan the whole table rather than a time-delimited smaller portion of it.
-
-We modified and optimized Hive to resolve this problem and allow queries composed by a UNION ALL or a Self JOIN to scan the required data optimally based on the time range requirement specified.
-
 ### Client Libraries: Released Java Client Library v0.5.5
 
 * Resolved an issue with using the Java client library and attempting to communicate with a different SSL endpoint. The Java client library was overwriting the default javax.net.ssl.trustStore value.
