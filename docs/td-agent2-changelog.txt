@@ -12,6 +12,7 @@ This article lists the changelog of [td-agent2](td-agent2).
 - Remove fluent-plugin-flume
 - fluentd-ui [v0.3.7](https://github.com/fluent/fluentd-ui/blob/master/ChangeLog)
 - jemalloc 2.2.5
+- rubygems 2.2.1
 - Create /var/run/td-agent during post installation on rpm
 
 ## 2014/10/22: version v2.1.1
