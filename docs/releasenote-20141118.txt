@@ -1,0 +1,89 @@
+# Release Note 20141118
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Redesigned and Improved the Query Editor
+
+We greatly improved the UI and UX for the Query Editor. Some of the highlights of this refactoring are:
+
+* Added a Database and Table Explorer to consult the schema of one or more tables while creating or editing a query. This sidebar is collapsible.
+* Reorganized the page structure by:
+  * Moved name and description into a separate popover
+  * Moved the configuration of Schedules and Result Export destination into two separate [modal windows](http://en.wikipedia.org/wiki/Modal_window)
+  * Moved the query engine's documentation reference at the top of the query editor
+  * Removing the right hand side panels as a consequence
+* Improved the management of Saved Result Export destination within the modal window
+
+Interacting with the database and table Explorer while creating and editing a query:
+![Console: Redesigned and Improved the Query Editor 1](/images/release-notes/141118-01-db_table_browser.gif)
+
+Adding a schedule to the query:
+![Console: Redesigned and Improved the Query Editor 2](/images/release-notes/141118-02-scheduling.gif)
+
+Adding a result export destination and saving it as favorite:
+![Console: Redesigned and Improved the Query Editor 3](/images/release-notes/141118-03-result_output.gif)
+
+Naming the query, adding a description and saving the query:
+![Console: Redesigned and Improved the Query Editor 4](/images/release-notes/141118-04-saving.gif)
+
+### Console: Form Validation Errors
+
+Improved the look and feel of how validation errors are reported to the user. The errors are now show right on top of the form field they refer to for greater clarify.
+
+![Console: Form Validation Errors](/images/release-notes/141118-05-validation_errors.png)
+
+### Console: Query Result Output Options
+
+We added new options to several Query Result Output methods:
+
+* '<tt>ssl</tt>' to use SSL Secure, encrypted transmission of data from Treasure Data to the destination storage for PostgreSQL, MySQL, Redshift (disabled by default) and Tableau (enabled by default).
+* '<tt>ssl_verify</tt>' to control whether client certificate validation is performed at the server side for PostgreSQL, MySQL, and Redshift (disabled by default) and Tableau (enabled by default). Especially in a hosted Tableau server, this option is necessary if the server certificate is self-signed.
+* '<tt>api_key</tt>' to output the result to a different Treasure Data account with Treasure Data result output.
+* '<tt>hostname</tt>' to output the result to a different Treasure Data cloud (the '<tt>apikey</tt>' option is required when this option is used) with Treasure Data result output.
+
+### Backend: Time Filtering Support for UNION ALL and Self JOINs
+
+By default Hive processes and 'optimizes' UNION ALL and Self JOIN (a JOIN where both sizes come from the same table) into a flat SELECT query internally. This makes the time filtering clauses on both sides of the union or join ineffective, causing the query to have to scan the whole table rather than a time-delimited smaller portion of it.
+
+We modified and optimized Hive to resolve this problem and allow queries composed by a UNION ALL or a Self JOIN to scan the required data optimally based on the time range requirement specified.
+
+Backend: Hive TD_DATE_TRUNC UDF
+
+We added the <tt>TD_DATE_TRUNC</tt> UDF for Hive which mimics the functionality of native [Presto's DATE_TRUNC](http://prestodb.io/docs/current/functions/datetime.html) function.
+
+    long TD_DATE_TRUNC(string unit, long timestamp[, string timezone = 'UTC'])
+
+The supported units are:
+
+* 'minute'
+* 'hour'
+* 'day'
+* 'week'
+* 'month'
+* 'quarter'
+* 'year'
+
+Please refer to the corresponding documentation [TD_DATE_TRUNC Hive UDF](udfs) in the documentation for more information.
+
+Backend: Retrying For Result Output to Treasure Data
+
+We added the retrying mechanism for Result Output to Treasure Data jobs when the failure is caused by any of the Bulk Import parts being flagged as error.
+
+### SDKs: Released Ruby SDK v0.3.24
+
+In order to support more clouds, we improved the Ruby SDK to allow specification of the API endpoint using the :endpoint parameter and pass it on to the underlying Ruby Client Library. This is only necessary when the SDK is used in 'direct access' mode.
+
+## Bug Fixes
+
+This is the only important Bug Fix made in this release:
+
+### Console: Cloning A Query As One-Off Job
+
+* _**[Problem]**_<br/>
+  When the user Clones a query but decides not to save it and simply run it as a one-off job, the job is saved as query nonetheless.<br/>
+  _**[Solution]**_<br/>
+  The functionality of the 'Clone' button for a Query would send the user to the query editor pre filled with the information from the originating query, including the Query name with an added 'copy' suffix. Even if the user, decides not to save the query, the pre filled name causes the one-off job to be saved as query.<br/>
+  We modified the functionality of the 'Clone' button to do exactly what one would expect from it: create a copy of the query with an added 'copy' suffix in the name. Users can then directly run the query or edit it further.<br/>
+
