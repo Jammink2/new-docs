@@ -49,7 +49,7 @@ By default Hive processes and 'optimizes' UNION ALL and Self JOIN (a JOIN where 
 
 We modified and optimized Hive to resolve this problem and allow queries composed by a UNION ALL or a Self JOIN to scan the required data optimally based on the time range requirement specified.
 
-Backend: Hive TD_DATE_TRUNC UDF
+### Backend: Hive TD_DATE_TRUNC UDF
 
 We added the <tt>TD_DATE_TRUNC</tt> UDF for Hive which mimics the functionality of native [Presto's DATE_TRUNC](http://prestodb.io/docs/current/functions/datetime.html) function.
 
@@ -67,7 +67,7 @@ The supported units are:
 
 Please refer to the corresponding documentation [TD_DATE_TRUNC Hive UDF](udfs) in the documentation for more information.
 
-Backend: Retrying For Result Output to Treasure Data
+### Backend: Retrying For Result Output to Treasure Data
 
 We added the retrying mechanism for Result Output to Treasure Data jobs when the failure is caused by any of the Bulk Import parts being flagged as error.
 
