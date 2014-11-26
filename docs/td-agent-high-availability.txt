@@ -101,6 +101,7 @@ Please add the following lines to the /etc/td-agent/td-agent.conf file for your 
       buffer_type file
       buffer_path /var/log/td-agent/buffer/td
       use_ssl true
+      num_threads 8
     </match>
 
 The incoming logs are buffered, then periodically uploaded into the cloud. If upload fails, the logs are stored on the local disk until the retransmission succeeds.
