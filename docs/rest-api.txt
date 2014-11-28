@@ -58,7 +58,7 @@ No parameters are required.
           "created_at": "2013-11-08 17:47:22 -0800",
           "updated_at": "2013-11-08 17:47:22 -0800",
           "organization": null
-        },
+        }
       ]
     }
 
@@ -113,7 +113,7 @@ No parameters are required.
           "user_name": "owner",
           "organization": null,
           "database": "database2"
-        },
+        }
       ]
     }
 
@@ -162,7 +162,7 @@ This command swaps the contents of two tables.
     {
       "database": "db1",
       "table1": "tbl1",
-      "table2": "tbl2",
+      "table2": "tbl2"
     }
 
 ## POST /v3/job/issue/hive/:database
