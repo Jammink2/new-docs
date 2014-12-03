@@ -1,0 +1,56 @@
+# Release Note 20141125
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Improved Job Creation Validation Errors
+
+We improved the messages returned by the REST APIs when a validation error occurs to be more representative of the issue encountered.
+
+### Console: TD_SCHEDULED_TIME Reference Time
+
+When the <tt>TD_SCHEDULED_TIME</tt> UDF is used within a saved query that is not scheduled, when the user runs the query it's asked for a reference time to return as value for <tt>TD_SCHEDULED_TIME</tt>.
+While this is necessary for Scheduled queries, we made it optional for Unscheduled queries: if the user simply runs the query without specifying a reference time, the current time will be used instead.
+
+### JDBC: Released JDBC Driver v0.3.0
+
+* Added support for *SELECT* [Prepared Statements](http://en.wikipedia.org/wiki/Prepared_statement#Java_JDBC).
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Validation Errors
+
+* _**[Problem]**_<br/>
+  When an error is detected in the schema definition of a table on form submission, the error message container is placed far from the invalid form fields.<br/>
+  _**[Solution]**_<br/>
+  This is due to the validation being performed on the entire schema definitions and not providing information about which of the fields in the form is invalid.<br/>
+  We modified the layout to display the error closer to the source of error and highlighted the portion of the form that failed validation in red.<br/>
+* _**[Problem]**_<br/>
+  When a new user is added to an account from the Team's page and its email address is already registered in the system, the validation error message is illegible.<br/>
+  _**[Solution]**_<br/>
+  This is due to the validation error message returned being very long and extending beyond the boundary of the error container. The overflowing part of the message is rendered below the container and being white with no background, it cannot be read.<br/>
+  We simplified the validation error message to be short and concise and fit within the error container.<br/>
+
+### Backend: <tt>TD_TIME_ADD</tt> Exceptions
+
+* _**[Problem]**_<br/>
+  The <tt>TD_TIME_ADD</tt> UDF causes a Null Pointer Exception if the first argument is specified as a NULL integer value.<br/>
+  _**[Solution]**_<br/>
+  The first argument of the <tt>TD_TIME_ADD</tt> UDF is expected to be a integer Unix timestamp: the case when that value is a NULL instead is not handled and causes a Null Pointer Exception.<br/>
+  We modified the UDF's logic to check the value of the first argument and return NULL if the integer timestamp argument is NULL.<br/>
+
+### Backend: Hive Exceptions for Free Accounts
+
+* _**[Problem]**_<br/>
+  Some free accounts run into Unsupported Operation exceptions when attempting to run a Hive query.<br/>
+  _**[Solution]**_<br/>
+  This is related to the different instances running different version of Java (6 or 7) across which the Socket implementation class has changed name.<br/>
+  We modified the logic to dynamically load the the Socket implementation class using the correct name based on which version of Java is in use.<br/>
+
+
+
+
+
