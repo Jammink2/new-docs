@@ -19,7 +19,7 @@ NOTE: Tailing existing logs is by far the easiest way to get started with Treasu
 
 ## Filtering Out the Records
 
-If you need to filter logs (ex: filtering out impressions and just keeping clicks), [the exec-filter plugin](http://fluentd.org/doc/plugin.html#exec-filter) is useful. This plugin launches another script which takes STDIN as input and STDOUT as output, and filters logs accordingly.
+If you need to filter logs (ex: filtering out impressions and just keeping clicks), <a href="//docs.fluentd.org/articles/out_exec_filter">the exec-filter plugin</a> is useful. This plugin launches another script which takes STDIN as input and STDOUT as output, and filters logs accordingly.
 
 Here's an example configuration.
 

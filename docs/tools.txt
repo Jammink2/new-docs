@@ -17,7 +17,7 @@ The current list of supported tools is shown below.
 * [Tableau](tableau)
   * [Tableau Server](tableau-server)
   * [Tableau Online](tableau-online)
-  * [Tableau Desktop](tableau-desktop)
+  * [Tableau Desktop](tableau-desktop-odbc)
 * [Metric Insights](metricinsights)
 * [Chartio](chartio)
 * [SQuirreL SQL](squirrelsql)

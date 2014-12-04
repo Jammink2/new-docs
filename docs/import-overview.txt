@@ -20,7 +20,7 @@ Importing continuously generated data from running servers. [Treasure Agent](td-
 
 #### 2) App / Mobile SDKs
 
-Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed our SDKs ([JavaScript](/categories/javascript-sdks), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
+Importing records directly from Web or Mobile applications, using Treasure Data's SDKs. Your application needs to modify your applications to embed our SDKs ([JavaScript](/articles/javascript-sdk), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
 
 #### 3) Bulk Import
 

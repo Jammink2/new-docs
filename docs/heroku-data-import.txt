@@ -65,7 +65,7 @@ Treasure Data provides multiple ways to import data from Heroku applications. He
     <td></td>
     <td>Y</td>
     <td>Y</td>
-    <td><a href="bulk-import-from-db">use Bulk Import</a></td>
+    <td><a href="bulk-import">use Bulk Import</a></td>
   </tr>
 </table>
 

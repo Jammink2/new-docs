@@ -41,4 +41,4 @@ Next, please use the `td-logger-ruby` library or the `td-logger-java` library to
 * [td-logger-ruby](heroku-ruby#appendix-importing-data-to-treasure-data-using-the-logger-library)
 * [td-logger-java](heroku-ruby#appendix-importing-data-to-treasure-data-using-the-logger-library)
 
-NOTE: Sharing API keys is out of scope for [the "STDOUT" integration](treasure-data#data-import-just-write-to-stdout). Even if the Treasure Data API key is changed to point to a different account, the events streamed into stdout are uploaded to the original account.
+NOTE: Sharing API keys is out of scope for [the "STDOUT" integration](https://devcenter.heroku.com/articles/treasure-data#data-import-just-write-to-stdout). Even if the Treasure Data API key is changed to point to a different account, the events streamed into stdout are uploaded to the original account.
