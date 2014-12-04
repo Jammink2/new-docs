@@ -7,7 +7,7 @@ This article will explain how to use the public REST API.
 
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
-  * Basic knowledge of our [query language](hive).
+  * Basic knowledge of our [query language](hive and/or presto).
 
 ## Endpoint
 
@@ -165,11 +165,12 @@ This command swaps the contents of two tables.
       "table2": "tbl2"
     }
 
-## POST /v3/job/issue/hive/:database
+## POST /v3/job/issue/:type/:database
 This command issues queries.
 
 #### Parameters
 * **database**: name of the database
+* **type**: the job type ('hive' or 'presto')
 * **query**: query string
 * **priority** (optional): priority of the job. -2 (VERY LOW) to 2 (VERY HIGH). The default is 0 (NORMAL).
 
@@ -219,7 +220,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 
 #### Output
 * **job_id**: the specified job_id
-* **type**: the job type (only 'hive' at the moment)
+* **type**: the job type ('hive' or 'presto')
 * **query**: the query
 * **database**: the name of the database
 * **status**: the job status. The status can be 'queued', 'booting', 'running', 'success', or 'error'
