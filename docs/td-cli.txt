@@ -12,18 +12,18 @@ This page documents most of `td` subcommands.
 
 
     $ td db:list
-
+  
 #### example:
 
 
     $ td db:list
     $ td dbs
-
+  
 #### description:
 
 
     Show list of tables in a database
-
+  
 #### options:
 
 
@@ -36,17 +36,17 @@ This page documents most of `td` subcommands.
 
 
     $ td db:show <db>
-
+  
 #### example:
 
 
     $ td db example_db
-
+  
 #### description:
 
 
     Describe information of a database
-
+  
 #### options:
 
 
@@ -59,12 +59,12 @@ This page documents most of `td` subcommands.
 
 
     $ td db:create <db>
-
+  
 #### example:
 
 
     $ td db:create example_db
-
+  
 #### description:
 
 
@@ -77,17 +77,17 @@ This page documents most of `td` subcommands.
 
 
     $ td db:delete <db>
-
+  
 #### example:
 
 
     $ td db:delete example_db
-
+  
 #### description:
 
 
     Delete a database
-
+  
 #### options:
 
 
@@ -100,19 +100,19 @@ This page documents most of `td` subcommands.
 
 
     $ td table:list [db]
-
+  
 #### example:
 
 
     $ td table:list
     $ td table:list example_db
     $ td tables
-
+  
 #### description:
 
 
     Show list of tables
-
+  
 #### options:
 
 
@@ -127,12 +127,12 @@ This page documents most of `td` subcommands.
 
 
     $ td table:show <db> <table>
-
+  
 #### example:
 
 
     $ td table example_db table1
-
+  
 #### description:
 
 
@@ -145,17 +145,17 @@ This page documents most of `td` subcommands.
 
 
     $ td table:create <db> <table>
-
+  
 #### example:
 
 
     $ td table:create example_db table1
-
+  
 #### description:
 
 
     Create a table
-
+  
 #### options:
 
 
@@ -170,17 +170,17 @@ This page documents most of `td` subcommands.
 
 
     $ td table:delete <db> <table>
-
+  
 #### example:
 
 
     $ td table:delete example_db table1
-
+  
 #### description:
 
 
     Delete a table
-
+  
 #### options:
 
 
@@ -193,18 +193,18 @@ This page documents most of `td` subcommands.
 
 
     $ td table:import <db> <table> <files...>
-
+  
 #### example:
 
 
     $ td table:import example_db table1 --apache access.log
     $ td table:import example_db table1 --json -t time - < test.json
-
+  
 #### description:
 
 
     Parse and import files to a table
-
+  
 #### options:
 
 
@@ -223,17 +223,17 @@ This page documents most of `td` subcommands.
 
 
     $ td table:export <db> <table>
-
+  
 #### example:
 
 
     $ td table:export example_db table1 --s3-bucket mybucket -k KEY_ID -s SECRET_KEY
-
+  
 #### description:
 
 
     Dump logs in a table to the specified storage
-
+  
 #### options:
 
 
@@ -251,12 +251,12 @@ This page documents most of `td` subcommands.
 
 
     $ td table:swap <db> <table1> <table2>
-
+  
 #### example:
 
 
     $ td table:swap example_db table1 table2
-
+  
 #### description:
 
 
@@ -269,18 +269,18 @@ This page documents most of `td` subcommands.
 
 
     $ td table:tail <db> <table>
-
+  
 #### example:
 
 
     $ td table:tail example_db table1
     $ td table:tail example_db table1 -t "2011-01-02 03:04:05" -n 30
-
+  
 #### description:
 
 
     Get recently imported logs
-
+  
 #### options:
 
 
@@ -296,17 +296,17 @@ This page documents most of `td` subcommands.
 
 
     $ td table:partial_delete <db> <table>
-
+  
 #### example:
 
 
     $ td table:partial_delete example_db table1 --from 1341000000 --to 1341003600
-
+  
 #### description:
 
 
     Delete logs from the table within the specified time range
-
+  
 #### options:
 
 
@@ -325,12 +325,12 @@ This page documents most of `td` subcommands.
 
 
     $ td table:expire <db> <table> <expire_days>
-
+  
 #### example:
 
 
     $ td table:expire example_db table1 30
-
+  
 #### description:
 
 
@@ -343,17 +343,17 @@ This page documents most of `td` subcommands.
 
 
     $ td import:list
-
+  
 #### example:
 
 
     $ td import:list
-
+  
 #### description:
 
 
     List bulk import sessions
-
+  
 #### options:
 
 
@@ -366,12 +366,12 @@ This page documents most of `td` subcommands.
 
 
     $ td import:show <name>
-
+  
 #### example:
 
 
     $ td import:show
-
+  
 #### description:
 
 
@@ -384,16 +384,52 @@ This page documents most of `td` subcommands.
 
 
     $ td import:create <name> <db> <table>
-
+  
 #### example:
 
 
     $ td import:create logs_201201 example_db event_logs
-
+  
 #### description:
 
 
     Create a new bulk import session to the the table
+
+
+## td import:jar_version
+
+#### usage:
+
+
+    $ td import:jar_version
+  
+#### example:
+
+
+    $ td import:jar_version
+  
+#### description:
+
+
+    Show import jar version
+
+
+## td import:jar_update
+
+#### usage:
+
+
+    $ td import:jar_update
+  
+#### example:
+
+
+    $ td import:jar_update
+  
+#### description:
+
+
+    Update import jar to the latest version
 
 
 ## td import:prepare
@@ -402,7 +438,7 @@ This page documents most of `td` subcommands.
 
 
     $ td import:prepare <files...>
-
+  
 #### example:
 
 
@@ -410,12 +446,12 @@ This page documents most of `td` subcommands.
     $ td import:prepare logs/*.csv --format csv --columns date_code,uid,price,count --time-value 1394409600,10 -o parts/
     $ td import:prepare mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
     $ td import:prepare "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
-
+  
 #### description:
 
 
     Convert files into part file format
-
+  
 #### options:
 
 
@@ -460,18 +496,18 @@ This page documents most of `td` subcommands.
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
       -S, --all-string                 disable automatic type conversion
-
+  
       CSV/TSV specific options:
       --column-header                  first line includes column names
       --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
       --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
       --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
-
+  
       MySQL specific options:
       --db-url URL                     JDBC connection URL
       --db-user NAME                   user name for MySQL account
       --db-password PASSWORD           password for MySQL account
-
+  
       REGEX specific options:
       --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
 
@@ -482,7 +518,7 @@ This page documents most of `td` subcommands.
 
 
     $ td import:upload <session name> <files...>
-
+  
 #### example:
 
 
@@ -491,7 +527,7 @@ This page documents most of `td` subcommands.
     $ td import:upload parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:upload mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
     $ td import:upload "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
-
+  
 #### description:
 
 
@@ -506,7 +542,7 @@ This page documents most of `td` subcommands.
       --auto-commit                    commit bulk import job automatically
       --auto-delete                    delete bulk import session automatically
       --parallel NUM                   upload in parallel (default: 2; max 8)
-
+  
       -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
       -T, --time-format FORMAT         specifies the strftime format of the time column
@@ -548,18 +584,18 @@ This page documents most of `td` subcommands.
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
       -S, --all-string                 disable automatic type conversion
-
+  
       CSV/TSV specific options:
       --column-header                  first line includes column names
       --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
       --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
       --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
-
+  
       MySQL specific options:
       --db-url URL                     JDBC connection URL
       --db-user NAME                   user name for MySQL account
       --db-password PASSWORD           password for MySQL account
-
+  
       REGEX specific options:
       --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
 
@@ -570,7 +606,7 @@ This page documents most of `td` subcommands.
 
 
     $ td import:auto <session name> <files...>
-
+  
 #### example:
 
 
@@ -579,12 +615,12 @@ This page documents most of `td` subcommands.
     $ td import:auto parts/*.csv --auto-create mydb.mytbl --format csv --columns time,uid,price,count --time-column time -o parts/
     $ td import:auto mysess mytable --format mysql --db-url jdbc:mysql://localhost/mydb --db-user myuser --db-password mypass
     $ td import:auto "s3://<s3_access_key>:<s3_secret_key>@/my_bucket/path/to/*.csv" --format csv --column-header --time-column date_time -o parts/
-
+  
 #### description:
 
 
     Automatically upload or re-upload files into a bulk import session. It's functional equivalent of 'upload' command with 'auto-perform', 'auto-commit' and 'auto-delete' options. But it, by default, doesn't provide 'auto-create' option. If you want 'auto-create' option, you explicitly must declare it as command options.
-
+  
 #### options:
 
 
@@ -592,7 +628,7 @@ This page documents most of `td` subcommands.
       --auto-create DATABASE.TABLE     create automatically bulk import session by specified database and table names
                                        If you use 'auto-create' option, you MUST not specify any session name as first argument.
       --parallel NUM                   upload in parallel (default: 2; max 8)
-
+  
       -f, --format FORMAT              source file format [csv, tsv, json, msgpack, apache, regex, mysql]; default=csv
       -C, --compress TYPE              compressed type [gzip, none, auto]; default=auto detect
       -T, --time-format FORMAT         specifies the strftime format of the time column
@@ -634,18 +670,18 @@ This page documents most of `td` subcommands.
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
       -S, --all-string                 disable automatic type conversion
-
+  
       CSV/TSV specific options:
       --column-header                  first line includes column names
       --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
       --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
       --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
-
+  
       MySQL specific options:
       --db-url URL                     JDBC connection URL
       --db-user NAME                   user name for MySQL account
       --db-password PASSWORD           password for MySQL account
-
+  
       REGEX specific options:
       --regex-pattern PATTERN          pattern to parse line. When 'regex' is used as source file format, this option is required
 
@@ -656,17 +692,17 @@ This page documents most of `td` subcommands.
 
 
     $ td import:perform <name>
-
+  
 #### example:
 
 
     $ td import:perform logs_201201
-
+  
 #### description:
 
 
     Start to validate and convert uploaded files
-
+  
 #### options:
 
 
@@ -680,12 +716,12 @@ This page documents most of `td` subcommands.
 
 
     $ td import:error_records <name>
-
+  
 #### example:
 
 
     $ td import:error_records logs_201201
-
+  
 #### description:
 
 
@@ -698,17 +734,17 @@ This page documents most of `td` subcommands.
 
 
     $ td import:commit <name>
-
+  
 #### example:
 
 
     $ td import:commit logs_201201
-
+  
 #### description:
 
 
     Start to commit a performed bulk import session
-
+  
 #### options:
 
 
@@ -721,12 +757,12 @@ This page documents most of `td` subcommands.
 
 
     $ td import:delete <name>
-
+  
 #### example:
 
 
     $ td import:delete logs_201201
-
+  
 #### description:
 
 
@@ -739,12 +775,12 @@ This page documents most of `td` subcommands.
 
 
     $ td import:freeze <name>
-
+  
 #### example:
 
 
     $ td import:freeze logs_201201
-
+  
 #### description:
 
 
@@ -757,12 +793,12 @@ This page documents most of `td` subcommands.
 
 
     $ td import:unfreeze <name>
-
+  
 #### example:
 
 
     $ td import:unfreeze logs_201201
-
+  
 #### description:
 
 
@@ -775,18 +811,18 @@ This page documents most of `td` subcommands.
 
 
     $ td result:list
-
+  
 #### example:
 
 
     $ td result:list
     $ td results
-
+  
 #### description:
 
 
     Show list of result URLs
-
+  
 #### options:
 
 
@@ -799,12 +835,12 @@ This page documents most of `td` subcommands.
 
 
     $ td result:show <name>
-
+  
 #### example:
 
 
     $ td result name
-
+  
 #### description:
 
 
@@ -817,17 +853,17 @@ This page documents most of `td` subcommands.
 
 
     $ td result:create <name> <URL>
-
+  
 #### example:
 
 
     $ td result:create name mysql://my-server/mydb
-
+  
 #### description:
 
 
     Create a result URL
-
+  
 #### options:
 
 
@@ -841,12 +877,12 @@ This page documents most of `td` subcommands.
 
 
     $ td result:delete <name>
-
+  
 #### example:
 
 
     $ td result:delete name
-
+  
 #### description:
 
 
@@ -859,12 +895,12 @@ This page documents most of `td` subcommands.
 
 
     $ td schema:show <db> <table>
-
+  
 #### example:
 
 
     $ td schema example_db table1
-
+  
 #### description:
 
 
@@ -877,12 +913,12 @@ This page documents most of `td` subcommands.
 
 
     $ td schema:set <db> <table> [columns...]
-
+  
 #### example:
 
 
     $ td schema:set example_db table1 user:string size:int
-
+  
 #### description:
 
 
@@ -895,12 +931,12 @@ This page documents most of `td` subcommands.
 
 
     $ td schema:add <db> <table> <columns...>
-
+  
 #### example:
 
 
     $ td schema:add example_db table1 user:string size:int
-
+  
 #### description:
 
 
@@ -913,12 +949,12 @@ This page documents most of `td` subcommands.
 
 
     $ td schema:remove <db> <table> <columns...>
-
+  
 #### example:
 
 
     $ td schema:remove example_db table1 user size
-
+  
 #### description:
 
 
@@ -931,18 +967,18 @@ This page documents most of `td` subcommands.
 
 
     $ td sched:list
-
+  
 #### example:
 
 
     $ td sched:list
     $ td scheds
-
+  
 #### description:
 
 
     Show list of schedules
-
+  
 #### options:
 
 
@@ -955,18 +991,18 @@ This page documents most of `td` subcommands.
 
 
     $ td sched:create <name> <cron> [sql]
-
+  
 #### example:
 
 
     $ td sched:create sched1 "0 * * * *" -d example_db "select count(*) from table1" -r rset1
     $ td sched:create sched1 "0 * * * *" -d example_db -q query.txt -r rset2
-
+  
 #### description:
 
 
     Create a schedule
-
+  
 #### options:
 
 
@@ -994,12 +1030,12 @@ This page documents most of `td` subcommands.
 
 
     $ td sched:delete <name>
-
+  
 #### example:
 
 
     $ td sched:delete sched1
-
+  
 #### description:
 
 
@@ -1012,17 +1048,17 @@ This page documents most of `td` subcommands.
 
 
     $ td sched:update <name>
-
+  
 #### example:
 
 
     $ td sched:update sched1 -s "0 */2 * * *" -d my_db -t "Asia/Tokyo" -D 3600
-
+  
 #### description:
 
 
     Modify a schedule
-
+  
 #### options:
 
 
@@ -1050,17 +1086,17 @@ This page documents most of `td` subcommands.
 
 
     $ td sched:history <name> [max]
-
+  
 #### example:
 
 
     $ td sched sched1 --page 1
-
+  
 #### description:
 
 
     Show history of scheduled queries
-
+  
 #### options:
 
 
@@ -1075,17 +1111,17 @@ This page documents most of `td` subcommands.
 
 
     $ td sched:run <name> <time>
-
+  
 #### example:
 
 
     $ td sched:run sched1 "2013-01-01 00:00:00" -n 6
-
+  
 #### description:
 
 
     Run scheduled queries for the specified time
-
+  
 #### options:
 
 
@@ -1099,18 +1135,18 @@ This page documents most of `td` subcommands.
 
 
     $ td query [sql]
-
+  
 #### example:
 
 
     $ td query -d example_db -w -r rset1 "select count(*) from table1"
     $ td query -d example_db -w -r rset1 -q query.txt
-
+  
 #### description:
 
 
     Issue a query
-
+  
 #### options:
 
 
@@ -1140,17 +1176,17 @@ This page documents most of `td` subcommands.
 
 
     $ td job:show <job_id>
-
+  
 #### example:
 
 
     $ td job:show 1461
-
+  
 #### description:
 
 
     Show status and result of a job
-
+  
 #### options:
 
 
@@ -1171,12 +1207,12 @@ This page documents most of `td` subcommands.
 
 
     $ td job:status <job_id>
-
+  
 #### example:
 
 
     $ td job:status 1461
-
+  
 #### description:
 
 
@@ -1189,18 +1225,18 @@ This page documents most of `td` subcommands.
 
 
     $ td job:list [max]
-
+  
 #### example:
 
 
     $ td jobs
     $ td jobs --page 1
-
+  
 #### description:
 
 
     Show list of jobs
-
+  
 #### options:
 
 
@@ -1219,12 +1255,12 @@ This page documents most of `td` subcommands.
 
 
     $ td job:kill <job_id>
-
+  
 #### example:
 
 
     $ td job:kill 1461
-
+  
 #### description:
 
 
@@ -1237,7 +1273,7 @@ This page documents most of `td` subcommands.
 
 
     $ td password:change
-
+  
 #### description:
 
 
@@ -1250,7 +1286,7 @@ This page documents most of `td` subcommands.
 
 
     $ td server:status
-
+  
 #### description:
 
 
@@ -1263,12 +1299,12 @@ This page documents most of `td` subcommands.
 
 
     $ td server:endpoint <api_endpoint>
-
+  
 #### example:
 
 
-    $ td td server:endpoint 'https://<%= @env[:api_endpoint] %>'
-
+    $ td td server:endpoint 'https://api.treasuredata.com'
+  
 #### description:
 
 
@@ -1281,7 +1317,7 @@ This page documents most of `td` subcommands.
 
 
     $ td sample:apache <path.json>
-
+  
 #### description:
 
 
