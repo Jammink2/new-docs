@@ -1,0 +1,49 @@
+# Release Note 20141202
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Scheduled Query Run Errors
+
+We improved the message returned by the APIs when a validation error is encountered to be more representative of the actual cause, rather than being generic.
+
+### Client Tools: Released Java Bulk Import CLI v0.5.6
+
+* Fixed support for the native *Unsigned Tinyint*, *Unsigned Smallint*, and *Unsigned Int* types when reading data from a MySQL database.
+  NOTE: MySQL's native *Unsigned Bigint* is currently still not supported.
+
+### Client Tools: Released Ruby Client Library v0.8.67
+
+* Made disabling of keep-alive connections explicit instead of relying on Ruby's garbage collection.
+
+### Client Tools: Released Ruby CLI v0.11.6
+
+* Resolved an issue with updating the Toolbelt (from a Windows or MacOSX package installation) through a Proxy
+* Fixed the uploading of Bulk Import parts with '<tt>td import:upload</tt>' through a Proxy
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: New Query Load Issue with Many Databases/Tables
+
+* _**[Problem]**_<br/>
+  When the number of databases of an account and number of tables within them is very large the New Query editor cannot load fast enough and causes the browser to time out.<br/>
+  _**[Solution]**_<br/>
+  The issue occurs because creating the tree structure for the Databases/Tables Explorer takes too long when the number of databases and tables is very large. As an effect the long load causes the browser to time out.<br/>
+  We modified the login used to construct the Databases/Tables Explorer to load the list of tables (and columns schema) in a database only when the corresponding database is select. This way, the DOM structure is not unnecessarily overloaded with tables the user has no need to consult and the page load improved drastically for those few users affected.<br/>
+
+### Console: Lint On Query Engine Switch
+
+* _**[Problem]**_<br/>
+  When a user enters/edits a query and then switches the query engine to different one, the linter does not reevaluate the syntax based on the new query engine selection. The user is erroneously induced into assuming the query syntax is correct and may attempt to run the query 'as is': it will eventually incur in a Syntax error during the execution.<br/>
+  _**[Solution]**_<br/>
+  Syntax checking/Linting was only triggered when the user modified the query text. When the query engine is switched without modifying the query text, the linter did not execute.<br/>
+  We modified the query editor's logic to perform syntax checking on every query engine switch to cover this use case as well.<br/>
+
+
+
+
+
