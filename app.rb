@@ -271,6 +271,7 @@ helpers do
       :aws => {
         :name => 'Treasure Data',
         :region => :aws,
+        :prefix => '',
         :about => 'http://www.treasuredata.com/about.php',
         :logo => '/images/treasure-logo-white.png',
         :favicon => '/favicon.ico',
@@ -298,6 +299,7 @@ helpers do
       :idcf => {
         :name => 'Yahoo! Big Data Insight',
         :region => :idcf,
+        :prefix => 'ybi_',
         :about => 'http://www.idcf.jp/company/',
         :logo => '/images/ybi-logo.png',
         :favicon => '/favicon_idcf.png',

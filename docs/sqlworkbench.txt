@@ -24,7 +24,7 @@ Please download Treasure Data's JDBC Driver from below.
 
 Select `File` at the top menu, and click `Manage Drivers`. Plese fill the forms like below.
 
-<center><img src="/images/sqlworkbench-add-driver.png" width="100%" /></center><br/>
+<center><img src="/images/<%= @env[:prefix] %>sqlworkbench-add-driver.png" width="100%" /></center><br/>
 
 - Name: Treasure Data
 - Library: JDBC driver file path
@@ -35,7 +35,7 @@ Select `File` at the top menu, and click `Manage Drivers`. Plese fill the forms 
 
 Select `File` at the top menu, and click `Connect window`. Please fill the forms like below.
 
-<center><img src="/images/sqlworkbench-connect.png" width="100%" /></center><br/>
+<center><img src="/images/<%= @env[:prefix] %>sqlworkbench-connect.png" width="100%" /></center><br/>
 
 - Name: Whatever you like
 - Driver: Treasure Data
@@ -50,8 +50,8 @@ Then, please click `OK` to add the connection.
 
 You'll see a list of tables and its columns by GUI.
 
-<center><img src="/images/sqlworkbench-columns.png" width="100%" /></center><br/>
+<center><img src="/images/<%= @env[:prefix] %>sqlworkbench-columns.png" width="100%" /></center><br/>
 
 Move to the `Statement` pane, and fill in the SQL query to be thrown. Please hit `Ctrl + Enter` once the query is ready, then the query will run and it will show the results. You can check the progress of the query from [Web console](<%= @env[:url_job] %>).
 
-<center><img src="/images/sqlworkbench-query.png" width="100%" /></center><br/>
+<center><img src="/images/<%= @env[:prefix] %>sqlworkbench-query.png" width="100%" /></center><br/>
