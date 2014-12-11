@@ -253,7 +253,7 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
   <tr>
     <td>bigint</td>
     <td>unix_timestamp(string date, string pattern)</td>
-    <td>Convert time string with given pattern (see <A href="http://java.sun.com/j2se/1.4.2/docs/api/java/text/SimpleDateFormat.html" class="external-link" rel="nofollow">here</A>) to Unix time stamp, return 0 if fail: unix_timestamp('2009-03-20', 'yyyy-MM-dd') = 1237532400</td>
+    <td>Convert time string with given pattern (see <A href="http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html" class="external-link" rel="nofollow">here</A>) to Unix time stamp, return 0 if fail: unix_timestamp('2009-03-20', 'yyyy-MM-dd') = 1237532400</td>
   </tr>
   <tr>
     <td>string</td>

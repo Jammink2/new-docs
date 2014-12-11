@@ -116,7 +116,7 @@ Alternatively, a `define` statement can be used to create an alias for the UDF, 
 #### SUM of Integer Fields
 
 Currently SUM aggregation of values of integer type is not properly working. The related Apache.org Pig Issue is
-[PIG-2718](https://issues.apache.org/jira/browse/PIG-2718). In order to work around this limitation users are invited
+PIG-2718. In order to work around this limitation users are invited
 to cast their integer fields to float and convert the result of the SUM to integer:
 
     # from
