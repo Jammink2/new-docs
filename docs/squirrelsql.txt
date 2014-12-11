@@ -46,7 +46,9 @@ Please fill the information like below.
 <center><img src="/images/squirrelsql-driver-info.png" width="100%" /></center><br/>
 
 - Name: Treasure Data
-- Example URL: jdbc:td://<%= @env[:api_endpoint] %>/<database>;useSSL=true
+- Example URL:
+  - [Hive](hive): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=hive
+  - [Presto](presto): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=presto
 - Java Class Path: td-jdbc-xxx.jar
 - Class Name: com.treasure_data.jdbc.TreasureDataDriver
 
@@ -58,7 +60,7 @@ Finally, please click `Aliases` tab at the left pane and click plus button to ad
 
 - Name: Whatever you like
 - Driver: Treasure Data
-- URL: jdbc:td://<%= @env[:api_endpoint] %>/<YOUR_DATABASE_NAME>;useSSL=true
+- URL: jdbc:td://<%= @env[:api_endpoint] %>/< YOUR_DATABASE_NAME >;useSSL=true
 - User Name: Your account email
 - Password: Your account password
 

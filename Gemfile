@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # https://devcenter.heroku.com/articles/ruby-versions
-ruby '2.1.2'
+ruby '2.1.4'
 
 gem 'sinatra', '1.4.5'
 gem 'sinatra-assetpack', '0.3.3', :require => 'sinatra/assetpack'
