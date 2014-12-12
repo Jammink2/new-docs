@@ -132,13 +132,15 @@ After table data expiration is enabled for the account, to set the expiration pe
 To enable and set the expiration:
 
     :::term
-    $ td table:expire test_db test_table expiration_days
+    $ td table:expire test_db test_table <expiration_days>
+    Table set to expire data older than <expiration_days> days.
 
-where expiration_days is an integer number greater than 0 for the expiration period length.<br/>
+where <tt>\<expiration_days\></tt> is an integer number greater than 0 indicating the maximum age of any record in the table.<br/>
 To disable the table data expiration simply set the expiration days to 0:
 
     :::term
     $ td table:expire test_db test_table 0
+    Data expiration disabled for this table.
 
 #### Console
 
