@@ -1,0 +1,77 @@
+# Release Note 20141209
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Presto: Upgraded Presto to v0.86
+
+We upgraded the Presto query engine from v0.76 to v0.86.<br/>
+The list of Presto specific changes can be found at [Presto's Release notes (v0.77 through v0.86)](http://prestodb.io/docs/0.86/release.html).
+
+The major highlights are:
+
+* Supports for Map types
+* Support for Array types
+* Support for distributed JOINs in joining large tables
+* Ability to rename a table using an '[ALTER TABLE](http://prestodb.io/docs/current/sql/alter-table.html)' statement
+
+Alongside the improvements to Presto, we made these changes/optimizations:
+
+* Presto's parallelization allows the clients to fetch the results while the query is still being performed. The Treasure Data Presto worker have been  optimized to take advantage of this capability and modified to keep displaying the query progress although it already started fetching the result of the  query.
+* Added the <tt>TD_DATE_TRUNC</tt> UDF to mirror the functionality of the equally named [<tt>TD_DATE_TRUNC</tt> UDF in Hive](releasenote-20141118#backend-hive-tddatetrunc-udf). Please note that as for Hive, <tt>TD_DATE_TRUNC</tt> is * inspired but not identical to Presto's native <tt>date_trunc</tt> function: TD_DATE_TRUNC is mainly used when the time reference is expressed as a Unix time long * integer while <tt>date_trunc</tt> is suited for Presto's native 'date', 'time', and 'time with timezone' types.
+* Added support for INSERT INTO statements (as already supported by Hive) and optimized table writes by leveraging our metadata store directly.
+* Optimized fetching of data from storage in case of transfer failures and improved the retry mechanism.
+* Fixed time index filtering when the <tt>TD_TIME_FORMAT</tt> UDF is used within the <tt>TD_TIME_RANGE</tt> UDF.
+* Fixed time index filtering when the end limit (3rd argument) of the <tt>TD_TIME_RANGE</tt> UDF is NULL.
+* Added the <tt>TD_MD5</tt> and <tt>TD_URL_DECODE</tt> UDFs. The functionality is identical to [Hive's](udfs#tdmd5).
+* Improved the error message to be more descriptive when a query fails because of an unsupported operation.
+* Experimental support of CREATE TABLE FROM queries in Presto.
+* Fixed WITH clause when the table alias contains capitalized characters.
+* Fixed issue in handling JSON structures embedded in strings.
+* Added handling of result output to S3 when the query result contains a NULL constant - which is not supported since a Treasure Data storage equivalent * does not exist. Added a message to warn the user to modify the NULL constant by casting it to another supported type.
+
+### Query Library: Examples SQL Query Catalog
+
+We released a new application which works as a collection of sample queries along with description, input & output tables, and a sample visualization graph.<br/>
+Some important analytics categories are covered. These queries can be used as templates in writing a query whose scope and purpose falls within the boundaries of one of the provided example.
+
+The SQL Query Catalog is accessible at [examples.treasuredata.com](https://examples.treasuredata.com).
+
+![Query Library: Main](/images/release-notes/query_templates-main.png)
+
+![Query Library: Template](/images/release-notes/query_templates-query.png)
+
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Stale Table List in the Database View
+
+* _**[Problem]**_<br/>
+  When a table is created or deleted and the user returns to the database view, the table list is still reflecting the previous status.<br/>
+  _**[Solution]**_<br/>
+  This issue is caused by not fetching the list of tables again when one of the tables is deleted or a new table is created. This causes the page to load the list of tables from the cache in localStorage, making it look like the table list is stale.<br/>
+  We solved this problem by enforcing the fetch of the list of tables after the creation or deletion of a table. This guaranteed that the list of table is always up to date and reflects the last operation.<br/>
+
+### Console: Resizing of the Query Index Page
+
+* _**[Problem]**_<br/>
+  Making the queries index page narrow triggers multiple scrollbars at the bottom of the page.<br/>
+  _**[Solution]**_<br/>
+  This is due to an improper handling of the panel sizing when the window is made narrower than the minimum supported browser width.<br/>
+  We improved the resizing mechanism to handle this case more gracefully and avoid triggering multiple unnecessary scrollbars.<br/>
+
+### Console: Password Strength Indicator
+
+* _**[Problem]**_<br/>
+  The password strength indicator is misplaced and not displayed right next to the password field it belongs.<br/>
+  _**[Solution]**_<br/>
+  This is a simple styling issue.<br/>
+  The location where the password strength indicator is displayed was tweaked to place the indicator right below the password field of the form.<br/>
+
+
+
+
