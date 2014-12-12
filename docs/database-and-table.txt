@@ -8,21 +8,22 @@ Treasure Data uses the same convention as Relational Database Management Systems
 
 ## Database and Table
 
-A *Database* is a collection of tables, which is similar to other database systems. *Tables* contain your actual data. A given table can only belong to a single database.
+A *Database* is a collection of tables, which is similar to other database systems.
+*Tables* contain your actual data. A given table can only belong to a single database.
 
 ## Management from Web Console
 
-[Databases](<%= @env[:url_databases] %>) page allows you to navigate/create/delete databases and tables from the browser. This is the most preferred way to interact with dbs and tables.
+[Databases](<%= @env[:url_databases] %>) page allows you to navigate/create/delete databases and tables from the browser. This is the preferred way to interact with databases and tables.
 
-<center><a href="<%= @env[:url_databases] %>" target="_blank"><img src="/images/screenshot-databases.png" width="90%" /></a><br/>^ Click Here</center><br/><br/>
+<a href="<%= @env[:url_databases] %>" target="_blank"><img src="/images/screenshot-databases.png"/></a>
 
 ## Management from Command Line Interface (CLI)
 
 By using the [toolbelt](http://toolbelt.treasuredata.com), you can manage databases and tables from the command line.
 
-#### Creating a Database
+### Creating a Database
 
-The 'db:create' sub-command creates a database. For example, the following command will create a table named 'test_db' on the cloud. 
+The 'db:create' sub-command creates a database. For example, the following command will create a table named 'test_db' on the cloud.
 
     :::term
     $ td db:create test_db
@@ -31,7 +32,7 @@ NOTE: The database name only supports alphanumeric characters and underscores. H
 
 Your local environment remains unchanged; the database resides solely on the cloud.
 
-#### A List of Your Databases
+### A List of Your Databases
 
 The 'dbs' sub-command lists all the databases in your account.
 
@@ -46,9 +47,9 @@ The 'dbs' sub-command lists all the databases in your account.
     +---------------+
     3 rows in set
 
-#### Removing a Database
+### Removing a Database
 
-The 'db:delete' sub-command removes a database. This will remove all tables and all data stored within the database as well. 
+The 'db:delete' sub-command removes a database. This will remove all tables and all data stored within the database as well.
 
     :::term
     $ td db:delete test_db
@@ -56,7 +57,7 @@ The 'db:delete' sub-command removes a database. This will remove all tables and 
 
 NOTE: This operation cannot be rolled back. The data will be unrecoverable.
 
-#### Creating a Table
+### Creating a Table
 
 The 'table:create' sub-command creates a table. For example, the following command will create a table named 'test_table' within the database 'test_db'.
 
@@ -66,9 +67,9 @@ The 'table:create' sub-command creates a table. For example, the following comma
 
 NOTE: The table name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown). Also, the table name must be 3 to 256 characters long.
 
-Much like your database, this table only exists on the cloud. Your local environment remains unchanged. 
+Much like your database, this table only exists on the cloud. Your local environment remains unchanged.
 
-#### A List of Your Tables
+### A List of Your Tables
 
 The 'tables' sub-command lists all the tables within the specified database. The number of records in each table will be shown as well (currently zero).
 
@@ -84,7 +85,7 @@ The 'tables' sub-command lists all the tables within the specified database. The
 Issuing the 'tables' command without an argument will list all the databases and tables that you have created.
 
     :::term
-    $ td tables        
+    $ td tables
     +----------+-------------+------+-------------+
     | Database | Table       | Type | Count       |
     +----------+-------------+------+-------------+
@@ -97,12 +98,53 @@ Issuing the 'tables' command without an argument will list all the databases and
     +----------+-------------+------+-------------+
     8 rows in set
 
-#### Drop Table
+### Drop Table
 
-The 'table:delete' sub-command removes a table from a database. This will remove all data stored within the table as well. 
+The 'table:delete' sub-command removes a table from a database. This will remove all data stored within the table as well.
 
     :::term
     $ td table:delete test_db test_table
     Table 'test_db.test_table' is deleted.
 
 NOTE: This operation cannot be rolled back. The data will be unrecoverable.
+
+### Expire Data From A Table
+
+Data expiration is a mechanism that allows the user to set an expiration period (in days) for the data in a table.
+When an expiration period is set for a specific table, all records in that table whose timestamp is older than the amount of days specified in the expiration period, will be dropped.
+
+Internally, the feature does not consist in actually deleting/dropping the expired records from the table;
+the records are only flagged as expired and will no longer be able to be queried. As such, when table expiration is
+disabled for a table, all the records previously expired from a table will be available for querying again.
+One big advantage of this is that data expiration will take effect immediately after the expiration period is set for the table.
+
+NOTE: Currently only the Hive and Pig engines can honor table expiration.<br/>
+The Presto engine will instead return all records according to the query indifferently on what table expiration settings the table has set on.
+
+Since at this stage this feature is to be considered experimental it is not available by default. It needs to be enabled
+on an account per account basis. Please contact us through the support channels listed at the bottom of this page if you
+would like this feature enabled for your account.
+
+After table data expiration is enabled for the account, to set the expiration period (days) for a table one can use:
+
+#### CLI
+
+To enable and set the expiration:
+
+    :::term
+    $ td table:expire test_db test_table expiration_days
+
+where expiration_days is an integer number greater than 0 for the expiration period length.<br/>
+To disable the table data expiration simply set the expiration days to 0:
+
+    :::term
+    $ td table:expire test_db test_table 0
+
+#### Console
+
+Access the database page and then table page from within the Console. Once there, click on the 'Table Settings' button.
+
+![Console's Table Settings](/images/console_table_expiration.png)
+
+To enable table data expiration from the table settings page, switch the 'Expire data?' field to 'Yes', then set the 'Expire data after' field underneath to the desired number of days. Finally click on the 'Update Table' button at the bottom of the page.
+
