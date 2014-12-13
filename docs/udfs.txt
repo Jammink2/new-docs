@@ -1,12 +1,12 @@
 # Supported Hive UDFs (User Defined Functions)
 
-This article lists all the UDFs supported on Treasure Data. Treasure Data supports two types of UDFs: (1) native UDFs supported by Hive and (2) Treasure Data specific functions whose names start with **TD_**.
+This article lists all the UDFs supported on Treasure Data. Treasure Data supports two types of UDFs: (1) native UDFs supported by Hive and (2) Treasure Data specific functions whose names start with <tt>TD_</tt>.
 
 ## Hive native UDFs
 
 All native UDFs on Hive can also be used on Treasure Data. The complete list of UDFs can be found on the [HiveQL Language Manual's UDF Page](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF).
 
-## TD_TIME_RANGE()
+## <tt>TD_TIME_RANGE</tt>
 
 #### Signature
 
@@ -36,7 +36,20 @@ This example selects records with timestamps "2013-01-01 00:00:00 PDT" or later.
 
 NOTE: Notice that the time of day ("00:00:00") can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either "YYYY-MM-DD" or "YYYY-MM-DD hh:mm:ss", e.g., "2013-01-01" or "1999-01-01 07:00:00".
 
-## TD_TIME_ADD()
+## <tt>TD_SCHEDULED_TIME</tt>
+
+#### Signature
+
+    :::term
+    long TD_SCHEDULED_TIME()
+
+#### Description
+
+This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from NOW() because the actual query start time may be delayed.
+
+If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with TD_TIME_ADD for incremental aggregation.
+
+## <tt>TD_TIME_ADD</tt>
 
 #### Signature
 
@@ -75,7 +88,15 @@ This example selects records with timestamps "2013-01-01 00:00:00 UTC" or later 
                                    "2013-01-01",
                                    TD_TIME_ADD("2013-01-01", "1d"))
 
-## TD_TIME_FORMAT()
+A typical use of this function within scheduled queries is in conjunction with <tt>TD_TIME_RANGE</tt> and <tt>TD_SCHEDULED_TIME</tt> to
+narrow the time range to determined set of days, hours, minutes, or seconds. For example:
+
+    :::sql
+    SELECT ... WHERE TD_TIME_RANGE(time,
+                                   TD_SCHEDULED_TIME(),
+                                   TD_TIME_ADD(TD_SCHEDULED_TIME(), "-1d"))
+
+## <tt>TD_TIME_FORMAT</tt>
 
 #### Signature
 
@@ -95,7 +116,7 @@ This example formats a UNIX timestamp into a date formatted string
     :::sql
     SELECT TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") ... FROM ...
 
-## TD_TIME_PARSE()
+## <tt>TD_TIME_PARSE</tt>
 
 #### Signature
 
@@ -111,20 +132,7 @@ This UDF converts a time string into a UNIX timestamp.
 
 If the format of the *time* string is invalid, the UDF returns NULL.
 
-## TD_SCHEDULED_TIME()
-
-#### Signature
-
-    :::term
-    long TD_SCHEDULED_TIME()
-
-#### Description
-
-This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from NOW() because the actual query start time may be delayed.
-
-If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with TD_TIME_ADD for incremental aggregation.
-
-## TD_DATE_TRUNC()
+## <tt>TD_DATE_TRUNC</tt>
 
 #### Signature
 
@@ -173,7 +181,7 @@ With the same value and timezone 'PST' instead:
 the function returns <tt>1416758400</tt> since the start of day for the 'PST'
 timezone is 8 hours behind the start of day for 'UTC'.
 
-## TD_LAST()
+## <tt>TD_LAST</tt>
 
 #### Signature
 
@@ -191,7 +199,7 @@ This example selects the URL of the most recent access log (the row with the lar
     :::sql
     SELECT user, TD_LAST(url, time) AS last_url FROM access_logs GROUP BY user
 
-## TD_FIRST()
+## <tt>TD_FIRST</tt>
 
 #### Signature
 
@@ -209,7 +217,7 @@ This example selects the referer URL of the earliest access log (the row with th
     :::sql
     SELECT page_id, TD_FIRST(referer, time) AS first_referer FROM access_logs GROUP BY page_id
 
-## TD_X_RANK()
+## <tt>TD_X_RANK</tt>
 
 #### Signature
 
@@ -233,7 +241,7 @@ You need to 'CLUSTER BY' or 'ORDER BY' within a sub query to use this feature. '
       (select country AS c, location1 AS lc1, user_id AS u
        FROM users CLUSTER BY c, lc1) t
 
-## TD_SESSIONIZE()
+## <tt>TD_SESSIONIZE</tt>
 
 #### Signature
 
@@ -252,7 +260,7 @@ It returns a UUID for the session of the request.
 
 #### Example
 
-Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessionize_by* field, and sort by the *unix_timestamp* field. The query below sessionizes based on user_id and the timestamp. You may want to use user_id or cookie_id instead of ip_address for non-anonymous logs.
+Similiar to <tt>TD_X_RANK</tt>, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessionize_by* field, and sort by the *unix_timestamp* field. The query below sessionizes based on user_id and the timestamp. You may want to use user_id or cookie_id instead of ip_address for non-anonymous logs.
 
     :::sql
     SELECT TD_SESSIONIZE(time, 3600, ip_address) as session_id, time, ip_address, path
@@ -263,7 +271,7 @@ Similiar to TD_X_RANK, you need to 'CLUSTER BY' or 'DISTRIBUTE BY' the *sessioni
       sort by ip_address,time
     ) t
 
-## TD_PARSE_USER_AGENT()
+## <tt>TD_PARSE_USER_AGENT</tt>
 
 #### Signature
 
@@ -292,38 +300,3 @@ The example shows the result of parsing user agent from access log.
     SELECT TD_PARSE_USER_AGENT(agent, 'os_family') AS agent_os_family FROM www_access
     > Windows 7
 
-## TD_MD5()
-
-#### Signature
-
-    :::term
-    string TD_MD5(col)
-
-#### Description
-
-This UDF calculates the [MD5](http://en.wikipedia.org/wiki/MD5) hash digest from a given string.
-
-#### Example
-
-    :::sql
-    SELECT TD_MD5(column) FROM tbl
-
-## TD_URL_DECODE()
-
-#### Signature
-
-    :::term
-    string TD_URL_DECODE(col)
-
-#### Description
-
-This UDF applies URL decoding for a given string.
-
-#### Example
-
-    :::sql
-    SELECT TD_URL_DECODE(column) FROM tbl
-
-## Hivemall
-
-Treasure Data bundles [Hivemall](https://github.com/myui/hivemall) v0.2-alpha4, the scalable machine learning library for Hive.

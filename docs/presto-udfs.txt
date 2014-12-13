@@ -1,6 +1,6 @@
 # Supported Presto UDFs (User Defined Functions)
 
-This article lists all the UDFs supported with Presto engine on Treasure Data. Treasure Data supports two types of UDFs: (1) native UDFs supported by Presto and (2) Treasure Data specific functions whose names start with **TD_**.
+This article lists all the UDFs supported with Presto engine on Treasure Data. Treasure Data supports two types of UDFs: (1) native UDFs supported by Presto and (2) Treasure Data specific functions whose names start with <tt>TD_</tt>.
 
 NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact to us</a>. if you're interested in.
 
@@ -8,7 +8,7 @@ NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please 
 
 All native UDFs on Presto can also be used on Treasure Data. The complete list of UDFs can be found on the [Presto Language Manual's UDF Page](http://prestodb.io/docs/current/functions.html).
 
-## TD_TIME_RANGE()
+## <tt>TD_TIME_RANGE</tt>
 
 #### Signature
 
@@ -31,7 +31,7 @@ This example selects records with timestamps '2013-01-01 00:00:00 PDT' or later.
 
 NOTE: Notice that the time of day ('00:00:00') can be omitted, as shown above. Alternately, the time of day can be specified up to seconds. In general, the time string should be formatted as either 'YYYY-MM-DD' or 'YYYY-MM-DD hh:mm:ss', e.g., '2013-01-01' or '1999-01-01 07:00:00'.
 
-NOTE: Currently we cannot use 'NULL' in TD_TIME_RANGE.
+NOTE: Currently we cannot use 'NULL' in <tt>TD_TIME_RANGE</tt>.
 
 #### Description
 
@@ -43,7 +43,20 @@ This UDF returns true if *unix_timestamp* is equal to or later than *start_time*
 
 *default_timezone* is used to interpret the timezone of *start_time* or *end_time*. If *start_time* or *end_time* themselves specify a timezone (e.g. '2012-01-01 +0700'), then *default_timezone* is ignored. If *default_timezone* is not specified while *start_time* or *end_time* also does not specify a timezone, then the UDF uses 'UTC' as the timezone for *start_time* or *end_time*. A list of supported time zones can be found [here](https://gist.github.com/4533752).
 
-## TD_TIME_ADD()
+## <tt>TD_SCHEDULED_TIME</tt>
+
+#### Signature
+
+    :::term
+    long TD_SCHEDULED_TIME()
+
+#### Description
+
+This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from <tt>NOW()</tt> because the actual query start time may be delayed.
+
+If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with <tt>TD_TIME_ADD</tt> for incremental aggregation.
+
+## <tt>TD_TIME_ADD</tt>
 
 #### Signature
 
@@ -82,8 +95,7 @@ If the formats of the *time* or *duration* strings are invalid, the UDF returns 
 
 NOTE: 'year' and 'month' durations are <b>NOT</b> supported, because these have complicated implications. A month can be 28, 29, 30, or 31 days, and a year could be 365 or 366 days. To implement these, this function will become a lot heavier and impact performance.
 
-
-## TD_TIME_FORMAT()
+## <tt>TD_TIME_FORMAT</tt>
 
 #### Signature
 
@@ -103,7 +115,7 @@ This example formats a UNIX timestamp into a date formatted string
 
 This UDF converts a UNIX timestamp to a string with the specified format (see [here](udf-time-formats) for available formats). For example, 'yyyy-MM-dd HH:mm:ss z' converts 1325376000 to '2012-01-01 00:00:00 UTC'. If no timezone is specified, the UDF uses UTC.
 
-## TD_TIME_PARSE()
+## <tt>TD_TIME_PARSE</tt>
 
 #### Signature
 
@@ -119,20 +131,56 @@ This UDF converts a time string into a UNIX timestamp.
 
 If the format of the *time* string is invalid, the UDF returns NULL.
 
-## TD_SCHEDULED_TIME()
+## <tt>TD_DATE_TRUNC</tt>
 
 #### Signature
 
     :::term
-    long TD_SCHEDULED_TIME()
+    long TD_DATE_TRUNC(string unit,
+                       long time
+                       [, string default_timezone = 'UTC'])
 
 #### Description
 
-This UDF returns the exact time when the job was scheduled by the [scheduled query](schedule) feature. The returned value may differ from NOW() because the actual query start time may be delayed.
+This UDF performs a timestamp truncation at the level specified by the 'unit'
+parameter. The supported units are:
 
-If the query is not a scheduled query, the UDF returns the time when the job was issued. You may use this UDF with TD_TIME_ADD for incremental aggregation.
+* 'minute'
+* 'hour'
+* 'day'
+* 'week'
+* 'month'
+* 'quarter'
+* 'year'
 
-## TD_SESSIONIZE()
+An optional 'timezone' parameter can be specified to indicate an alternative
+reference timezone the 'unit' is referenced to. While the input 'time' is in
+global Unix time format, in different timezones 'day' that is the start of a day
+corresponds to different times.
+
+This function mimics the functionality of native
+[Presto's <tt>date_trunc</tt>](http://prestodb.io/docs/current/functions/datetime.html)
+function, the main difference being that Presto's <tt>date_trunc</tt> does not
+allow specification of the timezone, since it uses the sessions' reference
+timezone.
+
+#### Example
+
+    :::sql
+    SELECT TD_DATE_TRUNC('day', time) FROM tbl
+
+with <tt>time</tt> equal <tt>1416787667</tt> corresponding to '<tt>2014-11-24 00:07:47 UTC</tt>'
+will return <tt>1416787200</tt> corresponding to '<tt>2014-11-24 00:00:00 UTC</tt>'.
+
+With the same value and timezone 'PST' instead:
+
+    :::sql
+    SELECT TD_DATE_TRUNC('day', time, 'PST') FROM tbl
+
+the function returns <tt>1416758400</tt> since the start of day for the 'PST'
+timezone is 8 hours behind the start of day for 'UTC'.
+
+## <tt>TD_SESSIONIZE</tt>
 
 #### Signature
 
@@ -160,3 +208,35 @@ You need to 'ORDER BY' the *sessionize_by* field within a sub query to use this 
       from web_logs
       order by ip_address,time
     ) t
+
+## <tt>TD_MD5</tt>
+
+#### Signature
+
+    :::term
+    string TD_MD5(col)
+
+#### Description
+
+This UDF calculates the [MD5](http://en.wikipedia.org/wiki/MD5) hash digest from a given string.
+
+#### Example
+
+    :::sql
+    SELECT TD_MD5(column) FROM tbl
+
+## <tt>TD_URL_DECODE</tt>
+
+#### Signature
+
+    :::term
+    string TD_URL_DECODE(col)
+
+#### Description
+
+This UDF applies URL decoding for a given string.
+
+#### Example
+
+    :::sql
+    SELECT TD_URL_DECODE(column) FROM tbl
