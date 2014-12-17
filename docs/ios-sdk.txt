@@ -21,15 +21,10 @@ This video demonstrates how to install iOS SDK in 5 minutes.
     :::term
     $ gem install cocoapods
 
-Add Treasure Data's Pods:
-
-    :::term
-    $ pod repo add td https://github.com/treasure-data/PodSpecs.git
-
 Add the following line to your Podfile:
 
     :::ruby
-    pod 'TreasureData-iOS-SDK', '= 0.1.4'
+    pod 'TreasureData-iOS-SDK', '= 0.1.6'
 
 Finally, please run `pod install`.
 
