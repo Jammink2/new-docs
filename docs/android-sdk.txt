@@ -66,9 +66,27 @@ Create the `TreasureData` object with your API key. The recommended place to do 
 
 The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use **write-only API key** for SDKs.
 
+Also, you can use a shared instance from anywhere with `TreasureData.sharedInstance()` method after calling `TreasureData.initializeSharedInstance()`.
+
+    :::java
+    public class MainActivity extends Activity {
+      		:
+    	TreasureData.initializeDefaultApiKey("your_write_apikey");
+    	TreasureData.initializeEncryptionKey("hello world");
+      		:
+    	TreasureData.initializeSharedInstance(this);
+    	TreasureData.sharedInstance().setDefaultDatabase("testdb");
+      		:
+    }
+   
+   public class OtherActivity extends Activity {
+     		:
+   	TreasureData.sharedInstance().addEvent("demotbl", "elapsed_time", elapsed_time);
+     		:
+
 ### Step 3: Send Events to the Cloud
 
-Next, please call addEvent() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
+Next, please call `addEvent()` function at the appropriate timing within your applications. This example sends the event to table `demotbl` within database `testdb`, when the button was clicked.
 
     :::java
     View v = findViewById(R.id.button);
@@ -79,11 +97,40 @@ Next, please call addEvent() function at the appropriate timing within your appl
         event.put("name", "foo bar");
         event.put("age", 42);
         event.put("comment", "hello world");
-        td.addEvent("database_a", "table_b", event);
+        td.addEvent("testdb", "demotbl", event);
       }
     });
 
 By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
+
+If you want to add the unique id of the device or device model information, you can use `enableAutoAppendUniqId()` or `enableAutoAppendModelInformation()` methods.
+
+    :::java
+    td.enableAutoAppendUniqId();
+    td.enableAutoAppendModelInformation();
+    td.addEvent("demotbl", "name", "foo bar");
+    // => {"td_uuid":"c123470de-3950-4997-b321-07d6f5b4a3", 
+    //     "td_os_type":"Android",
+    //     "td_os_ver":"15",
+    //     "td_device":"ISW11SC",
+    //     "td_model":"ISW11SC",
+    //     "td_display":"IMM76D.KDLPL",
+    //     "td_brand":"KDDI",
+    //     "td_board":"ISW11SC",
+    //     "name":"foo bar",
+    //     ... }
+
+Also, you can append a session information to each event using `startSession()` and `endSession()` methods.
+
+    :::java
+    TreasureData.sharedInstance().startSession("demotbl");
+    // => {"td_session_id":"10216937-2B47-4399-8DD5-E9E85350584B", "td_session_event":"start", ... }
+    TreasureData.sharedInstance().addEvent("demotbl", "app_event", "click0");
+    // => {"td_session_id":"10216937-2B47-4399-8DD5-E9E85350584B", "app_event":"click0", ... }
+    TreasureData.sharedInstance().endSession("demotbl");
+    // => {"td_session_id":"10216937-2B47-4399-8DD5-E9E85350584B", "td_session_event":"end", ... }
+    TreasureData.sharedInstance().addEvent("demotbl", "app_event", "click1");
+    // => {"app_event":"click1", ... }
 
 The following code uploads the event when your application goes to the background. You can do this whenever you like. The uploader doesn't block the main UI thread.
 
@@ -94,18 +141,30 @@ The following code uploads the event when your application goes to the backgroun
       super.onPause();
     }
 
-You can handle errors of addEvent() or uploadEvents() by the callback function.
+If you want to do something after adding a event or uploading buffered events, you can use `addEventWithCallback()` or `uploadEventsWithCallback()`.
 
     :::java
-    td.setUploadEventsCallBack(new TDCallback() {
+    td.addEventWithCallback("testdb", "demotbl", event, new TDCallback() {
       @Override
       public void onSuccess() {
-        Log.i("Example", "success!");
+        Log.i("ExampleApp addEvent", "success!");
+      }
+      
+      @Override
+      public void onError(String errorCode, Exception e) {
+        Log.w("ExampleApp addEvent", "errorCode: " + errorCode + ", detail: " + e.toString());
+      }
+    });
+
+    td.uploadEventsWithCallback(new TDCallback() {
+      @Override
+      public void onSuccess() {
+        Log.i("ExampleApp uploadEvents", "success!");
       }
 
       @Override
-      public void onError(Exception e) {
-        Log.w("Example", "error: " + e.toString());
+      public void onError(String errorCode, Exception e) {
+        Log.w("ExampleApp uploadEvents", "errorCode: " + errorCode + ", detail: " + e.toString());
       }
     });
 
@@ -113,50 +172,22 @@ NOTE: IP whitelist won't be applied to any import from Android SDK. Also we've s
 
 ### Step 4: Track the App Installation
 
-You can collect the first run event of your application, which can be used to track app `installation` event. First, please put these lines into `AndroidManifest.xml`.
-
-    :::xml
-    <manifest>
-      <application>
-        <receiver android:name=".InstallationReceiver" android:exported="true">
-          <intent-filter>
-            <action android:name="com.android.vending.INSTALL_REFERRER" />
-          </intent-filter>
-        </receiver>
-      </application>
-    </manifest>
-
-Then, please create `InstallationReceiver` class to receive installation events with Google Play's referer information. In this way, you can know what kind of traffic or ads leads to the actual installation.
+You can collect the first run event of your application, which can be used to track app `installation` event. `isFirstRun()` and `clearFitstRun()` methods would be useful.
 
     :::java
-    /*
-     * For installation event test.
-     * $ adb shell
-     * # am broadcast -a com.android.vending.INSTALL_REFERRER \
-     *       -n com.treasuredata.android.demo/.InstallationReceiver \
-     *       --es "referrer" "utm_source=test_source&utm_medium=test_medium&…"
-     */
-    public class InstallationReceiver extends BroadcastReceiver {
-    @Override
-      public void onReceive(Context context, Intent intent) {
-        try {
-          TreasureData.enableLogging();
-          TreasureData.initializeApiEndpoint("https://<%= @env[:sdk_endpoint] %>");
-          final TreasureData td = new TreasureData(context, "your_default_api_key");
-          HashMap<String, Object> referrer = new HashMap<String, Object>();
-          referrer.put("type", "install_referrer");
-          for (String kv : intent.getStringExtra("referrer").split("&")) {
-            String[] kAndV = kv.split("=", 2);
-            if (kAndV.length >= 2) {
-              referrer.put(kAndV[0], kAndV[1]);
-            }
-          }
-          td.addEvent("database_a", "install", referrer);
-          td.uploadEvents();
-        } catch (IOException e) {
-          e.printStackTrace();
+    if (TreasureData.sharedInstance().isFirstRun(this)) {
+      TreasureData.sharedInstance().addEventWithCallback("demotbl", "first_run", true, new TDCallback() {
+        @Override
+        public void onSuccess() {
+          TreasureData.sharedInstance().clearFirstRun(MainActivity.this);
+          TreasureData.sharedInstance().uploadEvents();
         }
-      }
+         
+        @Override
+        public void onError(String errorCode, Exception e) {
+          Log.w(TAG, "TreasureData.addEvent:onError errorCode=" + errorCode + ", ex=" + e);
+        }
+      });
     }
 
 ## Next Steps
