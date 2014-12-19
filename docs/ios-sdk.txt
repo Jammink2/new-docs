@@ -73,17 +73,6 @@ By default, all events will be bufferred to the file. You **need to explicitly f
 The following code uploads the event when the application goes to the background, which is a fairly common pattern across our customers. You can do this whenever you like. The uploader doesn't block the main UI thread.
 
     :::c
-    - (void)applicationDidEnterBackground:(UIApplication *)application {
-      [[TreasureData sharedInstance] uploadEventsWithBlock:^(void) {
-        NSLog(@"Uploaded.");
-      }];
-    }
-
-NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen a lot of cases where a lot of iOS devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
-
-You can upload buffered events like this when finishing the application.
-
-    :::c
     - (void)applicationDidEnterBackground:(UIApplication *)application
     {
         UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^{}];
@@ -95,6 +84,9 @@ You can upload buffered events like this when finishing the application.
             }
          ];
     }
+
+NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen a lot of cases where a lot of iOS devices have an invalid timestamp (like 1970/01/01), so we're currently ignoring the log which has a timestamp older than 7 days, and newer than 3 days ahead.
+
 
 ### Step 4: Track the App Installation
 
