@@ -55,7 +55,7 @@ The apikey can be retrieved from the console ([click here](<%= @env[:url_profile
 
 ### Step 3: Send Events to the Cloud
 
-Next, please call addEvent() function at the appropriate timing within your applications. This example sends the event to table `table_b` within database `database_a`, when the button was clicked.
+Next, please call `addEvent` method at the appropriate timing within your applications. This example sends the event to table `demotbl` within database `testdb`, when the button was clicked.
 
     :::c
     - (IBAction)clickButton:(id)sender {
@@ -64,11 +64,38 @@ Next, please call addEvent() function at the appropriate timing within your appl
         @"age": @42,
         @"comment": @"hello world"
       }
-      database:@"database_a"
-      table:@"table_b"];
+      database:@"testdb"
+      table:@"demotbl"];
     }
 
 By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
+
+If you want to add the unique id of the device or device model information, you can use `enableAutoAppendUniqId` or `enableAutoAppendModelInformation` methods.
+
+    :::c
+    [[TreasureData sharedInstance] enableAutoAppendUniqId];
+    [[TreasureData sharedInstance] enableAutoAppendModelInformation];
+      :
+    [[TreasureData sharedInstance] addEvent:@{@"name":"@"foo bar"}];
+    // => {"td_uuid":"DA874B52-6232-4996-8228-16853109DBD9", 
+    //     "td_os_type":"iOS",
+    //     "td_os_ver":"7.1.2",
+    //     "td_device":"iPod touch",
+    //     "td_model":"iPod touch",
+    //     "name":"foo bar"
+    //     ... }
+
+Also, you can append a session information to each event using `startSession` and `endSession` methods.
+
+    :::c
+    [[TreasureData sharedInstance] startSession];
+    // => {"td_session_id":"10216937-2B47-4399-8DD5-E9E85350584B", "td_session_event":"start", ... }
+    [[TreasureData sharedInstance] addEvent:@{@"app_event":"@"click0"}];
+    // => {"td_session_id":"10216937-2B47-4399-8DD5-E9E85350584B", "app_event":"click0", ... }
+    [[TreasureData sharedInstance] endSession];
+    // => {"td_session_id":"10216937-2B47-4399-8DD5-E9E85350584B", "td_session_event":"end", ... }
+    [[TreasureData sharedInstance] addEvent:@{@"app_event":"@"click1"}];
+    // => {"app_event":"click1", ... }
 
 The following code uploads the event when the application goes to the background, which is a fairly common pattern across our customers. You can do this whenever you like. The uploader doesn't block the main UI thread.
 
@@ -90,7 +117,7 @@ NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen 
 
 ### Step 4: Track the App Installation
 
-You can collect the first run event of your application, which can be used to track app `installation` event.
+You can collect the first run event of your application, which can be used to track app `installation` event. `isFirstRun` and `clearFitstRun` methods would be useful.
 
     :::c
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -98,13 +125,12 @@ You can collect the first run event of your application, which can be used to tr
       [TreasureData initializeApiEndpoint@"https://<%= @env[:sdk_endpoint]  %>"];
       [TreasureData initializeWithApiKey:@"your_api_key"];
 
-      if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+      if ([[TreasureData sharedInstance] isFirstRun]) {
         [[TreasureData sharedInstance] addEventWithCallback:@{ @"event": @"installed" }
-           database:@"database_a"
-              table:@"install"
+           database:@"testdb"
+              table:@"demotbl"
           onSuccess:^(){
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [[TreasureData sharedInstance] clearFitstRun];
             [[TreasureData sharedInstance] uploadEvents];
           }
             onError:^(NSString* errorCode, NSString* message) {
