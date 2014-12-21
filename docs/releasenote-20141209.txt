@@ -38,9 +38,9 @@ Some important analytics categories are covered. These queries can be used as te
 
 The SQL Query Catalog is accessible at [examples.treasuredata.com](https://examples.treasuredata.com).
 
-![Query Library: Main](/images/release-notes/query_templates-main.png)
+![Query Library: Main](/images/release-notes/141209-01-query_templates-main.png)
 
-![Query Library: Template](/images/release-notes/query_templates-query.png)
+![Query Library: Template](/images/release-notes/141209-02-query_templates-query.png)
 
 
 
