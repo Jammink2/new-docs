@@ -1,0 +1,111 @@
+# Release Note 20141216
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Deletion of Saved Result Exports
+
+We added the capability to delete a Saved Result Export that a user owns. This can be done from within the result export modal in the query editor page.
+
+Alternatively the CLI's '<tt>td result:delete</tt>' command can be used.
+
+![Console: Deletion of Saved Result Exports](/images/release-notes/141216-01-nro_delete.png)
+
+### Backend: Upgraded Prestogres to v0.6
+
+Some security concerns were identified in Prestogres v0.4. We upgraded to version 0.6.<br/>
+Beside security, the following improvements/fixes are also included:
+
+* added support for Cursor/Fetch:<br/>
+  In precedence, the results of a query had to be entirely loaded in the Gateway's memory before being sent to the connected client. With cursor support, the client can fetch the query result in a streaming fashion and this, beside improving query response latency, also benefits the internal resource's usage, thus overall performance.
+* query cancellation:<br/>
+  In the previous version cancellation of a Presto query through Prestogres did not work. It's not working as expected.
+
+### Backend: MySQL Output Support for UTF-8 Surrogate Pairs
+
+Improved the MySQL Result Export to handle UTF-8 [Surrogate Pairs](http://stackoverflow.com/tags/surrogate-pairs/info).
+
+### SDKs: Released iOS SDK v0.1.6
+
+* Added support for Session tracking through Session IDs.
+  Session info are automatically added to each event if the user calls the <tt>startSession</tt> method. The <tt>endSession</tt> method stops the automatic tracking of sessions.
+* Implemented a retrying mechanism to handle failures in uploading locally buffered events (<tt>enableRetryUploading</tt>/<tt>disableRetryUploading</tt> to enable/disable).
+* Added the capability to automatically log useful information:
+  * embedding device's model information if enabled through the <tt>enableAutoAppendModelInformation</tt> API (<tt>disableAutoAppendModelInformation</tt> to disable).
+  * unique ID if enabled through the <tt>enableAutoAppendUniqueId</tt> API (<tt>disableAutoAppendUniqueId</tt> to disable).
+* Added support for iOS8.
+* Improved error checking to avoid uploading events when they are empty.
+
+### SDKs: Released Android SDK v0.1.6
+
+* Added support for Session tracking through Session IDs.
+  Session info are automatically added to each event if the user calls the <tt>startSession</tt> method. The <tt>endSession</tt> method stops the automatic tracking of sessions.
+* Implemented a retrying mechanism to handle failures in uploading locally buffered events (<tt>enableRetryUploading</tt>/<tt>disableRetryUploading</tt> to enable/disable).
+* Added the capability to automatically log useful information:
+  * embedding device's model information if enabled through the <tt>enableAutoAppendModelInformation</tt> API (<tt>disableAutoAppendModelInformation</tt> to disable).
+  * unique ID if enabled through the <tt>enableAutoAppendUniqueId</tt> API (<tt>disableAutoAppendUniqueId</tt> to disable).
+* Improved the APIs to:
+  * allow creation of a shared <tt>TreasureData</tt> instance to be used across the various Activities the application is made out of.
+  * handling any <tt>IOException</tt> in the constructor to avoid having to require the user to handle it.
+
+
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Better Error Handling
+
+* _**[Problem]**_<br/>
+  An attempt to retrieve a user's API key fails with a 500 error if the user's name is not provided.<br/>
+  _**[Solution]**_<br/>
+  There is no error checking when the lookup of a user fails and the user's API key is requested.<br/>
+  We added error checking and if the user cannot be found: if the user's name is not provided a 422 error code is returned. If the user cannot be found, a 404 error code is returned instead.<br/>
+* _**[Problem]**_<br/>
+  Getting the job history of a query which contains unscheduled job runs, fails.<br/>
+  _**[Solution]**_<br/>
+  The APIs attempts to retrieve the job's '<tt>scheduled_at</tt>' field and render it in the JSON response but for unscheduled jobs, the field is empty.<br/>
+  We modified the API response to not render the '<tt>schedule_at</tt>' field in the JSON response if the job run was unscheduled.<br/>
+
+### APIs: Bulk Import In An Import-Only Database
+
+* _**[Problem]**_<br/>
+  When using the '<tt>td import:auto</tt>' command to bulk import data into a database the users has import-only permissions for, the import command fails during the 'perform' phase.<br/>
+  _**[Solution]**_<br/>
+  Bulk Imports consists of the 'perform' phase, which gets executed as a job. When a job is executed against an import-only database, the status of the job cannot be retrieved by the user. The '<tt>td import:auto</tt>' command monitors the job status to determine when the execution of the next bulk import task can begin; the command fails because it's unable to retrieve the bulk import perform job's status.<br/>
+  We modified the API's permissions to allow every user to retrieve job's status for any job it created. This allows the '<tt>td import:auto</tt>' command to complete successfully even when importing data into an import-only database.<br/>
+
+### Console: Database Links in the Queries Index Page
+
+* _**[Problem]**_<br/>
+  Links to the databases each query is associated to are broken in the query index page.<br/>
+  _**[Solution]**_<br/>
+  The links were pointing to the reference database using the wrong ID: the query ID instead of the database ID.<br/>
+  We modified the query index page template to use the database ID to create the link to the query's reference database.<br/>
+
+### Backend: Tableau Result Export
+
+* _**[Problem]**_<br/>
+  When the result of a job is outputted to Tableau in a [Tableau Data Extract (TDE) format](http://www.tableausoftware.com/about/blog/2014/7/understanding-tableau-data-extracts-part1), if the destination Datasource does not exist, the output fails.<br/>
+  _**[Solution]**_<br/>
+  Tableau (server or online) responds with a 'Not Exist' error if the destination Datasource does not exist and will not create it.<br/>
+  We improved the retrying mechanism to retry the upload of the Datasource if the destination Tableau responded with 'Not Exist'. This allows the query result to be successfully uploaded on the 2nd attempt.<br/>
+* _**[Problem]**_<br/>
+  Tableau result export of a job result fails when using HTTP (when the <tt>ssl=false</tt> is specified, <tt>ssl=true</tt> being the default).<br/>
+  _**[Solution]**_<br/>
+  This issue is caused by a failure when checking the connectivity with the Tableau server using HTTP. The connectivity check works when using HTTPS instead.<br/>
+  We removed the connectivity check and improved the retrying mechanism as replacement since this mechanism is also required for other limitations we found.<br/>
+
+### Backend: MySQL Result Export
+
+* _**[Problem]**_<br/>
+  MySQL result export fails when the result of a job contains *NaN* or *Infinite* or *-Infinite* values.<br/>
+  _**[Solution]**_<br/>
+  While Treasure Data job results can contain *NaN* or *Infinite* or *-Infinite* values as a result of query processing, MySQL can't store these values. When those values are written, the result exports failing when writing into the MySQL destination server.<br/>
+  We modified the MySQL result export to translate the *NaN* or *Infinite* or *-Infinite* values into *NULL*. This allows the result export to carry on and complete successfully even when the job result contains these values.<br/>
+
+
+
+
