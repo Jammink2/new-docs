@@ -40,13 +40,14 @@ Debian:<br /><br />
 <code>curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh</code><br/><br />
 
 NOTE: Trusty and Debian packages are only 64bit for now.
+
 NOTE: We don't test Debian packages and Debian is not included in official supported platform.
 
 </td>
   </tr>
   <tr>
     <td>RHEL / CentOS System</td>
-    <td><code>curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh</code>
+    <td><code>curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh</code><br /><br />
 
 NOTE: td-agent 2 works on Amazon Linux but Amazon Linux is not included in official supported platform.
 
