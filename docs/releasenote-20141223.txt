@@ -1,0 +1,68 @@
+# Release Note 20141223
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Hive Reserved Keywords
+
+We added a link to the reference [Hive reserved keywords list](faq#hiversquos-reserved-keywords-why-do-i-get-a-warning-about-reserved-keywords) on the documentation site within the query editor in the Console.
+
+![Console: Hive Reserved Keywords](/images/release-notes/141223-01-hive_reserved_keywords.png)
+
+### Backend: Upgraded to Presto v0.88
+
+We upgraded Presto from v0.86 (last upgraded two weeks ago, see [here](releasenote-20141209#presto-upgraded-presto-to-v086)) to v0.88.
+
+The full Presto change log can be reviewed at the 'Presto 0.88 Documentation' pages:
+
+* [Release 0.88](http://prestodb.io/docs/0.88/release/release-0.88.html)
+* [Release 0.87](http://prestodb.io/docs/0.88/release/release-0.87.html)
+
+Additionally, this improvement was added:
+
+* Improved resource utilization allocation for large UNIONs.
+
+### Backend: Tableau Result Export's 'Server version'
+
+We added a new 'Server version' parameter for Tableau Result Export.
+
+Due to incompatibilities in the 8.2 and 8.3 Tableau Server's upload command (<tt>tabcmd</tt>), the backend needs to use different upload methods depending on the destination server' version when uploading a [TDE](http://www.tableausoftware.com/about/blog/2014/7/understanding-tableau-data-extracts-part1) to Tableau. This issue does not applies to Tableau Online, since being an onDemand service, Tableau manages the version of Tableau Server running on the instances and keep them consistent across customers.
+
+The 'Server version' parameter accepts 3 values: '8.2', '8.3', and 'online'. The former two are used to specify the Tableau Server's version, the latter is used to indicate the destination is a Tableau Online.
+
+![Backend: Tableau Result Export's 'Server version'](/images/release-notes/141223-02-tableau_server_version.png)
+
+### SDKs: Released Unity SDK v0.1.3
+
+We updated the Unity SDK package to include the Android v0.1.6 and iOS v0.1.6 SDKs we releases [last week](releasenote-20141216#sdks-released-ios-sdk-v016).
+
+
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Performance Improvement on User Model Update
+
+* _**[Problem]**_<br/>
+  Most of the API calls cause the User model to get updated as well negatively impacting the performance.<br/>
+  _**[Solution]**_<br/>
+  The User model also contain the list of Console notifications read by the user. Every API call also evaluates if the User model needs updating but since the list of Console notifications is encoded in a YAML format, Rails' Active Record cannot understand whether the record needs updating or not - hence it causes a User model update at every API call.<br/>
+  We removed Rails' default serialization methods and implemented a getter and setter method for the field - this allow Rails' Active Record to infer whether the Console notification list needs updating or not, hence avoids unnecessary User model's updates.<br/>
+
+### APIs: Query Permission when Database Access Revoked
+
+* _**[Problem]**_<br/>
+  When a restricted users creates a query against a database it has query-only or full-access permissions for and the database permissions are later revoked for the user, the user can continue to view and run the query but does not see any of the jobs created from said query, hence cannot see the query results.<br/>
+  _**[Solution]**_<br/>
+  The database permission restrictions were solely applied to the jobs created from the query but not to the query itself.<br/>
+  We modified the logic to restrict access to the query as well. After the database permission are changed and permissions to the database are revoked for the user, only Administrators and other users having full-access or query-only permissions will be able to access, view, and run the query.<br/>
+
+### Console: Job Result Download on Safari
+
+* _**[Problem]**_<br/>
+  Downloading the result of a job on Safari browsers does not work as expected. A new tab is opened and the result is streamed as text instead of being saved onto a file.<br/>
+  _**[Solution]**_<br/>
+  The Safari browser treats URLs as pages unless the appropriate headers are set for the browser to know it needs to redirect the output to a file. Furthermore the target of the hyperlink to download the job result as CSV, TSV, or JSON had target '<tt>_blank</tt>', which caused the hyperlink to open into a new tab.<br/>
+  We modified the hyperlink's target to '<tt>_self</tt>' and added the '<tt>Content-Type</tt>' and '<tt>Content-Disposition</tt>' headers to ensure the job result is downloaded into a file on Safari browsers as well.<br/>
