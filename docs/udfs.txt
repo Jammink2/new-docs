@@ -93,8 +93,8 @@ narrow the time range to determined set of days, hours, minutes, or seconds. For
 
     :::sql
     SELECT ... WHERE TD_TIME_RANGE(time,
-                                   TD_SCHEDULED_TIME(),
-                                   TD_TIME_ADD(TD_SCHEDULED_TIME(), "-1d"))
+                                   TD_TIME_ADD(TD_SCHEDULED_TIME(), "-1d"),
+                                   TD_SCHEDULED_TIME())
 
 ## <tt>TD_TIME_FORMAT</tt>
 
