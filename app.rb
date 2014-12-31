@@ -108,6 +108,7 @@ get '/robots.txt' do
 end
 
 get '/sitemap.xml' do
+  @env = get_environment(request)
   @articles = []
   sections.each { |_, _, categories|
     categories.each { |_, _, articles|
