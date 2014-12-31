@@ -5,7 +5,7 @@
   <%= ::NewRelic::Agent.browser_timing_header rescue "" %>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta charset="utf-8">
-  <title><%=h @title %> | Treasure Data</title>
+  <title><%=h @title %> | <%= @env[:name] %></title>
   <meta name="keywords" content="<%= find_keywords(params[:article], params[:category]).join(',') %>">
   <meta name="description" content="<%= @desc %>">
   <link href="<%= @env[:favicon] %>" rel="icon" type="image/x-icon">
