@@ -8,7 +8,7 @@
   <title><%=h @title %> | Treasure Data</title>
   <meta name="keywords" content="<%= find_keywords(params[:article], params[:category]).join(',') %>">
   <meta name="description" content="<%= @desc %>">
-  <link rel="canonical" href="http://docs.treasuredata.com<%= request.fullpath %>" />
+  <link rel="canonical" href="<%= @env[:url_doc] %><%= request.fullpath %>" />
   <link href="<%= @env[:favicon] %>" rel="icon" type="image/x-icon">
   <link href="<%= @env[:favicon] %>" rel="shortcut icon" type="image/x-icon">
   <%= css :application, :media => 'screen' %>
