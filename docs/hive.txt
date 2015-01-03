@@ -6,11 +6,11 @@
 
 The Hive query language (HiveQL) is the primary data processing method for Treasure Data. HiveQL is powered by [Apache Hive](http://hive.apache.org/). [Treasure Data](http://www.treasuredata.com/) is a cloud data platform that allows users to collect, store, and analyze their data on the cloud. Treasure Data manages its own Hadoop cluster, which accepts queries from users and executes them using the Hadoop MapReduce framework. HiveQL is one of the languages it supports.
 
-## Hive Query Templates: 12 Common Hive Queries
+## Hive Example Query Catalog
 
-If you're looking for Hive query template, which you can reuse quickly, please visit the page below.
+If you're looking for dozens of HiveQL templates, please visit Treasure Data's example query catalog page.
 
-- [Hive Query Templates](hive-query-templates) (12 Common Hive Queries)
+- [HiveQL Example Query Catalog](https://examples.treasuredata.com/)
 
 ## SELECT Statement Syntax
 

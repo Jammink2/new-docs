@@ -50,6 +50,12 @@ Using the [CLI](/articles/command-line), specify `-T presto` in the `td query` c
 
 For REST API, the endpoint is `/v3/job/issue/presto/:database`.
 
+## Presto Example Query Catalog
+
+If you're looking for dozens of Presto SQL templates, please visit Treasure Data's example query catalog page.
+
+- [Presto SQL-92 Example Query Catalog](https://examples.treasuredata.com/)
+
 ## Presto Query Language Reference
 
 Presto supports industry-standard SQL-92 syntax.
