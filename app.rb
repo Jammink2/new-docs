@@ -277,6 +277,7 @@ helpers do
         :logo => '/images/treasure-logo-white.png',
         :favicon => '/favicon.ico',
         :swiftype_key => '7GEG12Fu5wjuAjfExr5K',
+        :olark => true,
         :url_top => 'http://www.treasuredata.com/',
         :url_doc => 'http://docs.treasuredata.com/',
         :url_product => 'http://www.treasuredata.com/technology.php',
@@ -306,6 +307,7 @@ helpers do
         :logo => '/images/ybi-logo.png',
         :favicon => '/favicon_idcf.png',
         :swiftype_key => 'o3ng6KvhmZNK2h4we63e',
+        :olark => true, # change to false after 1/20/2015 as per PLT-2927
         :url_top => 'http://www.idcf.jp/bigdata/',
         :url_doc => 'http://ybi-docs.idcfcloud.com/',
         :url_product => 'http://www.idcf.jp/bigdata/',
