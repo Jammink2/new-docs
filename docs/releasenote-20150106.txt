@@ -1,0 +1,43 @@
+# Release Note 20150106
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Databases / Tables UI Improved
+
+We greatly improved our Databases and Tables design and layout.
+
+Layout wise, we reorganized the information in tabs where applicable and added a top panel with information and Database/Table description.
+
+We are now able to track the owner of a Database and that its indicated in the Database information on the left hand side of the top panel.<br/>
+Finally we added permissions controls in a tab of the Database table - assigning permissions can now be accomplished with a simple drag-and-drop to the appropriate import-only (write only), query-only (read only), and full-access (read/write/admin permissions) column.
+
+![Console: Databases UI Improved](/images/release-notes/150106-01-databases.png)
+
+![Console: Tables UI Improved](/images/release-notes/150106-02-tables.png)
+
+### Console: Team Pages
+
+We opened up the Team pages to all users of the account. All users are able to see the list of users in the account and high-level permissions level (Account Owner / Admin) and can access the user's profile (which is read only for restricted users) from which a user can:
+
+* 'Grant DB Access' tab: Grant / Revoke database permissions for other restricted users. Note that if the other user is an Administrator or the Account Owner, it has access to all databases.
+* 'Queries' tab: See the list of queries other users created against the databases the logged in user has permissions for.
+* 'DBs' tab: See the list of databases the other user owns.
+
+Previously, restricted users (that is, non-admin users) were not able to see or access these pages.
+
+![Console: Team Pages](/images/release-notes/150106-03-team.png)
+
+### Console: Tableau Result Export 'Site ID' Option
+
+To make the meaning of the 'Site' parameter cleared to users and match Tableau's nomenclature (as displayed in https://mytableau.server.url/sites), we modified the parameter's name to 'Site ID' in the Console.
+
+NOTE: For legacy reasons, the defined result export URL and CLI still expect this parameter's name to be 'site' as before.
+
+### JDBC: Released JDBC v0.3.1
+
+* Fixed an exception occurring when attempting to convert a string to date if the field value was 'NULL'.
+
+<br/>
+<br/>
