@@ -4,7 +4,7 @@ The Treasure Data [Web Console](http://console.treasuredata.com) gives an overvi
 
 ## Databases & Tables
 
-Plesae visit the Console's [databases page](<%= @env[:url_databases] %>).
+Please visit the Console's [databases page](<%= @env[:url_databases] %>).
 
 Each database show in the list above can own 0 to any number of tables. For example, click on the default 'sample_db' database to see the list of tables.
 Click on the table name to see a preview of the table content in the Table detailed view.
@@ -15,7 +15,7 @@ Please visit this page to get to [list of jobs](<%= @env[:url_job] %>). Jobs can
 
 Click on any of the job numbers to view the job details page. Click on any of the databases each job refers to, to visit the corresponding database.
 
-Click on a job ID to go to the job details page, which shows basic information about the job, as well as the original query, as well as the job's output and details information. This shows you exactly how the job performed and gives you an high level overview of any error that may have occured.
+Click on a job ID to go to the job details page, which shows basic information about the job, as well as the original query, as well as the job's output and details information. This shows you exactly how the job performed and gives you an high level overview of any error that may have occurred.
 
 ## New Queries and Schedules
 
