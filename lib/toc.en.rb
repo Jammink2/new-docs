@@ -150,6 +150,9 @@ section 'import-data', 'Data Import' do
     article 'bulk-import-internal', 'Bulk Import Internals'
     article 'bulk-import-tips-and-tricks', 'Bulk Import Tips and Tricks'
   end
+  category 'iot-devices', 'IoT Devices' do
+    article 'sensor-data-analytics-with-raspberrypi', 'Raspberry Pi'
+  end
 end
 
 section 'query-data', 'Data Set Management' do

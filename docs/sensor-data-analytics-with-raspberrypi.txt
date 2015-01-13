@@ -1,0 +1,85 @@
+# Sensor Data Analytics with Raspberry Pi
+
+[Raspberry Pi](http://www.raspberrypi.org/) is a credit-card-sized single-board computer. Because it is low-cost and easy to equip with various types of sensors, using Raspberry Pi as a cloud data logger is one of its ideal use cases.
+
+<center>
+<img src="https://docs.fluentd.org/images/raspberry-pi-cloud-data-logger.png" width="400px"/>
+</center>
+<br /><br />
+
+This article introduces how to transport sensor data from Raspberry Pi to Treasure Data.
+
+## Install Raspbian
+
+[Raspbian](http://www.raspbian.org/) is a free operating system based on Debian, optimized for the Raspberry Pi. Please install Raspbian on your Raspberry Pi by following the instructions in the blog post below:
+
+- [Getting Started with Raspberry Pi: Installing Raspbian](http://www.andrewmunsell.com/blog/getting-started-raspberry-pi-install-raspbian)
+
+## Install Treasure Agent
+
+Next, we'll install Treasure Agent on Raspbian. Raspbian bundles Ruby 1.9.3 by default, but we need the extra development packages.
+
+    :::term
+    $ sudo aptitude install ruby-dev
+
+We'll now install Treasure Agent (Fluentd) and the necessary plugins.
+
+    :::term
+    $ sudo gem install fluentd
+    $ sudo fluent-gem install fluent-plugin-td
+
+## Configure and Launch Treasure Agent
+
+Please sign up to Treasure Data from the [sign up page](https://console.treasuredata.com/users/sign_up). Its free plan lets you store and analyze millions of data points. You can get your account's API key from the [users page](https://console.treasuredata.com/users/current).
+
+Please prepare the `td-agent.conf` file with the following information, including your API key.
+
+    :::text
+    <match td.*.*>
+      type tdlog
+      apikey YOUR_API_KEY_HERE
+ 
+      auto_create_table
+      buffer_type file
+      buffer_path /home/pi/td
+    </match>
+    <source>
+      type http
+      port 8888
+    </source>
+    <source>
+      type forward
+    </source>
+
+Finally, please launch Treasure Agent (Fluentd) via your terminal.
+
+    :::term
+    $ fluentd -c fluent.conf
+
+## Upload Test
+
+To test the configuration, just post a JSON message to Treasure Agent via HTTP.
+
+    :::term
+    $ curl -X POST -d 'json={"sensor1":3123.13,"sensor2":321.3}' \
+      http://localhost:8888/td.testdb.raspberrypi
+
+NOTE: If you're using Python, you can use <a href="python">python logger</a> library.
+
+Now, access the databases page to confirm that your data has been uploaded to the cloud properly.
+
+* [Treasure Data: List of Databases](https://console.treasuredata.com/databases)
+
+You can now issue queries against the imported data.
+
+* [Treasure Data: New Query](https://console.treasuredata.com/query_forms/new)
+
+For example, these queries calculate the average sensor1 value and the sum of sensor2 values.
+
+    :::sql
+    SELECT AVG(sensor1) FROM raspberrypi;
+    SELECT SUM(sensor2) FROM raspberrypi;
+
+## Conclusion
+
+Raspberry Pi is an ideal platform for prototyping data logger hardware. By combining Raspebrry Pi and Treasure Data, we can easily analyze the phisical world in the cloud.
