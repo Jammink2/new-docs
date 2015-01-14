@@ -1,0 +1,81 @@
+# Using Python Bindings for REST API
+
+This article will explain how to use Python bindings for REST API.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
+  * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
+  * Basic knowledge of our [query language](hive).
+
+## Installation
+
+The Python bindings are released on [PyPI](https://pypi.python.org/pypi) as `td-client` (stands for ‘T’reasure ‘D’ata). You can install the package from `pip` or `easy_install`.
+
+    :::sh
+    pip install td-client
+
+The source code is [available at github](https://github.com/treasure-data/td-client-python).
+
+## List Databases and Tables
+
+The example below lists the databases and tables. The API key is your authentication key. Please refer [here](get-apikey) to retrieve your API key.
+
+    :::python
+    from __future__ import with_statement
+    from contexstlib import closing
+    import os
+    import tdclient
+    apikey = os.getenv("TD_API_KEY")
+    with closing(tdclient.Client(apikey)) as client:
+        for db in client.databases():
+            for table in db.tables():
+                print(table.db_name)
+                print(table.table_name)
+                print(table.count)
+
+## Issue Queries
+
+The example below issues a query from a Python program. The query API is asynchronous -- you can check for query completion by polling the job periodically (e.g. by issuing job.finished? calls).
+
+    :::python
+    from __future__ import with_statement
+    from contextlib import closing
+    import os
+    import tdclient
+    import time
+    apikey = os.getenv("TD_API_KEY")
+    with closing(tdclient.Client(apikey)) as client:
+        job = client.query("testdb", "SELECT COUNT(1) FROM www_access")
+        while not job.finished():
+            time.sleep(2)
+        for row in job.result():
+            print(row)
+
+NOTE: job.result() does not put the job result into memory. It iterates through the rows in a streaming fashion.
+
+## List and Get the Status of Jobs
+
+The example below lists and gets the status of jobs.
+
+    :::python
+    from __future__ import with_statement
+    from contextlib import closing
+    import os
+    import tdclient
+    apikey = os.getenv("TD_API_KEY")
+    with closing(tdclient.Client(apikey)) as client:
+        # recent 20 jobs
+        len(client.jobs())
+        
+        # recent 127 jobs of specific status
+        client.jobs(0, 127, "running")
+        client.jobs(0, 127, "success")
+        client.jobs(0, 127, "error")
+        client.jobs(0, 127, "killed")
+        
+        # get job status
+        client.job(job_id)
+        
+        # get job result
+        client.job_result(job_id)
