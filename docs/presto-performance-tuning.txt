@@ -63,10 +63,10 @@ Presto has a couple of [approximate aggregation functions](http://prestodb.io/do
 
 ## Aggregate a series of LIKE clauses in one single regexp_like clause
 
-Presto's query optimizer is unable is unable to improve queries where many <tt>LIKE</tt> clauses are used.
+Presto's query optimizer is unable to improve queries where many <tt>LIKE</tt> clauses are used.
 As a consequence the query execution can be slower than expected in this case.
 
-To improve the performance, one can substitute a series of <tt>LIKE</tt> clauses chainied in an AND with a single <tt>regexp_like</tt> clause,
+To improve the performance, one can substitute a series of <tt>LIKE</tt> clauses chainied in an OR with a single <tt>regexp_like</tt> clause,
 which is Presto native.
 
 For example:
@@ -77,9 +77,9 @@ For example:
     FROM
       access
     WHERE
-      method LIKE '%GET%' AND
-      method LIKE '%POST%' AND
-      method LIKE '%PUT%' AND
+      method LIKE '%GET%' OR
+      method LIKE '%POST%' OR
+      method LIKE '%PUT%' OR
       method LIKE '%DELETE%'
 
 can be optimized by replacing the 4 LIKE clauses with a single <tt>regexp_like</tt> clause:
@@ -90,6 +90,6 @@ can be optimized by replacing the 4 LIKE clauses with a single <tt>regexp_like</
     FROM
       access
     WHERE
-      regexp_like(method, '(GET|POST|PUT|DELETE)')
+      regexp_like(method, 'GET|POST|PUT|DELETE')
 
 
