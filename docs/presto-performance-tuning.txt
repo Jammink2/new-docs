@@ -5,7 +5,7 @@
   * Basic knowledge of Treasure Data.
   * Basic knowledge of [Presto query engine](presto).
 
-## Leveraging Time-based Partitioning
+## Leveraging Time-based partitioning
 
 All imported data is automatically partitioned into hourly buckets, based on the **'time'** field within each data record. **By specifying the time range to query, you avoid reading unnecessary data and can thus speed up your query significantly.**
 
@@ -17,11 +17,11 @@ All imported data is automatically partitioned into hourly buckets, based on the
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 + 3600
     [GOOD]: SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020 - 3600
-    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 13493930200 / 10 
+    [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 13493930200 / 10
     [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time BETWEEN 1349392000 AND 1349394000
 
-### 2) TD_TIME_RANGE
+### 2) <tt>TD_TIME_RANGE</tt>
 
 **An easier way to slice the data is to use [TD_TIME_RANGE UDF](presto-udfs#tdtimerange)**.
 
@@ -39,7 +39,7 @@ However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partit
     [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, TD_SCHEDULED_TIME() / 86400 * 86400))
     [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, 1356998401 / 86400 * 86400))
 
-## Considering the Cardinality within GROUP BY
+## Considering the cardinality within GROUP BY
 
 There's a probability where GROUP BY becomes a little bit faster, by carefully ordering a list of fields within GROUP BY in an order of high cardinality.
 
@@ -47,7 +47,7 @@ There's a probability where GROUP BY becomes a little bit faster, by carefully o
     good: SELECT GROUP BY uid, gender
     bad:  SELECT GROUP BY gender, uid
 
-## Use Approximate Aggregate Functions
+## Use approximate aggregate functions
 
 Presto has a couple of [approximate aggregation functions](http://prestodb.io/docs/current/functions/aggregate.html), which will give you significant performance improvements with some errors. For example by using `approx_distinct()` function, you can get an approximation of `COUNT(DISTINCT x)` with standard error of 2.3%. The example below calculates the approximate unique users of the previous day.
 
@@ -60,3 +60,36 @@ Presto has a couple of [approximate aggregation functions](http://prestodb.io/do
       TD_TIME_RANGE(
         TD_TIME_ADD(TD_SCHEDULED_TIME(), "-1d", "PDT"),
         TD_SCHEDULED_TIME())
+
+## Aggregate a series of LIKE clauses in one single regexp_like clause
+
+Presto's query optimizer is unable is unable to improve queries where many <tt>LIKE</tt> clauses are used.
+As a consequence the query execution can be slower than expected in this case.
+
+To improve the performance, one can substitute a series of <tt>LIKE</tt> clauses chainied in an AND with a single <tt>regexp_like</tt> clause,
+which is Presto native.
+
+For example:
+
+    :::sql
+    SELECT
+      ...
+    FROM
+      access
+    WHERE
+      method LIKE '%GET%' AND
+      method LIKE '%POST%' AND
+      method LIKE '%PUT%' AND
+      method LIKE '%DELETE%'
+
+can be optimized by replacing the 4 LIKE clauses with a single <tt>regexp_like</tt> clause:
+
+    :::sql
+    SELECT
+      ...
+    FROM
+      access
+    WHERE
+      regexp_like(method, '(GET|POST|PUT|DELETE)')
+
+
