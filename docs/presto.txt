@@ -2,9 +2,7 @@
 
 [Treasure Data](http://treasuredata.com/) is a Hadoop-based Big Data analytics platform. Treasure Data supports Presto as a low-latency query engine.
 
-This feature is currently in **beta** and it is only available to certain accounts at this time - please contact your account representative if you would like to join the beta.
-
-NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact to us </a>. if you're interested in.
+NOTE: This is a <b>Premium</b> plan feature, and not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank"> contact us </a> if you're interested.
 
 ## What is Presto?
 
@@ -28,7 +26,7 @@ Even with Presto as part of our ecosystem, MapReduce and Hive will continue to h
 
 ### Web Console
 
-From the [web console](<%= @env[:url_console] %>), on the New Query page select "Presto" as the query type.
+Select "Presto" as the query type when using the [web console](<%= @env[:url_console] %>)'s query editor.
 
 <center><img src="/images/console-query-presto.png" width="75%" /></center><br />
 
@@ -60,7 +58,7 @@ If you're looking for dozens of Presto SQL templates, please visit Treasure Data
 
 Presto supports industry-standard SQL-92 syntax.
 
-* [Presto SQL Syntax](http://prestodb.io/docs/current/sql/select.html)
+* [Presto SQL Syntax](http://prestodb.io/docs/current/sql.html)
 * [Presto Function and Operators](http://prestodb.io/docs/current/functions.html)
 
 ## Supported UDFs
