@@ -22,7 +22,6 @@ The source code is [available at github](https://github.com/treasure-data/td-cli
 The example below lists the databases and tables. The API key is your authentication key. Please refer [here](get-apikey) to retrieve your API key.
 
     :::python
-    from __future__ import with_statement
     from contexstlib import closing
     import os
     import tdclient
@@ -39,7 +38,6 @@ The example below lists the databases and tables. The API key is your authentica
 The example below issues a query from a Python program. The query API is asynchronous -- you can check for query completion by polling the job periodically (e.g. by issuing job.finished? calls).
 
     :::python
-    from __future__ import with_statement
     from contextlib import closing
     import os
     import tdclient
@@ -59,7 +57,6 @@ NOTE: job.result() does not put the job result into memory. It iterates through 
 The example below lists and gets the status of jobs.
 
     :::python
-    from __future__ import with_statement
     from contextlib import closing
     import os
     import tdclient
