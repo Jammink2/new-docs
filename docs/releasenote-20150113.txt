@@ -1,0 +1,65 @@
+# Release Note 20150113
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Upgraded Presto to v0.89
+
+We upgraded the Presto Engine to the currently latest version v0.89. Please refer to the Presto official [v0.89 release note](http://prestodb.io/docs/current/release/release-0.89.html) page for more information on what changed.
+
+### Backend: Hive's INSERT INTO Default *time* Field
+
+Hive queries taking advantage of the INSERT INTO clause (to write the result back into a Treasure Data table more efficiently) now use the query's scheduled time, or current time if not available, if a *time* column is not found in the result produced by the query.
+
+Previously it was mandatory for the query to contain the *time* column in order for the INSERT INTO clause to carry on successfully and being able to write the result into a Treasure Data table.
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Performance Improvement on User Model Update
+
+* _**[Problem]**_<br/>
+  When an user with Administrative permissions creates a database, it is not recorded as its owner.<br/>
+  _**[Solution]**_<br/>
+  This was found to be an API issue. Only restricted users and the account Owner were recorded as owners of a database but not regular Administrators (non-Owner administrators) were not.<br/>
+  We modified the logic to cover this use case as well and mark the Administrator user as owner for databases it created.<br/>
+
+### Console: Tutorial Not Functioning
+
+* _**[Problem]**_<br/>
+  After last release's deployment, the tutorial was no longer working.<br/>
+  _**[Solution]**_<br/>
+  This was due to last release's refactoring of the Databases and Tables pages in which the hooks required by the Tutorial flow to function properly were modified inadvertently.<br/>
+  We modified the hooks to match with the Databases and Tables hooks and that fixed the tutorial flow.<br/>
+
+### Backend: Free User's Query Failures
+
+* _**[Problem]**_<br/>
+  On January 6th, queries issued by accounts on a Free plan failed because of 'Array Out of Bound' exceptions.<br/>
+  _**[Solution]**_<br/>
+  This problem was due to a fix introduced for the Treasure Data time index filtering capability on the Hive version on the cluster free accounts are allocated to.<br/>
+  As the problem was reported, the fix was reverted to mitigate the impact. Later in the week the code was modified to address the problem causing the exception and solve the initial limitation affecting Free accounts.<br/>
+
+### Backend: Presto Conversion of Floating Point Numbers
+
+* _**[Problem]**_<br/>
+  Certain Presto WHERE clauses where the comparison value is a Floating point smaller than 1 may see the comparison value truncated to 0.<br/>
+  _**[Solution]**_<br/>
+  This was found to be a problem in the Presto query optimizer for time index filtering which casts the Floating point comparison argument to integer, thus making any number smaller than 1 (e.g. 0.67) a 0.<br/>
+  We modified the query optimizer's logic to not attempt to optimize WHERE clauses where the reference column/field is not the time column.<br/>
+
+### Backend: Treasure Dat Result Exports Never Complete If the Session Is Deleted
+
+* _**[Problem]**_<br/>
+  When a Bulk Import session associated to a Treasure Data Export from a query is forcibly deleted, the Result Export keep running indefinitely and never completes.<br/>
+  _**[Solution]**_<br/>
+  This problem is due to the Bulk Import Commit worker retrying to commit the Bulk Import when the session is not found. This is undesirable.<br/>
+  We modified the logic to avoid retrying when the session is not found (that is, was deleted) or the status of the session is already 'committed'.<br/>
+
+<br/>
+<br/>
