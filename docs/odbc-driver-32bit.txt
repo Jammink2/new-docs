@@ -32,7 +32,7 @@ Next, we'll register Treasure Data's ODBC driver to your system. You need to lau
 
 #### For 32bit Windows Users
 
-Please go to control panel, and double click `ODBC Data Source Administrator (32 bit)`.
+Please go to Control Panel, and double click `ODBC Data Source Administrator (32 bit)`.
 
 #### For 64bit Windows Users
 
@@ -58,4 +58,4 @@ Please fill in the information like below. After that, please click `Test` to se
 - User Name: Email address of Treasure Data Account
 - Password: Password
 
-Once the driver is registerd to your system, it will be seen by other BI tools like Tableau Desktop.
+Once the driver is registerd to your system, it will be seen by BI tools like [Tableau Desktop](tableau-desktop-odbc).
