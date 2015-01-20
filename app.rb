@@ -327,7 +327,7 @@ helpers do
         :api_endpoint => 'ybi.jp-east.idcfcloud.com',
         :sdk_endpoint => 'mobile-ybi.jp-east.idcfcloud.com',
         :pggw_endpoint => 'pggw-ybi.jp-east.idcfcloud.com',
-        :mail_support => 'support@ybi.idc.jp'
+        :mail_support => 'ybi-support@idc.jp'
       }
     }[env]
   end
