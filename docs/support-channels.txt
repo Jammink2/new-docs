@@ -8,16 +8,20 @@ We have tried to cover the following areas with our documentation:
   * Some of our important advanced features
   * Areas that have confused our users in the past
 
-However, we understand that no documentation can cover everything our users need. That's why we've set up Support Desk and Mail channels for you to communicate with us.
+<% if @env[:region] == :aws %>
+However, we understand that no documentation can cover everything our users need. That's why we've set up Support Desk and Email channels for you to communicate with us.
+<% else %>
+However, we understand that no documentation can cover everything our users need. That's why we've set up an Email channel for you to communicate with us.
+<% end %>
 
 ## Email
 
 This is the most common way of submitting the support inquiry. Please send us an email at `<%= @env[:mail_support] %>`.
-
+<% if @env[:region] == :aws %>
 ## Support Desk
 
 You can submit tickets to our Support Desk at [help.treasuredata.com](http://help.treasuredata.com/). Communicate directly with our support team and receive email updates on your tickets. We usually reply within a few business days.
-
+<% end %>
 ## More Support Options
 
 Paying customers have access to higher levels of support and faster support response times. Please [contact us](<%= @env[:url_contact] %>) for more information.
