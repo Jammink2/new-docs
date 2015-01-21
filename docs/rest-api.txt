@@ -318,6 +318,7 @@ There are several wrapper libraries for the REST API. The following libraries ar
 * [Ruby Library for Treasure Data REST API](rest-api-ruby-client)
 * [Java Library for Treasure Data REST API](https://github.com/treasure-data/td-client-java)
   * [TreasureData's JDBC Driver](jdbc-driver)
+* [Python Library for Treasure Data REST API](rest-api-python-client)
 
 3rd party developers are also actively developing language bindings:
 
