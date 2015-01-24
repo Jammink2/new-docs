@@ -1,0 +1,107 @@
+# Release Note 20150120
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Query Index Filtering
+
+We improved the filtering in the query index page to:
+
+* default the checkboxes next to each filter to unchecked when the filter is not applied
+* update the URL every time a filter is applied/removed to allow the search to be saved
+
+![Console: Query Index Filtering](/images/release-notes/150120-01-query_filters.png)
+
+### Console: Password Validation On Signup
+
+We modified the password validation logic in the Signup page to make sure it indicates clearly when the password entered does not meet the minimum length requirement of 6 characters.
+
+![Console: Password Validation On Signup](/images/release-notes/150120-02-short_password.png)
+
+### Presto: Retrying for Presto Queries
+
+We added a retrying mechanism that reruns the Presto query in the occurrence of (rare) Execution Expired exceptions and [Rejected Execution](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/RejectedExecutionException.html) exceptions caused by a worker spinning for a restart.
+
+### Backend: Table Data Expiration
+
+We created a new feature which allows users to 'virtually' expire data from any of their tables after a specified amount of days.
+
+When table expiration is enabled for a table, the table's data is not actually removed from the table but it rather *flagged as removed*; as such a query scanning the table will only return records whose time field is at most X days old, where X is the number of days specified for the table's expiration.
+
+The advantage of 'virtually' expiring data from a table is that table expiration can always be revoked, thus allowing a query to fetch **all** records in the table, or modified, thus modifying the range of valid timestamps for the query. Also since table expiration is not dropping data from a table, it does not reduce nor benefits the number of records' for the account storage count.
+
+NOTE: This feature is not enabled by default and it is only enabled on a per-account basis - please contact our support to have it enabled.
+
+![Backend: Table Data Expiration](/images/release-notes/150120-03-table_expiration.png)
+
+### Backend: Event Collector Saves Backup Files In S3
+
+The Event Collector used as backend for the Treasure Data SDKs now saves the files storing the records to be imported into AWS S3.
+
+This is done to ensure recoverability in case data is lost because of customer mishandling or non fortuitous deletions.
+
+### Backend: Multipart Upload for Result Export to AWS S3 / Riak CS
+
+When exporting the result of a query to AWS S3 / Riak CS, the result set is divided up in smaller chunks (multiparts), downloaded into the worker one at a time and uploaded in the same fashion.
+
+This greatly reduces the disk size requirements in the worker, thus increasing scalability and practically allowing results of any size to be exported to AWS S3 / Riak CS without limitations.
+
+### Backend: Hive Result Size Limitation
+
+When the number of records in the result of a Hive query exceeds 2<sup>32</sup>-1, Hive truncates the result thus causing an unexpected behavior, especially when exporting the result somewhere else with a Result Export.
+
+We improved the logic to flag the query as failed when the result size is exceeded - any result export associated to the query is thus avoided since the result would not be correct.
+
+NOTE: <tt>INSERT INTO</tt> clauses are not affected by the 2<sup>32</sup>-1 size limitation and can write the entire content of the query result to a Treasure Data table without limitations.
+
+### Client Tools: First Release of the Python Client Library v0.1.2
+
+We released the first version of our new [Python client library (v0.1.2)](https://github.com/treasure-data/td-client-python/releases) on Github.
+
+### SDKs: Released JavaScript SDK v1.3.0
+
+We released the v1.3.0 of our Treasure Data Javascript SDK and officially published the SDK on [npmjs.org](https://www.npmjs.com/package/td-js-sdk).
+
+This latest version exposed the global <tt>DEFAULT_CONFIG</tt> configuration for customizations - this allows customers to create a thin wrapper around the Treasure Data SDK to brand it as their own - see the [FAQ](https://github.com/treasure-data/td-js-sdk#faq) for more info.
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Query in Non UTF-8 Format
+
+* _**[Problem]**_<br/>
+  If the query text of a query contains non UTF-8 byte sequences, the API responds with a 500 error code.<br/>
+  _**[Solution]**_<br/>
+  Rails only tolerates UTF-8 byte sequences for strings.<br/>
+  We are catching Rails' ArgumentError exceptions caused by not UTF-8 byte sequences and rendering a 422 error code instead of 500.<br/>
+
+### Console: Some Users Cannot Logging In
+
+* _**[Problem]**_<br/>
+  Some users cannot login into the Console. The spinner rotates indefinitely and the page never loads.<br/>
+  _**[Solution]**_<br/>
+  In [Release 20141216](http://docs.treasuredata.com/articles/releasenote-20141216#apis-bulk-import-in-an-import-only-database) we released a fix to allow restricted users with import only permissions for a database to list bulk import jobs they created. Because of the inefficient queries generated by Rails to satisfy this requirement, this change caused sensible database overload and caused some users not to be able to login into the Console. We had to revert the original change to mitigate the problem, thus exposing the problem again but allowing users to successfully login into the Console again.<br/>
+  To fix the earlier problem, we opted to not show bulk import jobs created against import-only databases to be listed in the job list but only to allow these users to pull the job status of the each bulk import job. This allow the '<tt>td import:auto</tt>' command to work correctly, thus solving the original problem.<br/>
+
+### Backend: Result Export with INSERT INTO
+
+* _**[Problem]**_<br/>
+  If a Presto/Hive query is using the <tt>INSERT INTO</tt> clause, any Result Export associated to the query fails.<br/>
+  _**[Solution]**_<br/>
+  This is because by construction <tt>INSERT INTO</tt> queries don't produce any result since the query result produced by the underlying <tt>SELECT</tt> query is written directly in the destination database and table specified. Because the result set 'looks like' containing no record, the Result Export fails because there are no records to export.<br/>
+  Although this use case is not common (writing the result of a query in two different locations - e.g. a MySQL database and Treasure Data) we tweaked the logic to allow <tt>INSERT INTO</tt> queries whom indeed produced a result containing one or more records, to export the result to another destination as well.<br/>
+
+### Backend: Result Export to MySQL with UJIS Japanese Character Encoding
+
+* _**[Problem]**_<br/>
+  When the character encoding of the destination MySQL database for a Result Export is Japanese UJIS, the result export fails.<br/>
+  _**[Solution]**_<br/>
+  We improved the Result Export feature for MySQL to handle this case as well.<br/>
+
+<br/>
+<br/>
