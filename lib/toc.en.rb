@@ -223,6 +223,9 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
+  # category 'excel', 'Excel' do
+  #   article 'excel-odbc', 'Excel', ['Excel']
+  # end
   category 'tableau', 'Tableau' do
     article 'tableau', 'Tableau + Treasure Data Reference Architecture', ['Tableau', 'Treasure Data']
     article 'tableau-server', 'Tableau Server', ['Tableau', 'Tableau Server']

@@ -1,0 +1,60 @@
+# Excel with Treasure Data
+
+Using Excel with Treasure Data allows users to interactively explore huge amounts of data.
+
+## Prerequisites
+
+- Windows 7, 8.1, or later (Mac OS X is not supported)
+- Excel 2010, or later
+
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank">contact to us</a>. if you're interested in.
+
+## Install ODBC Driver
+
+Please install Treasure Data [ODBC Driver](odbc-driver-32bit), and register to your machine. We'll assume you have DSN (Data Source Name) as `Treasure Data` in the following sections.
+
+For Excel, please set `td-presto` as a database name.
+
+<center><img src="/images/excel_td_odbc_1.png" /><br/></center>
+
+## Set up the Connection from Excel to Treasure Data
+
+### Set up ODBC Connection
+
+Please launch Excel,  and select "From Other Sources", and "From Data Connection Wizard" first.
+
+<center><img src="/images/excel_td_odbc_3.png" /><br/><br/></center>
+
+Please select "ODBC DSN".
+
+<center><img src="/images/excel_td_odbc_4.png" /><br/><br/></center>
+
+And, Select "TreasureData (on your own DSNNAME )".
+
+<center><img src="/images/excel_td_odbc_5.png" /><br/><br/></center>
+
+Then, You can select own tables.
+
+<center><img src="/images/excel_td_odbc_6.png" /><br/><br/></center>
+
+Please select Finish.
+
+<center><img src="/images/excel_td_odbc_7.png" /><br/><br/></center>
+
+### Import Data via ODBC Driver
+
+When you import the data, You can choice how to import data as `Table` or `PivotTable Report`, or `PivotChart`
+
+<center><img src="/images/excel_td_odbc_8.png" /><br/><br/></center>
+
+You can set up the query to get data from TreasureData via Properties.
+
+<center><img src="/images/excel_td_odbc_9.png" /><br/><br/></center>
+
+The following picture show data after selecting `PivotTable` Report.
+
+<center><img src="/images/excel_td_odbc_10.png" width="60%" /><br/><br/></center>
+
+You can modify your query at `Connection Properties`.
+
+<center><img src="/images/excel_td_odbc_11.png" width="60%" /><br/><br/></center>
