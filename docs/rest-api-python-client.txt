@@ -22,11 +22,10 @@ The source code is [available at github](https://github.com/treasure-data/td-cli
 The example below lists the databases and tables. The API key is your authentication key. Please refer [here](get-apikey) to retrieve your API key.
 
     :::python
-    from contexstlib import closing
     import os
     import tdclient
     apikey = os.getenv("TD_API_KEY")
-    with closing(tdclient.Client(apikey)) as client:
+    with tdclient.Client(apikey) as client:
         for db in client.databases():
             for table in db.tables():
                 print(table.db_name)
@@ -38,12 +37,11 @@ The example below lists the databases and tables. The API key is your authentica
 The example below issues a query from a Python program. The query API is asynchronous -- you can check for query completion by polling the job periodically (e.g. by issuing job.finished? calls).
 
     :::python
-    from contextlib import closing
     import os
     import tdclient
     import time
     apikey = os.getenv("TD_API_KEY")
-    with closing(tdclient.Client(apikey)) as client:
+    with tdclient.Client(apikey) as client:
         job = client.query("testdb", "SELECT COUNT(1) FROM www_access")
         while not job.finished():
             time.sleep(2)
@@ -57,11 +55,10 @@ NOTE: job.result() does not put the job result into memory. It iterates through 
 The example below lists and gets the status of jobs.
 
     :::python
-    from contextlib import closing
     import os
     import tdclient
     apikey = os.getenv("TD_API_KEY")
-    with closing(tdclient.Client(apikey)) as client:
+    with tdclient.Client(apikey) as client:
         # recent 20 jobs
         len(client.jobs())
         
