@@ -25,7 +25,7 @@ Every social/mobile application calculates the "top N of X" (ex: top 5 movies wa
 If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible via visualizations. Using this "write-to-PostgreSQL" feature, you can streamline the process and focus on your queries and your visualizations of the query results.
 
 
-NOTE: The results are written from the AWS US-East region. If you want better security control, please message <a href="mailto:<%= @env[:mail_support] %>"><%= @env[:mail_support] %></a> and ask for its account ID and security group name.<br/><br/> Otherwise our <b>Premium</b> plan includes advanced security features, which includes a list of static IPs Treasure Data is using. You can limit the access to your database by using these IPs. Please contact <a href="mailto:<%= @env[:mail_support] %>"><%= @env[:mail_support] %></a> if you need it too.
+NOTE: Our <b>Premium</b> plan includes advanced security features, which includes a list of static IPs Treasure Data is using. You can limit the access to your database by using these IPs. Please contact <a href="mailto:<%= @env[:mail_support] %>"><%= @env[:mail_support] %></a> if you need it too.
 
 ## Result Output URL Format
 
