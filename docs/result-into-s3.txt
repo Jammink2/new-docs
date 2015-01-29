@@ -15,13 +15,22 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
 
     :::term
     $ td query \
-      --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv' \
+      --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv.gz?compression=gz' \
       -w -d testdb \
       "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
 NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoded</a>.
 
-For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage S3 write access permissions.
+For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage S3 write access permissions. 
+
+You can specify `compression` option (only `gz` is allowed at this moment) in --result URL to compress the result.
+Without compression parameter it generates uncompressed data.
+
+    :::term
+    $ td query \
+      --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv' \
+      -w -d testdb \
+      "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
 The default result output format is [CSV RFC 4180](http://www.ietf.org/rfc/rfc4180.txt). Output in TSV format is also supported. For both CSV and TSV formats these are the available options to customize the final format of the files written to S3:
 
@@ -35,7 +44,7 @@ null      | Used to specify how a 'null' value is displayed                  |  
 newline   | Used to specify the EOL (End-Of-Line) representation             |                              | \r\n (CRLF)                  | \r\n (CRLF)
 header    | Can be used to suppress the column header                        |                              | column header printed. Use 'false' to suppress | column header printed. Use 'false' to suppress
 
- This is the a default sample output in CSV format when no customization is requested:
+This is the a default sample output in CSV format when no customization is requested:
 
     :::csv
     code,cnt
