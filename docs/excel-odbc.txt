@@ -37,7 +37,7 @@ Then, You can select own tables.
 
 <center><img src="/images/excel_td_odbc_6.png" /><br/><br/></center>
 
-Please select Finish.
+Please click `Finish` button. After that, `Import Data` dialog will pop up.
 
 <center><img src="/images/excel_td_odbc_7.png" /><br/><br/></center>
 

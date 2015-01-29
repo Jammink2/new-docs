@@ -224,9 +224,9 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
-  # category 'excel', 'Excel' do
-  #   article 'excel-odbc', 'Excel', ['Excel']
-  # end
+  category 'excel', 'Excel' do
+    article 'excel-odbc', 'Excel', ['Excel']
+  end
   category 'tableau', 'Tableau' do
     article 'tableau', 'Tableau + Treasure Data Reference Architecture', ['Tableau', 'Treasure Data']
     article 'tableau-server', 'Tableau Server', ['Tableau', 'Tableau Server']
@@ -245,6 +245,12 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'chartio', 'Chartio' do
     article 'chartio', 'Chartio with Treasure Data', ['Chartio']
   end
+  category 'informatica-cloud', 'Informatica Cloud' do
+    article 'informatica-cloud', 'Informatica Cloud', ['Informatica Cloud']
+  end
+  category 'talend', 'Talend' do
+    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
+  end
   category 'squirrelsql', 'SQuirreL SQL' do
     article 'squirrelsql', 'SQuirrel SQL with Treasure Data', ['SQuirrelSQL', 'SQuirrel SQL']
   end
@@ -262,12 +268,9 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   category 'r-language', 'R Language' do
     article 'r-language', 'R Language',                 ['R Language']
   end
-  category 'talend', 'Talend' do
-    article 'talend', 'Talend Open Studio',             ['Talend Open Studio']
-  end
-  category 'indicee', 'Indicee' do
-    article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
-  end
+  # category 'indicee', 'Indicee' do
+  #   article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
+  # end
 end
 
 section 'tools-and-apis', 'Tools & APIs' do

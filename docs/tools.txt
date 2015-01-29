@@ -14,12 +14,15 @@ We have partnered with many companies to meet your data analytics needs. Most of
 
 The current list of supported tools is shown below.
 
+* [Excel](excel)
 * [Tableau](tableau)
   * [Tableau Server](tableau-server)
   * [Tableau Online](tableau-online)
   * [Tableau Desktop](tableau-desktop-odbc)
 * [Metric Insights](metricinsights)
 * [Chartio](chartio)
+* [Informatica Cloud](informatica-cloud)
+* [Talend Open Studio](talend)
 * [SQuirreL SQL](squirrelsql)
 * [SQL Workbench/J](sqlworkbench)
 * [JasperSoft iReport](jaspersoft-ireport)
@@ -27,7 +30,5 @@ The current list of supported tools is shown below.
 * [Pentaho Report Designer](pentaho-reportdesigner)
 * [Pentaho Data Integration](pentaho-dataintegration)
 * [R Language](r-language)
-* [Talend Open Studio](talend)
-* [Indicee Cloud BI Platform](indicee)
 
 If you have specific data visualization needs, please [let us know](<%= @env[:url_contact] %>).

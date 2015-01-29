@@ -1,0 +1,77 @@
+# Informatica Cloud with Treasure Data
+
+This article explains how to use Treasure Data with [Informatica Cloud](http://www.informaticacloud.com/).
+
+NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank">contact to us</a>. if you're interested in.
+
+## Create Informatica Cloud Account
+
+First of all, please create Informatica Cloud account from [here](https://app.informaticaondemand.com/ma/login).
+
+<center><img src="/images/informatica_cloud_1.png" width="60%" /><br/></center><br/><br/>
+
+## Set up Informatica Cloud Secure Agent
+
+Second, please set up the Secure Agent on your computer.
+
+<center><img src="/images/informatica_cloud_2.png" width="80%" /><br/></center><br/><br/>
+
+Here's a documentation.
+
+- [Documentation: How To Download and Install the Informatica Secure Agent](https://community.informatica.com/docs/DOC-1590)
+
+## Set up JDBC Connection with Treasure Data
+
+Finally let's install and configure Treasure Data's JDBC driver for Informatica Cloud.
+
+- [Documentation: Connecting to Databases using JDBC](https://community.informatica.com/docs/DOC-3250)
+
+### Download JDBC Driver
+
+Please download Treasure Data's JDBC Driver from below.
+
+- [JDBC Driver Download](jdbc-driver)
+
+### Set up JDBC Driver
+
+Please navigate to `Configuration -> Connectors`, and click `New` button. Please configure the fields like followings.
+
+<center><img src="/images/informatica_cloud_3.png" /><br/></center>
+
+- Type: JDBC
+- Username: Your account email
+- Password: Your account password
+- Connection URL: jdbc:td://<%= @env[:api_endpoint] %>/< YOUR_DATABASE_NAME >;useSSL=true;type=presto
+- Schema: "public"
+- JdbcDriver: com.treasure_data.jdbc.TreasureDataDriver
+- JdbcDriverFolder: /path/to/download/directory/
+
+### Add Synchronization Task
+
+Now let's create a data synchronization task using Treasure Data. Please navigate to `Apps > Data Synchronization`, and create a new Task. Then Please fill out `Task Name` and `Operation` fields and click `Next` button.
+
+<center><img src="/images/informatica_cloud_4.png" width="80%" /><br/></center>
+
+Please select the connection established in the previous steps. Then Informatica Cloud shows a list of tables under your database as `Source Objects`.
+
+<center><img src="/images/informatica_cloud_5.png" width="80%" /><br/></center>
+
+Once you select the table name, Informatica Cloud shows a `Data Preview`, to see a couple of records from the target table.
+
+<center><img src="/images/informatica_cloud_6.png" width="80%" /><br/></center><br/><br/>
+
+At `Data Filters` phase, you can specify how many records you want to process.
+
+<center><img src="/images/informatica_cloud_7.png" width="80%" /><br/></center><br/><br/>
+
+Also, you can filter the data by specifying the filter conditions via Web UI.
+
+<center><img src="/images/informatica_cloud_8.png" width="80%" /><br/></center><br/><br/>
+
+Finally, please specify the `Field Mapping` between Treasure Data, and the target.
+
+<center><img src="/images/informatica_cloud_9.png" width="80%" /><br/></center>
+
+## Further Readings
+
+- [Informatica Cloud Documentation](https://community.informatica.com/community/products/informatica_cloud?view=overview)
