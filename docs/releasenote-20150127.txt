@@ -1,0 +1,47 @@
+# Release Note 20150127
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Gzip Compression for Result Export to AWS S3 / Riak CS
+
+We added compression support for the Result Export to AWS S3 / Riak CS feature.
+
+When adding compression to a result export, the data is compressed with Gzip before being transferred over the wire. When the destination format is '<tt>csv</tt>', the destination file format will become '<tt>csv.gz</tt>' (for '<tt>tsv</tt>', its '<tt>tsv.gz</tt>'). This feature is particularly useful when the result of a query is very large (250 MB compressed and up, as seen in the top right corner of the Job result page) but can be safely used for all result sizes.
+
+Please see the [Result Export to AWS S3 / Riak CS](result-into-s3) documentation page for more information.
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### APIs: Database List For Restricted Users
+
+* _**[Problem]**_<br/>
+  After a restricted user creates a database, it is no longer able to list its databases through the td CLI.<br/>
+  _**[Solution]**_<br/>
+  We recently opened the ability for restricted users to create their own databases to which they are assigned ownership and retain access to among all other restricted users being granted access to it, administrators, and account owners - previously restricted users were not allowed to create databases. The permission associated to those databases was returned as 'null' in the REST API '<tt>database/list</tt>' call and that was not properly handled by the td CLI, that expected the permission to be a string value.<br/>
+  We modified the '<tt>database/list</tt>' REST API to use the 'owner' string to mark databases the restricted user created and owns.<br/>
+
+### Console: Jobs Index Load
+
+* _**[Problem]**_<br/>
+  The Console jobs index page can take a very long time to load. This elongated load times may sometime lead to browsers' timeouts.<br/>
+  _**[Solution]**_<br/>
+  Where the problem was detected, this was found to be caused by some of the jobs having a huge query text (2000 or more characters) - loading the query text for all 25 jobs can take a long time.<br/>
+  Since only a small portion of the query text is displayed in the jobs page, we truncated the query text to max 200 characters to improve the page loading time.<br/>
+
+### Backend: Presto Query Failure for Buffering Capacity Exceeded
+
+* _**[Problem]**_<br/>
+  Sometimes Presto queries are failing because of 'Buffering capacity exceeded' errors.<br/>
+  _**[Solution]**_<br/>
+  This problem is occurring when the number of tables in the customer's databases and the columns in their table's schema is larger than usual. This causes the calls to the REST APIs to retrieve the list of databases, tables, and columns to fail non deterministically because of timeouts.<br/>
+  We increased the REST API call timeout to avoid this problem and support customers whose cardinality of databases/tables/columns is big.<br/>
+
+<br/>
+<br/>
