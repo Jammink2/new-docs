@@ -1,11 +1,11 @@
-# Writing Job Results into AWS S3
+# Writing Job Results into AWS S3 / Riak CS
 
-This article explains how to write job results directly to Amazon S3.
+This article explains how to write job results directly to AWS S3 / Riak CS.
 
 ## Prerequisites
 
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
-  * An Amazon S3 bucket with write permission.
+  * An Amazon S3 or Riak CS bucket with write permission.
 
 ## Usage
 
@@ -21,7 +21,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
 
 NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoded</a>.
 
-For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage S3 write access permissions. 
+For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) to manage storage write access permissions.
 
 You can specify `compression` option (only `gz` is allowed at this moment) in --result URL to compress the result.
 Without compression parameter it generates uncompressed data.
@@ -32,7 +32,7 @@ Without compression parameter it generates uncompressed data.
       -w -d testdb \
       "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
-The default result output format is [CSV RFC 4180](http://www.ietf.org/rfc/rfc4180.txt). Output in TSV format is also supported. For both CSV and TSV formats these are the available options to customize the final format of the files written to S3:
+The default result output format is [CSV RFC 4180](http://www.ietf.org/rfc/rfc4180.txt). Output in TSV format is also supported. For both CSV and TSV formats these are the available options to customize the final format of the files written into the destination:
 
 Name      | Description                                                      | Restrictions                 | CSV default                  | TSV default            |
 :-------: | :--------------------------------------------------------------: | :--------------------------: | :--------------------------: | :--------------------: |
