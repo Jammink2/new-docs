@@ -1,10 +1,12 @@
 # Informatica Cloud with Treasure Data
 
-This article explains how to use Treasure Data with [Informatica Cloud](http://www.informaticacloud.com/).
+This article explains how to use the Treasure Data JDBC with [Informatica Cloud](http://www.informaticacloud.com/)
+through the Informatica's Secure Agent and setup a 'Data Synchronization' task that pulls records from a Treasure Data table
+into a **different** target destination of your choice.
 
-NOTE: This is a <b>Premium</b> plan feature. If you are interested in using it, please <a href="<%= @env[:url_contact] %>" target="_blank">contact us</a>.
+NOTE: This is a **Premium** plan feature. If you are interested in using it, please <a href="<%= @env[:url_contact] %>" target="_blank">contact us</a>.
 
-## Create Informatica Cloud Account
+## Create the Informatica Cloud Account
 
 First of all, please create an Informatica Cloud account [here](https://app.informaticaondemand.com/ma/login).
 
@@ -20,9 +22,9 @@ Here's relevant documentation.
 
 - [Documentation: How To Download and Install the Informatica Secure Agent](https://community.informatica.com/docs/DOC-1590)
 
-## Set up JDBC Connection with Treasure Data
+## Set up the Treasure Data JDBC Connection
 
-Finally let's install and configure Treasure Data's JDBC driver for Informatica Cloud.
+Third, let's install and configure the Treasure Data's JDBC driver in Informatica Cloud.
 
 - [Documentation: Connecting to Databases using JDBC](https://community.informatica.com/docs/DOC-3250)
 
@@ -46,13 +48,20 @@ Please navigate to `Configuration -> Connectors`, and click the `New` button. Pl
 - JdbcDriver: com.treasure_data.jdbc.TreasureDataDriver
 - JdbcDriverFolder: /path/to/download/directory/
 
-### Add Synchronization Task
+## Add a Synchronization Task
 
-Let's create a data synchronization task using Treasure Data. Please navigate to `Apps > Data Synchronization` and create a new Task. Then, please fill out the `Task Name` and `Operation` fields and click the `Next` button.
+Finally, let's create a data synchronization task using Treasure Data. Please navigate to `Apps > Data Synchronization`
+and create a new Task. Then, please fill out the `Task Name` and `Operation` fields and click the `Next` button.
 
 <center><img src="/images/informatica_cloud_4.png" width="80%" /><br/></center>
 
-Please select the connection established in the previous steps. Then Informatica Cloud shows a list of tables under your database as `Source Objects`.
+### Source
+
+Let's establish a connection so that Informatica Cloud can extract data from Treasure Data - this sets up Treasure Data
+as a 'Source' through the our JDBC driver.
+
+To do this, please select the connection established in the previous steps. Then Informatica Cloud shows a list of
+tables under your database as 'Source' objects.
 
 <center><img src="/images/informatica_cloud_5.png" width="80%" /><br/></center>
 
@@ -60,7 +69,17 @@ Once you select the table name, Informatica Cloud shows a `Data Preview`, which 
 
 <center><img src="/images/informatica_cloud_6.png" width="80%" /><br/></center><br/><br/>
 
-In the `Data Filters` phase, you can specify how many records you want to process.
+### Target
+
+Next, please setup a target for the data synchronization. This can be any of the supported Connections.
+
+NOTE: Since the Treasure Data JDBC driver does not support INSERT statements it cannot be used to write data into
+Treasure Data - that is it cannot be used as a 'Target' of a 'Data Synchronization' task/schedule.
+This functionality is not supported.
+
+### Data Filters
+
+In the 'Data Filters' phase, you can specify how many records you want to process.
 
 <center><img src="/images/informatica_cloud_7.png" width="80%" /><br/></center><br/><br/>
 
@@ -68,9 +87,16 @@ Also, data can be filtered by specifying filter conditions via the Web UI.
 
 <center><img src="/images/informatica_cloud_8.png" width="80%" /><br/></center><br/><br/>
 
-Finally, please specify the `Field Mapping` between Treasure Data and the target.
+### Field Mapping
+
+Finally, please specify the 'Field Mapping' between Treasure Data and the target.
 
 <center><img src="/images/informatica_cloud_9.png" width="80%" /><br/></center>
+
+### Schedule
+
+If you want the selected Treasure Data table to synchronize periodically, please
+specify a schedule in the 'Schedule' tab.
 
 ## Further Readings
 
