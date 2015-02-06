@@ -50,7 +50,7 @@ For example with:
 
 The URL will look like:
 
-    sfdc://user%40treasure-data.com:PASSWORD7SMvicR9ojdPz0XLtlWi3Rtw@login.salesforce.com/Accountf<<<<<<<<<
+    sfdc://user%40treasure-data.com:PASSWORD7SMvicR9ojdPz0XLtlWi3Rtw@login.salesforce.com/Account
 
 NOTE: Please make sure to escape the '@' in the username with '%40'.
 
@@ -61,7 +61,7 @@ Where applicable, the default behavior is indicated.
 
 #### Update <tt>mode</tt> option
 
-Controls the various ways of modifying the database data. All supported modes are **atomic** because they use a temporary table to store the incoming data before attempting to modify the destination table:
+Controls the various ways of modifying the database data.
 
 * Append
 * Truncate
@@ -74,8 +74,8 @@ In this mode the query results are appended to the object.
 
 Because <tt>mode=append</tt> is the default behavior, these two URLs are equivalent:
 
-    sfdc://<username>:<password><security_token>@login.salesforce.com/Contact
-    sfdc://<username>:<password><security_token>@login.salesforce.com/Contact?mode=append
+    sfdc://.../Contact
+    sfdc://.../Contact?mode=append
 
 ##### <tt>mode=truncate</tt>
 
@@ -83,11 +83,11 @@ With the **truncate** mode the system first truncates the existing records in th
 
 Example:
 
-    sfdc://<username>:<password><security_token>@host/object?mode=truncate
+    sfdc://.../CustomObject__c?mode=truncate
 
 NOTE: You can specify the <tt>hard_delete=true</tt> option for <tt>mode=truncate</tt> to delete records instead of moving it to the Trashbin. To use this option, the user must have the 'Bulk API Hard Delete' permission.
 
-    sfdc://<username>:<password><security_token>@login.salesforce.com/Contact?mode=truncate&hard_delete=true
+    sfdc://.../CustomObject__c?mode=truncate&hard_delete=true
 
 ##### <tt>mode=update</tt>
 
@@ -95,11 +95,11 @@ With the **update** mode a row is inserted unless it would cause a duplicate val
 
 Example:
 
-    sfdc://.../CustomObject__c?mode=update&unique=CustomerId__c
+    sfdc://.../Contact?mode=update&unique=CustomerId__c
 
 The default behavior for the 'update' mode is actually '[upsert](https://www.salesforce.com/developer/docs/api/Content/sforce_api_calls_upsert.htm)'. If you do not want to "upsert" but only "update", you can add the <tt>upsert=false</tt> option. Then it updates existing records based on "unique" parameter match and not insert new records.
 
-    sfdc://.../CustomObject__c?mode=update&unique=CustomerId__c&upsert=false
+    sfdc://.../Contact?mode=update&unique=CustomerId__c&upsert=false
 
 #### Upload <tt>concurrency_mode</tt> option
 
@@ -127,7 +127,7 @@ Updating A Salesforce.com Object acquires a lock for the Object and parent Objec
 
 In case you have Salesforce.com Session ID you can authenticate with the <tt>session_id</tt> option instead of username, password, and security token (that is, username, password, and security token can be omitted from the URL).
 
-    sfdc://login.salesforce.com/Contact?session_id=3deT2aQjYQbIRN0MZWsPj60AxD4D6M8ISLnN8h7620n00LbfUYL8ZDMJ6tnU9j0kUnSn.q30b9cE6iA0jlRAUkI6UDUmMCxVHpjB1tHBb7UW0K!M
+    sfdc://login.salesforce.com/Contact?session_id=3deT2aQjYQbIRN0M...jB1tHBb7UW0K!M
 
 #### Retry option
 
