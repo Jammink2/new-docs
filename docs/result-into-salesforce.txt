@@ -1,21 +1,21 @@
-# Writing Job Results into Salesforce.com Organization
+# Writing Job Results into Salesforce.com (SFDC)
 
 This article explains how to write job results to your Salesforce.com organization.
 
 ## Prerequisites
 
-  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
-  * Salesforce.com organization and username, password, and security token for API integration.
-  * The user is to be granted the "API Enabled" permission.
-  * The target Salesforce.com Object is to be exist and the user has read and write permissions to the Object.
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com)
+  * Salesforce.com organization and username, password, and security token for API integration
+  * The user is to be granted the "API Enabled" permission
+  * The target Salesforce.com Object is to be exist and the user has read and write permissions to the Object
 
 ## Architecture
 
-A front-end application streams data to be collected in Treasure Data via [Log/data collector daemon](td-agent) or [Mobile SDKs](mobile-sdks). You can also bulk import storage data via [CLI](bulk-import). Treasure Data periodically runs jobs on the data, then writes the job results to your Salesforce.com Object.
+A front-end application streams data to be collected in Treasure Data via [Log/data collector daemon](td-agent) or [Mobile SDKs](mobile-sdks). You can also bulk import your data using [Bulk Import from the CLI](bulk-import). A [scheduled query](schedule) is setup in Treasure Data to run periodically on the data and write the result of each query execution into your Salesforce.com Object.
 
-<center><img src="/images/salesforce_result_architecture.png" width="75%" /></center><br /><br />
+![Salesforce.com-Treasure Data Architecture](/images/salesforce_result_architecture.png)
 
-Shown above is a fairly common architecture. Here are a few examples.
+The above is a fairly common architecture; below are a few examples.
 
 #### Example 1: Ranking: What are the "Top N of X?"
 
@@ -23,134 +23,148 @@ Every social/mobile application calculates the "top N of X" (ex: top 5 movies wa
 
 #### Example 2: Dashboard Application
 
-If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible via visualizations. Using this "write-to-Salesforce.com" feature, you can streamline the process and focus on your queries and your visualizations of the query results via Reports and Dashborads on Salesforce.com organization.
+If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible via visualizations. Using this "write-to-Salesforce.com" feature, you can streamline the process and focus on building visualizations of your query results via Reports and Dashboards on the Salesforce.com organization.
 
 
 ## Result Output URL Format
 
 ### Format
 
-The result output target is represented by URL with the following format:
+The result output target is represented by a URL with the following format:
 
-    :::term
     sfdc://<username>:<password><security_token>@<hostname>/<object_name>
 
 where:
 
-* **sfdc** is identified for result output to Salesforce.com;
+* **sfdc** is an identifier for result output to Salesforce.com;
 * **username** and **password** are the credential to your Salesforce.com organization;
 * **security_token** is the additional credential for API access;
-* **hostname** is the host name of the Salesforce.com organization. Usually it is 'login.salesforce.com' for production environment and 'test.salesforce.com' for sandbox environments. In case where you configure custom domain for your organization specify the hostname you're using for login;
-* **object_name** is the target Salesforce.com Object API name (e.g. ResultOutput__c). The Object and columns for result data integration must be defined beforehand;
+* **hostname** is the host name of the Salesforce.com organization. Usually this is 'login.salesforce.com' for production environments and 'test.salesforce.com' for sandbox environments. In case where you configure custom domain for your organization specify the hostname you're using for login;
+* **object_name** is the target Salesforce.com Object API name (e.g. ResultOutput__c). Please note that the Object and columns for data integration must be defined beforehand;
 
-    :::term
-    In case of;
-      username: nahi@treasure-data.com
-      password: PASSWORD
-      security_token: 7SMvicR9ojdPz0XLtlWi3Rtw
+For example with:
 
-    sfdc://nahi%40treasure-data.com:PASSWORD7SMvicR9ojdPz0XLtlWi3Rtw@login.salesforce.com/Account
+    username: user@treasure-data.com
+    password: PASSWORD
+    security_token: 7SMvicR9ojdPz0XLtlWi3Rtw
 
-NOTE: Please make sure escaping '@' with '%40' in username.
+The URL will look like:
+
+    sfdc://user%40treasure-data.com:PASSWORD7SMvicR9ojdPz0XLtlWi3Rtw@login.salesforce.com/Account
+
+NOTE: Please make sure to escape the '@' in the username with '%40'.
 
 ### Options
 
-Result output to Salesforce.com supports various options that can be specified as optional URL parameters. The options are compatible with each other and can be combined.
+Result output to Salesforce.com supports various options that can be specified as optional URL parameters. The options are compatible with each other and can be combined.<br/>
 Where applicable, the default behavior is indicated.
 
-#### Update `mode` option
+#### Update <tt>mode</tt> option
 
-Controls the various ways of modifying the database data. All 4 supported modes are **atomic** because they use a temporary table to store the incoming data before attempting to modify the destination table:
+Controls the various ways of modifying the database data. All supported modes are **atomic** because they use a temporary table to store the incoming data before attempting to modify the destination table:
 
 * Append
 * Truncate
 * Update
 
-##### `mode=append` (default)
-<br/>
+##### <tt>mode=append</tt> (default)
+
 The **append** mode is the **default** which is used when no mode option is provided in the URL.
 In this mode the query results are appended to the object.
 
-Because `mode=append` is the default behavior, these two URLs are equivalent:
+Because <tt>mode=append</tt> is the default behavior, these two URLs are equivalent:
 
-    :::term
     sfdc://<username>:<password><security_token>@login.salesforce.com/Contact
     sfdc://<username>:<password><security_token>@login.salesforce.com/Contact?mode=append
 
-##### `mode=truncate`
-<br/>
-With the **truncate** mode the system first truncates the existing record in the object, then inserts the query results.
+##### <tt>mode=truncate</tt>
+
+With the **truncate** mode the system first truncates the existing records in the Salesforce.com Object and moves them into the Trashbin, then inserts the query results.
 
 Example:
 
-    :::term
     sfdc://<username>:<password><security_token>@host/object?mode=truncate
 
-NOTE: You can specify `hard_delete=true` option for `mode=truncate` to delete records instead of moving it to Trashbin. In this case the user must have 'Bulk API Hard Delete' permission.
+NOTE: You can specify the <tt>hard_delete=true</tt> option for <tt>mode=truncate</tt> to delete records instead of moving it to the Trashbin. To use this option, the user must have the 'Bulk API Hard Delete' permission.
 
-    :::term
     sfdc://<username>:<password><security_token>@login.salesforce.com/Contact?mode=truncate&hard_delete=true
 
-##### `mode=update`
-<br/>
-In the **update** mode a row is inserted unless it would cause a duplicate value in the external key columns specified in the "unique" parameter: in such case an update is performed instead. Please note that the "unique" parameter is required and must be defined as an external key when using the update mode.
+##### <tt>mode=update</tt>
+
+With the **update** mode a row is inserted unless it would cause a duplicate value in the external key columns specified in the "unique" parameter: in such case an update is performed instead. Please note that with this mode the "unique" parameter is required and must be defined as an external key when using the update mode.
 
 Example:
 
-    :::term
     sfdc://.../CustomObject__c?mode=update&unique=CustomerId__c
 
-If you do not want "upsert" but "update", you can add `upsert=false` option. Then it updates existing records based on "unique" parameter match and not insert new records.
+The default behavior for the 'update' mode is actually '[upsert](https://www.salesforce.com/developer/docs/api/Content/sforce_api_calls_upsert.htm)'. If you do not want to "upsert" but only "update", you can add the <tt>upsert=false</tt> option. Then it updates existing records based on "unique" parameter match and not insert new records.
 
-    :::term
     sfdc://.../CustomObject__c?mode=update&unique=CustomerId__c&upsert=false
 
-#### Upload `concurrency_mode` option
+#### Upload <tt>concurrency_mode</tt> option
 
-The **concurrency_mode** option controls how the data is uploaded to Salesforce.com organization.
+The **concurrency_mode** option controls how the data is uploaded to the Salesforce.com organization.
+The default mode is **parallel**; it is the recommended method for most situations.
 
-The default mode is **parallel**; it is also the recommended method for most situations.
+##### <tt>concurrency_mode=parallel</tt> (default)
 
-##### `concurrency_mode=parallel` (default)
-<br/>
 With the **parallel** method, data is uploaded in parallel. This is the most reliable and effective method and it is recommended for most situations.
 
-Because `concurrency_mode=parallel` is the default behavior, these two URLs are equivalent:
+Because <tt>concurrency_mode=parallel</tt> is the default behavior, these two URLs are equivalent:
 
-    :::term
     sfdc://.../CustomObject__c
     sfdc://.../CustomObject__c?concurrency_mode=parallel
 
-##### `concurrency_mode=serial`
-<br/>
-Uploading records in parallel is recommended but in case you see "UNABLE_TO_LOCK_ROW" in error message you should try `concurrency_mode=serial`
+##### <tt>concurrency_mode=serial</tt>
 
-    :::term
+Uploading records in parallel is recommended but in case you see "UNABLE_TO_LOCK_ROW" in the error message you should try <tt>concurrency_mode=serial</tt> instead.
+
     sfdc://.../CustomObject__c?concurrency_mode=serial
 
-Updating Salesforce.com object acquires lock for the object and parent object referenced by columns. If you upload objects in parallel and multiple objects have reference to the same parent object, Salesforce.com could not acquire the lock for insert/update and return "UNABLE_TO_LOCK_ROW" error. In such case specify `concurrency_mode=serial` option.
+Updating A Salesforce.com Object acquires a lock for the Object and parent Object referenced by columns. If you upload objects in parallel and multiple objects have reference to the same parent object, Salesforce.com could not be able to acquire the lock for insert/update and returns an 'UNABLE_TO_LOCK_ROW' error. In such case specify the <tt>concurrency_mode=serial</tt> option.
 
-#### Authentication `session_id` option
+#### Authentication <tt>session_id</tt> option
 
-In case you have Salesforce.com Session ID you can specify it as "session_id" option for authentication instead of username, password and security token. In that case you can omit username, password and security token from the URL.
+In case you have Salesforce.com Session ID you can authenticate with the <tt>session_id</tt> option instead of username, password, and security token (that is, username, password, and security token can be omitted from the URL).
 
-    :::term
     sfdc://login.salesforce.com/Contact?session_id=3deT2aQjYQbIRN0MZWsPj60AxD4D6M8ISLnN8h7620n00LbfUYL8ZDMJ6tnU9j0kUnSn.q30b9cE6iA0jlRAUkI6UDUmMCxVHpjB1tHBb7UW0K!M
+
+#### Retry option
+
+This options sets the number of attemps the Treasure Data export worker will made to write the result to the configured Salesforce.com destination in case of errors. If the export fails more than the set number of retries, the query will fail afterwards.<br/>
+The default number of retries is <tt>retry=2</tt> but one can virtually set it to any number. Please note that the number of retries will affect the overall duration of a query in case of errors.
+
+    sfdc://.../CustomObject__c?retry=5
+
+#### Split Records options
+
+The Treasure Data result export will split the records in the result of a query in chunks of 10000 records by default and bulk upload one chunk at a time.
+The <tt>split_records</tt> option will configure the size of this chunk, if required.
+
+    sfdc://.../CustomObject__c?split_records=100
 
 ## Usage
 
 ### CLI
 
-To output the result of a single query to Salesforce.com organization add the `--result` option to the `td query` command. After the job is finished, the results will be written into your database:
+To output the result of a single query to Salesforce.com organization add the <tt>-r / --result</tt> option to the <tt>td query</tt> command. After the job is finished, the results will be written into your Salesforce.com organization Object:
 
     :::term
     $ td query -w -d testdb \
       --result 'sfdc://login.salesforce.com/CustomObject__c?session_id=.....' \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
-To create a scheduled query whose output is systematically written to Salesforce.com organization add the `--result` option when creating the schedule through `td sched:create` command:
+To create a scheduled query whose output is systematically written to Salesforce.com organization add the <tt>-r / --result</tt> option when creating the schedule through the <tt>td sched:create</tt> command:
 
     :::term
     $ td sched:create hourly_count_example "0 * * * *" -d testdb \
-      --result 'sfdc://nahi%40treasure-data.com:PASSWORDsecuritytoken@login.salesforce.com/CustomObject__c' \
+      --result 'sfdc://user%40treasure-data.com:PASSWORDsecuritytoken@login.salesforce.com/CustomObject__c' \
       "SELECT COUNT(*) FROM www_access"
+
+### Console
+
+To export the result of a query or schedule to Salesforce.com please fill up a the Result Export information for a new query or an existing job/query:
+
+![Console - Export to Salesforce.com](/images/console-result-into-salesforce.gif)
+
+
