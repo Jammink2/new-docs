@@ -191,6 +191,7 @@ section 'data-processing', 'Data Processing' do
     article 'result-into-td', 'Job Result Output to Treasure Data'
     article 'result-into-mysql', 'Job Result Output to MySQL'
     article 'result-into-postgresql', 'Job Result Output to PostgreSQL'
+    article 'result-into-salesforce', 'Job Result Output to SalesForce.com'
     article 'result-into-s3', 'Job Result Output to AWS S3'
     article 'result-into-redshift', 'Job Result Output to AWS Redshift'
     article 'result-into-google-spreadsheet', 'Job Result Output to Google SpreadSheet'

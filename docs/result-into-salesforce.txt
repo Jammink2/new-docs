@@ -11,7 +11,7 @@ This article explains how to write job results to your Salesforce.com organizati
 
 ## Architecture
 
-A front-end application streams data to be collected in Treasure Data via [Log/data collector daemon](td-agent) or [Mobile SDKs](mobile-sdks). You can also bulk import storage data via [CLI](bulk-import). Treasure Data periodically runs jobs on the data, then writes the job results to your Salesforce.com Object.
+A front-end application streams data to be collected in Treasure Data via [log/data collector daemon](td-agent) or [Mobile SDKs](mobile-sdks). You can also bulk import storage data via [CLI](bulk-import). Treasure Data periodically runs jobs on the data, then writes the job results to your Salesforce.com Object.
 
 <center><img src="/images/salesforce_result_architecture.png" width="75%" /></center><br /><br />
 
@@ -43,12 +43,15 @@ where:
 * **hostname** is the host name of the Salesforce.com organization. Usually it is 'login.salesforce.com' for production environment and 'test.salesforce.com' for sandbox environments. In case where you configure custom domain for your organization specify the hostname you're using for login;
 * **object_name** is the target Salesforce.com Object API name (e.g. ResultOutput__c). The Object and columns for result data integration must be defined beforehand;
 
-    :::term
-    In case of;
-      username: nahi@treasure-data.com
-      password: PASSWORD
-      security_token: 7SMvicR9ojdPz0XLtlWi3Rtw
+As an example, if your parameters like the following:
 
+* username: nahi@treasure-data.com
+* password: PASSWORD
+* security_token: 7SMvicR9ojdPz0XLtlWi3Rtw
+
+The URL parameter becomes like this.
+
+    :::term
     sfdc://nahi%40treasure-data.com:PASSWORD7SMvicR9ojdPz0XLtlWi3Rtw@login.salesforce.com/Account
 
 NOTE: Please make sure escaping '@' with '%40' in username.
