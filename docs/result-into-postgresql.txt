@@ -42,7 +42,7 @@ where:
 * **username** and **password** are the credential to the Postgres server;
 * **hostname** is the host name of the Postgres server;
 * **port** is the port number through which the Postgres server is accessible. ":<port>" is optional and assumed to be 5432 by default;
-* **database** is the name of the database specified at the creation of the Redshift cluster. It can be retrieved from the Redshift cluster detail page;
+* **database** is the name of the destination database;
 * **table** is the name of a table within the above mentioned database. It may not exist at the moment the query output is execute, in which case a table with the specified name will be created for the user.
 
 ### Options
