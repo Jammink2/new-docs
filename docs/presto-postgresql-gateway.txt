@@ -13,11 +13,17 @@ Please use the following information to connect Presto PostgreSQL gateway.
 - Protocol Version: **2**
 - SSL: **Enabled**
 
-Also there're two ways to authenticate your self: by email + password, or apikey.
+Also there are two ways to authenticate your self: by email + password, or apikey.
 
-### Authentication 1: Email+Password Authentication
+### Authentication 1: Email + Password Authentication
 - User: **YOUR_EMAIL**
 - Pass: **YOUR_PASSWORD**
+
+NOTE: The PostgreSQL protocol limits the length of the 'username' to 32
+bytes/characters.<br/>
+Therefore email addresses longer than 32 characters will not
+work: please use the API key based authentication method instead if you are
+affected by this problem.
 
 ### Authentication 2: API Key Authentication
 - User: **TD1** (Fixed String)
