@@ -194,6 +194,7 @@ section 'data-processing', 'Data Processing' do
     article 'result-into-s3', 'Job Result Output to AWS S3'
     article 'result-into-redshift', 'Job Result Output to AWS Redshift'
     article 'result-into-google-spreadsheet', 'Job Result Output to Google SpreadSheet'
+    article 'result-into-salesforce', 'Job Result Output to Salesforce.com (SFDC)'
     article 'result-into-web', 'Job Result Output to Web Server (REST)'
     article 'result-into-ftp', 'Job Result Output to FTP Server'
     article 'result-into-tableau-server', 'Job Result Output to Tableau Server'
