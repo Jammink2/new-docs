@@ -165,6 +165,6 @@ To create a scheduled query whose output is systematically written to Salesforce
 
 To export the result of a query or schedule to Salesforce.com please fill up a the Result Export information for a new query or an existing job/query:
 
-![Console - Export to Salesforce.com](/images/console-result-into-salesforce.gif)
+![Console - Export to Salesforce.com](/images/release-notes/150203-02-result_into_sfdc.gif)
 
 

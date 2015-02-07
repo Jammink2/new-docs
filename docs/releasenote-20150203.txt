@@ -1,0 +1,86 @@
+# Release Note 20150203
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Users 'Profile' Tab
+
+In order to allow Administrator users to manage restricted user's accounts, we added a new 'Profile' tab.<br/>
+The new tab allows configuration of:
+
+* user's name, email address, and phone number
+* password
+* API keys
+* IP Whitelist
+
+The tab is visible for:
+
+* Administrators on restricted users' User pages
+* Account Owners on restricted user and Administrators' User pages
+
+![Console: Users 'Profile' Tab](/images/release-notes/150203-01-user_profile.png)
+
+### Backend: Result Export to Salesforce.com
+
+We added the capability to export the result of a query to Salesforce.com (SFDC) directly.
+
+This capability is well suited to allow users to centralize the data management from Salesforce.com: a Salesforce.com user can import data from Salesforce and issue queries in Treasure Data thus leveraging Treasure Data's heavy lifting query capabilities and finally write the result back into Salesforce.com.
+
+For details, please see our [Result Export to Salesforce.com](result-into-salesforce) documentation page.
+
+![Backend: Result Export to Salesforce.com](/images/release-notes/150203-02-result_into_sfdc.gif)
+
+### Presto: Upgraded to Presto v0.92
+
+We upgraded Presto to version v0.92. For the full list of improvements from the previous deployed version (v0.89) see the following pages:
+
+* [Release v0.90](https://prestodb.io/docs/0.92/release/release-0.90.html) changelog
+* [Release v0.91](https://prestodb.io/docs/0.92/release/release-0.91.html) changelog
+* [Release v0.92](https://prestodb.io/docs/0.92/release/release-0.92.html) changelog
+
+Please note that versions v0.90 and v0.91 suffered from a memory leak when the query failed and were not deployed earlier for that reason.
+
+We added additional optimizations on top of these changes:
+
+* Switched garbage collection to G1GC to take advantage of a more greedy garbage collection mechanism and therefore improve overall performance
+* Increased the number of retries on temporary query failures from 5 to 7
+
+### JDBC: Release JDBC v0.3.2
+
+For compliance with the internal Treasure Data table format, we are automatically adding the 'time' column when retrieving the schema of a table.
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+This is the only important Bug Fix made in this release:
+
+### Console: Caching
+
+* _**[Problem]**_<br/>
+  After a restricted user creates a database, it is no longer able to list its databases through the td CLI.<br/>
+  _**[Solution]**_<br/>
+  We recently opened the ability for restricted users to create their own databases to which they are assigned ownership and retain access to among all other restricted users being granted access to it, administrators, and account owners - previously restricted users were not allowed to create databases. The permission associated to those databases was returned as 'null' in the REST API '<tt>database/list</tt>' call and that was not properly handled by the td CLI, that expected the permission to be a string value.<br/>
+  We modified the '<tt>database/list</tt>' REST API to use the 'owner' string to mark databases the restricted user created and owns.<br/>
+
+### Console: Jobs Index Load
+
+* _**[Problem]**_<br/>
+  A few users reported a problem concerning editing a query where after hitting the 'Edit' button they were redirected to the jobs' list page instead.<br/>
+  Furthermore when a new version of the Console is deployed and users refresh their page, they may experience weird behaviors if the cached data is not in sync with the version of the application.<br/>
+  _**[Solution]**_<br/>
+  Where the problem was detected, this was found to be caused by some of the jobs having a huge query text (2000 or more characters) - loading the query text for all 25 jobs can take a long time.<br/>
+  Since only a small portion of the query text is displayed in the jobs page, we truncated the query text to max 200 characters to improve the page loading time.<br/>
+
+### Backend: Presto Query Failure for Buffering Capacity Exceeded
+
+* _**[Problem]**_<br/>
+  Sometimes Presto queries are failing because of 'Buffering capacity exceeded' errors.<br/>
+  _**[Solution]**_<br/>
+  The problem occurs when the model data stored in the cache (localStorage) is corrupted for some reason. When the view attempts to use the corrupted cache, the page load fails and the application redirects automatically to home page, which corresponds to the jobs list page.<br/>
+  Although the conditions by which the corruption of the cache occurs are not entirely root caused, we decided to remove caching of model data to solve the problem altogether. This change should also solve a long standing problem affecting users when the new version of the application is deployed that updates the format and/or structure of the cached data model.<br/>
+
+<br/>
+<br/>
