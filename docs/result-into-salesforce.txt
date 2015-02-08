@@ -13,7 +13,7 @@ This article explains how to write job results to your Salesforce.com organizati
 
 A front-end application streams data to be collected in Treasure Data via [log/data collector daemon](td-agent) or [Mobile SDKs](mobile-sdks). You can also bulk import storage data via [CLI](bulk-import). Treasure Data periodically runs jobs on the data, then writes the job results to your Salesforce.com Object.
 
-<center><img src="/images/salesforce_result_architecture.png" width="75%" /></center><br /><br />
+<center><img src="/images/salesforce_result_architecture2.png" width="75%" /></center><br /><br />
 
 Shown above is a fairly common architecture. Here are a few examples.
 
