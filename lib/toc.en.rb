@@ -16,6 +16,7 @@ section 'overview', 'Overview' do
     article 'videos', 'Education Videos'
   end
   category 'releasenotes', 'Release Notes' do
+    article 'releasenote-20150203', 'Release Note 20150203'
     article 'releasenote-20150127', 'Release Note 20150127'
     article 'releasenote-20150120', 'Release Note 20150120'
     article 'releasenote-20150113', 'Release Note 20150113'
@@ -195,6 +196,7 @@ section 'data-processing', 'Data Processing' do
     article 'result-into-s3', 'Job Result Output to AWS S3'
     article 'result-into-redshift', 'Job Result Output to AWS Redshift'
     article 'result-into-google-spreadsheet', 'Job Result Output to Google SpreadSheet'
+    article 'result-into-salesforce', 'Job Result Output to Salesforce.com (SFDC)'
     article 'result-into-web', 'Job Result Output to Web Server (REST)'
     article 'result-into-ftp', 'Job Result Output to FTP Server'
     article 'result-into-tableau-server', 'Job Result Output to Tableau Server'
