@@ -93,6 +93,7 @@ To use fluent-logger-php, copy the library into your project directory.
 
     :::term
     $ git clone https://github.com/fluent/fluent-logger-php.git
+    $ cd fluent-logger-php
     $ cp -r src/Fluent <path/to/your_project>
 
 Next, initialize and post the records as follows.
