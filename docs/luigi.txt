@@ -6,8 +6,7 @@
 
 Luigi helps to build the data pipeline, typically associated with long-running batch processes. You want to chain many tasks together, automate them, and gracefully handle any failures.
 
-Luigi pipelines automatically handle dependency resolution, checkpointing and failure recovery, parallel execution, command line integration, and much more. Pipelines are expressed as simple, easy-to-read Python that can be reused anywhere. The open source community has contributed a library of common tasks, with frequent updates and contributions.
-
+Luigi pipelines automatically handle dependency resolution, checkpointing and failure recovery, parallel execution, command line integration, and much more. Pipelines are expressed as simple, easy-to-read Python that can be reused anywhere.
 
 [Luigi-TD](http://luigi-td.readthedocs.org/en/latest/) is a helper library to make it easier to issue Treasure Data queries from Luigi tasks. This will allow you to create complex pipelines on top of TD easily.
 
