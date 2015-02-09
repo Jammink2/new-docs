@@ -1,0 +1,15 @@
+# Luigi with Treasure Data
+
+[Luigi](https://github.com/spotify/luigi) is a powerful, easy-to-use open-source framework for building data pipelines with Python. It handles dependency resolution, workflow management, visualization etc.
+
+<center><img src="https://raw.githubusercontent.com/spotify/luigi/master/doc/user_recs.png" width="50%"></center>
+
+Luigi helps to build the data pipeline, typically associated with long-running batch processes. You want to chain many tasks together, automate them, and gracefully handle any failures.
+
+Luigi pipelines automatically handle dependency resolution, checkpointing and failure recovery, parallel execution, command line integration, and much more. Pipelines are expressed as simple, easy-to-read Python that can be reused anywhere. The open source community has contributed a library of common tasks, with frequent updates and contributions.
+
+
+[Luigi-TD](http://luigi-td.readthedocs.org/en/latest/) is a helper library to make it easier to issue Treasure Data queries from Luigi tasks. This will allow you to create complex pipelines on top of TD easily.
+
+- [Luigi-TD Documentation](http://luigi-td.readthedocs.org/en/latest/gettingstarted.html)
+- [Luigi Documentation](http://luigi.readthedocs.org/en/latest/)

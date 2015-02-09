@@ -224,7 +224,7 @@ section 'data-processing', 'Data Processing' do
     article 'presto-known-limitations', 'Presto Known Limitations'
   end
 end
-section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
+section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
@@ -239,6 +239,9 @@ section 'bi-etl-tools', 'SQL / BI / ETL Tools' do
   end
   category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights', ['Metric Insights']
+  end
+  category 'luigi', 'Luigi Workflow Engine' do
+    article 'luigi', 'Luigi Workflow Engine', ['Luigi']
   end
   category 'qlikview', 'QlikView' do
     article 'qlikview', 'QlikView', ['QlikView']
