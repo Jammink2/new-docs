@@ -2,6 +2,8 @@
 
 This is a summary of the time formats supported by the [<tt>TD_TIME_FORMAT_UDF</tt> udf](udfs#tdtimeformat).
 
+## Formats
+
 Syntax       | Date or Time Component | Presentation        | Examples               |
 :------:     | :--------------------: | :-----------------: | :--------------------: |
 G            | Era designator         | Text                |  AD
@@ -11,7 +13,7 @@ MMMM         | Month in year          | Month long name     |  July
 MMM          | Month in year          | Month short name    |  Jul
 MM, M        | Month in year          | Month number        |  07
 ww, w        | Week in year           | Number              |  06
-DDD, DDD, D  | Day in year            | Number              |  189
+DDD, DD, D   | Day in year            | Number              |  189
 dd, d        | Day in month           | Number              |  10
 EEEE         | Day in week            | Text                |  Tuesday
 E, EEE       | Day in week            | Text (short form)   |  Tue
@@ -26,4 +28,17 @@ SSS, SS, S   | Millisecond            | Number              |  978
 zzzz         | Time zone              | Zone long name      |  Pacific Standard Time, or GMT+01:00
 z            | Time zone              | Zone short name     |  PST, or GMT+01:00
 Z            | Time zone              | Zone offset         |  -0800
+
+## Example
+
+This example formats a UNIX timestamp into a date formatted string.If you try it,please use sample_datasets database. 
+
+#### SQL
+    :::sql
+    SELECT time, TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") FROM www_access LIMIT 1;
+
+#### Result
+    :::term
+    2012-01-01 00:00:00 UTC
+
 

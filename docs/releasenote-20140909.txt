@@ -19,7 +19,7 @@ We now improved this feature to allow the API key to be used **as-is** in the Re
 
 ### Console: Unity SDK
 
-We added the [Unity SDK](unity-sdk)'s to the list of available SDKs in the '[Collect Data: Client SDKs](http://console.treasuredata.com/import/sdk)' page:
+We added the [Unity SDK](unity-sdk)'s to the list of available SDKs in the '[Collect Data: Client SDKs](http://<%= @env[:console_string] %>/import/sdk)' page:
 
 ![Console: Unity SDK](/images/release-notes/140909-01-unity_sdk.png)
 

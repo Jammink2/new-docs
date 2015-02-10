@@ -70,6 +70,14 @@ To install the CLI and its dependencies, simply run this command:
 
 If are using a Ruby environment manager such as <tt>rbevn</tt> or <tt>rvm</tt>, different versions of the td CLI may be confined within each project / environment / ruby version in use and you may have to install the td gem multiple times. Please refer to the Upgrading, Ruby Gem section below for more information.
 
+<% if @env[:region] == :idcf %>
+### Environmental variables
+Please set an endpoint as an environment variable.
+
+    :::term
+    $ echo 'export TD_API_SERVER=http://ybi.jp-east.idcfcloud.com' >> ~/.bash_profile
+    $ source ~/.bash_profile
+<% end %>
 ### Confirm Installation
 
 Please open your terminal, and make sure you have the `td` command available.

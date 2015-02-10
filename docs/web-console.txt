@@ -1,6 +1,6 @@
 # Using the Web Console
 
-The Treasure Data [Web Console](http://console.treasuredata.com) gives an overview of your account, including information about databases & tables, jobs, scheduled queries, users, resource utilization, managing users, as well as creating new queries. The Web Console implements exactly the same functionalities provided by td CLI and some more.
+The Treasure Data [Web Console](<%= @env[:url_console] %>) gives an overview of your account, including information about databases & tables, jobs, scheduled queries, users, resource utilization, managing users, as well as creating new queries. The Web Console implements exactly the same functionalities provided by td CLI and some more.
 
 ## Databases & Tables
 

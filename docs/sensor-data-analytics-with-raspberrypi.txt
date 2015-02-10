@@ -30,7 +30,7 @@ We'll now install Treasure Agent (Fluentd) and the necessary plugins.
 
 ## Configure and Launch Treasure Agent
 
-Please sign up to Treasure Data from the [sign up page](https://console.treasuredata.com/users/sign_up). Its free plan lets you store and analyze millions of data points. You can get your account's API key from the [users page](https://console.treasuredata.com/users/current).
+Please sign up to Treasure Data from the [sign up page](https://<%= @env[:console_string] %>/users/sign_up). Its free plan lets you store and analyze millions of data points. You can get your account's API key from the [users page](https://<%= @env[:console_string] %>/users/current).
 
 Please prepare the `td-agent.conf` file with the following information, including your API key.
 
@@ -68,11 +68,11 @@ NOTE: If you're using Python, you can use <a href="python">python logger</a> lib
 
 Now, access the databases page to confirm that your data has been uploaded to the cloud properly.
 
-* [Treasure Data: List of Databases](https://console.treasuredata.com/databases)
+* [Treasure Data: List of Databases](https://<%= @env[:console_string] %>/databases)
 
 You can now issue queries against the imported data.
 
-* [Treasure Data: New Query](https://console.treasuredata.com/query_forms/new)
+* [Treasure Data: New Query](https://<%= @env[:console_string] %>/query_forms/new)
 
 For example, these queries calculate the average sensor1 value and the sum of sensor2 values.
 

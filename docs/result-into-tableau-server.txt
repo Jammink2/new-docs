@@ -19,7 +19,7 @@ Please add the Tableau result output destination with the <tt>-r</tt> / <tt>--re
 
 ### Console: One Time Query
 
-Please visit the [query editor](http://console.treasuredata.com/query_forms/new) on the web console, and type in the query. The example query below uses the access log example data set, and calculates the distribution of HTTP method per day.
+Please visit the [query editor](http://<%= @env[:console_string] %>/query_forms/new) on the web console, and type in the query. The example query below uses the access log example data set, and calculates the distribution of HTTP method per day.
 
     :::sql
     # HiveQL
