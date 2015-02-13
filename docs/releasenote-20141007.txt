@@ -24,10 +24,6 @@ In the process, we have also restricted signups to only business email accounts.
 
 To better support customers signing up for our Premium TQA service or customers enjoying our newly added Free 14 Days Trial, we modified the Console's New Query page to default the selection to the Presto engine if the engine is available.
 
-### Backend: Hivemall v0.2 alpha 4
-
-We upgraded our Hivemall reference library we expose for our Hive engine to v0.2, which is in alpha 4 at the moment.
-
 ### Backend: Retry Failed Reads to S3 During Queries
 
 When an attempt to read a file, table, or column from S3 fails with a cause that is considered transitory, the read attempt is retried.
