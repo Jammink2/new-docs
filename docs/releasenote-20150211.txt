@@ -1,0 +1,34 @@
+# Release Note 20150211
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Backend: Presto Upgraded to v0.93
+
+We upgraded the Presto engine to the latest version: v0.93. For the full list of improvements, please see the [Presto Release Note v0.93](https://prestodb.io/docs/0.93/release/release-0.93.html) page.
+
+Additionally we added some improvements:
+
+* Retrying of a query in case of connection errors now is done with exponential *backoff*
+* Improved the retry mechanism in case of worker's failures because of Heap space exhaustion
+
+### Client Libraries: Released Python Client Library v0.1.6
+
+We fixed a problem with importing data with the client API and released a new version of the [Python client library v0.1.6](https://github.com/treasure-data/td-client-python/releases/tag/0.1.6).
+
+### Console: Presto Job Result Record Count
+
+We added display of the number of records returned by a Presto query in the Console.
+
+We are currently not showing the same for Hive or Pig queries.
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These were no important Bug Fixes made in this release.
+
+<br/>
+<br/>
