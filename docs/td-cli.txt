@@ -334,7 +334,7 @@ This page documents most of `td` subcommands.
 #### description:
 
 
-    Expire data in table after specified number of days
+    Expire data in table after specified number of days. Set to 0 to disable the expiration.
 
 
 ## td import:list
