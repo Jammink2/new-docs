@@ -35,6 +35,9 @@ NOTE: This feature is not enabled by default and it is only enabled on a per-acc
 
 ![Backend: Table Data Expiration](/images/release-notes/150120-03-table_expiration.png)
 
+For more information please see the related [Database and Table Management - Expire Data From A Table
+](database-and-table#expire-data-from-a-table) documentation page.
+
 ### Backend: Event Collector Saves Backup Files In S3
 
 The Event Collector used as backend for the Treasure Data SDKs now saves the files storing the records to be imported into AWS S3.
