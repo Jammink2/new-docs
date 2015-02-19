@@ -31,7 +31,7 @@ You need to create one `Treasure` client object per database, and initialize pag
     <script type="text/javascript">
       // Configure an instance for your database
       var td = new Treasure({
-        host: '<%= @env[:sdk_endpoint]  %>',
+        host: '<%= @env[:sdk_endpoint] %>',
         writeKey: 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
         database: 'DATABASE_NAME'
       });
@@ -79,6 +79,26 @@ You can also track your custom events in addition to page views by using `trackE
       });
       // doButtonEvent(1);
     };
+
+## Appendix: API Endpoint
+
+JavaScript SDK is hitting our REST API endpoint to import the data. Note that this will take 5 minutes to reflect in the database because of the server-side buffering.
+
+    :::term
+    # Single Record
+    $ curl -X POST
+        -H 'Content-Type: application/json'
+        -H 'X_TD_WRITE_KEY: your_write_apikey' \
+        --data-binary '{"time":1411115211, "name":"komamitsu", "num":1234}' \
+        http://<%= @env[:sdk_endpoint] %>/js/v3/event/your_db/your_table
+
+    # Multiple Records
+    $ curl -X POST
+        -H 'Content-Type: application/json'
+        -H 'X_TD_WRITE_KEY: your_write_apikey' \
+        -H 'X_TD_DATA_TYPE: k'
+        --data-binary '{"your_db.your_table":[{"time":1403147720, "name":"komamitsu", "age":41},{"time":1403147721, "name":"kzk", "age":29}]}' \
+        http://<%= @env[:sdk_endpoint] %>/js/v3/event
 
 ## Next Steps
 
