@@ -1,0 +1,77 @@
+# Release Note 20150217
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Signup Workflow
+
+We completely redesigned and improved the signup for our Service: both look and feel and workflow were redesigned from scratch.
+
+![Console: Signup Workflow](/images/release-notes/150217-01-sign_up.png)
+
+### Client Tools: Released Ruby Client Library v0.8.68
+
+A new Ruby Client Library was released: v0.8.68.
+
+A few fixes were added for this release:
+
+* Fixed the '<tt>history</tt>' API to returned the appropriate value for the 'result' and 'priority' fields - the schedule's priority level -2, -1, 0, 1, and 2 was improperly returned in the 'result' field instead.
+* Improved the message when POST requests are executed and failed - no retrying is performed by default
+* Upgraded to httpclient v2.5 gem
+
+### Client Tools: Released Ruby CLI v0.11.8
+
+We released a new version of the TD CLI, version 0.11.8.
+
+Several fixes and improvements were added for this release:
+
+* Greatly improved the result download performance for '<tt>td query</tt>' and '<tt>td job:show</tt>' commands: instead of stream converting the file on the fly, we are now downloading the result in msgpack compressed on disk and and converting it locally. This reduced the result download speed down to half the time.
+* Modified '<tt>td job:list</tt>' to return the whole query text when rendering the jobs list in CSV, TSV, or JSON formats instead of default tabular format (on stdout)
+* Improved handling of the Bulk Import CLI's Java process timeouts by adding the <tt>--bulk-import-timeout</tt> option to allow the user more control
+* Fixed the '<tt>td server:endpoint</tt>' command (was causing errors before)
+* The '<tt>td sched:history</tt>' command was improperly rendering -2, -1, 0, 1, 2 in the Result column - the schedule's priority was being displayed instead. Furthermore the command crashed when the schedule's 'scheduled_at' field was empty (as for Unscheduled/Saved queries)
+* Sanitizing input file names for Bulk Import CLI using UTF-8 encoding to avoid APIs issues (Multi byte encoding is not supported)
+
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Backend: Hive's <tt>TD_DATE_TRUNC</tt> Handling of Null Arguments
+
+* _**[Problem]**_<br/>
+  If the 2nd argument (typically containing the column name) of the <tt>TD_DATE_TRUNC</tt> function is NULL, the query fails.<br/>
+  _**[Solution]**_<br/>
+  This is due to the fact that NULL values in the 2nd argument of the functions cannot be properly handled and cause Null Pointer Exceptions (NPE) internally - thus the query fails.<br/>
+  We improved the UDFs handling of this case and made it return NULL gracefully in such condition.<br/>
+
+### Backend: <tt>CREATE TABLE AS SELECT</tt> Succeeds in Hive
+
+* _**[Problem]**_<br/>
+  Hive query using the <tt>CREATE TABLE AS SELECT</tt> fails silently but their final status is 'success'.<br/>
+  _**[Solution]**_<br/>
+  <tt>CREATE TABLE AS SELECT</tt> (CTAS) is not currently supported for Hive, only for Presto. However we weren't handling this case appropriately by barring the user from utilizing CTAS.<br/>
+  We modified Hive's internal logic to throw an exception if the CTAS statement is used in a Treasure Data query.<br/>
+
+### Backend: Presto Queries without Progress
+
+* _**[Problem]**_<br/>
+  Sometimes Presto queries can get stuck in running state and show no progress at all.<br/>
+  _**[Solution]**_<br/>
+  This problem is typically occurring when a Presto worker node in the cluster is restarted while the query was being executed on said node (as well as on others). This causes the query to never complete because no execution task is actually committed to the restarted node so the Presto coordinator is waiting for a task completion that never happens.<br/>
+  This problem was solved in the upstream Presto repository and was back ported to our codebase. In such case, the coordinator will restart the task (and that task only) on the restarted node to resolve the deadlock.<br/>
+
+### Backend: Presto <tt>TD_SCHEDULED_TIME</tt> within other Time-based Presto UDFs
+
+* _**[Problem]**_<br/>
+  When the <tt>TD_SCHEDULED_TIME</tt> UDF is used within other TD Presto UDFs (e.g. <tt>TD_TIME_ADD</tt>) the time returned is 'current time' instead of the expected 'scheduled time'.<br/>
+  _**[Solution]**_<br/>
+  This problem is due to the internal referencing of the 'scheduled time' when <tt>TD_SCHEDULED_TIME</tt> is used inside another time-based Treasure Data Presto UDF such as <tt>TD_TIME_ADD</tt>.<br/>
+  We fixed this inconsistency to make sure that <tt>TD_SCHEDULED_TIME</tt> can reference 'scheduled time' and not 'current time' under all conditions.<br/>
+
+<br/>
+<br/>
