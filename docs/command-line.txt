@@ -19,6 +19,10 @@ Once you have installed the toolbelt, you will have access to the `td` command f
     Password (typing will be hidden):
     Authenticated successfully.
 
+The endpoint be saved in the ~/.td/td.conf file for future use onwards. If the account command was already run, achieves the same (saved the new endpoint on the td.conf file).
+
+    :::term
+    $ td server:endpoint https://<%= @env[:api_endpoint] %>
 
 ## Step 3: Query the Sample Dataset
 
