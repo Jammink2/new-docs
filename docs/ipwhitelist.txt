@@ -1,0 +1,32 @@
+# IP Whitelist
+
+IP Whitelist can be set for each account. It avoid to access your TD account from other IP Address.
+
+## Setting
+An account [profile page](https://console.treasuredata.com/users/current) has IP Whitelist area.
+Default setting is Disabled.
+If you select Enabled ,an input form appear.
+You can input IP Address that can access TD by your account. 
+Conversely,  anything except it can not access TD by your account.
+Pay attention if you set an ip address you can not use , you can not access TD by your account.If you did it, please ask us (support@treasure-data.com).
+
+<img style="margin:auto" src="/images/ipwhitelist.png" alt="IP Whitelist"/>
+
+## Permission
+Following permission users can change an account's IP Whitelist.
+
+User type | Account Owner | Administrator | Normal User | Own account  
+:-------------------: | :-------: | :-------: | :-------: | :-------: 
+Account Owner | OK | OK | OK | OK
+Administrator | NG | NG | OK | OK
+Normal User   | NG | NG | NG | OK
+
+
+
+## Exception
+IP whitelist won't be applied to any import from following SDK.
+
+* [Android SDK](android-sdk)
+* [iOS SDK](iOS-sdk)
+* [Unity SDK](unity-sdk)
+* [Javascript SDK](javascript-sdk)
