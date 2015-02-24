@@ -1,0 +1,37 @@
+# IP Whitelist
+
+IP Whitelist can be set for each account. It restricts access to one's TD account from a 1 or more IP addresses.
+
+## Settings
+
+IP Whitelist can be set from within one's own user [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
+
+When enabled, an input form appears where the user can enter one or more IP addresses (and corresponding mask) that he want to allow access to the Console and/or REST APIs. Any address that doesn't match one of the allow addresses will be rejected access to the Console and APIs.
+
+<img style="margin:auto" src="/images/ipwhitelist.png" alt="IP Whitelist"/>
+
+NOTE: Care must be taken in setting up IP address whitelist, as it may barring the user any further access to the account.<br/>
+If any problem or misconfiguration occurs, please contact our Support team at support@treasure-data.com.
+
+## Permissions
+
+All users can setup IP whitelist for their own user account.<br/>
+Additionally, Administrators can modify the whitelists of non-Admin users but cannot modify whitelists of other Administrator users.<br/>
+Account Owners can modify IP whitelists of all users in the account.
+
+The table below summarizes these concepts:
+
+User type | Account Owner | Administrator | Normal User | Self
+:-------------------: | :-------: | :-------: | :-------: | :-------:
+Account Owner | OK | OK | OK | OK
+Administrator | NG | NG | OK | OK
+Normal User   | NG | NG | NG | OK
+
+## Exception
+
+IP whitelist restrictions don't apply to any import through the following SDKs:
+
+* [Android SDK](android-sdk)
+* [iOS SDK](iOS-sdk)
+* [Unity SDK](unity-sdk)
+* [Javascript SDK](javascript-sdk)
