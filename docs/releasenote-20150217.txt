@@ -26,7 +26,7 @@ We released a new version of the TD CLI, version 0.11.8.
 
 Several fixes and improvements were added for this release:
 
-* Greatly improved the result download performance for '<tt>td query</tt>' and '<tt>td job:show</tt>' commands: instead of stream converting the file on the fly, we are now downloading the result in msgpack compressed on disk and and converting it locally. This reduced the result download speed down to half the time.
+* Greatly improved the result download performance for '<tt>td query</tt>' and '<tt>td job:show</tt>' commands
 * Modified '<tt>td job:list</tt>' to return the whole query text when rendering the jobs list in CSV, TSV, or JSON formats instead of default tabular format (on stdout)
 * Improved handling of the Bulk Import CLI's Java process timeouts by adding the <tt>--bulk-import-timeout</tt> option to allow the user more control
 * Fixed the '<tt>td server:endpoint</tt>' command (was causing errors before)
