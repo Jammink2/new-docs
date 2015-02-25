@@ -1,6 +1,6 @@
 # Known Limitations
 
-Presto query engine has some limitations compared to Hive at this stage. We welcome your feedback and will make improvements based on these.
+The Presto query engine has some limitations compared to Hive at this stage. We welcome your feedback and will make improvements based on these.
 
 ## Column Name Escaping
 
@@ -41,7 +41,7 @@ When querying via Presto, you must set a [Schema](schema) for the table(s); the 
 
 ## Lack of Complex Types
 
-Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map`, `array`, and `struct` are currently not available. We'll expect to have at least `array` type in 2014 Q4.
+Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map` and `struct` are currently not available.
 
 ## JOIN Order
 
