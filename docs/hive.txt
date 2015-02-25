@@ -139,6 +139,8 @@ Here is a list of documents regarding the HiveQL.
 * [Hive Built-in Functions](hive-functions)
 * [Hive Built-in Aggregate Functions](hive-aggregate-functions)
 * [Hive Treasure Data UDFs](udfs)
+* [Hive Treasure Data Known Limitations](hive-known-limitations)
+
 
 Here are the official Hive tutorial and language manual.
 

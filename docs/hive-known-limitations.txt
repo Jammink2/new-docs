@@ -1,0 +1,28 @@
+# Known Limitations
+
+The Hive query engine has some limitations compared to Hive at this stage. We welcome your feedback and will make improvements based on these.
+
+## Division
+
+When two values (of any type) are divided in Hive the result of the division is *always* automatically upgraded to 'double'.<br/>
+To obtain an integer result from a division please cast the result of the division to the desired type. For example:
+
+    SELECT
+        CAST((column1 / column2) AS bigint) as division
+      FROM
+        table
+
+NOTE: The Presto engine behaves differently with divisions and does not automatically upgrades the result to double.
+
+## Divide By 0
+
+When the dividend of a division is 0, the result will be a '*NaN*'.
+
+This can commonly happen when the dividing the values of 2 columns and the value of the column used as divided is a 0. For example:
+
+    SELECT
+        column1,
+        column2,
+        column3 / column4 as division
+      FROM
+        table
