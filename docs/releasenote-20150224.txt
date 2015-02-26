@@ -1,0 +1,37 @@
+# Release Note 20150224
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Console: Filter Databases/Tables/Columns in the Query Editor Explorer
+
+We added the capability to filter the list of databases and tables/columns using a search box in the Query Editor's Explorer.
+
+![Console: Filter Databases/Tables/Columns in the Query Editor Explorer](/images/release-notes/150224-01-search.gif)
+
+### Backend: Upgraded to Presto v0.94
+
+We upgraded Presto from version v0.93 to v0.94. The full list of changes can be found in the official [Presto release notes](https://prestodb.io/docs/0.94/release/release-0.94.html).
+
+Additionally we made this change:
+
+* Fixed the table's column lookup to use UTF-8 encoding thus supporting non-ASCII characters
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These is the only important Bug Fix made in this release:
+
+### Console: Update Query Names
+
+* _**[Problem]**_<br/>
+  Users cannot update the name of their queries. The drop down does not open.<br/>
+  _**[Solution]**_<br/>
+  This was caused by a CSS misalignment of the drop down control.<br/>
+  We fixed the alignment to allow the control to be able to pop the drop down menu open.<br/>
+
+<br/>
+<br/>
