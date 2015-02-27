@@ -32,7 +32,7 @@ Here are some example URLs:
 
 NOTE: If your password includes special characters such as ':', '@', etc., please convert them using URL encoding. Please see Wikipedia's [URL Encoding](https://en.wikipedia.org/wiki/Urlencode) article for details.
 
-hown below is a screenshot of the result.
+Shown below is a screenshot of the result.
 
 <center><img src="/images/google-spreadsheet.png" width="60%" /></center><br /><br />
 
