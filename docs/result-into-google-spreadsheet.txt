@@ -26,7 +26,7 @@ Here are some example URLs:
     :::text
     Gmail
     gspreadsheet://kazuki.ohta:password@gmail.com/TDTest/Sheet1
-    
+
     Google Apps
     gspreadsheet://kazuki.ohta:password@treasure-data.com/TDTest/Sheet1
 
@@ -63,8 +63,9 @@ This is the default mode. If the table already exists, the rows of the existing 
 
 The query results are appended to the table. If the table does not exist yet, a new table will be created.
 
-NOTE: If your spreadsheet has empty rows, the APPEND mode appends the query result after empty rows.
+NOTE: The result of the query will be appended at the end of the spreadsheet. That mean if for example you have empty rows at the end of the document, APPEND mode will start adding the rows in the query result at the row after the last one visible in the spreadsheet. Please refer to the example below:<br/>
+<img src="/images/google_speadsheet_blank_rows.png" width="100%"/>
 
-NOTE: If you enabled 2-step verification in your Google Docs account, you may need to disable it for our service. Please see [Google's support document](http://support.google.com/accounts/bin/answer.py?hl=us&answer=1064203) for more information.
+NOTE: If you enabled 2-step verification in your Google Docs account, you may need to disable it for our service. Please see <a href="http://support.google.com/accounts/bin/answer.py?hl=us&answer=1064203">Google's support document</a>) for more information.
 
 
