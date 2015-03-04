@@ -13,6 +13,8 @@ At Treasure Data, we believe that your data belongs to you, even after importing
 
 The `td table:export` command will dump all the data uploaded to TD into your Amazon S3 bucket. Please specify the database and table from which to dump your data.
 
+NOTE: Your S3 bucket must be in US-East region.
+
 The dump is performed via MapReduce jobs.
 
     :::term
