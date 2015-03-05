@@ -31,8 +31,6 @@ When table expiration is enabled for a table, the table's data is not actually r
 
 The advantage of 'virtually' expiring data from a table is that table expiration can always be revoked, thus allowing a query to fetch **all** records in the table, or modified, thus modifying the range of valid timestamps for the query. Also since table expiration is not dropping data from a table, it does not reduce nor benefits the number of records' for the account storage count.
 
-NOTE: This feature is not enabled by default and it is only enabled on a per-account basis - please contact our support to have it enabled.
-
 ![Backend: Table Data Expiration](/images/release-notes/150120-03-table_expiration.png)
 
 For more information please see the related [Database and Table Management - Expire Data From A Table

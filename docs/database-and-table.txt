@@ -118,10 +118,7 @@ the records are only flagged as expired and will no longer be able to be queried
 disabled for a table, all the records previously expired from a table will be available for querying again.
 One big advantage of this is that data expiration will take effect immediately after the expiration period is set for the table.
 
-NOTE: This feature is not enabled by default and it is only enabled on a per-account basis.
-Please contact us through our support channels listed at the bottom of this page if you would like this feature enabled for your account.
-
-After table data expiration is enabled for the account, to set the expiration period (days) for a table one can use:
+To set the expiration period (days) for a table one can use:
 
 ### CLI
 
