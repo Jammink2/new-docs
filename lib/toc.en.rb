@@ -283,7 +283,7 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
   # end
 end
 
-section 'tools-and-apis', 'Tools & APIs' do
+section 'tools-and-drivers', 'Tools & Drivers' do
   category 'web-console', 'Web Console' do
     article 'web-console', 'Using the Web Console'
   end
@@ -298,12 +298,25 @@ section 'tools-and-apis', 'Tools & APIs' do
   category 'odbc', 'ODBC Driver' do
     article 'odbc-driver-32bit', 'ODBC Driver for 32bit Application)'
   end
-  category 'api', 'REST API' do
+end
+
+section 'apis', 'REST API' do
+  category 'api-specification', 'REST API Reference' do
     article 'rest-api', 'REST API Specification'
+  end
+  category 'ruby-client', 'Ruby Client' do
     article 'rest-api-ruby-client', 'Using Ruby Binding of REST API'
+  end
+  category 'java-client', 'Java Client' do
     article 'rest-api-java-client', 'Using Java Binding of REST API'
+  end
+  category 'python-client', 'Python Client' do
     article 'rest-api-python-client', 'Using Python Binding of REST API'
+  end
+  category 'go-client', 'Go Client' do
     article 'rest-api-go-client', 'Using Go Binding of REST API'
+  end
+  category 'ndoe-client', 'Node.js Client' do
     article 'rest-api-node-client', 'Using Node.js Binding of REST API'
   end
 end

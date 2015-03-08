@@ -7,6 +7,7 @@ This article will explain how to use Python bindings for REST API.
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * A table with some data. An example is provided in the [Getting Started](quickstart) guide.
   * Basic knowledge of our [query language](hive).
+  * Python 2.7 or newer
 
 ## Installation
 
