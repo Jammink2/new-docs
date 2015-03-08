@@ -28,26 +28,38 @@ This video demonstrates how to install Treasure Agent in 3 minutes.
 
 To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
-#### MacOS X 10.8,10.9 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-dmg">documentation</a>)
+#### MacOS X 10.8,10.9
 
     :::term
-    $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.0.3-0.dmg'
+    $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.1.4-0.dmg'
 
-#### RHEL/CentOS 5,6 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-rpm">documentation</a>)
-
-    :::term
-    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
-
-#### Ubuntu 10.04,12.04 (<a target="_blank" href="http://docs.fluentd.org/articles/install-by-deb">documentation</a>)
+#### RHEL/CentOS 5,6
 
     :::term
-    # 10.04 Lucid
-    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid.sh | sh
-    
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
+
+#### Ubuntu & Debian
+
+    :::term
+    # 14.04 Trusty
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
     # 12.04 Precise
-    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise.sh | sh
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
+    # 10.04 Lucid
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
+    
+    # Debian Squeeze
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
+    # Debian Wheezy
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-wheezy-td-agent2.sh | sh
 
-[Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported.
+#### Opscode Chef (<a target="_blank" href="https://github.com/treasure-data/chef-td-agent">repository</a>)
+
+    :::term
+    $ echo 'cookbook "td-agent"' >> Berksfile
+    $ berks install
+
+[Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported. Amazon Linux & Windows are currently NOT supported.
 
 ### Step 2: Modifying /etc/td-agent/td-agent.conf
 
