@@ -89,6 +89,7 @@ get '/query_language.html' do redirect '/articles/hive' end
 get '/articles/apache' do redirect '/articles/analyzing-apache-logs' end
 get '/articles/tweet-stream-analysis-hurricane-sandy' do redirect '/articles/analyzing-twitter-data' end
 get '/articles/td-agent2' do redirect '/articles/td-agent' end
+get '/articles/td-agent2-changelog' do redirect '/articles/td-agent-changelog' end
 
 #
 # PATHS
