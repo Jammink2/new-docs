@@ -48,7 +48,7 @@ When you select the columns, you can manipulate column values using either arith
 Here's an example query that uses both operators and functions.
 
     :::sql
-    SELECT upper(name), sales-cost FROM products;
+    SELECT upper(name), sales_cost FROM products;
 
 ### WHERE Clauses
 
@@ -129,6 +129,21 @@ Here are some basic examples. The underlying table consists of three fields: `ip
 [TD_TIME_RANGE UDF](udfs#tdtimerange) is simple and efficient to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
 
 NOTE: The `time` column is a special column that is always present and stores the UNIX timestamp of the log.
+
+## INSERT Statement Syntax
+
+Here's the syntax of Hive's INSERT statement.
+
+    :::text
+    INSERT OVERWRITE TABLE tablename1 select_statement1 FROM from_statement;
+    INSERT INTO TABLE tablename1 select_statement1 FROM from_statement;
+
+* INSERT OVERWRITE will overwrite any existing data in the table.
+* INSERT INTO will append to the table, keeping the existing data intact.
+* If record doesn't include `time` column, `time` column is imported [TD_SCHEDULED_TIME()](http://docs.treasuredata.com/articles/udfs#tdscheduledtime).
+* If record includes `time` column, `time` coulmn should be Unixtime.
+
+NOTE: Query doesn't allow multiple inserts.
 
 ## Hive Syntax Checker
 
