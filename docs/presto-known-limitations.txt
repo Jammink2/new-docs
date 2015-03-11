@@ -54,3 +54,9 @@ Presto does not currently support cost-based JOIN optimizations, meaning JOINs a
       large_table
     JOIN
       small_table
+
+## INSERT Statements are NOT Supported
+
+Presto does not currently support INSERT Statements, meaning INSERTs are still in development. Please use Result Output feature on Presto or INSERTs on Hive.
+
+
