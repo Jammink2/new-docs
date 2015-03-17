@@ -83,6 +83,31 @@ For queries, we leverage the Hive Query Language.
 
 * [Hive Query Language](hive)
 
+For queries, we leverage the Presto Query Language.
+
+* [Presto Query Language](presto)
+
 For more specific assistance, please visit our support center:
 
 * [Treasure Data Support Center](http://help.treasuredata.com/)
+
+## Schema relation
+ Treasure Data | Presto | Hive
+:---:|:---:|:---:|:---:
+int | bigint | smallint
+int | bigint | int
+long | bigint | bigint
+double | double | decimal(Hive 0.11.0 and later)
+float | double | float
+double | double | double
+Convert to string or int | boolean | boolean
+string | varchar | string or varchar (Hive 0.11.0 and later)
+string or Convert to long | date | string
+string or Convert to long | timestamp | timestamp
+
+Referrers
+
+* [Presto](https://prestodb.io/docs/current/language/types.html)
+
+* [Hive](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
+
