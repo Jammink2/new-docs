@@ -538,11 +538,6 @@ s' is necessary to match whitespace, etc.</td>
     <th>Description</th>
   </tr>
   <tr>
-    <td>varies</td>
-    <td>reflect(class, method[, arg1[, arg2..]])</td>
-    <td>Use this UDF to call Java methods by matching the argument signature (uses reflection).</td>
-  </tr>
-  <tr>
     <td>int</td>
     <td>hash(a1[, a2...])</td>
     <td>Returns a hash value of the arguments</td>
