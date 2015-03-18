@@ -55,7 +55,7 @@ For compliance with the internal Treasure Data table format, we are automaticall
 
 ## Bug Fixes
 
-This is the only important Bug Fix made in this release:
+These are the most important Bug Fixes made in this release:
 
 ### Console: Caching
 
