@@ -32,6 +32,8 @@ Without compression parameter it generates uncompressed data.
       -w -d testdb \
       "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
 
+NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoded</a>.
+
 The default result output format is [CSV RFC 4180](http://www.ietf.org/rfc/rfc4180.txt). Output in TSV format is also supported. For both CSV and TSV formats these are the available options to customize the final format of the files written into the destination:
 
 Name      | Description                                                      | Restrictions                 | CSV default                  | TSV default            |
@@ -59,6 +61,8 @@ When the format=tsv, delimiter=", and null=NULL options are specified:
       --result 's3://accesskey:secretkey@/bucket_name/path/to/file.tsv?format=tsv&delimiter=%22&null=empty' \
       -w -d testdb \
       "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
+
+NOTE: The access key and secret key must be <a href="http://en.wikipedia.org/wiki/Percent-encoding">URL encoded</a>.
 
 the output will change to:
 
