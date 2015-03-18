@@ -1,0 +1,74 @@
+# Release Note 20150310
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### APIs: Upgraded to Rails 4
+
+We upgraded our Console and APIs to Rails 4.
+
+### APIs: Table Expiration
+
+We enabled Table expiration for all users by default.
+
+It was previously only enabled on request on a per-account basis.
+
+### Console: Query Autocompletion for Tables Names
+
+We implemented the ability to autocomplete table names in the query editor.
+
+Table name suggestions will appear as the user types them in the query editor. See below:
+![Console: Query Autocompletion for Tables Names](/images/release-notes/150310-01-table_autocomplete.gif)
+
+### Console: Table Preview
+
+We greatly improved the Table preview view by implementing the preview in ReactJS. This greatly improves the preview load time, especially when the number of columns in the table's schema is very large.
+
+Furthermore we improved the page by making the 'Preview', 'Settings', and 'Schema' load *lazily* only when the tabs are accessed. We also moved the column metadata settings in a new tab under the 'Metadata' tab. Column metadata is still shown as a tooltip in the table preview under the 'Preview' tab.
+
+![Console: Table Preview](/images/release-notes/150310-02-table_preview.gif)
+
+### Backend: 1-Hour Partitioning with INSERT INTO in Hive
+
+We recently added the ability to use an INSERT INTO clause to write the result of a query into a Treasure Data table (that already exists) from within a query. This capability is similar to the Result Output to Treasure Data capability but offers far better performance and scalability.
+
+The first version of this feature suffered from the limitation that all data written into the destination table was not partitioned by time so it would turn out inefficient to be queried in turn.
+
+If the time column is part of the schema of the result, we are now able to partition the data written into the destination table based on time. This is done by forcing an additional Map/Reduce computation task that performs the required time partitioning of the data in our storage. Results that don't contain a time column will default values for the time column with the query run time: time partitioning will not be available for such tables.
+
+### Client Tools: Released Bulk Import CLI v0.5.7
+
+We released a new version of the Bulk Import CLI v0.5.7. The changes include:
+
+* Support for <tt>MEDIUMINT</tt> and <tt>MEDIUMINT UNSIGNED</tt> data types when importing data from MySQL
+* Upgraded AWS Java SDK to v1.7.5
+* Added new '<tt>--empty-as-null-if-numeric</tt>' option to '<tt>import:prepare</tt>' command
+
+<br/>
+<br/>
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Console: Heroku Single Sign On
+
+* _**[Problem]**_<br/>
+  Integration between Heroku and the Console is broken.<br/>
+  _**[Solution]**_<br/>
+  The integration between Heroku and the Console broke and did no longer allow Heroku users to Single Sign On into the Treasure Data Console because the integration point Heroku used changed from using a GET method to a POST method.<br/>
+  We modify the integration and SSO endpoint to use a POST method and the integration was restored. This change was deployed earlier as a hotfix.<br/>
+
+### Backend: <tt>TD_DATE_TRUNC</tt> Hive / Presto UDF Inconsistency
+
+* _**[Problem]**_<br/>
+  The behavior of the <tt>TD_DATE_TRUNC</tt> UDF is different in Presto and Hive when using 'week' as unit.<br/>
+  _**[Solution]**_<br/>
+  While the behavior of <tt>TD_DATE_TRUNC</tt> was implemented to replicate the behavior of the native Presto's [<tt>date_trunc</tt>](https://prestodb.io/docs/current/functions/datetime.html#date_trunc) UDF, the behavior of the Hive UDF was incorrectly using 'Sunday' as reference day for the start of the week instead of 'Monday'.<br/>
+  We modified the Hive implementation to match Presto's <tt>date_trunc</tt> and return the timestamp corresponding to 'Monday' as start of the week.<br/>
+
+
+
+<br/>
+<br/>
