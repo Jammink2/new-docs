@@ -328,6 +328,7 @@ section 'support-and-billing', 'Support & Status' do
     article 'access-control', 'Access Control'
     article 'change-email-address', 'Changing your Email Address'
   #   article 'delete-account', 'Deleting the account'
+    article 'ipwhitelist','IP Whitelist'
   end
   category 'support', 'Support' do
     article 'support-channels', 'Support Channels'
