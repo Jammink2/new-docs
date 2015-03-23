@@ -242,3 +242,20 @@ This UDF applies URL decoding for a given string.
 
     :::sql
     SELECT TD_URL_DECODE(column) FROM tbl
+
+## <tt>SMART_DIGEST</tt>
+
+#### Signature
+
+    :::term
+    string SMART_DIGEST(col [,weight = 1.0])
+
+#### Description
+
+This UDF calculates the variable length digest from a given string. It usually generates 6-10 characters of digest from the given string. Due to the higher compression ratio, there would be higher collision ratio around 5% in average also. So if you're senstive to the collision, please increase the weight.
+
+#### Example
+
+    :::sql
+    SELECT SMART_DIGEST(column) FROM tbl
+    SELECT SMART_DIGEST(column, 1.5) FROM tbl
