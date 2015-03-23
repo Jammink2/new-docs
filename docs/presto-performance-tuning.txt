@@ -93,11 +93,15 @@ can be optimized by replacing the 4 LIKE clauses with a single <tt>regexp_like</
       regexp_like(method, 'GET|POST|PUT|DELETE')
 
 
-## Join performance improvement
+## Specify large tables first in join clause
 
-Our Presto service uses the distributed hash join algorithm by default, which partitions both left and right table based on hash values of join keys. Each partition of the left table is streamed and joined with a partition of the right table stored in a worker node. A limitation is the size of the entire right table must fit your available memory resources. If you see 'Task exceeded max memory size' error in join queries, it ususally means the right table doesn't fit to the memory. Presto does not perform automatic join re-ordering, so please rewrite your query so that a large table preceeds small tables in a join clause.
+Our Presto service uses the distributed hash join algorithm by default, which partitions both left and right table using hash values of join keys. Each partition of the left table is streamed and joined with a partition of the right table stored in a worker node. A limitation is the size of the entire right table must fit your available memory resources.
 
-Hash join is well-known to be slow when there is a skew in your data. If your right table is small enough, turning off the distributed join, by emedding a session property as an SQL comment, can make the join processing faster:
+If you see 'Task exceeded max memory size' error in join queries, it ususally means the right table doesn't fit to the memory. Presto does not perform automatic join-reordering, so please make sure your large table preceeds small tables in a join clause.
+
+## Turning off the distributed hash join
+
+Hash join is known to be slow when there is a skew in your data. If your right table is small enough to fit within one node (usuallly less than 2GB), you can turn the distributed join off by emedding a session property as an SQL comment:
 
      -- set session distribute_join = 'false'
     SELECT ... FROM large_table l, small_table s WHERE l.id = s.id
