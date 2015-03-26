@@ -30,12 +30,12 @@ This video demonstrates how to install Treasure Agent in 3 minutes.
 
 To install Treasure Agent (`td-agent`), please execute one of the command below based on your environment. The agent program will be installed automatically by using the package management software for each platform like rpm/deb/dmg.
 
-#### MacOS X 10.8,10.9
+#### MacOS X 10.9+
 
     :::term
     $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.1.4-0.dmg'
 
-#### RHEL/CentOS 5,6
+#### RHEL/CentOS 5,6,7
 
     :::term
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
