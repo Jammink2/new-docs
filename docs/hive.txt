@@ -2,9 +2,14 @@
 
 [Treasure Data](http://www.treasuredata.com/) is an analytics infrastructure as a service. We provide a SQL-like query language interface called the Hive query language. This article covers the basics of the Hive query language.
 
-<a href="#" id='hiveguide-download'>
-<strong>Get the extended Hive Guide as PDF.</strong>
-</a>
+##Get the extended Hive Guide as PDF!
+
+<table>
+  <tr>
+    <td width=75%><a href="#" target="_blank" class="hiveguide-download">Download our Hive Guide</a>. It's an extended, nicely formatted version of this tutorial in PDF.</td>
+    <td><img class="hiveguide-download" src="/images/hive-guide-screenshot.png" style="display:block"/></td>
+  </tr>
+</table>
 
 ## About Apache Hive
 

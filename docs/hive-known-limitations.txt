@@ -1,6 +1,6 @@
 # Known Limitations
 
-<a href="#" id='hiveguide-download'>
+<a href="#" class='hiveguide-download'>
 <strong>Get the extended Hive Guide as PDF.</strong>
 </a>
 

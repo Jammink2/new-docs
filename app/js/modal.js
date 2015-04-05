@@ -13,7 +13,7 @@
         });
     });
     $(document).ready(function() {
-        $('#hiveguide-download').click(function() {
+        $('.hiveguide-download').click(function() {
 
             $('#hiveguide-modal').reveal({
                 animation: 'fade',
