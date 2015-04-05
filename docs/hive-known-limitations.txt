@@ -1,5 +1,9 @@
 # Known Limitations
 
+<a href="#" id='hiveguide-download'>
+<strong>Get the extended Hive Guide as PDF.</strong>
+</a>
+
 The Hive query engine has some limitations compared to Hive at this stage. We welcome your feedback and will make improvements based on these.
 
 ## Division

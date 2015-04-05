@@ -12,4 +12,17 @@
             return false;
         });
     });
+    $(document).ready(function() {
+        $('#hiveguide-download').click(function() {
+
+            $('#hiveguide-modal').reveal({
+                animation: 'fade',
+                animationspeed: 600,
+                closeonbackgroundclick: true,
+                dismissmodalclass: 'close'
+            });
+
+            return false;
+        });
+    });
 })();

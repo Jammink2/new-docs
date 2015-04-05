@@ -2,6 +2,10 @@
 
 This article lists all built-in operators supported by Hive 0.10.0 (CDH 4.3.1).
 
+<a href="#" id='hiveguide-download'>
+<strong>Get the extended Hive Guide as PDF.</strong>
+</a>
+
 ## Predicate Operators
 
 <table>
