@@ -44,3 +44,9 @@ e.g.
 TD page : http://www.treasuredata.com/
 
 IDCF page : http://www.idcf.jp/bigdata/
+
+# For Hive Guide PDF
+
+```
+pandoc -f markdown -V geometry:margin=0.25in --toc -o hiveguide.pdf hiveguide.markdown
+```
