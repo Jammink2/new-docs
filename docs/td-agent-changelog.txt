@@ -6,6 +6,21 @@ This article lists the changelog of [td-agent](td-agent).
 
 This article lists the changelog of [td-agent2](td-agent2).
 
+### 2015/04/06: version v2.2.0
+- fluentd [v0.12.7](https://github.com/fluent/fluentd/blob/master/ChangeLog)
+- fluent-plugin-s3 [v0.5.7](https://github.com/fluent/fluent-plugin-s3/blob/master/ChangeLog)
+- fluent-plugin-mongo [v0.7.8](https://github.com/fluent/fluent-plugin-mongo/blob/master/ChangeLog)
+- td [v0.11.8.2](https://github.com/treasure-data/td/blob/master/ChangeLog)
+- fluentd-ui [v0.3.18](https://github.com/fluent/fluentd-ui/blob/master/ChangeLog)
+- json 1.8.2
+- cool.io 1.3.0
+- Amazon Linux support
+
+### 2015/03/26: version v2.1.5-1
+- Put logrotate setting in deb package
+- Fix status command in rpm init script
+- Include postgresql
+
 ### 2015/03/03: version v2.1.5
 - fluentd [v0.10.61](https://github.com/fluent/fluentd/blob/master/ChangeLog)
 - fluent-plugin-s3 [v0.5.6](https://github.com/fluent/fluent-plugin-s3/blob/master/ChangeLog)
