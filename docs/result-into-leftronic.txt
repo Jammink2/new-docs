@@ -28,7 +28,7 @@ Step 2: Set up a scheduled query. This will execute periodically and send the re
     $ td sched:create mymetric_hourly "0 * * * *" \
       -d testdb \
       --result "leftronic://accessKey/streamName" \
-      "SELECT TD_SCHEDULED_TIME(), COUNT(1) FROM www_access TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(),'-1h'), TD_SCHEDULED_TIME())"
+      "SELECT TD_SCHEDULED_TIME(), COUNT(1) FROM www_access WHERE TD_TIME_RANGE(time,TD_TIME_ADD(TD_SCHEDULED_TIME(),'-1h'), TD_SCHEDULED_TIME())"
 
 Note that `accessKey` and `streamName` are the parameters mentioned in Step 1.
 
