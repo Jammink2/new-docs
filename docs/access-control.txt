@@ -15,6 +15,7 @@ Delete Table                      | OK    | OK          |            |
 Data Import (td-agent)            | OK    | OK          |            | OK
 Data Import (Result Output to TD) | OK    | OK          |            | OK
 Data Import (Bulk Import)         | OK    | OK          |            | OK
+Data Import (Insert Into)         | OK    | OK          |            |
 Delete Data                       | OK    | OK          |            |
 Issue Query                       | OK    | OK          | OK         |
 Kill Own Query                    | OK    | OK          | OK         |
