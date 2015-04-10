@@ -292,7 +292,9 @@ This UDF converts IP address to country code.
 #### Example
 
     :::sql
-    SELECT TD_IP_TO_COUNTRY_CODE('10.332.93.12')
+    SELECT TD_IP_TO_COUNTRY_CODE('184.168.221.1')
+
+The function returns `US` in this example.
 
 ## <tt>TD_IP_TO_COUNTRY_NAME</tt>
 
@@ -308,4 +310,6 @@ This UDF converts IP address to country code.
 #### Example
 
     :::sql
-    SELECT TD_IP_TO_COUNTRY_NAME('10.332.93.12')
+    SELECT TD_IP_TO_COUNTRY_NAME('184.168.221.1')
+
+The function returns `United States` in this example.
