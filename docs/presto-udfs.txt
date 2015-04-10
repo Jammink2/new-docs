@@ -269,7 +269,7 @@ This UDF calculates the variable length digest from a given string. It usually g
 
 #### Description
 
-This UDF converts currency for the specific data, by accessing the exchange rate database.
+This UDF converts currency for the specific date, by accessing the currency exchange rate database.
 
 - [List of Supported Currencies](http://openexchangerates.org/api/currencies.json)
 
