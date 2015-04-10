@@ -51,6 +51,11 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
     # Debian Wheezy (64bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-wheezy-td-agent2.sh | sh
 
+#### Amazon Linux
+
+    :::term
+    $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
+
 #### Opscode Chef (<a target="_blank" href="https://github.com/treasure-data/chef-td-agent">repository</a>)
 
     :::term
