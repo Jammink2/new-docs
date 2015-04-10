@@ -259,3 +259,53 @@ This UDF calculates the variable length digest from a given string. It usually g
     :::sql
     SELECT SMART_DIGEST(column) FROM tbl
     SELECT SMART_DIGEST(column, 1.5) FROM tbl
+
+## <tt>TD_CURRENCY_CONV</tt>
+
+#### Signature
+
+    :::term
+    string TD_CURRENCY_CONV(string date, string from_currency, string to_currency, float value)
+
+#### Description
+
+This UDF converts currency for the specific data, by accessing the exchange rate database.
+
+- [List of Supported Currencies](http://openexchangerates.org/api/currencies.json)
+
+#### Example
+
+    :::sql
+    SELECT TD_CURRENCY_CONV('2015-01-01', 'USD', 'JPY', 1.0)
+
+## <tt>TD_IP_TO_COUNTRY_CODE</tt>
+
+#### Signature
+
+    :::term
+    string TD_IP_TO_COUNTRY_CODE(string ip)
+
+#### Description
+
+This UDF converts IP address to country code.
+
+#### Example
+
+    :::sql
+    SELECT TD_IP_TO_COUNTRY_CODE('10.332.93.12')
+
+## <tt>TD_IP_TO_COUNTRY_NAME</tt>
+
+#### Signature
+
+    :::term
+    string TD_IP_TO_COUNTRY_NAME(string ip)
+
+#### Description
+
+This UDF converts IP address to country code.
+
+#### Example
+
+    :::sql
+    SELECT TD_IP_TO_COUNTRY_NAME('10.332.93.12')
