@@ -1,0 +1,47 @@
+# Hivemall: Hive scalable machine learning library
+
+[Hivemall](https://github.com/myui/hivemall) is a scalable machine learning library that runs on Apache Hive. Hivemall is designed to be scalable to the number of training instances as well as the number of training features.
+
+## Supported Algorithms
+
+Hivemall provides machine learning functionality as well as feature engineering functions through UDFs/UDAFs/UDTFs of Hive. 
+
+### Classfication
+
+- Perceptron
+- Passive Aggressive (PA, PA1, PA2)
+- Confidence Weighted (CW)
+- Adaptive Regularization of Weight Vectors (AROW)
+- Soft Confidence Weighted (SCW1, SCW2)
+- AdaGradRDA (with hinge loss)
+
+### Regression
+
+- Logistic Regression using Stochastic Gradient Descent
+- AdaGrad / AdaDelta (with logistic loss)
+- Passive Aggressive Regression (PA1, PA2)
+- AROW regression
+
+### Recommendation
+
+- Matrix Factorization (sgd, adagrad)
+- Minhash (LSH with jaccard index)
+
+### k-Nearest Neighbor
+
+- Minhash (LSH with jaccard index)
+- b-Bit minhash
+- Brute-force search using cosine similarity
+
+### Feature engineering
+
+- Feature hashing (MurmurHash, SHA1)
+- Feature scaling (Min-Max Normalization, Z-Score)
+- Feature instances amplifier that reduces iterations on training
+- TF-IDF vectorizer
+- Bias clause
+- Data generator for one-vs-the-rest classifiers
+
+### Basic Usage
+
+Please see our blog. [click here](http://blog.treasuredata.com/blog/2014/10/13/how-to-get-more-clicks-for-digital-advertising-step-by-step-guide-to-optimizing-ctrs-with-real-time-data-machine-learning/)
