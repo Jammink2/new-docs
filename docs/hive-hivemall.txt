@@ -1,0 +1,3 @@
+# Hivemall: Hive scalable machine learning library
+
+Hivemall is .

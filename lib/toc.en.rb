@@ -214,6 +214,7 @@ section 'data-processing', 'Data Processing' do
     article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
     article 'udfs', 'Hive Treasure Data UDFs'
     article 'performance-tuning', 'Hive Performance Tuning'
+    article 'hive-hivemall', 'Hivemall: Hive scalable machine learning library'
   end
   category 'pig', 'Pig Latin Reference' do
     article 'pig', 'Pig Latin Language'
