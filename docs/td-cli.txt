@@ -237,9 +237,11 @@ This page documents most of `td` subcommands.
 #### options:
 
 
+    -w, --wait                       wait until the job is completed
     -f, --from TIME                  export data which is newer than or same with the TIME
     -t, --to TIME                    export data which is older than the TIME
     -b, --s3-bucket NAME             name of the destination S3 bucket (required)
+    -p, --prefix PATH                path prefix of the file on S3
     -k, --aws-key-id KEY_ID          AWS access key id to export data (required)
     -s, --aws-secret-key SECRET_KEY  AWS secret access key to export data (required)
     -F, --file-format FILE_FORMAT    file format for exported data, either json.gz (default) or line-json.gz
@@ -496,10 +498,12 @@ This page documents most of `td` subcommands.
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
       -S, --all-string                 disable automatic type conversion
+      --empty-as-null-if-numeric       the empty string values are interpreted as null values if columns are numerical types.
   
       CSV/TSV specific options:
       --column-header                  first line includes column names
       --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+      --escape CHAR                    escape CHAR; default=\
       --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
       --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
   
@@ -584,10 +588,12 @@ This page documents most of `td` subcommands.
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
       -S, --all-string                 disable automatic type conversion
+      --empty-as-null-if-numeric       the empty string values are interpreted as null values if columns are numerical types.
   
       CSV/TSV specific options:
       --column-header                  first line includes column names
       --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+      --escape CHAR                    escape CHAR; default=\
       --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
       --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
   
@@ -670,10 +676,12 @@ This page documents most of `td` subcommands.
       --column-types TYPE,TYPE,...     column types [string, int, long, double]
       --column-type NAME:TYPE          column type [string, int, long, double]. A pair of column name and type can be specified like 'age:int'
       -S, --all-string                 disable automatic type conversion
+      --empty-as-null-if-numeric       the empty string values are interpreted as null values if columns are numerical types.
   
       CSV/TSV specific options:
       --column-header                  first line includes column names
       --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv
+      --escape CHAR                    escape CHAR; default=\
       --newline TYPE                   newline [CRLF, LF, CR];  default=CRLF
       --quote CHAR                     quote [DOUBLE, SINGLE, NONE]; if csv format, default=DOUBLE. if tsv format, default=NONE
   
@@ -1199,6 +1207,7 @@ This page documents most of `td` subcommands.
     -c, --column-header              output of the columns' header when the schema is available
                                        for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
+        --null STRING                null expression in csv or tsv
 
 
 ## td job:status
@@ -1303,7 +1312,7 @@ This page documents most of `td` subcommands.
 #### example:
 
 
-    $ td td server:endpoint 'https://api.treasuredata.com'
+    $ td server:endpoint 'https://api.treasuredata.com'
   
 #### description:
 
@@ -1322,4 +1331,237 @@ This page documents most of `td` subcommands.
 
 
     Create a sample log file
+
+
+## td connector:guess
+
+#### usage:
+
+
+    $ td connector:guess [config]
+  
+#### example:
+
+
+    $ td connector:guess td-bulkload.yml
+    $ td connector:guess --access-id s3accessId --access-secret s3AccessKey --source https://s3.amazonaws.com/bucketname/path/prefix --database connector_database --table connector_table
+  
+#### description:
+
+
+    Run guess to generate connector config file
+  
+#### options:
+
+
+        --type[=TYPE]                connector type; only 's3' is supported
+        --access-id ID               access ID (S3 access key id for type: s3)
+        --access-secret SECRET       access secret (S3 secret access key for type: s3)
+        --source SOURCE              resource(s) URI to be imported (e.g. https://s3-us-west-1.amazonaws.com/bucketname/path/prefix/to/import/)
+        --out FILE_NAME              configuration file
+
+
+## td connector:preview
+
+#### usage:
+
+
+    $ td connector:preview <config>
+  
+#### example:
+
+
+    $ td connector:preview td-bulkload.yml
+  
+#### description:
+
+
+    Show preview of connector execution
+  
+#### options:
+
+
+    -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
+
+
+## td connector:issue
+
+#### usage:
+
+
+    $ td connector:issue <config>
+  
+#### example:
+
+
+    $ td connector:issue td-bulkload.yml
+  
+#### description:
+
+
+    Run one time connector execution
+  
+#### options:
+
+
+        --database DB_NAME           destination database
+        --table TABLE_NAME           destination table
+        --time-column COLUMN_NAME    data partitioning key
+    -w, --wait                       wait for finishing the job
+    -x, --exclude                    do not automatically retrieve the job result
+
+
+## td connector:list
+
+#### usage:
+
+
+    $ td connector:list
+  
+#### example:
+
+
+    $ td connector:list
+  
+#### description:
+
+
+    Show list of connector sessions
+  
+#### options:
+
+
+    -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
+
+
+## td connector:create
+
+#### usage:
+
+
+    $ td connector:create <name> <cron> <database> <table> <config>
+  
+#### example:
+
+
+    $ td connector:create connector1 "0 * * * *" connector_database connector_table td-bulkload.yml
+  
+#### description:
+
+
+    Create new connector session
+  
+#### options:
+
+
+        --time-column COLUMN_NAME    data partitioning key
+    -t, --timezone TZ                name of the timezone.
+                                       Only extended timezones like 'Asia/Tokyo', 'America/Los_Angeles' are supported,
+                                       (no 'PST', 'PDT', etc...).
+                                       When a timezone is specified, the cron schedule is referred to that timezone.
+                                       Otherwise, the cron schedule is referred to the UTC timezone.
+                                       E.g. cron schedule '0 12 * * *' will execute daily at 5 AM without timezone option
+                                       and at 12PM with the -t / --timezone 'America/Los_Angeles' timezone option
+    -D, --delay SECONDS              delay time of the schedule
+
+
+## td connector:show
+
+#### usage:
+
+
+    $ td connector:show <name>
+  
+#### example:
+
+
+    $ td connector:show connector1
+  
+#### description:
+
+
+    Show connector session
+
+
+## td connector:update
+
+#### usage:
+
+
+    $ td connector:update <name> <config>
+  
+#### example:
+
+
+    $ td connector:update connector1 td-bulkload.yml
+  
+#### description:
+
+
+    Modify connector session
+
+
+## td connector:delete
+
+#### usage:
+
+
+    $ td connector:delete <name>
+  
+#### example:
+
+
+    $ td connector:delete connector1
+  
+#### description:
+
+
+    Delete connector session
+
+
+## td connector:history
+
+#### usage:
+
+
+    $ td connector:history <name>
+  
+#### example:
+
+
+    $ td connector:history connector1
+  
+#### description:
+
+
+    Show job history of connector session
+  
+#### options:
+
+
+    -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
+
+
+## td connector:run
+
+#### usage:
+
+
+    $ td connector:run <name> <time>
+  
+#### example:
+
+
+    $ td connector:run connector1 "2016-01-01 00:00:00"
+  
+#### description:
+
+
+    Run connector session for the specified time
+  
+#### options:
+
+
+    -w, --wait                       wait for finishing the job
+    -x, --exclude                    do not automatically retrieve the job result
 
