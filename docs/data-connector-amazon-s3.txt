@@ -1,0 +1,78 @@
+# Data Connector for Amazon S3
+
+## Step1: Create Seed Config File (seed.yml)
+
+First, please prepare seed.yml, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
+
+    :::yaml
+    # seed.yml
+    config:
+      type: s3
+      access_key_id: XXXXXXXXXX
+      secret_access_key: YYYYYYYYYY
+      bucket: sample_bucket
+      path_prefix: /path/to/sample_file
+
+## Step2: Guess Formart in the File (load.yml)
+
+Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
+
+    :::term
+    $ td connector:guess seed.yml -o load.yml
+
+If you open up load.yml, you'll see guessed file format definitions including file formats, encodings, column names, and types.
+
+    :::yaml
+    config:
+      type: s3
+      access_key_id: XXXXXXXXXX
+      secret_access_key: YYYYYYYYYY
+      bucket: sample_bucket
+      path_prefix: /path/to/sample_file
+      parser:
+        charset: UTF-8
+        newline: CRLF
+        type: csv
+        delimiter: ','
+        quote: '"'
+        escape: ''
+        skip_header_lines: 1
+        columns:
+        - name: id
+          type: long
+        - name: company
+          type: string
+        - name: customer
+          type: string
+        - name: created_at
+          type: timestamp
+          format: '%Y-%m-%d %H:%M:%S.%N'
+
+Then you can preview how the system will parse the file by `preview` command.
+
+    $ td connector:preview load.yml
+    +-------+---------+----------+
+    | id    | company | customer |
+    +-------+---------+----------+
+    | 11200 | AA Inc. |    David |
+    | 20313 | BB Imc. |      Tom |
+    | 32132 | CC Inc. | Fernando |
+    | 40133 | DD Inc. |    Cesar |
+    | 93133 | EE Inc. |     Jake |
+    +-------+---------+----------+
+
+If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
+
+## Step3: Execute Load Job
+
+Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored.
+
+It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture))
+
+    :::term
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
+
+If you have a field called `time`, you don't have to specify `--time-column` option.
+
+    :::term
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl
