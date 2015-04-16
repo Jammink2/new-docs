@@ -46,20 +46,20 @@ If you open up load.yml, you'll see guessed file format definitions including fi
           type: string
         - name: created_at
           type: timestamp
-          format: '%Y-%m-%d %H:%M:%S.%N'
+          format: '%Y-%m-%d %H:%M:%S'
 
 Then you can preview how the system will parse the file by `preview` command.
 
     $ td connector:preview load.yml
-    +-------+---------+----------+
-    | id    | company | customer |
-    +-------+---------+----------+
-    | 11200 | AA Inc. |    David |
-    | 20313 | BB Imc. |      Tom |
-    | 32132 | CC Inc. | Fernando |
-    | 40133 | DD Inc. |    Cesar |
-    | 93133 | EE Inc. |     Jake |
-    +-------+---------+----------+
+    +-------+---------+----------+---------------------+
+    | id    | company | customer | created_at          |
+    +-------+---------+----------+---------------------+
+    | 11200 | AA Inc. |    David | 2015-03-31 06:12:37 |
+    | 20313 | BB Imc. |      Tom | 2015-04-01 01:00:07 |
+    | 32132 | CC Inc. | Fernando | 2015-04-01 10:33:41 |
+    | 40133 | DD Inc. |    Cesar | 2015-04-02 05:12:32 |
+    | 93133 | EE Inc. |     Jake | 2015-04-02 14:11:13 |
+    +-------+---------+----------+---------------------+
 
 If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
 
