@@ -9,9 +9,8 @@ NOTE: Currently this feature is under Beta phase. Please contact support@treasur
 
 ## Install td command v0.11.9 or Later
 
-You can install the newest `td` command via `gem` command. You need to install Ruby on your laptop.
+You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
-    $ gem install td
     $ td --version
     0.11.9
 
