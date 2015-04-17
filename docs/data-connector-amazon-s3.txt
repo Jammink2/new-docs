@@ -82,7 +82,7 @@ If the system detects your column name or type unexpectedly, please modify `load
 
 Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored.
 
-It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture))
+It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
