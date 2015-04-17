@@ -1,5 +1,20 @@
 # Data Connector for Amazon S3
 
+## Prerequisites
+
+NOTE: Currently this feature is under Beta phase. Please contact support@treasure-data.com for further questions.
+
+  * Basic knowledge of Treasure Data
+  * Basic knowledge of AWS Elastic Beanstalk
+
+## Install td command v0.11.9 or Later
+
+You can install the newest `td` command via `gem` command. You need to install Ruby on your laptop.
+
+    $ gem install td
+    $ td --version
+    0.11.9
+
 ## Step1: Create Seed Config File (seed.yml)
 
 First, please prepare seed.yml, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
