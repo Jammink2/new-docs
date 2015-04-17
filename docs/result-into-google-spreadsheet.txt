@@ -6,6 +6,58 @@ This article explains how to write job results directly to your Google SpreadShe
 
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
   * A Google account (for Google Drive).
+  * Authorized Treasure Data account access to own Google Spreadsheet account
+
+## Authorization
+
+The legacy integration with Google Spreadsheet based on API authentication via email and password will cease to work on April 20, 2015.
+We upgraded the integration to use the required Oauth2 authentication while remaining backwards compatible with the old API authentication until end of life on April 20th.
+
+Users are invited to connect their Treasure Data user account access to their Google Spreadsheet account *as soon as possible*.
+
+This can be done following the proceduce below:
+
+### Step 1
+![Google Spreadsheet Authentication - Step 1](/images/gs_oauth_1.png)
+
+### Step 2
+Visit the 'My Profile' page at [/users/current](https://console.treasuredata.com/users/current).<br/>
+Click on the 'Add Account' button:
+![Google Spreadsheet Authentication - Step 2](/images/gs_oauth_2.png)
+
+### Step 3
+You are taken to the Google Spreadsheet Authentication page.<br/>
+Enter your Google Account credentials:
+![Google Spreadsheet Authentication - Step 3](/images/gs_oauth_3.png)
+
+### Step 4
+You will get a list of permission you need to grant access to.<br/>
+Click on the 'Accept Button':
+![Google Spreadsheet Authentication - Step 4](/images/gs_oauth_4.png)
+
+### Step 5
+You are taken back to the Treasure Data Console 'My Profile' page.<br/>
+Your Google Account email address should now be listed under 'Google Account'.
+![Google Spreadsheet Authentication - Step 5](/images/gs_oauth_5.png)
+
+If this goes well it means you are now able to use the new Google Spreadsheet integration authentication.
+
+To convert your job or query's result export definition to the new authentication method, simply **leave or make the password field empty**.
+If using the CLI this means changing from this:
+
+    gspreadsheet://user:password@domain.com/sample_spreadsheet/sample_worksheet
+
+to this:
+
+    gspreadsheet://user@domain.com/sample_spreadsheet/sample_worksheet
+
+In the Console, simple omit the password or remove it (see [Step 1](result-into-google-spreadsheet#step-1) for an example).
+
+NOTE: The new authentication method requires every user of a Google Spreadsheet Result Export definition to connect their Treasure Data user account to the Google Spreadsheet Account's email address indicated in the Result Export definition. This means Google Spreadsheet result export definition associated to jobs and queries <b>can be no longer shared</b> between the various users in the Treasure Data account.<br/><br/>
+Starting on April 20th and when using the new Oauth2-based integration, if a user attempts to run another user's job or query with a Google Spreadsheet result export, the execution <b>will fail</b>.
+
+NOTE: At the moment writing the result of a job to a <b>shared Google Spreadsheet</b> is not possible.
+
 
 ## Basic Usage
 
@@ -66,6 +118,5 @@ The query results are appended to the table. If the table does not exist yet, a 
 NOTE: The result of the query will be appended at the end of the spreadsheet. That mean if for example you have empty rows at the end of the document, APPEND mode will start adding the rows in the query result at the row after the last one visible in the spreadsheet. Please refer to the example below:<br/>
 <img src="/images/google_speadsheet_blank_rows.png" width="100%"/>
 
-NOTE: If you enabled 2-step verification in your Google Docs account, you may need to disable it for our service. Please see <a href="http://support.google.com/accounts/bin/answer.py?hl=us&answer=1064203">Google's support document</a>) for more information.
 
 
