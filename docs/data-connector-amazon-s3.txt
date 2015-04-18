@@ -90,3 +90,102 @@ If you have a field called `time`, you don't have to specify `--time-column` opt
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl
+
+## Scheduled execution
+
+You can schedule periodic Data Connector execution for incremental S3 file import.
+We take great care in distributing and operating our scheduler in order to achieve high availability.
+By using this feature, you no longer need a `cron` daemon on your local datacenter.
+
+For the scheduled import, Data Connector for Amazon S3 imports all files that match with the specified prefix
+(e.g. path_prefix: /path/to/sample_ -> /path/to/sample_201501.csv.gz, /path/to/sample_201502.csv.gz, ..., /path/to/sample_201505.csv.gz)
+at first and remember the last path (/path/to/sample_201505.csv.gz) for the next execution.
+At the second execution, it only imports files that comes after the last path in lexicographic (alphabetical) order.
+(/path/to/sample_201506.csv.gz, ...)
+
+### Create the schedule
+
+A new schedule can be created using the `td connector:create` command.
+The name of the schedule, cron-style schedule, the database and table where their data are stored, and the Data Connector configuration file are required.
+
+    :::term
+    $ td connector:create \
+      daily_import \
+      "10 0 * * *" \
+      td-sample_db \
+      td-sample_table \
+      load.yml
+
+It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
+
+    :::term
+    $ td connector:create \
+      daily_import \
+      "10 0 * * *" \
+      td-sample_db \
+      td-sample_table \
+      load.yml \
+      --time-column created_at
+
+NOTE: The `cron` parameter also accepts two special options: `@daily` and `@hourly`.
+
+### List the Schedules
+
+You can see the list of currently scheduled entries by `td connector:list`.
+
+    :::term
+    $ td connector:list
+    +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
+    | Name         | Cron         | Timezone | Delay | Database     | Table           | Config                            |
+    +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
+    | daily_import | 10 0 * * *   | UTC      | 0     | td-sample_db | td-sample_table | {"type"=>"s3", "access_key_id"... |
+    +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
+
+### Show the Setting and History of Schedules
+
+`td connector:show` shows the execution setting of a schedule entry.
+
+    :::term
+    % td connector:show daily_import
+    Name     : daily_import
+    Cron     : 10 0 * * *
+    Timezone : UTC
+    Delay    : 0
+    Database : td-sample_db
+    Table    : td-sample_table
+    Config
+    ---
+    type: s3
+    access_key_id: XXXXXXXXXX
+    secret_access_key: YYYYYYYYYY
+    endpoint: s3.amazonaws.com
+    bucket: sample_bucket
+    path_prefix: /path/to/sample_
+    parser:
+      charset: UTF-8
+      ...
+
+`td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
+
+    :::term
+    % td connector:history daily_import
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | 578066 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-18 00:10:05 +0000 | 160      |
+    | 577968 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-17 00:10:07 +0000 | 161      |
+    | 577914 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-16 00:10:03 +0000 | 152      |
+    | 577872 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-15 00:10:04 +0000 | 163      |
+    | 577810 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-14 00:10:04 +0000 | 164      |
+    | 577766 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-13 00:10:04 +0000 | 155      |
+    | 577710 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-12 00:10:05 +0000 | 156      |
+    | 577610 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-11 00:10:04 +0000 | 157      |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    8 rows in set
+
+### Delete the Schedule
+
+`td connector:delete` will remove the schedule.
+
+    :::term
+    $ td connector:delete daily_import
