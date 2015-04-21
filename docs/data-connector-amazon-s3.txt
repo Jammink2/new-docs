@@ -127,7 +127,7 @@ It's also recommended to specify `--time-column` option, since Treasure Data's s
       load.yml \
       --time-column created_at
 
-NOTE: The `cron` parameter also accepts two special options: `@daily` and `@hourly`.
+NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@daily` and `@monthly`.
 
 ### List the Schedules
 
