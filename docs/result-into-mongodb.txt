@@ -1,3 +1,95 @@
-# Writing Job Results into your MongoDB
+# Writing Job Results into your Mongodb Collections.
 
-This feature will be supported soon :-)
+This article explains how to write job results to your existing Mongodb instance.
+
+## Prerequisites
+
+  * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
+  * **A Mongodb instance**. 
+  * Treasure Data must have proper privileges.
+
+## Reference Architecture
+
+A front-end application streamingly collects data to Treasure Data via [Treasure Agent](td-agent). Treasure Data periodically runs jobs on the data, then writes the job results to your Mongodb collections.
+
+<center><img src="/images/result_rdbms.png" width="100%" /></center><br /><br />
+
+Shown above is a fairly common architecture. Here are a few examples.
+
+#### Example 1: Ranking: What are the "Top N of X?"
+
+Every social/mobile application calculates the "top N of X" (ex: top 5 movies watched today). Treasure Data already handles the raw data warehousing; the "write-to-mongodb" feature enables Treasure Data to find the "top N" data as well.
+
+#### Example 2: Dashboard Application
+
+If you're a data scientist, you need to keep track of a range of metrics every hour/day/month and make them accessible via visualizations. Using this "write-to-mongodb" feature, you can streamline the process and focus on your queries and your visualizations of the query results.
+
+NOTE: Our <b>Premium</b> plan includes advanced security features, which includes a list of static IPs Treasure Data is using. You can limit the access to your database by using these IPs. Please contact <a href="mailto:<%= @env[:mail_support] %>"><%= @env[:mail_support] %></a> if you need it too.
+
+## Basic Usage
+
+### For On-demand Jobs
+
+For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written into your collection.
+
+    :::sql
+    $ td query --result 'mongodb://user:password@host/database/collection' \
+      -w -d testdb \
+      "SELECT code, COUNT(1) FROM www_access GROUP BY code"      
+
+### For Scheduled Jobs
+
+For scheduled jobs, just add the `--result` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
+
+    :::term
+    $ td result:create mydb mongodb://user:password@host/database
+    $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" --result mydb:mycollection
+
+## Four Modes to Modify Data (Append/Replace/Truncate/Update)
+
+You can add or delete data in four ways.
+
+    :::term
+    mongodb://user:password@host/database/collection               # append
+    mongodb://user:password@host/database/collection?mode=append   # append
+    mongodb://user:password@host/database/collection?mode=replace  # replace
+    mongodb://user:password@host/database/collection?mode=truncate # truncate
+    mongodb://user:password@host/database/collection?mode=update&unique=key1   # update
+
+All four modes are **atomic**.
+
+**In the "host" section, you can specify the port as well.** Here is an example:
+
+    :::term
+    mongodb://superadmin:superstrongpassword@data.science.com:27013/transaction/user_info
+
+### APPEND
+
+This is the default mode. The query results are appended to a collection. If the collection does not exist yet, a new collection will be created.
+
+### REPLACE
+
+If the collection already exists, the rows of the existing collection are replaced with the query results. If the collection does not exist yet, a new collection will be created.
+
+We achieve **atomicity** (so that a consumer of the collection always has consistent data) by performing the following three steps in a **single transaction**.
+
+1. Create a temporary collection.
+2. Write to the temporary collection.
+3. Replace the existing collection with the temporary collection using RENAME command.
+
+### TRUNCATE
+
+The system first truncates the existing collection, then inserts the query results. If the collection does not exist yet, a new collection will be created.
+
+**Unlike REPLACE, TRUNCATE retains the indexes of your collection.**
+
+### UPDATE
+
+This mode uses mongodb's find and "upsert" method (see [Mongodb's documentation](http://docs.mongodb.org/manual/reference/method/Bulk.find.upsert/)). In short, a row is inserted unless it would cause a duplicate value in the unique index or primary key, in which case an update is performed. Please make sure you've already created unique index on the fields you specified at the arguments.
+
+Due to the characteristic that mongodb doesn't support transaction, this mode cannot gurantee to be atomic.
+
+## Options
+
+Writing Job Results to the Mongodb server supports following options that can be specified as optional URL parameters.
+

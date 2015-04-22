@@ -209,6 +209,7 @@ section 'data-processing', 'Data Processing' do
     article 'result-into-tableau-server', 'Job Result Output to Tableau Server'
     article 'result-into-tableau-online', 'Job Result Output to Tableau Online'
     article 'result-into-leftronic', 'Job Result Output to Leftronic Dashboard'
+    article 'result-into-mongodb', 'Job Result Output to Mongodb'
   end
   category 'hive', 'Hive QL Reference' do
     article 'hive', 'Hive Query Language (HiveQL) Overview'
