@@ -41,9 +41,27 @@ For scheduled jobs, just add the `--result / -r` option when scheduling a job. E
     $ td sched:create hourly_count_example "0 * * * *" \
          -d testdb "select count(*) from www_access" --result mydb:mycollection
 
-## Four Modes to Modify Data (Append/Replace/Truncate/Update)
+## Format
 
-You can add or delete data in four ways.
+The result output target is represented by URL with the following format:
+
+    mongodb://<username>:<password>@<host>/<database>/<collection>
+    mongodb://<username>:<password>@<host>:<port>/<database>/<collection>
+
+where:
+
+* **mongodb** is identified for result output to Mongodb;
+* **username** and **password** are the credential to the Mongodb instance;
+* **hostname** is the host name of the Mongodb instance;
+* **port** is the port number through which the Mongodb instance is accessible. This is optional;
+* **database** is the name of the destination database;
+* **collection** is the name of the destination collection.
+
+## Options
+
+### Modes
+
+You can add or delete data in four modes:
 
     :::term
     mongodb://user:password@host:1234/database/collection                          # append
@@ -52,13 +70,13 @@ You can add or delete data in four ways.
     mongodb://user:password@host:1234/database/collection?mode=truncate            # truncate
     mongodb://user:password@host:1234/database/collection?mode=update&unique=key1  # update
 
-### Mode `append`
+#### `mode=append` (default)
 
 This is the default mode. The query results are appended to a collection. If the collection does not exist yet, a new collection will be created.
 
 This method is **atomic**.
 
-### Mode `replace`
+#### `mode=replace`
 
 If the collection already exists, the rows of the existing collection are replaced with the query results. If the collection does not exist yet, a new collection will be created.
 
@@ -70,18 +88,30 @@ We achieve **atomicity** (so that a consumer of the collection always has consis
 
 This method is **atomic**.
 
-### Mode `truncate`
+#### `mode=truncate`
 
 The system first truncates the existing collection, then inserts the query results. If the collection does not exist yet, a new collection will be created.
 
-**Unlike REPLACE, TRUNCATE retains the indexes of your collection.**
+NOTE: Unlike REPLACE, TRUNCATE retains the indexes of your collection.
 
 This method is **atomic**.
 
-### Mode `update`
+#### `mode=update`
 
 This mode uses Mongodb's find and "upsert" method (see [Mongodb's documentation](http://docs.mongodb.org/manual/reference/method/Bulk.find.upsert/)). In short, a row is inserted unless it would cause a duplicate value in the unique index or primary key, in which case an update is performed. Please make sure you've already created unique index on the fields you specified at the arguments.
+When this mode is used, the `unique` option is required, see below.
 
 Since Mongodb doesn't support transactions, this mode cannot guarantee transaction atomicity.
+
+### Unique
+
+This option is only relevant and required with the `update` mode. It takes the name of the unique key or keys (commad separated) column name to use for updating the Mongodb collection.
+
+E.g.
+
+    mongodb://user:password@host:1234/database/collection?mode=update&unique=key1
+    mongodb://user:password@host:1234/database/collection?mode=update&unique=key1,key2,key3
+
+
 
 
