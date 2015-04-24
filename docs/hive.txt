@@ -153,6 +153,7 @@ Here's the syntax of Hive's INSERT statement.
 * If record includes `time` column, `time` coulmn should be Unixtime.
 
 NOTE: Query doesn't allow multiple inserts.
+NOTE: All INSERT INTO statements require FROM clause.
 
 ## Hive Syntax Checker
 
