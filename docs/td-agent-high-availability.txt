@@ -170,7 +170,6 @@ Now you've learned about td-agent's high availability configurations. For furthe
 
 * [Monitoring td-agent](td-agent-monitoring)
 * [Fluentd Documentation](http://docs.fluentd.org/) (td-agent is open-sourced as `Fluentd`)
-* [Treasure Data Suppport](http://help.treasuredata.com/)
 
 td-agent is actively maintained by Treasure Data, Inc. The changelog is available here:
 

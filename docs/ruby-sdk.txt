@@ -78,4 +78,3 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 * [Hive Query Language](hive)
 * [Programatic Access with REST API and its Bindings](/categories/api)
 
-If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.

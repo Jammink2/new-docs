@@ -106,4 +106,3 @@ For transparency, we're open sourcing our JavaScript SDK on Github. Please check
 
 * [https://github.com/treasure-data/td-js-sdk](https://github.com/treasure-data/td-js-sdk)
 
-If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.

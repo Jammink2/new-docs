@@ -200,10 +200,6 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 * [Schema Management](schema)
 * [Hive Query Language](hive)
 
-For more specific assistance, please visit our support center:
-
-* [Treasure Data Support Center](http://help.treasuredata.com/)
-
 ## Appendix: Importing Data To Treasure Data Using The Logger Library
 
 Alternatively, you can chose to use the [Java td-logger](https://github.com/treasure-data/td-logger-java)

@@ -61,7 +61,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
     $ echo 'cookbook "td-agent"' >> Berksfile
     $ berks install
 
-[Joyent SmartOS](http://help.treasuredata.com/customer/portal/articles/1246933-installing-td-agent-on-joyent-smartos) and <a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> are also supported. Amazon Linux & Windows are currently NOT supported.
+<a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> is also supported. Amazon Linux & Windows are currently NOT supported.
 
 ### Step 2: Modifying /etc/td-agent/td-agent.conf
 
@@ -195,6 +195,3 @@ We offer a schema mechanism that is more flexible than that of traditional RDBMS
 * [Hive Query Language](hive)
 * [Programatic Access with REST API and its Bindings](/categories/api)
 
-For more specific assistance, please visit our support center:
-
-* [Treasure Data Support Center](http://help.treasuredata.com/)

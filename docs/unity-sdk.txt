@@ -76,4 +76,3 @@ For the transparency, we're open sourcing our iOS SDK on Github. Please check th
 * [https://github.com/treasure-data/td-unity-sdk-package](https://github.com/treasure-data/td-unity-sdk-package)
 * [ChangeLog](https://github.com/treasure-data/td-unity-sdk-package/blob/master/ChangeLog)
 
-If you need additional help, get support at <a href="http://help.treasuredata.com/" target="_blank">help.treasuredata.com</a>.
