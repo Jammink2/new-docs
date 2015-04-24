@@ -77,7 +77,7 @@ If you want to add the unique id of the device or device model information, you 
     [[TreasureData sharedInstance] enableAutoAppendModelInformation];
       :
     [[TreasureData sharedInstance] addEvent:@{@"name":"@"foo bar"}];
-    // => {"td_uuid":"DA874B52-6232-4996-8228-16853109DBD9", 
+    // => {"td_uuid":"DA874B52-6232-4996-8228-16853109DBD9",
     //     "td_os_type":"iOS",
     //     "td_os_ver":"7.1.2",
     //     "td_device":"iPod touch",
@@ -106,7 +106,7 @@ The following code uploads the event when the application goes to the background
             [application endBackgroundTask:bgTask];
             bgTask = UIBackgroundTaskInvalid;
         }];
-    
+
         [[TreasureData sharedInstance] uploadEventsWithCallback:^() {
                 [application endBackgroundTask:bgTask];
                 bgTask = UIBackgroundTaskInvalid;
@@ -123,7 +123,7 @@ NOTE: IP whitelist won't be applied to any import from iOS SDK. Also we've seen 
 
 ### Step 4: Track the App Installation
 
-You can collect the first run event of your application, which can be used to track app `installation` event. `isFirstRun` and `clearFitstRun` methods would be useful.
+You can collect the first run event of your application, which can be used to track app `installation` event. `isFirstRun` and `clearFirstRun` methods would be useful.
 
     :::c
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
