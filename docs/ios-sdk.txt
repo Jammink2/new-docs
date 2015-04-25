@@ -80,7 +80,7 @@ If you want to add the unique id of the device or device model information, you 
     // => {"td_uuid":"DA874B52-6232-4996-8228-16853109DBD9",
     //     "td_os_type":"iOS",
     //     "td_os_ver":"7.1.2",
-    //     "td_device":"iPod touch",
+    //     "td_device":"iPod touch",cl
     //     "td_model":"iPod touch",
     //     "name":"foo bar"
     //     ... }
@@ -136,7 +136,7 @@ You can collect the first run event of your application, which can be used to tr
            database:@"testdb"
               table:@"demotbl"
           onSuccess:^(){
-            [[TreasureData sharedInstance] clearFitstRun];
+            [[TreasureData sharedInstance] clearFirstRun];
             [[TreasureData sharedInstance] uploadEvents];
           }
             onError:^(NSString* errorCode, NSString* message) {
