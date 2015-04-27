@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-NOTE: Currently this feature is under Beta phase. Please contact support@treasure-data.com for further questions.
+NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
 
   * Basic knowledge of Treasure Data
   * Basic knowledge of AWS Elastic Beanstalk
@@ -86,7 +86,7 @@ It's also recommended to specify `--time-column` option, since Treasure Data's s
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
 
-If you have a field called `time`, you don't have to specify `--time-column` option.
+If you have a field called `time`, you don't have to specify the `--time-column` option.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl
@@ -98,34 +98,34 @@ We take great care in distributing and operating our scheduler in order to achie
 By using this feature, you no longer need a `cron` daemon on your local datacenter.
 
 For the scheduled import, Data Connector for Amazon S3 imports all files that match with the specified prefix
-(e.g. path_prefix: /path/to/sample_ -> /path/to/sample_201501.csv.gz, /path/to/sample_201502.csv.gz, ..., /path/to/sample_201505.csv.gz)
-at first and remember the last path (/path/to/sample_201505.csv.gz) for the next execution.
-At the second execution, it only imports files that comes after the last path in lexicographic (alphabetical) order.
-(/path/to/sample_201506.csv.gz, ...)
+(e.g. path_prefix: <tt>/path/to/sample_</tt> -> <tt>/path/to/sample_201501.csv.gz</tt>, <tt>/path/to/sample_201502.csv.gz</tt>, ..., <tt>/path/to/sample_201505.csv.gz</tt>)
+at first and remember the last path (<tt>/path/to/sample_201505.csv.gz</tt>) for the next execution.
+At the second execution, it only imports files that comes after the last path in alphabetical (lexicographic) order.
+(<tt>/path/to/sample_201506.csv.gz</tt>, ...)
 
 ### Create the schedule
 
 A new schedule can be created using the `td connector:create` command.
-The name of the schedule, cron-style schedule, the database and table where their data are stored, and the Data Connector configuration file are required.
+The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
 
     :::term
     $ td connector:create \
-      daily_import \
-      "10 0 * * *" \
-      td-sample_db \
-      td-sample_table \
-      load.yml
+        daily_import \
+        "10 0 * * *" \
+        td-sample_db \
+        td-sample_table \
+        load.yml
 
-It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
+It's also recommended to specify the `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
 
     :::term
     $ td connector:create \
-      daily_import \
-      "10 0 * * *" \
-      td-sample_db \
-      td-sample_table \
-      load.yml \
-      --time-column created_at
+        daily_import \
+        "10 0 * * *" \
+        td-sample_db \
+        td-sample_table \
+        load.yml \
+        --time-column created_at
 
 NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@daily` and `@monthly`.
 
