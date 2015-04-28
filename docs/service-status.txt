@@ -2,5 +2,5 @@
 
 ## Status Page
 
-[status.treasuredata.com](http://status.treasuredata.com/) provides historical information of our service status. You can also subscribe to our outage / performance degradation event notifications via RSS, email, or SMS. It's recommended for all paid users to subscribe to these events.
+[Status Page](<%= @env[:url_status] %>) provides historical information of our service status. You can also subscribe to our outage / performance degradation event notifications via RSS, email, or SMS. It's recommended for all paid users to subscribe to these events.
 

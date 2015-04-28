@@ -24,7 +24,7 @@ Added the [iOS SDK](<%= @env[:url_import] %>/sdk) to the Import Data, SDKs landi
 
 On June 6th, a new vulnerability in OpenSSL was uncovered.
 
-We updated all Ubuntu distributions with the version of the <tt>libssl</tt> that fixed those vulnerabilities. A notice was sent out and published on our [status page](http://status.treasuredata.com/incidents/0pf7cyt158y6).
+We updated all Ubuntu distributions with the version of the <tt>libssl</tt> that fixed those vulnerabilities. A notice was sent out and published on our [Status Page](<%= @env[:url_status] %>incidents/0pf7cyt158y6).
 
 ### Bulk Import: Released v0.4.13
 
