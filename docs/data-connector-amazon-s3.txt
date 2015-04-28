@@ -25,7 +25,7 @@ First, please prepare seed.yml, with your AWS access key and secret access key. 
       access_key_id: XXXXXXXXXX
       secret_access_key: YYYYYYYYYY
       bucket: sample_bucket
-      path_prefix: /path/to/sample_file
+      path_prefix: path/to/sample_file
 
 ## Step2: Guess Formart in the File (load.yml)
 
@@ -42,7 +42,7 @@ If you open up load.yml, you'll see guessed file format definitions including fi
       access_key_id: XXXXXXXXXX
       secret_access_key: YYYYYYYYYY
       bucket: sample_bucket
-      path_prefix: /path/to/sample_file
+      path_prefix: path/to/sample_file
       parser:
         charset: UTF-8
         newline: CRLF
@@ -98,10 +98,10 @@ We take great care in distributing and operating our scheduler in order to achie
 By using this feature, you no longer need a `cron` daemon on your local datacenter.
 
 For the scheduled import, Data Connector for Amazon S3 imports all files that match with the specified prefix
-(e.g. path_prefix: <tt>/path/to/sample_</tt> -> <tt>/path/to/sample_201501.csv.gz</tt>, <tt>/path/to/sample_201502.csv.gz</tt>, ..., <tt>/path/to/sample_201505.csv.gz</tt>)
-at first and remember the last path (<tt>/path/to/sample_201505.csv.gz</tt>) for the next execution.
+(e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
+at first and remember the last path (<tt>path/to/sample_201505.csv.gz</tt>) for the next execution.
 At the second execution, it only imports files that comes after the last path in alphabetical (lexicographic) order.
-(<tt>/path/to/sample_201506.csv.gz</tt>, ...)
+(<tt>path/to/sample_201506.csv.gz</tt>, ...)
 
 ### Create the schedule
 
@@ -160,7 +160,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
     secret_access_key: YYYYYYYYYY
     endpoint: s3.amazonaws.com
     bucket: sample_bucket
-    path_prefix: /path/to/sample_
+    path_prefix: path/to/sample_
     parser:
       charset: UTF-8
       ...
