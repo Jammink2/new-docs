@@ -1,39 +1,125 @@
 # Access Control
 
-The [Team page](<%= @env[:url_users] %>) displays the users associated with an account. The [Team page](<%= @env[:url_users] %>) is **visible only the Account Owners** and any of the Administrators**. Three other roles are designed below administrator. See the table below for a summary of the permissions associated with each role:
+Treasure Data offers a ways to control access to resources and capabilities. Permission and access control settings are
+managed within the Console.
 
-Action                            | Admin | Full Access | Query only | Import only
-:-------------------------------: | :---: | :---------: | :--------: | :---------:
-Add User                          | OK    |             |            |
-Delete User                       | OK    |             |            |
-List Databases                    | OK    | OK          | OK         |
-Create Database                   | OK    |             |            |
-Delete Database                   | OK    |             |            |
-List Tables                       | OK    | OK          | OK         |
-Create Table                      | OK    | OK          |            |
-Delete Table                      | OK    | OK          |            |
-Data Import (td-agent)            | OK    | OK          |            | OK
-Data Import (Result Output to TD) | OK    | OK          |            | OK
-Data Import (Bulk Import)         | OK    | OK          |            | OK
-Data Import (Insert Into)         | OK    | OK          |            |
-Delete Data                       | OK    | OK          |            |
-Issue Query                       | OK    | OK          | OK         |
-Kill Own Query                    | OK    | OK          | OK         |
-Kill Query from Others (1.)       | OK    | OK          |            |
-Export Table                      | OK    | OK          | OK         |
+## Permissions Overview
 
+The [Team page](<%= @env[:url_users] %>) displays the users associated with an account and visible to **all** users.
+The Treasure Data permission system have 3 levels built in:
 
+* **Owner**<br/>
+  There can only be one user Owner user for each account - it's the user that originally created the account.
+  This user has permission to perform **any** permission on the account, including closing it.
+* **Administrator(s)**<br/>
+  Any of the other users in the account is initially added as 'Restricted' user (see below for the definition), initially.
+  Any of those user can be promoted as account Administrator. An account administrator can perform practically any
+  operation on the account, including managing other Restricted user's settings but excluding managing other Administrator
+  and Owner users' settings.
+* **Restricted**<br/>
+  Restricted is the permission level associated to any new user by default. As the permission system is designed around
+  granting permission to databases (read and/or write), restricted users needs to be explicitly granted access to a
+  database in order to be able to perform any operation.<br/>
+  Restricted users can be granted either **Full Access**, **Query only**, or **Import only** access level to any of the
+  databases in the account independently. Please see the table below for details). We modeled these three access levels
+  to mimic 'read & write', 'read', and 'write' permissions with some exception depicted in the tables below.
 
-Provided the user has adequate permission to access the [Team page](<%= @env[:url_users] %>), clicking on any of the users will allow doing one of the following:
+## REST APIs Access
 
-* Grant / Deny Administrator permissions;
-* Grant / Deny full-access / query-only / import-only access to any of the databases.
-* Delete an user
+REST API access is controlled through API keys. Almost every REST API call needs to be issued with a valid API key for
+authentication and resource authorization purpose.
 
-The logged in user's [profile page](<%= @env[:url_profile] %>) is accessible and provides information about the user as well as allowing to change the password and other basic information.
+There exist two types of API keys: **Master** and **Write only** API keys.<br/>
+By default, every new user is created with one Master and one Write only API key but can generate any number of API keys
+of the two kinds. Any of the API Keys can be revoked at any time by the user itself or any user having 'Manage User'
+permissions - see table above.
 
-#### Notes
+* **Master**<br/>
+  This is the traditional type of API key and it can be used to perform all operations permitted
+  listed in the table above based on the user's permission level and access, no exception.
+* **Write only**<br/>
+  This API key type provides an additional layer of security in controlling access to a Treasure Data account through
+  the REST APIs, especially when access has to be provided to 3rd parties or API keys needs to be embedded in ingestion
+  libraries (see the [Overview of Data Import](import-overview) page).
+  Based on the permissions and access levels associated to a user, the user's Write only API key will only allows
+  importing data into Treasure Data to those databases it has *write access* to.
 
-1. Users with 'Query only' permission to a database can see all the jobs running
-   on that database but will not be able to kill those jobs unless they are
-   their own.
+## Access levels
+
+### Console or Master API key
+
+This is a superset of the actions that can be performed through either the Console or the REST APIs - some actions may
+not be available at the REST API level and some others (e.g. Data Import) is not available with the Console.
+
+Action                            | Owner             | Admin             | Full<br/>Access      | Query<br/>only       | Import<br/>only
+:-:                               | :-:               | :-:               | :-:                  | :-:                  | :-:
+Add User                          | OK                | OK                |                      |                      |
+Manage User                       | OK                | OK <sup>(1)</sup> |                      |                      |
+Delete User                       | OK                | OK <sup>(1)</sup> |                      |                      |
+List Databases                    | OK                | OK                | OK <sup>(2)</sup>    | OK <sup>(2)</sup>    | <sup>(2)</sup>
+Create Database                   | OK                | OK                | *n/a* <sup>(3)</sup> | *n/a* <sup>(3)</sup> | *n/a* <sup>(3)</sup>
+Manage Database                   | OK                | OK                | OK <sup>(3)</sup>    | OK <sup>(3)</sup>    | OK <sup>(3)</sup>
+Delete Database                   | OK                | OK                | OK <sup>(3)</sup>    | OK <sup>(3)</sup>    | OK <sup>(3)</sup>
+List Tables                       | OK                | OK                | OK                   | OK                   |
+Create Table                      | OK                | OK                | OK                   |                      |
+Delete Table                      | OK                | OK                | OK                   |                      |
+Data Import (td-agent)            | OK                | OK                | OK                   |                      | OK
+Data Import (Result Output to TD) | OK                | OK                | OK                   |                      | OK
+Data Import (Bulk Import)         | OK                | OK                | OK                   |                      | OK
+Data Import (Insert Into)         | OK                | OK                | OK                   |                      | <sup>(4)</sup>
+Delete Data                       | OK                | OK                | OK                   |                      |
+Issue Query                       | OK                | OK                | OK                   | OK                   |
+Kill Own Query                    | OK                | OK                | OK                   | OK                   |
+Kill Query from Others            | OK                | OK                | OK                   | OK <sup>(5)</sup>    |
+Export Table                      | OK                | OK                | OK                   | OK                   |
+
+Notes:
+
+1. Administrator users can only 'Manage User' and 'Delete User' for Restricted users but are not allowed to
+   manage and delete other Administrators user and the account Owner.<br/>
+   The 'Manage User' permission includes granting or
+   revoking the 'Administrator' role - therefore an Administrator user can promote a user to Administrator but cannot
+   demote an user from Administrator to Restricted user.
+2. Restricted users can only see databases they have Full Access or Query only permissions for. The databases they have
+   Import only permissions for won't appear in the list of databases
+3. Any user (including Restricted ones) can create a new database and they with 'own' it going forward. Full Access,
+   Query Only, and Import only permissions for 'Create Database' don't apply in that case.
+   Restricted users but can only 'Delete' and 'Manage' databases they created (and therefore own). Administrators and
+   Owner can always manage databases.
+4. While the end-goal of INSERT INTO is to write the result back into a table, it requires special permissions. The
+   executing user need posses read (Query only, Full Access, Admin, or Owner) permissions for all the databases accessed
+   by the query as well as read & write permission (Full Access, Admin, or Owner) to the database the result is inserted
+   into; the query will fail otherwise.
+5. Restricted users with 'Query only' permission can see all the jobs running on the database they have 'Query only'
+   permissions for but will not be able to kill a job unless it's their own
+
+### Write only API key
+
+Action                                   | Owner          | Admin          | Full<br/>Access      | Query<br/>only       | Import<br/>only
+:-:                                      | :-:            | :-:            | :-:                  | :-:                  | :-:
+Add User                                 |                |                |                      |                      |
+Manage User                              |                |                |                      |                      |
+Delete User                              |                |                |                      |                      |
+List Databases                           |                |                |                      |                      |
+Create Database                          | OK             | OK             | *n/a* <sup>(1)</sup> | *n/a* <sup>(1)</sup> | *n/a* <sup>(1)</sup>
+Manage Database                          |                |                |                      |                      |
+Delete Database                          |                |                |                      |                      |
+List Tables                              |                |                |                      |                      |
+Create Table                             | OK             | OK             | OK                   |                      | OK
+Delete Table                             |                |                |                      |                      |
+Data Import (td-agent)                   | OK             | OK             | OK                   |                      | OK
+Data Import (Result Output to TD)        | OK             | OK             | OK                   |                      | OK
+Data Import (Bulk Import)                | OK             | OK             | OK                   |                      | OK
+Data Import (Insert Into)                | <sup>(2)</sup> | <sup>(2)</sup> | <sup>(2)</sup>       | <sup>(2)</sup>       | <sup>(2)</sup>
+Issue Query                              |                |                |                      |                      |
+Kill Own Query                           |                |                |                      |                      |
+Kill Query from Others                   |                |                |                      |                      |
+Export Table                             |                |                |                      |                      |
+
+Notes:
+
+1. Any user (including Restricted ones) can create a new database and they with 'own' it going forward. Full Access,
+   Query Only, and Import only permissions for 'Create Database' don't apply in that case.
+   Restricted users but can only 'Delete' and 'Manage' databases they created (and therefore own). Administrators and
+   Owner can always manage databases.
+2. INSERT INTO requires the ability to execute a query, which is not allowed using a Write only API key.
