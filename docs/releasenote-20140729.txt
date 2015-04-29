@@ -30,7 +30,7 @@ This redesign includes new redesigned icons and fonts as well.
 
 ### Client Tools: Released Ruby Toolbelt CLI v0.11.3
 
-1. Added the ability for restricted users to upload data on import-only databases with both the master and write-only API keys. Importing can be done both via the <tt>table:import</tt> command or the <tt>import</tt> commands through the Bulk Import CLI
+1. Added the ability for restricted users to upload data on import-only databases with both the master and [write-only API keys](access-control#rest-apis-access). Importing can be done both via the <tt>table:import</tt> command or the <tt>import</tt> commands through the Bulk Import CLI
 2. Provide better feedback on the download process for the job results by showing the total incremental compressed size and percentage of completion
 3. Fixed the ability to specify an alternative API endpoint that does not end in '[*treasuredata.com*](http://treasuredata.com/)' and added endpoint validation: this is done to support endpoint with different domains
 4. Added the ability to read the Java Bulk Import logging property file (<tt>logging.properties</tt>) from the <tt>~/.td/java</tt> (or <tt>%USERPROFILE%\\.td\java</tt> on Windows) in addition to the default one inside the package/gem repository. This allows the user to customize the Java Bulk Import CLI's logging settings

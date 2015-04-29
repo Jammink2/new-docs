@@ -27,7 +27,7 @@ Next, please initialize the library in your app like followings.
     public class MyTreasureDataPlugin : MonoBehaviour {
     #if UNITY_IPHONE || UNITY_ANDROID
       private TreasureData td = null;
-      
+
       void Start() {
         TreasureData.InitializeApiEndpoint("https://<%= @env[:sdk_endpoint] %>");
         td = new TreasureData("YOUR_API_KEY");
@@ -38,7 +38,7 @@ Next, please initialize the library in your app like followings.
          */
         // TreasureData.InitializeEncryptionKey("RANDOM_STRING_TO_ENCRYPT_DATA");
       }
-      
+
       void OnApplicationPause(bool pauseStatus) {
         // Make an open request whenever app is resumed
         if (!pauseStatus) {
@@ -51,7 +51,7 @@ Next, please initialize the library in your app like followings.
     #endif
     }
 
-The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use **write-only API key** for SDKs. <a href="mailto:<%= @env[:mail_support] %>">Let us know</a> if you’re having any build issues.
+The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use [**write-only API key**](access-control#rest-apis-access) for SDKs. <a href="mailto:<%= @env[:mail_support] %>">Let us know</a> if you’re having any build issues.
 
 ## Step 3: Send Events to the Cloud
 

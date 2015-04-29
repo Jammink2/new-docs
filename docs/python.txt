@@ -1,6 +1,6 @@
 # Streaming Import from Python Apps
 
-'[fluent-logger-python](http://github.com/fluent/fluent-logger-python)' is used to import data from Python applications to Treasure Data. 
+'[fluent-logger-python](http://github.com/fluent/fluent-logger-python)' is used to import data from Python applications to Treasure Data.
 
 This article explains how to use the fluent-logger-python library.
 
@@ -47,7 +47,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
     # 10.04 Lucid
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
-    
+
     # Debian Squeeze (64bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
     # Debian Wheezy (64bit only)
@@ -76,7 +76,7 @@ Next, please specify your API key by setting the `apikey` option. You can view y
       type forward
       port 24224
     </source>
-    
+
     <match td.*.*>
       type tdlog
       apikey YOUR_API_KEY
@@ -85,14 +85,14 @@ Next, please specify your API key by setting the `apikey` option. You can view y
       buffer_path /var/log/td-agent/buffer/td
     </match>
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the write-only key is recommended.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using a [write-only API key](access-control#rest-apis-access) is recommended.
 
 Please restart your agent once these lines are in place.
 
     :::term
     # Linux
     $ sudo /etc/init.d/td-agent restart
-    
+
     # MacOS X
     $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
     $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
@@ -130,7 +130,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
     :::term
     # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
-    
+
     # MacOS X
     $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 

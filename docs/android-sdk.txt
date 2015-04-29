@@ -64,7 +64,7 @@ Create the `TreasureData` object with your API key. The recommended place to do 
       }
     }
 
-The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use **write-only API key** for SDKs.
+The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use a [**write-only API key**](access-control#rest-apis-access) for SDKs.
 
 Also, you can use a shared instance from anywhere with `TreasureData.sharedInstance()` method after calling `TreasureData.initializeSharedInstance()`.
 
@@ -78,7 +78,7 @@ Also, you can use a shared instance from anywhere with `TreasureData.sharedInsta
     	TreasureData.sharedInstance().setDefaultDatabase("testdb");
       		:
     }
-   
+
    public class OtherActivity extends Activity {
      		:
    	TreasureData.sharedInstance().addEvent("demotbl", "elapsed_time", elapsed_time);
@@ -109,7 +109,7 @@ If you want to add the unique id of the device or device model information, you 
     td.enableAutoAppendUniqId();
     td.enableAutoAppendModelInformation();
     td.addEvent("demotbl", "name", "foo bar");
-    // => {"td_uuid":"c123470de-3950-4997-b321-07d6f5b4a3", 
+    // => {"td_uuid":"c123470de-3950-4997-b321-07d6f5b4a3",
     //     "td_os_type":"Android",
     //     "td_os_ver":"15",
     //     "td_device":"ISW11SC",
@@ -149,7 +149,7 @@ If you want to do something after adding a event or uploading buffered events, y
       public void onSuccess() {
         Log.i("ExampleApp addEvent", "success!");
       }
-      
+
       @Override
       public void onError(String errorCode, Exception e) {
         Log.w("ExampleApp addEvent", "errorCode: " + errorCode + ", detail: " + e.toString());
@@ -182,7 +182,7 @@ You can collect the first run event of your application, which can be used to tr
           TreasureData.sharedInstance().clearFirstRun(MainActivity.this);
           TreasureData.sharedInstance().uploadEvents();
         }
-         
+
         @Override
         public void onError(String errorCode, Exception e) {
           Log.w(TAG, "TreasureData.addEvent:onError errorCode=" + errorCode + ", ex=" + e);

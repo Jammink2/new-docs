@@ -2,13 +2,15 @@
 
 ## From Web Console
 
-Please access this <a href="<%= @env[:url_profile] %>">URL</a>. At the right most column, you can retrieve the API key.
+Please access this <a href="<%= @env[:url_profile] %>">URL</a>. You can retrieve the API key from the box at the right hand side.
 
-There're two types of keys: Normal and Write-Only. The write-only key can only invoke actions with [import only](access-control) permission. This is useful for embedding APIs with SDKs (e.g. [JavaScript](javascript-sdk), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
+There're two types of keys: Master and Write only. For more information, please see the [Access Control](access-control#rest-apis-access) page.<br/>
+The write only API key is useful when embedding API keys within SDKs (e.g. [JavaScript](javascript-sdk), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
 
 ## From CLI
 
-From [CLI](command-line), please execute the following command.
+At the moment, only the Master API key can be retrieve from the [CLI](command-line).<br/>
+To do that, please execute the following command:
 
     :::term
     $ td apikey:show

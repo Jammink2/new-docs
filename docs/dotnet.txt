@@ -44,7 +44,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
     # 10.04 Lucid
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
-    
+
     # Debian Squeeze (64bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
     # Debian Wheezy (64bit only)
@@ -65,7 +65,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 ### Step 2: Modifying /etc/td-agent/td-agent.conf
 
-Next, please specify your API key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file. 
+Next, please specify your API key by setting the `apikey` option in your `/etc/td-agent/td-agent.conf` file.
 
     :::text
     # Input from HTTP
@@ -85,14 +85,14 @@ Next, please specify your API key by setting the `apikey` option in your `/etc/t
       use_ssl true
     </match>
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the write-only key is recommended.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using a [write-only API key](access-control#rest-apis-access) key is recommended.
 
 Please restart your agent once these lines are in place.
 
     :::term
     # Linux
     $ sudo /etc/init.d/td-agent restart
-    
+
     # MacOS X
     $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
     $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
@@ -109,7 +109,7 @@ Please use the following code snippets to post the records to local Treasure Age
     using System.IO;
     using System.Text;
     using System.Web;
-    
+
     namespace CSharpTreasureAgentExample
     {
       class MainClass
@@ -118,7 +118,7 @@ Please use the following code snippets to post the records to local Treasure Age
         {
           string json_body = "{\"action\":\"login\",\"user\":2}";
           string tag = "td.production.login";
-    
+
           // Prepare HTTP Request Object
           HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:8888/" + tag);
           request.Method = "POST";
@@ -126,7 +126,7 @@ Please use the following code snippets to post the records to local Treasure Age
           json_body = "json=" +  System.Web.HttpUtility.UrlEncode(json_body);
           byte[] bytes = Encoding.ASCII.GetBytes(json_body);
           request.ContentLength = bytes.Length;
-    
+
           // Write the Request
           Stream stream = request.GetRequestStream();
           stream.Write(bytes, 0, bytes.Length);
@@ -152,7 +152,7 @@ Please execute your probram first, then send a SIGUSR1 signal will flush td-agen
     :::term
     # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
-    
+
     # MacOS X
     $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 

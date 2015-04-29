@@ -47,7 +47,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
     # 10.04 Lucid
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
-    
+
     # Debian Squeeze (64bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
     # Debian Wheezy (64bit only)
@@ -78,7 +78,7 @@ The config file comes with some sample settings. You will find the following lin
       type http
       port 8888
     </source>
-    
+
     # Treasure Data output
     <match td.*.*>
       type tdlog
@@ -90,14 +90,14 @@ The config file comes with some sample settings. You will find the following lin
       use_ssl true
     </match>
 
-NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the write-only key is recommended.
+NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve your api key from <a href="<%= @env[:url_profile] %>" target="_blank">HERE</a>. Using the [write-only key](access-control#rest-apis-access) is recommended.
 
 Now please restart the td-agent service.
 
     :::term
     # Linux
     $ sudo /etc/init.d/td-agent restart
-    
+
     # MacOS X
     $ sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
     $ sudo launchctl load /Library/LaunchDaemons/td-agent.plist
@@ -115,7 +115,7 @@ You can add logs in JSON format using HTTP.
     :::term
     # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
-    
+
     # MacOS X
     $ sudo kill -USR1 `sudo launchctl list | grep td-agent | cut -f 1`
 
