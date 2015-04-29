@@ -16,10 +16,9 @@ You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata
 
 ## Step1: Create Seed Config File (seed.yml)
 
-First, please prepare seed.yml, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
+First, please prepare `seed.yml` like below, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
 
     :::yaml
-    # seed.yml
     config:
       type: s3
       access_key_id: XXXXXXXXXX
@@ -34,7 +33,7 @@ Second, please use `connector:guess`. This command automatically reads the targe
     :::term
     $ td connector:guess seed.yml -o load.yml
 
-If you open up load.yml, you'll see guessed file format definitions including file formats, encodings, column names, and types.
+If you open up `load.yml`, you'll see guessed file format definitions including file formats, encodings, column names, and types.
 
     :::yaml
     config:
