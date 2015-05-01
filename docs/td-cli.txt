@@ -1171,7 +1171,7 @@ This page documents most of `td` subcommands.
     -P, --priority PRIORITY          set priority
     -R, --retry COUNT                automatic retrying count
     -q, --query PATH                 use file instead of inline query
-    -T, --type TYPE                  set query type (hive, pig, impala, presto)
+    -T, --type TYPE                  set query type (hive, pig, presto)
         --sampling DENOMINATOR       OBSOLETE - enable random sampling to reduce records 1/DENOMINATOR
     -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
     -c, --column-header              output of the columns' header when the schema is available for the table (only applies to tsv and csv formats)
