@@ -88,6 +88,13 @@ Treasure Agent and td command use HTTPS by default so that we ensure security.
 
 
 If you have any questions, please feel free to [contact us](<%= @env[:url_contact] %>), or chat with us live using the window at the bottom right.
+
+## How is import command's time format set at windows batch file?
+'%' is recognized Environment variable,so need to set '%%'.
+
+    :::term
+    td import:prepare --format csv --column-header --time-column 'date' --time-format '%%Y-%%m-%%d' test.csv
+
 <% if @env[:region] == :aws %>
 ## Why tdlog plugin warn the endpoint change message?
 
