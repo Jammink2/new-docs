@@ -18,6 +18,8 @@ This article covers how to monitor the `td-agent` daemon.
       port 24220
     </source>
 
+NOTE: disable_node_info (default true): Send system metrics, CPU / Memory / Disk, or not.   
+
 Next, please restart the agent and get the metrics via HTTP.
 
     :::term
