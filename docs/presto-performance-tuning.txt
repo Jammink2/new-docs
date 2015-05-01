@@ -26,10 +26,10 @@ All imported data is automatically partitioned into hourly buckets, based on the
 **An easier way to slice the data is to use [TD_TIME_RANGE UDF](presto-udfs#tdtimerange)**.
 
     :::sql
-    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01 PDT")
-    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01", NULL, "PDT")
-    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, "2013-01-01",
-                                           TD_TIME_ADD("2013-01-01", "1day", "PDT"))
+    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01 PDT')
+    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01', NULL, 'PDT')
+    [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01',
+                                           TD_TIME_ADD('2013-01-01', '1day', 'PDT'))
 
 However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partition opimization doesn't work. For instance, the following conditions disable optimization.
 
@@ -58,7 +58,7 @@ Presto has a couple of [approximate aggregation functions](http://prestodb.io/do
       access
     WHERE
       TD_TIME_RANGE(
-        TD_TIME_ADD(TD_SCHEDULED_TIME(), "-1d", "PDT"),
+        TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1d', 'PDT'),
         TD_SCHEDULED_TIME())
 
 ## Aggregate a series of LIKE clauses in one single regexp_like clause
