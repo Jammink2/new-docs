@@ -302,3 +302,38 @@ The example shows the result of parsing user agent from access log.
     SELECT TD_PARSE_USER_AGENT(agent, 'os_family') AS agent_os_family FROM www_access
     > Windows 7
 
+## TD_MD5()
+
+#### Signature
+
+    :::term
+    string TD_MD5(col)
+
+#### Description
+
+This UDF calculates the [MD5](http://en.wikipedia.org/wiki/MD5) hash digest from a given string.
+
+#### Example
+
+    :::sql
+    SELECT TD_MD5(column) FROM tbl
+
+## TD_URL_DECODE()
+
+#### Signature
+
+    :::term
+    string TD_URL_DECODE(col)
+
+#### Description
+
+This UDF applies URL decoding for a given string.
+
+#### Example
+
+    :::sql
+    SELECT TD_URL_DECODE(column) FROM tbl
+
+## Hivemall
+
+Treasure Data bundles [Hivemall](https://github.com/myui/hivemall) v0.2-alpha4, the scalable machine learning library for Hive.
