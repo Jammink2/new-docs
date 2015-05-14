@@ -37,11 +37,7 @@ interpret the content as a simple string producing a perhaps unexpected result:
 
 ## Table Schemas are Required
 
-When querying via Presto, you must set a [Schema](schema) for the table(s); the `v` syntax doesn't work since Presto doesn't support the `map` type yet.
-
-## Lack of Complex Types
-
-Currently, the only available types in Presto are `boolean`, `bigint`, `double` and `varchar`. Complex types such as `map` and `struct` are currently not available.
+When querying via Presto, you must set a [Schema](schema) for the table(s); the `v` syntax doesn't work.
 
 ## JOIN Order
 
