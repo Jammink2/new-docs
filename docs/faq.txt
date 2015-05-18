@@ -95,6 +95,27 @@ If you have any questions, please feel free to [contact us](<%= @env[:url_contac
     :::term
     td import:prepare --format csv --column-header --time-column 'date' --time-format '%%Y-%%m-%%d' test.csv
 
+## How does TD_TIME_FORMAT handle Leap Second? 
+Please check the following results.
+
+Presto
+    :::term
+    SELECT
+     TD_TIME_FORMAT(1136073600, 'yyyy-MM-dd HH:mm:ss', 'JST') as st,
+     TD_TIME_PARSE('2006-01-01 08:59:60', 'JST') as leap, 
+     TD_TIME_PARSE('2006-01-01 09:00:00', 'JST') as leap2 
+
+<img style="margin:auto" src="/images/faq_presto_leapseconds.png" alt="Presto Leap Second"/>
+
+Hive
+    :::term
+    SELECT
+     TD_TIME_FORMAT(1136073600, 'yyyy-MM-dd HH:mm:ss', 'JST') as st,
+     TD_TIME_PARSE('2006-01-01 08:59:60', 'JST') as leap,
+     TD_TIME_PARSE('2006-01-01 09:00:00', 'JST') as leap2
+
+<img style="margin:auto" src="/images/faq_hive_leapseconds.png" alt="Hive Leap Second"/>
+
 <% if @env[:region] == :aws %>
 ## Why tdlog plugin warn the endpoint change message?
 
