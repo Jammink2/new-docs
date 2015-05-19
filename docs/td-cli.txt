@@ -245,6 +245,7 @@ This page documents most of `td` subcommands.
     -k, --aws-key-id KEY_ID          AWS access key id to export data (required)
     -s, --aws-secret-key SECRET_KEY  AWS secret access key to export data (required)
     -F, --file-format FILE_FORMAT    file format for exported data, either json.gz (default) or line-json.gz
+    -O, --pool-name NAME             specify resource pool by name
 
 
 ## td table:swap
@@ -319,6 +320,7 @@ This page documents most of `td` subcommands.
                                        or Ruby time string format (e.g. '2014-07-01 13:00:00 JST') where
                                        the minutes and seconds are required to be 0.
     -w, --wait                       wait for the job to finish
+    -O, --pool-name NAME             specify resource pool by name
 
 
 ## td table:expire
@@ -716,6 +718,7 @@ This page documents most of `td` subcommands.
 
     -w, --wait                       wait for finishing the job
     -f, --force                      force start performing
+    -O, --pool-name NAME             specify resource pool by name
 
 
 ## td import:error_records
@@ -1137,6 +1140,41 @@ This page documents most of `td` subcommands.
     -f, --format FORMAT              format of the result rendering (tsv, csv, json or table. default is table)
 
 
+## td sched:result
+
+#### usage:
+
+
+    $ td sched:result <name>
+  
+#### example:
+
+
+    $ td sched:result NAME | sched:result NAME --last | sched:result NAME --last 3
+  
+#### description:
+
+
+    Show status and result of the last job ran.
+    --last [N] option enables to show the result before N from the last.
+    The other options are identical to those of the 'job:show' command.
+  
+#### options:
+
+
+    -v, --verbose                    show logs
+    -w, --wait                       wait for finishing the job
+    -G, --vertical                   use vertical table to show results
+    -o, --output PATH                write result to the file
+    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
+    -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
+    -c, --column-header              output of the columns' header when the schema is available
+                                       for the table (only applies to tsv and csv formats)
+    -x, --exclude                    do not automatically retrieve the job result
+        --null STRING                null expression in csv or tsv
+        --last [Number]              show the result before N from the last. default: 1
+
+
 ## td query
 
 #### usage:
@@ -1176,6 +1214,7 @@ This page documents most of `td` subcommands.
     -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
     -c, --column-header              output of the columns' header when the schema is available for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
+    -O, --pool-name NAME             specify resource pool by name
 
 
 ## td job:show
