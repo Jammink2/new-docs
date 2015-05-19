@@ -26,6 +26,8 @@ First, please prepare `seed.yml` like below, with your AWS access key and secret
         secret_access_key: YYYYYYYYYY
         bucket: sample_bucket
         path_prefix: path/to/sample_file
+      out:
+        mode: append
 
 Data Connector for Amazon S3 imports all files that match with the specified prefix.
 (e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
@@ -65,7 +67,8 @@ If you open up `load.yml`, you'll see guessed file format definitions including 
           - name: created_at
             type: timestamp
             format: '%Y-%m-%d %H:%M:%S'
-      out: {}
+      out:
+        mode: append
 
 Then you can preview how the system will parse the file by `preview` command.
 
@@ -92,7 +95,7 @@ If the option was not given, Data Connector choose the first `long` or `timestam
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
 
-NOTE: At this moment Data Connector does not sort records at server side. To utilize time based partition effectively please sort records in files beforehand. This restriction is solved in near future.
+NOTE: At present Data Connector does not sort records at server side. To utilize time based partition effectively please sort records in files beforehand. This restriction is solved in near future.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
@@ -103,19 +106,25 @@ If you have a field called `time`, you don't have to specify the `--time-column`
 
 You can specify file import mode in `out` section of seed.yml.
 
+### append (default)
+
     :::yaml
     config:
       in:
-        type: s3
         ...
       out:
-        mode: replace
-
-### append (default)
+        mode: append
 
 This is the default mode. The imported records are appended to the target table.
 
 ### replace
+
+    :::yaml
+    config:
+      in:
+        ...
+      out:
+        mode: replace
 
 If the target table already exists, the rows of the existing table are replaced with imported records.
 
