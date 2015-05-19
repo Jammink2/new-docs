@@ -12,7 +12,7 @@ NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:
 You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
     $ td --version
-    0.11.9
+    0.11.10
 
 ## Step1: Create Seed Config File (seed.yml)
 
@@ -20,11 +20,15 @@ First, please prepare `seed.yml` like below, with your AWS access key and secret
 
     :::yaml
     config:
-      type: s3
-      access_key_id: XXXXXXXXXX
-      secret_access_key: YYYYYYYYYY
-      bucket: sample_bucket
-      path_prefix: path/to/sample_file
+      in:
+        type: s3
+        access_key_id: XXXXXXXXXX
+        secret_access_key: YYYYYYYYYY
+        bucket: sample_bucket
+        path_prefix: path/to/sample_file
+
+Data Connector for Amazon S3 imports all files that match with the specified prefix.
+(e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
 
 ## Step2: Guess Formart in the File (load.yml)
 
@@ -37,29 +41,31 @@ If you open up `load.yml`, you'll see guessed file format definitions including 
 
     :::yaml
     config:
-      type: s3
-      access_key_id: XXXXXXXXXX
-      secret_access_key: YYYYYYYYYY
-      bucket: sample_bucket
-      path_prefix: path/to/sample_file
-      parser:
-        charset: UTF-8
-        newline: CRLF
-        type: csv
-        delimiter: ','
-        quote: '"'
-        escape: ''
-        skip_header_lines: 1
-        columns:
-        - name: id
-          type: long
-        - name: company
-          type: string
-        - name: customer
-          type: string
-        - name: created_at
-          type: timestamp
-          format: '%Y-%m-%d %H:%M:%S'
+      in:
+        type: s3
+        access_key_id: XXXXXXXXXX
+        secret_access_key: YYYYYYYYYY
+        bucket: sample_bucket
+        path_prefix: path/to/sample_file
+        parser:
+          charset: UTF-8
+          newline: CRLF
+          type: csv
+          delimiter: ','
+          quote: '"'
+          escape: ''
+          skip_header_lines: 1
+          columns:
+          - name: id
+            type: long
+          - name: company
+            type: string
+          - name: customer
+            type: string
+          - name: created_at
+            type: timestamp
+            format: '%Y-%m-%d %H:%M:%S'
+      out: {}
 
 Then you can preview how the system will parse the file by `preview` command.
 
@@ -78,17 +84,40 @@ If the system detects your column name or type unexpectedly, please modify `load
 
 ## Step3: Execute Load Job
 
-Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored.
+Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
 
 It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
+If the option was not given, Data Connector choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp`.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
+
+NOTE: At this moment Data Connector does not sort records at server side. To utilize time based partition effectively please sort records in files beforehand. This restriction is solved in near future.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl
+
+## Mode (append/replace)
+
+You can specify file import mode in `out` section of seed.yml.
+
+    :::yaml
+    config:
+      in:
+        type: s3
+        ...
+      out:
+        mode: replace
+
+### append (default)
+
+This is the default mode. The imported records are appended to the target table.
+
+### replace
+
+If the target table already exists, the rows of the existing table are replaced with imported records.
 
 ## Scheduled execution
 
@@ -154,15 +183,16 @@ You can see the list of currently scheduled entries by `td connector:list`.
     Table    : td-sample_table
     Config
     ---
-    type: s3
-    access_key_id: XXXXXXXXXX
-    secret_access_key: YYYYYYYYYY
-    endpoint: s3.amazonaws.com
-    bucket: sample_bucket
-    path_prefix: path/to/sample_
-    parser:
-      charset: UTF-8
-      ...
+    in:
+      type: s3
+      access_key_id: XXXXXXXXXX
+      secret_access_key: YYYYYYYYYY
+      endpoint: s3.amazonaws.com
+      bucket: sample_bucket
+      path_prefix: path/to/sample_
+      parser:
+        charset: UTF-8
+        ...
 
 `td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
 
