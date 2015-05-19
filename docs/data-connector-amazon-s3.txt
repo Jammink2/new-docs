@@ -117,7 +117,7 @@ You can specify file import mode in `out` section of seed.yml.
 
 This is the default mode. The imported records are appended to the target table.
 
-### replace
+### replace (In td 0.11.10 and later)
 
     :::yaml
     config:
