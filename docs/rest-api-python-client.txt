@@ -43,9 +43,9 @@ The example below issues a query from a Python program. The query API is asynchr
     import time
     apikey = os.getenv("TD_API_KEY")
     with tdclient.Client(apikey) as client:
-        job = client.query("testdb", "SELECT COUNT(1) FROM www_access")
-        while not job.finished():
-            time.sleep(2)
+        job = client.query("sample_datasets", "SELECT COUNT(1) FROM www_access")
+        # sleep until job's finish
+        job.wait()
         for row in job.result():
             print(row)
 
