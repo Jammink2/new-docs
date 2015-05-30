@@ -1,0 +1,151 @@
+# Rating prediction by Matrix Factorization
+
+First of all, make sure that your Treasure Data cluster is HDP2, not CDH4.
+Matrix Factorization is only supported in the up-to-date HDP2 cluster.
+HDP2 is allocated for users who signed Treasure Data after Feb 2015. CDH4 is allcoated for the others.
+
+NOTE: please ask our customer support to use HDP2 if you get an error.
+
+## Data preparation
+
+Download [ml-20m.zip](http://grouplens.org/datasets/movielens/) and unzip it.
+And, create database and importing raw rating data into TreasureData from CSV.
+`--time-value` is used to add a dummy time column, that is required in Treasure Data, for each row.
+
+
+    $ td db:create movielens20
+    $ td table:create movielens20m ratings
+    $ td import:auto --format csv --column-header --time-value date +%s --auto-create movielens20m.ratings ./ratings.csv
+
+Preparation for making training/testing data from the original table.
+
+
+## Training
+
+Calculate the mean rating in the training dataset.
+
+    $ td table:create movielens20m ratings2
+
+    $ td query -w -x -d movielens20m "
+    INSERT OVERWRITE TABLE ratings2 
+    SELECT 
+      rand(31) as rnd, 
+      userid, 
+      movieid, 
+      rating 
+    FROM 
+      ratings
+    "
+
+Made 80% for training and 20% for testing. 
+
+
+    $ td table:create movielens20m training
+
+    $ td query -x --type hive -d movielens20m "
+      INSERT OVERWRITE TABLE training 
+      SELECT * FROM ratings2 
+      ORDER BY rnd DESC 
+      LIMIT 16000000
+    "
+
+Note: Please set `v` columns off for `ratings2` through Web console to use `SELECT *` in the `INSERT INTO`.
+
+    $ td table:create movielens20m testing
+
+    $ td query -x --type hive -d movielens20m "
+    INSERT OVERWRITE TABLE testing 
+      SELECT * FROM ratings2 
+      ORDER BY rnd ASC 
+      LIMIT 4000263
+    "
+
+
+## Training
+
+Calculate the mean rating in the training dataset.
+
+
+    td query -w --type presto -d movielens20m "
+      SELECT AVG(rating) FROM training
+    "
+
+    > 3.52560165625 
+
+The above average value used in the following queries.
+
+Run training of Matrix Factorization. 
+Result output to TD (--result) feature is not recommended for issuing the following query.
+Use `INSERT INTO table` statement instead.
+
+    $ td table:create movielens20m sgd_model_f20
+
+    $ td query -x --type hive -d movielens20m "
+        WITH training_amplified AS ( 
+        SELECT 
+           AMPLIFY(3, CAST(userid AS INT), CAST(movieid AS INT), rating) AS (userid, movieid, rating) 
+        FROM 
+           training 
+        ) 
+        INSERT OVERWRITE TABLE sgd_model_f20 
+        SELECT 
+          idx, 
+          array_avg(u_rank) as Pu, 
+          array_avg(m_rank) as Qi, 
+          avg(u_bias) as Bu, 
+          avg(m_bias) as Bi 
+        FROM ( 
+          SELECT train_mf_sgd(CAST(userid as int), CAST(movieid AS INT), rating, '-factor 20 -mu 3.52560165625 -iter 50') AS (idx, u_rank, m_rank, u_bias, m_bias) 
+          FROM training_amplified 
+        ) t 
+        GROUP BY idx
+    "
+
+Currently, the signature of train_mf_sgd is `train_mf_sgd(int userid, int itemid, numeric rating [, string options])`. We will accept any numeric types in the next version (v0.3.2) of Hivemall.
+
+Please avoid 
+
+    ERROR metastore.RetryingHMSHandler: MetaException(message:NoSuchObjectException(message:Function xxxxx.train_mf_sgd does not exist))
+
+in logs. It is not a logging issue ([Hive 0.13 bug](https://issues.apache.org/jira/browse/HIVE-6538)) and not a problem.
+
+
+## Predict 
+
+    $ td table:create movielens20m sgd_predict_f20
+
+    $ td query -x --type hive -d movielens20m "
+      INSERT OVERWRITE TABLE sgd_predict_f20 
+      SELECT 
+          t2.actual, 
+          mf_predict(if(size(t2.Pu)=0,null,t2.Pu),if(size(p2.Qi)=0,null,Qi), t2.Bu, p2.Bi, 3.52560165625) as predicted 
+      FROM ( 
+          SELECT 
+            t1.userid, 
+            t1.movieid, 
+            t1.rating as actual, 
+            p1.Pu, 
+            p1.Bu 
+          FROM 
+            testing t1 LEFT OUTER JOIN sgd_model_f20 p1 
+            ON (t1.userid = p1.idx) 
+      ) t2 
+      LEFT OUTER JOIN sgd_model_f20 p2 
+      ON (t2.movieid = p2.idx)
+    "
+
+NOTE: if(size(xxx)=0,null,xxx) is just a workaround and will be fixed to avoid it.
+
+## Evaluate (computes MAE and RMSE)
+
+    $ td query -w --type hive -d movielens20m "
+      SELECT 
+        MAE(predicted, actual) AS mae, 
+        RMSE(predicted, actual) AS rmse 
+      FROM sgd_predict_f20
+    "
+
+ mae                | rmse               
+--------------------|--------------------
+ 0.6123907679836259 | 0.8027164481776642 
+

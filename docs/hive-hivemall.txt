@@ -25,6 +25,7 @@ Hivemall provides machine learning functionality as well as feature engineering 
 ### Recommendation
 
 - Matrix Factorization (sgd, adagrad)
+  - Example: [Rating prediction by Matrix Factorization](movielens_20m)
 - Minhash (LSH with jaccard index)
 
 ### k-Nearest Neighbor
