@@ -1,0 +1,101 @@
+# Presto Goodies
+
+This documents collects Presto's features that are convenient, useful, cool or any combination of those.
+
+## May the WITH Clause be with you
+
+The WITH clause is useful for nested queries. For example, consider the following query:
+
+    :::sql
+    SELECT a, b, c FROM (
+      SELECT a, MAX(b) AS b, MIN(c) AS c FROM tbl GROUP BY a
+    ) tbl_alias 
+
+The same query can be written with the WITH clause as follows:
+
+    :::sql
+    WITH tbl_alias AS (SELECT a, MAX(b) AS b, MIN(c) AS c FROM tbl GROUP BY a)
+    SELECT a, b, c FROM tbl_alias
+
+Notice that the query has been "de-nested".
+
+Multiple subqueries with WITH. Each subquery should be delimited by ",".
+
+    :::sql
+    WITH tbl1 AS (SELECT a, MAX(b) AS b, MIN(c) AS c FROM tbl GROUP BY a),
+         tbl2 AS (SELECT a, AVG(d) AS d FROM another_tbl GROUP BY a)
+    SELECT tbl1.*, tbl2.* FROM tbl1 JOIN tbl2 ON tbl1.a = tbl2.a
+
+## VALUES is good for prototyping
+
+If you want to quickly test Presto syntax, you can use VALUES to create a table on the fly.
+
+   :::sql
+   SELECT a, b, c FROM (
+     VALUES (1, 2.0, 'x'),(3, 4.0, 'y'),(5, 6.0, 'z')
+   ) tbl (a, b, c)
+
+The above query creates the following table
+
+<table>
+  <tr><th>a</th><th>b</th><th>c</th></tr>
+  <tr><td>1</td><td>2.0</td><td>'x'</td></tr>
+  <tr><td>3</td><td>4.0</td><td>'y'</td></tr>
+  <tr><td>5</td><td>6.0</td><td>'z'</td></tr>
+</table>
+
+## There is no EXCEPT, except you can emulate it
+
+Presto does NOT support EXCEPT currently. That said, EXCEPT can be emulated as follows
+
+Suppose that tbl1 looks like this:
+
+
+<table>
+  <tr><th>a</th><th>b</th><th>c</th></tr>
+  <tr><td>1</td><td>2.0</td><td>'x'</td></tr>
+  <tr><td>3</td><td>4.0</td><td>'y'</td></tr>
+  <tr><td>5</td><td>6.0</td><td>'z'</td></tr>
+</table>
+
+Suppose that tbl2 looks like this:
+
+
+<table>
+  <tr><th>a</th><th>b</th><th>c</th></tr>
+  <tr><td>1</td><td>2.0</td><td>'x'</td></tr>
+  <tr><td>3</td><td>4.0</td><td>'y'</td></tr>
+</table>
+
+Then, you can emulate `tbl1 EXCEPT tbl2` as follows:
+
+    :::sql
+    WITH tbl3 AS (
+      SELECT 1 AS tbl_id, a, b, c FROM tbl1
+      UNION ALL
+      SELECT 2 AS tbl_id, a, b, c FROM tbl2
+    )
+    SELECT a, b, c FROM tbl3 GROUP BY a, b, c HAVING MAX(tbl_id) = 1
+
+which returns the following:
+
+<table>
+  <tr><th>a</th><th>b</th><th>c</th></tr>
+  <tr><td>5</td><td>6.0</td><td>'z'</td></tr>
+</table>
+
+Essentially, you are concatenating tbl1 and tbl2, groupin by all columns of interest, then removing the rows that appear in tbl2 (This is done by `HAVING MAX(tbl_id) = 1`)
+
+## INTERSECTION can be emulated, too
+
+With tbl1 and tbl2 same as before, the following query
+
+    :::sql
+    WITH tbl3 AS (
+      SELECT 1 AS tbl_id, a, b, c FROM tbl1
+      UNION ALL
+      SELECT 2 AS tbl_id, a, b, c FROM tbl2
+    )
+    SELECT a, b, c FROM tbl3 GROUP BY a, b, c HAVING MAX(tbl_id) > MIN(tbl_id)
+
+returns the intersection.
