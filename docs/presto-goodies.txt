@@ -84,7 +84,7 @@ which returns the following:
   <tr><td>5</td><td>6.0</td><td>'z'</td></tr>
 </table>
 
-Essentially, you are concatenating tbl1 and tbl2, groupin by all columns of interest, then removing the rows that appear in tbl2 (This is done by `HAVING MAX(tbl_id) = 1`)
+Essentially, you are concatenating tbl1 and tbl2, grouping by all columns of interest, then removing the rows that appear in tbl2 (This is done by `HAVING MAX(tbl_id) = 1`)
 
 ## INTERSECTION can be emulated, too
 
