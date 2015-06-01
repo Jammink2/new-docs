@@ -85,6 +85,8 @@ Then you can preview how the system will parse the file by `preview` command.
 
 If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
 
+NOTE: Currently, DataConnector supports "boolean", "long", "double", "string", "timestamp" to parse.
+
 ## Step3: Execute Load Job
 
 Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
