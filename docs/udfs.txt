@@ -336,4 +336,9 @@ This UDF applies URL decoding for a given string.
 
 ## Hivemall
 
-Treasure Data bundles [Hivemall](https://github.com/myui/hivemall) v0.3.1, the scalable machine learning library for Hive.
+Treasure Data bundles [Hivemall](https://github.com/myui/hivemall), the scalable machine learning library for Hive.
+If you want to see Hivemall version, please use the following query.
+
+    :::sql
+    SELECT hivemall_version()
+
