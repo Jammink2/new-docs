@@ -75,12 +75,6 @@ Here's a sample Java program that executes a SELECT statement. This program coun
 
       public static void main(String[] args) throws Exception {
         loadSystemProperties();
-        try {
-          Class.forName("com.treasure_data.jdbc.TreasureDataDriver");
-        } catch (ClassNotFoundException e) {
-          e.printStackTrace();
-          System.exit(1);
-        }
 
         Connection conn = DriverManager.getConnection(
           "jdbc:td://<%= @env[:api_endpoint] %>/testdb;useSSL=true",
