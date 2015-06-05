@@ -52,4 +52,4 @@ but this setting does not affect td import:jar_update, which always updates the 
 The bulk import tool use a TZ environment variable.If you think your bulk import time zone is wrong, please check your TZ environment variable.
 
 ## Encoding Shift_JIS
-When you encoding shift_jis you set encoding option to '-e Windows-31j'.
+When you encoding shift_jis you set encoding option to '-e Windows-31J'.
