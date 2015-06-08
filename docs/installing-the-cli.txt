@@ -4,7 +4,7 @@
 
 Install the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) to set up your local workstation with `td`, the Treasure Data command-line client.
 
-The CLI is distributed in different ways to suit the target environment best:
+The CLI is distributed in different ways to best suit the target environment:
 
 1. Windows and Mac OSX as a prepackaged installer called the **Toolbelt**;
 2. Linux (Ubuntu Precise and Lucid, RedHat, CentOS) as part of the **td-agent** package;
@@ -13,35 +13,33 @@ The CLI is distributed in different ways to suit the target environment best:
 
 Please use option 3 if are already familiar with Ruby and already have it installed in your system.
 
-### Windows (64 bits only)
+### Windows (64-bit only)
 
 You can download the CLI as a **Toolbelt installer** from here: [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
 
-Double click it to begin the installation. This package contains all the necessary dependencies to
-allow the CLI to run on a Windows system and therefore includes a v1.9.3 version of the Ruby environment which will be installed on the system as part of the process.
+Double click it to begin the installation. This package contains all the necessary dependencies to allow the CLI to run on a Windows system and therefore includes a v1.9.3 version of the Ruby environment which will be installed on the system as part of the process.
 
 ### Mac OSX (v10.8.5 - Mountain Lion - or later)
 
 You can download the CLI as a **Toolbelt installer** from here: [Toolbelt Installer for Mac OSX](http://toolbelt.treasuredata.com/mac).
 
-Double click it to begin the installation. This package contains all the necessary dependencies to
-allow the CLI to run on a Windows system and therefore includes a v2.0 version of the Ruby environment which will be installed on the system as part of the process.
+Double click it to begin the installation. This package contains all the necessary dependencies to allow the CLI to run on a Mac system and therefore includes a v2.0 version of the Ruby environment which will be installed on the system as part of the process.
 
 ### Ubuntu & Debian
 
 The CLI is distributed on Linux as part of the `td-agent` package. For more information about <tt>td-agent</tt>, our streaming log collector, refer to the [Streaming Import Overview](td-agent) page.
 
     :::term
-    # 14.04 Trusty (64bit only)
+    # 14.04 Trusty (64-bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
     # 12.04 Precise
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
     # 10.04 Lucid
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
     
-    # Debian Squeeze (64bit only)
+    # Debian Squeeze (64-bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
-    # Debian Wheezy (64bit only)
+    # Debian Wheezy (64-bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-wheezy-td-agent2.sh | sh
 
 This package contains all the necessary dependencies to allow the `td-agent` and `td CLI` to run on a Linux system, including the version of Ruby these tools are guaranteed to work with.
@@ -83,14 +81,14 @@ Depending on how the CLI was originally installed on your machine, there are dif
 
 ### Mac OSX or Windows
 
-If you downloaded the CLI as a Toolbelt installer package (.pkg file) for Mac OSX or as a Toolbelt installer executable for Windows (64 bit support only) from the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) website, the Toolbelt CLI is enabled with ability to auto update itself.
+If you downloaded the CLI as a Toolbelt installer package (.pkg file) for Mac OSX or as a Toolbelt installer executable for Windows (64-bit support only) from the [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/) website, the Toolbelt CLI is enabled with the ability to auto-update itself.
 
-Whenever a command is invoked from the CLI, the program will check whether a more updated version exists: if so it will download the updated version and install it in the background. The CLI will check for an updated version every hour. The user can at any time trigger an auto update with the following command:
+Whenever a command is invoked from the CLI, the program will check whether a new version exists and will download and install the updated version in the background. The CLI will check for an updated version every hour. The user can at any time trigger an update with the following command:
 
     :::term
     $ td update
 
-The auto update feature is available as of v0.10.77. If you are running an earlier version (please check the version with the `td --version` command) please upgrade as soon as possible by installing a more recent package from [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+The auto-update feature is available as of v0.10.77. If you are running an earlier version (please check the version with the `td --version` command), please upgrade as soon as possible by installing a more recent package from [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
 The `td update` command is just a placeholder for the following other installation methods.
 
