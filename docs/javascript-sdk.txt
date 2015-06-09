@@ -83,6 +83,7 @@ You can also track your custom events in addition to page views by using `trackE
 ## Appendix: API Endpoint
 
 JavaScript SDK is hitting our REST API endpoint to import the data. Note that this will take 5 minutes to reflect in the database because of the server-side buffering.
+Event collector handles several data types. ‘k’ is one of them. It can handle multiple records
 
     :::term
     # Single Record
