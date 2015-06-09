@@ -51,8 +51,8 @@ Presto does not currently support cost-based JOIN optimizations, meaning JOINs a
     JOIN
       small_table
 
-## INSERT Statements are NOT Supported
+## INSERT OVERWRITE Statements are NOT Supported
 
-Presto does not currently support INSERT Statements, meaning INSERTs are still in development. Please use Result Output feature on Presto or INSERTs on Hive.
+Presto does not currently support INSERT OVERWRITE Statements. Please delete table before INSERT INTO.
 
 
