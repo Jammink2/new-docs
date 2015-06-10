@@ -13,3 +13,4 @@ Treasure Data has pre-built integration with a couple of common data sources. By
 ## List of Data Connectors
 
 - [Data Connnector for Amazon S3](data-connector-amazon-s3)
+- [Data Connnector for JIRA](data-connector-jira)

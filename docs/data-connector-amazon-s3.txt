@@ -5,7 +5,6 @@
 NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
 
   * Basic knowledge of Treasure Data
-  * Basic knowledge of AWS Elastic Beanstalk
 
 ## Install td command v0.11.9 or Later
 
