@@ -1,31 +1,32 @@
 # IP Whitelist
 
-IP Whitelist can be set for each account. It restricts access to one's TD account from a 1 or more IP addresses.
+IP Whitelist can be set for each account but only by an admin or account owner. It restricts access to one's TD account from a 1 or more IP addresses.
 
 ## Settings
 
-IP Whitelist can be set from within one's own user [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
+IP Whitelist can be set from within an admin or account owner's user [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
 
-When enabled, an input form appears where the user can enter one or more IP addresses (and corresponding mask) that he want to allow access to the Console and/or REST APIs. Any address that doesn't match one of the allow addresses will be rejected access to the Console and APIs.
+When enabled, an input form appears where the admin or account owner can enter one or more IP addresses (and corresponding mask) that he want to allow access to the Console and/or REST APIs. Any address that doesn't match one of the allow addresses will be rejected access to the Console and APIs.
 
-<img style="margin:auto" src="/images/ipwhitelist.png" alt="IP Whitelist"/>
+<img style="margin:auto" src="/images/new_ipwhitelist.png" alt="IP Whitelist"/>
 
 NOTE: Care must be taken in setting up IP address whitelist, as it may barring the user any further access to the account.<br/>
 If any problem or misconfiguration occurs, please contact our Support team at support@treasure-data.com.
 
 ## Permissions
 
-All users can setup IP whitelist for their own user account.<br/>
+Only admins and account owners can setup IP whitelist for their own user account.<br/>
 Additionally, Administrators can modify the whitelists of non-Admin users but cannot modify whitelists of other Administrator users.<br/>
 Account Owners can modify IP whitelists of all users in the account.
+Restricted Users cannot modify any whitelists in the account, including their own.
 
 The table below summarizes these concepts:
 
-User type | Account Owner | Administrator | Normal User | Self
+User type | Account Owner | Administrator | Restricted User | Self
 :-------------------: | :-------: | :-------: | :-------: | :-------:
 Account Owner | OK | OK | OK | OK
 Administrator | NG | NG | OK | OK
-Normal User   | NG | NG | NG | OK
+Normal User   | NG | NG | NG | NG
 
 ## Exception
 
