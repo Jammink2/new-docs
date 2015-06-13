@@ -23,6 +23,7 @@ The Treasure Data permission system have 3 levels built in:
   Restricted users can be granted either **Full Access**, **Query only**, or **Import only** access level to any of the
   databases in the account independently. Please see the table below for details). We modeled these three access levels
   to mimic 'read & write', 'read', and 'write' permissions with some exception depicted in the tables below.
+  Restricted users cannot change their whitelist settings.
 
 ## REST APIs Access
 
