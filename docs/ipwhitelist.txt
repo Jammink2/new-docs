@@ -1,28 +1,28 @@
 # IP Whitelist
 
-IP Whitelist can be set for each account but only by an admin or account owner. It restricts access to one's TD account from a 1 or more IP addresses.
+IP Whitelist can be set for each account but only by an Account Owner or Administrator. It restricts access to one's TD account from a 1 or more IP addresses.
 
-In addition, it is possible for an admin or an account owner to set a specific user IP whitelist for a specific account.
+In addition, it is possible for an admin or an Account Owner to set a specific user IP whitelist for a specific account.
 
 ## Settings
 
-IP Whitelist can be set from within an admin or account owner's user [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
+IP Whitelist can be set from within an Account Owner or Administrator's user [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
 
-When enabled, an input form appears where the admin or account owner can enter one or more IP addresses (and corresponding mask) that he want to allow access to the Console and/or REST APIs. Any address that doesn't match one of the allow addresses will be rejected access to the Console and APIs.
+When enabled, an input form appears where an Account Owner or Administrator can enter one or more IP addresses (and corresponding mask) to grant access to the Console and/or REST APIs. Any address that doesn't match one of the allow addresses will be rejected access to the Console and APIs.
 
 <img style="margin:auto" src="/images/newipwhitelist.png" alt="IP Whitelist"/>
 
-All users in a given account use the account-defaults unless a custom whitelist is specified for that user by an account owner or admin. 
+All users in a given account use the account-defaults unless a custom whitelist is specified for that user by an Account Owner or Administrator. 
 
 <img style="margin:auto" src="/images/useripwhitelist.png" alt="User IP Whitelist"/>
 
-NOTE: Care must be taken in setting up IP address whitelist, as it may barring the user any further access to the account.<br/>
-If any problem or misconfiguration occurs, please contact our Support team at support@treasure-data.com.
+NOTE: Care must be taken in setting up IP Whitelist, as it may bar the user from having any further access to the account.<br/>
+If any problem or misconfiguration occurs, please contact our support team at support@treasure-data.com.
 
 ## Permissions
 
-Only admins and account owners can setup IP whitelist for their own user account.<br/>
-Additionally, Administrators can modify the whitelists of non-Admin users but cannot modify whitelists of other Administrator users.<br/>
+Only Administrators and Account Owners can set up IP Whitelist for their own user accounts.<br/>
+Additionally, Administrators can modify the whitelists of non-Administrator users but cannot modify whitelists of other Administrator users.<br/>
 Account Owners can modify IP whitelists of all users in the account.
 Restricted Users cannot modify any whitelists in the account, including their own.
 
