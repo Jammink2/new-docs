@@ -1,32 +1,28 @@
 # Education Videos
 
-Here's a lit of Videos to learn more about Treasure Data Service.
-
 ## Service Overview & Concepts
-
-This video introduces Treasure Data Service's overview and concepts.
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/lFxJgTD5eqw?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
-## Choosing the Right Method to Collect Data
+## Collecting Data
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/vCBplWs19Q4?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
-## How to set up JavaScript SDK
+## Setting up JavaScript SDK
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/0bbxUzPKH3E?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
-## Treasure Agent Configuration
+## Configuring Treasure Agent
 
 This video describes how to install and configure [Treasure Agent](td-agent) in 3 minutes.
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/aepa66ykguc?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
-## How to set up iOS SDK
+## Setting up iOS SDK
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/sgcDNeb1O74?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
-## How to set up Android SDK
+## Setting up Android SDK
 
 <center><iframe width="640" height="440" src="//www.youtube-nocookie.com/embed/nVwTMABEouI?rel=0&theme=light&modestbranding=1&showinfo=0" frameborder="1" allowfullscreen></iframe></center><br/>
 
