@@ -40,7 +40,6 @@ The example below issues a query from a Python program. The query API is asynchr
     :::python
     import os
     import tdclient
-    import time
     apikey = os.getenv("TD_API_KEY")
     with tdclient.Client(apikey) as client:
         job = client.query("sample_datasets", "SELECT COUNT(1) FROM www_access")
