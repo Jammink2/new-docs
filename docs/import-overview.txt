@@ -16,12 +16,12 @@ Here's a guideline to decide which import mechanism to use.
 
 #### 1) Streaming Import
 
-Importing continuously generated data from live servers. [Treasure Agent](td-agent) is necessary to be installed on the servers to collect streaming data and upload it to the Treasure Data cloud storage.
+Importing continuously generated data from live servers. [Treasure Agent](td-agent) must be installed on the servers to collect streaming data and upload it to Treasure Data cloud storage.
 
 #### 2) App / Mobile SDKs
 
-Importing records directly from Web or Mobile applications using Treasure Data's SDKs. Your developer needs to modify your applications to embed our SDKs ([JavaScript](/articles/javascript-sdk), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
+Importing records directly from Web or Mobile applications using Treasure Data's SDKs. Your developer must embed our SDKs in your applications ([JavaScript](/articles/javascript-sdk), [Mobile](/categories/mobile-sdks), [App](/categories/app-sdks) SDKs).
 
 #### 3) Bulk Import
 
-Importing a large amount of existing data (CSV, TSV, etc) in a reliable way from your servers or PCs. [Bulk Import Tool](bulk-import) needs to be installed on your machine. This method takes into account possible network transfer failure between your side and the cloud, and it has sophisticated retrying mechanism.
+Importing a large amount of existing data (CSV, TSV, etc) in a reliable way from your servers or PCs. [Bulk Import Tool](bulk-import) must be installed on your machine. This method takes into account possible network transfer failure between your side and the cloud, and it has a sophisticated retry mechanism.

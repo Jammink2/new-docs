@@ -2,7 +2,7 @@
 
 With [Treasure Data](http://www.treasuredata.com/), you can analyze apache logs on the cloud. You can forget about the servers, storage, and infrastructure needed to store your billions of records and focus on analyzing your data instead.
 
-This article explains how to import Apache logs using `td-agent`. The basic idea is that td-agent (1) continuously accepts new Apache logs, (2) parses the logs, and (3) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
+This article explains how to import Apache logs using `td-agent`. The basic idea is that td-agent 1.) continuously accepts new Apache logs, 2.) parses the logs, and 3.) periodically uploads the logs into the cloud. td-agent’s `tail` source type is used.
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">flu
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-In order to import Apache logs with `td-agent`, first add the following lines to your `td-agent.conf` file. Please note that the database and table names must be specified using the `tag` parameter.
+In order to import Apache logs with `td-agent`, first add the following lines to your `td-agent.conf` file. Note that the database and table names must be specified using the `tag` parameter.
 
     :::text
     # tail apache access_log

@@ -2,7 +2,7 @@
 
 Leading Ad-Network companies have used [Treasure Data](http://www.treasuredata.com/) to store all of their impression/click/bidding logs to implement their reporting and optimization features.
 
-This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable adnetworks and adexchanges instead of spending valuable human / IT resources maintaining a data analytics infrastructure.
+This article will explain how to record logs from your applications and calculate some basic metrics using Treasure Data. Our platform lets your team focus on building profitable ad networks and ad exchanges instead of spending valuable human/IT resources maintaining a data analytics infrastructure.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ This article will explain how to record logs from your applications and calculat
 
 `td-agent` is a versatile daemon program that can process various kinds of streaming log data. `td-agent` is developed and maintained by [Treasure Data, Inc.](http://www.treasuredata.com/).
 
-When an application posts logs to td-agent, td-agent continuously 1) receives the data, 2) buffers it, 3) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
+When an application posts logs to td-agent, td-agent continuously 1.) receives the data, 2.) buffers it, 3.) and uploads it into the cloud. The data is automatically compressed before it is uploaded into the cloud.
 
 ## Installing td-agent
 
