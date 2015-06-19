@@ -45,7 +45,7 @@ NOTE: td-agent is fully open-sourced under the <a href="http://fluentd.org/">flu
 
 ## Modifying /etc/td-agent/td-agent.conf
 
-In order to import Apache logs with `td-agent`, first add the following lines to your `td-agent.conf` file. Note that the database and table names must be specified using the `tag` parameter.
+In order to import Apache logs with `td-agent`, first add the following lines to your `td-agent.conf` file. Noteq that the database and table names must be specified using the `tag` parameter.
 
     :::text
     # tail apache access_log
