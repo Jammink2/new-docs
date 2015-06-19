@@ -1,0 +1,260 @@
+# How to use Resource Pool for Hive 0.10 (hadoop1) and Hive 0.13 (hadoop2)
+
+## Background
+
+We are updating our Hadoop versions. As a result, Hive'v version will go up from v0.10 to v0.13.
+
+There will be many benefits to this upgrade:
+
+- New features: window functions, implicit JOINs, WITH clause, etc.
+- Higher stability and better performace
+
+However, this also brings about significant changes to Treasure Data's internals, and the user may see incompatibilities for existing Hive queries.
+
+This page explains how you can self-diagnose their existing queries. If further assistance is needed, please contact us at support@treasuredata.com
+
+NOTE: Hive 0.10 and Hive 0.13 use difference job queues. Hence, running queries on the new cluster does not impact the maximum concurrent job limit.
+
+## How to use Resource Pools
+
+To confirm whether your queries work well or not with new hadoop/hive version, you can specify the _resource pool_ parameter.  Resource pools control on which cluster the query will be executed.
+
+There are two resource pools:
+
+* `hadoop1`: incumbent, "old" cluster, corresponding to Hive v0.10.
+* `hadoop2`: newly deployed cluster, corresnponding to Hive v0.13.
+
+You can assign a resource pool for each query to specify which cluster that query uses. `hadoop1` **will be disabled when the upgrade completes on August 31, 2015.**
+
+### Web console & scheduled queries
+
+Use the query hint `@TD` in the comment of a Hive query statement.
+
+Ex.
+
+
+    :::text
+    -- @TD pool_name: hadoop2
+    select count(*) from www_access where code='200'
+
+### td command
+
+You can use pool name on td command version 0.11.10 or later
+
+Ex.
+
+    :::text
+    td query -d sample_db -w --pool-name hadoop2 "select count(*) from wwww_access where host like '%100%'"
+
+
+### REST API
+
+Add "pool_name=hdp2" to URL parameter.
+
+Ex.
+
+    :::text
+    https://api.treasuredata.com/v3/job/issue/hive/sample_datasets?query=SELECT%20*%20FROM%20www_access%20WHERE%20code%3D200&priority=0&pool_name=hadoop2
+
+### td-client-ruby
+
+Ex.
+
+    :::text
+    require 'td'
+    require 'td-client'
+     
+    TD_API_KEY = 'APIKEY'
+    
+    cln = TreasureData::Client.new(TD_API_KEY, {ssl: true})
+    
+    job = cln.query('sample_datasets', 'SELECT COUNT(1) FROM www_access where host like "%100%"', nil, nil, nil, :pool_name=>'hadoop2')
+     
+    until job.finished?
+      sleep 2
+      job.update_progress!
+    end
+    
+    job.update_status!
+    puts job.result.to_json
+
+
+## Upgrade Steps
+
+1. Please check behaviors of your batch queries by using td command
+2. Please Check peformance of your batch queries after we provide same resources as Hive0.10
+3. We change default version from Hive0.10 to Hive0.13
+
+## Major Changelog
+
+### The optional keyword "AS" can be included before the subquery name.
+
+The following query is Hive0.10 = NG, Hive0.13 = OK.
+
+    :::text
+    SELECT 
+      t3.size
+    FROM (
+      SELECT 
+        size
+      FROM
+        sample_db.www_access
+    ) AS t3
+
+### Implicit JOIN support
+
+Implicit join allows the FROM clause to join a comma-separated list of tables, omitting the JOIN keyword.
+
+    :::text
+    SELECT * FROM table1 t1, table2 t2, table3 t3 WHERE t1.id = t2.id AND t2.id = t3.id AND t1.zipcode = '02535';
+
+
+### Unqualified column references
+
+Unqualified column references are supported in join conditions.
+
+```
+SELECT k1, v1, k2, v2 FROM a JOIN b ON k1 = k2
+```
+
+### IN/NOT IN/EXISTS/NOT EXISTS operators are supported using subqueries
+
+LEFT SEMI JOIN implements the uncorrelated IN/EXISTS subquery semantics in an efficient way. The IN/NOT IN/EXISTS/NOT EXISTS operators are supported using subqueries so most of these JOINs don't have to be performed manually anymore. The restrictions of using LEFT SEMI JOIN is that the right-hand-side table should only be referenced in the join condition (ON-clause), but not in WHERE- or SELECT-clauses etc.
+
+    :::text
+    SELECT a.key, a.value FROM a WHERE a.key in (SELECT b.key FROM B);
+
+can be rewritten to:
+
+    :::text
+    SELECT a.key, a.val FROM a LEFT SEMI JOIN b ON (a.key = b.key)
+
+### Unions can also be used in a top-level query
+
+The following query is Hive0.10 = NG, Hive0.13 = OK.
+
+    :::text
+    SELECT name, id, category FROM source_table_1
+    UNION ALL
+    SELECT name, id, "Category159" as category FROM source_table_2
+
+### Outer Lateral Views
+
+    :::text
+    SELECT * FROM src LATERAL VIEW OUTER explode(array()) C AS a limit 10;
+
+
+### Subqueries in the WHERE Clause
+
+Some types of subqueries are supported in the WHERE clause.
+
+Ex1.
+
+    :::text
+    SELECT *
+    FROM A
+    WHERE A.a IN (SELECT foo FROM B);
+
+Ex2.
+
+    :::text
+    SELECT A
+    FROM T1
+    WHERE EXISTS (SELECT B FROM T2 WHERE T1.X = T2.Y)
+
+
+There are a few limitations:
+
+- These subqueries are only supported on the right-hand side of an expression.
+- IN/NOT IN subqueries may only select a single column.
+- EXISTS/NOT EXISTS must have one or more correlated predicates.
+- References to the parent query are only supported in the WHERE clause of the subquery.
+
+### Logical Operators
+
+- A IN (val1, val2, ...)
+    - Subqueries are supported in IN statements
+- A NOT IN (val1, val2, ...)
+  - Subqueries are supported in NOT IN statements.
+- [NOT] EXISTS (subquery)
+  - TRUE if the the subquery returns at least one row.
+
+### Mathematical Functions
+
+ Operator | Operand Type | Description |
+-----------:|:------------:|:------------|
+ DOUBLE | exp(DOUBLE a), exp(DECIMAL a) | Returns ea where e is the base of the natural logarithm. |
+ DOUBLE | ln(DOUBLE a), ln(DECIMAL a) | Returns the natural logarithm of the argument a. | 
+ DOUBLE | log10(DOUBLE a), log10(DECIMAL a) | Returns the base-10 logarithm of the argument a. | 
+ DOUBLE | log2(DOUBLE a), log2(DECIMAL a) | Returns the base-2 logarithm of the argument a. | 
+ DOUBLE | log(DOUBLE base, DOUBLE a) log(DECIMAL base, DECIMAL a) | Returns the base-base logarithm of the argument a. |
+ DOUBLE | sqrt(DOUBLE a), sqrt(DECIMAL a) | Returns the square root of a. | 
+ STRING | hex(BIGINT a) hex(STRING a) hex(BINARY a) | If the argument is an INT or binary, hex returns the number as a STRING in hexadecimal format. Otherwise if the number is a STRING, it converts each character into its hexadecimal representation and returns the resulting STRING. |
+ BINARY | unhex(STRING a) | Inverse of hex. Interprets each pair of characters as a hexadecimal number and converts to the byte representation of the number. | 
+ DOUBLE | sin(DOUBLE a), sin(DECIMAL a) | Returns the sine of a (a is in radians). | 
+ DOUBLE | asin(DOUBLE a), asin(DECIMAL a) | Returns the arc sin of a if -1<=a<=1 or NULL otherwise. | 
+ DOUBLE | cos(DOUBLE a), cos(DECIMAL a) | Returns the cosine of a (a is in radians). | 
+ DOUBLE | acos(DOUBLE a), acos(DECIMAL a) | Returns the arccosine of a if -1<=a<=1 or NULL otherwise. | 
+ DOUBLE | tan(DOUBLE a), tan(DECIMAL a) | Returns the tangent of a (a is in radians). |
+ DOUBLE | atan(DOUBLE a), atan(DECIMAL a) | Returns the arctangent of a. Decimal version added in Hive 0.13.0.
+ DOUBLE | degrees(DOUBLE a), degrees(DECIMAL a) | Converts value of a from radians to degrees. |
+ DOUBLE | radians(DOUBLE a), radians(DOUBLE a) | Converts value of a from degrees to radians. |
+ DOUBLE or INT | sign(DOUBLE a), sign(DECIMAL a) | Returns the sign of a as '1.0' (if a is positive) or '-1.0' (if a is negative), '0.0' otherwise. The decimal version returns INT instead of DOUBLE. |
+
+
+### Mathematical Functions and Operators for Decimal Datatypes
+
+Support decimal datatype in Hive
+
+### String Functions
+
+ Operator | Operand Type | Description |
+:-----------:|:------------:|:------------|
+ string | base64(binary bin) | Converts the argument from binary to a base 64 string. |
+ string | decode(binary bin, string charset) | Decodes the first argument into a String using the provided character set (one of 'US_ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. | 
+ binary | encode(string src, string charset) | Encodes the first argument into a BINARY using the provided character set (one of 'US_ASCII', 'ISO-8859-1', 'UTF-8', 'UTF-16BE', 'UTF-16LE', 'UTF-16'). If either argument is null, the result will also be null. | 
+ string | format_number(number x, int d) | Formats the number X to a format like '#,###,###.##', rounded to D decimal places, and returns the result as a string. If D is 0, the result has no decimal point or fractional part. ( float types and decimal type are unsupported)
+
+### Built-in Aggregate Functions (UDAF)
+
+ Operator | Operand Type | Description |
+:-----------:|:------------:|:------------|
+ array | collect_list(col) | Returns a list of objects with duplicates. |
+ INTEGER | ntile(INTEGER x) | Divides an ordered partition into x groups called buckets and assigns a bucket number to each row in the partition. This allows easy calculation of tertiles, quartiles, deciles, percentiles and other common summary statistics. |
+
+### Built-in Table-Generating Functions (UDTF)
+
+ Operator | Operand Type | Description |
+:-----------:|:------------:|:------------|
+ N rows | posexplode(ARRAY) | Behaves like explode for arrays, but includes the position of items in the original array by returning a tuple of (pos, value). |
+
+### Windowing and Analytics Functions
+
+Please see the detail in https://cwiki.apache.org/confluence/display/Hive/LanguageManual+WindowingAndAnalytics
+
+- Windowing functions
+    - LEAD
+        - The number of rows to lead can optionally be specified. If the number of rows to lead is not specified, the lead is one row.
+        - Returns null when the lead for the current row extends beyond the end of the window.
+    - LAG
+        - The number of rows to lag can optionally be specified. If the number of rows to lag is not specified, the lag is one row.
+        - Returns null when the lag for the current row extends before the beginning of the window.
+    - FIRST_VALUE
+    - LAST_VALUE
+- The OVER clause
+    - OVER with standard aggregates:
+        - COUNT
+        - SUM
+        - MIN
+        - MAX
+        - AVG
+    - OVER with a PARTITION BY statement with one or more partitioning columns of any primitive datatype.
+    - OVER with PARTITION BY and ORDER BY with one or more partitioning and/or ordering columns of any datatype.
+        - OVER with a window specification. Windows can be defined separately in a WINDOW clause. Window specifications support these standard options:
+- Analytics functions
+    - RANK
+    - ROW_NUMBER
+    - DENSE_RANK
+    - CUME_DIST
+    - PERCENT_RANK
+    - NTILE

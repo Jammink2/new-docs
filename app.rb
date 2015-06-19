@@ -106,7 +106,7 @@ end
 
 get '/robots.txt' do
   content_type 'text/plain'
-  "User-agent: *\nSitemap: /sitemap.xml\n"
+  "User-agent: *\nSitemap: /sitemap.xml\nDisallow: /articles/hadoop-upgrade-201506"
 end
 
 get '/sitemap.xml' do
