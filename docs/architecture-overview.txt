@@ -3,7 +3,7 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is a **Cloud Data Service**. Import your data instantly, and process them by issueing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storages and infrastructure ever again.
+Treasure Data is a **Cloud Data Service**. Import your data instantly, and process them by issuing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storage and infrastructure ever again.
 
 ## Why We Started Our Business?
 
@@ -11,7 +11,8 @@ Despite the increasing importance of data warehousing and analytics, most soluti
 
 ## Problems
 
-Overabundance of data is now a common problem across all industries, due to the proliferation of smart phones, social media, and sensors. Businesses today are trying to find valuable insights from their data. However, managing very large amounts of data has proven to be a challenge for many companies.
+Overabundance of data is now a ubiquitous problem across all industries, due to the proliferation of smart phones, social media, and sensors- not to mention sensors and IoT systems bringing in data with exponentially increasing volume and velocity. 
+Businesses today are trying to find valuable insights from their data. However, managing very large amounts of data has proven to be a challenge for many companies.
 
 This is known as the *Big Data Problem*:
 
@@ -47,11 +48,11 @@ Key features include:
 
 #### 1) Built-in Data Collector
 
-Treasure Data provides a data collection daemon, *[Treasure Agent](/articles/td-agent)*, which is installed in your existing infrastructure. td-agent collects records from various data sources and continuously uploads the data to Treasure Data's cloud storage.
+Treasure Data provides a data collection daemon, *[Treasure Agent](/articles/td-agent)*, which is installed in your existing infrastructure. Treasure Agent collects records from various data sources and continuously uploads the data to Treasure Data's cloud storage.
 
 #### 2) Distributed Columnar Storage
 
-All your data is stored in the cloud as a columnar data. This format achieves far better performance and compression compared to existing RDBMSs. We also believe that *your data is yours*: you can bulk-export your data at any time.
+All your data is stored in the cloud as columnar data. This format achieves far better performance and compression compared to existing RDBMSs. We also believe that *your data is yours*: you can bulk-export your data at any time.
 
 #### 3) SQL-Style Query with Parallel Execution
 
@@ -63,7 +64,7 @@ Treasure Data lets you analyze your data using a SQL-style language. The query i
 
 #### 5) 3rd Party BI/ETL Tools Connectivity
 
-Treasure Data also provides a standard [JDBC interface](jdbc-driver) for data transfer to existing (or future) BI tools. Custom coding and maintenance to link these environments with the primary data store is eliminated.
+Treasure Data also provides a standard [JDBC interface](jdbc-driver) for data transfer to existing (or future) BI tools. The need for custom coding and maintenance to link these environments with the primary data store is eliminated.
 
 #### 6) Curation and Support
 

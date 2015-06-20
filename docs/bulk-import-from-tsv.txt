@@ -11,7 +11,7 @@ First, please install the [toolbelt](command-line), which includes bulk loader p
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
+After the installation, the `td` command will be installed on your computer. Open up the terminal and type `td` to execute the command. Also, please ensure you have `java` as well. Execute the command `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -30,7 +30,7 @@ Suppose you have a file called <tt>data.tsv</tt> and its content looks like this
     host   log_name     date_time       method  url     res_code        bytes   referer user_agent
     64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846
 
-Next, please execute the following commands to upload the TSV file.
+Execute the following commands to upload the TSV file.
 
     $ td db:create my_db
     $ td table:create my_db my_tbl
@@ -41,7 +41,7 @@ Next, please execute the following commands to upload the TSV file.
       --time-format "%Y-%m-%d %H:%M:%S" \
       ./data.tsv
 
-NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
+NOTE: Because `td import:auto` runs MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 

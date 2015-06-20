@@ -1,10 +1,10 @@
 # Bulk Import Tips and Tricks
 
-This article describes some tips and tricks around the bulk improt.
+This article describes some tips and tricks for bulk import.
 
-## Using the proxy server
+## How to use a proxy server
 
-If you cannot upload, please first check if your network is using proxy. You can set proxy by setting the environment variables:
+If you cannot upload, please first check if your network is using a proxy. You can set the proxy by setting the environment variables:
 
     :::term
     # Windows:
@@ -12,7 +12,7 @@ If you cannot upload, please first check if your network is using proxy. You can
     # Other:
     $ export HTTP_PROXY="proxy_host:8080"
 
-## Increase performance through parallelism
+## How to increase performance through parallelism
 
 `td import:auto` supports two options to tune parallelism: <tt>\-\-parallel</tt> and <tt>\-\-prepare-parallel</tt>.
 
@@ -20,16 +20,17 @@ If you cannot upload, please first check if your network is using proxy. You can
     --parallel NUM                   upload in parallel (default: 2; max 8)
     --prepare-parallel NUM           prepare in parallel (default: 2; max 96)
 
-<tt>\-\-parallel</tt> option specifies how many threads to be used for uploading the data. If you observe bulk import tool is not saturating your network, please consider increasing the value of the <tt>\-\-parallel</tt> option.
+<tt>\-\-parallel</tt> specifies how many threads are to be used for uploading the data. If you observe that the bulk import tool is not saturating your network, you can increase the value of the <tt>\-\-parallel</tt> option.
 
-<tt>\-\-prepare-parallel</tt> option specifies the number of threads to be used to compress the data locally. Normally this number should match the number of CPU cores on your machine.
+<tt>\-\-prepare-parallel</tt> specifies the number of threads are to be used to compress the data locally. Normally, this number should match the number of CPU cores on your machine.
 
-## Specify time column for maximum query performance
+## How to specify time column for maximum query performance
 
-Please don't specify '<tt>0</tt>' if you don't have time column. Treasure Data is partitioning the data by time by default (See [Data Partitioning](data-partitioning)). It's recommended to always specify the time column, or specify the current time.
+Please don't specify '<tt>0</tt>' if you don't have a time column. Treasure Data partitions the data by time by default (See [Data Partitioning](data-partitioning)). 
+It's recommended to always specify the time column, or specify the current time.
 
 
-## Select Enable/Disable auto jar_update
+## How to select Enable/Disable auto jar_update
 
 The option to select Enable/Disable auto jar_update can be included in td v0.11.2 and later versions
 
@@ -48,8 +49,8 @@ An environment variable hook: TD_TOOLBELT_JAR_UPDATE.
 
 but this setting does not affect td import:jar_update, which always updates the JAR file.
 
-## Confirm Time Zone
-The bulk import tool use a TZ environment variable.If you think your bulk import time zone is wrong, please check your TZ environment variable.
+## How to confirm Time Zone
+The bulk import tool use a TZ environment variable. If you think your bulk import time zone is wrong, please check your TZ environment variable.
 
-## Encoding Shift_JIS
-When you encoding shift_jis you set encoding option to '-e Windows-31J'.
+## How to encode Shift_JIS
+When you encode shift_jis you should set encoding option to '-e Windows-31J'.

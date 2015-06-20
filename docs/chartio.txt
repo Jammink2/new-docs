@@ -1,6 +1,6 @@
 # Chartio with Treasure Data
 
-[Chartio](http://chartio.com/) provides easy-to-use cloud-based data visualization / exploration service. Chartio users can directly query against Treasure Data, to quickly create the reports and dashboards.
+[Chartio](http://chartio.com/) provides easy-to-use cloud-based data visualization / exploration service. Chartio users can query directly against Treasure Data, to quickly create Chartio reports and dashboards.
 <table>
 <tr>
 <td width="48%"><a href="http://chartio.com/" target="_blank"><img src="/images/chartio.png" width="100%" /></a></td>
@@ -15,15 +15,15 @@ This documentation describes how to connect to Treasure Data from Chartio.
 * [Chartio](http://chartio.com/) account
 * Basic knowledge of Treasure Data and its account
 
-NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank">contact to us</a>. if you're interested in.
+NOTE: This is a <b>Premium</b> plan feature. Please <a href="<%= @env[:url_contact] %>" target="_blank">contact us</a> if you're interested in this feature.
 
-## Step 1: Set up Data Source
+## Step 1: Set up your Data Source
 
-Please access to the URLs below. Please replace `ORGANIZATION_NAME` to your organization name on Chartio.
+Please access the URLs below. Please replace `ORGANIZATION_NAME` with your organization name on Chartio.
 
 * `https://chartio.com/ORGANIZATION_NAME/settings/datasources/new/postgresql/?show_protocol=1`
 
-You'll see the screen like this. Please fill in the following information to the forms.
+You'll see a screen like this one. Fill in the following information:
 
 <table>
 <tr>
@@ -49,36 +49,38 @@ You'll see the screen like this. Please fill in the following information to the
 </tr>
 </table>
 
-Please press the `Connect` button, that let's you create the new data sources. This will take a minute or two. If you have any problems, please contact `<%= @env[:mail_support] %>`.
+Press the `Connect` button. This lets you create new data sources, and will take a minute or two. If you have any problems, please contact `<%= @env[:mail_support] %>`.
 
-## Step 2: Create Chart
+## Step 2: Create your Chart
 
-Select your dashboard (please create if necessary), and click `Add Element` button at the right top of the dashboard screen. Then please select the `Data Source` created above. A list of tables and fields will be shown at the left column. In this case, we're using sample dataset containing 5,000 apache weblogs.
+Select your dashboard (please create if necessary), and click the `Add Element` button at the right top of the dashboard screen. Then, select the `Data Source` created above. A list of tables and fields will be shown on the left column. In this case, we're using sample dataset containing 5,000 Apache weblogs.
 
 <a target="_blank" href="/images/chartio-chartcreator.png"><img src="/images/chartio-chartcreator.png" width="100%" target="_blank" /></a>
 
-Let's create the report of distribution of HTTP response code to ensure the website doesn't return any errors. First, please drag `Code` field to `Measures`. Then, please select aggregation as `Count of all Www Access.Code`, and choose `descending` as Sort order.
+Let's create the report of distribution of HTTP response code to ensure the website doesn't return any errors. First, drag `Code` field to `Measures`. Then, select aggregation as `Count of all Www Access.Code`, and choose `descending` as sort order.
 
 <a target="_blank" href="/images/chartio-chartcreator-step1.png"><img src="/images/chartio-chartcreator-step1.png" width="100%" target="_blank" /></a>
 
-Then, please drag `Code` field to `Dimentions`.
+Then, please drag `Code` field to `Dimensions`.
 
 <a target="_blank" href="/images/chartio-chartcreator-step2.png"><img src="/images/chartio-chartcreator-step2.png" width="100%" target="_blank" /></a>
 
-After that, please press `Select Data` button to fetch the result.
+Next, please press `Select Data` button to fetch the results.
 
 <a target="_blank" href="/images/chartio-chartcreator-step3.png"><img src="/images/chartio-chartcreator-step3.png" width="100%" target="_blank" /></a>
 
-And if you choose the diagram type, you can see the result as a pie chart for example. Press `Save` to put this to dashboard.
+Finally, when you choose the diagram type, you can see the result as a pie chart, for example. Press `Save` to put this on the dashboard.
 
 <a target="_blank" href="/images/chartio-chartcreator-step4.png"><img src="/images/chartio-chartcreator-step4.png" width="100%" target="_blank" /></a>
 
-## Step 3: Design Dashboard
+## Step 3: Design your Dashboard
 
-You can add as many charts you want on your dashboard, and arrange them via drag & drop. There're couple of advanced features like scheduled dashboard delivery with email, exporting with PDF, etc. are available. Please refer the Chartio documentation for further information.
+You can add as many charts you want on your dashboard, and arrange them via drag & drop. There are couple of advanced features like 'scheduled dashboard delivery with email' and 'exporting with PDF' among others. 
 
 <a target="_blank" href="/images/chartio-chartcreator-step4.png"><img src="/images/chartio-save.png" width="100%" target="_blank" /></a>
 
 ## Next Steps
+
+Please refer the Chartio documentation for further information.
 
 * [Chartio Documentation](https://chartio.com/docs/)

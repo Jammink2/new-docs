@@ -1,6 +1,6 @@
 # Bulk Import from MongoDB
 
-This article explains how to dump data from MongoDB and import them into Treasure Data.
+This article explains how to dump data from MongoDB and import it into Treasure Data.
 
 ## Install Bulk Loader
 
@@ -11,7 +11,7 @@ First, please install the [toolbelt](command-line), which includes bulk loader p
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
+After the installation, the `td` command will be installed on your computer. Open up the terminal, and type `td` to execute the command. Also, make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -37,5 +37,5 @@ or [Bulk Import from JSON files](bulk-import-from-json) about how to import JSON
 
 For further details, check the following pages:
 
-- [Bulk Import Internals](bulk-import-internal).
+- [Bulk Import Internals](bulk-import-internal)
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

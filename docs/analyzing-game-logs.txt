@@ -2,7 +2,7 @@
 
 Leading gaming companies have used [Treasure Data](http://www.treasuredata.com/) to store all of their behavior logs to achieve data-driven product decisions. These insights help product managers enhance existing game systems and deliver a better customer experience, resulting in higher revenues.
 
-This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team just focus on building awesome games instead of having to spend valuable human / IT resources maintaining a data analytics infrastructure.
+This article will explain how to log data from your applications and calculate some basic KPIs using Treasure Data. Treasure Data lets your team focus on building awesome games instead of having to spend valuable human/IT resources maintaining a data analytics infrastructure.
 
 ## Background
 
@@ -101,32 +101,40 @@ In this example, we will assume that the application is written is [Ruby](ruby).
   </tr>
 </table>
 
-Let's first set up the logging code for important game events. Ohown below is actual code that can be used. The time is automatically added by the logging library.
+Let's first set up the logging code for important game events. Shown below is actual code that can be used. The time is automatically added by the logging library.
 
     :::ruby
-    # access (all accesses)
-    TD.event.post('access', {:uid=>123})
+    #setting it all up: capturing our API key, creating the table and starting the logger
+    api_key = ARGV[0]
+    TreasureData::Logger.open('ibeacon_test', 
+              :apikey=> api_key, 
+              :auto_create_table=> true)
 
-    # register
-    TD.event.post('register', {:uid=>123, :from=>'AdCampaign1234'})
+      # access (all accesses)
+      TD.event.post('access', {:uid=>123})
 
-    # login
-    TD.event.post('login', {:uid=>123})
+      # register
+      TD.event.post('register', {:uid=>123, :from=>'AdCampaign1234'})
 
-    # home
-    TD.event.post('home', {:uid=>123, :level=>13, :hp=>21323, :mp=>313})
+      # login
+      TD.event.post('login', {:uid=>123})
 
-    # invite
-    TD.event.post('invite', {:uid=>123, :target_uid=>567})
+      # home
+      TD.event.post('home', {:uid=>123, :level=>13, :hp=>21323, :mp=>313})
 
-    # invite_accept
-    TD.event.post('invite_accept', {:uid=>567})
-    
-    # pay
-    TD.event.post('pay', {:uid=>123, :item_name=>'Stone of Jordan',
-                          :category=>'ring', :price=>100, :count=>1})
-    # resign
-    TD.event.post('resign', {:uid=>123})
+      # invite
+      TD.event.post('invite', {:uid=>123, :target_uid=>567})
+
+      # invite_accept
+      TD.event.post('invite_accept', {:uid=>567})
+      
+      # pay
+      TD.event.post('pay', {:uid=>123, :item_name=>'Stone of Jordan',
+                            :category=>'ring', :price=>100, :count=>1})
+      # resign
+      TD.event.post('resign', {:uid=>123})
+    # flushing the logger speeds up the event posting process
+    TreasureData::Logger.logger.flush()
 
 ## Sample Queries
 

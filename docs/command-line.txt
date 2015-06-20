@@ -1,6 +1,6 @@
 # Treasure Data Toolbelt: Command-line Interface
 
-The Treasure Data CLI (or Toolbelt) allows you to create databases and tables, [import](bulk-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
+The Treasure Data CLI ('Command Line Interface' or 'Toolbelt') allows you to create databases and tables, [import](bulk-import)/[export](bulk-export) data into/from the tables, set and modify the table schema, issue queries, monitor job status, view and download job results, create schedule queries, and much more.
 
 
 ## Step 1: Installation & Update
@@ -11,7 +11,7 @@ The page also contains important information about [Updating](installing-the-cli
 
 ## Step 2: Authorize
 
-Once you have installed the toolbelt, you will have access to the `td` command from your command line. Authorize your account with the `td account` command. Please use the user name and password you used when signing up:
+Once you've installed the toolbelt, you'll have access to the `td` command from your command line. Authorize your account with the `td account` command. Please use the user name and password you used when signing up:
 
     :::term
     $ td -e https://<%= @env[:api_endpoint] %> account -f
@@ -19,14 +19,14 @@ Once you have installed the toolbelt, you will have access to the `td` command f
     Password (typing will be hidden):
     Authenticated successfully.
 
-The endpoint will be saved in the ~/.td/td.conf file for future use onwards. If the account command was already run, this command will modify the endpoint saved in the td.conf file).
+The endpoint will be saved in the ~/.td/td.conf file for future use onwards. If the account command was already run, this command will modify the endpoint saved in the td.conf file.
 
     :::term
     $ td server:endpoint https://<%= @env[:api_endpoint] %>
 
 ## Step 3: Query the Sample Dataset
 
-Let’s issue a SQL query. Out of the box, we have a table called www_access in the dabase called sample_db. The following query calculates the distribution of HTTP status codes.
+Let’s issue an SQL query. Out of the box, we have a table called www_access in the dabase called sample_db. The following query calculates the distribution of HTTP status codes.
 
     :::term
     $ td query -w -d sample_db \

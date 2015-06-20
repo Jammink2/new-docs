@@ -1,6 +1,6 @@
 # Treasure Data Android SDK
 
-This article will help you start sending the data from your Android app to Treasure Data, using our Android SDK library. In this way, you don't have to install anything on your server-side to track the mobile app activities.
+This article get you started sending data from your Android app to Treasure Data, using our Android SDK library. Using these steps, you don't need to install anything server-side to track your mobile application's activities.
 
 ## Prerequisites
 
@@ -64,7 +64,7 @@ Create the `TreasureData` object with your API key. The recommended place to do 
       }
     }
 
-The apikey can be retrieved from the console ([click here](<%= @env[:url_profile] %>)). It's recommended to use a [**write-only API key**](access-control#rest-apis-access) for SDKs.
+You can get the API key from the ([Treasure Data Console](<%= @env[:url_profile] %>)). It's recommended to use a [**write-only API key**](access-control#rest-apis-access) for SDKs.
 
 Also, you can use a shared instance from anywhere with `TreasureData.sharedInstance()` method after calling `TreasureData.initializeSharedInstance()`.
 
@@ -86,7 +86,7 @@ Also, you can use a shared instance from anywhere with `TreasureData.sharedInsta
 
 ### Step 3: Send Events to the Cloud
 
-Next, please call `addEvent()` function at the appropriate timing within your applications. This example sends the event to table `demotbl` within database `testdb`, when the button was clicked.
+Next, call the `addEvent()` function at the appropriate timing within your applications. This example sends an event to the `demotbl` table in database `testdb`, when the button is clicked.
 
     :::java
     View v = findViewById(R.id.button);
@@ -102,6 +102,9 @@ Next, please call `addEvent()` function at the appropriate timing within your ap
     });
 
 By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
+
+    :::java
+    td.flush();
 
 If you want to add the unique id of the device or device model information, you can use `enableAutoAppendUniqId()` or `enableAutoAppendModelInformation()` methods.
 
@@ -120,7 +123,7 @@ If you want to add the unique id of the device or device model information, you 
     //     "name":"foo bar",
     //     ... }
 
-Also, you can append a session information to each event using `startSession()` and `endSession()` methods.
+Also, you can append session information to each event using `startSession()` and `endSession()` methods.
 
     :::java
     TreasureData.sharedInstance().startSession("demotbl");
@@ -192,7 +195,7 @@ You can collect the first run event of your application, which can be used to tr
 
 ## Next Steps
 
-For the transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
+For transparency, we're open sourcing our iOS SDK on Github. Please check the repository if necessary.
 
 * [https://github.com/treasure-data/td-android-sdk](https://github.com/treasure-data/td-android-sdk)
 * [https://github.com/treasure-data/td-android-sdk/tree/master/example](https://github.com/treasure-data/td-android-sdk/tree/master/example)

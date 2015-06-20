@@ -16,11 +16,12 @@ Because Treasure Data is a cloud service, the data needs to be transferred via a
 * If the network becomes unstable, the import could fail halfway through the data transfer. There's no easy way to pick up from where you left off, and you will need to restart the upload from scratch.
 * Your company sometimes has bandwidth limits for transferring huge data with a single stream. Also, the limitations of the TCP/IP protocol make it difficult for applications to saturate a network connection.
 
-We designed our bulk import feature to overcome these problems. You can now break your larger data sets into smaller chunks and upload them *in parallel*. If the upload of a particular chunk fails, you can restart the upload for that chunk only. This parallelism will improve your overall upload speed.
+We designed our bulk import feature to overcome these problems. You can now break your larger data sets into smaller chunks and upload them *in parallel*. 
+If the upload of a particular chunk fails, you can restart the upload for that chunk only. This parallelism will improve your overall upload speed.
 
 ## Examples
 
-Because bulk import is a complex mechanism to achieve performance reliability, you can have these short cuts to achieve your goal.
+Because bulk import is a complex way to achieve performance reliability, you can use these short cuts to achieve your goal.
 
 - [Bulk Import from CSV file](bulk-import-from-csv)
 - [Bulk Import from TSV file](bulk-import-from-tsv)

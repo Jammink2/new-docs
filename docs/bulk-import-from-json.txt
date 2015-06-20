@@ -4,14 +4,14 @@ This article explains how to import data from JSON files to Treasure Data.
 
 ## Install Bulk Loader
 
-First, please install the [toolbelt](command-line), which includes bulk loader program, on your computer.
+First, install the [toolbelt](command-line), which includes bulk loader program, on your computer.
 
 #### Downloads
 - [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
+After the installation, the `td` command will be installed on your computer. Open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Execute `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -23,13 +23,13 @@ After the installation, `td` command will be installed on your computer. Please 
 
 ## Importing data from a JSON
 
-Suppose you have a file called <tt>data.json</tt> and its content is like this:
+Suppose you have a file called <tt>data.json</tt> and its content looks like this:
 
     :::term
     $ head -n 1 data.json
     {"host":"224.225.147.72","user":"-","method":"GET","path":"/category/electronics","code":200,"referer":"-","size":43,"agent":"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)","date_time":"2004-03-07 16:05:49"}
 
-Next, please execute the following command to upload the JSON file:
+Execute the following command to upload the JSON file:
 
     $ td db:create my_db
     $ td table:create my_db my_tbl
@@ -40,7 +40,7 @@ Next, please execute the following command to upload the JSON file:
       --auto-create my_db.my_tbl \
       ./data.json
 
-NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
+NOTE: Because `td import:auto` executes MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 

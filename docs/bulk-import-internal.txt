@@ -6,14 +6,14 @@
 
 [Bulk Import](bulk-import) consists of four key steps: prepare, upload, perform and commit.
 
-* Prepare: first, your data is transformed into the highly space-efficient compressed (gzip) MessagePack format. This step does not require network connection.
+* Prepare: first, your data is transformed into the highly space-efficient compressed (gzip) MessagePack format. This step does not require a network connection.
 * Upload: then, the prepared data is uploaded into Treasure Data's (row-based) bulk upload storage system. The upload is done over a secure Internet connection.
 * Perform: the uploaded data is then transformed into our column-oriented data format using MapReduce.
 * Commit: After the perform step, the data is now compatible with Plazma (Treasure Data's columnar, distributed storage system). So, the commit step copies the data over into Plazma.
 
 ## Deletion and Session Invalidation
 
-Bulk Import sessions created by the users are only deleted if the user request to:
+Bulk Import sessions created by the users are only deleted if the user requests to:
 
     :::term
     $ td import:delete <session_name>
@@ -21,7 +21,7 @@ Bulk Import sessions created by the users are only deleted if the user request t
 Since Bulk Import sessions are created with a database and table of reference and they can import
 data to that database and table only, when the table or the database is deleted,
 the Bulk Import session is **not** automatically deleted but it becomes **invalid**.
-Any attempt to Upload, Perform, or Commit using a Session whose reference table or database (or both) have been deleted, will return an error; the Session has been invalidated. The only interactions allowed with an invalidated Session are:
+Any attempt to Upload, Perform, or Commit using a session whose reference table or database (or both) have been deleted, will return an error; the session has been invalidated. The only interactions allowed with an invalidated session are:
 
 * showing the status (<tt>import:show</tt>)
 * deleting it (<tt>import:delete</tt>)
@@ -36,7 +36,8 @@ You can run:
 
 ## Importing Large Data Reliably with Bulk Import (in ONE step)
 
-In the section below, we will show you how to use Bulk Import step by step. While it is important to understand each step, it is often unwieldy to perform all these steps one by one. Thus we provide several command line options to automate (and pipeline) the prepare-upload-perform-commit workflow. Specifically, you want to run `td import:upload` like this:
+In the section below, we will show you how to use Bulk Import step by step. While it is important to understand each step, it is often unwieldy to perform all these steps one by one. Thus we provide several command line options to automate (and pipeline) the prepare-upload-perform-commit workflow. 
+Specifically, you'll want to run `td import:upload` like this:
 
     :::term
     $ td import:upload \
@@ -63,36 +64,36 @@ you can run:
       --output prepared_parts \
       data_*.csv
 
-A couple of assumptions for the example above:
+A this import/upload operation makes the following assumptions:
 
-1. We assume that the data is in CSV format unless a different format is specified with the <tt>--format</tt> option
-2. We indicated that the first row of each input file contains column names.<br/>
+1. The data is in CSV format unless a different format is specified with the <tt>--format</tt> option
+2. The first row of each input file contains column names.<br/>
    This is specified with the <tt>\-\-column-header</tt> option.
-   Alternatively you can also treat all rows as data and specify column names with <tt>\-\-columns c1,c2,c3..</tt>
-   as well.
+   Alternatively you can also treat all rows as data and specify column names with <tt>\-\-columns c1,c2,c3..</tt>.
 
 NOTE: Regular expressions can't be used on Windows. Please rewrite your filenames from data_*.csv to (YOUR_TARGET_FILENAME)
 
 ## Importing Large Data Reliably with Bulk Import (Step by Step)
 
-### 1) Create a Session
+### 1.) Create a Session
 
 First create a `session` (a single instance containing multiple parts). One session is associated with one table.
 
     :::term
     $ td import:create my_session my_db my_tbl
 
-### 2) Convert Your Data into Parts Files
+### 2.) Convert Your Data into parts files
 
 Let's say you have CSV files in the ./logs_201208/ directory. You will first need to convert these files into MessagePack.gz format (our internal format for efficient storage). To do this, please run the following commands:
 
-NOTE: Splitting the data into separate directories by month is recommended. You can also split it by date if you have more than 1GB/day of data post-compression.
 
     :::term
     $ td import:prepare ./logs_201208/*.csv \
         --format csv \
         --columns time,uid,price,count --time-column 'time' \
         -o ./parts_201208/
+
+NOTE: Splitting the data into separate directories by month is recommended. You can also split it by date if you have more than 1GB/day of data post-compression.
 
 If your files include column names in the first line, please use the <tt>\-\-column-header</tt> option.
 
@@ -103,23 +104,23 @@ If your files include column names in the first line, please use the <tt>\-\-col
         --time-column 'time' \
         -o ./parts_201208/
 
-We support csv, tsv, and json formats for the <tt>\-\-format option</tt>. Here are the remaining examples.
+We support **csv**, **tsv**, and **json** formats for the <tt>\-\-format option</tt>. Here are the remaining examples.
 
     :::term
-    # TSV
+    # tsv
     $ td import:prepare ./logs_201208/*.tsv \
         --format tsv \
         --column-header \
         --time-column 'time' \
         -o ./parts_201208/
 
-    # JSON
+    # json
     $ td import:prepare ./logs_201208/*.json \
         --format json \
         --time-column 'time' \
         -o ./parts_201208/
 
-### 3) Upload a Part to the Session
+### 3.) Upload a Part to the Session
 
 You can now upload the `parts` directory into the session.
 
@@ -144,7 +145,7 @@ The uploaded parts can be viewed using `import:show`.
     :::term
     $ td import:show my_session
 
-### 4) Perform
+### 4.) Perform
 
 The `import:perform` command converts the uploaded files into a more efficient format on the cloud (this is why it takes a bit of time!).
 The files are converted in parallel by executing MapReduce jobs.
@@ -159,7 +160,7 @@ The files are converted in parallel by executing MapReduce jobs.
     | my_session  | my_db.my_tbl | Ready  |        | 70220 | 2           | 1           | 100           | 10            |
     +-------------+--------------+--------+--------+-------+-------------+-------------+---------------+---------------+
 
-In this example we invoke the `import:freeze` prior to issueing the `import:perform` command to prevent other scripts
+In this example, we invoke the `import:freeze` prior to issueing the `import:perform` command to prevent other scripts
 from uploading additional data into the session while the data is being converted.
 
 The `import:perform` command takes an optional <tt>\-\-wait</tt> option to make command busy-wait until the perform
@@ -168,7 +169,7 @@ return to control to the user/script as soon as the perform job has been submitt
 
 Afterward, to upload additional data the user needs to unfreeze the session by means of the `import:unfreeze` command.
 
-### 5) Optional: Check Error Records
+### 5.) Optional: Check Error Records
 
 After running the `import:perform` command, some records could be flagged as invalid. You can list these invalid records
 with the `import:error_records` command.
@@ -176,7 +177,7 @@ with the `import:error_records` command.
     :::term
     $ td import:error_records my_session
 
-### 6) Commit
+### 6.) Commit
 
 Once you have confirmed that the uploaded data is correct, use the `import:commit` command to transactionally import
 the data into the destination database <tt>my_db</tt> and table <tt>my_tbl</tt>.
@@ -184,12 +185,12 @@ the data into the destination database <tt>my_db</tt> and table <tt>my_tbl</tt>.
     :::term
     $ td import:commit my_session --wait
 
-### 7) Delete Session or Import Additional Data
+### 7.) Delete Session or Import Additional Data
 
 Once the data made it to the destination Treasure Data table, there are two options: either import mode data or close
 the session and delete it.
 
-In the former case, please go back to Step 2) and repeat the process.
+In the former case, please go back to Step 2.) and repeat the process.
 
 In the latter case, use the `import:delete` command to close and delete the import session:
 

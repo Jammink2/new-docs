@@ -1,21 +1,21 @@
 # Birst with Treasure Data
 
-[Birst](http://www.birst.com/) provides easy-to-use cloud-based enterprise BI service. By combining Birst and Treasure Data, users can quickly explore both operational data and big data.
+[Birst](http://www.birst.com/) provides an easy-to-use cloud-based enterprise BI service. By combining Birst and Treasure Data, users can quickly explore both operational data and big data.
 
 <center><a href="http://www.birst.com/"><img src="/images/birst-screen.png" width="60%"/></a></center>
 
 ## Prerequisites
 
 * [Birst](http://www.birst.com/) account
-* Basic knowledge of Treaure Data and its account
+* Basic knowledge of Treaure Data and a Treasure Data account
 
 ## Step 1: Download BirstConnect Artifacts
 
-First, please visit the `Navigation Page` under `Manage Space`, and select `Use Birst Connect`.
+First, visit the `Navigation Page` under `Manage Space`, and select `Use Birst Connect`.
 
 <img src="/images/birst-manage-space.png" width="100%" />
 
-Then, download your .jnlp file by clicking `Launch` for one of your configurations. Also, please download your `BirstConnect.zip` too.
+Then, download your .jnlp file by clicking `Launch` for one of your configurations. Next, download your `BirstConnect.zip` too.
 
 <center><img src="/images/birst-connect-download.png" width="60%" /></center><br/><br/>
 
@@ -23,7 +23,7 @@ Finally, let's put two files under the same directory. In this article, we'll re
 
     :::term
     $ cd $BIRST_CONNECT_HOME
-    $ unzip BirstConnect.zip
+    $ tar -zxvf BirstConnect.zip
 
 ## Step 2: Download Treasure Data JDBC Driver
 
@@ -46,11 +46,11 @@ Now you have successfully launched Birst Connect, with Treasure Data JDBC driver
 
 <center><img src="/images/birst-connect.png" width="50%" /></center><br/><br/>
 
-Please specify the `Task Name` first. Then, please click `Sources` tab and `Add Query`.
+Once launched, you'll specify 'Task Name' first. Then, click the `Sources` tab and `Add Query`.
 
 <center><img src="/images/birst-new-task.png" width="90%" /></center><br/><br/>
 
-You'll see the fields to specify JDBC connection. Please fill the information properly.
+You'll see the fields to specify JDBC connection. Fill the information accordingly.
 
 <center><img src="/images/birst-add-query.png" width="90%" /></center><br/><br/>
 
@@ -67,4 +67,4 @@ Finally click `Update`, and `Save` to save the task.
 
 ## Step 5: Run the Task
 
-Please go back to Birst Connect main dialog and click `Run Tasks Now`. The query will be executed on Treasure Data, and insert into Birst.
+Please go back to Birst Connect main dialog and click `Run Tasks Now`. The query will be executed on Treasure Data, and your data will be inserted into Birst.

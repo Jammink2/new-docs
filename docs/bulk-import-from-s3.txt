@@ -5,14 +5,14 @@ This article explains how to import data directly from Amazon S3 to Treasure Dat
 <br/>
 ## Install Bulk Loader
 
-First, please install the [toolbelt](command-line), which includes bulk loader program, on your computer.
+First, install the [toolbelt](command-line), which includes bulk loader program, on your computer.
 
 #### Downloads
 - [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
+After the installation, the `td` command will be installed on your computer. Open up the terminal and type `td` to execute the command. Also, make sure you have `java` as well. Run `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -24,13 +24,13 @@ After the installation, `td` command will be installed on your computer. Please 
 
 ## Importing data from Amazon S3
 
-The bulk loader can read data from files stored in Amazon S3 in all the three main supported file formats:
+The bulk loader can read data from files stored in Amazon S3 in all three supported file formats:
 
 * CSV (default)
 * JSON
 * TSV
 
-Suppose you have a file called <tt>data.csv</tt> on Amazon S3 and its content is like this:
+Suppose you have a file called <tt>data.csv</tt> on Amazon S3 with these contents:
 
     :::term
     "host","log_name","date_time","method","url","res_code","bytes","referer","user_agent"
@@ -39,7 +39,7 @@ Suppose you have a file called <tt>data.csv</tt> on Amazon S3 and its content is
     "64.242.88.10","-","2004-03-07 16:10:02","GET","/mailman/listinfo/hsdivision",200,6291,"",""
     "64.242.88.10","-","2004-03-07 16:11:58","GET","/twiki/bin/view/TWiki/WikiSyntax",200,7352,"",""
 
-Next, please execute the following commands to upload the CSV file:
+Execute the following commands to upload the CSV file:
 
     $ td db:create my_db
     $ td table:create my_db my_tbl
@@ -52,7 +52,7 @@ Next, please execute the following commands to upload the CSV file:
 
 where the location of the file is expressed as an S3 path with the AWS public and private access keys embedded in it.
 
-NOTE: Because `td import:auto` executes the MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
+NOTE: Because `td import:auto` executes MapReduce jobs to check the invalid rows, it'll take at least <b>1-2 minutes</b>.
 
 In the above command, we assumed that:
 

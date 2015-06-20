@@ -1,6 +1,6 @@
 # Change Email Address
 
-You can change the email from the Web console.
+You can change an email address from the Web console.
 
-Please access to [user's page](<%= @env[:url_profile] %>), and change the email.
+Please access the [user's page](<%= @env[:url_profile] %>) to change the email address.
 

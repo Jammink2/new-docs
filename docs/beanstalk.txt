@@ -9,7 +9,7 @@ By combining AWS Elastic Beanstalk and Treasure Data, you can achieve scalabilit
 
 ## Installing td-agent
 
-Please follow the instructions below to install `td-agent`, our streaming data collector, into your application.
+Please follow the instructions below to install Treasure Agent, otherwise known as `td-agent`, our streaming data collector, into your application.
 
 * [Installing td-agent on AWS Elastic Beanstalk](https://github.com/treasure-data/elastic-beanstalk-td-agent)
 

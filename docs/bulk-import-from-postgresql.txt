@@ -4,14 +4,14 @@ This article explains how to dump data from PostgreSQL and import them into Trea
 
 ## Install Bulk Loader
 
-First, please install the [toolbelt](command-line), which includes bulk loader program, on your computer.
+First, install the [toolbelt](command-line), which includes bulk loader program, on your computer.
 
 #### Downloads
 - [Toolbelt Installer for Windows](http://toolbelt.treasuredata.com/win)
 - [Toolbelt Installer for Mac OS X](http://toolbelt.treasuredata.com/mac)
 - [Toolbelt Installer for Linux](http://toolbelt.treasuredata.com/linux)
 
-After the installation, `td` command will be installed on your computer. Please open up the terminal, and type `td` to execute the command. Also, please make sure you have `java` as well. Please execute `td import:jar_update` to download the up-to-date version of our bulk loader:
+After the installation, the `td` command will be installed on your computer. Open up the terminal and type `td` to execute the command. Also, please make sure you have `java` as well. Run `td import:jar_update` to download the up-to-date version of our bulk loader:
 
     :::term
     $ td
@@ -32,9 +32,9 @@ For more information, please see the [PostgreSQL documentation](http://www.postg
 
 ## Bulk Import from CSV file
 
-Please refer [Bulk Import from CSV files](bulk-import-from-csv) about how to import CSV files.
+Refer to [Bulk Import from CSV files](bulk-import-from-csv) to learn how to import CSV files.
 
-For further details, check the following pages:
+For further details, please check the following pages:
 
 - [Bulk Import Internals](bulk-import-internal).
 - [Bulk Import Tips and Tricks](bulk-import-tips-and-tricks)

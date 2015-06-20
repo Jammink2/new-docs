@@ -34,3 +34,4 @@ The dump is performed via MapReduce jobs.
       -k, --aws-key-id KEY_ID          AWS access key id to export data (required)
       -s, --aws-secret-key SECRET_KEY  AWS secret access key to export data (required)
 
+where the location of the bucket is expressed as an S3 path with the AWS public and private access keys embedded in it.
