@@ -42,7 +42,7 @@ You can use "pip" for general Python packages. We need "pandas-td":
     :::term
     (analysis)$ pip install pandas-td
 
-## Step 3: Run Jupyter and Create First Notebook
+## Step 2: Run Jupyter and Create First Notebook
 
 We use "Jupyter" (formerly known as "IPython notebook") as a frontend for our analysis project. Run "ipython notebook" and your web browser will open:
 
@@ -67,7 +67,7 @@ Your notebook now looks something like this:
 
 <center><img src="/images/jupyter-1.png" width="80%" /></center><br/>
 
-## Step 4: Explore Data
+## Step 3: Explore Data
 
 We have two tables in `sample_datasets`. Let's explore `nasdaq` table as an example.
 
@@ -83,7 +83,7 @@ You can also use `time_range` parameter to retrieve data within a specific time 
 
 Now, your data is stored in the local variable `df` as a DataFrame. Since the data is located in the local memory of your computer, you can analyze it interactively using the power of Pandas and Jupyter. See [Time Series / Date functionality](http://pandas.pydata.org/pandas-docs/stable/timeseries.html) for the details of time-series data.
 
-## Step 5: Data Sampling
+## Step 4: Data Sampling
 
 The way in the previous section does not work as your data grows. It is not a good idea to retrieve more than a millions of rows due to the limitation of memory or slow network transfer. You need to somehow limit the data getting transferred if you are analysing a large amount of data. There are two ways of doing that.
 
