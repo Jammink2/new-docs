@@ -220,7 +220,6 @@ section 'data-processing', 'Data Processing' do
     article 'hive-aggregate-functions', 'Hive Built-in Aggregate Functions'
     article 'udfs', 'Hive Treasure Data UDFs'
     article 'performance-tuning', 'Hive Performance Tuning'
-    article 'hive-hivemall', 'Hivemall: Hive scalable machine learning library'
   end
   category 'pig', 'Pig Latin Reference' do
     article 'pig', 'Pig Latin Language'
@@ -288,6 +287,15 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
   # category 'indicee', 'Indicee' do
   #   article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   # end
+end
+
+section 'tools-and-drivers', 'Data Science Tools' do
+  category 'hivemall', 'Hivemall (Machine Learning)' do
+    article 'hive-hivemall', 'Hivemall: Hive scalable machine learning library'
+  end
+  category 'jupyter-pandas', 'Jupyter + Pandas' do
+    article 'jupyter-pandas', 'Jupyter + Pandas'
+  end
 end
 
 section 'tools-and-drivers', 'Tools & Drivers' do

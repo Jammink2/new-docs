@@ -1,0 +1,113 @@
+# Interactive Analysis with Jupyter + Pandas + TD
+
+Treasure Data provides cloud-based analytics infrastructure, which supports SQL access. Interactive engine like [Presto](presto) allows you to crunch billions of records easily. However, writing SQL query is sometimes painful for data scientists, and you need to use external tools like Excel or Tableau to visualize the result.
+
+<center><img src="/images/pandas.png" width="100%" /></center><br/><br/>
+
+This article introduces how to access Treasure Data from popular Python-based data analysis tool called [Pandas](http://pandas.pydata.org/). And visualize interactively via [Jupyter (iPython Notebook)](https://jupyter.org/)
+
+## Prerequisites
+
+  * Basic knowledge of Python.
+  * Basic knowledge of Treasure Data.
+
+## Step 0: Set Treasure Data APIKey
+
+First, please set your apikey as your environment variable. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
+
+    :::term
+    $ export TD_API_KEY="1234/abcde..."
+
+## Step 1: Install Jupyter, Pandas, and Pandas-TD
+
+We recommend to use [Miniconda](http://conda.pydata.org/miniconda.html) to install all required packages to use Pandas. Download an installer for your favorite OS and install it. Let's create a virtual environment for our first project "analysis". We use Python 3 for this project:
+
+    :::term
+    $ conda create -n analysis python=3
+    ...
+    $ source activate analysis
+    discarding .../miniconda/bin from PATH
+    prepending .../miniconda/envs/analysis/bin to PATH
+    (analysis)$ 
+
+We need "pandas", "matplotlib" and "ipython-notebook":
+
+    :::term
+    (analysis)$ conda install pandas
+    (analysis)$ conda install matplotlib
+    (analysis)$ conda install ipython-notebook
+
+You can use "pip" for general Python packages. We need "pandas-td":
+
+    :::term
+    (analysis)$ pip install pandas-td
+
+## Step 3: Run Jupyter and Create First Notebook
+
+We use "Jupyter" (formerly known as "IPython notebook") as a frontend for our analysis project. Run "ipython notebook" and your web browser will open:
+
+    :::term
+    (analysis)$ ipython notebook
+
+<center><img src="/images/jupyter.png" width="100%" /></center><br/>
+
+Let's create a new notebook by "New > Python 3". Copy & paste the following text to your notebook and type "Shift-Enter":
+
+    :::python
+    %matplotlib inline
+    
+    import os
+    import pandas as pd
+    import pandas_td as td
+    
+    # Initialize the connection to Treasure Data
+    con = td.connect(apikey=os.environ['TD_API_KEY'], endpoint='https://api.treasuredata.com/')
+
+Your notebook now looks something like this:
+
+<center><img src="/images/jupyter-1.png" width="80%" /></center><br/>
+
+## Step 4: Explore Data
+
+We have two tables in `sample_datasets`. Let's explore `nasdaq` table as an example.
+
+<center><img src="/images/jupyter-sample-datasets.png" width="60%" /></center><br/>
+
+We use `presto` as a query engine for this session. You can retrieve a few lines by `read_td_table` to see how the table looks like:
+
+<center><img src="/images/jupyter-sample-datasets-1.png" width="80%" /></center><br/>
+
+You can also use `time_range` parameter to retrieve data within a specific time range:
+
+<center><img src="/images/jupyter-sample-datasets-2.png" width="80%" /></center><br/>
+
+Now, your data is stored in the local variable `df` as a DataFrame. Since the data is located in the local memory of your computer, you can analyze it interactively using the power of Pandas and Jupyter. See [Time Series / Date functionality](http://pandas.pydata.org/pandas-docs/stable/timeseries.html) for the details of time-series data.
+
+## Step 5: Data Sampling
+
+The way in the previous section does not work as your data grows. It is not a good idea to retrieve more than a millions of rows due to the limitation of memory or slow network transfer. You need to somehow limit the data getting transferred if you are analysing a large amount of data. There are two ways of doing that.
+
+First, you can sample data. We know that "nasdaq" table has 8,807,278 rows. Sampling 1 percent of them results in 88k rows, which is good size to retrieve:
+
+<center><img src="/images/jupyter-sampling-1.png" width="80%" /></center><br/>
+
+Another way is writing SQL and limit data on the server side,. For example, we are interested in the only data related to "AAPL". Let's count the number of records, using `read_td_query`:
+
+<center><img src="/images/jupyter-sampling-2.png" width="80%" /></center><br/>
+
+It's small enough, so we can retrieve all rows and analyze data:
+
+<center><img src="/images/jupyter-sampling-3.png" width="80%" /></center>
+
+## See Also
+
+See the contents below for further information.
+
+- [Pandas-TD Github Repository](https://github.com/treasure-data/pandas-td)
+- [Pandas-TD Tutorial](https://github.com/treasure-data/pandas-td/blob/master/doc/tutorial.ipynb)
+- [Jupyter Website](https://jupyter.org/)
+- [Pandas Website](http://pandas.pydata.org/)
+
+Jupyter Notebooks are now supported by GitHub and you can share the result of your analysis session with your team:
+
+- [GitHub + Jupyter Notebooks = <3](https://github.com/blog/1995-github-jupyter-notebooks-3)
