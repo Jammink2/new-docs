@@ -105,6 +105,7 @@ See the contents below for further information.
 
 - [Pandas-TD Github Repository](https://github.com/treasure-data/pandas-td)
 - [Pandas-TD Tutorial](https://github.com/treasure-data/pandas-td/blob/master/doc/tutorial.ipynb)
+- [Python for Data Analysis (Book by Oreilly Media)](http://shop.oreilly.com/product/0636920023784.do)
 - [Jupyter Website](https://jupyter.org/)
 - [Pandas Website](http://pandas.pydata.org/)
 
