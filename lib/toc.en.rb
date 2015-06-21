@@ -281,9 +281,6 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
     article 'pentaho-reportdesigner', 'Pentaho Report Designer', ['Pentaho Report Designer']
     article 'pentaho-dataintegration', 'Pentaho Data Integration', ['Pentaho Data Integration']
   end
-  category 'r-language', 'R Language' do
-    article 'r-language', 'R Language',                 ['R Language']
-  end
   # category 'indicee', 'Indicee' do
   #   article 'indicee', 'Indicee Cloud BI Platform',     ['Indicee']
   # end
@@ -295,6 +292,9 @@ section 'tools-and-drivers', 'Data Science Tools' do
   end
   category 'jupyter-pandas', 'Jupyter + Pandas' do
     article 'jupyter-pandas', 'Jupyter + Pandas'
+  end
+  category 'r-language', 'R Language' do
+    article 'r-language', 'R Language',                 ['R Language']
   end
 end
 
