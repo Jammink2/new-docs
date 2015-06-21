@@ -54,7 +54,7 @@ Add "pool_name=hdp2" to URL parameter.
 Ex.
 
     :::text
-    https://api.treasuredata.com/v3/job/issue/hive/sample_datasets?query=SELECT%20*%20FROM%20www_access%20WHERE%20code%3D200&priority=0&pool_name=hadoop2
+    https://<%= @env[:api_endpoint] %>/v3/job/issue/hive/sample_datasets?query=SELECT%20*%20FROM%20www_access%20WHERE%20code%3D200&priority=0&pool_name=hadoop2
 
 ### td-client-ruby
 

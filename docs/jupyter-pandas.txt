@@ -61,7 +61,7 @@ Let's create a new notebook by "New > Python 3". Copy & paste the following text
     import pandas_td as td
     
     # Initialize the connection to Treasure Data
-    con = td.connect(apikey=os.environ['TD_API_KEY'], endpoint='https://api.treasuredata.com/')
+    con = td.connect(apikey=os.environ['TD_API_KEY'], endpoint='https://<%= @env[:api_endpoint] %>')
 
 Your notebook now looks something like this:
 

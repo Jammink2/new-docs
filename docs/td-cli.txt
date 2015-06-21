@@ -1351,7 +1351,7 @@ This page documents most of `td` subcommands.
 #### example:
 
 
-    $ td server:endpoint 'https://api.treasuredata.com'
+    $ td server:endpoint '<%= @env[:api_endpoint] %>'
   
 #### description:
 
