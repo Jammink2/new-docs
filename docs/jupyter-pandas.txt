@@ -1,10 +1,10 @@
 # Interactive Analysis with Jupyter + Pandas + TD
 
-Treasure Data provides cloud-based analytics infrastructure, which supports SQL access. Interactive engine like [Presto](presto) allows you to crunch billions of records easily. However, writing SQL query is sometimes painful for data scientists, and you need to use external tools like Excel or Tableau to visualize the result.
+Treasure Data provides a cloud-based analytics infrastructure accessible via SQL. Interactive engines like [Presto](presto) allow you to crunch billions of records easily. However, writing an SQL query is sometimes painful for data scientists, and you'll still need to use external tools like Excel or Tableau to visualize the result.
 
 <center><img src="/images/pandas.png" width="100%" /></center><br/><br/>
 
-This article introduces how to access Treasure Data from popular Python-based data analysis tool called [Pandas](http://pandas.pydata.org/). And visualize interactively via [Jupyter (iPython Notebook)](https://jupyter.org/)
+This article shows you how to access Treasure Data from the popular Python-based data analysis tool called [Pandas](http://pandas.pydata.org/), and visualize the data interactively via [Jupyter (iPython Notebook)](https://jupyter.org/)
 
 ## Prerequisites
 
@@ -13,14 +13,14 @@ This article introduces how to access Treasure Data from popular Python-based da
 
 ## Step 0: Set Treasure Data APIKey
 
-First, please set your apikey as your environment variable. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
+First, set your apikey as an environment variable. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
 
     :::term
     $ export TD_API_KEY="1234/abcde..."
 
 ## Step 1: Install Jupyter, Pandas, and Pandas-TD
 
-We recommend to use [Miniconda](http://conda.pydata.org/miniconda.html) to install all required packages to use Pandas. Download an installer for your favorite OS and install it. Let's create a virtual environment for our first project "analysis". We use Python 3 for this project:
+We recommend you use [Miniconda](http://conda.pydata.org/miniconda.html) to install all required packages for Pandas. Download an installer for your OS and install it. Let's create a virtual environment for our first project "analysis". We'll use Python 3 for this project:
 
     :::term
     $ conda create -n analysis python=3
@@ -42,9 +42,9 @@ You can use "pip" for general Python packages. We need "pandas-td":
     :::term
     (analysis)$ pip install pandas-td
 
-## Step 2: Run Jupyter and Create First Notebook
+## Step 2: Run Jupyter and Create your First Notebook
 
-We use "Jupyter" (formerly known as "IPython notebook") as a frontend for our analysis project. Run "ipython notebook" and your web browser will open:
+We'll use "Jupyter" (formerly known as "IPython notebook") as a frontend for our analysis project. Run "ipython notebook" and your web browser will open:
 
     :::term
     (analysis)$ ipython notebook
@@ -69,33 +69,33 @@ Your notebook now looks something like this:
 
 ## Step 3: Explore Data
 
-We have two tables in `sample_datasets`. Let's explore `nasdaq` table as an example.
+We have two tables in `sample_datasets`. Let's explore the `nasdaq` table as an example.
 
 <center><img src="/images/jupyter-sample-datasets.png" width="60%" /></center><br/>
 
-We use `presto` as a query engine for this session. You can retrieve a few lines by `read_td_table` to see how the table looks like:
+We'll use `presto` as a query engine for this session. You can retrieve a few lines by `read_td_table` to see how the table looks:
 
 <center><img src="/images/jupyter-sample-datasets-1.png" width="80%" /></center><br/>
 
-You can also use `time_range` parameter to retrieve data within a specific time range:
+You can also use the `time_range` parameter to retrieve data within a specific time range:
 
 <center><img src="/images/jupyter-sample-datasets-2.png" width="80%" /></center><br/>
 
 Now, your data is stored in the local variable `df` as a DataFrame. Since the data is located in the local memory of your computer, you can analyze it interactively using the power of Pandas and Jupyter. See [Time Series / Date functionality](http://pandas.pydata.org/pandas-docs/stable/timeseries.html) for the details of time-series data.
 
-## Step 4: Data Sampling
+## Step 4: Sample Data
 
-The way in the previous section does not work as your data grows. It is not a good idea to retrieve more than a millions of rows due to the limitation of memory or slow network transfer. You need to somehow limit the data getting transferred if you are analysing a large amount of data. There are two ways of doing that.
+The method used in the previous section does not work as your data grows. It is not a good idea to retrieve more than a few million rows due to the limitation of memory or slow network transfer. You need to somehow limit the data getting transferred if you are analysing a large amount of data. There are two ways to do this:
 
-First, you can sample data. We know that "nasdaq" table has 8,807,278 rows. Sampling 1 percent of them results in 88k rows, which is good size to retrieve:
+First, you can sample data. We know that "nasdaq" table has 8,807,278 rows. Sampling 1 percent of them results in 88k rows, which is a good size to retrieve:
 
 <center><img src="/images/jupyter-sampling-1.png" width="80%" /></center><br/>
 
-Another way is writing SQL and limit data on the server side,. For example, we are interested in the only data related to "AAPL". Let's count the number of records, using `read_td_query`:
+Another way is to write SQL and limit data on the server side. For example, we are interested only in data related to "AAPL". Let's count the number of records, using `read_td_query`:
 
 <center><img src="/images/jupyter-sampling-2.png" width="80%" /></center><br/>
 
-It's small enough, so we can retrieve all rows and analyze data:
+It's small enough, so we can retrieve all the rows and start analyzing data:
 
 <center><img src="/images/jupyter-sampling-3.png" width="80%" /></center>
 
