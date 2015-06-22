@@ -1,6 +1,6 @@
 # Interactive Analysis with Jupyter + Pandas + TD
 
-Treasure Data provides a cloud-based analytics infrastructure accessible via SQL. Interactive engines like [Presto](presto) allow you to crunch billions of records easily. However, writing an SQL query is sometimes painful for data scientists, and you'll still need to use external tools like Excel or Tableau to visualize the result.
+Treasure Data provides a cloud-based analytics infrastructure accessible via SQL. Interactive engines like [Presto](presto) enable you to crunch billions of records easily. However, writing an SQL query is sometimes painful for data scientists, and you'll still need to use external tools like Excel or Tableau to visualize the result.
 
 <center><img src="/images/pandas.png" width="100%" /></center><br/><br/>
 
