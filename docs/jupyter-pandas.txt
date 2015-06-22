@@ -11,16 +11,16 @@ This article shows you how to access Treasure Data from the popular Python-based
   * Basic knowledge of Python.
   * Basic knowledge of Treasure Data.
 
-## Step 0: Set Treasure Data APIKey
+## Step 0: Set Treasure Data API Key
 
-First, set your apikey as an environment variable. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
+First, set your api key as an environment variable. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
 
     :::term
     $ export TD_API_KEY="1234/abcde..."
 
 ## Step 1: Install Jupyter, Pandas, and Pandas-TD
 
-We recommend you use [Miniconda](http://conda.pydata.org/miniconda.html) to install all required packages for Pandas. Download an installer for your OS and install it. Let's create a virtual environment for our first project "analysis". We'll use Python 3 for this project:
+We recommend that you use [Miniconda](http://conda.pydata.org/miniconda.html) to install all required packages for Pandas. Download an installer for your OS and install it. Let's create a virtual environment for our first project "analysis". We'll use Python 3 for this project:
 
     :::term
     $ conda create -n analysis python=3
@@ -73,7 +73,7 @@ We have two tables in `sample_datasets`. Let's explore the `nasdaq` table as an 
 
 <center><img src="/images/jupyter-sample-datasets.png" width="60%" /></center><br/>
 
-We'll use `presto` as a query engine for this session. You can retrieve a few lines by `read_td_table` to see how the table looks:
+We'll use `presto` as a query engine for this session. To see how the table looks, you can retrieve a few lines by `read_td_table`:
 
 <center><img src="/images/jupyter-sample-datasets-1.png" width="80%" /></center><br/>
 
@@ -85,13 +85,15 @@ Now, your data is stored in the local variable `df` as a DataFrame. Since the da
 
 ## Step 4: Sample Data
 
-The method used in the previous section does not work as your data grows. It is not a good idea to retrieve more than a few million rows due to the limitation of memory or slow network transfer. You need to somehow limit the data getting transferred if you are analysing a large amount of data. There are two ways to do this:
+As your data set grows very large, the method from the previous step doesn’t actually scale very well.  It isn’t actually a very good idea to retrieve more than a few million rows at a time due to memory limitations or slow network transfer.   If you’re analyzing a large amount of data, you need to limit the amount of data getting transferred. 
 
-First, you can sample data. We know that "nasdaq" table has 8,807,278 rows. Sampling 1 percent of them results in 88k rows, which is a good size to retrieve:
+There are two ways to do this:
+
+First, you can sample data.   We know, for example, that the "nasdaq" table has 8,807,278 rows (at presstime).  Sampling 1% of this results in ~88,000 rows, which is a reasonable size to retrieve:
 
 <center><img src="/images/jupyter-sampling-1.png" width="80%" /></center><br/>
 
-Another way is to write SQL and limit data on the server side. For example, we are interested only in data related to "AAPL". Let's count the number of records, using `read_td_query`:
+Another way is to write SQL and limit data from the server side.   For example, as we are interested only in data related to “AAPL”, let’s count the number of records, using `read_td_query`:
 
 <center><img src="/images/jupyter-sampling-2.png" width="80%" /></center><br/>
 

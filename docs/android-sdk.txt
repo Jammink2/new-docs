@@ -101,10 +101,13 @@ Next, call the `addEvent()` function at the appropriate timing within your appli
       }
     });
 
-By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.
+By default, all events will be bufferred to the file. You **need to explicitly flush** the bufferred data to the cloud. It won't be uploaded automatically.  To do this:
 
     :::java
-    td.flush();
+    td.uploadEvents();
+or
+    :::java
+    td.uploadEventsWithCallback();
 
 If you want to add the unique id of the device or device model information, you can use `enableAutoAppendUniqId()` or `enableAutoAppendModelInformation()` methods.
 
