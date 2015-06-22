@@ -6,7 +6,7 @@
 
 Hivemall provides machine learning functionality as well as feature engineering functions through UDFs/UDAFs/UDTFs of Hive. 
 
-### Classfication
+### Classification
 
 - Perceptron
 - Passive Aggressive (PA, PA1, PA2)
@@ -34,7 +34,7 @@ Hivemall provides machine learning functionality as well as feature engineering 
 - b-Bit minhash
 - Brute-force search using cosine similarity
 
-### Feature engineering
+### Feature Engineering
 
 - Feature hashing (MurmurHash, SHA1)
 - Feature scaling (Min-Max Normalization, Z-Score)
