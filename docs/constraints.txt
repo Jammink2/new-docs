@@ -1,10 +1,10 @@
 # Platform Constraints
 
-Because Treasure Data is an cloud hosting environment, the platform has certain constraints that do not exist in a local Hadoop setup. These constraints ensure that your app takes advantage of Treasure Data's scalability and redundancy features.
+Because Treasure Data is a cloud-based hosting environment, the platform has certain constraints that do not exist in a local Hadoop setup. These constraints ensure that your app takes advantage of Treasure Data's scalability and redundancy features.
 
-## Hive User Defined Functions (UDF)
+## Hive User-Defined Functions (UDF)
 
-Although Treasure Data supports default Hive UDFs and Treasure Data specific UDFs (see [Supported UDFs](udfs)), custom Hive UDFs cannot be added. If you have a specific request for a function, please let us know.
+Although Treasure Data supports default Hive UDFs and Treasure Data-specific UDFs (see [Supported UDFs](udfs)), custom Hive UDFs cannot be added. If you have a specific request for a function, please let us know.
 
 ## Hive Custom Map/Reduce Scripts
 

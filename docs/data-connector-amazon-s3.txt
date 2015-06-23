@@ -2,20 +2,20 @@
 
 ## Prerequisites
 
-NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
+NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> .
 
   * Basic knowledge of Treasure Data
 
-## Install td command v0.11.9 or Later
+## Step 0: Install 'td' command v0.11.9 or later
 
-You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
     $ td --version
     0.11.10
 
-## Step1: Create Seed Config File (seed.yml)
+## Step 1: Create Seed Config File (seed.yml)
 
-First, please prepare `seed.yml` like below, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
+First, prepare `seed.yml` as below, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
 
     :::yaml
     config:
@@ -28,17 +28,17 @@ First, please prepare `seed.yml` like below, with your AWS access key and secret
       out:
         mode: append
 
-Data Connector for Amazon S3 imports all files that match with the specified prefix.
+The Data Connector for Amazon S3 imports all files that match a specified prefix.
 (e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
 
-## Step2: Guess Formart in the File (load.yml)
+## Step 2: Guess the File Format (load.yml)
 
-Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
+Second, use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
     :::term
     $ td connector:guess seed.yml -o load.yml
 
-If you open up `load.yml`, you'll see guessed file format definitions including file formats, encodings, column names, and types.
+If you open up `load.yml`, you'll see the guessed file format definitions including file formats, encodings, column names, and types.
 
     :::yaml
     config:
@@ -69,7 +69,7 @@ If you open up `load.yml`, you'll see guessed file format definitions including 
       out:
         mode: append
 
-Then you can preview how the system will parse the file by `preview` command.
+Then, you can preview how the system will parse the file by using the `preview` command.
 
     $ td connector:preview load.yml
     +-------+---------+----------+---------------------+
@@ -82,21 +82,21 @@ Then you can preview how the system will parse the file by `preview` command.
     | 93133 | EE Inc. |     Jake | 2015-04-02 14:11:13 |
     +-------+---------+----------+---------------------+
 
-If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
+NOTE: If the system detects your column name or column type unexpectedly, modify `load.yml` directly and preview again.
 
-NOTE: Currently, DataConnector supports "boolean", "long", "double", "string", "timestamp" to parse.
+NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", "timestamp" types.
 
-## Step3: Execute Load Job
+## Step 3: Execute Load Job
 
-Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
+Finally, submit the load job. It may take a couple of hours depending on the size of the data. Users need to specify the database and table where their data is stored. If the database or the table does not exist, the command reports an error.
 
 It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
-If the option was not given, Data Connector choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp`.
+If the option is not given, the Data Connector will choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp` type.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
 
-NOTE: At present Data Connector does not sort records at server side. To utilize time based partition effectively please sort records in files beforehand. This restriction is solved in near future.
+NOTE: At present,  the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
@@ -135,16 +135,17 @@ You can schedule periodic Data Connector execution for incremental S3 file impor
 We take great care in distributing and operating our scheduler in order to achieve high availability.
 By using this feature, you no longer need a `cron` daemon on your local datacenter.
 
-For the scheduled import, Data Connector for Amazon S3 imports all files that match with the specified prefix
+For the scheduled import, the Data Connector for Amazon S3 imports all files that match with the specified prefix
 (e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
-at first and remember the last path (<tt>path/to/sample_201505.csv.gz</tt>) for the next execution.
-At the second execution, it only imports files that comes after the last path in alphabetical (lexicographic) order.
+at first and remembers the last path (<tt>path/to/sample_201505.csv.gz</tt>) for the next execution.
+
+On the second and subsequent runs, it only imports files that comes after the last path in alphabetical (lexicographic) order.
 (<tt>path/to/sample_201506.csv.gz</tt>, ...)
 
 ### Create the schedule
 
 A new schedule can be created using the `td connector:create` command.
-The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
+The following are required: the name of the schedule, the cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file.
 
     :::term
     $ td connector:create \
@@ -169,7 +170,7 @@ NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@dail
 
 ### List the Schedules
 
-You can see the list of currently scheduled entries by `td connector:list`.
+You can see the list of currently scheduled entries by running the command `td connector:list`.
 
     :::term
     $ td connector:list
@@ -179,7 +180,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
     | daily_import | 10 0 * * *   | UTC      | 0     | td-sample_db | td-sample_table | {"type"=>"s3", "access_key_id"... |
     +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
 
-### Show the Setting and History of Schedules
+### Show the Setting and Schedule History
 
 `td connector:show` shows the execution setting of a schedule entry.
 
@@ -204,7 +205,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
         charset: UTF-8
         ...
 
-`td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
+`td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual run, please use `td job <jobid>`.
 
     :::term
     % td connector:history daily_import
