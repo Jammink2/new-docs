@@ -1,0 +1,39 @@
+# Release Note 20150501
+
+This is a release note for May 1st 2015.
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Presto: Upgraded to 0.103
+
+Presto upgraded to version 0.103, from version 0.100.
+
+- Presto version [0.103](https://prestodb.io/docs/current/release/release-0.103.html) release note
+- Presto version [0.102](https://prestodb.io/docs/current/release/release-0.102.html) release note
+- Presto version [0.101](https://prestodb.io/docs/current/release/release-0.101.html) release note
+
+Significant changes include the support of Unicode in all string functions.
+
+### Presto: TD_CURRENCY_CONV
+
+Presto supports [TD_CURRENCY_CONV](/articles/presto-udfs#tdcurrencyconv) UDF.
+
+### Backend: Result Output to MongoDB
+
+Backend now supports [Result Output to MongoDB](/articles/result-into-mongodb). Now you can export Hive / Presto query results into MongoDB.
+
+### Backend: Tableau Server / Online version 9.0 Support for Result Output
+
+Result Output to [Tableau Server](/articles/result-into-tableau-server) or [Tableau Online](/articles/result-into-tableau-online) now support Tableau Server version 9.0.
+
+### Backend: OAuth-based Authentication for Google SpreadSheet Result Output
+
+Previously, result output to Google SpreadSheet only support password based authentication. However, Google recently announced that they will completely obsolete password-based authentication and move to OAuth-based authentication. Please check the documentation below to migrate to OAuth based authenticaiton.
+
+- [Result Output to Google SpreadSheet](/articles/result-into-google-spreadsheet)
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:

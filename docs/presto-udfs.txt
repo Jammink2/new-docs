@@ -211,6 +211,35 @@ You need to 'ORDER BY' the *sessionize_by* field within a sub query to use this 
       order by ip_address,time
     ) t
 
+## <tt>TD_PARSE_USER_AGENT</tt>
+
+#### Signature
+
+    :::term
+    string TD_PARSE_USER_AGENT(user_agent string [, options string])
+
+#### Description
+
+This UDF returns the result of parsing a user agent string. The user agent is parsed by the basis of [rules](https://raw.github.com/tobie/ua-parser/master/regexes.yaml).
+Accepts the following options as a string, as user options:
+
+    :::term
+    os, os_family, os_major, os_minor, ua, ua_family, ua_major, ua_minor, device
+
+os and ua return json. With \_family, \_major and \_minor return a string. The device option also returns a string.
+
+#### Example
+
+The example shows the result of parsing user agent from access log.
+
+    :::sql
+    SELECT TD_PARSE_USER_AGENT(agent) AS agent FROM www_access
+    > {user_agent: {family: "IE", major: "9", minor: "0", patch: null}, os: {family: "Windows 7", major: null, minor: null, patch: null, patch_minor: null}, device: {family: "Other"}}
+    SELECT TD_PARSE_USER_AGENT(agent, 'os') AS agent_os FROM www_access
+    > {family: "Windows 7", major: null, minor: null, patch: null, patch_minor: null}
+    SELECT TD_PARSE_USER_AGENT(agent, 'os_family') AS agent_os_family FROM www_access
+    > Windows 7
+
 ## <tt>TD_MD5</tt>
 
 #### Signature

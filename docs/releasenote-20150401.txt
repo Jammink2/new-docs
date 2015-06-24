@@ -1,0 +1,38 @@
+# Release Note 20150401
+
+This is a release note at April 1st 2015.
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Presto: Upgraded to 0.100
+
+Presto upgraded to version 0.100, from version 0.94.
+
+- Presto version [0.100](https://prestodb.io/docs/current/release/release-0.100.html) release note
+- Presto version [0.99](https://prestodb.io/docs/current/release/release-0.99.html) release note
+- Presto version [0.98](https://prestodb.io/docs/current/release/release-0.98.html) release note
+- Presto version [0.97](https://prestodb.io/docs/current/release/release-0.97.html) release note
+- Presto version [0.96](https://prestodb.io/docs/current/release/release-0.96.html) release note
+- Presto version [0.95](https://prestodb.io/docs/current/release/release-0.95.html) release note
+
+### Presto: TD_IP_TO_COUNTRY_CODE UDF
+
+Presto supports [TD_IP_TO_COUNTRY_CODE](/articles/presto-udfs#tdiptocountrycode) UDF. This UDF converts IP to coutry code.
+
+### Presto: TD_IP_TO_COUNTRY_NAME UDF
+
+Presto supports [TD_IP_TO_COUNTRY_NAME](/articles/presto-udfs#tdiptocountryname) UDF. This UDF converts IP to coutry name.
+
+### System: Upgrade All Ubuntu 10.04 to 12.04
+
+Since official support of Ubuntu LTS (Long Term Support) 10.04 will expire soon, we have upgraded all instances to Ubuntu 12.04.
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Presto: Proper Partitioning for Hive INSERT INTO
+
+Previously the data inserted via Hive's "INSERT INTO" isn't partitioned, so you cannot exploit the parallelism for the result table. Now it's properly partitioned.

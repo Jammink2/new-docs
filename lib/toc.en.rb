@@ -16,6 +16,9 @@ section 'overview', 'Overview' do
     article 'videos', 'Education Videos'
   end
   category 'releasenotes', 'Release Notes' do
+    article 'releasenote-20150601', 'Release Note 20150601'
+    article 'releasenote-20150501', 'Release Note 20150501'
+    article 'releasenote-20150401', 'Release Note 20150401'
     article 'releasenote-20150310', 'Release Note 20150310'
     article 'releasenote-20150224', 'Release Note 20150224'
     article 'releasenote-20150217', 'Release Note 20150217'

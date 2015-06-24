@@ -1,0 +1,33 @@
+# Release Note 20150601
+
+This is a release note for June 1st 2015.
+
+## Features & Improvements
+
+This is a summary of the new features and improvements introduced in this release:
+
+### Data Connector for Amazon S3
+
+Now we support direct data bulk loading from Amazon S3, without installing client-side software. The feature is called Data Connector. We'll add more data sources for the future.
+
+- [Data Connector Overview](http://docs.treasuredata.com/articles/data-connector-overview)
+- [Data Connector for Amazon S3](http://docs.treasuredata.com/articles/data-connector-amazon-s3)
+
+### Presto: Upgraded to 0.105
+
+Presto upgraded to version 0.105, from version 0.103.
+
+- Presto version [0.105](https://prestodb.io/docs/current/release/release-0.105.html) release note
+- Presto version [0.104](https://prestodb.io/docs/current/release/release-0.104.html) release note
+
+### Presto: TD_PARSE_USER_AGENT UDF
+
+Presto supports [TD_PARSE_USER_AGENT](/articles/presto-udfs#tdparseuseragent) UDF, which is also supported on Hive as well.
+
+## Bug Fixes
+
+These are the most important Bug Fixes made in this release:
+
+### Presto: Proper Partitioning for Presto INSERT INTO
+
+Previously the data inserted via Presto's "INSERT INTO" isn't partitioned, so you cannot exploit the parallelism for the result table. Now it's properly partitioned.
