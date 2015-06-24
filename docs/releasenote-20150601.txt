@@ -24,6 +24,10 @@ Presto upgraded to version 0.105, from version 0.103.
 
 Presto supports [TD_PARSE_USER_AGENT](/articles/presto-udfs#tdparseuseragent) UDF, which is also supported on Hive as well.
 
+### Client: td toolbelt v0.11.10
+
+td toolbelt [v0.11.10](https://github.com/treasure-data/td/blob/master/ChangeLog) was released.
+
 ## Bug Fixes
 
 These are the most important Bug Fixes made in this release:

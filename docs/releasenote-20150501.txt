@@ -20,6 +20,14 @@ Significant changes include the support of Unicode in all string functions.
 
 Presto supports [TD_CURRENCY_CONV](/articles/presto-udfs#tdcurrencyconv) UDF.
 
+### Collection: td-agent2 v2.2.0
+
+td-agent v2.2.0 was released. Please check [here](http://docs.treasuredata.com/articles/td-agent-changelog#20150406-version-v220) for the changes.
+
+### Client: td toolbelt v0.11.9
+
+td toolbelt [v0.11.9](https://github.com/treasure-data/td/blob/master/ChangeLog) was released.
+
 ### Backend: Result Output to MongoDB
 
 Backend now supports [Result Output to MongoDB](/articles/result-into-mongodb). Now you can export Hive / Presto query results into MongoDB.
@@ -33,7 +41,3 @@ Result Output to [Tableau Server](/articles/result-into-tableau-server) or [Tabl
 Previously, result output to Google SpreadSheet only support password based authentication. However, Google recently announced that they will completely obsolete password-based authentication and move to OAuth-based authentication. Please check the documentation below to migrate to OAuth based authenticaiton.
 
 - [Result Output to Google SpreadSheet](/articles/result-into-google-spreadsheet)
-
-## Bug Fixes
-
-These are the most important Bug Fixes made in this release:
