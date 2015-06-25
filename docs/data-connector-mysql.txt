@@ -35,7 +35,7 @@ First, please prepare `seed.yml` like below, with your MySQL access information.
 
 This example dumps all records inside the table. You can have more detailed control with [additional parameters](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql).
 
-## Step2: Guess Formart in the File (load.yml)
+## Step2: Guess Fields (Generate load.yml)
 
 Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
@@ -45,6 +45,15 @@ Second, please use `connector:guess`. This command automatically reads the targe
 Then you can preview how the system will parse the file by `preview` command.
 
     $ td connector:preview load.yml
+    +---------+--------------+----------------------------------+------------+---------------------------+
+    | id:long | name:string  | description:string               | price:long | created_at:timestamp      |
+    +---------+--------------+----------------------------------+------------+---------------------------+
+    | 1       | "item name1" | "26e3c3625366591bc2ffc6e262976e" | 2419       | "2014-02-16 13:01:06 UTC" |
+    | 2       | "item name2" | "3e9dd9474dacb78afd607f9e0a3366" | 1298       | "2014-05-24 13:59:26 UTC" |
+    | 3       | "item name3" | "9b6c9e4a140284d3951681e9e047f6" | 9084       | "2014-06-21 00:18:21 UTC" |
+    | 4       | "item name4" | "a11faf5e63c1b02a3d4c2b5cbb7331" | 669        | "2014-05-02 03:44:08 UTC" |
+    | 6       | "item name6" | "6aa15471c373ddc8a6469e1c918f98" | 3556       | "2014-03-29 08:30:23 UTC" |
+    +---------+--------------+----------------------------------+------------+---------------------------+
 
 ## Step3: Execute Load Job
 

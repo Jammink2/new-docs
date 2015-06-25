@@ -31,7 +31,7 @@ First, prepare `seed.yml` as below, with your AWS access key and secret access k
 The Data Connector for Amazon S3 imports all files that match a specified prefix.
 (e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
 
-## Step 2: Guess the File Format (load.yml)
+## Step 2: Guess Fields (Generate load.yml)
 
 Second, use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 

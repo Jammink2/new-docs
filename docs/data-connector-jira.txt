@@ -30,7 +30,7 @@ First, please prepare `seed.yml` as below, with your Jira username, Jira Passwor
 
 NOTE: The Data Connector for JIRA imports all tickets that match with the specified JQL.
 
-## Step 2: Guess Format in the File (load.yml)
+## Step 2: Guess Fields (Generate load.yml)
 
 Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
