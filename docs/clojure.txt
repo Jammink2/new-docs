@@ -1,0 +1,92 @@
+# Clojure with JDBC Driver
+
+This article shows how to use Treasure Data with [Clojure](http://clojure.org) via [clojure.java.jdbc](https://github.com/clojure/java.jdbc) and Treasure Data's [JDBC driver](jdbc-driver)
+
+
+## Prerequisites
+
+- A basic knowledge of Treasure Data and an account ([sign up here](https://console.treasuredata.com/users/sign_up)).
+- A basic knowledge of [leiningen](https://github.com/technomancy/leiningen).
+
+## Downloading Treasure Data's JDBC Driver
+
+You can download the Treasure Data JDBC driver from the link below:
+
+* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc)
+
+NOTE: This driver only works with Treasure Data. It does not work in other environments such as your local Hadoop / Hive cluster.
+
+Then, place the downloaded jar file in your lein project's `resources` folder.
+
+## Installing clojure.java.jdbc
+
+To install clojure.java.jdbc, add `[org.clojure/java.jdbc "0.3.6"]` in your leiningen project's `project.cli` as follows:
+
+    :::term
+    (defproject test_td "0.1.0-SNAPSHOT"
+      :description "FIXME: write description"
+      :url "http://example.com/FIXME"
+      :license {:name "Eclipse Public License"
+                :url "http://www.eclipse.org/legal/epl-v10.html"}
+      :dependencies [[org.clojure/clojure "1.6.0"]
+                     [org.clojure/java.jdbc "0.3.6"]]
+    )
+
+
+Then, run `lein install`.
+
+## Adding Treasure Data's JDBC to the project.
+
+To add Treasure Data's JDBC driver to your project, add `:resource-paths ["resources/*]` in `project.cli` as follows:
+
+    :::term
+    (defproject test_td "0.1.0-SNAPSHOT"
+      :description "FIXME: write description"
+      :url "http://example.com/FIXME"
+      :license {:name "Eclipse Public License"
+                :url "http://www.eclipse.org/legal/epl-v10.html"}
+      :dependencies [[org.clojure/clojure "1.6.0"]
+                     [org.clojure/java.jdbc "0.3.6"]]
+      :resource-paths ["resources/*"]
+    )
+
+## Issuing a Query
+
+To issue a query, set up a database connection first:
+
+    :::term
+    (use '[clojure.java.jdbc :as j])
+    (def db {:classname "com.treasure_data.jdbc.TreasureDataDriver"
+             :subprotocol "td"
+             :subname "//api.treasuredata.com/sample_datasets;type=presto"
+             :user "YOUR_EMAIL_FOR_TREASURE_DATA"
+             :password "YOUR_TREASURE_DATA_PASSWORD"}))
+
+Note the `type=presto` parameter in the subname. To use Hive, specify `type=hive` instead or omit the parameter. `sample_datasets` is the database to be queried.
+
+Then, run a query as follows:
+
+    :::term
+    user=> (j/query db ["SELECT COUNT(1) AS c FROM nasdaq"])
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI getJobResult2
+    INFO: write the result to file
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    INFO: check the size of the job result: size = 26
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    INFO: created temp file: /tmp/td-jdbc-8655482340404331705.tmp
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    INFO: read the size of the job result: 26
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    INFO: finished writing file
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI getJobResult2
+    INFO: read the result to file: path = /tmp/td-jdbc-8655482340404331705.tmp
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    INFO: closed file based unpacker
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    INFO: deleted temp file: /tmp/td-jdbc-8655482340404331705.tmp
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    INFO: closed file based unpacker
+    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    INFO: deleted temp file: /tmp/td-jdbc-8655482340404331705.tmp
+    ({:c 8807278})
+    
