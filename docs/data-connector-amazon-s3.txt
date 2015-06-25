@@ -94,14 +94,16 @@ It's also recommended to specify `--time-column` option, since Treasure Data's s
 If the option is not given, the Data Connector will choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp` type.
 
     :::term
-    $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl --time-column created_at
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table --time-column created_at
 
-NOTE: At present,  the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
+NOTE: At present, the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
+
+NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
     :::term
-    $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table
 
 ## Mode (append/replace)
 
@@ -151,8 +153,8 @@ The following are required: the name of the schedule, the cron-style schedule, t
     $ td connector:create \
         daily_import \
         "10 0 * * *" \
-        td-sample_db \
-        td-sample_table \
+        td_sample_db \
+        td_sample_table \
         load.yml
 
 It's also recommended to specify the `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
@@ -161,8 +163,8 @@ It's also recommended to specify the `--time-column` option, since Treasure Data
     $ td connector:create \
         daily_import \
         "10 0 * * *" \
-        td-sample_db \
-        td-sample_table \
+        td_sample_db \
+        td_sample_table \
         load.yml \
         --time-column created_at
 
@@ -177,7 +179,7 @@ You can see the list of currently scheduled entries by running the command `td c
     +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
     | Name         | Cron         | Timezone | Delay | Database     | Table           | Config                            |
     +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
-    | daily_import | 10 0 * * *   | UTC      | 0     | td-sample_db | td-sample_table | {"type"=>"s3", "access_key_id"... |
+    | daily_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"type"=>"s3", "access_key_id"... |
     +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
 
 ### Show the Setting and Schedule History
@@ -190,8 +192,8 @@ You can see the list of currently scheduled entries by running the command `td c
     Cron     : 10 0 * * *
     Timezone : UTC
     Delay    : 0
-    Database : td-sample_db
-    Table    : td-sample_table
+    Database : td_sample_db
+    Table    : td_sample_table
     Config
     ---
     in:
@@ -212,14 +214,14 @@ You can see the list of currently scheduled entries by running the command `td c
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
     | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
-    | 578066 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-18 00:10:05 +0000 | 160      |
-    | 577968 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-17 00:10:07 +0000 | 161      |
-    | 577914 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-16 00:10:03 +0000 | 152      |
-    | 577872 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-15 00:10:04 +0000 | 163      |
-    | 577810 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-14 00:10:04 +0000 | 164      |
-    | 577766 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-13 00:10:04 +0000 | 155      |
-    | 577710 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-12 00:10:05 +0000 | 156      |
-    | 577610 | success | 10000   | td-sample_db | td-sample_table | 0        | 2015-04-11 00:10:04 +0000 | 157      |
+    | 578066 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-18 00:10:05 +0000 | 160      |
+    | 577968 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-17 00:10:07 +0000 | 161      |
+    | 577914 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-16 00:10:03 +0000 | 152      |
+    | 577872 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-15 00:10:04 +0000 | 163      |
+    | 577810 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-14 00:10:04 +0000 | 164      |
+    | 577766 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-13 00:10:04 +0000 | 155      |
+    | 577710 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-12 00:10:05 +0000 | 156      |
+    | 577610 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-11 00:10:04 +0000 | 157      |
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
     8 rows in set
 

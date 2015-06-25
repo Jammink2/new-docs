@@ -1,75 +1,54 @@
-# Data Connector for JIRA
+# Data Connector for MySQL
+
+This article describes how to use the data connector for MySQL, which allows you to directly import data from your MySQL to Treasure Data.
 
 ## Prerequisites
 
-NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> .
+NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
 
   * Basic knowledge of Treasure Data
+  * Basic knowledge of MySQL
 
-## Step 0: Install 'td' command v0.11.9 or later
+## Install td command v0.11.9 or Later
 
-Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
     $ td --version
     0.11.10
 
-## Step 1: Create Seed Config File (seed.yml)
+## Step1: Create Seed Config File (seed.yml)
 
-First, please prepare `seed.yml` as below, with your Jira username, Jira Password, Jira URI and, by default, an empty jql query.   You'll use "replace" mode:
-
+First, please prepare `seed.yml` like below, with your MySQL access information.
     :::yaml
     config:
       in:
-        type: jira
-        username: user
-        password: pass
-        uri: https://your-domain.atlassian.net
-        jql: ""
+        type: mysql
+        host: mysql_host_name
+        port: 3306
+        user: test_user
+        password: test_password
+        database: test_database
+        table: test_table
+        select: "*"
       out:
         mode: replace
 
-NOTE: The Data Connector for JIRA imports all tickets that match with the specified JQL.
+This example dumps all records inside the table. You can have more detailed control with [additional parameters](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql).
 
-## Step 2: Guess Format in the File (load.yml)
+## Step2: Guess Formart in the File (load.yml)
 
 Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
     :::term
     $ td connector:guess seed.yml -o load.yml
 
-If you open up `load.yml`, you'll see guessed file format definitions including, in some cases, file formats, encodings, column names, and types.
-
-    :::yaml
-    ---
-    config:
-      in:
-        type: jira
-        username: user
-        password: pass
-        uri: https://your-domain.atlassian.net
-        jql: ''
-        columns:
-        - name: id
-          type: long
-        - name: key
-          type: string
-        - name: issuetype.name
-          type: string
-        ...
-      out:
-        mode: replace
-
-Then you can preview how the system will parse the file by using `preview` command.
+Then you can preview how the system will parse the file by `preview` command.
 
     $ td connector:preview load.yml
 
-If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
+## Step3: Execute Load Job
 
-NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
-
-## Step 3: Execute Load Job
-
-Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
+Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
@@ -78,20 +57,18 @@ NOTE: Currently table won't be created automatically. You need to create the des
 
 ## Scheduled execution
 
-You can schedule periodic Data Connector execution for periodic JIRA import.
+You can schedule periodic Data Connector execution for periodic MySQL import.
 We take great care in distributing and operating our scheduler in order to achieve high availability.
-By using this feature, you no longer need a `cron` daemon on your local data center.
-
-For the scheduled import, Data Connector for JIRA imports all files that match the specified JQL.
+By using this feature, you no longer need a `cron` daemon on your local datacenter.
 
 ### Create the schedule
 
-A new schedule can be created by using the `td connector:create` command.
+A new schedule can be created using the `td connector:create` command.
 The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
 
     :::term
     $ td connector:create \
-        daily_jira_import \
+        daily_mysql_import \
         "10 0 * * *" \
         td_sample_db \
         td_sample_table \
@@ -105,19 +82,19 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
     :::term
     $ td connector:list
-    +-------------------+--------------+----------+-------+--------------+-----------------+------------------------+
-    | Name              | Cron         | Timezone | Delay | Database     | Table           | Config                 |
-    +-------------------+--------------+----------+-------+--------------+-----------------+------------------------+
-    | daily_jira_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"type"=>"jira", ... } |
-    +-------------------+--------------+----------+-------+--------------+-----------------+------------------------+
+    +--------------------+--------------+----------+-------+--------------+-----------------+-------------------------+
+    | Name               | Cron         | Timezone | Delay | Database     | Table           | Config                  |
+    +--------------------+--------------+----------+-------+--------------+-----------------+-------------------------+
+    | daily_mysql_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"type"=>"mysql", ... } |
+    +--------------------+--------------+----------+-------+--------------+-----------------+-------------------------+
 
 ### Show the Setting and History of Schedules
 
 `td connector:show` shows the execution setting of a schedule entry.
 
     :::term
-    % td connector:show daily_jira_import
-    Name     : daily_jira_import
+    % td connector:show daily_mysql_import
+    Name     : daily_mysql_import
     Cron     : 10 0 * * *
     Timezone : UTC
     Delay    : 0
@@ -127,7 +104,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
 `td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
 
     :::term
-    % td connector:history daily_jira_import
+    % td connector:history daily_mysql_import
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
     | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
@@ -147,4 +124,8 @@ You can see the list of currently scheduled entries by `td connector:list`.
 `td connector:delete` will remove the schedule.
 
     :::term
-    $ td connector:delete daily_jira_import
+    $ td connector:delete daily_mysql_import
+
+## Further Information
+
+- [List of Options for MySQL Data Connector](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql)
