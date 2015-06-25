@@ -1,0 +1,140 @@
+# Data Connector for PostgreSQL
+
+This article describes how to use the data connector for PostgreSQL, which allows you to directly import data from your PostgreSQL to Treasure Data.
+
+## Prerequisites
+
+NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
+
+  * Basic knowledge of Treasure Data
+  * Basic knowledge of PostgreSQL
+
+## Install td command v0.11.9 or Later
+
+You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+
+    $ td --version
+    0.11.10
+
+## Step1: Create Seed Config File (seed.yml)
+
+First, please prepare `seed.yml` like below, with your PostgreSQL access information.
+    :::yaml
+    config:
+      in:
+        type: postgresql
+        host: postgresql_host_name
+        port: 5432
+        user: test_user
+        password: test_password
+        database: test_database
+        table: test_table
+        select: "*"
+      out:
+        mode: replace
+
+This example dumps all records inside the table. You can have more detailed control with [additional parameters](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-postgresql).
+
+## Step2: Guess Fields (Generate load.yml)
+
+Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
+
+    :::term
+    $ td connector:guess seed.yml -o load.yml
+
+Then you can preview how the system will parse the file by `preview` command.
+
+    $ td connector:preview load.yml
+    +---------+--------------+----------------------------------+------------+---------------------------+
+    | id:long | name:string  | description:string               | price:long | created_at:timestamp      |
+    +---------+--------------+----------------------------------+------------+---------------------------+
+    | 1       | "item name1" | "26e3c3625366591bc2ffc6e262976e" | 2419       | "2014-02-16 13:01:06 UTC" |
+    | 2       | "item name2" | "3e9dd9474dacb78afd607f9e0a3366" | 1298       | "2014-05-24 13:59:26 UTC" |
+    | 3       | "item name3" | "9b6c9e4a140284d3951681e9e047f6" | 9084       | "2014-06-21 00:18:21 UTC" |
+    | 4       | "item name4" | "a11faf5e63c1b02a3d4c2b5cbb7331" | 669        | "2014-05-02 03:44:08 UTC" |
+    | 6       | "item name6" | "6aa15471c373ddc8a6469e1c918f98" | 3556       | "2014-03-29 08:30:23 UTC" |
+    +---------+--------------+----------------------------------+------------+---------------------------+
+
+## Step3: Execute Load Job
+
+Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
+
+    :::term
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table
+
+NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
+
+## Scheduled execution
+
+You can schedule periodic Data Connector execution for periodic PostgreSQL import.
+We take great care in distributing and operating our scheduler in order to achieve high availability.
+By using this feature, you no longer need a `cron` daemon on your local datacenter.
+
+### Create the schedule
+
+A new schedule can be created using the `td connector:create` command.
+The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
+
+    :::term
+    $ td connector:create \
+        daily_postgresql_import \
+        "10 0 * * *" \
+        td_sample_db \
+        td_sample_table \
+        load.yml
+
+NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@daily` and `@monthly`.
+
+### List the Schedules
+
+You can see the list of currently scheduled entries by `td connector:list`.
+
+    :::term
+    $ td connector:list
+    +-------------------------+--------------+----------+-------+--------------+-----------------+------------------------------+
+    | Name                    | Cron         | Timezone | Delay | Database     | Table           | Config                       |
+    +-------------------------+--------------+----------+-------+--------------+-----------------+------------------------------+
+    | daily_postgresql_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"type"=>"postgresql", ... } |
+    +-------------------------+--------------+----------+-------+--------------+-----------------+------------------------------+
+
+### Show the Setting and History of Schedules
+
+`td connector:show` shows the execution setting of a schedule entry.
+
+    :::term
+    % td connector:show daily_postgresql_import
+    Name     : daily_postgresql_import
+    Cron     : 10 0 * * *
+    Timezone : UTC
+    Delay    : 0
+    Database : td_sample_db
+    Table    : td_sample_table
+
+`td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
+
+    :::term
+    % td connector:history daily_postgresql_import
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | 578066 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-18 00:10:05 +0000 | 160      |
+    | 577968 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-17 00:10:07 +0000 | 161      |
+    | 577914 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-16 00:10:03 +0000 | 152      |
+    | 577872 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-15 00:10:04 +0000 | 163      |
+    | 577810 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-14 00:10:04 +0000 | 164      |
+    | 577766 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-13 00:10:04 +0000 | 155      |
+    | 577710 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-12 00:10:05 +0000 | 156      |
+    | 577610 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-11 00:10:04 +0000 | 157      |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    8 rows in set
+
+### Delete the Schedule
+
+`td connector:delete` will remove the schedule.
+
+    :::term
+    $ td connector:delete daily_postgresql_import
+
+## Further Information
+
+- [List of Options for PostgreSQL Data Connector](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-postgresql)
