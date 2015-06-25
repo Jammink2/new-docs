@@ -2,20 +2,20 @@
 
 ## Prerequisites
 
-NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
+NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> .
 
   * Basic knowledge of Treasure Data
 
-## Install td command v0.11.9 or Later
+## Step 0: Install 'td' command v0.11.9 or later
 
-You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
     $ td --version
     0.11.10
 
-## Step1: Create Seed Config File (seed.yml)
+## Step 1: Create Seed Config File (seed.yml)
 
-First, please prepare `seed.yml` like below, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
+First, please prepare `seed.yml` as below, with your Jira username, Jira Password, Jira URI and, by default, an empty jql query.   You'll use "replace" mode:
 
     :::yaml
     config:
@@ -28,16 +28,16 @@ First, please prepare `seed.yml` like below, with your AWS access key and secret
       out:
         mode: replace
 
-Data Connector for JIRA imports all tickets that match with the specified JQL.
+NOTE: The Data Connector for JIRA imports all tickets that match with the specified JQL.
 
-## Step2: Guess Formart in the File (load.yml)
+## Step 2: Guess Format in the File (load.yml)
 
 Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
     :::term
     $ td connector:guess seed.yml -o load.yml
 
-If you open up `load.yml`, you'll see guessed file format definitions including file formats, encodings, column names, and types.
+If you open up `load.yml`, you'll see guessed file format definitions including, in some cases, file formats, encodings, column names, and types.
 
     :::yaml
     ---
@@ -59,17 +59,17 @@ If you open up `load.yml`, you'll see guessed file format definitions including 
       out:
         mode: replace
 
-Then you can preview how the system will parse the file by `preview` command.
+Then you can preview how the system will parse the file by using `preview` command.
 
     $ td connector:preview load.yml
 
 If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
 
-NOTE: Currently, DataConnector supports "boolean", "long", "double", "string", "timestamp" to parse.
+NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
 
-## Step3: Execute Load Job
+## Step 3: Execute Load Job
 
-Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
+Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_tbl
@@ -78,13 +78,13 @@ Finally, please submit the load job. It may take a couple of hours depending on 
 
 You can schedule periodic Data Connector execution for periodic JIRA import.
 We take great care in distributing and operating our scheduler in order to achieve high availability.
-By using this feature, you no longer need a `cron` daemon on your local datacenter.
+By using this feature, you no longer need a `cron` daemon on your local data center.
 
-For the scheduled import, Data Connector for JIRA imports all files that match with the specified JQL.
+For the scheduled import, Data Connector for JIRA imports all files that match the specified JQL.
 
 ### Create the schedule
 
-A new schedule can be created using the `td connector:create` command.
+A new schedule can be created by using the `td connector:create` command.
 The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
 
     :::term

@@ -13,7 +13,7 @@ This article shows you how to access Treasure Data from the popular Python-based
 
 ## Step 0: Set Treasure Data API Key
 
-First, set your api key as an environment variable. The APIKEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
+First, set your master api key as an environment variable. The master API KEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
 
     :::term
     $ export TD_API_KEY="1234/abcde..."

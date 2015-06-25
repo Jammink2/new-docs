@@ -15,7 +15,7 @@ Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
 ## Step 1: Create Seed Config File (seed.yml)
 
-First, prepare `seed.yml` as below, with your AWS access key and secret access key. Also please specify bucket name, and target file name or prefix for multiple files.
+First, prepare `seed.yml` as below, with your AWS access key and secret access key. You must also specify bucket name, and target file name (or prefix for multiple files).
 
     :::yaml
     config:
@@ -84,11 +84,11 @@ Then, you can preview how the system will parse the file by using the `preview` 
 
 NOTE: If the system detects your column name or column type unexpectedly, modify `load.yml` directly and preview again.
 
-NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", "timestamp" types.
+NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
 
 ## Step 3: Execute Load Job
 
-Finally, submit the load job. It may take a couple of hours depending on the size of the data. Users need to specify the database and table where their data is stored. If the database or the table does not exist, the command reports an error.
+Finally, submit the load job. It may take a couple of hours depending on the size of the data. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
 
 It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
 If the option is not given, the Data Connector will choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp` type.

@@ -6,7 +6,7 @@ This article explains how to import data using Treaure Data's prebuilt data conn
 
   * Basic knowledge of Treasure Data, including the [toolbelt](http://toolbelt.treasuredata.com).
 
-## What is Data Connector?
+## What is the Data Connector?
 
 Treasure Data has pre-built integration with a couple of common data sources. By using these connectors, you can start importing data by a couple of command lines.
 
