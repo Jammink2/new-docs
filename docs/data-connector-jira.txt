@@ -74,7 +74,7 @@ Finally, submit the load job. It may take a couple of hours depending on the dat
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
 
-NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
+NOTE: Currently the table won't be created automatically. You need to create the destination database and table manually.
 
 ## Scheduled execution
 

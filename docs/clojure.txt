@@ -5,8 +5,8 @@ This article shows how to use Treasure Data with [Clojure](http://clojure.org) v
 
 ## Prerequisites
 
-- A basic knowledge of Treasure Data and an account ([sign up here](https://console.treasuredata.com/users/sign_up)).
-- A basic knowledge of [leiningen](https://github.com/technomancy/leiningen).
+* A basic knowledge of Treasure Data and an account ([sign up here](https://console.treasuredata.com/users/sign_up)).
+* A basic knowledge of [leiningen](https://github.com/technomancy/leiningen).
 
 ## Downloading Treasure Data's JDBC Driver
 
