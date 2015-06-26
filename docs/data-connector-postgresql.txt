@@ -4,19 +4,19 @@ This article describes how to use the data connector for PostgreSQL, which allow
 
 ## Prerequisites
 
-NOTE: Currently this feature is under Beta phase. Please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> for further questions.
+NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a>.
 
   * Basic knowledge of Treasure Data
   * Basic knowledge of PostgreSQL
 
-## Install td command v0.11.9 or Later
+## Step 0: Install td command v0.11.9 or Later
 
 You can install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
     $ td --version
     0.11.10
 
-## Step1: Create Seed Config File (seed.yml)
+## Step 1: Create Seed Config File (seed.yml)
 
 First, please prepare `seed.yml` like below, with your PostgreSQL access information.
     :::yaml
@@ -35,14 +35,14 @@ First, please prepare `seed.yml` like below, with your PostgreSQL access informa
 
 This example dumps all records inside the table. You can have more detailed control with [additional parameters](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-postgresql).
 
-## Step2: Guess Fields (Generate load.yml)
+## Step 2: Guess Fields (Generate load.yml)
 
-Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
+Second, run the command `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
     :::term
     $ td connector:guess seed.yml -o load.yml
 
-Then you can preview how the system will parse the file by `preview` command.
+Then you can preview how the system will parse the file by using the `preview` command.
 
     $ td connector:preview load.yml
     +---------+--------------+----------------------------------+------------+---------------------------+
@@ -55,20 +55,20 @@ Then you can preview how the system will parse the file by `preview` command.
     | 6       | "item name6" | "6aa15471c373ddc8a6469e1c918f98" | 3556       | "2014-03-29 08:30:23 UTC" |
     +---------+--------------+----------------------------------+------------+---------------------------+
 
-## Step3: Execute Load Job
+## Step 3: Execute Load Job
 
-Finally, please submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
+Finally, submit the load job. The job may take a couple of hours to run depending on the data size. Users need to specify the database and table where their data is stored. If the database or the table does not exist, the command reports an error.
 
     :::term
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
 
-NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
+NOTE: Currently table won't be created automatically. You'll need to manually create the destination database and table.
 
 ## Scheduled execution
 
 You can schedule periodic Data Connector execution for periodic PostgreSQL import.
 We take great care in distributing and operating our scheduler in order to achieve high availability.
-By using this feature, you no longer need a `cron` daemon on your local datacenter.
+By using this feature, you no longer need a `cron` daemon on your local data center.
 
 ### Create the schedule
 
@@ -83,7 +83,7 @@ The name of the schedule, cron-style schedule, the database and table where thei
         td_sample_table \
         load.yml
 
-NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@daily` and `@monthly`.
+NOTE: The `cron` parameter also accepts three options: `@hourly`, `@daily` and `@monthly`.
 
 ### List the Schedules
 
