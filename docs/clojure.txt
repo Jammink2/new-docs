@@ -20,7 +20,7 @@ Then, place the downloaded jar file in your lein project's `resources` folder.
 
 ## Installing clojure.java.jdbc
 
-To install clojure.java.jdbc, add `[org.clojure/java.jdbc "0.3.6"]` in your leiningen project's `project.cli` as follows:
+To install clojure.java.jdbc, add `[org.clojure/java.jdbc "0.3.6"]` in your leiningen project's `project.clj` as follows:
 
     :::term
     (defproject test_td "0.1.0-SNAPSHOT"
@@ -37,7 +37,7 @@ Then, run `lein install`.
 
 ## Adding Treasure Data's JDBC to the project.
 
-To add Treasure Data's JDBC driver to your project, add `:resource-paths ["resources/*]` in `project.cli` as follows:
+To add Treasure Data's JDBC driver to your project, add `:resource-paths ["resources/*]` in `project.clj` as follows:
 
     :::term
     (defproject test_td "0.1.0-SNAPSHOT"
