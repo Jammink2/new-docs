@@ -103,6 +103,6 @@ If you see 'Task exceeded max memory size' error in join queries, it ususally me
 
 Hash join is known to be slow when there is a skew in your data. If your right table is small enough to fit within one node (usuallly less than 2GB), you can turn the distributed join off by emedding a session property as an SQL comment:
 
-     -- set session distribute_join = 'false'
+     -- set session distributed_join = 'false'
     SELECT ... FROM large_table l, small_table s WHERE l.id = s.id
 
