@@ -1,4 +1,4 @@
-# Getting Started
+# Segment -> Treasure Data Integration
 
 Once the Segment library is integrated with your server, toggle Treasure Data on in your Segment integrations, and add your API key which you can find [here](console.treasuredata.com/users/current). Also please specify the destination database name.
 
