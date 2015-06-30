@@ -1,0 +1,29 @@
+# Getting Started
+
+Once the Segment library is integrated with your server, toggle Treasure Data on in your Segment integrations, and add your API key which you can find [here](console.treasuredata.com/users/current). Also please specify the destination database name.
+
+The Segment Treasure Data integration is 100% handled through our servers, so you don't need to bundle their iOS or Android SDKs. Your Segment SDK will be enough.
+
+## Table Structure
+
+All of your organization’s data inside Segment is hosted on Treasure Data database. Inside that database you will see multiple tables for each of your Segment projects, one for each of the types of data.
+
+Every table is namespaced by the project’s name—eg. initech and initech_ios. Inside each project there are a few standard tables:
+
+### project.aliases
+A table with all of your alias method calls. This table will include all of the traits you identify users by as top-level columns, for example <project>.aliases.email.
+
+### project.groups
+A table with all of your group method calls. This table will include all of the traits you record for groups as top-level columns, for example <project>.groups.employee_count.
+
+### project.identifies
+A table with all of your identify method calls. This table will include all of the traits you identify users by as top-level columns, for example <project>.identifies.email.
+
+### project.pages
+A table with all of your page method calls. This table will include all of the properties you record for pages as top-level columns, for example <project>.pages.title.
+
+### project.screens
+A table with all of your screen method calls. This table will include all of the properties you record for screens as top-level columns, for example <project>.screens.title.
+
+### project.event_name
+For track calls, each event like Signed Up or Completed Order also has it’s own table (eg. initech.clocked_in) with columns for each of the event’s distinct properties (eg. initech.clocked_in.time).
