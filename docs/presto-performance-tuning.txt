@@ -7,9 +7,9 @@
 
 ## Leveraging Time-based partitioning
 
-All imported data is automatically partitioned into hourly buckets, based on the **'time'** field within each data record. **By specifying the time range to query, you avoid reading unnecessary data and can thus speed up your query significantly.**
+All imported data is automatically partitioned into hourly buckets, based on the **'time'** field within each data record. **By specifying the time range in your query, you can avoid reading unnecessary data and can thus speed up your query significantly.**
 
-### 1) WHERE time <=> Integer
+### 1.) WHERE time <=> Integer
 
 **When the 'time' field within the WHERE clause is specified**, the query parser will automatically detect which partition(s) should be processed. Please note that this auto detection will not work *if you specify the time with `float` instead of `int`.*
 
@@ -21,9 +21,9 @@ All imported data is automatically partitioned into hourly buckets, based on the
     [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time > 1349393020.00
     [BAD]:  SELECT field1, field2, field3 FROM tbl WHERE time BETWEEN 1349392000 AND 1349394000
 
-### 2) <tt>TD_TIME_RANGE</tt>
+### 2.) <tt>TD_TIME_RANGE</tt>
 
-**An easier way to slice the data is to use [TD_TIME_RANGE UDF](presto-udfs#tdtimerange)**.
+**An easier way to slice data is to use [TD_TIME_RANGE UDF](presto-udfs#tdtimerange)**.
 
     :::sql
     [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01 PDT')
@@ -31,7 +31,7 @@ All imported data is automatically partitioned into hourly buckets, based on the
     [GOOD]: SELECT ... WHERE TD_TIME_RANGE(time, '2013-01-01',
                                            TD_TIME_ADD('2013-01-01', '1day', 'PDT'))
 
-However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partition opimization doesn't work. For instance, the following conditions disable optimization.
+However, if you use the TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partition opimization doesn't work. For instance, the following conditions disable optimization.
 
     :::sql
     [BAD]: SELECT ... WHERE TD_TIME_RANGE(time, TD_TIME_FORMAT(TD_SCHEDULED_TIME(), 'yyyy-MM-dd'))
@@ -44,12 +44,12 @@ However, if you use TD_TIME_FORMAT UDF or division in TD_TIME_RANGE, time partit
 There's a probability where GROUP BY becomes a little bit faster, by carefully ordering a list of fields within GROUP BY in an order of high cardinality.
 
     :::sql
-    good: SELECT GROUP BY uid, gender
-    bad:  SELECT GROUP BY gender, uid
+    [GOOD]: SELECT GROUP BY uid, gender
+    [BAD]:  SELECT GROUP BY gender, uid
 
-## Use approximate aggregate functions
+## Using approximate aggregate functions
 
-Presto has a couple of [approximate aggregation functions](http://prestodb.io/docs/current/functions/aggregate.html), which will give you significant performance improvements with some errors. For example by using `approx_distinct()` function, you can get an approximation of `COUNT(DISTINCT x)` with standard error of 2.3%. The example below calculates the approximate unique users of the previous day.
+Presto has a couple of [approximate aggregation functions](http://prestodb.io/docs/current/functions/aggregate.html), which will give you significant performance improvements with some errors. For example, by using `approx_distinct()` function, you can get an approximation of `COUNT(DISTINCT x)` with standard error of 2.3%. The example below gives an approximate count of the previous day's unique users.
 
     :::sql
     SELECT
@@ -61,7 +61,7 @@ Presto has a couple of [approximate aggregation functions](http://prestodb.io/do
         TD_TIME_ADD(TD_SCHEDULED_TIME(), '-1d', 'PDT'),
         TD_SCHEDULED_TIME())
 
-## Aggregate a series of LIKE clauses in one single regexp_like clause
+## Aggregating a series of LIKE clauses in one single regexp_like clause
 
 Presto's query optimizer is unable to improve queries where many <tt>LIKE</tt> clauses are used.
 As a consequence the query execution can be slower than expected in this case.
@@ -93,15 +93,15 @@ can be optimized by replacing the 4 LIKE clauses with a single <tt>regexp_like</
       regexp_like(method, 'GET|POST|PUT|DELETE')
 
 
-## Specify large tables first in join clause
+## Specifying large tables first in join clause
 
-Our Presto service uses the distributed hash join algorithm by default, which partitions both left and right table using hash values of join keys. Each partition of the left table is streamed and joined with a partition of the right table stored in a worker node. A limitation is the size of the entire right table must fit your available memory resources.
+Our Presto service uses the distributed hash join algorithm by default, which partitions both the left and right table using the join keys' hash values. Each left-table partition is streamed and joined with a right-table partition stored in a worker node. One limitation is that the size of the entire right table must fit within your available memory resources.
 
-If you see 'Task exceeded max memory size' error in join queries, it ususally means the right table doesn't fit to the memory. Presto does not perform automatic join-reordering, so please make sure your large table preceeds small tables in a join clause.
+If you see 'Task exceeded max memory size' error in join queries, it ususally means the right table doesn't fit in the available memory. Presto does not perform automatic join-reordering, so please make sure your large table preceeds small tables in any join clause.
 
 ## Turning off the distributed hash join
 
-Hash join is known to be slow when there is a skew in your data. If your right table is small enough to fit within one node (usuallly less than 2GB), you can turn the distributed join off by emedding a session property as an SQL comment:
+**Hash join** is known to be slow when there is a skew in your data. If your right table is small enough to fit within one node (usuallly less than 2GB), you can turn off the distributed join by embedding a session property as an SQL comment:
 
      -- set session distributed_join = 'false'
     SELECT ... FROM large_table l, small_table s WHERE l.id = s.id
