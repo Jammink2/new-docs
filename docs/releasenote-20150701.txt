@@ -1,0 +1,49 @@
+# Release Note 20150701
+
+This is a release note for July 1st 2015. This is a summary of the new features and improvements introduced in this release:
+
+## Data Science: Jupyter + Pandas Integration
+
+Now we support interactive data exploration through Jupyter + Pandas. This is particularly useful when you want to explore data interactively.
+
+- [Interactive Analysis with Jupyter + Pandas + TD](http://docs.treasuredata.com/articles/jupyter-pandas)
+
+<center><a href="http://docs.treasuredata.com/articles/jupyter-pandas"><img src="/images/jupyter-sample-datasets-2.png" width="80%" /></a></center><br/>
+
+## Import: Data Connector for MySQL
+
+Now we support direct data bulk loading from MySQL, without installing client-side software.
+
+- [Data Connector for MySQL](http://docs.treasuredata.com/articles/data-connector-mysql)
+
+## Import: Data Connector for PostgreSQL
+
+Now we support direct data bulk loading from PostgreSQL, without installing client-side software.
+
+- [Data Connector for PostgreSQL](http://docs.treasuredata.com/articles/data-connector-postgresql)
+
+## Import: Data Connector for JIRA
+
+Now we support direct data bulk loading from JIRA, without installing client-side software.
+
+- [Data Connector for JIRA](http://docs.treasuredata.com/articles/data-connector-jira)
+
+## Client: td-agent v2.2.1
+
+td-agent [v2.2.1](http://docs.treasuredata.com/articles/td-agent-changelog#20150629-version-v221) was released.
+
+## Client: JDBC Driver v0.3.4
+
+JDBC Driver [v0.3.4](http://docs.treasuredata.com/articles/jdbc-driver) was released. This version supports "select 1" query, which is used by a couple of BI tools.
+
+## Presto: Upgraded to 0.108
+
+Presto upgraded to version 0.108, from version 0.105.
+
+- Presto version [0.108](https://prestodb.io/docs/current/release/release-0.108.html) release note
+- Presto version [0.107](https://prestodb.io/docs/current/release/release-0.107.html) release note
+- Presto version [0.106](https://prestodb.io/docs/current/release/release-0.106.html) release note
+
+## Presto: TD_URL_DECODE() Performance Optimization
+
+We have optimized the performance of Presto [TD_URL_DECODE()](http://docs.treasuredata.com/articles/presto-udfs#tdurldecode) function.
