@@ -317,13 +317,16 @@ This UDF converts currency for the specific date, by accessing the currency exch
 #### Description
 
 This UDF converts IP address to country code.
+This UDF supports IPv4 and IPv6.
 
 #### Example
 
     :::sql
-    SELECT TD_IP_TO_COUNTRY_CODE('184.168.221.1')
+    SELECT 
+        TD_IP_TO_COUNTRY_CODE('106.142.252.8') AS ipv4,
+        TD_IP_TO_COUNTRY_CODE('2001:268:d005:f5be:c43e:af35:81f:8f60') AS ipv6
 
-The function returns `US` in this example.
+The function returns `JP` in this example.
 
 ## <tt>TD_IP_TO_COUNTRY_NAME</tt>
 
@@ -335,10 +338,13 @@ The function returns `US` in this example.
 #### Description
 
 This UDF converts IP address to country code.
+This UDF supports IPv4 and IPv6.
 
 #### Example
 
     :::sql
-    SELECT TD_IP_TO_COUNTRY_NAME('184.168.221.1')
+    SELECT
+        TD_IP_TO_COUNTRY_NAME('106.142.252.8') AS ipv4,
+        TD_IP_TO_COUNTRY_NAME('2001:268:d005:f5be:c43e:af35:81f:8f60') AS ipv6
 
-The function returns `United States` in this example.
+The function returns `Japan` in this example.
