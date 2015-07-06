@@ -51,15 +51,6 @@ As explained in the [Schema Management](schema) article, all tables have two fie
 
 After setting the schema, **queries issued with named columns instead of 'v'** will use the schema information to achieve a more optimized execution path. In particular, GROUP BY performance will improve significantly.
 
-## Use Hive's Mapjoin
-
-If all but one of the tables being joined are small, Hive can perform the join on the mapper side in memory. This can greatly reduce the query time by cutting down on the number of mappers and/or stages in the mapreduce pipeline.
-
-    :::sql
-    SELECT /*+ MAPJOIN(tbl2) */ ... FROM tbl1 join tbl2 on tbl1.key = tbl2.key
-
-In this example, we're specifying `tbl2` as a Mapjoin table that is much smaller than `tbl1` and should fit in memory. For more information on this optimization, please refer to the [Hive documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Joins#LanguageManualJoins-Mapjoinrestrictions).
-
 ## DISTRIBUTE BY...SORT BY v. ORDER BY
 
 In Hive, ORDER BY is not a very fast operation because it forces all the data to go into the same reducer node. By doing this, Hive ensures that the entire dataset is totally ordered.
