@@ -56,7 +56,7 @@ Is your integer greater than or equal to 2e64? If it is, then you need to cast i
 
 Treasure Data uses Hive as a querying language. One of Hive's limitations is that a table name cannot be a reserved keyword. Thus, if your table (or database) name is identical to a reserved keyword, you won't be able to query data in that table (or database).
 
-Hive also have non-reserved keywords which have a proscribed meaning in the language but which are also allowed as identifiers. Hive has additional keywords which allow similar unrestricted usage. In particular, these keywords are allowed as column or table names.
+Hive also has non-reserved keywords which have a proscribed meaning in the language but which are also allowed as identifiers. Hive has additional keywords which allow similar unrestricted usage. In particular, these keywords are allowed as column or table names.
 
 For example if you create an 'items' table and store data in it, you won't be able to execute the following hive query, because 'items' is a reserved keyword in Hive.
 
