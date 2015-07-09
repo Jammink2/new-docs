@@ -6,7 +6,7 @@ This article will explain how to use Treasure Data's [JDBC](http://en.wikipedia.
 
 You can download the driver itself from the link below. The driver is still in beta; any feedback is appreciated.
 
-* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc) (2015/06/22 v0.3.4)
+* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc) (2015/07/08 v0.4.0)
 
 NOTE: This driver only works with Treasure Data. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
@@ -22,7 +22,7 @@ For example, to access a database named "sample_db" in your account, your JDBC U
     :::text
     jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true
 
-You can choose the query engine ([Hive](hive) or [Presto](presto)) by the parameter.
+You can choose the query engine [Hive](hive) or [Presto](presto) (default) by the parameter.
 
     :::text
     jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true;type=hive
