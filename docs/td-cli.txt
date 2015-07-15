@@ -159,7 +159,7 @@ This page documents most of `td` subcommands.
 #### options:
 
 
-    -T, --type TYPE                  set table type (log or item)
+    -T, --type TYPE                  set table type (log)
         --primary-key PRIMARY_KEY_AND_TYPE
                                      [primary key]:[primary key type(int or string)]
 
@@ -277,7 +277,7 @@ This page documents most of `td` subcommands.
 
 
     $ td table:tail example_db table1
-    $ td table:tail example_db table1 -t "2011-01-02 03:04:05" -n 30
+    $ td table:tail example_db table1 -n 30
   
 #### description:
 
@@ -287,8 +287,6 @@ This page documents most of `td` subcommands.
 #### options:
 
 
-    -t, --to TIME                    end time of logs to get
-    -f, --from TIME                  start time of logs to get
     -n, --count N                    number of logs to get
     -P, --pretty                     pretty print
 
@@ -1351,7 +1349,7 @@ This page documents most of `td` subcommands.
 #### example:
 
 
-    $ td server:endpoint '<%= @env[:api_endpoint] %>'
+    $ td server:endpoint 'https://api.treasuredata.com'
   
 #### description:
 
@@ -1382,8 +1380,18 @@ This page documents most of `td` subcommands.
 #### example:
 
 
-    $ td connector:guess td-bulkload.yml
-    $ td connector:guess --access-id s3accessId --access-secret s3AccessKey --source https://s3.amazonaws.com/bucketname/path/prefix --database connector_database --table connector_table
+    $ td connector:guess config.yml -o td-bulkload.yml
+  
+  example config.yml:
+    in:
+      type: s3
+      bucket: my-s3-bucket
+      endpoint: s3-us-west-1.amazonaws.com
+      path_prefix: path/prefix/to/import/
+      access_key_id: ABCXYZ123ABCXYZ123
+      secret_access_key: AbCxYz123aBcXyZ123
+    out:
+      mode: append
   
 #### description:
 
@@ -1393,11 +1401,11 @@ This page documents most of `td` subcommands.
 #### options:
 
 
-        --type[=TYPE]                connector type; only 's3' is supported
-        --access-id ID               access ID (S3 access key id for type: s3)
-        --access-secret SECRET       access secret (S3 secret access key for type: s3)
-        --source SOURCE              resource(s) URI to be imported (e.g. https://s3-us-west-1.amazonaws.com/bucketname/path/prefix/to/import/)
-        --out FILE_NAME              configuration file
+        --type[=TYPE]                (obsoleted)
+        --access-id ID               (obsoleted)
+        --access-secret SECRET       (obsoleted)
+        --source SOURCE              (obsoleted)
+    -o, --out FILE_NAME              output file name for connector:preview
 
 
 ## td connector:preview
