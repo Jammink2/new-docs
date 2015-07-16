@@ -2,6 +2,8 @@
 
 This article explains the different options for processing data within Treasure Data.
 
+NOTE:  You can perform most data processing tasks directly on the [console](https://console.treasure-data.com).   Go to [https://console.treasure-data.com](https://console.treasure-data.com) for more information.
+
 ## Data Processing Options
 
 Once the data is in, Treasure Data provides a wide range of data processing options.

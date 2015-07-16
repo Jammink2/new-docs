@@ -2,6 +2,8 @@
 
 Queries are known as *Jobs* on the cloud. The status and result of each job can be viewed with CUI commands.
 
+NOTE:  It's also possible to schedule and run queries directly on the [console](https://console.treasure-data.com).   Go to [https://console.treasure-data.com](https://console.treasure-data.com) for more information.
+
 This article will explain how to issue, list, and see the details of each job.
 
 ## Prerequisites
