@@ -1,24 +1,17 @@
 # Rating prediction by Matrix Factorization
 
-First of all, make sure that your Treasure Data cluster is HDP2, not CDH4.
-Matrix Factorization is only supported in the up-to-date HDP2 cluster.
-HDP2 is allocated for users who signed Treasure Data after Feb 2015. CDH4 is allcoated for the others.
-
-NOTE: please ask our customer support to use HDP2 if you get an error.
-
 ## Data preparation
 
 Download [ml-20m.zip](http://grouplens.org/datasets/movielens/) and unzip it.
-And, create database and importing raw rating data into TreasureData from CSV.
-`--time-value` is used to add a dummy time column, that is required in Treasure Data, for each row.
+Then, create a database and import the raw ratings data into Treasure Data from the downloaded CSV.
+`--time-value` is used to add a dummy time column (This is because Treasure Data requires each row have a timestsamp).
 
 
     $ td db:create movielens20
     $ td table:create movielens20m ratings
     $ td import:auto --format csv --column-header --time-value date +%s --auto-create movielens20m.ratings ./ratings.csv
 
-Preparation for making training/testing data from the original table.
-
+The first step is to split the original data for training and testing.
 
 ## Training
 
@@ -37,7 +30,7 @@ Calculate the mean rating in the training dataset.
       ratings
     "
 
-Made 80% for training and 20% for testing. 
+The data is split 80% for training and 20% for testing. 
 
 
     $ td table:create movielens20m training
@@ -49,7 +42,6 @@ Made 80% for training and 20% for testing.
       LIMIT 16000000
     "
 
-Note: Please set `v` columns off for `ratings2` through Web console to use `SELECT *` in the `INSERT INTO`.
 
     $ td table:create movielens20m testing
 
@@ -75,8 +67,7 @@ Calculate the mean rating in the training dataset.
 The above average value used in the following queries.
 
 Run training of Matrix Factorization. 
-Result output to TD (--result) feature is not recommended for issuing the following query.
-Use `INSERT INTO table` statement instead.
+Result output to TD (--result) feature is not recommended for issuing the following query. Use `INSERT INTO table` statement instead.
 
     $ td table:create movielens20m sgd_model_f20
 
@@ -101,13 +92,13 @@ Use `INSERT INTO table` statement instead.
         GROUP BY idx
     "
 
-Currently, the signature of train_mf_sgd is `train_mf_sgd(int userid, int itemid, numeric rating [, string options])`. We will accept any numeric types in the next version (v0.3.2) of Hivemall.
+Currently, the signature of `train_mf_sgd` is `train_mf_sgd(int userid, int itemid, numeric rating [, string options])`. We will accept any numeric types in the next version (v0.3.2) of Hivemall.
 
-Please avoid 
+Please ignore
 
     ERROR metastore.RetryingHMSHandler: MetaException(message:NoSuchObjectException(message:Function xxxxx.train_mf_sgd does not exist))
 
-in logs. It is not a logging issue ([Hive 0.13 bug](https://issues.apache.org/jira/browse/HIVE-6538)) and not a problem.
+in the logs. It is not a logging issue ([Hive 0.13 bug](https://issues.apache.org/jira/browse/HIVE-6538)) and not a problem.
 
 
 ## Predict 
@@ -149,3 +140,5 @@ NOTE: if(size(xxx)=0,null,xxx) is just a workaround and will be fixed to avoid i
 --------------------|--------------------
  0.6123907679836259 | 0.8027164481776642 
 
+
+NOTE: If you are a legacy customer, you might be running an older version of Hive that does not support this feature. Please see this <a href="hadoop-upgrade-201506">article</a> about using the new version.
