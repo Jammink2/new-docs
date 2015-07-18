@@ -3,7 +3,7 @@ Architecture Overview
 
 ## Overview
 
-Treasure Data is a **Cloud Data Service**. Import your data instantly, and process them by issuing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storage and infrastructure ever again.
+Treasure Data is a **Cloud Data Service**. Import your data instantly, and process it by issuing a SQL-style query which runs in parallel on the cloud. Focus 100% on your data analytics, and never worry about server scaling, storage and infrastructure ever again.
 
 ## Why We Started Our Business?
 
@@ -11,10 +11,10 @@ Despite the increasing importance of data warehousing and analytics, most soluti
 
 ## Problems
 
-Overabundance of data is now a ubiquitous problem across all industries, due to the proliferation of smart phones, social media, and sensors- not to mention sensors and IoT systems bringing in data with exponentially increasing volume and velocity. 
-Businesses today are trying to find valuable insights from their data. However, managing very large amounts of data has proven to be a challenge for many companies.
+Overabundance of data is now a ubiquitous problem across all industries. Due to the proliferation of smart phones, social media, and device sensors, data is increasing exponentially both in terms of volume and velocity. 
+Businesses today are trying to find valuable insights from their data. However, managing very large amounts of variety data has proven to be a challenge for many companies.
 
-This is known as the *Big Data Problem*:
+This is known as the *Big Data Problem* and it is three-fold:
 
 * **Resource** Problem: Strong data engineers are in high demand.
 * **Economic** Problem: Existing data warehouses are expensive. The operational overhead to manage large-scale clusters is a major concern for management.
@@ -32,10 +32,10 @@ We provide a **Cloud-based Data Warehousing** service. You can store, manage, an
 
 * **Instant** setup.
 * **Infinite** cloud storage capacity, with high availability.
-* **Easy** to use, and does not require deep knowledge of "Big Data" technologies. You focus on your data instead of cluster management.
-* **Elastic** resource allocation that can be scaled up or down anytime.
-* **Connectivity** to your existing data sources and analytics applications without architectual changes.
-* **Costs** for cloud storage are signficantly lower than traditional data warehousing solutions. Our monthly subscription model lowers initial investment requirements.
+* **Easy** to use, and does not require deep knowledge of "Big Data" technologies. You focus on your data and analytics instead of cluster management.
+* **Elastic** resource allocation that can be scaled up or down at any time.
+* **Connectivity** to your existing data sources and analytics applications without architectural changes.
+* **Significantly Lower Costs** of cloud storage than traditional data warehousing solutions. Our monthly subscription model lowers initial investment requirements.
 
 ## Architecture Diagram
 
