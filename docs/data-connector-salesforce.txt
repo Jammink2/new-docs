@@ -1,4 +1,4 @@
-# Data Connector for SalesForce
+# Data Connector for Salesforce
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
 
 ## Step 1: Obtain OAuth Client ID and Client Secret
 
-Please visit `Setup -> App Setup -> Create -> Apps` in SalesForce. Then, please scroll down to `Connected Apps` and click `New` button. Please fill in the forms like below.
+Please visit `Setup -> App Setup -> Create -> Apps` in Salesforce. Then, please scroll down to `Connected Apps` and click `New` button. Please fill in the forms like below.
 
 <p><center><img src="/images/salesforce_app.png" width="100%"/></center></p><br/>
 
@@ -23,7 +23,7 @@ Then, please revisit `Setup -> App Setup -> Create -> Apps` and click `Treasure 
 
 ## Step 2: Create Seed Config File (seed.yml)
 
-First, please prepare `seed.yml` as below, with your SalesForce credentials. This configuration dumps `Account` object specified at `target` field. You'll use "replace" mode:
+First, please prepare `seed.yml` as below, with your Salesforce credentials. This configuration dumps `Account` object specified at `target` field. You'll use "replace" mode:
 
     :::yaml
     config:

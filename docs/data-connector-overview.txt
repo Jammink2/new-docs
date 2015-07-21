@@ -15,5 +15,5 @@ Treasure Data has pre-built integration with a couple of common data sources. By
 - [Data Connnector for Amazon S3](data-connector-amazon-s3)
 - [Data Connnector for MySQL](data-connector-mysql)
 - [Data Connnector for PostgreSQL](data-connector-postgresql)
-- [Data Connnector for SalesForce](data-connector-salesforce)
+- [Data Connnector for Salesforce](data-connector-salesforce)
 - [Data Connnector for JIRA](data-connector-jira)
