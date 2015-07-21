@@ -117,6 +117,7 @@ section 'import-data', 'Data Import' do
     article 'data-connector-amazon-s3', 'Data Connector for Amazon S3'
     article 'data-connector-mysql', 'Data Connector for MySQL'
     article 'data-connector-postgresql', 'Data Connector for PostgreSQL'
+    article 'data-connector-salesforce', 'Data Connector for SalesForce'
     article 'data-connector-jira', 'Data Connector for JIRA'
   end
   category 'javascript-sdk', 'JavaScript SDK' do
