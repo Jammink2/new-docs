@@ -80,7 +80,7 @@ To get the daily # of visits on the "/dashboard" page  **per price plan** as fol
        GROUP BY 1,2
        ORDER BY 1,2
     
-4. Hit "Run" and wait for the result, which can be downloaded as CSV, push data to a [Google Spreadsheet](result-into-google-spreadsheet), trigger [an email](https://github.com/treasure-data/td2email) and [so forth](/categories/result).
+4. Hit "Run" and wait for the result. The query result can be downloaded as a CSV file, pushed to a [Google Spreadsheet](result-into-google-spreadsheet) and so on. [See here for the list of output targets](/categories/result).
 
 ## Next Steps
 
