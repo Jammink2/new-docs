@@ -1,0 +1,93 @@
+# Customer Analytics: Segmentation with Treasure Data
+
+When it comes to customer analytics, there are some go-to choices like Mixpanel and SiteCatalyst. These services are great, but there are a couple of downsides, especially for developers familiar with SQL-based analytics.
+
+1. **They can get expensive**: many of these services charge a premium rightfully since they provide easy-to-use dashboards and nice charts. However, as your event data volume grows, so does your monthly bill.
+2. **You can't query raw data directly**: They are great for 80% of your questions, but the remaining 20% requires you to build a separate data pipeline.
+3. **Data Lock-in**: many of these export APIs are fragile and hard to work with.
+
+This tutorial shows you how to use Treasure Data for user segmentation, funnel analysis and cohort analysis. Treasure Data solve the above problems as follows:
+
+1. **Treasure Data is much more affordable**: For our 14-day free trial, you can get 1 billion events for free. Even if you do not end up paying, you can import 10 million events per month for free.
+2. **Treasure Data gives event-by-event access**: We give you direct access to each event that you record. Your imagination and SQL chops are the limit.
+3. **Treasure Data lets you export data to S3**: our [export API](bulk-export) is simple and performant to eliminate the concerns around data lock-ins.
+
+## Prerequisites
+
+- Treasure Data account (Sign up [here](https://console.treasuredata.com/users/sign_up))
+- Familiarity with SQL (This example uses Presto)
+- Familiarity with basic client-side JavaScript (for the purpose of event collection)
+
+## Step 0: Have your Treasure Data API Key Ready
+
+[Here](get-apikey) is how to fetch your API key. Make sure to use the "Write-only" API key.
+
+## Step 1: Collecting Data with Treasure Data's JavaScript SDK
+
+The first step is collecting event data. This tutorial users the JavaScript SDK. See [this page](import-overview) for other data collection methods.
+
+The first step is to include Treasure Data's JavaScript SDK in the `<head>...</head>` seciont of your HTML as below. Here, I am also including the jQuery for DOM manipulation convenience, but this is not a requirement.
+
+    :::html
+    <!-- optional jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <!-- Treasure Data -->
+    <script type="text/javascript">
+      !function(t,e){if(void 0===e[t]){e[t]=function(){e[t].clients.push(this),this._init=[Array.prototype.slice.call(arguments)]},e[t].clients=[];for(var r=function(t){return function(){return this["_"+t]=this["_"+t]||[],this["_"+t].push(Array.prototype.slice.call(arguments)),this}},s=["addRecord","set","trackEvent","trackPageview","ready"],n=0;n<s.length;n++){var i=s[n];e[t].prototype[i]=r(i)}var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//s3.amazonaws.com/td-cdn/sdk/td-1.2.0.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(a,c)}}("Treasure",this);
+    </script>
+
+The above code includes Treasure Data's JavaScript SDK into your page. As the next step, start tracking some events.
+
+    :::javascript
+    var td = new Treasure({
+      database: 'user_action',
+      writeKey: 'YOUR_TREASURE_DATA_API_KEY'
+    })
+    td.trackPageview('pageviews');
+
+The above code instantiates the tracker object and starts tracking pageviews in the "user_action" databases's "pageview" table.
+
+One of the key requirements of customer analytics is to record custom events. In Treasure Data's JavaScript SDK, this can be done with the `trackEvent("table_name", properties)` method. For example, the code below logs every click and records the class of the element clicked.
+
+    :::javascript
+    $(document).click(function(ev){
+      td.trackEvent('clicks', {"class": ev.target.className})
+    });  
+
+Event tracking on Treasure Data can be very granular. For example, if you run an e-commerce company, you can tag your user based on the customer's pricing status.
+
+    :::javascript
+    $(document).trackEvent('visits', {"price_plan": "business"})
+
+Because Treasure Data is **schema-on-read**, you can record any properties without worrying about schema management.
+
+## Step 2: Writing Queries on Treasure Data
+
+Now, let's segment our users. In addition to custom properties (i.e., the second argument for the `trackEvent` method) Our JavaScript SDK records some events by default. See [here](https://github.com/treasure-data/td-js-sdk#tracked-information) for the full list. In particular, `td_client_id` is the anonymous unique ID for your customer, which comes in handy for funnel analysis.
+
+To get the daily # of visits on the "/dashboard" page  **per price plan** as follows:
+
+1. Go to Treasure Data Console's "New Query" [page](https://console.treasuredata.com/query_forms/new)
+2. Select the "user_action" database, assuming that this is where you are storing your user action data.
+3. Write the following query, assuming that "visit" is where you are storing your user action data.
+     
+       :::sql
+       SELECT TD_TIME_FORMAT(time, 'yyyy-MM-dd') AS "date",
+              "price_plan"
+              COUNT(1) AS "num_visits"
+       FROM "user_action"."visits"
+       WHERE "td_path" = '/dashboard'
+       GROUP BY 1,2
+       ORDER BY 1,2
+    
+4. Hit "Run" and wait for the result, which can be downloaded as CSV, push data to a [Google Spreadsheet](result-into-google-spreadsheet), trigger [an email](https://github.com/treasure-data/td2email) and [so forth](/categories/result).
+
+## Next Steps
+
+Obviously, one missing feature is visualization. Treasure Data integrates well with existing visualization tools. For example,
+
+- [Integrating Treasure Data with Tableau](tableau)
+- [Integrating Treasure Data with Jupyter (formerly iPython Notebook)](jupyter-pandas)
+- [Integrating Treasure Data with R](r-language)
+
+If you have any question, please feel free to [request a demo](http://www.treasuredata.com/request_demo) or [sign up for a free trial](https://console.treasuredata.com)
