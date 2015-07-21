@@ -81,14 +81,14 @@ section 'overview', 'Overview' do
 end
 
 section 'Usecases', 'Usecases' do
-  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
-    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
-  end
   category 'GameKPIReporting', 'Game KPI Reporting' do
     article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
   end
   category 'AdNetworkReporting', 'Ad-Network Reporting' do
     article 'analyzing-adnetwork-logs', 'Analyzing Ad-Network Logs on the Cloud', ['ad-network analysis']
+  end
+  category 'CustomerAnalytics', 'Customer Analytics' do
+    article 'customer-analytics', 'Customer Analytics'
   end
   category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
@@ -96,6 +96,9 @@ section 'Usecases', 'Usecases' do
   category 'TwitterAnalytics', 'Twitter Data Analytics' do
     article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
     article 'twitter-nodejs', 'Streaming Twitter Data into Treasure Data from Node.js', ['twitter data', 'twitter nodejs']
+  end
+  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
+    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
   end
 end
 
