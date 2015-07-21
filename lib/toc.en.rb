@@ -256,6 +256,9 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
     article 'tableau-online', 'Tableau Online', ['Tableau', 'Tableau Online']
     article 'tableau-desktop-odbc', 'Tableau Desktop', ['Tableau', 'Tableau Desktop']
   end
+  category 'looker', 'Looker' do
+    article 'looker', 'Looker'
+  end
   category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights', ['Metric Insights']
   end
