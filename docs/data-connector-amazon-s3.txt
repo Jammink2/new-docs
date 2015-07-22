@@ -88,7 +88,7 @@ NOTE: If the system detects your column name or column type unexpectedly, modify
 
 NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
 
-NOTE: You may also need to create the local database and table, prior to executing the load job.   To do this:
+NOTE: You will also need to create the local database and table, prior to executing the load job.   To do this:
 
     :::term
     $ td database:create td_sample_db
@@ -105,8 +105,6 @@ If the option is not given, the Data Connector will choose the first `long` or `
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table --time-column created_at
 
 NOTE: At present, the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
-
-NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
