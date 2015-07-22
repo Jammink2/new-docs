@@ -92,7 +92,7 @@ NOTE: You may also need to create the local database and table, prior to executi
 
     :::term
     $ td database:create td_sample_db
-    $ td table:create td_sample_table
+    $ td table:create td_sample_db td_sample_table
 
 ## Step 3: Execute Load Job
 
