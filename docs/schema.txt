@@ -36,11 +36,19 @@ When a table is created, it has two fields:
 
 When we look up the value of a database entry, we must address the information using the format: *v['field1']*. 
 
-Furthermore, since the type of *v* is fixed as map<string, string>, all values are treated as a *String*. If we need to treat values as other data types, we must type cast them first. This is inefficient.
+Furthermore, since the type of *v* is fixed as map<string, string>, all values are treated as a *String*. If we need to treat values as other data types, we must type cast them first. This is inefficient, and now unrecommended except for testing.
+
+    :::sql
+    $ td query -w -d testdb "SELECT v['user'], COUNT(1) AS cnt
+     FROM www_access
+     WHERE v['action']='login'
+     GROUP BY v['user'] ORDER BY cnt DESC"
+
+For daily uses, using custom schema is strongly recommended.
 
 ## Setting Custom Schema
 
-In general, the default schema is acceptable. But a custom schema makes queries shorter, and improves performance up to 30%. To set a schema to a table, we can use the 'td schema:set' command, as shown below:
+In general, the default schema is acceptable. But a custom schema makes queries shorter, and improves performance extremely. To set a schema to a table, we can use the 'td schema:set' command, as shown below:
 
     :::term
     $ td schema:set <database> <table> <column_name>:<type>...
@@ -61,21 +69,13 @@ In the "Getting Started" guide, we set up a table with 'user' (int type) and 'ac
     :::term
     $ td schema:set testdb www_access action:string user:int
 
-You can now query this table without using *v*.
+You can now query this table with defined column names.
 
     :::sql
     $ td query -w -d testdb "SELECT user, COUNT(1) AS cnt
       FROM www_access
       WHERE action='login'
       GROUP BY user ORDER BY cnt DESC"
-
-Using *v* still works properly.
-
-    :::sql
-    $ td query -w -d testdb "SELECT v['user'], COUNT(1) AS cnt
-     FROM www_access
-     WHERE v['action']='login' 
-     GROUP BY v['user'] ORDER BY cnt DESC"
 
 ## Next Step
 

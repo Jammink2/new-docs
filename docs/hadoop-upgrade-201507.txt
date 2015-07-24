@@ -1,0 +1,53 @@
+# Hadoop2 environnment specifications
+
+## Overview
+
+The environment which we called as `hadoop2` is configured with software below:
+
+* Apache Hadoop and MapReduce version 2.x (Apache YARN)
+* Apache Hive (0.13.x with Treasure Data patches at Jul 2015)
+* Apache Pig (0.12.x with Treasure Data patches at Jul 2015)
+
+This configuration have some different characteristics from classic Hadoop environment, based on Apache Hadoop MapReduce version 1.x.
+
+This page is to explain what the difference is and how to keep yourself away from a pitfall.
+
+See [this page](hadoop-upgrade-201506) to know how to switch your environment from `hadoop1` to `hadoop2` and details of difference between Hive 0.10 and 0.13.
+
+## Hive Query: 'v' column
+
+As a classic feature of Treasure Data service, we supports `v` column, which has all values of filtered row. But **it's already not recommended now** (including for `hadoop1` environment).
+
+    :::sql
+    SELECT v['code'], AVG(v['bytes'])
+    FROM www_access
+    WHERE TD_TIME_RANGE(time, '2015-07-01', '2015-07-31')
+    GROUP BY v['code']
+
+On `hadoop2` environment, this query works very slowly. Using custom schema is highly recommended instead of using `v` columns. 
+
+    :::sql
+    SELECT code, AVG(bytes)
+    FROM www_access
+    WHERE TD_TIME_RANGE(time, '2015-07-01', '2015-07-31')
+    GROUP BY code
+
+Setting schema is to be done by `td` command as below, or on web console.
+
+    :::term
+    schema:set <db> <table> [columns...]
+
+(See also [Schema Management](schema))
+
+## MapReduce Core Assignment
+
+On traditional `hadoop1` environment, number of maps and number of reduces are managed separately. On `hadoop2` environment, user jobs can use their own cpu cores as either mappers or reducers. So some query performs with different reducers from queries on `hadoop1` environment.
+This improves query performance, especially for large `GROUP BY` queries, to calculate large variation of value combinations.
+
+## Issuing Jobs
+
+YARN manages jobs in different way from MapReduce version 1's way. This makes jobs stability higher than ever, but uses an additional cpu core. We're allocating additional cpu cores for this purpose to our customers' resource.
+
+But if you would issue too many jobs at a time, these many jobs uses cpu cores you assigned to manage jobs themself, not to calculate your data.
+
+Please submit a job at a time, and do not schedule many queries at same time. It makes your queries slower than issuing/scheduling queries at different time.
