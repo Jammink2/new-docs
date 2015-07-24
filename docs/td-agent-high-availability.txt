@@ -87,10 +87,11 @@ Please add the following lines to the /etc/td-agent/td-agent.conf file for your 
       buffer_type file
       buffer_path /var/log/td-agent/buffer/forward
 
-      # in case aggregators are down and buffer is full, write down to files
+      # in case buffer becomes full, have local backup
       <secondary>
         type file
-        path /var/log/td-agent/buffer/secondary_backup
+        path /var/log/td-agent/buffer/secondary
+        compress gzip
       </secondary>
     </match>
 
@@ -117,6 +118,13 @@ Please add the following lines to the /etc/td-agent/td-agent.conf file for your 
       buffer_path /var/log/td-agent/buffer/td
       use_ssl true
       num_threads 8
+
+      # in case buffer becomes full, have local backup
+      <secondary>
+        type file
+        path /var/log/td-agent/buffer/secondary
+        compress gzip
+      </secondary>
     </match>
 
 The incoming logs are buffered, then periodically uploaded into the cloud. If upload fails, the logs are stored on the local disk until the retransmission succeeds.
