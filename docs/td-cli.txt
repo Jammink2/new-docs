@@ -1164,12 +1164,12 @@ This page documents most of `td` subcommands.
     -w, --wait                       wait for finishing the job
     -G, --vertical                   use vertical table to show results
     -o, --output PATH                write result to the file
-    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
     -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
     -c, --column-header              output of the columns' header when the schema is available
                                        for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
         --null STRING                null expression in csv or tsv
+    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
         --last [Number]              show the result before N from the last. default: 1
 
 
@@ -1198,7 +1198,7 @@ This page documents most of `td` subcommands.
     -w, --wait                       wait for finishing the job
     -G, --vertical                   use vertical table to show results
     -o, --output PATH                write result to the file
-    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json or msgpack)
+    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
     -r, --result RESULT_URL          write result to the URL (see also result:create subcommand)
                                       It is suggested for this option to be used with the -x / --exclude option to suppress printing
                                       of the query result to stdout or -o / --output to dump the query result into a file.
@@ -1239,12 +1239,12 @@ This page documents most of `td` subcommands.
     -w, --wait                       wait for finishing the job
     -G, --vertical                   use vertical table to show results
     -o, --output PATH                write result to the file
-    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
     -l, --limit ROWS                 limit the number of result rows shown when not outputting to file
     -c, --column-header              output of the columns' header when the schema is available
                                        for the table (only applies to tsv and csv formats)
     -x, --exclude                    do not automatically retrieve the job result
         --null STRING                null expression in csv or tsv
+    -f, --format FORMAT              format of the result to write to the file (tsv, csv, json, msgpack, and msgpack.gz)
 
 
 ## td job:status
