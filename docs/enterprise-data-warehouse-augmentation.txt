@@ -26,9 +26,9 @@ This diagram shows one frequently used data architecture pattern that solves the
 
 ### Store-All to Treasure Data (TD)
 
-All generated data is first stored in Treasure Data. Treasure Data provides a highly scalable and cost effective cloud-based storage solution. Furthermore, Treasure Data handles all data as schema-less structure. This makes load the process really simple, since you don't need to sync the schema between data source and the analytics infrastructure.
+All the generated data is first stored in Treasure Data which provides a highly scalable and cost effective cloud-based storage solution. Furthermore, Treasure Data handles all the data with a schema-less structure. This makes the data import process really simple - you don't need to sync the schema between your data sources and the analytics infrastructure, it's all managed.
 
-We've seen many cases where the analytics team needs to change the schema every night, spending many hours syncing the schema between multiple data sources and the analytics system. This is just a waste of time and can be avoided using Treasure Data with your EDW.
+We've seen many cases where the analytics team needs to change the schema every night, spending many hours syncing the schema between multiple data sources and the analytics system. This is just a waste of time and can be avoided by using Treasure Data in conjunction with your EDW.
 
 ### Treasure Data (TD) to EDW
 

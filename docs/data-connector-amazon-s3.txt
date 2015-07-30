@@ -1,5 +1,7 @@
 # Data Connector for Amazon S3
 
+The Data Connector for Amazon S3 enables import of the contents of *.tsv and *.csv files stored in your S3 bucket. 
+
 ## Prerequisites
 
 NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> .
@@ -24,7 +26,7 @@ First, prepare `seed.yml` as below, with your AWS access key and secret access k
         access_key_id: XXXXXXXXXX
         secret_access_key: YYYYYYYYYY
         bucket: sample_bucket
-        path_prefix: path/to/sample_file
+        path_prefix: path/to/sample_file                # path the the *.csv or *.tsv file on your s3 bucket
       out:
         mode: append
 
@@ -86,6 +88,12 @@ NOTE: If the system detects your column name or column type unexpectedly, modify
 
 NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
 
+NOTE: You will also need to create the local database and table, prior to executing the load job.   To do this:
+
+    :::term
+    $ td database:create td_sample_db
+    $ td table:create td_sample_db td_sample_table
+
 ## Step 3: Execute Load Job
 
 Finally, submit the load job. It may take a couple of hours depending on the size of the data. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
@@ -97,8 +105,6 @@ If the option is not given, the Data Connector will choose the first `long` or `
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table --time-column created_at
 
 NOTE: At present, the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
-
-NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
@@ -176,11 +182,11 @@ You can see the list of currently scheduled entries by running the command `td c
 
     :::term
     $ td connector:list
-    +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
-    | Name         | Cron         | Timezone | Delay | Database     | Table           | Config                            |
-    +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
-    | daily_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"type"=>"s3", "access_key_id"... |
-    +--------------+--------------+----------+-------+--------------+-----------------+-----------------------------------+
+    +--------------+--------------+----------+-------+--------------+-----------------+------------------------------------------+
+    | Name         | Cron         | Timezone | Delay | Database     | Table           | Config                                   |
+    +--------------+--------------+----------+-------+--------------+-----------------+------------------------------------------+
+    | daily_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"in"=>{"type"=>"s3", "access_key_id"... |
+    +--------------+--------------+----------+-------+--------------+-----------------+------------------------------------------+
 
 ### Show the Setting and Schedule History
 

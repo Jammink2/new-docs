@@ -2,6 +2,8 @@
 
 This article explains the different options for processing data within Treasure Data.
 
+NOTE:  You can perform most data processing tasks directly on the console. Go to https://console.treasure-data.com for more information.
+
 ## Data Processing Options
 
 Once the data is in, Treasure Data provides a wide range of data processing options.
@@ -20,9 +22,9 @@ Treasure Data allows users to issue jobs (see [Job Management](job)) to process 
 
 [Pig](/categories/pig) is a relational data-flow language built on top of the Hadoop platform. If you need the sort of complex data processing requiring multiple phases of data transformation, Pig would be recommended.
 
-#### 3.) Interactive SQL (TQA)
+#### 3.) Interactive SQL (Presto)
 
-TQA provides low-latency SQL access to the dataset.
+[Presto](/categories/presto) provides low-latency SQL access to the dataset.
 
 ## Scheduled Jobs
 

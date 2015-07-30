@@ -24,7 +24,7 @@ Then, please install ODBC Driver provided by Treasure Data. Please download `pre
 
 * [Treasure Data ODBC Driver Download](https://github.com/treasure-data/prestogres-odbc/releases)
 
-NOTE: This driver only works with Treasure Data's premium plan. It does not run on other environments, such as your local Hadoop/Hive cluster.
+NOTE: This driver only works with Treasure Data's Presto Resources. It does not run on other environments, such as your local Hadoop/Hive cluster.
 
 ## Step4: Launch ODBC Data Source Administrator
 

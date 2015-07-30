@@ -81,14 +81,14 @@ section 'overview', 'Overview' do
 end
 
 section 'Usecases', 'Usecases' do
-  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
-    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
-  end
   category 'GameKPIReporting', 'Game KPI Reporting' do
     article 'analyzing-game-logs', 'Analyzing Game Logs on the Cloud', ['game log analysis']
   end
   category 'AdNetworkReporting', 'Ad-Network Reporting' do
     article 'analyzing-adnetwork-logs', 'Analyzing Ad-Network Logs on the Cloud', ['ad-network analysis']
+  end
+  category 'CustomerAnalytics', 'Customer Analytics' do
+    article 'customer-analytics', 'Customer Analytics'
   end
   category 'WeblogAnalytics', 'Weblog Analytics' do
     article 'analyzing-apache-logs', 'Analyzing Apache Logs on the Cloud', ['apache logs', 'apache log analysis', 'apache log analyzer']
@@ -96,6 +96,9 @@ section 'Usecases', 'Usecases' do
   category 'TwitterAnalytics', 'Twitter Data Analytics' do
     article 'analyzing-twitter-data', 'Analyzing Twitter Data on the Cloud', ['twitter data', 'twitter data analytics']
     article 'twitter-nodejs', 'Streaming Twitter Data into Treasure Data from Node.js', ['twitter data', 'twitter nodejs']
+  end
+  category 'EnterpriseDataWarehouseAugmentation', 'Enterprise Data Warehouse Augumentation' do
+    article 'enterprise-data-warehouse-augmentation', 'Enterprise Data Warehouse Augumentation', ['EDW augmentation', 'Enterprise Data Warehouse Augmentation']
   end
 end
 
@@ -117,6 +120,7 @@ section 'import-data', 'Data Import' do
     article 'data-connector-amazon-s3', 'Data Connector for Amazon S3'
     article 'data-connector-mysql', 'Data Connector for MySQL'
     article 'data-connector-postgresql', 'Data Connector for PostgreSQL'
+    article 'data-connector-salesforce', 'Data Connector for SalesForce'
     article 'data-connector-jira', 'Data Connector for JIRA'
   end
   category 'javascript-sdk', 'JavaScript SDK' do
@@ -251,6 +255,9 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
     article 'tableau-server', 'Tableau Server', ['Tableau', 'Tableau Server']
     article 'tableau-online', 'Tableau Online', ['Tableau', 'Tableau Online']
     article 'tableau-desktop-odbc', 'Tableau Desktop', ['Tableau', 'Tableau Desktop']
+  end
+  category 'looker', 'Looker' do
+    article 'looker', 'Looker'
   end
   category 'metricinsights', 'Metric Insights' do
     article 'metricinsights', 'Metric Insights', ['Metric Insights']
