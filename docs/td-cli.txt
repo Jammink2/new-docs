@@ -1456,6 +1456,7 @@ This page documents most of `td` subcommands.
         --time-column COLUMN_NAME    data partitioning key
     -w, --wait                       wait for finishing the job
     -x, --exclude                    do not automatically retrieve the job result
+        --auto-create-table          Create table and database if doesn't exist
 
 
 ## td connector:list
