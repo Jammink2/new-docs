@@ -1,34 +1,106 @@
 # Treasure Data JDBC Driver
 
-This article will explain how to use Treasure Data's [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver. This driver enables you to use Treasure Data with a standard JDBC interface.
+This article will explain how to use Treasure Data's [JDBC](http://en.wikipedia.org/wiki/Java_Database_Connectivity) (Java Database Connectivity) driver. This driver enables you to use Treasure Data with a standard JDBC interface. 
+
+Treasure Data JDBC Driver (td-jdbc) is an open source project. The source code is available from here <https://github.com/treasure-data/td-jdbc>.
 
 ## Download
 
-You can download the driver itself from the link below. The driver is still in beta; any feedback is appreciated.
+* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc) (2015/07/30 v0.5.0)
+  *  Previous versions of td-jdbc (since 0.5.0) are avaialble from Maven Central: <http://central.maven.org/maven2/com/treasuredata/td-jdbc/>
+* For Maven projects, use the following dependency setting:
 
-* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc) (2015/07/08 v0.4.0)
+<code>
+    <dependency>
+      <groupId>com.treasuredata</groupId>
+      <artifactId>td-jdbc</artifactId>
+      <version>(version)</version>
+    </dependency>
+</code>
 
-NOTE: This driver only works with Treasure Data. It does not run on other environments, such as your local Hadoop/Hive cluster.
+## Usage
 
-## JDBC URL
+Here is a sample code for counting the number of rows in **www_access** table in **sample_dataset** database. First, create a _java.sql.Connection_ object using JDBC address ***jdbc:td://api.treasuredata.com/(database name)***, then create _java.sql.Statement_ objects and call *executeQuery(sql)*, etc. to run queries:
 
-Use the following JDBC URL format with your Java application or JDBC-compliant SQL/BI tool.
+    :::java
+    Properties props = new Properties();
+    props.setProperty("user", "(your account e-mail)");
+    props.setProperty("password", "(your password)");
+    
+    // Alternatively, you can use API key instead of user and password
+    // props.setProperty("apikey", "(your API key)")
+
+    // For using SSL connection (default is false)
+    // props.setProperty("useSSL", "true");
+    
+    // To run Hive jobs specify "type" parameter. The default is "presto"
+    // props.setProperty("type", "hive");
+    
+    Connection conn = DriverManager.getConnection("jdbc:td://api.treasuredata.com/sample_datasets", props);
+    Statement st = conn.createStatement();
+    try {
+        ResultSet rs = st.executeQuery("SELECT count(1) FROM www_access");
+        while (rs.next()) {
+            int count = rs.getInt(1);
+            System.out.println("result = " + count);
+        }
+        rs.close();
+    }
+    finally {
+        st.close();
+        conn.close();
+    }
+
+## JDBC Parameter Precedence
+
+To configure JDBC connection parameters, you can use URL parameters, Properties object or System properties. 
+The precedence of these properties is:
+
+1. Environment variable (only for TD_API_KEY parameter)
+1. System properties
+1. Properties object passed by *DriverManager.getConnection(jdbc_url, Properties)*
+1. JDBC URL parameters (e.g., *jdbc:td://api.treasuredata.com/mydb;type=hive;useSSL=true*), separated by semi-colon.
+
+If your environment defines TD_API_KEY variable, td-jdbc uses it. 
+For the other properties, System properties have the highest priority.
+
+## List of JDBC Configurations Parameters
+
+You must provide **apikey** property or both **user** (your account e-mail) and **password** for the authentication:
+
+key     | default value | description |
+--------|---------------|-------------|
+**apikey**  |               | API key to access Treasure Data. You can also set this via TD_API_KEY environment variable.
+**user**    |               | Account e-mail address (unnecessary if **apikey** is set)
+**password**|               | Account password (unnecessary if **apikey** is set)
+**type**    | presto        | Query engine. hive, preto or pig
+**useSSL**  | false         | Use SSL encryption for accessing Treasure Data
+**httpproxyhost** |         | Proxy host (optional) e.g., "myproxy.com"
+**httpproxyport**|         | Proxy port (optional) e.g., "80"
+**httpproxyuser** |         | Proxy user (optional)
+**httpproxypassword** |     | Proxy password (optional)
+
+If both **user** and **password** are given, td-jdbc uses this pair instead of **apikey**.
+
+## JDBC URL examples
+
+When some SQL/BI tool has no functionality to set these properties, use URL parameters. For example, here is an example to set **useSSL** parameter in the URL:
 
     :::text
     jdbc:td://<%= @env[:api_endpoint] %>/<db_name>;useSSL=true
 
-For example, to access a database named "sample_db" in your account, your JDBC URL would be:
+To access a database named "sample_db" in your account:
 
     :::text
     jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true
 
-You can choose the query engine [Hive](hive) or [Presto](presto) (default) by the parameter.
+You can choose the query engine [Hive](hive) or [Presto](presto) (default) by the parameter:
 
     :::text
     jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true;type=hive
     jdbc:td://<%= @env[:api_endpoint] %>/sample_db;useSSL=true;type=presto
 
-If you are trying to connect from behind a proxy, you can specify the proxy settings using the following properties:
+To connect Treasure Data through a proxy server, specify the following proxy settings:
 
 * httpproxyhost
 * httpproxyport
@@ -42,58 +114,13 @@ For example:
 
 ## Query Execution Internals
 
-Because Treasure Data is a cloud service, its JDBC driver behaves in a slightly different manner compared to that of traditional RDBMs.
+# Internals
 
-#### SELECT Statement
+When running a query (e.g. SELECT), the driver submits a job request to
+Treasure Data. td-jdbc periodically monitors the job progress and fetches the
+result after the job completion.
 
-When a SELECT statement is sent to the driver, the driver will issue the query to the cloud. The driver will regularly poll the job results while the jobs run on the cloud. The query may take several hours, we recommend that you use a background thread.
+For INSERT statement, td-jdbc buffers the data into local memory,
+then flushes it to Treasure Data every 5 minutes, so there will be a delay
+until your data becomes accessible in Treasure Data.
 
-#### INSERT Statement
-
-When a INSERT statement is sent to the driver, the data is first buffered in local memory. The data is uploaded into the cloud every 5 minutes. Please note that the upload doesn't occur in realtime.
-
-## Sample Java Program
-
-Here's a sample Java program that executes a SELECT statement. This program counts the number of records within the testdb.www_access table.
-
-### JDBCSample.java
-
-    :::java
-    import java.io.IOException;
-    import java.sql.Connection;
-    import java.sql.DriverManager;
-    import java.sql.ResultSet;
-    import java.sql.Statement;
-    import java.util.Properties;
-    import com.treasure_data.jdbc.TreasureDataDriver;
-
-    public class JDBCSample {
-      public static void loadSystemProperties() throws IOException {
-        Properties props = System.getProperties();
-        props.load(TreasureDataDriver.class.getClassLoader().getResourceAsStream("treasure-data.properties"));
-      }
-
-      public static void main(String[] args) throws Exception {
-        loadSystemProperties();
-
-        Connection conn = DriverManager.getConnection(
-          "jdbc:td://<%= @env[:api_endpoint] %>/testdb;useSSL=true",
-          "YOUR_MAIL_ADDRESS_HERE",
-          "YOUR_PASSWORD_HERE");
-        Statement stmt = conn.createStatement();
-        String sql = "SELECT count(1) FROM www_access";
-        System.out.println("Running: " + sql);
-        ResultSet res = stmt.executeQuery(sql);
-        while (res.next()) {
-          System.out.println(String.valueOf(res.getObject(1)));
-        }
-      }
-    }
-
-### treasure-data.properties
-
-This file is only required if using INSERT statements. If you are only using SELECT statement, this file is not required.
-
-    :::text
-    td.logger.agentmode=false
-    td.api.key=<your API key>
