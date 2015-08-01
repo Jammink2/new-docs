@@ -1,47 +1,49 @@
+@import "color.scss";
 div#header {
-  background-color: #0F2940;
-  color: #30475C;
+  background-color: $dark;
+  color: $slate;
   height: 50px;
-  padding: 20px; }
+  padding: 20px;
+}
 
 div#header li {
-  list-style: none; }
+  list-style:none;
+}
 
-#td-header-inner {
-  width: 1175px;
-  margin: 0 auto; }
-
-#td-logo {
-  float: left;
-  margin: auto -15px; }
-
+#td-header-inner { width: 1175px; margin: 0 auto;}
+#td-logo { float: left; margin: auto -15px}
 #td-logo a {
   display: block;
   margin: auto;
   width: 379px;
   height: 60px;
-  text-indent: -9999px; }
+  text-indent: -9999px;
+}
 
 #td-nav li {
   display: inline-block;
   font-size: 12px;
   font-weight: bold;
-  margin-top: 20px; }
+  margin-top: 20px;
+}
 
 #td-nav li a {
-  color: #bbbbbb; }
+  color: rgb(187, 187, 187);
+}
 
 #td-nav {
   float: left;
-  margin-left: 50px; }
+  margin-left:50px;
+}
 
 .td-signup {
   display: inline-block;
   padding: 5px 15px;
   border-radius: 5px 5px 5px 5px;
-  border: 1px solid #333333;
+  border: 1px solid rgb(51, 51, 51);
   font: bold 14px/21px "Helvetica Neue",Arial,sans-serif;
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5) inset;
-  background-color: #FF5F5F; }
+  background-color: $primary_red;
+}

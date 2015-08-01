@@ -276,7 +276,7 @@ helpers do
         :region => :aws,
         :prefix => '',
         :about => 'http://www.treasuredata.com/company',
-        :logo => '/images/treasure-logo-white.png',
+        :logo => '/images/treasure-data-logo-white.svg',
         :favicon => '/favicon.ico',
         :swiftype_key => '7GEG12Fu5wjuAjfExr5K',
         :olark => true,

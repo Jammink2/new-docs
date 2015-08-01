@@ -1,0 +1,27 @@
+@import "color.scss";
+/* This is inspired (read shamelessly borrowed from http://css-tricks.com/simple-jquery-dropdowns/)
+/* 
+	LEVEL ONE
+*/
+ul.dropdown                         { float:right; font-size: 12px; margin-top: 11px; }
+ul.dropdown li                      { list-style: none; font-weight: bold; float: left; zoom: 1; width: 54px; }
+ul.dropdown a:hover		              { color: $white; }
+ul.dropdown li a                    { display: block; padding: 4px; border-right: 1px solid $dark; text-decoration: none;}
+ul.dropdown li:last-child a         { border-right: none; } /* Doesn't work in IE */
+ul.dropdown li.hover,
+ul.dropdown li:hover                { position: relative; }
+
+/* 
+	LEVEL TWO
+*/
+ul.dropdown ul 						  { width: 120px; visibility: hidden; position: absolute; top: 100%; left: -24px; z-index: 9999;}
+ul.dropdown ul li 					{ width: inherit; font-weight: normal; background: $dark; border-bottom: 1px solid $dark; float: none; }
+ul.dropdown ul li:hover { background-color: $slate; }
+/* IE 6 & 7 Needs Inline Block */
+ul.dropdown ul li a					{ border-right: none; width: 100%; display: inline-block; } 
+
+/* 
+	LEVEL THREE
+*/
+ul.dropdown ul ul 					{ left: 100%; top: 0; }
+ul.dropdown li:hover > ul 			{ visibility: visible; }
