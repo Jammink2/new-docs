@@ -1,3 +1,2 @@
 #!/bin/bash
-for f in base docs dropdown_menu fonts fontface header library mobile modal; do ruby scripts/css_to_scss.rb app/css/$f.css > temp; mv temp app/scss/$f.scss; done
-for f in base docs dropdown_menu fonts fontface header library mobile modal; do sass app/scss/$f.scss > app/css/$f.css; done
+for f in base docs dropdown_menu header library mobile modal; do sass app/scss/$f.scss > app/css/$f.css; done

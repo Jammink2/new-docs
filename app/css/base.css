@@ -3,17 +3,21 @@
   author: maximilian schoening (@mschoening)
 */
 body {
-  background: #F2F7F7;
+  background: url("/images/body_bg2.png") repeat #F2F7F7;
   color: #0F2940;
-  font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+  font-family: "Open Sans";
   font-size: 14px; }
 
 /* =headings
 ---------------------------------------------- */
+h1 {
+  font-family: "Roboto"; }
+
 h2 {
   color: #30475C;
   font-size: 24px;
   font-weight: normal;
+  font-family: "Roboto";
   margin: 1.5em 0 18px 0; }
 
 h3 {
@@ -21,6 +25,7 @@ h3 {
   color: #30475C;
   font-size: 19px;
   font-weight: normal;
+  font-family: "Roboto";
   margin: 1em 0 12px 0;
   padding: 0 0 4px 0; }
 
