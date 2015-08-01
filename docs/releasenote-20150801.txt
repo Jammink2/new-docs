@@ -1,0 +1,43 @@
+# Release Note 20150701
+
+This is a summary of new features and improvements introduced in the August 1, 2015 release:
+
+## Collection: Segment.io Integration
+
+Segment.io now supports the streaming ingestion from Segment.io into Treasure Data. Check out their documentation. The data is available every 5 minutes for now.
+
+- [Segment.io <> Treasure Data Integration](https://segment.com/docs/integrations/treasure-data/)
+
+## Presto: Upgraded to 0.111
+
+Presto is upgraded to version 0.111 from version 0.108.
+
+- Presto version [0.111](https://prestodb.io/docs/current/release/release-0.111.html) release note
+- Presto version [0.110](https://prestodb.io/docs/current/release/release-0.110.html) release note
+- Presto version [0.109](https://prestodb.io/docs/current/release/release-0.109.html) release note
+
+## Support: ZenDesk
+
+We have migrated our support system to [ZenDesk](https://www.zendesk.com/). ZenDesk's additional features will give our customers a lot more better customer experience. What happens for the previous inquiries? No worries, we have migrated all the tickets from old systems to ZenDesk.
+
+## Client: pandas-td v0.8.3
+
+pandas-td now implements `magic funtions`, to issue the query easier.
+
+<center><img src="/images/pandas_td_magic_function.png" width="60%" /></center><br/>
+
+- [ChangeLog](https://github.com/treasure-data/pandas-td/blob/master/CHANGELOG.md)
+
+## Client: JDBC Driver v0.5.0
+
+JDBC Driver [v0.5.0](http://docs.treasuredata.com/articles/jdbc-driver) is released. Also JDBC Driver is open-sourced under Apache License, and the code is available on GitHub.
+
+- [SourceCode](https://github.com/treasure-data/td-jdbc)
+- [ChangeLog](https://github.com/treasure-data/td-jdbc/blob/master/CHANGES.txt)
+
+## Client: td CLI v0.11.13
+
+td command [v0.11.13](http://docs.treasuredata.com/articles/td-cli) is released. This version supports the efficient data download with `msgpack.gz` format.
+
+- [ChangeLog](https://github.com/treasure-data/td/blob/master/ChangeLog)
+
