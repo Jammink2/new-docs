@@ -18,7 +18,7 @@ Presto is upgraded to version 0.111 from version 0.108.
 
 ## Support: ZenDesk
 
-We have migrated our support system to [ZenDesk](https://www.zendesk.com/). ZenDesk's additional features will provide our customers a much better customer experience. What happens to the old support tickets? No worries! We have migrated all the tickets from old system to ZenDesk.
+We have migrated our support system to [ZenDesk](https://www.zendesk.com/). ZenDesk's additional features will provide our customers a much better experience. What happens to the old support tickets? No worries! We have migrated all the tickets from old system to ZenDesk.
 
 ## Client: pandas-td v0.8.3
 
