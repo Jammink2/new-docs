@@ -6,7 +6,7 @@
 */
 
 body {
-  background: url('/images/body_bg2.png') repeat $whitish;
+  background: $whitish;
   color: $dark;
   font-family: $body-font;
   font-size: 14px;
