@@ -769,14 +769,8 @@ object {
     }
 
     #article article #table-of-contents ul {
-      list-style: none;
-      padding: 0 0 0 4px;
-    }
-
-    #article article #table-of-contents ul li {
-      background: url("/images/wikistyle/index_li_bullet2.png") left center no-repeat;
-      background-position: 0 .3em;
-      padding: 0 0 0 22px;
+      list-style-type:disc;
+      padding: 0 0 0 20px;
     }
 
     #article article #table-of-contents #toc_nested {
