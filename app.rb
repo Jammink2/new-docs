@@ -126,7 +126,7 @@ end
 get '/categories/:category' do
   @env = get_environment(request)
   if params[:category] == 'success-stories'
-    redirect "http://www.treasuredata.com/en/learn/customer-stories.php"
+    redirect "http://www.treasuredata.com/customers"
   else
     cache_long
     render_category params[:category]
