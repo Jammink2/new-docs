@@ -31,19 +31,18 @@ h3 {
 
 h4 {
   color: #30475C;
-  font-size: 14px;
   margin: 0 0 8px 0; }
 
 /* ------------------------------------------- */
 /* =links
 ---------------------------------------------- */
 a:link, a:visited {
-  color: #FF5F5F;
+  color: #31A6B7;
   text-decoration: none;
   font-family: "Roboto Condensed"; }
 
 a:hover, a:active {
-  text-decoration: underline; }
+  color: #31A6B7; }
 
 /* ------------------------------------------- */
 /* =paragraphs
@@ -291,25 +290,15 @@ object {
   margin: 0 0 8px 0; }
 
 #search form p input[type='text'] {
-  background-color: #30475C;
-  background-image: url("/images/search_glyph2.png");
-  background-position: right 9px;
-  background-repeat: no-repeat;
-  border: 1px solid #0F2940;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) inset;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) inset;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) inset;
-  color: #F2F7F7;
-  font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
-  font-size: 14px;
+  background-color: #FFFFFF;
   padding: 8px 34px 8px 8px;
   outline: none;
-  width: 160px; }
+  width: 160px;
+  border: solid 1px #B7BFC6; }
 
 #search form p input[type='text']:focus {
   background-position: right 9px;
-  border: 1px solid #FF5F5F;
-  color: #FFFFFF; }
+  border: 1px solid #31A6B7; }
 
 /*#search form p input[type='text']:focus:valid {
   background-image: url('/images/search_glyph2.png'), url('/images/search_return.png');
@@ -345,7 +334,7 @@ input:-moz-placeholder {
   color: #0F2940;
   display: block;
   -webkit-font-smoothing: antialiased;
-  font-size: 14px;
+  font-size: 1.1rem;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
@@ -358,19 +347,12 @@ input:-moz-placeholder {
   padding: 5px 0; }
 
 #nav .category-group .tags li {
-  font-size: 13px;
+  font-size: 0.9rem;
   line-height: 1;
   margin: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 6px;
+  padding-bottom: 8px;
   padding-left: 18px; }
-
-#nav .category-group .tags li a:link, #nav .category-group .tags li a:visited {
-  color: #0F2940;
-  -webkit-font-smoothing: antialiased; }
-
-#nav .category-group .tags li.active a:link, #nav .category-group .tags li.active a:visited {
-  color: #30475C; }
 
 /* ------------------------------------------- */
 /* ------------------------------------------- */
@@ -468,7 +450,6 @@ input:-moz-placeholder {
   margin: 0 0 12px 0; }
 
 #home-page #intro #cycle .pane .content .description p {
-  font-size: 14px;
   line-height: 22px; }
 
 #home-page #intro #cycle .pane .content .image {
@@ -567,7 +548,6 @@ input:-moz-placeholder {
 #home-page #featured-articles ul li a:link, #home-page #featured-articles ul li a:visited, #home-page #popular-articles ul li a:link, #home-page #popular-articles ul li a:visited {
   background: url("/images/article-icon-large.png") left center no-repeat;
   display: block;
-  font-size: 14px;
   line-height: 32px;
   padding: 0 0 0 40px; }
 
@@ -599,7 +579,6 @@ input:-moz-placeholder {
   margin: 0 24px 0 0; }
 
 #article #contribution div h4 {
-  font-size: 14px;
   font-weight: normal;
   margin: 0 0 4px 0; }
 

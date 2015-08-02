@@ -9,7 +9,7 @@ body {
   background: $whitish;
   color: $dark;
   font-family: $body-font;
-  font-size: 14px;
+  font-size: 14px;  
 }
 
 /* =headings
@@ -37,7 +37,7 @@ h3 {
 
 h4 {
   color: $slate;
-  font-size: 14px;
+  
   margin: 0 0 8px 0;
 }
 /* ------------------------------------------- */
@@ -45,13 +45,13 @@ h4 {
 /* =links
 ---------------------------------------------- */
 a:link, a:visited {
-  color: $primary_red;
+  color: $viking_blue;
   text-decoration: none;
   font-family: $link-font;
 }
 
 a:hover, a:active {
-  text-decoration: underline;
+  color: $viking_blue;
 }
 /* ------------------------------------------- */
 
@@ -354,34 +354,18 @@ object {
       }
 
       #search form p input[type='text'] {
-        background-color: $slate;
-        background-image: url('/images/search_glyph2.png');
-        background-position: right 9px;
-        background-repeat: no-repeat;
-        border: 1px solid $dark;
-        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .4) inset;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .4) inset;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .4) inset;
-        color: $whitish;
-        font-family: 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
-        font-size: 14px;
+        background-color: $white;
         padding: 8px 34px 8px 8px;
         outline: none;
         width: 160px;
+        border: solid 1px $french_gray;
+      
       }
 
       #search form p input[type='text']:focus {
         background-position: right 9px;
-        border: 1px solid $primary_red;
-        color: $white;
+        border: 1px solid $viking_blue;
       }
-
-      /*#search form p input[type='text']:focus:valid {
-        background-image: url('/images/search_glyph2.png'), url('/images/search_return.png');
-        background-position: left -35px, right 10px;
-        padding: 8px 29px 8px 34px;
-        width: 139px;
-      }*/
 
       input::-webkit-input-placeholder { color: $whitish; }
       input:-moz-placeholder { color: $whitish; }
@@ -412,7 +396,7 @@ object {
         color: $dark;
         display: block;
         -webkit-font-smoothing: antialiased;
-        font-size: 14px;
+        font-size: 1.1rem;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 10px;
@@ -427,22 +411,14 @@ object {
       }
 
       #nav .category-group .tags li {
-        font-size: 13px;
+        font-size: 0.9rem;
         line-height: 1;
         margin: 0;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 6px;
+        padding-bottom: 8px;
         padding-left: 18px;
       }
 
-      #nav .category-group .tags li a:link, #nav .category-group .tags li a:visited {
-        color: $dark;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      #nav .category-group .tags li.active a:link, #nav .category-group .tags li.active a:visited {
-        color: $slate;
-      }
       /* ------------------------------------------- */
     /* ------------------------------------------- */
 
@@ -552,7 +528,7 @@ object {
   }
 
   #home-page #intro #cycle .pane .content .description p {
-    font-size: 14px;
+    
     line-height: 22px;
   }
 
@@ -663,7 +639,7 @@ object {
   #home-page #featured-articles ul li a:link, #home-page #featured-articles ul li a:visited, #home-page #popular-articles ul li a:link, #home-page #popular-articles ul li a:visited {
     background: url('/images/article-icon-large.png') left center no-repeat;
     display: block;
-    font-size: 14px;
+    
     line-height: 32px;
     padding: 0 0 0 40px;
   }
@@ -698,7 +674,7 @@ object {
   }
 
   #article #contribution div h4 {
-    font-size: 14px;
+    
     font-weight: normal;
     margin: 0 0 4px 0;
   }
