@@ -39,7 +39,8 @@ h4 {
 ---------------------------------------------- */
 a:link, a:visited {
   color: #FF5F5F;
-  text-decoration: none; }
+  text-decoration: none;
+  font-family: "Roboto Condensed"; }
 
 a:hover, a:active {
   text-decoration: underline; }
@@ -308,9 +309,6 @@ object {
 #search form p input[type='text']:focus {
   background-position: right 9px;
   border: 1px solid #FF5F5F;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) inset;
   color: #FFFFFF; }
 
 /*#search form p input[type='text']:focus:valid {
@@ -336,22 +334,15 @@ input:-moz-placeholder {
 ---------------------------------------------- */
 #nav {
   list-style: none;
-  padding: 0;
-  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+  padding: 0; }
 
 #nav .category-group {
   line-height: 18px;
   margin: 0; }
 
 #nav .category-group .category, #nav .category-group .fake-category {
-  background: url("/images/aside_accordion_indicator_default2.png") right center no-repeat, -moz-linear-gradient(top, #0F2940, #0F2940);
-  background: url("/images/aside_accordion_indicator_default2.png") right center no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0F2940), to(#0F2940));
-  background: url("/images/aside_accordion_indicator_default2.png") right center no-repeat, linear-gradient(top, #0F2940, #0F2940);
-  border-top: 1px solid #0F2940;
-  border-bottom: 1px solid #0F2940;
-  color: #ADC4D1;
+  background-color: #F2F7F7;
+  color: #0F2940;
   display: block;
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
@@ -361,18 +352,8 @@ input:-moz-placeholder {
   position: relative;
   z-index: 2; }
 
-#nav .category-group:last-child .category, #nav .category-group:last-child .fake-category {
-  border-bottom: none; }
-
-#nav .category-group .category.ui-state-active {
-  background: url("/images/aside_accordion_indicator_open2.png") right center no-repeat, -moz-linear-gradient(top, #0F2940, #0F2940);
-  background: url("/images/aside_accordion_indicator_open2.png") right center no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0F2940), to(#0F2940));
-  background: url("/images/aside_accordion_indicator_open2.png") right center no-repeat, linear-gradient(top, #0F2940, #0F2940); }
-
 #nav .category-group .tags {
-  background: #0F2940;
-  border-top: 1px solid #0F2940;
-  border-bottom: 1px solid #0F2940;
+  background: #F2F7F7;
   list-style: none;
   padding: 5px 0; }
 
@@ -385,11 +366,11 @@ input:-moz-placeholder {
   padding-left: 18px; }
 
 #nav .category-group .tags li a:link, #nav .category-group .tags li a:visited {
-  color: #DEEBF0;
+  color: #0F2940;
   -webkit-font-smoothing: antialiased; }
 
 #nav .category-group .tags li.active a:link, #nav .category-group .tags li.active a:visited {
-  color: #FFFFFF; }
+  color: #30475C; }
 
 /* ------------------------------------------- */
 /* ------------------------------------------- */

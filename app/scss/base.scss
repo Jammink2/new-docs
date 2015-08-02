@@ -47,6 +47,7 @@ h4 {
 a:link, a:visited {
   color: $primary_red;
   text-decoration: none;
+  font-family: $link-font;
 }
 
 a:hover, a:active {
@@ -372,9 +373,6 @@ object {
       #search form p input[type='text']:focus {
         background-position: right 9px;
         border: 1px solid $primary_red;
-        -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .1) inset;
-        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .1) inset;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .1) inset;
         color: $white;
       }
 
@@ -402,9 +400,6 @@ object {
       #nav {
         list-style: none;
         padding: 0;
-        -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-        -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .3);
-        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
       }
 
       #nav .category-group {
@@ -413,12 +408,8 @@ object {
       }
 
       #nav .category-group .category, #nav .category-group .fake-category {
-        background: url('/images/aside_accordion_indicator_default2.png') right center no-repeat, -moz-linear-gradient(top, $dark, $dark);
-        background: url('/images/aside_accordion_indicator_default2.png') right center no-repeat, -webkit-gradient(linear, left top, left bottom, from($dark), to($dark));
-        background: url('/images/aside_accordion_indicator_default2.png') right center no-repeat, linear-gradient(top, $dark, $dark);
-        border-top: 1px solid $dark;
-        border-bottom: 1px solid $dark;
-        color: $subdued_blue;
+        background-color: $whitish;
+        color: $dark;
         display: block;
         -webkit-font-smoothing: antialiased;
         font-size: 14px;
@@ -429,20 +420,8 @@ object {
         z-index: 2;
       }
 
-      #nav .category-group:last-child .category, #nav .category-group:last-child .fake-category {
-        border-bottom: none;
-      }
-
-      #nav .category-group .category.ui-state-active {
-        background: url('/images/aside_accordion_indicator_open2.png') right center no-repeat, -moz-linear-gradient(top, $dark, $dark);
-        background: url('/images/aside_accordion_indicator_open2.png') right center no-repeat, -webkit-gradient(linear, left top, left bottom, from($dark), to($dark));
-        background: url('/images/aside_accordion_indicator_open2.png') right center no-repeat, linear-gradient(top, $dark, $dark);
-      }
-
       #nav .category-group .tags {
-        background: $dark;
-        border-top: 1px solid $dark;
-        border-bottom: 1px solid $dark;
+        background: $whitish;
         list-style: none;
         padding: 5px 0;
       }
@@ -457,12 +436,12 @@ object {
       }
 
       #nav .category-group .tags li a:link, #nav .category-group .tags li a:visited {
-        color: $light_slate;
+        color: $dark;
         -webkit-font-smoothing: antialiased;
       }
 
       #nav .category-group .tags li.active a:link, #nav .category-group .tags li.active a:visited {
-        color: $white;
+        color: $slate;
       }
       /* ------------------------------------------- */
     /* ------------------------------------------- */
