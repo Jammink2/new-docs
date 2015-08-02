@@ -888,4 +888,41 @@ ins.differ {
 del.differ, del.differ * {
   background-color: #FF5F5F !important; }
 
+div#header {
+  background-color: #0F2940;
+  color: #30475C;
+  height: 45px;
+  padding: 20px 0; }
+
+div#header li {
+  list-style: none;
+  font-family: "Roboto"; }
+
+#td-logo {
+  float: left;
+  margin-top: 15px; }
+
+#td-logo a {
+  display: block;
+  width: 324px;
+  height: 27px;
+  text-indent: -9999px; }
+
+#td-nav li {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px; }
+
+#td-nav li a {
+  color: #FFFFFF;
+  margin-right: 20px; }
+
+#td-nav {
+  float: right;
+  margin-left: 64px; }
+
+.td-signup {
+  color: #FF5F5F !important; }
+
 /*# sourceMappingURL=base.css.map */

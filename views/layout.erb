@@ -38,29 +38,27 @@
 </head>
 <body>
   <div id="header">
-  <div id="td-header-inner">
-    <span id="td-logo" style="background: url('<%= @env[:logo] %>') no-repeat 55px 14px;"><a href="<%= @env[:url_doc] %>"></a></span>
+  <div class="wrapper">
+    <span id="td-logo" style="background: url('<%= @env[:logo] %>') no-repeat;"><a href="<%= @env[:url_doc] %>"></a></span>
     <div class="firefox-please-dont-remove-me">
     <ul id="td-nav">
-      <li style="width:90px">
+      <li>
         <a href="<%= @env[:url_product] %>">Product</a>
       </li>
-      <li style="width:100px">
+      <li>
         <a href="<%= @env[:url_customers] %>">Customers</a>
       </li>
-      <li style="width:100px">
+      <li>
         <a href="<%= @env[:url_resources] %>">Resources</a>
       </li>
-      <li style="width:90px">
+      <li>
         <a href="<%= @env[:url_about] %>">Company</a>
       </li>
-      <li style="width:90px">
+      <li>
         <a href="<%= @env[:url_login] %>">Log In</a>
       </li>
-    </ul>
-    <ul style="float:right; margin-right:58px; margin-top:13px">
       <li>
-        <a style="color:#FFF" class="td-signup" href="<%= @env[:url_signup] %>">
+        <a class="td-signup" href="<%= @env[:url_signup] %>">
           Free Trial
         </a>
       </li>

@@ -1024,3 +1024,48 @@ ins.differ {
 del.differ, del.differ * {
   background-color: $primary_red !important;
 }
+@import "color.scss";
+@import "font.scss";
+div#header {
+  background-color: $dark;
+  color: $slate;
+  height: 45px;
+  padding: 20px 0;
+}
+
+div#header li {
+  list-style:none;
+  font-family: $header-font;
+}
+
+#td-logo {
+  float: left;
+  margin-top: 15px;
+}
+#td-logo a {
+  display: block;
+  width: 324px;
+  height: 27px;
+  text-indent: -9999px;
+}
+
+#td-nav li {
+  display: inline-block;
+  font-size: $header-font-size;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#td-nav li a {
+  color: $white;
+  margin-right: 20px;
+}
+
+#td-nav {
+  float: right;
+  margin-left: 4*$header-font-size;
+}
+
+.td-signup {
+  color: $primary_red !important;
+}
