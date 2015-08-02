@@ -42,7 +42,7 @@ a:link, a:visited {
   font-family: "Roboto"; }
 
 a:hover, a:active {
-  color: #31A6B7; }
+  color: #0E4D56; }
 
 /* ------------------------------------------- */
 /* =paragraphs
@@ -334,7 +334,6 @@ input:-moz-placeholder {
   font-size: 1.1rem;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 10px;
   position: relative;
   z-index: 2; }
 
@@ -349,7 +348,7 @@ input:-moz-placeholder {
   margin: 0;
   padding-top: 6px;
   padding-bottom: 8px;
-  padding-left: 18px; }
+  padding-left: 10px; }
 
 /* ------------------------------------------- */
 /* ------------------------------------------- */
