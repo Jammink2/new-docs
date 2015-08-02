@@ -901,7 +901,7 @@ del.differ, del.differ * {
   padding: 2px 3px 2px 5px; }
 
 .languagebar a:hover, .languagebar a.current {
-  color: #FFFFFF; }
+  color: #0E4D56; }
 
 .languagebar ul {
   margin: 0;
@@ -936,3 +936,5 @@ ul.dropdown-hack li {
 
 ul.dropdown-hack ul {
   left: 0; }
+
+/*# sourceMappingURL=base.css.map */
