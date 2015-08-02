@@ -290,6 +290,9 @@ object {
   margin: 0 0 8px 0; }
 
 #search form p input[type='text'] {
+  background-image: url("/images/search_glyph2.png");
+  background-repeat: no-repeat;
+  background-position: right 9px;
   background-color: #FFFFFF;
   padding: 8px 34px 8px 8px;
   outline: none;
@@ -300,12 +303,6 @@ object {
   background-position: right 9px;
   border: 1px solid #31A6B7; }
 
-/*#search form p input[type='text']:focus:valid {
-  background-image: url('/images/search_glyph2.png'), url('/images/search_return.png');
-  background-position: left -35px, right 10px;
-  padding: 8px 29px 8px 34px;
-  width: 139px;
-}*/
 input::-webkit-input-placeholder {
   color: #F2F7F7; }
 
