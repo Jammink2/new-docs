@@ -122,12 +122,10 @@ Here are some basic examples. The underlying table consists of three fields: `ip
       ORDER BY cnt DESC LIMIT 30;
 
     # Number of Accesses After a Certain Time
-    :::sql
     SELECT COUNT(1) FROM www_access \
       WHERE TD_TIME_RANGE(time, "2011-08-19", NULL, "PDT")
 
     # Number of Accesses Each Day
-    :::sql
     SELECT \
       TD_TIME_FORMAT(time, "yyyy-MM-dd", "PDT") AS day, \
       COUNT(1) AS cnt \
