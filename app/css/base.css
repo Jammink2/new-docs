@@ -60,8 +60,6 @@ p:last-child {
 p img {
   background: #FFFFFF;
   border: 1px solid #F2F7F7;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
   display: block;
   padding: 4px;
@@ -119,8 +117,6 @@ pre::-webkit-scrollbar-track-piece {
 
 pre::-webkit-scrollbar-thumb:horizontal {
   background: -webkit-gradient(linear, left top, left bottom, from(#30475C), to(#30475C));
-  -webkit-border-radius: 3px;
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.66) inset;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.66) inset;
   width: 25px; }
 
@@ -362,8 +358,6 @@ input:-moz-placeholder {
 ---------------------------------------------- */
 #page, .page {
   background: #FFFFFF;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(113, 123, 149, 0.2);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(113, 123, 149, 0.2);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(113, 123, 149, 0.2);
   color: #30475C;
   padding: 18px; }
@@ -389,11 +383,7 @@ input:-moz-placeholder {
 /* =intro
 ---------------------------------------------- */
 #home-page #intro {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   margin: 0 0 24px 0;
   position: relative; }
@@ -402,8 +392,6 @@ input:-moz-placeholder {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.2)));
   background: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
   background: linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   color: #FFFFFF;
   font-family: CorbelBold, "Helvetica Neue", Helvetica, Arial Geneva, sans-serif;
@@ -416,8 +404,6 @@ input:-moz-placeholder {
   z-index: 99999; }
 
 #home-page #intro #cycle .pane {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
   padding: 42px 0;
   width: 960px; }
@@ -456,11 +442,7 @@ input:-moz-placeholder {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.2)));
   background: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
   background: linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
-  -moz-box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.1) inset;
-  -webkit-box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.1) inset;
   box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.1) inset;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-bottomright: 5px;
   -webkit-border-bottom-left-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -491,11 +473,7 @@ input:-moz-placeholder {
 ---------------------------------------------- */
 #home-page #featured-articles, #home-page #popular-articles {
   background: #FFFFFF;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   color: #0F2940; }
 
@@ -509,12 +487,8 @@ input:-moz-placeholder {
   border-bottom: 1px solid rgba(172, 179, 183, 0.5);
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  -moz-box-shadow: 0 1px 1px #FFFFFF inset;
-  -webkit-box-shadow: 0 1px 1px #FFFFFF inset;
   box-shadow: 0 1px 1px #FFFFFF inset;
   margin: 0;
   padding: 18px;
@@ -528,8 +502,6 @@ input:-moz-placeholder {
   border-top: 1px solid #FFFFFF;
   -webkit-border-bottom-left-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  -moz-border-radius-bottomright: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   list-style: none;
@@ -556,8 +528,6 @@ input:-moz-placeholder {
 #article #contribution {
   background: rgba(128, 146, 167, 0.3);
   border: 1px solid #ADC4D1;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
   border-top-left-radius: 5px;
@@ -588,11 +558,7 @@ input:-moz-placeholder {
 #article article {
   background: #FFFFFF;
   /*
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 -1px 1px rgba(113, 123, 149, .2);
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 -1px 1px rgba(113, 123, 149, .2);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 -1px 1px rgba(113, 123, 149, .2);
 */
   color: #30475C;
@@ -601,8 +567,6 @@ input:-moz-placeholder {
   position: relative; }
 
 #article article.contributed {
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(113, 123, 149, 0.2), 0 0 0 4px rgba(165, 187, 212, 0.1) inset;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(113, 123, 149, 0.2), 0 0 0 4px rgba(165, 187, 212, 0.1) inset;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 -1px 1px rgba(113, 123, 149, 0.2), 0 0 0 4px rgba(165, 187, 212, 0.1) inset;
   margin: -3px 0 0 0; }
 
@@ -631,11 +595,7 @@ input:-moz-placeholder {
   background: -webkit-gradient(linear, left top, left bottom, from(#F2F7F7), to(#ADC4D1));
   background: -moz-linear-gradient(top, #F2F7F7, #ADC4D1);
   border: 1px solid #ADC4D1;
-  -moz-border-radius: 32px;
-  -webkit-border-radius: 32px;
   border-radius: 32px;
-  -moz-box-shadow: 0 1px 1px #FFFFFF;
-  -webkit-box-shadow: 0 1px 1px #FFFFFF;
   box-shadow: 0 1px 1px #FFFFFF;
   color: #30475C;
   font-size: 12px;
@@ -688,9 +648,7 @@ input:-moz-placeholder {
 ---------------------------------------------- */
 #article article .deprecated {
   background: #F2DE7D;
-  border: 1px solid #F2DE7D;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
+  border: 1px solid #c3a513;
   border-radius: 3px;
   color: #F2DE7D;
   margin: 0 0 22px 0;
@@ -711,11 +669,7 @@ input:-moz-placeholder {
   background-position: left center, right center;
   background-repeat: no-repeat;
   border: 1px solid #ADC4D1;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   display: block;
   color: #30475C;
@@ -725,8 +679,6 @@ input:-moz-placeholder {
 
 #article article #discussion-jive h1 a:hover, #article article #discussion-jive h1 a:active {
   border: 1px solid #0F2940;
-  -moz-box-shadow: 0 0 4px rgba(154, 196, 228, 0.8);
-  -webkit-box-shadow: 0 0 4px rgba(154, 196, 228, 0.8);
   box-shadow: 0 0 4px rgba(154, 196, 228, 0.8); }
 
 /* ------------------------------------------- */
@@ -734,7 +686,7 @@ input:-moz-placeholder {
 ---------------------------------------------- */
 #article article .note {
   background: #F2DE7D;
-  border: 1px solid #B59930;
+  border: 1px solid #c3a513;
   border-radius: 3px;
   color: #30475C;
   margin: 0 0 22px 0;
@@ -751,8 +703,6 @@ input:-moz-placeholder {
 .warning {
   background: #F2DE7D;
   border: 1px solid #F2DE7D;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   color: #F2DE7D;
   margin: 0 0 22px 0;
@@ -807,12 +757,8 @@ input:-moz-placeholder {
   border-bottom: 1px solid rgba(172, 179, 183, 0.5);
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  -moz-box-shadow: 0 1px 1px #FFFFFF inset;
-  -webkit-box-shadow: 0 1px 1px #FFFFFF inset;
   box-shadow: 0 1px 1px #FFFFFF inset;
   margin: 0;
   padding: 24px 18px; }
@@ -871,8 +817,6 @@ p.no-results {
   background-color: #30475C;
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px; }
 
