@@ -38,9 +38,9 @@ NOTE: If a port number is not specified, the default value is 80 for HTTP and 44
 The request body is a JSON with the following fields: column_names, column_types, and data (the result of the query).  An example of what the query above may output is shown below.
 
     :::json
-    { column_names: [ 'code', 'cnt' ],
-      column_types: [ 'string', 'long' ],
-      data: [ [ '200', 4981 ], [ '500', 2 ], [ '404', 17 ] ] }
+    { "column_names": [ "code", "cnt" ],
+      "column_types": [ "string", "long" ],
+      "data": [ [ "200", 4981 ], [ "500", 2 ], [ "404", 17 ] ] }
 
 NOTE: The maximum number of rows is 100,000. If the result exceeds 100,000 rows, the remaining rows are thrown away.
 
