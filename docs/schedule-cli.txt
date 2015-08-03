@@ -13,7 +13,7 @@ NOTE: You can create the scheduled jobs from <a href="schedule">Web Console</a> 
 
 A new schedule can be created using the `td sched:create` command. The name of the schedule, cron-style schedule, query, and the database name are required.
 
-    :::term
+    :::terminal
     $ td sched:create \
       hourly_count \
       "0 * * * *" \
@@ -24,7 +24,7 @@ NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@dail
 
 Scheduled jobs must sometimes be set as high priority items. The `-P` option is used to specify the priority. The priority is between -2 (VERY LOW) and 2 (VERY HIGH), where 0 is the default. The priority can be changed later using `td sched:update -P`.
 
-    :::term
+    :::terminal
     # VERY HIGH
     $ td sched:create -P  2 ...
     # NORMAL (Default)
@@ -52,7 +52,7 @@ The example above aggregates web request results from an access log on an hourly
 
 To finish setting up the query to run on an hourly basis, we create a scheduled query as demonstrated earlier.
 
-    :::term
+    :::terminal
     $ td sched:create \
       hourly_agg \
       "@hourly" \
@@ -67,7 +67,7 @@ Here, `@hourly` is the same as the cron `0 * * * *`. The `-D` parameter allows y
 
 You can see the list of currently scheduled entries by `td sched:list`.
 
-    :::term
+    :::terminal
     $ td sched:list
     +--------------+-----------+----------+---------------------------+-------+--------+----------+---------------------------------+
     | Name         | Cron      | Timezone | Next schedule             | Delay | Result | Database | Query                           |
@@ -79,7 +79,7 @@ You can see the list of currently scheduled entries by `td sched:list`.
 
 `td sched:history` shows the job history of a schedule entry. To investigate the results of each individual job, please use `td job <jobid>`.
 
-    :::term
+    :::terminal
     $ td sched:history hourly_count
     Name         : hourly_count
     Cron         : 0 * * * *
@@ -119,5 +119,5 @@ You can see the list of currently scheduled entries by `td sched:list`.
 
 `td sched:delete` will remove the schedule.
 
-    :::term
+    :::terminal
     $ td sched:delete hourly_count

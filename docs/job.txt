@@ -14,20 +14,20 @@ This article will explain how to issue, list, and see the details of each job.
 
 The 'td query' subcommand issues *jobs*. Jobs are executed in parallel on the cloud: the degree of parallelism is chosen automatically based on your plan, your remaining capacity, and the size of our cluster at that time.
 
-    :::term
+    :::terminal
     $ td query -w -d testdb "SELECT COUNT(1) FROM www_access"
     Job 702 is started.
 
 If you issue a query *WITHOUT* the -w option, the command will exit immediately after submitting the job; it will not wait for the job to complete.
 
-    :::term
+    :::terminal
     $ td query -d testdb "SELECT COUNT(1) FROM www_access"
     Job 704 is started.
     Use 'td job 704' to show the status.
 
 You can output the job results into local disk as CSV format, instead of STDOUT.
 
-    :::term
+    :::terminal
     $ td query -o test.csv --format csv -w -d testdb 'SELECT COUNT(1) FROM www_access'
     Status     : success
     Result     :
@@ -39,7 +39,7 @@ We currently support the [Hive](hive) and [Pig](pig) query languages. The exampl
 
 The 'td jobs' subcommand lists your submitted jobs. The most recent 20 jobs are shown by default. The command shows the JobID, status, starting time, elapsed time, and the submitted query for each job.
 
-    :::term
+    :::terminal
     $ td jobs
     +-------+---------+-------------------------+----------------+------------------------------------+
     | JobID | Status  | Start                   | Elapsed        | Query                              |
@@ -69,7 +69,7 @@ The 'td jobs' subcommand lists your submitted jobs. The most recent 20 jobs are 
 
 To see older jobs, please specify the page number as an argument.
 
-    :::term
+    :::terminal
     $ td jobs -p 0 # The most recent 20 jobs
     $ td jobs -p 1 # Jobs 21-40
     $ td jobs -p 2 # Jobs 41-60
@@ -78,7 +78,7 @@ To see older jobs, please specify the page number as an argument.
 
 The `td job` sub-command shows a job's detailed information; the job is specified by the job_id argument. The command shows the job's status, query content, and result.
 
-    :::term
+    :::terminal
     $ td job 783
     JobID      : 783
     Status     : success
@@ -98,7 +98,7 @@ The '-v' option will show additional information, including execution logs.
 
 Scheduled jobs must sometimes be set as high or low priority items. For example, adhoc queries should not prevent mission critical daily jobs from running. The `td query -P <priority> <query>` command lets you specify the job priority. The priority is between -2 (VERY LOW) and 2 (VERY HIGH), where 0 is the default.
 
-    :::term
+    :::terminal
     # VERY HIGH
     $ td query -P  2 <query>
     # HIGH

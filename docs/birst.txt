@@ -21,7 +21,7 @@ Then, download your .jnlp file by clicking `Launch` for one of your configuratio
 
 Finally, let's put two files under the same directory. In this article, we'll reference the directory as `$BIRST_CONNECT_DIRECTORY`. We need to unzip `BirstConnect.zip`.
 
-    :::term
+    :::terminal
     $ cd $BIRST_CONNECT_HOME
     $ tar -zxvf BirstConnect.zip
 
@@ -29,7 +29,7 @@ Finally, let's put two files under the same directory. In this article, we'll re
 
 Please download [Treasure Data's JDBC driver](jdbc-driver) from [here](http://toolbelt.treasuredata.com/jdbc), and put the file to `$BIRST_CONNECT_HOME/dist/lib`.
 
-    :::term
+    :::terminal
     $ cd $BIRST_CONNECT_HOME
     $ mv /PATH/TO/td-jdbc-xxx-jar-with-dependencies.jar dist/lib/
 
@@ -37,7 +37,7 @@ Please download [Treasure Data's JDBC driver](jdbc-driver) from [here](http://to
 
 Next, let's launch Birst Connect. Please specify `.jnlp` file you've donwloaded to the `dnlp.file` parameter.
 
-    :::term
+    :::terminal
     $ java -Djnlp.file=/PATH/TO/xxx.jnlp -Xmx1024m -cp "dist/*:dist/lib/*" com.birst.dataconductor.DataConductorApp
 
 ## Step 4: Set up Task

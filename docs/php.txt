@@ -32,17 +32,17 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 #### MacOS X 10.9+
 
-    :::term
+    :::terminal
     $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.1.4-0.dmg'
 
 #### RHEL/CentOS 5,6,7
 
-    :::term
+    :::terminal
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 
 #### Ubuntu & Debian
 
-    :::term
+    :::terminal
     # 14.04 Trusty (64bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
     # 12.04 Precise
@@ -57,12 +57,12 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 #### Amazon Linux
 
-    :::term
+    :::terminal
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 
 #### Opscode Chef (<a target="_blank" href="https://github.com/treasure-data/chef-td-agent">repository</a>)
 
-    :::term
+    :::terminal
     $ echo 'cookbook "td-agent"' >> Berksfile
     $ berks install
 
@@ -94,7 +94,7 @@ NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve 
 
 Please restart your agent once these lines are in place.
 
-    :::term
+    :::terminal
     # Linux
     $ sudo /etc/init.d/td-agent restart
 
@@ -108,7 +108,7 @@ td-agent will now accept data via port 24224, buffer it (*var/log/td-agent/buffe
 
 To use fluent-logger-php, copy the library into your project directory.
 
-    :::term
+    :::terminal
     $ git clone https://github.com/fluent/fluent-logger-php.git
     $ cd fluent-logger-php
     $ cp -r src/Fluent <path/to/your_project>
@@ -128,12 +128,12 @@ Next, initialize and post the records as follows.
 
 First, please execute the program above.
 
-    :::term
+    :::terminal
     $ php test.php
 
 Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
-    :::term
+    :::terminal
     # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
@@ -142,7 +142,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 
 To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
@@ -163,7 +163,7 @@ We recommend that you use Apache and mod_php. Other setups have not been fully v
 
 Please use Apache prefork MPM. Other MPMs such as worker MPM should not be used. You can confirm your current settings with the *apachectl -V* command.
 
-    :::term
+    :::terminal
     $ apachectl -V | grep MPM:
     Server MPM:     Prefork
 

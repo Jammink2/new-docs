@@ -8,7 +8,7 @@ This article describes how to share a single Treasure Data API key between multi
    * The [td-toolbelt](http://toolbelt.treasuredata.com/).
    * The Heroku CLI plugin (to bridge the toolbelts above).
 
-    :::term
+    :::terminal
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
     $ heroku td
     usage: heroku td [options] COMMAND [args]
@@ -17,14 +17,14 @@ This article describes how to share a single Treasure Data API key between multi
 
 Just provision your addon as shown below:
 
-    :::term
+    :::terminal
     $ cd app1_dir
     $ heroku addons:add treasure-data:nano
     Adding treasure-data:nano on <your_app_name>... done, v3 (free)
 
 You can get your apikey using the command below.
 
-    :::term
+    :::terminal
     $ heroku td apikey:show
     9832dsaf809123808fd0sa8037219873208fdsa3
 
@@ -32,7 +32,7 @@ You can get your apikey using the command below.
 
 DON'T provision your addon. Please set the TREASURE_DATA_API_KEY environment variable as shown below:
 
-    :::term
+    :::terminal
     $ cd app2_dir
     $ heroku config:add TREASURE_DATA_API_KEY='9832dsaf809123808fd0sa8037219873208fdsa3'
 

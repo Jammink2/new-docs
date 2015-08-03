@@ -39,7 +39,7 @@ We will be uploading Tweets to Treasure Data continuously using td-agent. Luckil
 
 For the purpose of this walkthough, we are using Jeff Yuan's [twitterstream input plugin](https://gist.github.com/4004818) (There is also [fluent-plugin-twitter by y-ken](https://github.com/y-ken/fluent-plugin-twitter), who has contributed a number of useful plugins). Please put the file into the plugin directory `/etc/td-agent/plugin/`.
 
-    :::term
+    :::terminal
     $ sudo /usr/lib/fluent/ruby/bin/fluent-gem install twitter
     $ sudo curl -L 'http://bitly.com/TIDLvO' > /etc/td-agent/plugin/in-twitterstream.rb
 
@@ -93,7 +93,7 @@ I would now like to show some queries I ran. Please note that all the schema hav
 
 This is probably the first question you would ask. Which Hurricane-related Tweet got the most number of eyeballs (at least by one metric)? Here is the query to get the top 10.
 
-    :::term
+    :::terminal
     $ td query -w -d twitterstream \
       "SELECT MAX(retweet_count) AS rt_ct, text
          FROM hurricane_sandy GROUP BY text
@@ -117,7 +117,7 @@ I suppose it is no surprise that Justin Bieber's Tweet has been retweeted the mo
 
 Here is another look at the Tweets. The following word cloud was generated based on the top 30 most popular bigrams. Font sizes are proportional to frequencies with some thresholding to make the layout look nicer.
 
-    :::term
+    :::terminal
     $ td query -w -d twitterstream \
       "SELECT NGRAMS(SENTENCES(LOWER(text)), 2, 100)
          FROM hurricane_sandy"
@@ -133,7 +133,7 @@ A few observations here:
 
 Twitter has become an increasingly important marketing tool. One natural question to ask is, "when are people active on Twitter?"
 
-    :::term
+    :::terminal
     $ td query -w -d twitterstream \
       "SELECT COUNT(*) AS ct, TD_TIME_FORMAT(time, "yyyy-MM-dd hh", "PDT") AS time
          FROM hurricane_sandy

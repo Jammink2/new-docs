@@ -33,7 +33,7 @@ NOTE: Our <b>Premium</b> plan includes advanced security features, which include
 
 The result output target is represented by URL with the following format:
 
-    :::term
+    :::terminal
     postgresql://<username>:<password>@<hostname>:<port>/<database>/<table>
 
 where:
@@ -58,14 +58,14 @@ Where applicable, the default behavior is indicated.
 
 Use SSL from Treasure Data to the Postgres server connection. The Postgres server must be [configured to accept SSL connection](http://www.postgresql.org/docs/current/static/ssl-tcp.html).
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table?ssl=true
 
 ##### `ssl=false` (default)
 
 Do not use SSL from Treasure Data to the Postgres server connection.
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table?ssl=false
 
 #### `schema` option
@@ -74,7 +74,7 @@ Controls the schema the target table is located.
 If not specified default schema is to be used.
 The default schema depends on user's "search_path" setting but it is usually "public".
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table?schema=target_schema
 
 #### Update `mode` option
@@ -93,7 +93,7 @@ In this mode the query results are appended to the table. If the table does not 
 
 Because `mode=append` is the default behavior, these two URLs are equivalent:
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table
     postgresql://user:password@host/database/table?mode=append
 
@@ -107,7 +107,7 @@ The **replace** mode consists of replacing the entire content of an existing tab
 
 Example:
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table?mode=replace
 
 ##### `mode=truncate`
@@ -116,7 +116,7 @@ With the **truncate** mode the system first truncates the existing table, then i
 
 Example:
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table?mode=truncate
 
 NOTE: Unlike replace, the truncate mode retains the indexes of the table.
@@ -127,7 +127,7 @@ In the **update** mode a row is inserted unless it would cause a duplicate value
 
 Example:
 
-    :::term
+    :::terminal
     postgresql://...?mode=update&unique=col1        # single unique column
     postgresql://...?mode=update&unique=[col1,col2] # multiple unique columns
 
@@ -144,7 +144,7 @@ With the **insert** method, data is written to Postgres using 'INSERT' statement
 
 Because `method=insert` is the default behavior, these two URLs are equivalent:
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table
     postgresql://user:password@host/database/table?method=insert
 
@@ -154,7 +154,7 @@ When the **copy** method is used the data is first stored in a temporary file on
 
 Example:
 
-    :::term
+    :::terminal
     postgresql://user:password@host/database/table?method=copy
 
 ## Usage
@@ -163,14 +163,14 @@ Example:
 
 To output the result of a single query to a Postgres server add the `--result` option to the `td query` command. After the job is finished, the results will be written into your database:
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       --result 'postgresql://user:password@host/database/table' \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
 To create a scheduled query whose output is systematically written to Postgres add the `--result` option when creating the schedule through `td sched:create` command:
 
-    :::term
+    :::terminal
     $ td sched:create hourly_count_example "0 * * * *" -d testdb \
       --result 'postgresql://user:password@host/database/table' \
       "SELECT COUNT(*) FROM www_access"

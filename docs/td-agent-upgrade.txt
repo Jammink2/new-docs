@@ -11,7 +11,7 @@ This article explains how to upgrade the `td-agent` daemon.
 
 Please use `apt` (Ubuntu) or `yum` (RHEL, CentOS) to upgrade the td-agent package.
 
-    :::term
+    :::terminal
     # Ubuntu
     $ apt-get update && apt-get install td-agent
     

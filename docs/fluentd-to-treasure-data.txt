@@ -16,7 +16,7 @@ Treasure Data's `td-agent` logging daemon contains Fluentd. However, many users 
 
 First, please install the `fluentd` and `fluent-plugin-td` gems as shown below:
 
-    :::term
+    :::terminal
     $ gem install fluentd
     $ gem install fluent-plugin-td
 
@@ -52,23 +52,23 @@ The `apikey` is a secret key to authenticate your account. You can get your apik
 
 First, please start the Fluentd server.
 
-    :::term
+    :::terminal
     $ ./bin/fluentd --config fluentd.conf
 
 Next, add logs in JSON using HTTP.
 
-    :::term
+    :::terminal
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
 `Fluentd` continuously uploads logs, sending data every minute. Sending a SIGUSR1 signal will force `fluentd` to flush the buffered logs into the cloud immediately.
 
-    :::term
+    :::terminal
     $ kill -USR1 <pid_of_fluentd>
 
 Issue the `td tables` command to confirm that your data was imported successfully.
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

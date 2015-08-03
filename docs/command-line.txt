@@ -13,7 +13,7 @@ The page also contains important information about [Updating](installing-the-cli
 
 Once you've installed the toolbelt, you'll have access to the `td` command from your command line. Authorize your account with the `td account` command. Please use the user name and password you used when signing up:
 
-    :::term
+    :::terminal
     $ td -e https://<%= @env[:api_endpoint] %> account -f
     Email: user@domain.com
     Password (typing will be hidden):
@@ -21,14 +21,14 @@ Once you've installed the toolbelt, you'll have access to the `td` command from 
 
 The endpoint will be saved in the ~/.td/td.conf file for future use onwards. If the account command was already run, this command will modify the endpoint saved in the td.conf file.
 
-    :::term
+    :::terminal
     $ td server:endpoint https://<%= @env[:api_endpoint] %>
 
 ## Step 3: Query the Sample Dataset
 
 Let’s issue an SQL query. Out of the box, we have a table called www_access in the dabase called sample_db. The following query calculates the distribution of HTTP status codes.
 
-    :::term
+    :::terminal
     $ td query -w -d sample_db \
       "SELECT code, COUNT(1) AS cnt FROM www_access GROUP BY code"
     queued...
@@ -58,7 +58,7 @@ You're now ready to import **your real data** to the cloud! The following tutori
 
 This example shows how to use the CLI to generate a sample apache log in json format and import it into a brand new table in the 'sample_db' database.
 
-    :::term
+    :::terminal
     $ td sample:apache sample_apache.json
     $ td table:import sample_db sample_tbl \
       --auto-create-table -f json sample_apache.json
@@ -91,7 +91,7 @@ This example shows how to use the CLI to generate a sample apache log in json fo
 
 Running `td help:all` shows the commands available in Treasure Data:
 
-    :::term
+    :::terminal
     $ td help:all
 
       database:list             # Show list of tables in a database
@@ -103,7 +103,7 @@ Running `td help:all` shows the commands available in Treasure Data:
 
 If you want more information about individual commands, you can run `td help <command>:<subcommand>`, e.g.,
 
-    :::term
+    :::terminal
     $ td help table:list
     usage:
       $ td table:list [db]

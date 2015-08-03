@@ -3,7 +3,7 @@ CLI Usage
 
 Running `td help:all` shows the commands available in Treasure Data:
 
-    :::term
+    :::terminal
     $ td help:all
   
       db:list             # Show list of tables in a database

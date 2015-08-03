@@ -13,7 +13,7 @@ First, please install the [toolbelt](command-line), which includes bulk loader p
 
 After the installation, the `td` command will be installed on your computer. Open up the terminal and type `td` to execute the command. Also, please ensure you have `java` as well. Execute the command `td import:jar_update` to download the up-to-date version of our bulk loader:
 
-    :::term
+    :::terminal
     $ td
     usage: td [options] COMMAND [args]
     $ java
@@ -25,7 +25,7 @@ After the installation, the `td` command will be installed on your computer. Ope
 
 Suppose you have a file called <tt>data.tsv</tt> and its content looks like this:
 
-    :::term
+    :::terminal
     $ head -n 2 data.tsv
     host   log_name     date_time       method  url     res_code        bytes   referer user_agent
     64.242.88.10   -   2004-03-07 16:05:49   GET   /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables"   401   12846
@@ -56,7 +56,7 @@ In the above command, we assumed that:
 These options are specific to bulk import from CSV/TSV files and they can be used to tailor the behavior of the parser
 to non standard CSV/TSV file formats:
 
-    :::term
+    :::terminal
     CSV/TSV specific options:
     --column-header                  first line includes column names
     --delimiter CHAR                 delimiter CHAR; default="," at csv, "\t" at tsv

@@ -39,7 +39,7 @@ This example dumps all records inside the table. You can have more detailed cont
 
 Second, use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
-    :::term
+    :::terminal
     $ td connector:guess seed.yml -o load.yml
 
 Then you can preview how the system will parse the file by `preview` command.
@@ -59,7 +59,7 @@ Then you can preview how the system will parse the file by `preview` command.
 
 Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. If the database or the table does not exist the command reports an error.
 
-    :::term
+    :::terminal
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
 
 NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
@@ -75,7 +75,7 @@ By using this feature, you no longer need a `cron` daemon on your local datacent
 A new schedule can be created using the `td connector:create` command.
 The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
 
-    :::term
+    :::terminal
     $ td connector:create \
         daily_mysql_import \
         "10 0 * * *" \
@@ -89,7 +89,7 @@ NOTE: The `cron` parameter also accepts these three options: `@hourly`, `@daily`
 
 You can see the list of currently scheduled entries by `td connector:list`.
 
-    :::term
+    :::terminal
     $ td connector:list
     +--------------------+--------------+----------+-------+--------------+-----------------+-------------------------+
     | Name               | Cron         | Timezone | Delay | Database     | Table           | Config                  |
@@ -101,7 +101,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
 `td connector:show` shows the execution setting of a schedule entry.
 
-    :::term
+    :::terminal
     % td connector:show daily_mysql_import
     Name     : daily_mysql_import
     Cron     : 10 0 * * *
@@ -112,7 +112,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
 `td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
 
-    :::term
+    :::terminal
     % td connector:history daily_mysql_import
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
     | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
@@ -132,7 +132,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
 `td connector:delete` will remove the schedule.
 
-    :::term
+    :::terminal
     $ td connector:delete daily_mysql_import
 
 ## Further Information

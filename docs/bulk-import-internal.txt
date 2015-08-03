@@ -15,7 +15,7 @@
 
 Bulk Import sessions created by the users are only deleted if the user requests to:
 
-    :::term
+    :::terminal
     $ td import:delete <session_name>
 
 Since Bulk Import sessions are created with a database and table of reference and they can import
@@ -31,7 +31,7 @@ Any attempt to Upload, Perform, or Commit using a session whose reference table 
 In the section below, we will show you how to update Bulk Import. We suggest that you use the newest version of Bulk Import.
 You can run:
 
-    :::term
+    :::terminal
     $ td import:jar_update
 
 ## Importing Large Data Reliably with Bulk Import (in ONE step)
@@ -39,7 +39,7 @@ You can run:
 In the section below, we will show you how to use Bulk Import step by step. While it is important to understand each step, it is often unwieldy to perform all these steps one by one. Thus we provide several command line options to automate (and pipeline) the prepare-upload-perform-commit workflow. 
 Specifically, you'll want to run `td import:upload` like this:
 
-    :::term
+    :::terminal
     $ td import:upload \
       --auto-create my_db.my_tbl \
       --auto-perform --auto-commit \
@@ -56,7 +56,7 @@ For example, if:
 
 you can run:
 
-    :::term
+    :::terminal
     $ td import:upload \
       --auto-create my_db.my_tbl \
       --auto-perform --auto-commit \
@@ -79,7 +79,7 @@ NOTE: Regular expressions can't be used on Windows. Please rewrite your filename
 
 First create a `session` (a single instance containing multiple parts). One session is associated with one table.
 
-    :::term
+    :::terminal
     $ td import:create my_session my_db my_tbl
 
 ### 2.) Convert Your Data into parts files
@@ -87,7 +87,7 @@ First create a `session` (a single instance containing multiple parts). One sess
 Let's say you have CSV files in the ./logs_201208/ directory. You will first need to convert these files into MessagePack.gz format (our internal format for efficient storage). To do this, please run the following commands:
 
 
-    :::term
+    :::terminal
     $ td import:prepare ./logs_201208/*.csv \
         --format csv \
         --columns time,uid,price,count --time-column 'time' \
@@ -97,7 +97,7 @@ NOTE: Splitting the data into separate directories by month is recommended. You 
 
 If your files include column names in the first line, please use the <tt>\-\-column-header</tt> option.
 
-    :::term
+    :::terminal
     $ td import:prepare ./logs_201208/*.csv \
         --format csv \
         --column-header \
@@ -106,7 +106,7 @@ If your files include column names in the first line, please use the <tt>\-\-col
 
 We support **csv**, **tsv**, and **json** formats for the <tt>\-\-format option</tt>. Here are the remaining examples.
 
-    :::term
+    :::terminal
     # tsv
     $ td import:prepare ./logs_201208/*.tsv \
         --format tsv \
@@ -124,17 +124,17 @@ We support **csv**, **tsv**, and **json** formats for the <tt>\-\-format option<
 
 You can now upload the `parts` directory into the session.
 
-    :::term
+    :::terminal
     $ td import:upload my_session ./parts_201208/*
 
 If the upload fails, you can retry any time. No data duplication occurs.
 
-    :::term
+    :::terminal
     $ td import:upload my_session ./parts_201208/*
 
 You can import multiple parts within a single session.
 
-    :::term
+    :::terminal
     $ td import:upload my_session ./parts_201207/*
     $ td import:upload my_session ./parts_201206/*
     $ td import:upload my_session ./parts_201205/*
@@ -142,7 +142,7 @@ You can import multiple parts within a single session.
 
 The uploaded parts can be viewed using `import:show`.
 
-    :::term
+    :::terminal
     $ td import:show my_session
 
 ### 4.) Perform
@@ -150,7 +150,7 @@ The uploaded parts can be viewed using `import:show`.
 The `import:perform` command converts the uploaded files into a more efficient format on the cloud (this is why it takes a bit of time!).
 The files are converted in parallel by executing MapReduce jobs.
 
-    :::term
+    :::terminal
     $ td import:freeze my_session
     $ td import:perform my_session --wait
     $ td import:list
@@ -174,7 +174,7 @@ Afterward, to upload additional data the user needs to unfreeze the session by m
 After running the `import:perform` command, some records could be flagged as invalid. You can list these invalid records
 with the `import:error_records` command.
 
-    :::term
+    :::terminal
     $ td import:error_records my_session
 
 ### 6.) Commit
@@ -182,7 +182,7 @@ with the `import:error_records` command.
 Once you have confirmed that the uploaded data is correct, use the `import:commit` command to transactionally import
 the data into the destination database <tt>my_db</tt> and table <tt>my_tbl</tt>.
 
-    :::term
+    :::terminal
     $ td import:commit my_session --wait
 
 ### 7.) Delete Session or Import Additional Data
@@ -194,14 +194,14 @@ In the former case, please go back to Step 2.) and repeat the process.
 
 In the latter case, use the `import:delete` command to close and delete the import session:
 
-    :::term
+    :::terminal
     $ td import:delete my_session
 
 ## Does Bulk Import support X?
 
 The first place to go is `td help import`.
 
-    :::term
+    :::terminal
     $ td help import
     Additional commands, type "td help COMMAND" for more details:
 
@@ -219,7 +219,7 @@ The first place to go is `td help import`.
 
 For subcommands, you can do `td help import:<subcommand name>`, e.g., `td help import:upload`
 
-    :::term
+    :::terminal
     $ td help import:upload
     usage:
       $ td import:upload <session name> <files...>

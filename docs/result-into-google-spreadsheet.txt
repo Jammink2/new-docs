@@ -78,7 +78,7 @@ Shown below is a screenshot of the result.
 
 For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are written into `sample_worksheet`.
 
-    :::term
+    :::terminal
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \
       --result "gspreadsheet://user:password@domain.com/sample_spreadsheet/sample_worksheet" \
@@ -88,7 +88,7 @@ For scheduled jobs, just add the `--result` option when scheduling a job. After 
 
 You can add or delete data in two ways.
 
-    :::term
+    :::terminal
     gspreadsheet://user:password@domain.com/sample_spreadsheet/sample_worksheet              # replace
     gspreadsheet://user:password@domain.com/sample_spreadsheet/sample_worksheet?mode=replace # replace
     gspreadsheet://user:password@domain.com/sample_spreadsheet/sample_worksheet?mode=append  # append

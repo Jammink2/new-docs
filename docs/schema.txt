@@ -42,7 +42,7 @@ Furthermore, since the type of *v* is fixed as map<string, string>, all values a
 
 In general, the default schema is acceptable. But a custom schema makes queries shorter, and improves performance up to 30%. To set a schema to a table, we can use the 'td schema:set' command, as shown below:
 
-    :::term
+    :::terminal
     $ td schema:set <database> <table> <column_name>:<type>...
 
 NOTE: Schemas currently support column names consisting of lowercase alphabets, numbers, and "_" only.
@@ -58,7 +58,7 @@ Treasure Data supports the following data types:
 
 In the "Getting Started" guide, we set up a table with 'user' (int type) and 'action' (string type) columns. For this example, the schema would be added as follows.
 
-    :::term
+    :::terminal
     $ td schema:set testdb www_access action:string user:int
 
 You can now query this table without using *v*.

@@ -33,7 +33,7 @@ affected by this problem.
 
 Here's an example command to connect with `psql` command.
 
-    :::term
+    :::terminal
     $ psql -h <%= @env[:pggw_endpoint] %> -p 5439 -U "YOUR_EMAIL_IS_HERE" -W -d testdb
     Password for user XXX: YOUR_PASSWORD_IS_HERE
 

@@ -15,14 +15,14 @@ This article shows you how to access Treasure Data from the popular Python-based
 
 First, set your master api key as an environment variable. The master API KEY can be retrieved from the [Console's profile page](<%= @env[:url_profile] %>).
 
-    :::term
+    :::terminal
     $ export TD_API_KEY="1234/abcde..."
 
 ## Step 1: Install Jupyter, Pandas, and Pandas-TD
 
 We recommend that you use [Miniconda](http://conda.pydata.org/miniconda.html) to install all required packages for Pandas. Download an installer for your OS and install it. Let's create a virtual environment for our first project "analysis". We'll use Python 3 for this project:
 
-    :::term
+    :::terminal
     $ conda create -n analysis python=3
     ...
     $ source activate analysis
@@ -32,21 +32,21 @@ We recommend that you use [Miniconda](http://conda.pydata.org/miniconda.html) to
 
 We need "pandas", "matplotlib" and "ipython-notebook":
 
-    :::term
+    :::terminal
     (analysis)$ conda install pandas
     (analysis)$ conda install matplotlib
     (analysis)$ conda install ipython-notebook
 
 You can use "pip" for general Python packages. We need "pandas-td":
 
-    :::term
+    :::terminal
     (analysis)$ pip install pandas-td
 
 ## Step 2: Run Jupyter and Create your First Notebook
 
 We'll use "Jupyter" (formerly known as "IPython notebook") as a frontend for our analysis project. Run "ipython notebook" and your web browser will open:
 
-    :::term
+    :::terminal
     (analysis)$ ipython notebook
 
 <center><img src="/images/jupyter.png" width="100%" /></center><br/>

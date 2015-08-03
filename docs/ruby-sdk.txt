@@ -17,7 +17,7 @@ First, please add the `td` (‘T’reasure ‘D’ata) gem to your `Gemfile`.
 
 Next, install the gem locally via bundler.
 
-    :::term
+    :::terminal
     $ bundle install
 
 ## Step 2: Modify Your App
@@ -60,7 +60,7 @@ To confirm that your data has been uploaded successfully, check your dataset fro
 #### From CLI
 Or, please issue the *td tables* command if you have a [CLI client](command-line).
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

@@ -22,7 +22,7 @@ Pig Latin Language
 
 You can issue queries using the `td query` command.
 
-    :::term
+    :::terminal
     usage:
       $ td query -t pig <pig scripts>
 
@@ -43,7 +43,7 @@ You can issue queries using the `td query` command.
 
 A pig script often consists of multiple lines, which makes loading scripts from files useful. You can load pig scripts from files using the `-q` parameter as shown below.
 
-    :::term
+    :::terminal
     $ td query -d example_db -t pig -q pig-script.txt
 
 ## Pig on Treasure Data
@@ -61,7 +61,7 @@ Here are some basic examples. We will assume that the underlying table consists 
 
 #### Number of records
 
-    :::term
+    :::terminal
     A = FOREACH www_access GENERATE $0;
     OUT = FOREACH (GROUP A ALL) GENERATE COUNT($1);
 
@@ -69,20 +69,20 @@ Specifying columns explicitly improves the performance of the query significantl
 
 #### Number of records per unique host
 
-    :::term
+    :::terminal
     A = FOREACH www_access GENERATE host;
     OUT = FOREACH (GROUP A BY host) GENERATE group AS host, COUNT($1) AS cnt;
 
 If you don't have a schema on the table, you need to write the query as follows:
 
-    :::term
+    :::terminal
     OUT = FOREACH (GROUP www_access BY v#'host') GENERATE group AS host, COUNT($1) AS cnt;
 
 But this query isn't optimized without schema. Please see [Set Custom Schema](<%= @env[:url_doc] %>articles/performance-tuning#set-custom-schema).
 
 #### Unique hosts sorted by number of accesses
 
-    :::term
+    :::terminal
     A = FOREACH www_access GENERATE host;
     B = FOREACH (GROUP A BY host) GENERATE group AS host, COUNT($1) AS cnt;
     OUT = ORDER B BY cnt DESC;
@@ -92,7 +92,7 @@ Parameters are values that are passed in at runtime as substitutes for some vari
 
 `$TD_SCHEDULED_TIME` represents the time when the current query is scheduled to run. Example usage:
 
-    :::term
+    :::terminal
     FILTER www_access BY time > $TD_SCHEDULED_TIME;
 
 ## UDFs
@@ -103,11 +103,11 @@ The [Piggybank](http://svn.apache.org/viewvc/pig/trunk/contrib/piggybank/java/sr
 
 Examples:
 To use a UDF from either of the above libraries, you can refer to it by its fully declared name.
-    :::term
+    :::terminal
     FILTER www_access BY org.apache.pig.piggybank.evaluation.IsInt(v#'code');
 
 Alternatively, a `define` statement can be used to create an alias for the UDF, which the script can reference instead.
-    :::term
+    :::terminal
     define IsInt org.apache.pig.piggybank.evaluation.IsInt();
     FILTER www_access BY IsInt(v#'code');
 

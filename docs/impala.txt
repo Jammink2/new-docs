@@ -24,7 +24,7 @@ Even with Impala on the scene, MapReduce and Hive will continue to have many via
 
 Please specify `-T impala` in the `td query` command. A v0.10.85 or newer client is required.
 
-    :::term
+    :::terminal
     $ td query -w -T impala -d testdb \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 

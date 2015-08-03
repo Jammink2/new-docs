@@ -40,7 +40,7 @@ Presto also provides PostgreSQL gateway, which talks PostgreSQL protocol. You ca
 
 Using the [CLI](/articles/command-line), specify `-T presto` in the `td query` command. A v0.10.99 or newer client is required.
 
-    :::term
+    :::terminal
     $ td query -w -T presto -d testdb \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 

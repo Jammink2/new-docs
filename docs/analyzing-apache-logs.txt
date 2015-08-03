@@ -78,7 +78,7 @@ NOTE: *YOUR_API_KEY* should be your actual API key string.
 
 Now, restart `td-agent` to reflect the above changes.
 
-    :::term
+    :::terminal
     $ sudo /etc/init.d/td-agent restart
 
 `td-agent` now tails Apache logs, parses the new log entries, and uploads the parsed data into the cloud every 5 minutes.
@@ -87,13 +87,13 @@ Now, restart `td-agent` to reflect the above changes.
 
 `td-agent` continuously uploads logs every 5 minutes. You can force `td-agent` to flush the buffered logs into the cloud by sending a SIGUSR1 signal.
 
-    :::term
+    :::terminal
     $ curl http://127.0.0.1/
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 You can confirm that data is getting uploaded successfully with the `td tables` command, which shows you how many rows have been saved on the cloud (the "Count" column).
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |
@@ -107,7 +107,7 @@ Here are a few sample queries that calculate some interesting results.
 
 ### Top User Agents
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       "SELECT agent, COUNT(1) AS cnt \
        FROM www_access \
@@ -124,7 +124,7 @@ Here are a few sample queries that calculate some interesting results.
 
 ### Top Paths
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       "SELECT path, COUNT(1) AS cnt \
        FROM www_access \
@@ -143,7 +143,7 @@ Here are a few sample queries that calculate some interesting results.
 
 Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is efficient and simple to use. Please refer to the [Performance Tuning](performance-tuning) article for more information.
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       "SELECT referer, COUNT(1) AS cnt \
        FROM www_access \
@@ -164,7 +164,7 @@ Using [TD_TIME_RANGE UDF](udfs#tdtimerange) is efficient and simple to use. Plea
 
 Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       "SELECT TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day, COUNT(1) AS cnt \
        FROM www_access \
@@ -182,7 +182,7 @@ Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
 
 Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       "SELECT TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day, code, COUNT(1) AS cnt \
        FROM www_access \
@@ -204,7 +204,7 @@ Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
 
 Using [TD_TIME_FORMAT UDF](udfs#tdtimeformat) is useful for daily aggregation.
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       "SELECT TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day, \
          max(cast(size AS INT)) AS max, \

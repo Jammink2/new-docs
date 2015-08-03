@@ -12,6 +12,6 @@ The write only API key is useful when embedding API keys within SDKs (e.g. [Java
 At the moment, only the Master API key can be retrieve from the [CLI](command-line).<br/>
 To do that, please execute the following command:
 
-    :::term
+    :::terminal
     $ td apikey:show
     YOUR_API_KEY_WILL_BE_HERE

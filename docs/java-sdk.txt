@@ -70,7 +70,7 @@ To confirm that your data has been uploaded successfully, check your dataset fro
 #### From CLI
 Or, please issue the *td tables* command if you have a [CLI client](command-line).
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

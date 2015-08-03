@@ -33,7 +33,7 @@ First, please download and install the [Treasure Data Toolbelt](http://toolbelt.
 
 The `heroku-td` CLI plugin is also required as a bridge between the `heroku` CLI and the `td` CLI. Once you install the CLI plugin, you will be able to execute the `heroku td` family of commands.
 
-    :::term
+    :::terminal
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
     $ heroku td
     usage: heroku td [options] COMMAND [args]
@@ -46,7 +46,7 @@ You're now ready to set up `td-agent` as a separate Heroku application. `td-agen
 
 Follow the steps below to create `td-agent` as a Heroku application.
 
-    :::term
+    :::terminal
     # Clone
     $ git clone git://github.com/treasure-data/heroku-td-agent.git
     $ cd heroku-td-agent
@@ -77,7 +77,7 @@ Follow the steps below to create `td-agent` as a Heroku application.
 
 You can now confirm that the log aggregation server is set up correctly. In the example below, you will send a GET request to the log server at `http://td-agent-on-heroku.herokuapp.com` to log the event `{ "json": "message" }` in `sample_table` in `sample_db`. Note how the JSON-formatted data is passed as a query parameter value.
 
-    :::term
+    :::terminal
     # HTTP
     $ curl "http://td-agent-on-heroku.herokuapp.com/td.sample_db.sample_table?json=%7B%22json%22%3A%22message%22%7D"
     
@@ -91,7 +91,7 @@ In general, the format is
 
 Once you have sent the GET request, run the command `heroku td tables` to confirm that data is getting uploaded successfully.
 
-    :::term
+    :::terminal
     $ heroku td tables
     +------------------+---------------+------+-------+--------+
     | Database         | Table         | Type | Count | Schema |

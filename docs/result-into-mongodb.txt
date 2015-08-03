@@ -28,7 +28,7 @@ NOTE: Our <b>Premium</b> plan includes advanced security features, which include
 
 For on-demand jobs, just add the `--result / -r` option to the `td query` command. After the job is finished, the results are written into your collection.
 
-    :::term
+    :::terminal
     $ td query --result 'mongodb://user:password@host:1234/database/collection' \
          -w -d testdb "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
@@ -36,7 +36,7 @@ For on-demand jobs, just add the `--result / -r` option to the `td query` comman
 
 For scheduled jobs, just add the `--result / -r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
-    :::term
+    :::terminal
     $ td result:create mydb 'mongodb://user:password@host:1234/database'
     $ td sched:create hourly_count_example "0 * * * *" \
          -d testdb "select count(*) from www_access" --result mydb:mycollection
@@ -63,7 +63,7 @@ where:
 
 You can add or delete data in four modes:
 
-    :::term
+    :::terminal
     mongodb://user:password@host:1234/database/collection                          # append
     mongodb://user:password@host:1234/database/collection?mode=append              # append
     mongodb://user:password@host:1234/database/collection?mode=replace             # replace

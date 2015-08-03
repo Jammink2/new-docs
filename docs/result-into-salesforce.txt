@@ -149,14 +149,14 @@ The <tt>split_records</tt> option will configure the size of this chunk, if requ
 
 To output the result of a single query to Salesforce.com organization add the <tt>-r / --result</tt> option to the <tt>td query</tt> command. After the job is finished, the results will be written into your Salesforce.com organization Object:
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       --result 'sfdc://login.salesforce.com/CustomObject__c?session_id=.....' \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
 To create a scheduled query whose output is systematically written to Salesforce.com organization add the <tt>-r / --result</tt> option when creating the schedule through the <tt>td sched:create</tt> command:
 
-    :::term
+    :::terminal
     $ td sched:create hourly_count_example "0 * * * *" -d testdb \
       --result 'sfdc://user%40treasure-data.com:PASSWORDsecuritytoken@login.salesforce.com/CustomObject__c' \
       "SELECT COUNT(*) FROM www_access"

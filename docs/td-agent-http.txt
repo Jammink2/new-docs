@@ -32,18 +32,18 @@ Please add the following lines to your */etc/td-agent/td-agent.conf* file.
 
 You can add logs via HTTP by sending JSON data. Please use the POST method and specify the database and table name by URL.
 
-    :::term
+    :::terminal
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
 td-agent continuously uploads logs every minute. Sending a SIGUSR1 signal will flush the buffer; upload will start immediately.
 
-    :::term
+    :::terminal
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
 To confirm that your data has been uploaded successfully, issue the *td tables* command as shown below.
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

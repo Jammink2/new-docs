@@ -23,7 +23,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. On
 
 For scheduled jobs, just add the `--result` option when scheduling a job. Every time the job runs, the results are written into `output_table`.
 
-    :::term
+    :::terminal
     $ td result:create mydb td://@/testdb
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb "select count(*) from www_access" \
@@ -33,7 +33,7 @@ For scheduled jobs, just add the `--result` option when scheduling a job. Every 
 
 You can add or delete data in two ways.
 
-    :::term
+    :::terminal
     td://@/testdb/output_table              # append
     td://@/testdb/output_table?mode=append  # append
     td://@/testdb/output_table?mode=replace # replace

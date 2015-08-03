@@ -25,7 +25,7 @@ By using the [toolbelt](http://toolbelt.treasuredata.com), you can manage databa
 
 The 'db:create' sub-command creates a database. For example, the following command will create a table named 'test_db' in the cloud.
 
-    :::term
+    :::terminal
     $ td db:create test_db
 
 NOTE: The database name only supports alphanumeric characters and underscores. Hyphens cannot be used (an exception will be thrown). Also, the database name must be 3 to 256 characters long.
@@ -36,7 +36,7 @@ Your local environment remains unchanged; the database resides solely in the clo
 
 The 'dbs' sub-command lists all the databases in your account.
 
-    :::term
+    :::terminal
     $ td dbs
     +---------------+
     | Name          |
@@ -51,7 +51,7 @@ The 'dbs' sub-command lists all the databases in your account.
 
 The 'db:delete' sub-command removes a database. This will remove all tables and all data stored within the database as well.
 
-    :::term
+    :::terminal
     $ td db:delete test_db
     Database 'test_db' is deleted.
 
@@ -61,7 +61,7 @@ NOTE: This operation cannot be rolled back. The data will be unrecoverable.
 
 The 'table:create' sub-command creates a table. For example, the following command will create a table named 'test_table' within the database 'test_db'.
 
-    :::term
+    :::terminal
     $ td table:create test_db test_table
     Table 'test_db.test_table' is created.
 
@@ -73,7 +73,7 @@ Much like your database, this table only exists in the cloud. Your local environ
 
 The 'tables' sub-command lists all the tables within the specified database. The number of records in each table will be shown as well (currently zero).
 
-    :::term
+    :::terminal
     $ td tables test_db
     +----------+------------+------+-------+
     | Database | Table      | Type | Count |
@@ -84,7 +84,7 @@ The 'tables' sub-command lists all the tables within the specified database. The
 
 Issuing the 'tables' command without an argument will list all the databases and tables that you have created.
 
-    :::term
+    :::terminal
     $ td tables
     +----------+-------------+------+-------------+
     | Database | Table       | Type | Count       |
@@ -102,7 +102,7 @@ Issuing the 'tables' command without an argument will list all the databases and
 
 The 'table:delete' sub-command removes a table from a database. This will remove all data stored within the table as well.
 
-    :::term
+    :::terminal
     $ td table:delete test_db test_table
     Table 'test_db.test_table' is deleted.
 
@@ -124,14 +124,14 @@ To set the expiration period (days) for a table one can use:
 
 To enable and set the expiration:
 
-    :::term
+    :::terminal
     $ td table:expire test_db test_table <expiration_days>
     Table set to expire data older than <expiration_days> days.
 
 where <tt>\<expiration_days\></tt> is an integer number greater than 0 indicating the maximum age of any record in the table.<br/>
 To disable the table data expiration simply set the expiration days to 0:
 
-    :::term
+    :::terminal
     $ td table:expire test_db test_table 0
     Data expiration disabled for this table.
 

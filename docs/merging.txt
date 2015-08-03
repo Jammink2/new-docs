@@ -22,7 +22,7 @@ In this scenario both the source and the destination table exist and contain dat
 
 Let's assume the source table is called <tt>src_dbs.src_tbl</tt> and has schema:
 
-    :::term
+    :::terminal
     $ td schema:show src_dbs src_tbl
     src_dbs.src_tbl (
       common_col:string
@@ -34,7 +34,7 @@ NOTE: The 'time' column is implicit. See the <a href="schema">Schema<a> document
 
 and the the destination table <tt>dst_dbs.dst_tbl</tt> has schema:
 
-    :::term
+    :::terminal
     $ td schema:show dst_dbs dst_tbl
     dst_dbs.dst_tbl (
       common_col:string
@@ -46,7 +46,7 @@ The data belonging to columns having the same name in the source and destination
 
 To merge the tables run this command in the CLI:
 
-    :::term
+    :::terminal
     $ td query -d src_dbs -w -r 'td://@/dst_dbs/dst_tbl' \
        'SELECT `time`, src_col_1, src_col_2, common_col FROM src_tbl'
 
@@ -55,7 +55,7 @@ NOTE: we select the <tt>time</tt> in order to preserve the original timestamps w
 By using <tt>td://@/dst_dbs/dst_tbl</tt> as a job result output target, we will write the result in **append** mode, appending the result of this query to the data already in the destination table <tt>dst_dbs.dst_tbl</tt>.
 After the query completes, the schema of the destination table will be updated to include the columns in the source table's result (that is, those columns indicated in the select clause of the query) that did not exist before; the new schema will be:
 
-    :::term
+    :::terminal
     $ td schema:show dst_dbs dst_tbl
     dst_dbs.dst_tbl (
       common_col:string
@@ -67,7 +67,7 @@ After the query completes, the schema of the destination table will be updated t
 
 Clearly data for both <tt>time</tt> and <tt>common_col</tt> was merged in the process. If one would want to avoid merging <tt>common_col</tt> in the destination table with <tt>common_col</tt> in the source table, perhaps because the two columns contain data with different meanings that should not mixed, a easy way is to rename the source column in the 'SELECT' clause with the <tt>old_name AS new_name</tt> diction:
 
-    :::term
+    :::terminal
     $ td query ... 'SELECT `time`, src_col_1, src_col_2, common_col AS src_common_col FROM src_tbl'
 
 ## Merging Two Tables Into A Third Table
@@ -76,7 +76,7 @@ In this scenario we want to merge data from two tables. Whether writing into a n
 
 Let's assume the two source tables are called <tt>src_dbs_1.src_tbl_1</tt> and <tt>src_dbs_2.src_tbl_2</tt> and have schema:
 
-    :::term
+    :::terminal
     $ td schema:show src_dbs_1 src_tbl_1
     src_dbs_1.src_tbl_1 (
       common_col:string
@@ -94,7 +94,7 @@ For simplicity let's assume the destination database <tt>dst_dbs</tt> exists but
 
 This query will merge the data from the 2 tables into the new destination table, which will be created automatically once the result of the query is written to the destination.
 
-    :::term
+    :::terminal
     $ td query -d src_dbs_1 -w -r 'td://@/dst_dbs/dst_tbl' \
        'SELECT                              \
           *                                 \

@@ -50,7 +50,7 @@ You will need working accounts for both [Heroku](http://www.heroku.com/) and [Ch
 
 First, enable the treasure-data addon and install the heroku-td CLI plugin.
 
-    :::term
+    :::terminal
     $ heroku addons:add treasure-data:nano
     $ heroku plugins:install https://github.com/treasure-data/heroku-td.git
     $ heroku td
@@ -69,13 +69,13 @@ You can now inject data from Heroku's logplex by outputting your data to STDOUT.
 
 Next, [Scheduled Jobs](schedule) will be used to execute jobs periodically. The job query result can easily be [inserted into Heroku PostgreSQL](result-into-postgresql). First, please check your Heroku Postgres connection URL.
 
-    :::term
+    :::terminal
     $ heroku config | grep POSTGRE
     HEROKU_POSTGRESQL_NAVY_URL: postgres://user:pass@host:port/db
 
 Then, create result output and scheduled jobs using the heroku td command. You can limit the processed data by using [TD_TIME_RANGE() udf](udfs) (e.g. to limit the data to the last hour).
 
-    :::term
+    :::terminal
     $ heroku td result:create heroku_db postgresql://user:pass@host:port/db
     $ heroku td sched:create pay_hourly "0 * * * *" \
       -d testdb \

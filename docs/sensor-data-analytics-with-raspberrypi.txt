@@ -19,12 +19,12 @@ This article introduces how to transport sensor data from Raspberry Pi to Treasu
 
 Next, we'll install Treasure Agent on Raspbian. Raspbian bundles Ruby 1.9.3 by default, but we need the extra development packages.
 
-    :::term
+    :::terminal
     $ sudo aptitude install ruby-dev
 
 We'll now install Treasure Agent (Fluentd) and the necessary plugins.
 
-    :::term
+    :::terminal
     $ sudo gem install fluentd
     $ sudo fluent-gem install fluent-plugin-td
 
@@ -53,14 +53,14 @@ Please prepare the `td-agent.conf` file with the following information, includin
 
 Finally, please launch Treasure Agent (Fluentd) via your terminal.
 
-    :::term
+    :::terminal
     $ fluentd -c fluent.conf
 
 ## Upload Test
 
 To test the configuration, just post a JSON message to Treasure Agent via HTTP.
 
-    :::term
+    :::terminal
     $ curl -X POST -d 'json={"sensor1":3123.13,"sensor2":321.3}' \
       http://localhost:8888/td.testdb.raspberrypi
 

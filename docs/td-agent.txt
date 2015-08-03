@@ -30,17 +30,17 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 #### MacOS X 10.9+
 
-    :::term
+    :::terminal
     $ open 'http://packages.treasuredata.com/2/macosx/td-agent-2.1.4-0.dmg'
 
 #### RHEL/CentOS 5,6,7
 
-    :::term
+    :::terminal
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 
 #### Ubuntu & Debian
 
-    :::term
+    :::terminal
     # 14.04 Trusty (64bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
     # 12.04 Precise
@@ -57,12 +57,12 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
 
 #### Amazon Linux
 
-    :::term
+    :::terminal
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 
 #### Opscode Chef (<a target="_blank" href="https://github.com/treasure-data/chef-td-agent">repository</a>)
 
-    :::term
+    :::terminal
     $ echo 'cookbook "td-agent"' >> Berksfile
     $ berks install
 
@@ -96,7 +96,7 @@ NOTE: <i>YOUR_API_KEY</i> should be your actual apikey string. You can retrieve 
 
 Now please restart the td-agent service.
 
-    :::term
+    :::terminal
     # Linux
     $ sudo /etc/init.d/td-agent restart
 
@@ -108,13 +108,13 @@ Now please restart the td-agent service.
 
 You can add logs in JSON format using HTTP.
 
-    :::term
+    :::terminal
     $ curl -X POST -d 'json={"action":"login","user":2}' \
       http://localhost:8888/td.testdb.www_access
 
 `td-agent` continuously uploads logs every 5 minutes. You can force `td-agent` to flush the buffered logs into the cloud by sending a SIGUSR1 signal.
 
-    :::term
+    :::terminal
     # Linux
     $ kill -USR1 `cat /var/run/td-agent/td-agent.pid`
 
@@ -123,7 +123,7 @@ You can add logs in JSON format using HTTP.
 
 Finally, please visit the [Databases](<%= @env[:url_databases] %>) page at Web console, to check if the data got imported successfully. From CLI, you can check by issuing the `td tables` command:
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

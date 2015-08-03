@@ -18,7 +18,7 @@ Nested JSON records can be parsed by using the [get_json_object UDF](https://cwi
 
 Please set the HTTP_PROXY variable. This is supported starting in td v0.10.41.
 
-    :::term
+    :::terminal
     e.g.
     Windows:
     $ set HTTP_PROXY=http://proxy_host:8080
@@ -65,7 +65,7 @@ For example if you create an 'items' table and store data in it, you won't be ab
 
 The following are <b>Keywords<b> in Hive:
 
-    :::term
+    :::terminal
     ALL,ALTER,AND,ARRAY,AS,AUTHORIZATION,BETWEEN,BIGINT,BINARY,BOOLEAN,BOTH,BY,CASE,CAST,
     CHAR,COLUMN,CONF,CREATE,CROSS,CUBE,CURRENT,CURRENT_DATE,CURRENT_TIMESTAMP,CURSOR,
     DATABASE,DATE,DECIMAL,DELETE,DESCRIBE,DISTINCT,DOUBLE,DROP,ELSE,END,EXCHANGE,EXISTS,
@@ -79,7 +79,7 @@ The following are <b>Keywords<b> in Hive:
 
 The following are <b>Non-reserved Keywords<b> in Hive:
 
-    :::term
+    :::terminal
     ADD,ADMIN,AFTER,ANALYZE,ARCHIVE,ASC,BEFORE,BUCKET,BUCKETS,CASCADE,CHANGE,CLUSTER,
     CLUSTERED,CLUSTERSTATUS,COLLECTION,COLUMNS,COMMENT,COMPACT,COMPACTIONS,COMPUTE,
     CONCATENATE,CONTINUE,DATA,DATABASES,DATETIME,DAY,DBPROPERTIES,DEFERRED,DEFINED,
@@ -98,7 +98,7 @@ The following are <b>Non-reserved Keywords<b> in Hive:
     
 The following are <b>Reserved Keywords<b> in Hive:
 
-    :::term
+    :::terminal
     ALL,ALTER,AND,ARRAY,AS,AUTHORIZATION,BETWEEN,BIGINT,BINARY,BOOLEAN,BOTH,BY,CASE,CAST,
     CHAR,COLUMN,CONF,CREATE,CROSS,CUBE,CURRENT,CURRENT_DATE,CURRENT_TIMESTAMP,CURSOR,
     DATABASE,DATE,DECIMAL,DELETE,DESCRIBE,DISTINCT,DOUBLE,DROP,ELSE,END,EXCHANGE,EXISTS,
@@ -125,14 +125,14 @@ If you have any questions, please feel free to [contact us](<%= @env[:url_contac
 ## How is import command's time format set at windows batch file?
 '%' is recognized Environment variable,so need to set '%%'.
 
-    :::term
+    :::terminal
     td import:prepare --format csv --column-header --time-column 'date' --time-format '%%Y-%%m-%%d' test.csv
 
 ## How does TD_TIME_FORMAT handle Leap Second? 
 Please check the following results.
 
 Presto
-    :::term
+    :::terminal
     SELECT
      TD_TIME_FORMAT(1136073600, 'yyyy-MM-dd HH:mm:ss', 'JST') as st,
      TD_TIME_PARSE('2006-01-01 08:59:60', 'JST') as leap, 
@@ -141,7 +141,7 @@ Presto
 <img style="margin:auto" src="/images/faq_presto_leapseconds.png" alt="Presto Leap Second"/>
 
 Hive
-    :::term
+    :::terminal
     SELECT
      TD_TIME_FORMAT(1136073600, 'yyyy-MM-dd HH:mm:ss', 'JST') as st,
      TD_TIME_PARSE('2006-01-01 08:59:60', 'JST') as leap,
@@ -154,7 +154,7 @@ Hive
 
 You see the following message in the td-agent log.
 
-    :::term
+    :::terminal
     tdlog plugin will change the API endpoint from api.treasure-data.com to api.treasuredata.com
     If want to keep api.treasure-data.com, please set 'endpoint api.treasure-data.com' in tdlog configuration
 

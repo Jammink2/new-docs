@@ -28,7 +28,7 @@ Amazon Redshift can be configured in single node mode or multi node/cluster mode
 
 The result output target is represented by URL with the following format:
 
-    :::term
+    :::terminal
     redshift://<username>:<password>@<hostname>:<port>/<database>/<table>
 
 where:
@@ -54,14 +54,14 @@ Where applicable, the default behavior is indicated.
 
 Use SSL from Treasure Data to Redshift connection.
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table?ssl=true
 
 ##### `ssl=false` (default)
 
 Do not use SSL from Treasure Data to Redshift.
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table?ssl=false
 
 #### `schema` option
@@ -70,14 +70,14 @@ Controls the schema the target table is located.
 If not specified default schema is to be used.
 The default schema depends on user's "search_path" setting but it is usually "public".
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table?schema=target_schema
 
 #### `region` option
 
 Specify the region where your Redshift instance is located. This option is required if your hostname does not contain the region name.
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table?region=us-east-1
 
 #### Update `mode` option
@@ -100,7 +100,7 @@ Append mode also does modify the schema of existing tables: if the source table 
 
 Because `mode=append` is the default behavior, these two URLs are equivalent:
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table
     redshift://user:password@host/database/table?mode=append
 
@@ -116,7 +116,7 @@ The replace mode achieves **atomicity** (so that a consumer of the table always 
 
 Example:
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table?mode=replace
 
 ##### `mode=truncate`
@@ -129,7 +129,7 @@ The truncate mode uses a temporary table, hence achieves **atomicity** of write.
 
 Example:
 
-    :::term
+    :::terminal
     redshift://user:password@host/database/table?mode=truncate
 
 NOTE: Unlike replace, the truncate mode retains the indexes of the table.
@@ -142,7 +142,7 @@ This mode is **atomic** because it uses a temporary table to store the incoming 
 
 Example:
 
-    :::term
+    :::terminal
     redshift://...?mode=update&unique=col1        # single unique column
     redshift://...?mode=update&unique=[col1,col2] # multiple unique columns
 
@@ -155,14 +155,14 @@ Only the CLI supports query result output to Redshift at the moment.
 
 To output the result of a single query to Amazon Redshift add the `--result` option to the `td query` command. After the job is finished, the results will be written into your instance.
 
-    :::term
+    :::terminal
     $ td query -w -d testdb \
       --result 'redshift://username:password@host.redshift.amazonaws.com/database/table?mode=replace' \
       "SELECT code, COUNT(1) FROM www_access GROUP BY code"
 
 To create a scheduled query whose output is systematically written to Redshift add the `--result` option when creating the schedule using the `td sched:create` command:
 
-    :::term
+    :::terminal
     $ td sched:create hourly_count_example "0 * * * *" -d testdb \
       --result 'redshift://username:password@host.redshift.amazonaws.com/database/table?mode=replace' \
       "SELECT COUNT(*) FROM www_access"

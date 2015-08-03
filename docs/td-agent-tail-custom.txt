@@ -4,7 +4,7 @@ If your logs are in a custom format, you will need to write a custom parser [(in
 
 We provide two example parsers: "URL-param style key-value pairs" and "ascii character delimited format". Both formats are fairly common among our users.
 
-    :::term
+    :::terminal
     # URL-param style key-value pairs
     last_name=smith&first_name=brian&age=22&state=CA
     

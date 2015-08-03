@@ -26,7 +26,7 @@ NOTE: This driver works only with Treasure Data. It does not work with other env
 
 Before starting Pentaho Data Integration, please copy the Treasure Data JDBC driver to the `libext/JDBC` directory specified by Pentaho Data Integration.
 
-    :::term
+    :::terminal
     $ cp td-jdbc-VERSION.jar \
       <pentaho-data-integration-install>/data-integration/libext/JDBC/
 

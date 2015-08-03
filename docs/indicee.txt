@@ -47,7 +47,7 @@ By using these dimensions, you can create a summary dataset on Indicee as follow
 
 On Treasure Data, creating this table requires just one query with multiple GROUP BYs. One thing to keep in mind is the number of records created on Indicee. For example, using the aforementioned four dimensions will create 36500 records for one year (365 days).
 
-    :::term
+    :::terminal
     36500 = 365(Date) * 2(Gender) * 10(Age) * 5(Payment)
     
 ## Basic Usage
@@ -56,7 +56,7 @@ On Treasure Data, creating this table requires just one query with multiple GROU
 
 For on-demand jobs, just add the `-r` option to the `td query` command. The format is as follows.
 
-    :::term
+    :::terminal
      "indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/<dataset>/<contribution>"
 
 After the job is finished, the results are written into the `c1` contribution within the `ds1` dataset.
@@ -71,7 +71,7 @@ After the job is finished, the results are written into the `c1` contribution wi
 
 For scheduled jobs, just add the `-r` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
-    :::term
+    :::terminal
     $ td result:create ds1 \
       'indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1'
     $ td sched:create hourly_count_example "0 * * * *" \
@@ -82,7 +82,7 @@ For scheduled jobs, just add the `-r` option when scheduling a job. Every time t
 
 You can add or delete data in two ways. By using replace mode, you can periodically replace existing a contribution with a new query result.
 
-    :::term
+    :::terminal
     indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1              # append
     indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1?mode=append  # append
     indicee://<consumerKey>+<tokenKey>:<consumerSecret>+<tokenSecret>@/ds1/c1?mode=replace # replace

@@ -17,14 +17,14 @@ All API requests should be sent to *<%= @env[:api_endpoint] %>*.
 
 Every request to Treasure Data must contain *authentication information*, provided by the special 'AUTHORIZATION' HTTP headers. The header format is as follows:
 
-    :::term
+    :::terminal
     "AUTHORIZATION: TD1 " + YourApiKeyHere
 
 The API key is your authentication key. Please refer [here](get-apikey) to retrieve your API key.
 
 The request looks like this when using the curl command. (The -H option adds the AUTHORIZATION HTTP header to the request)
 
-    :::term
+    :::terminal
     $ curl -H "AUTHORIZATION: TD1 YourApiKeyHere" \
       "http://<%= @env[:api_endpoint] %>/v3/job/result/2162"
 
@@ -42,7 +42,7 @@ No parameters are required.
 * **databases**: an array of your databases
 
 #### Example Result
-    :::term
+    :::terminal
     {
       "databases": [
         {
@@ -72,7 +72,7 @@ No parameters are required.
 * a json structure containing the number of jobs, to, from, and **jobs** an array of the jobs.
 
 #### Example Result
-    :::term
+    :::terminal
     {
       "count": 2,
       "from": null,
@@ -128,7 +128,7 @@ This command returns a list of your tables.
 * **tables**: an array of your tables within the database
 
 #### Example Result
-    :::term
+    :::terminal
     {
       "database": "db0",
       "tables": [
@@ -158,7 +158,7 @@ This command swaps the contents of two tables.
 
 #### Example Result
 
-    :::term
+    :::terminal
     {
       "database": "db1",
       "table1": "tbl1",
@@ -179,7 +179,7 @@ This command issues queries.
 * **job_id**: the id of the job
 
 #### Example Result
-    :::term
+    :::terminal
     {
       "job_id": "12345",
       "type": "hive",
@@ -201,7 +201,7 @@ This command shows the status of a specific job. It is faster and more robust th
 * **end_at**: the job end time
 
 #### Examples
-    :::term
+    :::terminal
     {
       "job_id":"860329",
       "status":"success",
@@ -231,7 +231,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
   * **cmdout**: stdout logs
 
 #### Examples
-    :::term
+    :::terminal
     {
       "type": "hive",
       "query": "SELECT * FROM ACCESS",
@@ -257,7 +257,7 @@ This command kills the currently running job. The kill operation is performed as
 * **job_id**: the specified job id
 
 #### Example Result
-    :::term
+    :::terminal
     {
       "former_status": "running",
       "job_id": "12345"
@@ -277,7 +277,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 
 #### Example Result
 
-    :::term
+    :::terminal
     # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=tsv
     aaaa    bbbb    cccc
     aaaa    bbbb    cccc
@@ -287,7 +287,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 
 &nbsp;
 
-    :::term
+    :::terminal
     # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=csv
     aaaa,bbbb,cccc
     aaaa,bbbb,cccc
@@ -297,7 +297,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 
 &nbsp;
 
-    :::term
+    :::terminal
     # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=json
     [aaaa,bbbb,cccc]
     [aaaa,bbbb,cccc]
@@ -307,7 +307,7 @@ NOTE: The resulting logs can be large, so using a large timeout value (i.e. seve
 
 &nbsp;
 
-    :::term
+    :::terminal
     # URL: http://<%= @env[:api_endpoint] %>/v3/job/result/2162?format=msgpack
     MessagePack format of above result
 

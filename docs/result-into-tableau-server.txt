@@ -14,7 +14,7 @@ Using [Tableau Server](http://www.tableausoftware.com/products/server) with Trea
 
 Please add the Tableau result output destination with the <tt>-r</tt> / <tt>--result</tt> option for the `td query` command:
 
-    :::term
+    :::terminal
     $ td query -d mydb -r 'tableau://username:password@my.tableauserver.com/?mode=replace' 'SELECT * FROM access'
 
 ### Console: One Time Query
@@ -99,7 +99,7 @@ The **ssl** option determines whether to use SSL or not for connecting to the Ta
 When 'true', SSL is used. <tt>ssl=true</tt> is the default when this option is not
 specified.
 
-    :::term
+    :::terminal
     tableau://username:password@my.tableauserver.com/?ssl=true
 
 ### <tt>ssl_verify</tt>
@@ -109,7 +109,7 @@ for the SSL communication or not.
 When 'true', the certificate verification is required. <tt>ssl_verify=true</tt>
 is the default when this option is not specified.
 
-    :::term
+    :::terminal
     tableau://username:password@my.tableauserver.com/?ssl=true&ssl_verify=true
 
 Disabling certificate verification is particularly useful when the Tableau server's SSL certificate

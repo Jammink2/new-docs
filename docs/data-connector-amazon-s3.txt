@@ -37,7 +37,7 @@ The Data Connector for Amazon S3 imports all files that match a specified prefix
 
 Second, use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
-    :::term
+    :::terminal
     $ td connector:guess seed.yml -o load.yml
 
 If you open up `load.yml`, you'll see the guessed file format definitions including file formats, encodings, column names, and types.
@@ -90,7 +90,7 @@ NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "doub
 
 NOTE: You will also need to create the local database and table, prior to executing the load job.   To do this:
 
-    :::term
+    :::terminal
     $ td database:create td_sample_db
     $ td table:create td_sample_db td_sample_table
 
@@ -101,14 +101,14 @@ Finally, submit the load job. It may take a couple of hours depending on the siz
 It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
 If the option is not given, the Data Connector will choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp` type.
 
-    :::term
+    :::terminal
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table --time-column created_at
 
 NOTE: At present, the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
 
 If you have a field called `time`, you don't have to specify the `--time-column` option.
 
-    :::term
+    :::terminal
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
 
 ## Mode (append/replace)
@@ -155,7 +155,7 @@ On the second and subsequent runs, it only imports files that comes after the la
 A new schedule can be created using the `td connector:create` command.
 The following are required: the name of the schedule, the cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file.
 
-    :::term
+    :::terminal
     $ td connector:create \
         daily_import \
         "10 0 * * *" \
@@ -165,7 +165,7 @@ The following are required: the name of the schedule, the cron-style schedule, t
 
 It's also recommended to specify the `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
 
-    :::term
+    :::terminal
     $ td connector:create \
         daily_import \
         "10 0 * * *" \
@@ -180,7 +180,7 @@ NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@dail
 
 You can see the list of currently scheduled entries by running the command `td connector:list`.
 
-    :::term
+    :::terminal
     $ td connector:list
     +--------------+--------------+----------+-------+--------------+-----------------+------------------------------------------+
     | Name         | Cron         | Timezone | Delay | Database     | Table           | Config                                   |
@@ -192,7 +192,7 @@ You can see the list of currently scheduled entries by running the command `td c
 
 `td connector:show` shows the execution setting of a schedule entry.
 
-    :::term
+    :::terminal
     % td connector:show daily_import
     Name     : daily_import
     Cron     : 10 0 * * *
@@ -215,7 +215,7 @@ You can see the list of currently scheduled entries by running the command `td c
 
 `td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual run, please use `td job <jobid>`.
 
-    :::term
+    :::terminal
     % td connector:history daily_import
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
     | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
@@ -235,5 +235,5 @@ You can see the list of currently scheduled entries by running the command `td c
 
 `td connector:delete` will remove the schedule.
 
-    :::term
+    :::terminal
     $ td connector:delete daily_import

@@ -31,7 +31,7 @@ Let's add Treasure Data as Pentaho's data source. Please follow the procedure be
 
 First, please copy the Treasure Data JDBC driver to Pentaho's jdbc directory. The command for a MacOS environment is shown below.
 
-    :::term
+    :::terminal
     $ cp td-jdbc-VERSION.jar \
       /Applications/pentaho/design-tools/Pentaho\ Report\ Designer.app/lib/jdbc/
 

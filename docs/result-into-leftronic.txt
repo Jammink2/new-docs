@@ -24,7 +24,7 @@ Step 1: In the Leftronic dashboard, create a new line graph. Click on the proper
 
 Step 2: Set up a scheduled query. This will execute periodically and send the result to your Leftronic graph as a data point.
 
-    :::term
+    :::terminal
     $ td sched:create mymetric_hourly "0 * * * *" \
       -d testdb \
       --result "leftronic://accessKey/streamName" \

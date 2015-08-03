@@ -65,7 +65,7 @@ NOTE: *YOUR_API_KEY* should be your actual API key string.
 
 Now, restart `td-agent` to reflect the changes you made above.
 
-    :::term
+    :::terminal
     $ sudo /etc/init.d/td-agent restart
 
 `td-agent` is now ready to accept logs from your application.
@@ -128,7 +128,7 @@ Here are a few sample queries that calculate some KPIs.
 
 ### Daily Impressions
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -139,7 +139,7 @@ Here are a few sample queries that calculate some KPIs.
 
 ### Hourly Impressions
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd HH:00:00', 'PDT') AS hour,
@@ -150,7 +150,7 @@ Here are a few sample queries that calculate some KPIs.
 
 ### Daily Clicks
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -161,7 +161,7 @@ Here are a few sample queries that calculate some KPIs.
 
 ### Daily Earnings by CPM per Advertiser
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -173,7 +173,7 @@ Here are a few sample queries that calculate some KPIs.
 
 ### Daily Earnings by CPC per Advertiser
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,

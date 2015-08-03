@@ -30,7 +30,7 @@ Let's add Treasure Data as Jasper's data source. Please follow the procedure bel
 
 First, copy the Treasure Data JDBC driver to the JasperReports Server's jasperserver application before starting JasperReports Server.
 
-    :::term
+    :::terminal
     $ cp td-jdbc-VERSION.jar \
       <jasper-server-install>/apache-tomcat/webapps/jasperserver/WEB-INF/lib/
 
@@ -38,7 +38,7 @@ First, copy the Treasure Data JDBC driver to the JasperReports Server's jasperse
 
 Start JasperReports Server as shown below.
 
-    :::term
+    :::terminal
     $ cd <jasper-server-install>
     $ ./ctlscript.sh start
 

@@ -12,7 +12,7 @@ All native UDFs on Presto can also be used on Treasure Data. The complete list o
 
 #### Signature
 
-    :::term
+    :::terminal
     boolean TD_TIME_RANGE(int/long unix_timestamp,
                           int/long/string start_time,
                           int/long/string end_time
@@ -47,7 +47,7 @@ This UDF returns true if *unix_timestamp* is equal to or later than *start_time*
 
 #### Signature
 
-    :::term
+    :::terminal
     long TD_SCHEDULED_TIME()
 
 #### Description
@@ -60,7 +60,7 @@ If the query is not a scheduled query, the UDF returns the time when the job was
 
 #### Signature
 
-    :::term
+    :::terminal
     long TD_TIME_ADD(int/long/string time,
                      string duration
                      [, string default_timezone = 'UTC'])
@@ -99,7 +99,7 @@ NOTE: 'year' and 'month' durations are <b>NOT</b> supported, because these have 
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_TIME_FORMAT(long unix_timestamp,
                           string format
                           [, string timezone = 'UTC'])
@@ -121,7 +121,7 @@ This UDF converts a UNIX timestamp to a string with the specified format (see [h
 
 #### Signature
 
-    :::term
+    :::terminal
     long TD_TIME_PARSE(string time
                        [, string default_timezone = 'UTC'])
 
@@ -137,7 +137,7 @@ If the format of the *time* string is invalid, the UDF returns NULL.
 
 #### Signature
 
-    :::term
+    :::terminal
     long TD_DATE_TRUNC(string unit,
                        long time
                        [, string default_timezone = 'UTC'])
@@ -186,7 +186,7 @@ timezone is 8 hours behind the start of day for 'UTC'.
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_SESSIONIZE(int/long unix_timestamp, int timeout, string sessionize_by)
 
 #### Description
@@ -215,7 +215,7 @@ You need to 'ORDER BY' the *sessionize_by* field within a sub query to use this 
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_PARSE_USER_AGENT(user_agent string [, options string])
 
 #### Description
@@ -223,7 +223,7 @@ You need to 'ORDER BY' the *sessionize_by* field within a sub query to use this 
 This UDF returns the result of parsing a user agent string. The user agent is parsed by the basis of [rules](https://raw.github.com/tobie/ua-parser/master/regexes.yaml).
 Accepts the following options as a string, as user options:
 
-    :::term
+    :::terminal
     os, os_family, os_major, os_minor, ua, ua_family, ua_major, ua_minor, device
 
 os and ua return json. With \_family, \_major and \_minor return a string. The device option also returns a string.
@@ -244,7 +244,7 @@ The example shows the result of parsing user agent from access log.
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_MD5(col)
 
 #### Description
@@ -260,7 +260,7 @@ This UDF calculates the [MD5](http://en.wikipedia.org/wiki/MD5) hash digest from
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_URL_DECODE(col)
 
 #### Description
@@ -276,7 +276,7 @@ This UDF applies URL decoding for a given string.
 
 #### Signature
 
-    :::term
+    :::terminal
     string SMART_DIGEST(col [,weight = 1.0])
 
 #### Description
@@ -293,7 +293,7 @@ This UDF calculates the variable length digest from a given string. It usually g
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_CURRENCY_CONV(string date, string from_currency, string to_currency, float value)
 
 #### Description
@@ -311,7 +311,7 @@ This UDF converts currency for the specific date, by accessing the currency exch
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_IP_TO_COUNTRY_CODE(string ip)
 
 #### Description
@@ -332,7 +332,7 @@ The function returns `JP` in this example.
 
 #### Signature
 
-    :::term
+    :::terminal
     string TD_IP_TO_COUNTRY_NAME(string ip)
 
 #### Description

@@ -17,7 +17,7 @@ NOTE: Our <b>Premium</b> plan includes advanced security features, which include
 
 For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are sent to the specified FTP server.
 
-    :::term
+    :::terminal
     $ td query \
       --result 'ftp://user:password@domain.com/path.csv' \
       -w -d testdb \
@@ -37,7 +37,7 @@ The request body is in CSV format ([RFC 4180](http://www.ietf.org/rfc/rfc4180.tx
 
 For scheduled jobs, just add the `--result` option when scheduling a job. After every job run, the results are sent in the same manner as on-demand jobs.
 
-    :::term
+    :::terminal
     $ td result:create myftp ftp://user:password@domain.com/
     $ td sched:create hourly_count_example "0 * * * *" \
       -d testdb \

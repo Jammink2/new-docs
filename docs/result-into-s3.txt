@@ -13,7 +13,7 @@ This article explains how to write job results directly to AWS S3 / Riak CS.
 
 For on-demand jobs, just add the `--result` option to the `td query` command. After the job is finished, the results are written to the S3 bucket with the given name and path.
 
-    :::term
+    :::terminal
     $ td query \
       --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv.gz?compression=gz' \
       -w -d testdb \
@@ -26,7 +26,7 @@ For security reasons, you may want to use [AWS IAM](http://aws.amazon.com/iam/) 
 You can specify `compression` option (only `gz` is allowed at this moment) in --result URL to compress the result.
 Without compression parameter it generates uncompressed data.
 
-    :::term
+    :::terminal
     $ td query \
       --result 's3://accesskey:secretkey@/bucketname/path/to/file.csv' \
       -w -d testdb \
@@ -56,7 +56,7 @@ This is the a default sample output in CSV format when no customization is reque
     "500",2
 
 When the format=tsv, delimiter=", and null=NULL options are specified:
-    :::term
+    :::terminal
     $ td query \
       --result 's3://accesskey:secretkey@/bucket_name/path/to/file.tsv?format=tsv&delimiter=%22&null=empty' \
       -w -d testdb \

@@ -90,7 +90,7 @@ Note: *YOUR_API_KEY* should be your actual apikey string.
 
 Please restart your agent once these lines are in place.
 
-    :::term
+    :::terminal
     $ sudo /etc/init.d/td-agent restart
 
 td-agent will now tail the file, buffer it (*var/log/td-agent/buffer/td*), and automatically upload it into the cloud.
@@ -99,7 +99,7 @@ td-agent will now tail the file, buffer it (*var/log/td-agent/buffer/td*), and a
 
 Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immediately.
 
-    :::term
+    :::terminal
     # append new records to the logs
     $ ...
     
@@ -108,7 +108,7 @@ Sending a SIGUSR1 signal will flush td-agent's buffer; upload will start immedia
 
 To confirm that your data has been uploaded successfully, issue the `td tables` command as shown below.
 
-    :::term
+    :::terminal
     $ td tables
     +------------+------------+------+-----------+
     | Database   | Table      | Type | Count     |

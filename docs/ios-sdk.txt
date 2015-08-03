@@ -18,7 +18,7 @@ This video demonstrates how to install iOS SDK in 5 minutes.
 
 [CocoaPods](http://cocoapods.org/) is a recommended way to install Treasure Data iOS SDK. First, please install CocoaPods to your PC.
 
-    :::term
+    :::terminal
     $ gem install cocoapods
 
 Add the following line to your Podfile:
@@ -28,7 +28,7 @@ Add the following line to your Podfile:
 
 Finally, please run `pod install`.
 
-    :::term
+    :::terminal
     $ pod install
 
 ### Step 2: Initialize the Library

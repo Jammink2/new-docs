@@ -73,7 +73,7 @@ NOTE: *YOUR_API_KEY* should be your actual API key string.
 
 Now, restart `td-agent` to reflect the changes you made above.
 
-    :::term
+    :::terminal
     $ sudo /etc/init.d/td-agent restart
 
 `td-agent` is now ready to accept logs from your application.
@@ -142,7 +142,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### Daily Access Count
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -153,7 +153,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### Daily Access User (DAU)
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -164,7 +164,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### Montly Access User (MAU)
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM', 'PDT') AS day,
@@ -175,7 +175,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### Daily Paid User
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -186,7 +186,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### Daily Sales
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -197,7 +197,7 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### Daily Sales per Item Name
 
-    :::term
+    :::terminal
     $ td query -w -d production \
       "SELECT
          TD_TIME_FORMAT(time, 'yyyy-MM-dd', 'PDT') AS day,
@@ -209,10 +209,10 @@ Here are a few sample queries that calculate some KPIs accessing the logs posted
 
 ### ARPU (Average Revenue per User)
 
-    :::term
+    :::terminal
     Daily Sales / DAU    
 
 ### ARPPU (Average Revenue per Paid User)
 
-    :::term
+    :::terminal
     Daily Sales / Daily Paid User

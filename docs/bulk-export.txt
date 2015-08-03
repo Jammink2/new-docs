@@ -17,7 +17,7 @@ NOTE: Your S3 bucket must be in US-East region.
 
 The dump is performed via MapReduce jobs.
 
-    :::term
+    :::terminal
     usage:
       $ td table:export <db> <table>
 

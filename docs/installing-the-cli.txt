@@ -29,7 +29,7 @@ Double click it to begin the installation. This package contains all the necessa
 
 The CLI is distributed on Linux as part of the `td-agent` package. For more information about <tt>td-agent</tt>, our streaming log collector, refer to the [Streaming Import Overview](td-agent) page.
 
-    :::term
+    :::terminal
     # 14.04 Trusty (64-bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-trusty-td-agent2.sh | sh
     # 12.04 Precise
@@ -48,7 +48,7 @@ This package contains all the necessary dependencies to allow the `td-agent` and
 
 The CLI is distributed on Linux as part of the `td-agent` package. For more information about <tt>td-agent</tt>, our streaming log collector, refer to the [Streaming Import Overview](td-agent) page.
 
-    :::term
+    :::terminal
     $ curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 
 This package contains all the necessary dependencies to allow the `td-agent` and `td CLI` to run on a Linux system, including the version of Ruby these tools are guaranteed to work with.
@@ -58,7 +58,7 @@ This package contains all the necessary dependencies to allow the `td-agent` and
 If you are familiar with Ruby, you can opt to install and maintain the `td CLI` as a gem.
 To install the CLI and its dependencies, simply run this command:
 
-    :::term
+    :::terminal
     $ gem install td
 
 If are using a Ruby environment manager such as <tt>rbevn</tt> or <tt>rvm</tt>, different versions of the td CLI may be confined within each project / environment / ruby version in use and you may have to install the td gem multiple times. Please refer to the Upgrading, Ruby Gem section below for more information.
@@ -67,7 +67,7 @@ If are using a Ruby environment manager such as <tt>rbevn</tt> or <tt>rvm</tt>, 
 
 Please open your terminal, and make sure you have the `td` command available.
 
-    :::term
+    :::terminal
     $ td --version
     0.11.X
 
@@ -85,7 +85,7 @@ If you downloaded the CLI as a Toolbelt installer package (.pkg file) for Mac OS
 
 Whenever a command is invoked from the CLI, the program will check whether a new version exists and will download and install the updated version in the background. The CLI will check for an updated version every hour. The user can at any time trigger an update with the following command:
 
-    :::term
+    :::terminal
     $ td update
 
 The auto-update feature is available as of v0.10.77. If you are running an earlier version (please check the version with the `td --version` command), please upgrade as soon as possible by installing a more recent package from [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
@@ -98,14 +98,14 @@ The easier way of installing the td CLI in a Linux environment beside using a ge
 
 The Treasure Agent environment provisions its own gem environment and the corresponding gem command is accessible in this location <tt>/usr/lib*/fluent/ruby/bin/fluent-gem</tt>. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
 
-    :::term
+    :::terminal
     $ /usr/lib*/fluent/ruby/bin/fluent-gem update td
 
 ### Ruby Gem
 
 If you installed the CLI as a gem you will need to periodically check whether a newer version exists. It is always recommended to update to the latest version since we strive to maintain 100% backwards compatibility. To update using the gem command run:
 
-    :::term
+    :::terminal
     $ gem update td
 
 If are using a Ruby environment manager such as <tt>rbevn</tt> or <tt>rvm</tt>, different versions of the td CLI may be confined within each project / environment / ruby version.
@@ -114,7 +114,7 @@ Also if <tt>gem install</tt> was invoked with a customized <tt>GEM_HOME</tt> env
 
 One can always double check the version of td gem in use by running:
 
-    :::term
+    :::terminal
     $ gem list | grep -E '^td '
     td (0.11.2, 0.10.99, 0.10.97)
 

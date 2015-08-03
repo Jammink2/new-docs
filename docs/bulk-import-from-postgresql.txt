@@ -13,7 +13,7 @@ First, install the [toolbelt](command-line), which includes bulk loader program,
 
 After the installation, the `td` command will be installed on your computer. Open up the terminal and type `td` to execute the command. Also, please make sure you have `java` as well. Run `td import:jar_update` to download the up-to-date version of our bulk loader:
 
-    :::term
+    :::terminal
     $ td
     usage: td [options] COMMAND [args]
     $ java
@@ -25,7 +25,7 @@ After the installation, the `td` command will be installed on your computer. Ope
 
 Use `copy` to export a table from PostgreSQL to a CSV file as shown below:
 
-    :::term
+    :::terminal
     COPY users TO '/tmp/data.csv' DELIMITER ','
 
 For more information, please see the [PostgreSQL documentation](http://www.postgresql.org/docs/current/static/sql-copy.html).

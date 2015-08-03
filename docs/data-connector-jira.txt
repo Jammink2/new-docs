@@ -34,7 +34,7 @@ NOTE: The Data Connector for JIRA imports all tickets that match with the specif
 
 Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
 
-    :::term
+    :::terminal
     $ td connector:guess seed.yml -o load.yml
 
 If you open up `load.yml`, you'll see guessed file format definitions including, in some cases, file formats, encodings, column names, and types.
@@ -71,7 +71,7 @@ NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "doub
 
 Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
 
-    :::term
+    :::terminal
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
 
 NOTE: Currently the table won't be created automatically. You need to create the destination database and table manually.
@@ -89,7 +89,7 @@ For the scheduled import, Data Connector for JIRA imports all files that match t
 A new schedule can be created by using the `td connector:create` command.
 The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
 
-    :::term
+    :::terminal
     $ td connector:create \
         daily_jira_import \
         "10 0 * * *" \
@@ -103,7 +103,7 @@ NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@dail
 
 You can see the list of currently scheduled entries by `td connector:list`.
 
-    :::term
+    :::terminal
     $ td connector:list
     +-------------------+--------------+----------+-------+--------------+-----------------+------------------------+
     | Name              | Cron         | Timezone | Delay | Database     | Table           | Config                 |
@@ -115,7 +115,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
 `td connector:show` shows the execution setting of a schedule entry.
 
-    :::term
+    :::terminal
     % td connector:show daily_jira_import
     Name     : daily_jira_import
     Cron     : 10 0 * * *
@@ -126,7 +126,7 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
 `td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
 
-    :::term
+    :::terminal
     % td connector:history daily_jira_import
     +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
     | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
@@ -146,5 +146,5 @@ You can see the list of currently scheduled entries by `td connector:list`.
 
 `td connector:delete` will remove the schedule.
 
-    :::term
+    :::terminal
     $ td connector:delete daily_jira_import

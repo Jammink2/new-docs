@@ -41,7 +41,7 @@ For on-demand jobs, just add the `--result` option to the `td query` command. Af
 
 For scheduled jobs, just add the `--result` option when scheduling a job. Every time the job runs, the results are written into `mytbl`.
 
-    :::term
+    :::terminal
     $ td result:create mydb mysql://user:password@host/database
     $ td sched:create hourly_count_example "0 * * * *" -d testdb "select count(*) from www_access" --result mydb:mytbl
 
@@ -49,7 +49,7 @@ For scheduled jobs, just add the `--result` option when scheduling a job. Every 
 
 You can add or delete data in four ways.
 
-    :::term
+    :::terminal
     mysql://user:password@host/database/table               # append
     mysql://user:password@host/database/table?mode=append   # append
     mysql://user:password@host/database/table?mode=replace  # replace
@@ -60,7 +60,7 @@ All four modes are **atomic**.
 
 **In the "host" section, you can specify the port as well.** Here is an example:
 
-    :::term
+    :::terminal
     mysql://superadmin:superstrongpassword@data.science.com:27013/transaction/user_info
 
 ### APPEND
@@ -99,14 +99,14 @@ Writing Job Results to the MySQL server supports following options that can be s
 
 Use SSL from Treasure Data to the MySQL server connection.  The MySQL server must be configured to accept SSL connection.
 
-    :::term
+    :::terminal
     mysql://user:password@host/database/table?ssl=true
 
 #### `ssl=false` (default)
 
 Do not use SSL from Treasure Data to the MySQL server.
 
-    :::term
+    :::terminal
     mysql://user:password@host/database/table?ssl=false
 
 # Database Setting
@@ -115,7 +115,7 @@ Do not use SSL from Treasure Data to the MySQL server.
 
 Treasure Data always uses UTF-8 as character encoding. You also need to setup your database to use UTF-8 by default. If you came across any encoding related issues, please check the following configurations.
 
-    :::term
+    :::terminal
     mysql> show variables like 'char%';
     +--------------------------+----------------------------+
     | Variable_name | Value |

@@ -38,7 +38,7 @@ This example formats a UNIX timestamp into a date formatted string.If you try it
     SELECT time, TD_TIME_FORMAT(time, "yyyy-MM-dd HH:mm:ss z") FROM www_access LIMIT 1;
 
 #### Result
-    :::term
+    :::terminal
     2012-01-01 00:00:00 UTC
 
 

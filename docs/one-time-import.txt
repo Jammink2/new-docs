@@ -24,7 +24,7 @@ In order to perform one-time import with the JSON data format option, the files 
 
 For example, entries could be formatted as follows:
 
-    :::term
+    :::terminal
     {"action":"login","user":2,"time":"2011-08-02 03:06:32 +0900"}
     {"action":"login","user":4,"time":"2011-08-02 03:06:32 +0900"}
     {"action":"login","user":0,"time":"2011-08-02 03:06:32 +0900"}
@@ -32,7 +32,7 @@ For example, entries could be formatted as follows:
 
 You can import your data into the `test_table` table within your `test_db` database as follows.
 
-    :::term
+    :::terminal
     $ td table:import test_db test_table \
       --format json \
       --time-key time \
@@ -42,12 +42,12 @@ You can import your data into the `test_table` table within your `test_db` datab
 
 The `td table:import` command can also parse Apache Logs stored in the 'combined' format. The command automatically splits the log records into meaningful fields (ex: time, user-agent, etc.) and imports the data into the cloud.
 
-    :::term
+    :::terminal
     $ td table:import test_db test_table --format apache access_log.txt
 
 ### Syslog
 
 The `td table:import` command can also parse logs stored in the 'syslog' format.
 
-    :::term
+    :::terminal
     $ td table:import test_db test_table --format syslog syslog.txt

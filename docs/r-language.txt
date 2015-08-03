@@ -22,7 +22,7 @@ NOTE: This driver only works with Treasure Data. It does not work in other envir
 
 First, please install the [RJDBC Package](http://www.rforge.net/RJDBC/) as shown below:
 
-    :::term
+    :::terminal
     $ R
     > install.packages("RJDBC",dep=TRUE)
 
