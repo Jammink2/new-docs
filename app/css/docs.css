@@ -10,19 +10,8 @@ h1.notfound {
   border: 1px solid #FFFFFF;
   color: #0F2940; }
 
-#main .note td.icon {
-  background: url(/images/note.png) no-repeat;
-  background-position: 5px 3px;
-  width: 47px;
-  height: 47px;
-  padding: 5px; }
-
-#main .note td.content {
-  padding-left: 8px; }
-
 table.note tr td {
-  border-bottom: 0px;
-  border-left: 0px; }
+  border: 0px; }
 
 /* index
 ------------------------------------------------ */

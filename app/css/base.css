@@ -733,10 +733,8 @@ input:-moz-placeholder {
 /* =note
 ---------------------------------------------- */
 #article article .note {
-  background: #ADC4D1;
-  border: 1px solid #ADC4D1;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
+  background: #F2DE7D;
+  border: 1px solid #B59930;
   border-radius: 3px;
   color: #30475C;
   margin: 0 0 22px 0;
