@@ -45,7 +45,7 @@ h4 {
 /* =links
 ---------------------------------------------- */
 a:link, a:visited {
-  color: $viking_blue;
+  color: darken($viking_blue, 10%);
   text-decoration: none;
   font-family: $link-font;
 }

@@ -1,2 +1,2 @@
 #!/bin/bash
-for f in base docs dropdown_menu header library mobile modal; do sass app/scss/$f.scss > app/css/$f.css; done
+for f in base docs dropdown_menu library mobile modal; do sass app/scss/$f.scss > app/css/$f.css; done

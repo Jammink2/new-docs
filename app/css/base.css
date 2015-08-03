@@ -37,7 +37,7 @@ h4 {
 /* =links
 ---------------------------------------------- */
 a:link, a:visited {
-  color: #31A6B7;
+  color: #26828f;
   text-decoration: none;
   font-family: "Roboto"; }
 
@@ -866,5 +866,3 @@ div#header li {
 
 .td-signup {
   color: #FF5F5F !important; }
-
-/*# sourceMappingURL=base.css.map */
