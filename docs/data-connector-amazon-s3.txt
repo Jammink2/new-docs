@@ -88,7 +88,7 @@ NOTE: If the system detects your column name or column type unexpectedly, modify
 
 NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
 
-NOTE: You will also need to create the local database and table, prior to executing the load job.   To do this:
+NOTE: You will also need to have created the local database and table, prior to executing the load job.   To do this:
 
     :::terminal
     $ td database:create td_sample_db

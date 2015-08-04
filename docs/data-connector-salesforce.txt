@@ -84,7 +84,7 @@ NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "doub
 
 ## Step 4: Execute Load Job
 
-Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
+Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data is stored. You must have [created the database and table](http://docs.treasuredata.com/articles/database-and-table) first. If the database or the table do not exist, the command reports an error.
 
     :::terminal
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table

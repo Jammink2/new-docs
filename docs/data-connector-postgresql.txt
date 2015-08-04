@@ -57,7 +57,7 @@ Then you can preview how the system will parse the file by using the `preview` c
 
 ## Step 3: Execute Load Job
 
-Finally, submit the load job. The job may take a couple of hours to run depending on the data size. Users need to specify the database and table where their data is stored. If the database or the table does not exist, the command reports an error.
+Finally, submit the load job. The job may take a couple of hours to run depending on the data size. Users need to specify the database and table where their data is stored. You must have [created the database and table](http://docs.treasuredata.com/articles/database-and-table) first. If the database or the table does not exist, the command reports an error.
 
     :::terminal
     $ td connector:issue load.yml --database td_sample_db --table td_sample_table
