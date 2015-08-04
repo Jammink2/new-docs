@@ -31,9 +31,9 @@ First, please prepare `seed.yml` as below, with your Salesforce credentials. Thi
         type: sfdc
         username: "USERNAME"
         password: "PASSWORD"
-        client_id: "CLIENT_ID"
-        client_secret: "CLIENT_SECRET"
-        security_token: "SECURITY_TOKEN"
+        client_id: "CLIENT_ID"                                              # your app's consumer key
+        client_secret: "CLIENT_SECRET"                                      # your app's consumer secret
+        security_token: "SECURITY_TOKEN"                                    # your logged-in user's security token
         login_url: https://xxx.salesforce.com/
         target: Account
       out:

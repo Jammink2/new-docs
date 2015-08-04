@@ -24,7 +24,7 @@ First, please prepare `seed.yml` as below, with your Jira username, Jira Passwor
         username: user
         password: pass
         uri: https://your-domain.atlassian.net
-        jql: ""
+        jql: summary ~ fix and project = 'PLT'                                       # example query. be sure to use singlequotes
       out:
         mode: replace
 
