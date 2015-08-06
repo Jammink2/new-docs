@@ -6,35 +6,35 @@ This is a summary of new features and improvements introduced in the July 1, 201
 
 Interactive data exploration through Jupyter and Pandas is now supported.
 
-- [Interactive Analysis with Jupyter + Pandas + Treasure Data](http://docs.treasuredata.com/articles/jupyter-pandas)
+- [Interactive Analysis with Jupyter + Pandas + Treasure Data](<%= @env[:url_doc] %>articles/jupyter-pandas)
 
-<center><a href="http://docs.treasuredata.com/articles/jupyter-pandas"><img src="/images/jupyter-sample-datasets-2.png" width="80%" /></a></center><br/>
+<center><a href="<%= @env[:url_doc] %>articles/jupyter-pandas"><img src="/images/jupyter-sample-datasets-2.png" width="80%" /></a></center><br/>
 
 ## Import: Data Connector for MySQL
 
 Direct, bulk loading of MySQL data is supported. Unlike `td import`, no client-side software is required.
 
-- [Data Connector for MySQL](http://docs.treasuredata.com/articles/data-connector-mysql)
+- [Data Connector for MySQL](<%= @env[:url_doc] %>articles/data-connector-mysql)
 
 ## Import: Data Connector for PostgreSQL
 
 Direct, bulk loading of PostgreSQL data is supported. Unlike `td import`, no client-side software is required.
 
-- [Data Connector for PostgreSQL](http://docs.treasuredata.com/articles/data-connector-postgresql)
+- [Data Connector for PostgreSQL](<%= @env[:url_doc] %>articles/data-connector-postgresql)
 
 ## Import: Data Connector for JIRA
 
 Direct, bulk loading of JIRA data is supported.
 
-- [Data Connector for JIRA](http://docs.treasuredata.com/articles/data-connector-jira)
+- [Data Connector for JIRA](<%= @env[:url_doc] %>articles/data-connector-jira)
 
 ## Client: td-agent v2.2.1
 
-td-agent [v2.2.1](http://docs.treasuredata.com/articles/td-agent-changelog#20150629-version-v221) was released.
+td-agent [v2.2.1](<%= @env[:url_doc] %>articles/td-agent-changelog#20150629-version-v221) was released.
 
 ## Client: JDBC Driver v0.3.4
 
-JDBC Driver [v0.3.4](http://docs.treasuredata.com/articles/jdbc-driver) is released. This version supports "SELECT 1" query used by a couple of BI tools.
+JDBC Driver [v0.3.4](<%= @env[:url_doc] %>articles/jdbc-driver) is released. This version supports "SELECT 1" query used by a couple of BI tools.
 
 ## Presto: Upgraded to 0.108
 
@@ -46,4 +46,4 @@ Presto is upgraded to version 0.108 from version 0.105.
 
 ## Presto: TD_URL_DECODE() Performance Optimization
 
-We have optimized Presto's performance for [TD_URL_DECODE()](http://docs.treasuredata.com/articles/presto-udfs#tdurldecode).
+We have optimized Presto's performance for [TD_URL_DECODE()](<%= @env[:url_doc] %>articles/presto-udfs#tdurldecode).

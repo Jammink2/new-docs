@@ -22,7 +22,7 @@ Presto supports [TD_CURRENCY_CONV](/articles/presto-udfs#tdcurrencyconv) UDF.
 
 ### Collection: td-agent2 v2.2.0
 
-td-agent v2.2.0 was released. Please check [here](http://docs.treasuredata.com/articles/td-agent-changelog#20150406-version-v220) for the changes.
+td-agent v2.2.0 was released. Please check [here](<%= @env[:url_doc] %>articles/td-agent-changelog#20150406-version-v220) for the changes.
 
 ### Client: td toolbelt v0.11.9
 

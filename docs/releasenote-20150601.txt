@@ -10,8 +10,8 @@ This is a summary of the new features and improvements introduced in this releas
 
 Now we support direct data bulk loading from Amazon S3, without installing client-side software. The feature is called Data Connector. We'll add more data sources for the future.
 
-- [Data Connector Overview](http://docs.treasuredata.com/articles/data-connector-overview)
-- [Data Connector for Amazon S3](http://docs.treasuredata.com/articles/data-connector-amazon-s3)
+- [Data Connector Overview](<%= @env[:url_doc] %>articles/data-connector-overview)
+- [Data Connector for Amazon S3](<%= @env[:url_doc] %>articles/data-connector-amazon-s3)
 
 ### Presto: Upgraded to 0.105
 

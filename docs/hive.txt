@@ -147,7 +147,7 @@ Here's the syntax of Hive's INSERT statement.
 
 * INSERT OVERWRITE will overwrite any existing data in the table.
 * INSERT INTO will append to the table, keeping the existing data intact.
-* If record doesn't include `time` column, `time` column is imported [TD_SCHEDULED_TIME()](http://docs.treasuredata.com/articles/udfs#tdscheduledtime).
+* If record doesn't include `time` column, `time` column is imported [TD_SCHEDULED_TIME()](<%= @env[:url_doc] %>articles/udfs#tdscheduledtime).
 * If record includes `time` column, `time` coulmn should be Unixtime.
 
 NOTE: Query doesn't allow multiple inserts.

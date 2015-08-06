@@ -30,14 +30,14 @@ pandas-td now implements `magic funtions` to issue the query more easily:
 
 ## Client: JDBC Driver v0.5.0
 
-JDBC Driver [v0.5.0](http://docs.treasuredata.com/articles/jdbc-driver) is released. Also JDBC Driver is open-sourced under Apache License, and the code is available on GitHub.
+JDBC Driver [v0.5.0](<%= @env[:url_doc] %>articles/jdbc-driver) is released. Also JDBC Driver is open-sourced under Apache License, and the code is available on GitHub.
 
 - [SourceCode](https://github.com/treasure-data/td-jdbc)
 - [ChangeLog](https://github.com/treasure-data/td-jdbc/blob/master/CHANGES.txt)
 
 ## Client: td CLI v0.11.13
 
-td command [v0.11.13](http://docs.treasuredata.com/articles/td-cli) is released. This version supports the efficient data download with `msgpack.gz` format.
+td command [v0.11.13](<%= @env[:url_doc] %>articles/td-cli) is released. This version supports the efficient data download with `msgpack.gz` format.
 
 - [ChangeLog](https://github.com/treasure-data/td/blob/master/ChangeLog)
 

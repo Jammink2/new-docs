@@ -14,7 +14,7 @@ Lastly, we keep each server isolated so that in the highly unlikely event of a s
 
 Treasure Data takes several steps to protect your data in the event of a technology disaster. We, like many modern web companies, use Amazon’s Web Services which offers many high-availability features, but we go beyond what Amazon offers. We duplicate all of your data across multiple availability zones, ensuring that an Amazon outage in one zone does not completely take down our system. In the event of massive data loss we also retain raw logs of all data sent to us which would allow us to rebuild data in a worse-case scenario.
 
-Additionally we offer users the ability to set up [continuous automated backup](http://docs.treasuredata.com/articles/td-agent-copy) of all of their data to a couple of destinations. This ensures that if Treasure Data disappeared tomorrow you’d still have all of your valuable data.
+Additionally we offer users the ability to set up [continuous automated backup](<%= @env[:url_doc] %>articles/td-agent-copy) of all of their data to a couple of destinations. This ensures that if Treasure Data disappeared tomorrow you’d still have all of your valuable data.
 
 ## Other Treasure Data Customers
 
