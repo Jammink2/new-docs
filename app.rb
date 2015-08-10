@@ -279,7 +279,7 @@ helpers do
         :logo => '/images/treasure-data-logo-white.svg',
         :favicon => '/favicon.ico',
         :swiftype_key => '7GEG12Fu5wjuAjfExr5K',
-        :olark => true,
+        :olark => false,
         :url_top => 'http://www.treasuredata.com/',
         :url_doc => 'http://docs.treasuredata.com/',
         :url_product => 'http://www.treasuredata.com/product',
