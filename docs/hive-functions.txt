@@ -442,7 +442,7 @@ This article lists all built-in functions supported by Hive 0.10.0 (CDH 4.3.1).
   <tr>
     <td>array&lt;struct&lt;string,double&gt;&gt;</td>
     <td>ngrams(array&lt;array&lt;string&gt;&gt;, int N, int K, int pf)</td>
-    <td>Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See <A href="statisticsanddatamining.html" title="StatisticsAndDataMining">StatisticsAndDataMining</A> for more information.</td>
+    <td>Returns the top-k N-grams from a set of tokenized sentences, such as those returned by the sentences() UDAF. See <A href="https://cwiki.apache.org/confluence/display/Hive/StatisticsAndDataMining" title="StatisticsAndDataMining">StatisticsAndDataMining</A> for more information.</td>
   </tr>
   <tr>
     <td>string</td>
