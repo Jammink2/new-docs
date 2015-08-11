@@ -3,7 +3,8 @@
 If you're looking for dozens of HiveQL templates, please visit Treasure Data's example query catalog page.
 
 - [HiveQL Example Query Catalog](https://examples.treasuredata.com/)
+
     1. [E-Commerce](https://examples.treasuredata.com/queries?tag=E-commerce)
-    2. [Gaming](https://examples.treasuredata.com/queries?tag=E-commerce)
+    2. [Gaming](https://examples.treasuredata.com/queries?tag=Gaming)
     3. [Web Logs](https://examples.treasuredata.com/queries?tag=Web+Logs)
     4. [Point of Sale](https://examples.treasuredata.com/queries?tag=PoS+%28Point+of+Sale%29)
