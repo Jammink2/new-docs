@@ -462,7 +462,7 @@ This page documents most of `td` subcommands.
       -T, --time-format FORMAT         specifies the strftime format of the time column
                                         The format slightly differs from Ruby's Time#strftime format in that the
                                         '%:z' and '%::z' timezone options are not supported.
-      -e, --encoding TYPE              encoding type [utf-8]
+      -e, --encoding TYPE              encoding type [UTF-8, etc.]
       -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
       -t, --time-column NAME           name of the time column
@@ -552,7 +552,7 @@ This page documents most of `td` subcommands.
       -T, --time-format FORMAT         specifies the strftime format of the time column
                                         The format slightly differs from Ruby's Time#strftime format in that the
                                         '%:z' and '%::z' timezone options are not supported.
-      -e, --encoding TYPE              encoding type [utf-8]
+      -e, --encoding TYPE              encoding type [UTF-8, etc.]
       -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
       -t, --time-column NAME           name of the time column
@@ -640,7 +640,7 @@ This page documents most of `td` subcommands.
       -T, --time-format FORMAT         specifies the strftime format of the time column
                                         The format slightly differs from Ruby's Time#strftime format in that the
                                         '%:z' and '%::z' timezone options are not supported.
-      -e, --encoding TYPE              encoding type [utf-8]
+      -e, --encoding TYPE              encoding type [UTF-8, etc.]
       -o, --output DIR                 output directory. default directory is 'out'.
       -s, --split-size SIZE_IN_KB      size of each parts (default: 16384)
       -t, --time-column NAME           name of the time column
