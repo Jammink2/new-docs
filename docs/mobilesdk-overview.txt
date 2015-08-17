@@ -33,7 +33,7 @@ For example, the following picture shows a part of sample data on <%= @env[:name
 
 ![sample](/images/mobilesdk-overview-sampleimage.png)
 
-## Access Management for Mobile SDKs
+## Account Management for Mobile SDKs
 
 <%= @env[:name] %> requires API Keys for authentication when you import data or issue a query.
 In the case of using SDK for mobile SDKs (also Javascript SDK), recommend the following steps.
