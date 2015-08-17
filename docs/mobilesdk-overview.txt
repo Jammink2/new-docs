@@ -1,0 +1,60 @@
+# Mobile SDKs Overview
+
+The article describes the following SDKs.
+
+- [Android SDK](./android-sdk)
+- [iOS SDK](./ios-sdk)
+- [Unity SDK](./unity-sdk)
+
+With this SDKs, you can import data on your application into <%= @env[:name] %>.
+In that case, you don't need to build servers.
+
+## Mobile SDKs Features.
+
+The SDK has the following functions:
+
+- Add the event that occurs in the application (buffering at the client side)(`addEvent`/`addEventWithCallback`)
+    - Encrypt/Decrypt the buffered data with arbitrary common key automatically  (`initializeEncryptionKey`, `default:disable`)
+- Upload the buffered events to TD (To avoid the data loss, the buffered data is cleared only when the upload is success.)(`uploadEvents`/`uploadEventsWithCallback`)
+    - Retry the upload a certain number of times in the case of a upload failure(Exponential backoff)  (`enableRetryUploading`/`disableRetryUploading`, `default:enable`)
+      - The uploaded data is automatically compressed to one eighth of its original size(`enableEventCompression`/`diableEventCompression`, `default:enable`)
+- Register which of the Callbacks to call, depending on the success or failure of the operation(Event adding or Uploading)(`addEventWithCallback`/`uploadEventsWithCallback`)
+- The SDK generate unique ID for each device. Since this ID is added to each event automatically, it makes aggregating each device's data easy.(`enableAutoAppendUniqId`/`disableAutoAppendUniqId`, `default:disable`)
+- Add OS version or device model information to each event automatically.(`enableAutoAppendModelInformation`/`disableAutoAppendModelInformation`, `default:disable`)
+- The SDK generate session id for each session initiation/termination. Since the session id is added to each event automatically, you can aggregate per a sequence of events occured in application.(`startSession`/`endSession`)
+- Detect the first running of applicaitons, since SDK monitors whether applications were running or not.(`isFirstRun`/`clearFirstRun`)
+- Prevent data duplication even if you update multiple times  by executing de-duplication at server side. (Currently, executing de-duplication every day)
+
+The string which is described at the end of each function is the SDK API name (`TreasureData` class' method name in concrete terms.).
+You need to configure the database and the table for registering events in the SDKs.
+They works with the destination database and the destination table in <%= @env[:name] %>.
+
+For example, the following picture shows a part of sample data on <%= @env[:name] %> when using `startSession` and `endSession` with activating `enableAutoAppendUniqId` and `enableAutoAppendModelInformation`.
+
+![sample](/images/mobilesdk-overview-sampleimage.png)
+
+## Access Management for Mobile SDKs
+
+<%= @env[:name] %> requires API Keys for authentication when you import data or issue a query.
+In the case of using SDK for mobile SDKs (also Javascript SDK), recommend the following steps.
+
+- Create database on <%= @env[:name] %> for importing from SDKs.
+- Associate user who is granted access to the above database, with <%= @env[:name] %> user.
+    - You can associate user with <%= @env[:name] %> user by using "Add Team Member" from [<%= @env[:url_console] %>/users](<%= @env[:url_console] %>/users).
+- Generate 'Write-only' API keys for the above user.
+- Use generated “Write-only" API keys on SDKs.
+
+After clicking the "My Profile" which is located at top-right of the screen at [<%= @env[:url_console] %>/](<%= @env[:url_console] %>/) and inserting your password under the "API Keys" panel, you can generate "Write-only" API keys.
+
+![apikey](/images/mobilesdk-overview-apikey.png)
+
+## How to use Mobile SDKs
+
+To know more details, please see the following link.
+
+- [Android SDK](./android-sdk)
+- [iOS SDK](./ios-sdk)
+- [Unity SDK](./unity-sdk)
+
+
+

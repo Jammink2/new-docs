@@ -128,6 +128,7 @@ section 'import-data', 'Data Import' do
     article 'javascript-sdk', 'JavaScript SDK'
   end
   category 'mobile-sdks', 'Mobile SDKs' do
+    article 'mobilesdk-overview', 'Overview'
     article 'ios-sdk', 'iOS SDK'
     article 'android-sdk', 'Android SDK'
     article 'unity-sdk', 'Unity SDK'
