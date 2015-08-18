@@ -88,19 +88,19 @@ JavaScript SDK is hitting our REST API endpoint to import the data. Note that th
     # Single Record
     $ curl -X POST
         -H 'Content-Type: application/json'
-        -H 'X_TD-WRITE-KEY: your_write_apikey' \
-        --data-binary '{"time":1411115211, "name":"komamitsu", "num":1234}' \
+        -H 'X-TD-Write-Key: your_write_apikey' \
+        --data-binary '{"name":"komamitsu", "num":1234}' \
         http://<%= @env[:sdk_endpoint] %>/js/v3/event/your_db/your_table
 
     # Multiple Records
     $ curl -X POST
         -H 'Content-Type: application/json'
-        -H 'X-TD-WRITE-KEY: your_write_apikey' \
-        -H 'X-TD-DATA-TYPE: k'
+        -H 'X-TD-Write-Key: your_write_apikey' \
+        -H 'X-TD-Data-Type: k'
         --data-binary '{"your_db.your_table":[{"time":1403147720, "name":"komamitsu", "age":41},{"time":1403147721, "name":"kzk", "age":29}]}' \
         http://<%= @env[:sdk_endpoint] %>/js/v3/event
 
-NOTE: "X-TD-DATA-TYPE: k", Event collector handles several data types. ‘k’ is one of them. It can handle multiple records
+NOTE: "X-TD-Data-Type: k", Event collector handles several data types. ‘k’ is one of them. It can handle multiple records
 
 ## Next Steps
 
