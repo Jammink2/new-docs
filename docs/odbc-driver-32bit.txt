@@ -6,6 +6,10 @@ This article will explain how to use Treasure Data's [ODBC](http://en.wikipedia.
 
 * Windows 7 or 8.1 (We don't support other versions)
 
+## Limitations
+
+* Issued jobs via ODBC doesn't remain in history
+
 ## Step1: Install 2010 Redistributable Package (x86)
 
 First, please install the following package provided by Microsoft.
