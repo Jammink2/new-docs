@@ -80,6 +80,28 @@ You can also track your custom events in addition to page views by using `trackE
       // doButtonEvent(1);
     };
 
+## Appendix: Google Tag Manager
+
+Treasure Data JavaScript SDK works well with [Google Tag Manager](http://www.google.com/tagmanager/). Inside your container, please create a new tag as `Custom HTML Tag`.
+
+<center><img src="/images/google-tag-manager.png" width="100%" /></center><br/><br/>
+
+And please put these lines into `Configure Tag` section, with your [**write-only API key**](access-control#rest-apis-access) and database name.
+
+    :::term
+    <!-- Treasure Data -->
+    <script type="text/javascript">
+    !function(t,e){if(void 0===e[t]){e[t]=function(){e[t].clients.push(this),this._init=[Array.prototype.slice.call(arguments)]},e[t].clients=[];for(var r=function(t){return function(){return this["_"+t]=this["_"+t]||[],this["_"+t].push(Array.prototype.slice.call(arguments)),this}},s=["addRecord","set","trackEvent","trackPageview","ready"],n=0;n<s.length;n++){var i=s[n];e[t].prototype[i]=r(i)}var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//s3.amazonaws.com/td-cdn/sdk/td-1.3.0.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(a,c)}}("Treasure",this);
+      // Configure an instance for your database
+      var td = new Treasure({
+        host: 'in.treasuredata.com',
+        writeKey: 'YOUR_WRITE_ONLY_APIKEY_IS_HERE',
+        database: 'DATABASE_NAME'
+      });
+      // track pageview information to 'pageviews' table
+      td.trackPageview('pageviews');
+    </script>
+
 ## Appendix: API Endpoint
 
 JavaScript SDK is hitting our REST API endpoint to import the data. Note that this will take 1 minutes to reflect in the database because of the server-side buffering.
@@ -107,4 +129,3 @@ NOTE: "X-TD-Data-Type: k", Event collector handles several data types. ‘k’ i
 For transparency, we're open sourcing our JavaScript SDK on Github. Please check the repository if necessary. The README contains the full description of JavaScript SDK API. There're some additional APIs to track custom events etc.
 
 * [https://github.com/treasure-data/td-js-sdk](https://github.com/treasure-data/td-js-sdk)
-
