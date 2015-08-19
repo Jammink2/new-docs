@@ -202,9 +202,8 @@ You can collect the first run event of your application, which can be used to tr
 
 Android SDK can handle `java.util.List` or `java.lang.String[]` to send data with Array type. But, it doesn't handle JSONArray since internal library jackson.databind doesn't deal with JSONArray.
 
-```
-event.put("array", Arrays.asList("one", "two", "three"));
-```
+    :::java
+    event.put("array", Arrays.asList("one", "two", "three"));
 
 ## Next Steps
 
