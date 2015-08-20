@@ -1,8 +1,6 @@
 # Segment to Treasure Data Integration
 
-Once the Segment library is integrated with your server, toggle Treasure Data on in your Segment integrations, and add your API key which you can find [here](console.treasuredata.com/users/current). Also please specify the destination database name.
-
-The Segment Treasure Data integration is 100% handled through our servers, so you don't need to bundle their iOS or Android SDKs. Your Segment SDK will be enough.
+This article describes how to ingest data from Segment to Treasure Data. We have a native connectivity, so you can just visit Segment UI and put the TD apikey and it's done.
 
 ## Step1: Create Segment Account
 
