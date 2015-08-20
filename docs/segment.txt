@@ -1,6 +1,8 @@
 # Segment to Treasure Data Integration
 
-This article describes how to ingest data from Segment to Treasure Data. We have a native connectivity, so you can just visit Segment UI and put the TD apikey and it's done.
+This article describes how to ingest data from Segment to Treasure Data. We have a native connectivity, so you can just visit Segment UI and put the TD apikey and it's done. The ingestion happens **every minutes**, so you can query data almost in real-time.
+
+<center><img src="/images/segment.png" width="60%" /></center><br/><br/>
 
 ## Step1: Create Segment Account
 
