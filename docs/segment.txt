@@ -1,29 +1,71 @@
-# Segment -> Treasure Data Integration
+# Segment to Treasure Data Integration
 
 Once the Segment library is integrated with your server, toggle Treasure Data on in your Segment integrations, and add your API key which you can find [here](console.treasuredata.com/users/current). Also please specify the destination database name.
 
 The Segment Treasure Data integration is 100% handled through our servers, so you don't need to bundle their iOS or Android SDKs. Your Segment SDK will be enough.
 
-## Table Structure
+## Step1: Create Segment Account
 
-All of your organization’s data inside Segment is hosted on Treasure Data database. Inside that database you will see multiple tables for each of your Segment projects, one for each of the types of data.
+First, please set up Segment account from [here](https://segment.com/signup).
 
-Every table is namespaced by the project’s name—eg. initech and initech_ios. Inside each project there are a few standard tables:
+<center><img src="/images/segment_signup.png" width="80%" /></center><br/><br/>
 
-### project.aliases
-A table with all of your alias method calls. This table will include all of the traits you identify users by as top-level columns, for example <project>.aliases.email.
+## Step2: Create a Project
 
-### project.groups
-A table with all of your group method calls. This table will include all of the traits you record for groups as top-level columns, for example <project>.groups.employee_count.
+Second, please create the first project in Segment.
 
-### project.identifies
-A table with all of your identify method calls. This table will include all of the traits you identify users by as top-level columns, for example <project>.identifies.email.
+<center><img src="/images/segment_project.png" width="100%" /></center><br/><br/>
 
-### project.pages
-A table with all of your page method calls. This table will include all of the properties you record for pages as top-level columns, for example <project>.pages.title.
+Then, please input the project name.
 
-### project.screens
-A table with all of your screen method calls. This table will include all of the properties you record for screens as top-level columns, for example <project>.screens.title.
+<center><img src="/images/segment_project2.png" width="100%" /></center><br/><br/>
 
-### project.event_name
-For track calls, each event like Signed Up or Completed Order also has it’s own table (eg. initech.clocked_in) with columns for each of the event’s distinct properties (eg. initech.clocked_in.time).
+## Step3: Set up Integration
+
+Please click `INTEGRATIONS` from the left menu, and select `TREASURE DATA` from the menu.
+
+<center><img src="/images/segment_integration.png" width="100%" /></center><br/><br/>
+
+From Treasure Data console, please obtain [**write-only API key**](access-control#rest-apis-access) from Treasure Data and specify the database name.
+
+<center><img src="/images/segment_apikey.png" width="60%" /></center><br/><br/>
+
+## Step4: Set up Segment JavaScript SDK
+
+Finally, let's set up Segment JavaScript SDK. Please check Segment API key.
+
+<center><img src="/images/segment_transfer.png" width="100%" /></center><br/><br/>
+
+Then, create empty HTML file with Segment JavaScript SDK.
+
+    :::html
+    <html>
+      <head>
+      <script type="text/javascript">
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+        analytics.load("YOUR_WRITE_KEY");
+        analytics.page()
+        }}();
+      </script>
+      <title>Hello Segment and TreasureData integration!</title>
+      </head>
+      <body>
+        <p>Hello Segment and TreasureData integration!</p>
+      </body>
+    </html>
+
+Please open HTML file above. This will send the event to Segment.
+
+<center><img src="/images/segment_hello.png" width="80%" /></center><br/><br/>
+
+By using Segment Project Debugger, you can confirm if the data is uploaded or not.
+
+<center><img src="/images/segment_check.png" width="100%" /></center><br/><br/>
+
+## Step5: Check Treasure Data account
+
+Please visit Treasure Data [console](https://console.treasuredata.com/) to see if the events are coming in.
+
+<center><img src="/images/segment_check2.png" width="100%" /></center><br/><br/>
+
+In this case, you see the events on `page` table since we called `analytics.page()` function inside JavaScript.
