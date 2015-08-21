@@ -1,42 +1,42 @@
 # Realtime SQL Access for Segment
 
-This article describes how to ingest data from [Segment](https://segment.com/) (formerly Segment.io) to Treasure Data. We have a native connectivity, so you can just visit Segment UI and put the TD apikey and it's done. Data ingestion happens **every minutes**, so you can query data almost in real-time.
+This article describes how to ingest data from [Segment](https://segment.com/) (formerly Segment.io) to Treasure Data. We have native connectivity, so you can just visit the Segment UI and add the TD apikey and it's done! Data ingestion happens **every minute**, so you can query data almost in real-time.
 
 <center><img src="/images/segment.png" width="60%" /></center><br/><br/>
 
-## Step1: Create Segment Account
+## Step 1: Create a Segment Account
 
-First, please set up Segment account from [here](https://segment.com/signup).
+First, please set up your Segment account from [here](https://segment.com/signup).
 
 <center><img src="/images/segment_signup.png" width="80%" /></center><br/><br/>
 
-## Step2: Create a Project
+## Step 2: Create a Project
 
-Second, please create the first project in Segment.
+Second, create your first project in Segment.
 
 <center><img src="/images/segment_project.png" width="100%" /></center><br/><br/>
 
-Then, please input the project name.
+Next, input the project name.
 
 <center><img src="/images/segment_project2.png" width="100%" /></center><br/><br/>
 
-## Step3: Set up Integration
+## Step 3: Set up Integration
 
 Please click `INTEGRATIONS` from the left menu, and select `TREASURE DATA` from the menu.
 
 <center><img src="/images/segment_integration.png" width="100%" /></center><br/><br/>
 
-From Treasure Data console, please obtain [**write-only API key**](access-control#rest-apis-access) from Treasure Data and specify the database name.
+From Treasure Data console, obtain your [**write-only API key**](access-control#rest-apis-access) from Treasure Data and specify the database name.
 
 <center><img src="/images/segment_apikey.png" width="60%" /></center><br/><br/>
 
-## Step4: Set up Segment JavaScript SDK
+## Step 4: Set up Segment JavaScript SDK
 
-Finally, let's set up Segment JavaScript SDK. Please check Segment API key.
+Finally, let's set up Segment JavaScript SDK. Check Segment API key.
 
 <center><img src="/images/segment_transfer.png" width="100%" /></center><br/><br/>
 
-Then, create empty HTML file with Segment JavaScript SDK.
+Then, create an empty HTML file with Segment JavaScript SDK.
 
     :::html
     <html>
@@ -54,18 +54,18 @@ Then, create empty HTML file with Segment JavaScript SDK.
       </body>
     </html>
 
-Please open HTML file above. This will send the event to Segment.
+Open the HTML file above. This will send the event to Segment.
 
 <center><img src="/images/segment_hello.png" width="80%" /></center><br/><br/>
 
-By using Segment Project Debugger, you can confirm if the data is uploaded or not.
+By using Segment Project Debugger, you can confirm if the data is uploaded (or not).
 
 <center><img src="/images/segment_check.png" width="100%" /></center><br/><br/>
 
-## Step5: Check Treasure Data account
+## Step 5: Check your Treasure Data account
 
-Please visit Treasure Data [console](https://console.treasuredata.com/) to see if the events are coming in.
+Visit Treasure Data [console](https://console.treasuredata.com/) to see if the events are coming in.
 
 <center><img src="/images/segment_check2.png" width="100%" /></center><br/><br/>
 
-In this case, you see the events on `page` table since we called `analytics.page()` function inside JavaScript.
+In this case, you'll see the events in the `page` table since we called the `analytics.page()` function in JavaScript.
