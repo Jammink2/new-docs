@@ -178,8 +178,11 @@ section 'import-data', 'Data Import' do
   category 'iot-devices', 'IoT Devices' do
     article 'sensor-data-analytics-with-raspberrypi', 'Raspberry Pi'
   end
-  category 'segment', 'Segment' do
+  category 'Segment', 'Segment' do
     article 'segment', 'Segment'
+  end
+  category 'adjust', 'Adjust' do
+    article 'adjust', 'Adjust'
   end
 end
 

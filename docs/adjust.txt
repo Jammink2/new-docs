@@ -1,0 +1,19 @@
+# Realtime SQL Access for Adjust Event Data
+
+This article describes how to ingest data from [Adjust](https://www.adjust.com/) (formerly Segment.io) to Treasure Data. We have native connectivity, so you can just visit the Adjust and add the Treasure Data callback endpoint and it's done! Data ingestion happens **every minute**, so you can query data almost in real-time.
+
+## Step 1: Create Callback URL in Adjust
+
+From Web console, obtain your Treasure Data [**write-only API key**](https://console.treasuredata.com/users/current). Second, please [URL encode](http://www.urlencoder.org/) the apikey. Please fill db / table / write-only key like below, and create the endpoint URL.
+
+    https://in.treasuredata.com/adjust/v3/event/[YOUR_DB]/[YOUR_TABLE]?apikey=[YOUR_WRITE_ONLY_KEY]&event=click&device_id={idfa}&msgts={created_at}&network={network_name}&campaign={campaign_name}&adgroup={adgroup_name}&app_version={app_version}&idfv={idfv}&user_agent={user_agent}&ip={ip_address}&click_time={click_time}&country={country}&language={language}&device_name={device_name}&os={os_name}&os_version={os_version}&fb_campaign_group={fb_campaign_group_name}&fb_campaign_group_id={fb_campaign_group_id}
+
+## Step 2: Set up Callback URL in Adjust
+
+Please visit the documentation below, to set up callback URL in Adjust.
+
+- [https://docs.adjust.com/en/callbacks/](https://docs.adjust.com/en/callbacks/)
+
+## Step 3: Check your Treasure Data console
+
+Visit Treasure Data [console](https://console.treasuredata.com/databases) to see if the events are coming in.
