@@ -294,6 +294,9 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
   category 'sqlworkbench', 'SQL Workbench/J' do
     article 'sqlworkbench', 'SQL Workbench/J with Treasure Data', ['SQL Workbench/J']
   end
+  category 'razorsql', 'RazorSQL' do
+    article 'razorsql', 'RazorSQL with Treasure Data', ['RazorSQL']
+  end
   category 'jaspersoft', 'JasperSoft' do
     article 'jaspersoft-ireport', 'JasperSoft iReport', ['JasperSoft iReport']
     article 'jasperreports-server', 'JasperReports Server', ['JasperReports Server']

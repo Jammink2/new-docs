@@ -1,0 +1,42 @@
+# RazorSQL with Treasure Data
+
+[RazorSQL](https://razorsql.com/) is a free, DBMS-independent, cross-platform SQL query tool. You can use RazorSQL as SQL authoring tool to interactively develop SQL queries with Treasure Data.
+
+## Step 1: Install
+
+Please download the latest SQL RazorSQL installer from below, and install the application.
+
+- [RazorSQL: Download](https://razorsql.com/)
+
+## Step 2: Download Treasure Data JDBC Driver
+
+Please download Treasure Data's JDBC Driver from below.
+
+- [JDBC Driver Download](jdbc-driver)
+
+## Step 3: Add Treasure Data Connection
+
+Select `Connections` at the top menu, and click `Connect`. Then, please select `OTHER` as a connection type.
+
+<center><img src="/images/razorsql-1.png" width="80%" /></center><br/>
+
+Then, please fill in Treasure Data JDBC driver information.
+
+<center><img src="/images/razorsql-2.png" width="100%" /></center><br/>
+
+- Profile Name: Treasure Data
+- Driver Location: JDBC driver file path
+- Driver Class: com.treasuredata.jdbc.TreasureDataDriver
+- Login: your email address
+- Password: your password
+- JDBC URL
+  - [Hive](hive): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=hive
+  - [Presto](presto): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=presto
+- Auto Commit: off
+- SQL Restrictions: Read Only
+
+## Step 4: Issue the Query
+
+You'll see a list of tables and its columns by GUI.
+
+<center><img src="/images/razorsql-3.png" width="100%" /></center><br/>
