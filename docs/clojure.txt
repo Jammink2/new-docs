@@ -56,7 +56,7 @@ To issue a query, set up a database connection first:
 
     :::terminal
     (use '[clojure.java.jdbc :as j])
-    (def db {:classname "com.treasure_data.jdbc.TreasureDataDriver"
+    (def db {:classname "com.treasuredata.jdbc.TreasureDataDriver"
              :subprotocol "td"
              :subname "//api.treasuredata.com/sample_datasets;type=presto"
              :user "YOUR_EMAIL_FOR_TREASURE_DATA"
@@ -68,25 +68,25 @@ Then, run a query as follows:
 
     :::terminal
     user=> (j/query db ["SELECT COUNT(1) AS c FROM nasdaq"])
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI getJobResult2
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.command.TDClientAPI getJobResult2
     INFO: write the result to file
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.command.TDClientAPI writeJobResultToTempFile
     INFO: check the size of the job result: size = 26
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.command.TDClientAPI writeJobResultToTempFile
     INFO: created temp file: /tmp/td-jdbc-8655482340404331705.tmp
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.command.TDClientAPI writeJobResultToTempFile
     INFO: read the size of the job result: 26
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI writeJobResultToTempFile
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.command.TDClientAPI writeJobResultToTempFile
     INFO: finished writing file
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.command.TDClientAPI getJobResult2
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.command.TDClientAPI getJobResult2
     INFO: read the result to file: path = /tmp/td-jdbc-8655482340404331705.tmp
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.TDResultSet close
     INFO: closed file based unpacker
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.TDResultSet close
     INFO: deleted temp file: /tmp/td-jdbc-8655482340404331705.tmp
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.TDResultSet close
     INFO: closed file based unpacker
-    Jun 25, 2015 1:13:32 AM com.treasure_data.jdbc.TDResultSet close
+    Jun 25, 2015 1:13:32 AM com.treasuredata.jdbc.TDResultSet close
     INFO: deleted temp file: /tmp/td-jdbc-8655482340404331705.tmp
     ({:c 8807278})
     

@@ -50,7 +50,7 @@ Please fill the information like below.
   - [Hive](hive): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=hive
   - [Presto](presto): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=presto
 - Java Class Path: td-jdbc-xxx.jar
-- Class Name: com.treasure_data.jdbc.TreasureDataDriver
+- Class Name: com.treasuredata.jdbc.TreasureDataDriver
 
 ## Step 4: Connect to Treasure Data
 

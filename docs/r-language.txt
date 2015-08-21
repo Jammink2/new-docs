@@ -32,7 +32,7 @@ To issue queries, please use the RJDBC package together with the Treasure Data J
 
     :::r
     library(RJDBC)
-    drv <- JDBC("com.treasure_data.jdbc.TreasureDataDriver",
+    drv <- JDBC("com.treasuredata.jdbc.TreasureDataDriver",
                 "/path/to/td-jdbc-<td-jdbc.version>-jar-with-dependencies.jar",
                 identifier.quote="`")
     conn <- dbConnect(drv,

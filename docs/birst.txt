@@ -55,7 +55,7 @@ You'll see the fields to specify JDBC connection. Fill the information according
 <center><img src="/images/birst-add-query.png" width="90%" /></center><br/><br/>
 
 - Database Type: Generic JDBC Connection
-- Driver Name: com.treasure_data.jdbc.TreasureDataDriver
+- Driver Name: com.treasuredata.jdbc.TreasureDataDriver
 - Connection String: jdbc:td://<%= @env[:api_endpoint] %>/testdb;useSSL=true
 - Username: YOUR_TREASURE_DATA_EMAIL_ADDRESS
 - Password: YOUR_TREASURE_DATA_PASSWORD

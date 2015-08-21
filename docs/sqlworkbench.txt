@@ -28,7 +28,7 @@ Select `File` at the top menu, and click `Manage Drivers`. Plese fill the forms 
 
 - Name: Treasure Data
 - Library: JDBC driver file path
-- Classname: com.treasure_data.jdbc.TreasureDataDriver
+- Classname: com.treasuredata.jdbc.TreasureDataDriver
 - Sample URL
   - [Hive](hive): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=hive
   - [Presto](presto): jdbc:td://<%= @env[:api_endpoint] %>/< database >;useSSL=true;type=presto

@@ -45,7 +45,7 @@ Please navigate to `Configuration -> Connectors`, and click the `New` button. Pl
 - Password: Your account password
 - Connection URL: jdbc:td://<%= @env[:api_endpoint] %>/< YOUR_DATABASE_NAME >;useSSL=true;type=presto
 - Schema: "public"
-- JdbcDriver: com.treasure_data.jdbc.TreasureDataDriver
+- JdbcDriver: com.treasuredata.jdbc.TreasureDataDriver
 - JdbcDriverFolder: /path/to/download/directory/
 
 ## Add a Synchronization Task
