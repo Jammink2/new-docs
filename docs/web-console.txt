@@ -35,3 +35,23 @@ The [utilization page](<%= @env[:url_console] %>/utilization) summarizes the uti
 The [users page](<%= @env[:url_users] %>) displays the users associated with an account. The [users page](<%= @env[:url_users] %>) is visible only to acount owners and administrators: there can only be one account user owner per account, whereas any of the users can be granted administrator access.
 
 Various other roles are designed below administrator. See the table at [Access Control](access-control) for a summary of the permissions associated with each role.
+
+## Browser support:
+
+* Google Chrome
+** Latest version: Tested
+** Previous 2 versions:  Fully Supported
+** Versions older than previous 2:  Best Effort
+* Mozilla Firefox
+** Latest version:  Fully Supported
+** Previous version:  Fully Supported
+** Versions prior to previous version: Best Effort
+* Internet Explorer
+** Latest version (currently version 11):  Fully Supported
+** Previous version (currently version 10):  Best Effort
+* Safari (Mac & Windows)
+** Latest version (currently version 8): Fully Supported
+** Previous version (currently version 7):  Best Effort
+* Safari (iOS and other mobile devices)
+** All versions: Best Effort
+
