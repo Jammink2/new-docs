@@ -6,7 +6,7 @@ Treasure Data JDBC Driver (td-jdbc) is an open source project. The source code i
 
 ## Download
 
-* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc) (2015/07/30 v0.5.0)
+* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc) (2015/08/21 v0.5.1)
   *  Previous versions of td-jdbc (since 0.5.0) are avaialble from Maven Central: <http://central.maven.org/maven2/com/treasuredata/td-jdbc/>
 * For Maven projects, use the following dependency setting:
 
