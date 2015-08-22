@@ -36,7 +36,7 @@ The [users page](<%= @env[:url_users] %>) displays the users associated with an 
 
 Various other roles are designed below administrator. See the table at [Access Control](access-control) for a summary of the permissions associated with each role.
 
-## Browser support:
+## Browser support
 
 * Google Chrome
   * Latest version: Tested
