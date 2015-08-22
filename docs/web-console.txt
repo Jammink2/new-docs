@@ -39,19 +39,19 @@ Various other roles are designed below administrator. See the table at [Access C
 ## Browser support:
 
 * Google Chrome
-** Latest version: Tested
-** Previous 2 versions:  Fully Supported
-** Versions older than previous 2:  Best Effort
+  * Latest version: Tested
+  * Previous 2 versions:  Fully Supported
+  * Versions older than previous 2:  Best Effort
 * Mozilla Firefox
-** Latest version:  Fully Supported
-** Previous version:  Fully Supported
-** Versions prior to previous version: Best Effort
+  * Latest version:  Fully Supported
+  * Previous version:  Fully Supported
+  * Versions prior to previous version: Best Effort
 * Internet Explorer
-** Latest version (currently version 11):  Fully Supported
-** Previous version (currently version 10):  Best Effort
+  * Latest version (currently version 11):  Fully Supported
+  * Previous version (currently version 10):  Best Effort
 * Safari (Mac & Windows)
-** Latest version (currently version 8): Fully Supported
-** Previous version (currently version 7):  Best Effort
+  * Latest version (currently version 8): Fully Supported
+  * Previous version (currently version 7):  Best Effort
 * Safari (iOS and other mobile devices)
-** All versions: Best Effort
+  * All versions: Best Effort
 
