@@ -16,6 +16,14 @@ This video demonstrates how to install Android SDK in 5 minutes.
 
 ### Step 1: Install the Library
 
+#### Gradle
+
+If you use gradle, add the following dependency to `dependencies` directive in the `build.gradle`.
+
+   dependencies {
+    compile 'com.treasuredata:td-android-sdk:0.1.6'
+   }
+
 #### Maven
 
 If you use maven, add the following directives to your `pom.xml` under `<dependencies>`. `pom.xml` in [an example Android application project](https://github.com/treasure-data/td-android-sdk/blob/master/example/td-android-sdk-demo/pom.xml) could be a good reference.
