@@ -20,9 +20,9 @@ This video demonstrates how to install Android SDK in 5 minutes.
 
 If you use gradle, add the following dependency to `dependencies` directive in the `build.gradle`.
 
-   dependencies {
-    compile 'com.treasuredata:td-android-sdk:0.1.6'
-   }
+    dependencies {
+     compile 'com.treasuredata:td-android-sdk:0.1.6'
+    }
 
 #### Maven
 
