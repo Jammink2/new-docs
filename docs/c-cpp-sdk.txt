@@ -9,19 +9,19 @@ This article describes how to import the data reliably from your C/C++ applicati
 
 ## What is Fluent Bit?
 
-Fluent Bit is a specialized open-source data collector tool for embedded operating systems, developed by Treaure Data. Fluent Bit have been designed and built to be used not just as a standalone tool, it can also be embedded in your C or C++ applications.
+Fluent Bit is a specialized open-source data collector tool for embedded operating systems and is developed by Treasure Data. Fluent Bit have been designed and built to be used not just as a standalone tool, it can also be embedded in your C or C++ applications.
 
 By emdedding Fluent Bit into your C/C++ applications, you can have robust yet light-weight data collection mechanism (buffering, retry, etc) inside your applications.
 
 ## How to Embed Fluent Bit?
 
-### Step1: Prepare Configuration File
+### Step-1: Prepare Configuration File
 
-First, please prepare your configuration file. Please retrieve your Write-Only API key from [here](https://console.treasuredata.com/users/current), and then also please specify destination database and table name.
+First, please prepare your configuration file. Please retrieve your Write-Only API key from [here](https://console.treasuredata.com/users/current), and then please specify the destination database and table name.
 
-    # TreasureData Output
+    # Treasure Data Output
     # ===================
-    # This configuration file specify the information to be used
+    # This configuration file specifies the information to be used
     # when flushing information to TreasureData.com service. All
     # key fields in the 'TD' section are mandatory.
     [TD]
@@ -44,15 +44,15 @@ First, please prepare your configuration file. Please retrieve your Write-Only A
         # Specify the database table name where the records will be stored
         Table    table_example
 
-An example config can be found [here](https://github.com/fluent/fluent-bit/blob/master/conf/td_output.conf).
+An example configuration can be found [here](https://github.com/fluent/fluent-bit/blob/master/conf/td_output.conf).
 
-### Step2: Embed libfluent-bit into your Applications
+### Step-2: Embed libfluent-bit into your Applications
 
-First, please obtain the entire source code form GitHub.
+First, please obtain the entire source code from GitHub.
 
 - [https://github.com/fluent/fluent-bit](https://github.com/fluent/fluent-bit)
 
-When Fluent Bit is built, it creates the final binary but also it creates a shared library version called libfluent-bit.so which can be linked in your projects. The library allows you to enqueue data into the engine and return as quickly as possible, all hard job is done in one posix thread who works in asynchronous mode, your caller process or thread will not be blocked.
+When Fluent Bit is built, it creates the final binary and a shared library version called libfluent-bit.so which can be linked in your projects. The library allows you to enqueue data into the engine and return as quickly as possible. All the hard work is done in one posix thread that works in an asynchronous mode and your caller process or thread will not be blocked.
 
 Here's an example program to send the data to Treasure Data.
 
@@ -104,13 +104,13 @@ Here's an example program to send the data to Treasure Data.
         return 0;
     }
 
-As you can see we only need to include the fluent-bit.h header and use the functions in the right order. The description of each function can be found here.
+As you can see, we only need to include the fluent-bit.h header and use the functions in the right order. The description of each function is available here:
 
 - [Fluent Bit Documentation for Developers](http://fluentbit.io/documentation/development/index.html)
 
 ## Further Information
 
-More information can be found from these links.
+More information is available in the following links.
 
 - [Fluent Bit](http://fluentbit.io/)
 - [Fluent Bit Source Code](http://github.com/fluent/fluent-bit/)
