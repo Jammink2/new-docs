@@ -44,7 +44,7 @@ First, please prepare your configuration file. Please retrieve your Write-Only A
         # Specify the database table name where the records will be stored
         Table    table_example
 
-An example configuration can be found [here](https://github.com/fluent/fluent-bit/blob/master/conf/td_output.conf).
+An example configuration is available [here](https://github.com/fluent/fluent-bit/blob/master/conf/td_output.conf).
 
 ### Step-2: Embed libfluent-bit into your Applications
 
@@ -110,7 +110,7 @@ As you can see, we only need to include the fluent-bit.h header and use the func
 
 ## Further Information
 
-More information is available in the following links.
+More information is available in the following links:
 
 - [Fluent Bit](http://fluentbit.io/)
 - [Fluent Bit Source Code](http://github.com/fluent/fluent-bit/)
