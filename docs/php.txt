@@ -66,7 +66,7 @@ To install Treasure Agent (`td-agent`), please execute one of the command below 
     $ echo 'cookbook "td-agent"' >> Berksfile
     $ berks install
 
-<a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> is also supported. Amazon Linux & Windows are currently NOT supported.
+<a href="https://github.com/treasure-data/elastic-beanstalk-td-agent">AWS Elastic Beanstalk</a> is also supported. Windows is currently NOT supported.
 
 ### Step 2: Modifying /etc/td-agent/td-agent.conf
 
