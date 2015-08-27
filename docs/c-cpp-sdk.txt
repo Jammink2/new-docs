@@ -9,7 +9,9 @@ This article describes how to import the data reliably from your C/C++ applicati
 
 ## What is Fluent Bit?
 
-Fluent Bit is a specialized open-source data collector tool for embedded operating systems, developed by Treaure Data. Fluent Bit have been designed and built to be used not just as a standalone tool, it can also be embedded in your C or C++ applications. By emdedding Fluent Bit into your C/C++ applications, you can have robust yet light-weight data collection mechanism (buffering, retry, etc) inside your applications.
+Fluent Bit is a specialized open-source data collector tool for embedded operating systems, developed by Treaure Data. Fluent Bit have been designed and built to be used not just as a standalone tool, it can also be embedded in your C or C++ applications.
+
+By emdedding Fluent Bit into your C/C++ applications, you can have robust yet light-weight data collection mechanism (buffering, retry, etc) inside your applications.
 
 ## How to Embed Fluent Bit?
 
