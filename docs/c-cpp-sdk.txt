@@ -1,0 +1,115 @@
+# C/C++ Data Import with Fluent Bit
+
+This article describes how to import the data reliably from your C/C++ applications, using [Fluent Bit](http://fluentbit.io/).
+
+## Prerequisites
+
+  * Basic knowledge of C/C++ Application Development.
+  * Basic knowledge of Treasure Data.
+
+## What is Fluent Bit?
+
+Fluent Bit is a specialized open-source data collector tool for embedded operating systems, developed by Treaure Data. Fluent Bit have been designed and built to be used not just as a standalone tool, it can also be embedded in your C or C++ applications. By emdedding Fluent Bit into your C/C++ applications, you can have robust yet light-weight data collection mechanism (buffering, retry, etc) inside your applications.
+
+## How to Embed Fluent Bit?
+
+### Step1: Prepare Configuration File
+
+First, please prepare your configuration file. Please retrieve your Write-Only API key from [here](https://console.treasuredata.com/users/current), and then also please specify destination database and table name.
+
+    # TreasureData Output
+    # ===================
+    # This configuration file specify the information to be used
+    # when flushing information to TreasureData.com service. All
+    # key fields in the 'TD' section are mandatory.
+    [TD]
+        # API
+        # ===
+        # The TreasureData API key. To obtain this please log into your
+        # TreasureData Console:
+        #
+        # 1. Go to https://console.treasuredata.com/users/current
+        # 2. API Keys box: copy the API key hash
+        API YOUR_WRITE_ONLY_API_KEY
+    
+        # Database
+        # ========
+        # Specify the name of your database, it must exists.
+        Database db_example
+    
+        # Table
+        # =====
+        # Specify the database table name where the records will be stored
+        Table    table_example
+
+An example config can be found [here](https://github.com/fluent/fluent-bit/blob/master/conf/td_output.conf).
+
+### Step2: Embed libfluent-bit into your Applications
+
+First, please obtain the entire source code form GitHub.
+
+- [https://github.com/fluent/fluent-bit](https://github.com/fluent/fluent-bit)
+
+When Fluent Bit is built, it creates the final binary but also it creates a shared library version called libfluent-bit.so which can be linked in your projects. The library allows you to enqueue data into the engine and return as quickly as possible, all hard job is done in one posix thread who works in asynchronous mode, your caller process or thread will not be blocked.
+
+Here's an example program to send the data to Treasure Data.
+
+    :::c
+    #include <unistd.h>
+    #include <fluent-bit.h>
+    
+    int main(int argc, char **argv)
+    {
+        int i;
+        int n;
+        int ret;
+        char tmp[256];
+        struct flb_config *config;
+    
+        if (argc < 2) {
+            fprintf(stderr, "Usage: td /path/to/configuration.file\n");
+            exit(EXIT_FAILURE);
+        }
+    
+        /* Create configuration context */
+        config = flb_config_init();
+        if (!config) {
+            exit(EXIT_FAILURE);
+        }
+    
+        /* Enable verbose messages */
+        flb_config_verbose(FLB_TRUE);
+    
+        /* Load a configuration file (required by TD output plugin) */
+        ret = flb_lib_config_file(config, argv[1]);
+    
+        /* Initialize library */
+        ret = flb_lib_init(config, (char *) "td");
+        if (ret != 0) {
+            exit(EXIT_FAILURE);
+        }
+    
+        /* Start the background worker */
+        flb_lib_start(config);
+    
+        /* Push some data */
+        for (i = 0; i < 100; i++) {
+            n = snprintf(tmp, sizeof(tmp) - 1, "{\"key\": \"val %i\"}", i);
+            flb_lib_push(config, tmp, n);
+        }
+        
+        flb_lib_stop(config);
+        return 0;
+    }
+
+As you can see we only need to include the fluent-bit.h header and use the functions in the right order. The description of each function can be found here.
+
+- [Fluent Bit Documentation for Developers](http://fluentbit.io/documentation/development/index.html)
+
+## Further Information
+
+More information can be found from these links.
+
+- [Fluent Bit](http://fluentbit.io/)
+- [Fluent Bit Source Code](http://github.com/fluent/fluent-bit/)
+- [Fluent Bit Documentation for Developers](http://fluentbit.io/documentation/development/index.html)

@@ -136,6 +136,7 @@ section 'import-data', 'Data Import' do
   category 'app-sdks', 'Application SDKs' do
     article 'java-sdk', 'Java SDK'
     article 'ruby-sdk', 'Ruby SDK'
+    article 'c-cpp-sdk', 'C/C++ SDK'
   end
   category 'streaming-import', 'Streaming Import' do
     article 'td-agent', 'Streaming Import Overview',                                           ['fluentd', 'td-agent']
