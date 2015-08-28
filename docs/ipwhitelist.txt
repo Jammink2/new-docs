@@ -1,29 +1,33 @@
 # IP Whitelist
 
-IP Whitelist can be set for each account but only by an Account Owner or Administrator. It restricts access to one's TD account from a 1 or more IP addresses.
+IP whitelists restrict access to a Treasure Data account to a set of IP addresses. There are two types of lists: default account IP whitelist, and user IP whitelist.
 
-In addition, it is possible for an admin or an Account Owner to set a specific user IP whitelist for a specific account.
+The default account IP whitelist restricts access to a Treasure Data account to a set of IP addresses. This list affects all users in an account. Only the Account Owner can modify this list.
+
+The user IP whitelist restricts access to an account's user to a set of IP addresses. This list is per user, and only affects a specific user in an account. User IP whitelists can be set by account owners and administrators. Administrators cannot modify another administrator's IP whitelist. When set, the user IP whitelist replaces the account IP whitelist for that user.
 
 ## Settings
 
-IP Whitelist can be set from within an Account Owner or Administrator's user [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
+IP whitelists can be set from within an Account Owner's or Administrator's [profile page](https://console.treasuredata.com/users/current). The default setting is 'Disabled'.
 
-When enabled, an input form appears where an Account Owner or Administrator can enter one or more IP addresses (and corresponding mask) to grant access to the Console and/or REST APIs. Any address that doesn't match one of the allowed addresses will be rejected access to the Console and APIs.
+When enabled, a form appears where an Account Owner or Administrator can enter one or more IP addresses (and corresponding mask) to grant access to the Console and/or REST APIs. Any address that doesn't match one of the allowed addresses will be rejected access to the Console and/or APIs.
 
 <img style="margin:auto" src="/images/newipwhitelist.png" alt="IP Whitelist"/>
 
-All users in a given account use the account defaults unless a custom whitelist is specified for that user by an Account Owner or Administrator. 
+All users in a given account use the default account IP whitelist unless a user IP whitelist is specified for that user.
 
 <img style="margin:auto" src="/images/useripwhitelist.png" alt="User IP Whitelist"/>
 
-NOTE: Care must be taken in setting up IP Whitelist, as it may bar the user from having any further access to the account.<br/>
-If any problem or misconfiguration occurs, please contact our support team at support@treasure-data.com.
+NOTE: Care must be taken when setting up an IP whitelist, as it may prevent users from having access to the account. If any problem or misconfiguration occurs, please contact our support team at <a href='mailto:support@treasure-data.com'>support@treasure-data.com</a>.
 
 ## Permissions
 
-Only Administrators and Account Owners can set up IP Whitelist for their own user accounts.<br/>
-Account Owners can modify IP whitelists of all users in the account.
-Administrators can modify the whitelists of non-Administrator users but Administrators cannot modify whitelists of other Administrator users.<br/>
+Only Administrators and Account Owners can set up an IP Whitelist for themselves.
+
+Account Owners can modify the IP whitelists of all users in the account.
+
+Administrators can modify the whitelists of non-Administrator or non-Account-Owner users.
+
 Restricted Users cannot modify any whitelists in the account, including their own.
 
 The table below summarizes these concepts:
@@ -31,12 +35,12 @@ The table below summarizes these concepts:
 User type | Account Owner | Administrator | Restricted User | Self
 :-------------------: | :-------: | :-------: | :-------: | :-------:
 Account Owner | OK | OK | OK | OK
-Administrator | NG | NG | OK | OK
-Normal User   | NG | NG | NG | NG
+Administrator | X | X | OK | OK
+Normal User   | X | X | X | X
 
-## Exception
+## Exceptions
 
-IP whitelist restrictions don't apply to any import through the following SDKs:
+IP whitelist restrictions don't apply to any import requests from the following SDKs:
 
 * [Android SDK](android-sdk)
 * [iOS SDK](iOS-sdk)
