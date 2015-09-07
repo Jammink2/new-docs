@@ -1,0 +1,39 @@
+# How to feedback your request to Treasure Data!
+
+This article describes how to feedback your requests or comments on Treasure Data services to our product team directly.
+
+## How to register your feedbacks to Treasure Data services
+
+### Step 1: Visit our customer feedback potal
+
+http://treasuredata.uservoice.com/
+
+### Step 2: Sign up with nickname and e-mail information
+
+Click the right-up side sign-in link and input e-mail information. If you are the first user, you can see input form for your name. Please input your name and click sing-up botton. Only your name will be public.
+
+<center><img src="/images/uservoice_signup.png" width="60%" /></center><br/><br/>
+<center><img src="/images/uservoice_signup2.png" width="60%" /></center><br/><br/>
+
+For returning user, entering e-mail and clicking sign-in button is sing-in step.
+
+
+### Step 3: Regidter your feedback
+
+You can register your feedback title in "Enter your idea" box. Then, existing similar feedbacks will be listed. Please check if your idea is already registerd by other users. If you find similar idea or topic, please vote it or add comment on it.
+
+<center><img src="/images/uservoice_input.png" width="60%" /></center><br/><br/>
+
+If your idea is new, please click "Post a new idea..." button and describe details on "Describe your idea..." box.
+
+<center><img src="/images/uservoice_input2.png" width="60%" /></center><br/><br/>
+
+
+## How to vote and comment on other user's feedbacks
+
+You can see all feedbacks from other users in our customer feedback portal. Please vote those feedbacks by clicking vote button if you agree to the feedback.
+Also any comments on the feedbacks from you are very valuable for us.
+
+
+
+
