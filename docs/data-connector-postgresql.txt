@@ -8,7 +8,7 @@ NOTE: Currently this feature is in Beta. For more information, please contact <a
 
   * Basic knowledge of Treasure Data
   * Basic knowledge of PostgreSQL
-  * A PostgreSQL instance running **remotely**, for example on RDS.
+  * A PostgreSQL instance running **remotely**, for example on RDS.  This should be on an IP address that has been whitelisted by Treasure Data.
 
 ## Step 0: Install td command v0.11.9 or Later
 
