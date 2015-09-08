@@ -347,3 +347,23 @@ This UDF supports IPv4 and IPv6.
         TD_IP_TO_COUNTRY_NAME('2001:268:d005:f5be:c43e:af35:81f:8f60') AS ipv6
 
 The function returns `Japan` in this example.
+
+## <tt>TD_LAT_LONG_TO_COUNTRY</tt>
+
+#### Signature
+
+    :::terminal
+    string TD_LAT_LONG_TO_COUNTRY(string type, double latitude, double longitude)
+
+#### Description
+
+This UDF converts geo location information (latitude/longitude) to country name.
+
+#### Example
+
+    :::sql
+    SELECT
+      TD_LAT_LONG_TO_COUNTRY('FULL_NAME',                 37, -122)
+      TD_LAT_LONG_TO_COUNTRY('THREE_LETTER_ABBREVIATION', 37, -122)
+      TD_LAT_LONG_TO_COUNTRY('POSTAL_ABBREVIATION',       37, -122)
+      TD_LAT_LONG_TO_COUNTRY('SORTABLE_NAME',             37, -122)

@@ -1,0 +1,30 @@
+# Release Note 20150901
+
+This is a summary of new features and improvements introduced in the September 1, 2015 release:
+
+## Collection: JavaScript SDK v1.4.0
+
+We have released new version of Treasure Data JavaScript SDK. SDK uses JSONP instead of CORS by default to reduce the latency.
+
+- [JavaScript SDK](http://docs.treasuredata.com/articles/javascript-sdk)
+- [JavaScript SDK Source Code](https://github.com/treasure-data/td-js-sdk)
+
+All customers using JavaScript SDK, are recommended to upgrade the version.
+
+## Presto: Upgraded to 0.113
+
+Presto is upgraded to version 0.113 from version 0.111.
+
+- Presto version [0.113](https://prestodb.io/docs/current/release/release-0.113.html) release note
+- Presto version [0.112](https://prestodb.io/docs/current/release/release-0.112.html) release note
+
+## Presto: TD_LAT_LONG_TO_COUNTRY() UDF
+
+We have implemented [TD_LAT_LONG_TO_COUNTRY()](/articles/presto-udfs#tdlatlongtocountry) UDF, to convert from geo spatial information to country name. This UDF is available only for Presto at this point.
+
+## Client: td v0.12.0
+
+The new version of td command was released.
+
+- [ChangeLog](https://github.com/treasure-data/td/blob/master/ChangeLog)
+
