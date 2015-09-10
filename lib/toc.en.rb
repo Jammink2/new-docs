@@ -373,6 +373,7 @@ section 'support-and-billing', 'Support & Status' do
   end
   category 'support', 'Support' do
     article 'support-channels', 'Support Channels'
+    article 'uservoice', 'Product Feedback'
   end
   category 'service-status', 'Service Status' do
     article 'service-status', 'Service Status'
