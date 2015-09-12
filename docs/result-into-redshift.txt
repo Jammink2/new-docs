@@ -119,6 +119,8 @@ Example:
     :::terminal
     redshift://user:password@host/database/table?mode=replace
 
+NOTE:  For fastest results, we recommend you have only one **write** connection open to your RDS database table at a time.
+
 ##### `mode=truncate`
 <br/>
 With the **truncate** mode the system first truncates the existing table to remove all records, then inserts the query results into the existing table without modifying the table's schema.
