@@ -36,6 +36,25 @@ First, please prepare `seed.yml` like below, with your MySQL access information.
 
 This example dumps all records inside the table. You can have more detailed control with [additional parameters](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-mysql).
 
+If you want to use SSL option, please use these options: `requreSSL`, `useSSL`, `verifyServerCertificate`.
+    :::yaml
+    config:
+      in:
+        type: mysql
+        host: mysql_host_name
+        port: 3306
+        user: test_user
+        password: test_password
+          options:
+            requreSSL: true
+            useSSL: true
+            verifyServerCertificate: false
+        database: test_database
+        table: test_table
+        select: "*"
+      out:
+        mode: replace
+
 ## Step 2: Guess Fields (Generate load.yml)
 
 Second, use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
@@ -61,7 +80,7 @@ Then you can preview how the system will parse the file by `preview` command.
 Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data are stored. You must have [created the database and table](<%= @env[:url_doc] %>articles/database-and-table) first. If the database or the table does not exist the command reports an error.
 
     :::terminal
-    $ td connector:issue load.yml --database td_sample_db --table td_sample_table
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table --time-column created_at
 
 NOTE: Currently table won't be created automatically. You need to create the destination database and table manually.
 
