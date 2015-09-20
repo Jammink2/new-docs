@@ -1,10 +1,10 @@
 # Pentaho Report Designer with JDBC Driver
 
-This article will explain how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/) using [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, users can process huge volumes of data on the cloud using existing Pentaho instances.
+This article will explain how to use Treasure Data with [Pentaho Business Analytics](http://www.pentaho.com/) using [our JDBC driver](jdbc-driver). By combining Treasure Data with Pentaho, users can process huge volumes of data in the cloud using existing Pentaho instances.
 
 ## Download Pentaho Report Designer
 
-You can download Pentaho Report Designer from the link below. Version 3.9.0-GA was tested for this artcile.
+Download Pentaho Report Designer from the link below. Version 3.9.0-GA was tested for this article.
 
 * [Pentaho Report Designer](http://reporting.pentaho.com/)
 
@@ -17,9 +17,9 @@ NOTE: <b>Don't have time</b> to setup Pentaho + Treasure Data? Leverage our <a h
 
 ## Download our JDBC Driver
 
-You can download the driver from the link below. The driver is still in beta, so any feedback would be appreciated.
+Download the driver from the link below. The driver is still in beta, so your feedback would be really appreciated.
 
-* [JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc)
+* [Treasure Data JDBC Driver Download](http://toolbelt.treasuredata.com/jdbc)
 
 NOTE: This driver works only with Treasure Data. It does not work with other environments such as your local Hadoop/Hive cluster.
 
@@ -27,33 +27,33 @@ NOTE: This driver works only with Treasure Data. It does not work with other env
 
 Let's add Treasure Data as Pentaho's data source. Please follow the procedure below.
 
-### Step1: Copy JDBC Driver Jar to `jdbc` directory
+### Step - 1: Add JDBC Driver to Pentaho
 
-First, please copy the Treasure Data JDBC driver to Pentaho's jdbc directory. The command for a MacOS environment is shown below.
+Let's copy the Treasure Data JDBC driver to Pentaho's jdbc directory. The command for MacOS environment is shown below.
 
     :::terminal
     $ cp td-jdbc-VERSION.jar \
       /Applications/pentaho/design-tools/Pentaho\ Report\ Designer.app/lib/jdbc/
 
-### Step2: Create New Data Source
+### Step - 2: Create New Data Source
 
-Please open the window shown below by navigating to `Data -> Add Data Source -> Advanced -> JDBC (Custom)`. Please hit the GREEN plus botton marked by the red arrow below.
+Navigate to `Data -> Add Data Source -> Advanced -> JDBC (Custom)`. Create a new data source, click GREEN plus button.
 
 <center>
 <a href="/images/pentaho_jdbc_source.png"><img src="/images/pentaho_jdbc_source.png" width="100%"></a>
 </center>
 <br /><br />
 
-### Step3: Configure JDBC Connection
+### Step - 3: Configure JDBC Connection
 
-Next, please select `Generic database -> Native (JDBC)` and configure the jdbc connection as shown in the following figure. Be sure to fill in your credentials (your email + password).
+Next, let's select `Generic database -> Native (JDBC)` and configure the jdbc connection as shown below. Be sure to fill in your credentials (your email + password).
 
 <center>
 <a href="/images/pentaho_database_connection.png"><img src="/images/pentaho_database_connection.png" width="100%"></a>
 </center>
 <br /><br />
 
-### Step4: Create Reports
+### Step - 4: Create Reports
 
 You can now create reports using generic SQL queries. Open the window from `Data -> Add Datasource -> JDBC` to add Treasure Data as the data source for the report. Once you hit the preview button, the job will start running on the cloud (you can confirm this using the `td jobs` command). You can now design your reports using Treasure Data as your data source.
 
