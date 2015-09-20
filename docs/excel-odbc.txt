@@ -29,15 +29,15 @@ Then, select "ODBC DSN".
 
 <center><img src="/images/excel_td_odbc_4.png" /><br/><br/></center>
 
-And, Select "TreasureData (on your own DSNNAME)".
+And, select "TreasureData (on your own DSNNAME)".
 
 <center><img src="/images/excel_td_odbc_5.png" /><br/><br/></center>
 
-Then, you can select your tables.
+Then, you can select your tables from the list.
 
 <center><img src="/images/excel_td_odbc_6.png" /><br/><br/></center>
 
-Next, click `Finish` button. An `Import Data` dialog will pop up.
+Next, click `Finish`. An `Import Data` dialog will pop up.
 
 <center><img src="/images/excel_td_odbc_7.png" /><br/><br/></center>
 
