@@ -7,13 +7,13 @@ Using Excel with Treasure Data allows users to interactively explore huge amount
 - Windows 7, 8.1, or later (Mac OS X is not supported)
 - Excel 2010, or later
 
-NOTE: This is a <b>Premium</b> plan feature. Not available for everyone. Please <a href="<%= @env[:url_contact] %>" target="_blank">contact to us</a>. if you're interested in.
+NOTE: This is a <b>Premium</b> plan feature only. Please <a href="<%= @env[:url_contact] %>" target="_blank">contact us</a> for plan details.
 
 ## Install ODBC Driver
 
-Please install Treasure Data [ODBC Driver](odbc-driver-32bit), and register to your machine. We'll assume you have DSN (Data Source Name) as `Treasure Data` in the following sections.
+Please install Treasure Data [ODBC Driver](odbc-driver-32bit), and register to your machine. We'll assume that you have DSN (Data Source Name) as `Treasure Data` in the following sections.
 
-For Excel, please set `td-presto` as a database name.
+For Excel, please set `td-presto` as the database name.
 
 <center><img src="/images/excel_td_odbc_1.png" /><br/></center>
 
@@ -21,40 +21,40 @@ For Excel, please set `td-presto` as a database name.
 
 ### Set up ODBC Connection
 
-Please launch Excel,  and select "From Other Sources", and "From Data Connection Wizard" first.
+Open Excel and under the DATA section, click "From Other Sources", and select "From Data Connection Wizard".
 
 <center><img src="/images/excel_td_odbc_3.png" /><br/><br/></center>
 
-Please select "ODBC DSN".
+Then, select "ODBC DSN".
 
 <center><img src="/images/excel_td_odbc_4.png" /><br/><br/></center>
 
-And, Select "TreasureData (on your own DSNNAME )".
+And, Select "TreasureData (on your own DSNNAME)".
 
 <center><img src="/images/excel_td_odbc_5.png" /><br/><br/></center>
 
-Then, You can select own tables.
+Then, you can select your tables.
 
 <center><img src="/images/excel_td_odbc_6.png" /><br/><br/></center>
 
-Please click `Finish` button. After that, `Import Data` dialog will pop up.
+Next, click `Finish` button. An `Import Data` dialog will pop up.
 
 <center><img src="/images/excel_td_odbc_7.png" /><br/><br/></center>
 
 ### Import Data via ODBC Driver
 
-When you import the data, You can choice how to import data as `Table` or `PivotTable Report`, or `PivotChart`
+When you import the data, you may choose a `Table`, a `PivotTable Report`, or a `PivotChart`
 
 <center><img src="/images/excel_td_odbc_8.png" /><br/><br/></center>
 
-You can set up the query to get data from TreasureData via Properties.
+Set up the query to get data from TreasureData via Properties.
 
 <center><img src="/images/excel_td_odbc_9.png" /><br/><br/></center>
 
-The following picture show data after selecting `PivotTable` Report.
+The following picture shows data after selecting `PivotTable` Report.
 
 <center><img src="/images/excel_td_odbc_10.png" width="60%" /><br/><br/></center>
 
-You can modify your query at `Connection Properties`.
+You may modify your query at `Connection Properties`.
 
 <center><img src="/images/excel_td_odbc_11.png" width="60%" /><br/><br/></center>
