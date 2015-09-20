@@ -1,6 +1,6 @@
 # Tableau Server with Treasure Data
 
-Using [Tableau Server](http://www.tableausoftware.com/products/server) with Treasure Data allows users to interactively explore huge amounts of data, and also share the dashboards with other people.
+Using [Tableau Server](http://www.tableausoftware.com/products/server) with Treasure Data allows users to interactively explore huge amount of data, and also share the dashboards with other people.
 
 <p><center><a href="result-into-tableau-server"><img src="/images/tableau-server.png" width="60%"/></a></center></p><br/>
 
