@@ -55,6 +55,6 @@ The following picture shows data after selecting `PivotTable` Report.
 
 <center><img src="/images/excel_td_odbc_10.png" width="60%" /><br/><br/></center>
 
-You may modify your query at `Connection Properties`.
+You may modify your query within `Connection Properties`.
 
 <center><img src="/images/excel_td_odbc_11.png" width="60%" /><br/><br/></center>
