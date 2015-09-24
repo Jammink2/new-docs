@@ -6,67 +6,68 @@ While Treasure Data is a BI tool agnostic service, customers like retailer [MUJI
 
 <center><img src="/images/tableau_features.jpg" width="40%"/></center><br/><br/>
 
-Tableau is business intelligence software that helps people see and understand their data. There are two major products provided by Tableau Software: [Tableau Desktop](http://www.tableausoftware.com/products/desktop) and [Tableau Server](http://www.tableausoftware.com/products/server).
-Tableau Desktop is a Desktop Application (Windows or Mac), to visualize and analyze data, and create workbooks, visualizations, dashboards and stories.
+Tableau is a business intelligence software that helps people see and understand their data. There are two major products provided by Tableau Software: [Tableau Desktop](http://www.tableausoftware.com/products/desktop) and [Tableau Server](http://www.tableausoftware.com/products/server).
+Tableau Desktop is a Desktop Application (Windows or Mac) to visualize and analyze data. It helps us create workbooks, visualizations, dashboards, and stories.
 
-It can publish these to Tableau Server for sharing information within an organization. In short, Tableau Desktop is a BI designer tool, while Tableau Server is a publishing environment to share the the charts. [Tableau Online](http://www.tableausoftware.com/products/online) is a hosted version of Tableau Server, which doesn’t require you to manage the BI server.
+Users can publish these to Tableau Server for sharing within an organization. In short, Tableau Desktop is a BI designer tool, while Tableau Server is a publishing environment to share the visualizations. [Tableau Online](http://www.tableausoftware.com/products/online) is a hosted version of Tableau Server, which doesn’t require you to manage the BI server.
 
 - [Tableau Desktop Product Tour (Video)](https://www.youtube.com/watch?v=37Mx3uZRwBE)
 - [Tableau Server Product Tour (Video)](https://www.youtube.com/watch?v=uGgkiBhkRHk)
 
 ## What is Treasure Data?
 
-Treasure Data is cloud-based, managed service for data and analytics. Treasure Data empowers data-driven companies to focus on insights, not infrastructure.
+Treasure Data is a cloud-based managed service for data and analytics. Treasure Data empowers data-driven companies to focus on insights, not infrastructure.
 
-Users can store trillions of records in the cloud by collecting semi-structured big data in real-time, and aggregate the data by using one of several query engines. Often times, those results will be fed to a data warehouse or reporting server for consumption by additional end-users.
+Users can store trillions of records in the cloud by collecting semi-structured big data in real-time, and aggregate the data by using one of several query engines. Often times, those results will be fed to a data warehouse or reporting server for further consumption by end-users.
 
 - [Treasure Data Introduction (Video)](https://www.youtube.com/watch?v=pk7oAN_nH4w)
 - [Treasure Data Technical Overview & Concepts (Video)](https://www.youtube.com/watch?v=lFxJgTD5eqw)
 
 ## Tableau + Treasure Data Reference Architecture
 
+So, why combine Treasure Data & Tableau? Treasure Data provides a scalable backend to handle new big data sources (application logs, web logs, mobile data, sensor data, etc), while Tableau provides flexible visual analytics for existing data sources (EDW, CRM, ERP, etc).
+
+By combining Treasure Data and Tableau, you can quickly get the insights from any data sources of any size. Here’s a reference architecture diagram. Let’s see how it works step by step.
+
 <center><img src="/images/tableau_reference_architecture.png" width="80%"/></center><br/><br/>
 
-So why combine Treasure Data & Tableau? Treasure Data provides a scalable backend to handle new big data sources (application logs, web logs, mobile data, sensor data, etc), while Tableau provides flexible visual analytics for existing data sources (EDW, CRM, ERP, etc).
-
-By combining Treasure Data and Tableau, you can get the insights from any data sources of any size quickly. Here’s a reference architecture diagram. Let’s see how it works step by step.
-
-## Step1: Collect Big Data (Treasure Data)
+## Step 1: Collect Big Data (Treasure Data)
 
 <center><img src="/images/tableau_step1.png" width="60%"/></center><br/><br/>
 
-First, let’s start collecting data into Treasure Data. Treasure Data provides a various ways to collect data in near-real-time into the cloud. The data sources depicted here are ‘time-series’ data, which means there is historical data, produced in real time, and growing rapidly as your business scales. Here are the four main data collection capabilities provided by Treasure Data:
+First, let’s start collecting data into Treasure Data. Treasure Data provides various ways to collect data into the cloud in near-real-time. The data sources depicted here are ‘time-series’ data, which means there is historical data, produced in real time, and growing rapidly as your business scales. Here are the four main data collection capabilities provided by Treasure Data:
 
 - [JavaScript SDK](javascript-sdk) for website tracking
 - [Mobile SDK](/categories/mobile-sdks) (Android, iOS, Unity) for mobile application tracking
 - [Treasure Agent](/categories/streaming-import) for streaming data collection
 - [Bulk Loader](/categories/bulk-import) for parallel bulk loading
+- [Data Connector] (categories/data-connector) for pre-built integrations
 
-Treasure Data is now importing almost 400,000 records per second, and all Treasure Data customers receive the benefits of this scale. Setting up the data collection usually takes only a couple of hours, or even a few minutes in some cases.
+Treasure Data is now importing almost 1 Million records per second, and all Treasure Data customers benefit from such scale. Setting up the data collection usually takes only a couple of hours, or even a few minutes in some cases.
 
-## Step2: Aggregate Big Data (Treasure Data)
+## Step 2: Aggregate Big Data (Treasure Data)
 
 <center><img src="/images/tableau_step2.png" width="60%"/></center><br/><br/>
 
-Now we have raw data in the cloud. To provide a better experience for the report data consumers, it’s a good idea to summarize data into smaller sets for performance reasons. By using one of Treasure Data’s embedded query engines, you can crunch big data into the aggregated format.
+Now we have raw data in the cloud. To provide a better experience for the BI consumers, it’s a good idea to summarize this raw data into smaller sets for performance reasons. By using one of Treasure Data’s embedded query engines, you can crunch big data into an aggregated format.
 
-Treasure Data supports ‘Tableau Result Output’ so you can directly push the aggregated results into Tableau Server. You don’t need any additional infrastructure to do this. You can even automate this process by using [Scheduled Jobs](schedule) to periodically aggregating the data.
+Treasure Data supports ‘Tableau Result Output’ so you can directly push the aggregated results into Tableau Server. You don’t need any additional infrastructure to do this. You can even automate this process by using [Scheduled Jobs](schedule) to periodically aggregate the data.
 
-Treasure Data pushes the results as a ‘[Tableau Data Extract](http://kb.tableausoftware.com/articles/knowledgebase/working-with-tableau-data-extracts)‘ (TDE) file. TDE is a Tableau’s proprietary columnar file format, optimized for efficiently slicing and dicing data (see [Why Use Tableau Data Extracts](http://www.tableausoftware.com/about/blog/2014/7/why-use-tableau-data-extracts-32187)). The TDE file will be directly located into Tableau Server.
+Treasure Data can push the query results as a ‘[Tableau Data Extract](http://kb.tableausoftware.com/articles/knowledgebase/working-with-tableau-data-extracts)‘ (TDE) file. TDE is a Tableau’s proprietary columnar file format, optimized for efficiently slicing and dicing data (see [Why Use Tableau Data Extracts](http://www.tableausoftware.com/about/blog/2014/7/why-use-tableau-data-extracts-32187)). The TDE file will be directly saved into Tableau Server.
 
 - [Treasure Data: Writing Job Results into Tableau Server](result-into-tableau-server)
 - [Treasure Data: Writing Job Results into Tableau Online](result-into-tableau-online)
 
-## Step3: Design Workbooks (Tableau Desktop)
+## Step 3: Design Workbooks (Tableau Desktop)
 
 <center><img src="/images/tableau_step3.png" width="60%"/></center><br/><br/>
 
-Now we have raw data access, and aggregated data too. It’s time to explore the data, and Tableau Desktop is the tool for this.
-First, Tableau Desktop has a lot of [built-in connectors](http://www.tableausoftware.com/products/techspecs) for existing data sources (EDW, CRM, ERP, Excel, etc), so you can interact with them directly.
+Now we have raw data access and aggregated data too. It’s time to explore the data using Tableau Desktop.
+It has a lot of [built-in connectors](http://www.tableausoftware.com/products/techspecs) for existing data sources (EDW, CRM, ERP, Excel, etc), so you can interact with them directly.
 
 - [Tableau Desktop: List of Data Sources](http://www.tableausoftware.com/products/techspecs)
 
-Next, Tableau Desktop can interact with Tableau Server, so that Tableau Desktop can directly interect with TDE files on Tableau Server.
+Tableau Desktop can also connect to Tableau Server to directly interact with the TDE files.
 
 You can create the dashboard using TDE files on Tableau Server too. Every time you drag & drop the columns on your Desktop, the data is processed at the Server side. If you have too much network latency between Server and Desktop, you can download the TDE file to your local disk.
 
@@ -76,20 +77,20 @@ Third, Treasure Data provides an ODBC driver for Tableau Desktop so that data an
 
 - [Tableau Desktop: Treasure Data ODBC connector](<%= @env[:url_doc] %>articles/tableau-desktop-odbc)
 
-Analysts can choose one of three methods depending on the needs. You can also join across these data sources. For example, you can join between Salesforce.com data and a TDE file, or even join between TDE multiple files. Once the workbook is created, Tableau Desktop can publish it to Tableau Server.
+Analysts can choose any of the above methods depending on the needs. You can also join across these data sources. For example, you can join between Salesforce.com data and a TDE file, or even join between multiple TDE files. Once the workbook is created, Tableau Desktop can publish it to Tableau Server.
 
-## Step4: Share the Workbooks (Tableau Server)
+## Step 4: Share the Workbooks (Tableau Server)
 
 <center><img src="/images/tableau_step4.png" width="60%"/></center><br/><br/>
 
-Now everything is set. Analysts can publish workbooks to the server, then the data consumers can see them from their browsers. The beauty is analysts can quickly iterate on the data and reports by having access to all the data sources, so they’re now self-reliant.
+Now everything is set. Analysts can publish workbooks to the server and the consumers can view these from their browsers. The beauty is analysts can quickly iterate on the data and reports by having access to all the data sources, so they’re now self-reliant.
 
 - [Tableau Desktop: Publishing to Tableau Server (Documentation)](http://onlinehelp.tableausoftware.com/v8.2/pro/online/en-us/publish_server.html)
 - [Tableau Desktop: Publishing to Tableau Server (Video)](https://www.youtube.com/watch?v=gkCJTPQeTJc)
 
 ## Conclusion
 
-Tableau + Treasure Data empowers data-driven companies to rapidly explore data and get insights. By combining these two solutions, people can focus on insights, not infrastructure, with an industry-leading visual analytics tool. If you have any questions, please [contact to us](<%= @env[:url_contact] %>). For the next steps, please follow these links to learn how to connect to Treasure Data from each Tableau products.
+Tableau + Treasure Data empowers data-driven companies to rapidly explore data and get insights. By combining these two solutions, people can focus on insights, not infrastructure, with an industry-leading visual analytics tool. If you have any questions, please [contact us](<%= @env[:url_contact] %>). For the next steps, please follow these links to learn how to connect to Treasure Data from each Tableau product.
 
 - [Treasure Data and Tableau: A complete big data analytics solution in days](http://get.treasuredata.com/rs/treasuredata/images/DataSheet_Tableau_Treasure.pdf) (White Paper)
 - [Treasure Data: Writing Job Results into Tableau Server](result-into-tableau-server)

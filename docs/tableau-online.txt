@@ -1,6 +1,6 @@
 # Tableau Online with Treasure Data
 
-Using [Tableau Online](http://www.tableausoftware.com/products/online) with Treasure Data allows users to interactively explore the data, and also share the knowledge across multiple people.
+Using [Tableau Online](http://www.tableausoftware.com/products/online) with Treasure Data allows users to interactively explore the data, and also share the dashboards with other people.
 
 <p><center><a href="result-into-tableau-online"><img src="/images/tableau-server.png" width="60%"/></a></center></p><br/>
  

@@ -24,7 +24,7 @@ There are two resource pools:
 * `hadoop1`: incumbent, "old" cluster, corresponding to Hive v0.10.
 * `hadoop2`: newly deployed cluster, corresnponding to Hive v0.13.
 
-You can assign a resource pool for each query to specify which cluster that query uses. `hadoop1` **will be disabled when the upgrade completes on August 31, 2015.**
+You can assign a resource pool for each query to specify which cluster that query uses. `hadoop1` **will be disabled when the upgrade completes.**
 
 ### Web console & scheduled queries
 
