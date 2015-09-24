@@ -1,0 +1,255 @@
+# Data Connector for FTP
+
+The Data Connector for FTP enables import of the contents of *.tsv and *.csv files stored in your FTP server.
+
+## Prerequisites
+
+NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> .
+
+  * Basic knowledge of Treasure Data
+
+## Step 0: Install 'td' command v0.11.9 or later
+
+Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+
+    $ td --version
+    0.11.10
+
+## Step 1: Create Seed Config File (seed.yml)
+
+First, prepare `seed.yml` as below, with your AWS access key and secret access key. You must also specify bucket name, and target file name (or prefix for multiple files).
+
+    :::yaml
+    config:
+      in:
+        type: ftp
+        host: ftp.example.net
+        port: 21
+        user: anonymous
+        password: XXXX
+        path_prefix: /ftp/file/path/prefix # path the the *.csv or *.tsv file on your FTP server
+      out:
+        mode: append
+
+The Data Connector for FTP imports all files that match a specified prefix (e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>).
+
+If you're using FTPS, please specify like followings.
+
+    config:
+      in:
+        type: ftp
+        host: ftp.example.net
+        port: 21
+        user: anonymous
+        password: "mypassword"
+        path_prefix: /ftp/file/path/prefix
+        ssl: true
+        ssl_verify: false
+      out:
+        mode: append
+
+## Step 2: Guess Fields (Generate load.yml)
+
+Second, use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
+
+    :::terminal
+    $ td connector:guess seed.yml -o load.yml
+
+If you open up `load.yml`, you'll see the guessed file format definitions including file formats, encodings, column names, and types.
+
+    :::yaml
+    config:
+      in:
+        type: ftp
+        host: ftp.example.net
+        port: 21
+        user: anonymous
+        password: XXXX
+        path_prefix: /ftp/file/path/prefix
+        parser:
+          charset: UTF-8
+          newline: CRLF
+          type: csv
+          delimiter: ','
+          quote: '"'
+          escape: ''
+          skip_header_lines: 1
+          columns:
+          - name: id
+            type: long
+          - name: company
+            type: string
+          - name: customer
+            type: string
+          - name: created_at
+            type: timestamp
+            format: '%Y-%m-%d %H:%M:%S'
+      out:
+        mode: append
+
+Then, you can preview how the system will parse the file by using the `preview` command.
+
+    $ td connector:preview load.yml
+    +-------+---------+----------+---------------------+
+    | id    | company | customer | created_at          |
+    +-------+---------+----------+---------------------+
+    | 11200 | AA Inc. |    David | 2015-03-31 06:12:37 |
+    | 20313 | BB Imc. |      Tom | 2015-04-01 01:00:07 |
+    | 32132 | CC Inc. | Fernando | 2015-04-01 10:33:41 |
+    | 40133 | DD Inc. |    Cesar | 2015-04-02 05:12:32 |
+    | 93133 | EE Inc. |     Jake | 2015-04-02 14:11:13 |
+    +-------+---------+----------+---------------------+
+
+NOTE: If the system detects your column name or column type unexpectedly, modify `load.yml` directly and preview again.
+
+NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
+
+NOTE: You will also need to have created the local database and table, prior to executing the load job.   To do this:
+
+    :::terminal
+    $ td database:create td_sample_db
+    $ td table:create td_sample_db td_sample_table
+
+## Step 3: Execute Load Job
+
+Finally, submit the load job. It may take a couple of hours depending on the size of the data. Users need to specify the database and table where their data is stored. If the database or the table do not exist, the command reports an error.
+
+It's also recommended to specify `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
+If the option is not given, the Data Connector will choose the first `long` or `timestamp` column as the partitioning time. The type of the column specified by `--time-column` must be either of `long` and `timestamp` type.
+
+    :::terminal
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table --time-column created_at
+
+NOTE: At present, the Data Connector does not sort records server-side. To use time-based partitioning effectively, please sort records in files beforehand. This restriction will be solved in the near future.
+
+If you have a field called `time`, you don't have to specify the `--time-column` option.
+
+    :::terminal
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table
+
+## Mode (append/replace)
+
+You can specify file import mode in `out` section of seed.yml.
+
+### append (default)
+
+    :::yaml
+    config:
+      in:
+        ...
+      out:
+        mode: append
+
+This is the default mode. The imported records are appended to the target table.
+
+### replace (In td 0.11.10 and later)
+
+    :::yaml
+    config:
+      in:
+        ...
+      out:
+        mode: replace
+
+If the target table already exists, the rows of the existing table are replaced with imported records.
+
+## Scheduled execution
+
+You can schedule periodic Data Connector execution for incremental FTP file import.
+We take great care in distributing and operating our scheduler in order to achieve high availability.
+By using this feature, you no longer need a `cron` daemon on your local datacenter.
+
+For the scheduled import, the Data Connector for FTP imports all files that match with the specified prefix
+(e.g. path_prefix: <tt>path/to/sample_</tt> -> <tt>path/to/sample_201501.csv.gz</tt>, <tt>path/to/sample_201502.csv.gz</tt>, ..., <tt>path/to/sample_201505.csv.gz</tt>)
+at first and remembers the last path (<tt>path/to/sample_201505.csv.gz</tt>) for the next execution.
+
+On the second and subsequent runs, it only imports files that comes after the last path in alphabetical (lexicographic) order.
+(<tt>path/to/sample_201506.csv.gz</tt>, ...)
+
+### Create the schedule
+
+A new schedule can be created using the `td connector:create` command.
+The following are required: the name of the schedule, the cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file.
+
+    :::terminal
+    $ td connector:create \
+        daily_import \
+        "10 0 * * *" \
+        td_sample_db \
+        td_sample_table \
+        load.yml
+
+It's also recommended to specify the `--time-column` option, since Treasure Data's storage is partitioned by time (see also [architecture](architecture-overview))
+
+    :::terminal
+    $ td connector:create \
+        daily_import \
+        "10 0 * * *" \
+        td_sample_db \
+        td_sample_table \
+        load.yml \
+        --time-column created_at
+
+NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@daily` and `@monthly`.
+
+### List the Schedules
+
+You can see the list of currently scheduled entries by running the command `td connector:list`.
+
+    :::terminal
+    $ td connector:list
+    +--------------+--------------+----------+-------+--------------+-----------------+-------------------------------------------+
+    | Name         | Cron         | Timezone | Delay | Database     | Table           | Config                                    |
+    +--------------+--------------+----------+-------+--------------+-----------------+-------------------------------------------+
+    | daily_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"in"=>{"type"=>"ftp", "access_key_id"... |
+    +--------------+--------------+----------+-------+--------------+-----------------+-------------------------------------------+
+
+### Show the Setting and Schedule History
+
+`td connector:show` shows the execution setting of a schedule entry.
+
+    :::terminal
+    % td connector:show daily_import
+    Name     : daily_import
+    Cron     : 10 0 * * *
+    Timezone : UTC
+    Delay    : 0
+    Database : td_sample_db
+    Table    : td_sample_table
+    Config
+    ---
+    in:
+      type: ftp
+      host: ftp.example.net
+      port: 21
+      user: anonymous
+      password: XXXX
+      path_prefix: /ftp/file/path/prefix
+      parser:
+        charset: UTF-8
+        ...
+
+`td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual run, please use `td job <jobid>`.
+
+    :::terminal
+    % td connector:history daily_import
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | 578066 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-18 00:10:05 +0000 | 160      |
+    | 577968 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-17 00:10:07 +0000 | 161      |
+    | 577914 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-16 00:10:03 +0000 | 152      |
+    | 577872 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-15 00:10:04 +0000 | 163      |
+    | 577810 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-14 00:10:04 +0000 | 164      |
+    | 577766 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-13 00:10:04 +0000 | 155      |
+    | 577710 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-12 00:10:05 +0000 | 156      |
+    | 577610 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-11 00:10:04 +0000 | 157      |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    8 rows in set
+
+### Delete the Schedule
+
+`td connector:delete` will remove the schedule.
+
+    :::terminal
+    $ td connector:delete daily_import
