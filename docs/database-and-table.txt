@@ -113,10 +113,12 @@ NOTE: This operation cannot be rolled back. The data will be unrecoverable.
 Data expiration is a mechanism that allows the user to set an expiration period (in days) for the data in a table.
 When an expiration period is set for a specific table, treasure data drops all records in that table whose timestamp is older than the amount of days specified in the expiration period.
 
+<!--
 Internally, the feature does not consist in actually deleting/dropping the expired records from the table;
 the records are only flagged as expired and will no longer be able to be queried. As such, when table expiration is
 disabled for a table, all the records previously expired from a table will be available for querying again.
 One big advantage of this is that data expiration will take effect immediately after the expiration period is set for the table.
+-->
 
 To set the expiration period (days) for a table one can use:
 
