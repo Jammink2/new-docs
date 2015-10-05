@@ -302,7 +302,7 @@ The example shows the result of parsing user agent from access log.
     SELECT TD_PARSE_USER_AGENT(agent, 'os_family') AS agent_os_family FROM www_access
     > Windows 7
 
-## <tt>TD_MD5()</tt>
+## <tt>TD_MD5</tt>
 
 #### Signature
 
@@ -318,7 +318,7 @@ This UDF calculates the [MD5](http://en.wikipedia.org/wiki/MD5) hash digest from
     :::sql
     SELECT TD_MD5(column) FROM tbl
 
-## <tt>TD_URL_DECODE()</tt>
+## <tt>TD_URL_DECODE</tt>
 
 #### Signature
 
@@ -333,6 +333,26 @@ This UDF applies URL decoding for a given string.
 
     :::sql
     SELECT TD_URL_DECODE(column) FROM tbl
+
+## <tt>TD_LAT_LONG_TO_COUNTRY</tt>
+
+#### Signature
+
+    :::terminal
+    string TD_LAT_LONG_TO_COUNTRY(string type, double latitude, double longitude)
+
+#### Description
+
+This UDF converts geo location information (latitude/longitude) to country name.
+
+#### Example
+
+    :::sql
+    SELECT
+      TD_LAT_LONG_TO_COUNTRY('FULL_NAME',                 37, -122)
+      TD_LAT_LONG_TO_COUNTRY('THREE_LETTER_ABBREVIATION', 37, -122)
+      TD_LAT_LONG_TO_COUNTRY('POSTAL_ABBREVIATION',       37, -122)
+      TD_LAT_LONG_TO_COUNTRY('SORTABLE_NAME',             37, -122)
 
 ## <tt>Hivemall</tt>
 
