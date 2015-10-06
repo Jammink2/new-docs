@@ -1,0 +1,144 @@
+# Data Connector for Marketo (Lead)
+
+## Prerequisites
+
+NOTE: Currently this feature is in Beta. For more information, please contact <a href=mailto:support@treasuredata.com>support@treasuredata.com</a> .
+
+  * Basic knowledge of Treasure Data
+
+## Step 0: Install 'td' command v0.11.9 or later
+
+Install the newest [Treasure Data Toolbelt](http://toolbelt.treasuredata.com/).
+
+    $ td --version
+    0.11.10
+
+## Step 1: Create Seed Config File (seed.yml)
+
+First, please prepare `seed.yml` as below. The parameters like `endpoint`, `wsdl`, `user_id`, `encryption_key` are available at `"Admin" > "Web Services"` page in Marketo. You'll use `replace` mode:
+
+    :::yaml
+    config:
+      in:
+        type: marketo/lead
+        endpoint: https://XXXXXXXX.mktoapi.com/soap/mktows/YYYY
+        wsdl: https://XXXXXXXX.mktoapi.com/soap/mktows/YYYY?WSDL
+        user_id: XXXXXXXXXX_YYYYYYYYYYYYYYY
+        encryption_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        from_datetime: "2015-01-01"
+      out:
+        mode: replace
+
+The detailed list of options are available [here](https://github.com/treasure-data/embulk-input-marketo).
+
+## Step 2: Guess Fields (Generate load.yml)
+
+Second, please use `connector:guess`. This command automatically reads the target file, and intelligently guesses the file format.
+
+    :::terminal
+    $ td connector:guess seed.yml -o load.yml
+
+If you open up `load.yml`, you'll see guessed file format definitions including, in some cases, file formats, encodings, column names, and types.
+
+    :::yaml
+    ---
+    config:
+      in:
+        type: marketo/lead
+        endpoint: https://XXXXXXXX.mktoapi.com/soap/mktows/YYYY
+        wsdl: https://XXXXXXXX.mktoapi.com/soap/mktows/YYYY?WSDL
+        user_id: XXXXXXXXXX_YYYYYYYYYYYYYYY
+        encryption_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        from_datetime: "2015-01-01"
+      out:
+        mode: replace
+
+Then you can preview how the system will parse the file by using `preview` command.
+
+    $ td connector:preview load.yml
+
+If the system detects your column name or type unexpectedly, please modify `load.yml` directly and preview again.
+
+NOTE: Currently, the Data Connector supports parsing of "boolean", "long", "double", "string", and "timestamp" types.
+
+## Step 3: Execute Load Job
+
+Finally, submit the load job. It may take a couple of hours depending on the data size. Users need to specify the database and table where their data is stored. You must have [created the database and table](<%= @env[:url_doc] %>articles/database-and-table) first. If the database or the table do not exist, the command reports an error.
+
+    :::terminal
+    $ td connector:issue load.yml --database td_sample_db --table td_sample_table
+
+NOTE: Currently the table won't be created automatically. You need to create the destination database and table manually.
+
+## Scheduled execution
+
+You can schedule periodic Data Connector execution for periodic Marketo lead import.
+We take great care in distributing and operating our scheduler in order to achieve high availability.
+By using this feature, you no longer need a `cron` daemon on your local data center.
+
+For the scheduled import, Data Connector for Marketo Lead imports all files that match the specified JQL.
+
+### Create the schedule
+
+A new schedule can be created by using the `td connector:create` command.
+The name of the schedule, cron-style schedule, the database and table where their data will be stored, and the Data Connector configuration file are required.
+
+    :::terminal
+    $ td connector:create \
+        daily_marketo_lead_import \
+        "10 0 * * *" \
+        td_sample_db \
+        td_sample_table \
+        load.yml
+
+NOTE: The `cron` parameter also accepts three special options: `@hourly`, `@daily` and `@monthly`.
+
+### List the Schedules
+
+You can see the list of currently scheduled entries by `td connector:list`.
+
+    :::terminal
+    $ td connector:list
+    +---------------------------+--------------+----------+-------+--------------+-----------------+--------------------------------+
+    | Name                      | Cron         | Timezone | Delay | Database     | Table           | Config                         |
+    +---------------------------+--------------+----------+-------+--------------+-----------------+--------------------------------+
+    | daily_marketo_lead_import | 10 0 * * *   | UTC      | 0     | td_sample_db | td_sample_table | {"type"=>"marketo/lead", ... } |
+    +---------------------------+--------------+----------+-------+--------------+-----------------+--------------------------------+
+
+### Show the Setting and History of Schedules
+
+`td connector:show` shows the execution setting of a schedule entry.
+
+    :::terminal
+    % td connector:show daily_marketo_lead_import
+    Name     : daily_marketo_lead_import
+    Cron     : 10 0 * * *
+    Timezone : UTC
+    Delay    : 0
+    Database : td_sample_db
+    Table    : td_sample_table
+
+`td connector:history` shows the execution history of a schedule entry. To investigate the results of each individual execution, please use `td job <jobid>`.
+
+    :::terminal
+    % td connector:history daily_marketo_lead_import
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | JobID  | Status  | Records | Database     | Table           | Priority | Started                   | Duration |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    | 578066 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-18 00:10:05 +0000 | 160      |
+    | 577968 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-17 00:10:07 +0000 | 161      |
+    | 577914 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-16 00:10:03 +0000 | 152      |
+    | 577872 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-15 00:10:04 +0000 | 163      |
+    | 577810 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-14 00:10:04 +0000 | 164      |
+    | 577766 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-13 00:10:04 +0000 | 155      |
+    | 577710 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-12 00:10:05 +0000 | 156      |
+    | 577610 | success | 10000   | td_sample_db | td_sample_table | 0        | 2015-04-11 00:10:04 +0000 | 157      |
+    +--------+---------+---------+--------------+-----------------+----------+---------------------------+----------+
+    8 rows in set
+
+### Delete the Schedule
+
+`td connector:delete` will remove the schedule.
+
+    :::terminal
+    $ td connector:delete daily_marketo_lead_import
