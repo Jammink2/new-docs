@@ -125,6 +125,7 @@ section 'import-data', 'Data Import' do
     article 'data-connector-mysql', 'Data Connector for MySQL'
     article 'data-connector-postgresql', 'Data Connector for PostgreSQL'
     article 'data-connector-salesforce', 'Data Connector for SalesForce'
+    article 'data-connector-marketo-lead', 'Data Connector for Marketo (Lead)'
     article 'data-connector-jira', 'Data Connector for JIRA'
   end
   category 'javascript-sdk', 'JavaScript SDK' do
