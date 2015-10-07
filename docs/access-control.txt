@@ -31,7 +31,7 @@ REST API access is controlled through API keys. Almost every REST API call needs
 authentication and resource authorization purposes.
 
 There are two types of API keys: **Master** and **Write-only**.<br/>
-By default, every new user is created with one Master and one Write-only API key; however, any user can generate any number of the two types of API keys. 
+By default, every new user is created with one Master and one Write-only API key; however, any user can generate any number of the two types of API keys.
 Any of the API Keys can be revoked at any time by the user themselves or any user having 'Manage User'
 permissions - see table above.
 
@@ -109,9 +109,9 @@ List Tables                              |                |                |    
 Create Table                             | OK             | OK             | OK                   |                      | OK
 Delete Table                             |                |                |                      |                      |
 Data Import (td-agent)                   | OK             | OK             | OK                   |                      | OK
-Data Import (Result Output to TD)        | OK             | OK             | OK                   |                      | OK
-Data Import (Bulk Import)                | OK             | OK             | OK                   |                      | OK
-Data Import (Insert Into)                | <sup>(2)</sup> | <sup>(2)</sup> | <sup>(2)</sup>       | <sup>(2)</sup>       | <sup>(2)</sup>
+Data Import (Result Output to TD)        | <sup>(2)</sup> | <sup>(2)</sup> | <sup>(2)</sup>       |                      | <sup>(2)</sup>
+Data Import (Bulk Import)                | <sup>(2)</sup> | <sup>(2)</sup> | <sup>(2)</sup>       |                      | <sup>(2)</sup>
+Data Import (Insert Into)                | <sup>(3)</sup> | <sup>(3)</sup> | <sup>(3)</sup>       | <sup>(3)</sup>       | <sup>(3)</sup>
 Issue Query                              |                |                |                      |                      |
 Kill Own Query                           |                |                |                      |                      |
 Kill Query from Others                   |                |                |                      |                      |
@@ -123,4 +123,6 @@ Notes:
    'Query-only', and 'Import-only' permissions for 'Create Database' don't apply in that case.
    'Restricted' users can only 'Delete' and 'Manage' databases they created (and therefore own). 'Administrators' and
    'Owner' can always manage databases.
-2. INSERT INTO requires the ability to execute a query, which is not allowed using a Write-only API key.
+2. Bulk Import and Result Output to TD (based on Bulk Import) require the ability to check the status of a job, and this
+   is not possible using a write-only API key.
+3. INSERT INTO requires the ability to execute a query, which is not allowed using a Write-only API key.
