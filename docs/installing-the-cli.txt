@@ -81,19 +81,16 @@ Please open your terminal, and make sure you have the `td` command available.
 
     :::terminal
     $ td --version
-    ...
 
 ### Redhat/CentOS
 
     :::terminal
     $ rpm -q td-agent
-    ...
 
 ### Ubuntu
 
     :::terminal
     $ dpkg - l | grep td-agent
-    ...
 
 ## Upgrading
 
@@ -122,13 +119,11 @@ Step 1: Remove td-agent v1
 
     :::terminal
     $ sudo yum remove td-agent
-    ...
 
 Step 2: Install td-agent v2
 
     :::terminal
     $ curl -L https://td-toolbelt.herokuapp.com/sh/install-redhat-td-agent2.sh | sh
-    ...
 
 #### Ubuntu
 
@@ -136,7 +131,6 @@ Step 1: Remove td-agent v1
 
     :::terminal
     $ sudo apt-get remove td-agent
-    ...
 
 Step 2: Install td-agent v2
 
@@ -144,13 +138,11 @@ For Precise:
 
     :::terminal
     $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-precise-td-agent2.sh | sh
-    ...
 
 For Lucid:
 
     :::terminal
     $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
-    ...
 
 The Treasure Agent environment provisions its own gem environment and the corresponding gem command is accessible in this location <tt>/usr/lib*/fluent/ruby/bin/fluent-gem</tt>. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
 
