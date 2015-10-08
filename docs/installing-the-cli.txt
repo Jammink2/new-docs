@@ -75,6 +75,28 @@ Please open your terminal, and make sure you have the `td` command available.
     usage: td [options] COMMAND [args]
     ...
 
+## Checking Installed Versions
+
+### Mac OSX of Windows
+
+   :::terminal
+   $ td --version
+   ...
+   
+   
+### Redhat/CentOS
+
+   :::terminal
+   $ rpm -q td-agent
+   ...
+
+### Ubuntu
+
+   :::terminal
+   $ dpkg - l | grep td-agent
+   ...
+   
+
 ## Upgrading
 
 Depending on how the CLI was originally installed on your machine, there are different ways it can be updated.
@@ -94,7 +116,42 @@ The `td update` command is just a placeholder for the following other installati
 
 ### Linux (Ubuntu Precise, Ubuntu Lucid, RedHat, CentOS)
 
-The easier way of installing the td CLI in a Linux environment beside using a gem (see above) is to install td as part of the `td-agent` distribution package. Several Linux environments are supported, see [Installing the Treasure Data CLI](installing-the-cli) documentation page.
+The easier way of installing the td CLI in a Linux environment beside using a gem (see above) is to install td as part of the `td-agent` distribution package. When upgrading between v1 and v2 of Treasure Agent, a full uninstall must be completed since the package types are incompatible between major version releases.
+
+#### Redhat/CentOS
+
+Step 1: Remove td-agent v1
+
+   :::terminal
+   $ sudo yum remove td-agent
+   ...
+
+Step 2: Install td-agent v2
+
+   :::terminal
+   $ curl -L https://td-toolbelt.herokuapp.com/sh/install-redhat-td-agent2.sh | sh
+   ...
+
+#### Ubuntu
+
+Step 1: Remove td-agent v1
+
+   :::terminal
+   $ sudo apt-get remove td-agent
+   ...
+   
+Step 2: Install td-agent v2
+
+   For Precise:
+   
+   :::terminal
+   $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-precise-td-agent2.sh | sh
+   ...
+   
+   For Lucid:
+   :::terminal
+   $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
+   ...
 
 The Treasure Agent environment provisions its own gem environment and the corresponding gem command is accessible in this location <tt>/usr/lib*/fluent/ruby/bin/fluent-gem</tt>. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
 
