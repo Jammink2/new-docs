@@ -36,7 +36,7 @@ The CLI is distributed on Linux as part of the `td-agent` package. For more info
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
     # 10.04 Lucid
     $ curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
-    
+
     # Debian Squeeze (64-bit only)
     $ curl -L http://toolbelt.treasuredata.com/sh/install-debian-squeeze-td-agent2.sh | sh
     # Debian Wheezy (64-bit only)
@@ -79,23 +79,21 @@ Please open your terminal, and make sure you have the `td` command available.
 
 ### Mac OSX of Windows
 
-   :::terminal
-   $ td --version
-   ...
-   
-   
+    :::terminal
+    $ td --version
+    ...
+
 ### Redhat/CentOS
 
-   :::terminal
-   $ rpm -q td-agent
-   ...
+    :::terminal
+    $ rpm -q td-agent
+    ...
 
 ### Ubuntu
 
-   :::terminal
-   $ dpkg - l | grep td-agent
-   ...
-   
+    :::terminal
+    $ dpkg - l | grep td-agent
+    ...
 
 ## Upgrading
 
@@ -122,36 +120,37 @@ The easier way of installing the td CLI in a Linux environment beside using a ge
 
 Step 1: Remove td-agent v1
 
-   :::terminal
-   $ sudo yum remove td-agent
-   ...
+    :::terminal
+    $ sudo yum remove td-agent
+    ...
 
 Step 2: Install td-agent v2
 
-   :::terminal
-   $ curl -L https://td-toolbelt.herokuapp.com/sh/install-redhat-td-agent2.sh | sh
-   ...
+    :::terminal
+    $ curl -L https://td-toolbelt.herokuapp.com/sh/install-redhat-td-agent2.sh | sh
+    ...
 
 #### Ubuntu
 
 Step 1: Remove td-agent v1
 
-   :::terminal
-   $ sudo apt-get remove td-agent
-   ...
-   
+    :::terminal
+    $ sudo apt-get remove td-agent
+    ...
+
 Step 2: Install td-agent v2
 
-   For Precise:
-   
-   :::terminal
-   $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-precise-td-agent2.sh | sh
-   ...
-   
-   For Lucid:
-   :::terminal
-   $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
-   ...
+For Precise:
+
+    :::terminal
+    $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-precise-td-agent2.sh | sh
+    ...
+
+For Lucid:
+
+    :::terminal
+    $ curl -L https://td-toolbelt.herokuapp.com/sh/install-ubuntu-lucid-td-agent2.sh | sh
+    ...
 
 The Treasure Agent environment provisions its own gem environment and the corresponding gem command is accessible in this location <tt>/usr/lib*/fluent/ruby/bin/fluent-gem</tt>. To update the td CLI to the latest version without having to wait until the next `td-agent` release", please run:
 
