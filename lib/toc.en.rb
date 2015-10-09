@@ -260,6 +260,9 @@ section 'bi-etl-tools', 'BI / ETL / Workflow Tools' do
   category 'overview', 'Overview' do
     article 'tools', 'Overview'
   end
+  category 'redshift', 'Amazon Redshift' do
+    article 'redshift-copy-commands', 'Redshift Copy Command Reference'
+  end
   category 'excel', 'Excel' do
     article 'excel-odbc', 'Excel', ['Excel']
   end
