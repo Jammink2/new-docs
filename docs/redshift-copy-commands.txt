@@ -1,0 +1,357 @@
+#﻿Redshift COPY Command Guide
+
+##About COPY  Command
+The COPY command loads data into Amazon Redshift tables from either data files or Amazon DynamoDB tables.
+The copied files may reside in an S3 bucket, an EMR cluster or on a remote host accessed via SSH.
+Data is loadable from fixed-width, character-delimited text files, including CSV,  AVRO and JSON format.
+Default format is character-delimited UTF-8 text files, delimited by the pipe (|) char.
+Rows to be copied may not be larger than 4 MB from any single source.
+Root users and IAM users must have INSERT privileges to modify Redshift (RS) tables.
+
+##COPY  command syntax
+    :::terminal
+    COPY  table_name
+    [  column_list  ]
+    FROM  data_source
+    [  WITH  ]  CREDENTIALS  [AS]  ‘aws_access_credentials’
+    [  [  FORMAT  ]  [  AS  ]  data_format  ]
+    [  [  parameter  [argument]  [,  ...]  ]
+	
+##COPY sample commands
+
+###Create a table and load a file into addresses table from an S3 Bucket
+    :::terminal
+	create  table  addresses(name  varchar(10),  streetname  varchar(10),  address  smallint,  city  varchar(10), state  varchar(10),  zip  smallint);
+	:::terminal
+	copy  addresses from  ‘s3://your_s3_bucket/subdir/addresses.txt’
+	credentials  'aws_access_key_id=<your_access_key_id>;aws_secret_access_key=<your_secret_access_key>';
+
+###Load addresses table from S3 Bucket from a manifest
+
+####﻿addresses manifest file:
+    :::terminal
+	{
+	"entries":  [
+	{"url":”s3://your_s3_bucket3/2015­10­06­addresses.txt”,"mandatory":true},
+	{"url":”s3://your_s3_bucket4/2015­10­07­addresses.txt”,"mandatory":true},
+	{"url":”s3://your_s3_bucket4/2015­10­08­addresses.txt”,"mandatory":true}
+	]
+	}
+	
+	copy  addresses
+	from  's3://your_s3_bucket/data/addresses.manifest'
+	credentials  'aws_access_key_id=<your_access_key_id>;aws_secret_access_key=<your_secret_access_key>',
+	manifest;
+
+###Load addresses table from S3 Bucket with parameters
+
+    :::terminal
+	copy  addresses
+	from  's3://your_s3_bucket/data/addresses_pipe.txt'
+	credentials  'aws_access_key_id=<your_access_key_id>;aws_secret_access_key=<your_secret_access_key>'
+	removequotes
+	trimblanks
+	truncatecolumns
+	escape
+	delimiter  '|'
+	timeformat  'YYYY­MM­DD  HH:MI:SS';
+
+###﻿Load addresses table from an EMR Cluster, checking for a regular expression
+
+    :::terminal
+	/*  checks  ‘your_output’  folder  for  all  files  beginning  with  ‘part­’.  10  import  errors  allowed  before
+	import  is  terminated.  Input  files  are  tab­delimited  and  use  gzip  compression.  */
+	copy  addresses
+	
+	from  'emr://j­your_emr_cluster/your_output/part­*'
+	credentials  'aws_access_key_id=<your_access_key_id>;aws_secret_access_key=<your_secret_access_key>'
+	blankasnull
+	emptyasnull
+	maxerror  10
+	delimiter  '\t'  gzip;
+
+###Load addresses table from JSON formatted data on an EMR Cluster
+
+    :::terminal
+	copy  addresses
+	from  'emr://j­your_emr_cluster/your_output/json/’
+	credentials  'aws_access_key_id=<your_access_key_id>;aws_secret_access_key=<your_secret_access_key>'
+	JSON  's3://your_s3_  bucket/your_json_paths.txt';
+
+##COPY  command parameters
+###﻿Data Sources
+
+<table>
+  <tr>
+    <td style="text-align: left; width: 45%;">###Amazon S3
+	<td style="text-align: left; width: 45%;">###Amazon EMR
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 45%;">####Example:
+	<td style="text-align: left; width: 45%;">####Example:
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 45%;">:::terminal <br/> copy  addresses <br/> from  ‘s3://your_s3_bucket/subdir/addresses.txt’ <br/> credentials  '<aws­credentials'>;
+	<td style="text-align: left; width: 45%;">:::terminal <br/> copy  addresses <br/> from <br/> 'emr://j­your_emr_cluster/your_output/part­*' <br/> credentials  '<aws­credentials>';
+</table>
+
+###Amazon Remote Host via SSH
+<table>
+  <tr>
+    <td style="text-align: left; width: 45%;">####﻿SSH Manifest
+	<td style="text-align: left; width: 45%;">####Prerequisites:
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 45%;">:::terminal <br/> { <br/> "entries":  [ <br/> {"endpoint":"<ssh_endpoint_or_IP>", <br/> "command":  "<remote_command>", <br/> "mandatory":true, <br/> "publickey":  “<public_key>” <br/> "username":  “<host_user_name>”}, <br/> ] <br/> }
+	<td style="text-align: left; width: 45%;">1* Retrieve the Cluster Public Key and Cluster Node IP Adresses. <br/> 2* Add the Amazon Redshift Cluster Public Key to the Host's Authorized Keys File. <br/> 3* Configure the Host to accept All of the Amazon Redshift Cluster's IP Addresses. <br/> 4* Get the Public Key for the Host. <br/> 5* Create a manifest file, containing one entry for each SSH connection (see below). <br/> 6* Upload the manifest file to your S3 Bucket. <br/> 7* Run the COPY command to load the data.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 45%;">####Example <br/> :::terminal <br/> copy  addresses <br/> from  's3://your_s3_bucket/ssh_manifest' <br/> credentials  '<aws­credentials>' <br/> ssh;
+	<td style="text-align: left; width: 45%;">
+  </tr>
+</table>
+
+##Amazon DynamoDB
+####Example:
+    :::terminal
+	copy  addresses  from  'dynamodb://Addresses'
+	credentials  '<aws­credentials>’
+	readratio  50;    /*  100  or  higher  degrades  the  performance  of  subsequent  table  reads,  good  for  one  off troubleshooting  */
+
+
+#Credentials
+##User
+####Example:
+    :::terminal
+	WITH CREDENTIALS AS
+	'aws_access_key_id=<access­key­id>;aws_secret_access_key=<secret­access­key>'
+
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">####﻿IAM
+	<td style="text-align: left; width: 50%;">####Prerequisites:
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">* For COPY from Amazon S3, Amazon EMR, and remote hosts (SSH): LIST and GET permission for S3 objects and the manifest file;  with JSON-formatted data, permission to LIST and GET the JSONPaths file. <br/> * For COPY  from an Amazon EMR cluster, permission for the ListInstances action on the Amazon EMR cluster. <br/> * For COPY  from DynamoDB, permission to SCAN and DESCRIBE the DynamoDB table that is being loaded.
+  </tr>
+</table>  
+
+##Temporary
+Example:
+    :::terminal
+	WITH  CREDENTIALS  AS
+	'aws_access_key_id=<temporary­access­key­id>;aws_secret_access_key=<temporary­secret­access­key>;token=<temporary­token>'
+
+##Encrypted
+Example:
+    :::terminal
+	...
+	WITH  CREDENTIALS  AS
+	'aws_access_key_id=<access­key­id>;aws_secret_access_key=<secret­access­key>;master_symmetric_key=<master_key>'
+
+#Column Mapping Options
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">Column List
+	<td style="text-align: left; width: 50%;">Syntax:
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">COPY  tablename  (column1  [,column2,  …])
+  </tr>
+</table>
+
+####Example:
+    :::terminal
+	copy  addresses  (name,  streetname,  address,  city,  state,  zip)
+
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">﻿###JSONPaths File
+	<td style="text-align: left; width: 50%;">###JSONPath expressions as bracket notation
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">:::terminal
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">{ <br/> "jsonpaths":  [ <br/> "$['column1']", <br/> "$['column2']", <br/> "$['column3']", <br/> "$['column4']", <br/> ] <br/>}
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">###JSONPath expressions as dot notation
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">:::terminal <br/> { <br/> "jsonpaths":  [ <br/> "$.column1", <br/> "$.column2", <br/> "$.column3", <br/> "$.column4", <br/> ] <br/> }
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">###Syntax:
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">:::terminal <br/> COPY  tablename <br/> FROM  ‘your_data_source’ <br/> CREDENTIALS  ‘your_aws_credentials’ <br/> FORMAT  AS  JSON  ‘s3://jsonpaths_file’;
+  </tr>
+</table>	
+
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">﻿###AVRO File
+	<td style="text-align: left; width: 50%;">####Syntax
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">:::terminal
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">
+	<td style="text-align: left; width: 50%;">COPY  tablename <br/> FROM  ‘your_data_source’ <br/> CREDENTIALS  ‘your_aws_credentials’ <br/> FORMAT  AS  AVRO  ‘s3://avropath_file’;
+  </tr>
+</table>  
+
+#Data Format
+COPY requires the source data to be character delimited UTF-8 text. The default delimiter is the pipe  ‘|’ character.
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">:::terminal
+	<td style="text-align: left; width: 50%;">
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">FORMAT[AS]
+	<td style="text-align: left; width: 50%;">Identifies data input format keywords.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">QUOTE[AS]’quote_char’
+	<td style="text-align: left; width: 50%;">Enables CSV input data format.   The QUOTE character is used to escape delimiters, newline chars, and carriage returns; the default is a double quote (“).
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">DELIMITER[AS][‘delimiter_char’]
+	<td style="text-align: left; width: 50%;">In CSV input data, the default delimiter  is a comma (,). Other characters supported include pipe character (|), tab (\t) or non-printing ASCII characters. Octal characters are usable with format (\’ddd’), where ‘d’ is (0-7).
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">‘label1:Width1,label2:Width2…’
+	<td style="text-align: left; width: 50%;">Loads the data from a file where each column is a fixed width.  Not used with delimiters or in CSV imports.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">AVRO[AS]’auto’ <br/> or <br/> AVRO[AS]’s3://avropaths_file’
+	<td style="text-align: left; width: 50%;">Enables import from source data in Apache Avro data serialization format.  Supports S3, EMR, and remote SSH hosts. See ‘Column Mapping Options’ above.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">JSON[AS]’auto’ <br/> or <br/> JSON[AS]’s3://jsonpaths_file’
+	<td style="text-align: left; width: 50%;">Enables import from source data in JSON format. Supports S3, EMR, and remote SSH hosts. See ‘Column Mapping Options’ above.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">GZIP
+	<td style="text-align: left; width: 50%;">Enables import from .gz files.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">LZOP
+	<td style="text-align: left; width: 50%;">Enables import from .lzo files. Does not support files compressed using lzop ­­filter switch.
+  </tr>
+</table>
+
+
+#Data Conversion
+Data conversion parameters enable you to bypass the Redshift’s default data conversion methods.  They are useful if you are getting errors on import.  In most cases, the ‘as’ is optional.
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">:::terminal
+	<td style="text-align: left; width: 50%;">
+  </tr>
+    <tr>
+    <td style="text-align: left; width: 50%;">ACCEPTANYDATE
+	<td style="text-align: left; width: 50%;">For time and date columns. Loads any date format, including invalid ones, without generating an error.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">ACCEPTINVCHARS  [AS] <br/> ['replacement_char']
+	<td style="text-align: left; width: 50%;">For varchar types.   Replaces invalid UTF-8 characters with the specified one.  Default is a question mark (?).
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">BLANKASNULL
+	<td style="text-align: left; width: 50%;">For char and varchar types.  Loads blank, or whitespace columns, as  NULL.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">DATEFORMAT  [AS] <br/> {'dateformat_string'  |  'auto' <br/> }
+	<td style="text-align: left; width: 50%;">Loads other date formats, reading them according to date format string.<br/> Default date format is 'YYYY­MM­DD'. <br/> ‘auto’ automatically recognizes and converts alternate data formats.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">EMPTYASNULL
+	<td style="text-align: left; width: 50%;">Same as BLANKASNULL, but for empty columns.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">ENCODING  [AS]  file_encoding
+	<td style="text-align: left; width: 50%;">Loads other encoding types:  UTF-16, UTF-16LE, UTF-16BE.   Default is UTF-8.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">ESCAPE
+	<td style="text-align: left; width: 50%;">Ensures that backslash (‘\’) character in input data is treated as an escape character.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">EXPLICIT_IDS 
+	<td style="text-align: left; width: 50%;">For tables with IDENTITY columns.  Overrides Redshift’s autogenerated values with explicit values from the source data tables/files.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">FILLRECORD
+	<td style="text-align: left; width: 50%;">Loads data files when adjacent columns are missing from some of the records.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">IGNOREBLANKLINES
+	<td style="text-align: left; width: 50%;">Does not try to load blank lines, or lines containing only a line feed.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">IGNOREHEADER  [  AS  ] <br/> number_rows
+	<td style="text-align: left; width: 50%;">Does not load number_rows row(s);  treats these number rows instead as file header(s).
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">NULL  AS  'null_string'
+	<td style="text-align: left; width: 50%;">If a field in the source data matches ‘null_string’, Redshift loads it as NULL.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">REMOVEQUOTES
+	<td style="text-align: left; width: 50%;">In the source data, enclosing quotes are removed when Redshift loads them.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">ROUNDEC
+	<td style="text-align: left; width: 50%;">Rounds up numeric values when the scale of the input value is greater than the scale of the column.  For example, in a DECIMAL(8,2) column, COPY  will truncate the value 31.389 to 31.39.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">﻿TIMEFORMAT  [AS] <br/> {'timeformat_string'  |  'auto' <br/> |  'epochsecs'  | <br/> 'epochmillisecs'  }
+	<td style="text-align: left; width: 50%;">Specifies the time format.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">TRIMBLANKS
+	<td style="text-align: left; width: 50%;">Removes trailing whitespace from a string in a varchar field.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">TRUNCATECOLUMNS 
+	<td style="text-align: left; width: 50%;">Truncates data in columns to fit the column character-length specification.  In the case of varchar, this goes up to 63665.
+  </tr>
+</table>
+
+
+#Data Load Operations
+<table>
+  <tr>
+    <td style="text-align: left; width: 50%;">COMPROWS  numrows
+	<td style="text-align: left; width: 50%;">For compression analysis.  Dictates the number of rows to be sampled.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">COMPUPDATE  [  {  ON  |  TRUE  }  |  { <br/> OFF  |  FALSE  }  ]
+	<td style="text-align: left; width: 50%;">Toggles on and off compression encodings for a COPY.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">MAXERROR  [AS]  error_count
+	<td style="text-align: left; width: 50%;">Dictates  the maximum number of allowable errors for a COPY.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">NOLOAD
+	<td style="text-align: left; width: 50%;">Checks data validity without loading the data.
+  </tr>
+  <tr>
+    <td style="text-align: left; width: 50%;">STATUPDATE  [  {  ON  |  TRUE  }  |  { <br/> OFF  |  FALSE  }  ]  
+	<td style="text-align: left; width: 50%;">Toggles on and off optimizer statistics for a COPY.
+  </tr>
+  </table>
