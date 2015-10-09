@@ -1,6 +1,6 @@
-#﻿Redshift COPY Command Guide
+#Redshift COPY Command Guide
 
-##About COPY  Command
+##About COPY Command
 The COPY command loads data into Amazon Redshift tables from either data files or Amazon DynamoDB tables.
 The copied files may reside in an S3 bucket, an EMR cluster or on a remote host accessed via SSH.
 Data is loadable from fixed-width, character-delimited text files, including CSV,  AVRO and JSON format.
@@ -8,14 +8,14 @@ Default format is character-delimited UTF-8 text files, delimited by the pipe (|
 Rows to be copied may not be larger than 4 MB from any single source.
 Root users and IAM users must have INSERT privileges to modify Redshift (RS) tables.
 
-##COPY  command syntax
+##COPY command syntax
     :::terminal
-    COPY  table_name
-    [  column_list  ]
-    FROM  data_source
-    [  WITH  ]  CREDENTIALS  [AS]  ‘aws_access_credentials’
-    [  [  FORMAT  ]  [  AS  ]  data_format  ]
-    [  [  parameter  [argument]  [,  ...]  ]
+    COPY table_name
+    [ column_list ]
+    FROM data_source
+    [ WITH] CREDENTIALS [AS] ‘aws_access_credentials’
+    [ [FORMAT ] [ AS ] data_format ]
+    [ [ parameter [argument] [,  ...] ]
 	
 ##COPY sample commands
 
